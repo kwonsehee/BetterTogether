@@ -1,0 +1,218 @@
+@charset "UTF-8";
+header,nav,section,article,aside{
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+   
+    /* ie8 이하 버전은 시맨틱 태그를 인식하지 못하므로
+    시맨틱 태그를 inline 요소로 취급함.
+    이를 방지하기 위해 display:block; 속성을 추가함. */
+    display: block;
+}
+
+body{
+    width: 1000px;
+    height: 800px;
+    margin: auto;
+}
+
+header{
+    width: 100%;
+    height: 23%;
+}
+
+nav{
+    width: 100%;
+    height: 5%;
+}
+
+#content{
+    width: 100%;
+    height: 100%;
+}
+header >section{
+    float: left;
+}
+#mypage{
+    padding-left: 40px;
+    padding-top : 70px;
+    width: 15%;
+    height: 100%;
+}
+#logo_block{
+    width: 50%;
+    height: 100%;
+    padding-left: 180px;
+}
+#login_block{
+    width: 35%;
+    height: 100%;
+    padding-top: 30px;
+}
+.login_logout{
+    font-family: "Do Hyeon";
+    font-size: 20px;
+    color: #ff6064;
+    border: 0;
+    outline: 0;
+    background: white;
+}
+/* #challenge{
+    padding-top: 28px;
+    padding-right: 20px;
+    width: 23%;
+    height: 100%;
+} */
+p, span,input{
+    font-family: "Do Hyeon";
+    font-size: 20px;
+}
+
+.content_css{
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+    border-radius: 20px;
+    border: solid 1px  #f7dede;
+    background-color:  #f7dede;
+}
+
+#login_css{
+    margin-left: 30%;
+    margin-top: 13%;
+    margin-right: 30%;
+
+    padding-left: 35px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+
+    border-radius: 20px;
+    border: solid 1px #fdc8c6;
+    background-color: #fdc8c6;
+}
+.input_box{
+    width: 200px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: white;
+    background-color: #ffffff;
+}
+.input_box_lag{
+    width: 300px;
+    height: 40px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: white;
+}
+.icon_css{
+    width: 40px;
+    height: 40px;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+.nav_css {
+width: 1000px;
+height: 80px;
+padding-left: 0px;
+padding-right: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
+border-radius: 20px;
+border: solid 1px  #ff6064;
+background-color: #ff6064;
+}
+.nav_btn{
+    width: 170px;
+    height: 50px;
+    border-radius: 20px;
+    border: solid 1px  #fdc8c6;
+    background-color: #fdc8c6;
+    margin: 5px;
+}
+ /*전체 ul의 블릿 제거 및 공백 제거*/
+ #navi{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#navi > li {
+    float: left;
+    width: 15%;
+    padding-left: 40px;
+}
+/*각 메뉴 스타일 지정*/
+#navi li button{
+    /*a 태그 영역 클릭 가능하게 만들기*/
+    display: block;
+    /*밑줄 제거*/
+    text-decoration: none;
+    /*폰트 설정*/
+    text-align : center;
+    color : black;
+    font-family: "Do Hyeon";
+    font-size: 20px;
+
+    /*높이 설정*/
+    line-height: 40px;
+}
+  /*서브 메뉴 설정*/
+  #navi li>ul{
+    position: absolute;
+
+    /*블릿제거 및 공백제거*/
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    /*평소에는 보이지 않게*/
+    opacity: 0;
+    visibility: hidden;
+}
+#navi li:hover ul{
+    /*메인 메뉴에 마우스 오버 시 서브메뉴 보이게*/
+    opacity: 1;
+    visibility: visible;
+
+    /*트렌지션*/
+    transition: all 0.6s;
+
+}
+ /*메뉴 마우스 오버 시 색상변경*/
+ #navi li a:hover{
+    color : #88a1db;
+}
+a{
+    color: black;
+    text-decoration: none;
+    font-family: "Do Hyeon";
+    font-size: 20px;
+    
+}
+.this{
+    color:#f7dede !important;
+}
+.btn_join, .btn_login{
+
+width: 120px;
+height: 40px;
+border-radius: 20px;
+border: #f7dede;
+background-color: #f7dede;
+font-family: "Do Hyeon";
+font-size: 20px;
+
+}
+.content_css{
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+    border-radius: 20px;
+    border: solid 1px  #f9f1f1;
+    background-color:  #f9f1f1;
+    float: left;
+}
