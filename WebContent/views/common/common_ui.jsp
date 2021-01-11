@@ -151,8 +151,8 @@
          </script>
 		<section id="logo_block">
 
-			<a href="BetterTogether.html"> <img src="<%=request.getContextPath()%>/resources/images/logo.png"
-				width="250px" height="170px"></a>
+			 <img src="<%=request.getContextPath()%>/resources/images/logo.png"
+				width="250px" height="170px" id="homeBtn">
 
 		</section>
 		<section id="login_block">
@@ -257,7 +257,7 @@
 				</button>
 				<ul>
 					<li><button class="nav_btn">
-							<a>공지사항</a>
+							<a id="noticeBtn">공지사항</a>
 						</button></li>
 					<li><button class="nav_btn">
 							<a>신고</a>
@@ -271,7 +271,19 @@
 				</ul></li>
 		</ul>
 	</nav>
-
+	<script>
+	//home버튼
+	const homeBtn = document.getElementById("homeBtn");
+	homeBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>";
+	});
+	
+	//공지사항버튼
+	const noticeBtn = document.getElementById("noticeBtn");
+	noticeBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/notice/list";
+	});
+	</script>
 	<!-- <section id="content" class="content_css"></section> -->
 </body>
 </html>
