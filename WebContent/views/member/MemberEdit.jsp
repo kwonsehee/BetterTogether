@@ -84,12 +84,38 @@
                 </tr>
                 <tr>
                     <th><button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button></th>
-                    <th colspan="2"> <button id="updateBtn" class="text_font joinform_btn">수정하기</button></th>
+                    <th> <button id="updateBtn" class="text_font joinform_btn">수정하기</button></th>
+                    <!--type=button이 없으면 form태그가 submit 되는 상황임  -->
+                    <th><button id="deleteBtn" type="button" class="text_font joinform_btn">탈퇴하기</button></th>
                 </tr>
             </table>
-
+				
         </form>
    
 	</section>
+	<script>
+		//1. 메인으로 돌아가기
+		const goMainBtn = document.getElementById("goMainBtn");
+		goMainBtn.addEventListener('click',function(){
+			location.href="<%=request.getContextPath()%>";
+		});
+		//2. 비밀번호 변경 창 띄우기
+		const pwdUpdateBtn = document.getElementById('pwdUpdateBtn');
+		pwdUpdateBtn.addEventListener('click',function(){
+			window.open("pwdUpdateForm.jsp","비밀번호 변경 창","width=500, height=300");
+		});
+		//3. 탈퇴하기 버튼 클릭 이벤트
+		const deleteBtn=document.getElementById('deleteBtn');
+		deleteBtn.addEventListener('click',function(){
+			if(confirm("정말로 탈퇴하시겠습니까?")){
+				//get방식 요청
+				//기존 form의 action속성을 변경해서 submit
+				// location.href="<%= request.getContextPath() %>/member/delete";
+				//기존 form에 정의 된 방식으로 submit되며, form 태그 안에 있는 모든 정보 submit
+				$("#updateForm").attr("action","<%= request.getContextPath() %>/member/delete");
+				$("#updateForm").submit();
+			}
+		});
+	</script>
 </body>
 </html>

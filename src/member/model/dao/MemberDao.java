@@ -157,5 +157,54 @@ public class MemberDao {
 
 		return loginUser;
 	}
+	//5. 비밀번호 변경용 dao
+		public int updatePwd(Connection conn, String userId, String userPwd, String newPwd) {
+			PreparedStatement pstmt = null;
+			int result=0;
+			
+			String sql=prop.getProperty("updatePwd");
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, newPwd);
+				pstmt.setString(2, userId);
+				pstmt.setString(3, userPwd);
+
+				result = pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			
+			return result;
+		}
+
+		//6. 탈퇴용 메소드
+		public int deleteMember(Connection conn, String userId) {
+			PreparedStatement pstmt = null;
+			int result=0;
+			
+			String sql=prop.getProperty("deleteMember");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, userId);
+				
+				result = pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
 
 }

@@ -59,6 +59,43 @@ public class MemberService {
 		
 		return updateMember;
 	}
-	
+	//4. 비밀번호 변경용 서비스
+		public Member updatePwd(String userId, String userPwd, String newPwd) {
+			Connection conn = getConnection();
+			Member updateMember = null;
+			
+			int result = new MemberDao().updatePwd(conn, userId, userPwd, newPwd);
+			
+			
+			// 2. 수정이 잘 되었다면 수정 된 정보의 member객체 select 후 리턴
+			if (result > 0) {
+				updateMember = new MemberDao().selectMember(conn, userId);
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return updateMember;
+		}
+
+		//5. 회원 탈퇴 서비스 메소드
+		public int deleteMember(String userId) {
+			Connection conn=getConnection();
+			
+			int result = new MemberDao().deleteMember(conn, userId);
+			
+			// 2. 수정이 잘 되었다면 수정 된 정보의 member객체 select 후 리턴
+			if (result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			close(conn);
+					
+			
+			return result;
+		}
+		
 
 }
