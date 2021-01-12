@@ -23,6 +23,13 @@ public class Notice {
 		
 	}
 
+	public Notice(String nTitle, String nContent, String nWriter) {
+		super();
+		this.nTitle = nTitle;
+		this.nContent = nContent;
+		this.nWriter = nWriter;
+	}
+
 	public Notice(int nNo, String nTitle, String nContent, String nWriter, int nCount, Date nDate, String status) {
 		super();
 		this.nNo = nNo;

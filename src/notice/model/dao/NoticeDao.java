@@ -65,5 +65,105 @@ public class NoticeDao {
 		}
 		return list;
 	}
+	//2. 공지사항 글 작성용 dao
+		public int insertNotice(Connection conn, Notice n) {
+			int result = 0;
+			PreparedStatement pstmt=null;
+			
+			String sql=prop.getProperty("insertNotice");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, n.getnTitle());
+				pstmt.setString(2, n.getnContent());
+				pstmt.setString(3, n.getnWriter());
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				
+				close(pstmt);
+			}
+			return result;
+		}
+
+		//3. 조회수 증가용 메소드
+		public int increaseCount(Connection conn, int nno) {
+			int result = 0;
+			PreparedStatement pstmt= null;
+			String sql = prop.getProperty("increaseCount");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, nno);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				
+				close(pstmt);
+			}
+			return result;
+		}
+
+		//4. 공지사항 게시글 1개 상세보기
+		public Notice selectNotice(Connection conn, int nno) {
+			Notice n=null;
+			PreparedStatement pstmt= null;
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("selectNotice");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, nno);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					n = new Notice(rset.getInt("nno"),
+									rset.getString("nTitle"),
+									rset.getString("ncontent"),
+									rset.getString("nwriter"),
+									rset.getInt("ncount"),
+									rset.getDate("ndate"),
+									rset.getString("status"));	
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			return n;
+		}
+
+		//5. 공지사항 삭제 
+		public int deleteNotice(Connection conn, int nno) {
+			int result = 0;
+			PreparedStatement pstmt=null;
+			String sql =prop.getProperty("deleteNotice");
+			
+			try {
+				pstmt= conn.prepareStatement(sql);
+				pstmt.setInt(1, nno);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			return result;
+		}
 	
 }

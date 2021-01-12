@@ -17,4 +17,62 @@
 	  ORDER BY
 	  		   NNO DESC
 	</entry>
+	<entry key="insertNotice">
+		INSERT
+		INTO NOTICE
+		(
+			NNO
+		  , NTITLE
+		  , NCONTENT
+		  , NWRITER
+		  , NCOUNT
+		  , NDATE
+		  , STATUS
+		)
+		VALUES
+		(
+			SEQ_NNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , DEFAULT
+		  , SYSDATE
+		  , DEFAULT
+		)
+	</entry>
+	 <entry key="increaseCount">
+        UPDATE
+               NOTICE
+           SET
+               NCOUNT = NCOUNT + 1
+         WHERE
+               NNO = ?
+           AND STATUS = 'Y'
+  
+  
+  </entry>
+  <entry key="selectNotice">
+        SELECT
+               NNO
+             , NTITLE
+             , NCONTENT
+             , NWRITER
+             , NCOUNT
+             , NDATE
+             , STATUS
+          FROM
+                NOTICE
+          WHERE 
+                NNO = ?
+            AND STATUS = 'Y'
+  </entry>
+  <entry key="deleteNotice">
+  		UPDATE
+  			   NOTICE
+  		   SET
+  		   	   STATUS = 'N'
+  		 WHERE
+  		 	   NNO = ?
+  		   AND STATUS = 'Y'
+  </entry>
 </properties>
