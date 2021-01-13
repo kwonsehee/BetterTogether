@@ -6,6 +6,7 @@
 %>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>공통 ui</title>
@@ -128,6 +129,7 @@
 </style>
 </head>
 <body>
+	 <!--  스터디카페 -->
 	<header>
 		<section id="mypage">
             <p class="openmenu" onclick='openNav()'><i class="material-icons fa fa-angle-double-left fa-5" aria-hidden="true" style="font-size : 80px">menu</i></p>
@@ -139,6 +141,7 @@
                 <button class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
                 <button class="mypageMenu1"style="padding-left: 10px;">스터디카페 예약</button>
                 <button class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
+               
             </div>
          </section>
          <script>
