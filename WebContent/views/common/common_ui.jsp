@@ -129,7 +129,7 @@
 </style>
 </head>
 <body>
-	 <!--  스터디카페 -->
+	 <!--  스터디카페ㅇㅇ -->
 	<header>
 		<section id="mypage">
             <p class="openmenu" onclick='openNav()'><i class="material-icons fa fa-angle-double-left fa-5" aria-hidden="true" style="font-size : 80px">menu</i></p>
