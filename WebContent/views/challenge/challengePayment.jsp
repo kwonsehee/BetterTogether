@@ -22,7 +22,7 @@
 }
 
 #content-2 {
-	margin-top:-140px;
+	margin-top:-120px;
 	width: 100%;
 	height: 15%;
 }
@@ -34,9 +34,21 @@
 	border-radius: 20px;
 	border: solid 1px #fdc8c6;
 	background-color: #fdc8c6;
-	margin: 30px;
 	float: right;
 	font-size: 20px;
+	margin-right: 340px;
+}
+
+#back_btn{
+	font-family: "Do Hyeon";
+	width: 170px;
+	height: 50px;
+	border-radius: 20px;
+	border: solid 1px #fdc8c6;
+	background-color: #fdc8c6;
+	float: left;
+	font-size: 20px;
+	margin-left: 300px;
 }
 
 #sec-1 {
@@ -56,64 +68,36 @@
 	float: right;
 }
 
-#table-1 {
-	font-family: "Do Hyeon";
-	font-size: 20px;
-	margin-top: -110px;
+.sec-3 {
+	width: 20%;
 }
 
-#table-2 {
-	font-family: "Do Hyeon";
-	font-size: 20px;
-	margin-top: 50px;
-}
-
-#sec-3 {
-	width: 15%;
-}
-
-#sec-3 img {
+.sec-3 img {
 	margin-left: 50px;
 	margin-top: -14px;
 	width: 50px;
 	height: 50px;
 }
 
-#sec-4 {
+.sec-4 {
 	width: 85%;
 	height: 20%;
 	float: right;
 	margin-top: -100px;
 }
 
-#sec-5 {
-	width: 100%;
-	height: 8%;
+#table-1 {
+	font-family: "Do Hyeon";
+	font-size: 20px;
+	margin-top: -110px;
 }
 
-
-.pay-img {
-	width: 50px;
-	height: 50px;
-	margin: 25px;
+#table-2, #table-3, #table-4 {
+	font-family: "Do Hyeon";
+	font-size: 20px;
+	margin-top: 50px;
 }
 
-#sec-6 span {
-	border: 1px solid #e0dddd;
-	background-color: #e0dddd;
-	border-radius: 7px;
-	padding: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-	position: absolute;
-	margin-top: 25px;
-	margin-left: 40px;
-}
-
-#challenge_btn {
-	margin: 20px;
-	margin-right: 400px;
-}
 
 #pay_title{
 	font-family: "Do Hyeon";
@@ -151,47 +135,49 @@
 				</table>
 			</section>
 			<hr color=#ff6064 width="970px">
-			<section id="sec-3">
-				<p>참가 비용</p>
-				<br> <img src="<%= request.getContextPath()%>/resources/images/payment.png">
+			<section class="sec-3">
+				<p>참가 비용 정보</p>
+				<br> <img src="<%= request.getContextPath()%>/resources/images/member.png">
 			</section>
-			<section id="sec-4">
+			<section class="sec-4">
 				<table id="table-2">
 					<tr>
-						<td><span>10,000 원 </span>* 챌린지가 끝나면 최종 달성률에 비례해 전액/부분 환급 가능!</td>
+						<td>참가 인원 총 금액  :<span> 40,000 원 </span></td>
+					</tr>
+				</table>
+			</section>
+			
+			<section class="sec-3">
+				<br> <img src="<%= request.getContextPath()%>/resources/images/payment.png">
+			</section>
+			<section class="sec-4">
+				<table id="table-3">
+					<tr>
+						<td>참가비 :<span> 10,000 원 </span> * 챌린지가 끝나면 최종 달성률에 비례해 전액/부분 환급 가능!</td>
 					</tr>
 				</table>
 			</section>
 			
 			<hr color=#ff6064 width="970px">
 			
-			<section id="sec-3">
+			<section class="sec-3">
 				<p>최종 결제</p>
 				<br> <img src="<%= request.getContextPath()%>/resources/images/payment.png">
 			</section>
-			<section id="sec-4">
-				<table id="table-2">
+			<section class="sec-4">
+				<table id="table-4">
 					<tr>
-						<td><span>10,000 원 </span>* 챌린지가 끝나면 최종 달성률에 비례해 전액/부분 환급 가능!</td>
+						<td>총 결제 금액 :<span> 10,000 원 </span></td>
 					</tr>
 				</table>
 			</section>
-			
-			<section id="sec-3">
-				<br> <img src="<%= request.getContextPath()%>/resources/images/payment.png">
-			</section>
-			<section id="sec-4">
-				<table id="table-2">
-					<tr>
-						<td><span>10,000 원 </span>* 챌린지가 끝나면 최종 달성률에 비례해 전액/부분 환급 가능!</td>
-					</tr>
-				</table>
-			</section>
-			
 			
 		</section>
 
 		<section id="content-2">
+			<button id="back_btn">
+				<a href="#">뒤로가기</a>
+			</button>
 			<!-- 결제 버튼 -->
 			<button id="challenge_btn">
 				<a href="#">결제하기</a>
