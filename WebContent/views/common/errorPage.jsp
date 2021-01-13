@@ -3,6 +3,7 @@
 <%
 	String message=(String)request.getAttribute("msg");
 %>
+<%--김은화 주석 테스트 --%>
 <!DOCTYPE html>
 <html>
 <head>
