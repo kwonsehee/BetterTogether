@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String message=(String)request.getAttribute("msg");
+	// 카페에러페이지
 %>
 <!DOCTYPE html>
 <html>
