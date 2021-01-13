@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="notice.model.vo.Notice"%>
+<%
+	Notice n = (Notice)request.getAttribute("notice");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 글쓰기</title>
+<title>공지사항 수정 페이지</title>
  <style>
     /* content 부분 */
 
@@ -127,15 +130,14 @@
     </style>
 </head>
 <body>
-
-<!-- 모든 페이지에 include할 menubar.jsp 생성하고 포함하기 -->
-
-<%@ include file="../common/common_ui.jsp" %>
-<section id="content" class="content_css">
-        <form id="article-form" action="<%= request.getContextPath() %>/notice/insert" method="post">
-        
+<%@ include file="../common/common_ui.jsp"%>
+	
+	<section id="content" class="content_css">
+        <form id="article-form" action="<%= request.getContextPath() %>/notice/update" method="post">
+        <input type="hidden" name="nno" value="<%= n.getnNo() %>">
+			
             <section id="title">
-                <p>공지사항 작성</p>
+                <p>공지사항 수정</p>
             </section>
             <section id="content-1">
                 <table class="table">
@@ -144,8 +146,8 @@
                             제목
                         </th>
                         <td>
-                            <input type="text" name="title" maxlength="50" >
-                        </td>
+                           <input type="text" name="title" value="<%= n.getnTitle() %>">
+						</td>
                     </tr>
                     <tr>
                         <th>첨부파일</th>
@@ -160,7 +162,9 @@
                     <tr>
                         <th rowspan="5">내용</th>
                         <td>
-                            <textarea cols="50" name="content" rows="15"></textarea>
+                            <textarea cols="50" name="content" rows="15">
+                            <%= n.getnContent() %>
+                            </textarea>
                         </td>
                     </tr>
                 </table>
@@ -169,10 +173,9 @@
             <section id="content-2">
                 <!-- 등록 버튼 , 나가기 버튼 -->
                 <button type="button" id="back_btn" class="article_btn" onclick="javascript:history.back();" >취소</button>
-				<button type="submit" class="article_btn">등록</button>
+				<button type="submit" class="article_btn">수정하기</button>
             </section>
         </form>
     </section>
-
 </body>
 </html>

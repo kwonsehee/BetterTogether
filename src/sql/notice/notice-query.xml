@@ -75,4 +75,13 @@
   		 	   NNO = ?
   		   AND STATUS = 'Y'
   </entry>
+  <entry key="updateNotice">
+  		UPDATE
+  			   NOTICE
+  		   SET
+  		   	   NTITLE = ?
+  		   	 , NCONTENT = ?
+  		 WHERE
+  			   NNO = ?
+  </entry>
 </properties>

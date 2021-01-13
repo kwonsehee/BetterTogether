@@ -165,5 +165,28 @@ public class NoticeDao {
 			}
 			return result;
 		}
+		//6. 공지사항 수정
+		public int updateNotice(Connection conn, Notice n) {
+			int result = 0;
+			PreparedStatement pstmt =null;
+			String sql = prop.getProperty("updateNotice");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, n.getnTitle());
+				pstmt.setString(2, n.getnContent());
+				pstmt.setInt(3, n.getnNo());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
 	
 }
