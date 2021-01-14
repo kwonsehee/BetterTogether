@@ -241,7 +241,7 @@
 			<li><button class="nav_btn">
 					<a>나의 챌린지 인증</a>
 				</button></li>
-			<li><button class="nav_btn">
+			<li><button class="nav_btn" id="studyBtn">
 					<a>스터디카페 예약</a>
 				</button></li>
 			<li><button class="nav_btn">
@@ -286,6 +286,15 @@
 	noticeBtn.addEventListener('click',function(){
 		location.href="<%= request.getContextPath()%>/notice/list";
 	});
+	
+	//스터디카페버튼
+	const studyBtn = document.getElementById("studyBtn");
+	studyBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/views/studycafe/studycafe.jsp";
+	});
+	
+	 
+	
 	</script>
 	<!-- <section id="content" class="content_css"></section> -->
 </body>

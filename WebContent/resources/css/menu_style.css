@@ -160,7 +160,7 @@ background-color: #ff6064;
     list-style-type: none;
     padding: 0;
     margin: 0;
-
+	z-index:1;
     /*평소에는 보이지 않게*/
     opacity: 0;
     visibility: hidden;
