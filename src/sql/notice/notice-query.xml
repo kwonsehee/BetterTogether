@@ -62,6 +62,7 @@
 			 , ARTICLE_MODIFY
 			 , USER_ID
 			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
 		  FROM
 		  	   NOTICE
           WHERE 
@@ -84,5 +85,41 @@
   		   	 , ARTICLE_CONTNENT = ?
   		 WHERE
   			   ARTICLE_NO = ?
+  </entry>
+   <entry key="selectSearchTitleList">
+  		SELECT
+  			   ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTNENT
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , USER_ID
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
+  		  FROM
+  		  	   NOTICE
+  		 WHERE
+  		  	   ARTICLE_TYPE !=3
+  		   AND ARTICLE_TITLE LIKE '%' || ? || '%' 
+  	  ORDER BY
+  	  		   ARTICLE_NO DESC
+  </entry>
+  <entry key="selectSearchContentList">
+  			SELECT
+  			   ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTNENT
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , USER_ID
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
+  		  FROM
+  		  	   NOTICE
+  		 WHERE
+  		  	   ARTICLE_TYPE !=3
+  		   AND ARTICLE_CONTNENT LIKE '%' || ? || '%' 
+  	  ORDER BY
+  	  		   ARTICLE_NO DESC
   </entry>
 </properties>
