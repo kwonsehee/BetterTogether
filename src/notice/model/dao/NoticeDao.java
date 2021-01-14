@@ -139,7 +139,8 @@ public class NoticeDao {
 							rset.getDate("ARTICLE_DATE"),
 							rset.getDate("ARTICLE_MODIFY"),
 							rset.getString("USER_ID"),
-							rset.getInt("ARTICLE_CNT"));
+							rset.getInt("ARTICLE_CNT"),
+							rset.getInt("ARTICLE_TYPE"));
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -192,6 +193,48 @@ public class NoticeDao {
 			}
 			
 			return result;
+		}
+
+		//공지사항 검색
+		public ArrayList<Notice> selectList(Connection conn, String search, String searchCondition) {
+			ArrayList<Notice>list =new ArrayList<>();
+			
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String sql = "";
+			
+			if(searchCondition.equals("title")) {
+				sql = prop.getProperty("selectSearchTitleList");
+			}else{
+				sql = prop.getProperty("selectSearchContentList");
+			}
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, search);
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){
+					list.add(new Notice(rset.getInt("ARTICLE_NO"),
+							rset.getString("ARTICLE_TITLE"),
+							rset.getString("ARTICLE_CONTNENT"),
+							rset.getDate("ARTICLE_DATE"),
+							rset.getDate("ARTICLE_MODIFY"),
+							rset.getString("USER_ID"),
+							rset.getInt("ARTICLE_CNT"),
+							rset.getInt("ARTICLE_TYPE")));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
 		}
 	
 }

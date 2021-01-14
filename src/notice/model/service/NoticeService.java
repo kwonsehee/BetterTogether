@@ -96,6 +96,17 @@ public class NoticeService {
 			
 			return result;
 		}
+	
+		//검색어와 관련된 공지사항 선택
+		public ArrayList<Notice> selectList(String search, String searchCondition) {
+			Connection conn = getConnection();
+			
+			ArrayList<Notice>list = new NoticeDao().selectList(conn, search, searchCondition);
+			
+			close(conn);
+			
+			return list;
+		}
 
 		
 	
