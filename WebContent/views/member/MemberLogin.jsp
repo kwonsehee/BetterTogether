@@ -1,11 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String message=(String)request.getAttribute("msg");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Login화면</title>
-
+<%if(session.getAttribute("msg") != null){ %>
+<script>
+	alert('<%=session.getAttribute("msg") %>');
+	
+</script>
+<%
+	session.removeAttribute("msg");
+ 	}
+%>
 </head>
 <body>
 	<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->

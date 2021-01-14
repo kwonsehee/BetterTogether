@@ -129,7 +129,7 @@
 </style>
 </head>
 <body>
-	 <!--  스터디카페ㅇㅇ -->
+
 	<header>
 		<section id="mypage">
             <p class="openmenu" onclick='openNav()'><i class="material-icons fa fa-angle-double-left fa-5" aria-hidden="true" style="font-size : 80px">menu</i></p>
@@ -239,7 +239,7 @@
 					<a>챌린지모집</a>
 				</button></li>
 			<li><button class="nav_btn">
-					<a>나의 챌린지 인증</a>
+					<a id="confirmBtn">나의 챌린지 인증</a>
 				</button></li>
 			<li><button class="nav_btn">
 					<a>스터디카페 예약</a>
@@ -285,6 +285,12 @@
 	const noticeBtn = document.getElementById("noticeBtn");
 	noticeBtn.addEventListener('click',function(){
 		location.href="<%= request.getContextPath()%>/notice/list";
+	});	
+	
+	//나의 챌린지 인증하기 버튼
+	const confirmBtn = document.getElementById("confirmBtn");
+	confirmBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/confirm/list";
 	});
 	</script>
 	<!-- <section id="content" class="content_css"></section> -->
