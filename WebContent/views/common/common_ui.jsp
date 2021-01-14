@@ -205,14 +205,14 @@
 					</td>
 					<td>
 						<i class="material-icons icon_css">check_box</i> 
-						<span>참여 챌린지 수 : <%=loginUser.getStatus() %>개</span>
+						<span>참여 챌린지 수 : 개</span>
 						<!--여기도 디비에서 참여 챌린지 갯수 가져와야함 -->
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<i class="material-icons icon_css">mood</i>
-						<span><%=loginUser.getUserName() %>님</span>
+						<span><%=loginUser.getNickName() %>님</span>
 					</td>
 					<td>
 						<i class="material-icons icon_css">insert_chart</i>

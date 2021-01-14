@@ -5,7 +5,7 @@
 
 	String userId=m.getUserId();
 	String userPwd=m.getUserPwd();
-	String nickName=m.getUserName();
+	String nickName=m.getNickName();
 	
 	//필수 정보가 아닌 값들은 null로 리턴되므로 ""로 처리
 	String phone = (m.getPhone()!= null)?m.getPhone():"";
@@ -18,29 +18,29 @@
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
 <style>
-   #join{
-            width: 50%;
-            height: 80%;
-            /* border: 1px solid black; */
-            margin-top: 5%;
-            margin-left: 25%;
-            padding-left: 5%;
-        }
-    .text_font{
-    font-family: "Do Hyeon";
-    font-size: 20px;
-	}
-	.joinform_btn{
-       
-    width: 120px;
-    height: 40px;
-    border-radius: 20px;
-    border: #f7dede;
-    background-color: #f7dede;
-    margin-top: 30px;
-   }
-   
-    </style>
+#join {
+	width: 50%;
+	height: 80%;
+	/* border: 1px solid black; */
+	margin-top: 5%;
+	margin-left: 25%;
+	padding-left: 5%;
+}
+
+.text_font {
+	font-family: "Do Hyeon";
+	font-size: 20px;
+}
+
+.joinform_btn {
+	width: 120px;
+	height: 40px;
+	border-radius: 20px;
+	border: #f7dede;
+	background-color: #f7dede;
+	margin-top: 30px;
+}
+</style>
 </head>
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->

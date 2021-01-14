@@ -43,7 +43,7 @@ public class UpdatePwdServlet extends HttpServlet {
 		
 		Member updateMember = new MemberService().updatePwd(userId, userPwd,newPwd);
 		
-		System.out.println(updateMember);
+		System.out.println("update"+updateMember);
 		
 		if(updateMember != null) {
 			//비밀번호 수정이 잘 되었음을 result-succes로 표시

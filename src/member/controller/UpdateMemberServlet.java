@@ -36,23 +36,12 @@ public class UpdateMemberServlet extends HttpServlet {
 		
 		//2. 회원정보 수정에 필요한 값 추출
 		String userId=request.getParameter("userId");
-		String userName=request.getParameter("userName");
+		String nickName=request.getParameter("nickName");
 		String phone=request.getParameter("phone");
 		String email=request.getParameter("email");
-		String[] addressArr=request.getParameterValues("address");
-		String[] interestArr=request.getParameterValues("interest");
-		
-		String address="";
-		String interest="";
-		
-		if(addressArr!=null) {
-			address=String.join(",", addressArr);
-		}
-		if(interestArr!=null) {
-			interest=String.join(",", interestArr);
-		}
-		
-		Member m = new Member(userId, userName,phone, email, address,interest);
+//		int user_cate=Integer.parseInt(request.getParameter("user_cate"));
+		int user_cate = 1;
+		Member m = new Member(userId, nickName,phone, email, user_cate);
 		
 		System.out.println("수정하고자 하는 정보 : " + m);
 		

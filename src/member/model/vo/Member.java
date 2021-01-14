@@ -4,29 +4,30 @@ import java.sql.Date;
 
 public class Member {
 	/*
-	 	USER_NO	NUMBER
-		USER_ID	VARCHAR2(30 BYTE)
-		USER_PWD	VARCHAR2(100 BYTE)
-		USER_NAME	VARCHAR2(15 BYTE)
-		PHONE	VARCHAR2(13 BYTE)
-		EMAIL	VARCHAR2(100 BYTE)
-		ADDRESS	VARCHAR2(100 BYTE)
-		INTEREST	VARCHAR2(100 BYTE)
-		ENROLL_DATE	DATE
-		MODIFY_DATE	DATE
-		STATUS	VARCHAR2(1 BYTE)
+	USER_ID	VARCHAR2(20 BYTE)
+	NICKNAME	VARCHAR2(20 BYTE)
+	USER_PWD	VARCHAR2(20 BYTE)
+	PHONE	VARCHAR2(20 BYTE)
+	EMAIL	VARCHAR2(20 BYTE)
+	CHALL	VARCHAR2(20 BYTE)
+	JOIN_DATE	DATE
+	MODIFY_DATE	DATE
+	MEMBER_TYPE	NUMBER
+	WRITE_ACTIVE	CHAR(1 BYTE)
+	USER_CATE	NUMBER
 		*/
-	private int userNo;
+
 	private String userId;
 	private String userPwd;
-	private String userName;
+	private String nickName;
 	private String phone;
 	private String email;
-	private String address;
-	private String interest;
-	private Date enrollDate;
+	private String chall;
+	private Date joinDate;
 	private Date modifyDate;
-	private String status;
+	private int membertype;
+	private String writer_active;
+	private int user_cate;
 	
 	public Member() {
 		
@@ -36,55 +37,50 @@ public class Member {
 		this.userId = userId;
 		this.userPwd = userPwd;
 	}
-	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email,
-			String address, String interest, Date enrollDate, Date modifyDate, String status) {
+	
+	
+	public Member(String userId, String userPwd, String nickName, String phone, String email) {
 		super();
-		this.userNo = userNo;
 		this.userId = userId;
 		this.userPwd = userPwd;
-		this.userName = userName;
+		this.nickName = nickName;
 		this.phone = phone;
 		this.email = email;
-		this.address = address;
-		this.interest = interest;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.status = status;
 	}
-	public Member(String userId, String userPwd, String userName, String phone, String email,
-			String address, String interest) {
+	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
+			Date modifyDate, int membertype) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
-		this.userName = userName;
+		this.nickName = nickName;
 		this.phone = phone;
 		this.email = email;
-		this.address = address;
-		this.interest = interest;
+		this.joinDate = joinDate;
+		this.modifyDate = modifyDate;
+		this.membertype = membertype;
 	}
 	
-	public Member(String userId, String userName, String phone, String email, String address, String interest) {
+	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
+			Date modifyDate, int membertype, String writer_active) {
 		super();
 		this.userId = userId;
-		this.userName = userName;
+		this.userPwd = userPwd;
+		this.nickName = nickName;
 		this.phone = phone;
 		this.email = email;
-		this.address = address;
-		this.interest = interest;
+		this.joinDate = joinDate;
+		this.modifyDate = modifyDate;
+		this.membertype = membertype;
+		this.writer_active = writer_active;
 	}
-	public Member(String userId, String userPwd, String userName, String phone, String email) {
+	
+	public Member(String userId, String nickName, String phone, String email, int user_cate) {
 		super();
 		this.userId = userId;
-		this.userPwd= userPwd;
-		this.userName = userName;
+		this.nickName = nickName;
 		this.phone = phone;
 		this.email = email;
-	}
-	public int getUserNo() {
-		return userNo;
-	}
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+		this.user_cate = user_cate;
 	}
 	public String getUserId() {
 		return userId;
@@ -98,11 +94,11 @@ public class Member {
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
-	public String getUserName() {
-		return userName;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	public String getPhone() {
 		return phone;
@@ -116,23 +112,17 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
-		return address;
+	public String getChall() {
+		return chall;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setChall(String chall) {
+		this.chall = chall;
 	}
-	public String getInterest() {
-		return interest;
+	public Date getJoinDate() {
+		return joinDate;
 	}
-	public void setInterest(String interest) {
-		this.interest = interest;
-	}
-	public Date getEnrollDate() {
-		return enrollDate;
-	}
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
 	}
 	public Date getModifyDate() {
 		return modifyDate;
@@ -140,19 +130,31 @@ public class Member {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	public String getStatus() {
-		return status;
+	public int getMembertype() {
+		return membertype;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setMembertype(int membertype) {
+		this.membertype = membertype;
+	}
+
+	public String getWriter_active() {
+		return writer_active;
+	}
+	public void setWriter_active(String writer_active) {
+		this.writer_active = writer_active;
+	}
+	public int getUser_cate() {
+		return user_cate;
+	}
+	public void setUser_cate(int user_cate) {
+		this.user_cate = user_cate;
 	}
 	@Override
 	public String toString() {
-		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", phone=" + phone + ", email=" + email + ", address=" + address + ", interest=" + interest
-				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
+		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", nickName=" + nickName + ", phone=" + phone
+				+ ", email=" + email + ", chall=" + chall + ", joinDate=" + joinDate + ", modifyDate=" + modifyDate
+				+ ", membertype=" + membertype + ", writer_active=" + writer_active + ", user_cate=" + user_cate + "]";
 	}
-	
 	
 	
 	

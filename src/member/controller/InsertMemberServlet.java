@@ -37,7 +37,7 @@ public class InsertMemberServlet extends HttpServlet {
 		//2. request에 담겨 있는 값을 꺼내서 변수에 저장 및 객체 생성
 		String userId=request.getParameter("userId");
 		String userPwd=request.getParameter("userPwd");
-		String userName=request.getParameter("nickName");
+		String nickName=request.getParameter("nickName");
 		String phone=request.getParameter("phone");
 		String email=request.getParameter("email");
 		
@@ -55,7 +55,7 @@ public class InsertMemberServlet extends HttpServlet {
 //			interest=String.join(",", interestArr);
 //		}
 		
-		Member mem = new Member(userId, userPwd, userName, phone,email);
+		Member mem = new Member(userId, userPwd, nickName, phone,email);
 		System.out.println("잘 넘어오는지 확인 : "+mem);
 		
 		//3. 비지니스 로직을 수행 할 서비스 메소드 호출하고 결과 값 받기
