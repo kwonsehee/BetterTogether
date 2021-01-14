@@ -2,6 +2,16 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, notice.model.vo.Notice"%>
 <%
 	ArrayList<Notice> list= (ArrayList<Notice>)request.getAttribute("list");
+	String searchCondition = (String)request.getAttribute("searchCondition");
+	String search = (String)request.getAttribute("search");
+	String[] searchSelected = new String[2];
+	if(searchCondition !=null){
+		if(searchCondition.equals("title")){
+			searchSelected[0]= "selected";
+	}else{
+		searchSelected[1]= "selected";
+	}
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -143,15 +153,18 @@
         </section>
 
             <section id="notice_area">
-           	 <form>
-       
-				<select id="searchCondition"name="searchCondition" style="width:60px height:40px">
+           <form action="<%=request.getContextPath()%>/notice/search"method="get"
+			onsubmit="return checkSearchCondition();">
+				<select id="searchCondition"name="searchCondition">
 					<option value="----">----</option>
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-					
+					<option value="title" <%=searchSelected[0] %>>제목</option>
+					<option value="content"  <%=searchSelected[1] %>>내용</option>
 				</select>
-				<input type="search" name="search" class="input_box">
+				<%if(search !=null){ %>
+				<input type="search" name="search" value="<%= search %>">
+				<%}else{ %>
+				<input type="search" name="search">
+				<%} %>
 				<button type ="submit" class="article_btn">검색하기</button>
 				<!-- 2. 공지사항 글쓰기 기능 : 관리자만 사용하는 기능(로그인 유저가 관리자일 때만 보여줌) -->
 				<%if(loginUser!=null&&loginUser.getUserId().equals("admin")) {%>
@@ -183,7 +196,13 @@
 			            location.href="<%= request.getContextPath() %>/notice/detail?aNo=" +num;
 			         });
 			      });
-
+			// 검색 부분
+		      function checkSearchCondition(){
+		         if($("#searchCondition option:selected").val() == '----'){
+		            return false;
+		         }
+		         return true;
+		      }
 		</script>
 		
     </section>
