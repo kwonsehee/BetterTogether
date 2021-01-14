@@ -52,10 +52,11 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				loginUser = new Member(rset.getInt("USER_NO"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
-						rset.getString("USER_NAME"), rset.getString("PHONE"), rset.getString("EMAIL"),
-						rset.getString("ADDRESS"), rset.getString("INTEREST"), rset.getDate("ENROLL_DATE"),
-						rset.getDate("MODIFY_DATE"), rset.getString("STATUS"));
+				loginUser = new Member(rset.getString("USER_ID"),
+						rset.getString("USER_PWD"), rset.getString("NICKNAME"),
+						rset.getString("PHONE"), rset.getString("EMAIL"),
+						rset.getDate("JOIN_DATE"),rset.getDate("MODIFY_DATE"),
+						rset.getInt("MEMBER_TYPE"));
 			}
 
 		} catch (SQLException e) {
@@ -78,7 +79,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mem.getUserId());
 			pstmt.setString(2, mem.getUserPwd());
-			pstmt.setString(3, mem.getUserName());
+			pstmt.setString(3, mem.getNickName());
 			pstmt.setString(4, mem.getPhone());
 			pstmt.setString(5, mem.getEmail());
 			
@@ -104,12 +105,11 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, mem.getUserName());
+			pstmt.setString(1, mem.getNickName());
 			pstmt.setString(2, mem.getPhone());
 			pstmt.setString(3, mem.getEmail());
-			pstmt.setString(4, mem.getAddress());
-			pstmt.setString(5, mem.getInterest());
-			pstmt.setString(6, mem.getUserId());
+			pstmt.setInt(4, mem.getUser_cate());
+			pstmt.setString(5, mem.getUserId());
 
 			result = pstmt.executeUpdate();
 
@@ -131,7 +131,7 @@ public class MemberDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectMember");
-//		System.out.println("여기 아직 못옴");
+		System.out.println("여기 아직 못옴");
 		// 1. 미리sql문 전달 세팅을 미리하는 거
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -141,10 +141,12 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				loginUser = new Member(rset.getInt("USER_NO"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
-						rset.getString("USER_NAME"), rset.getString("PHONE"), rset.getString("EMAIL"),
-						rset.getString("ADDRESS"), rset.getString("INTEREST"), rset.getDate("ENROLL_DATE"),
-						rset.getDate("MODIFY_DATE"), rset.getString("STATUS"));
+				loginUser = new Member(rset.getString("USER_ID"),
+						rset.getString("USER_PWD"), rset.getString("NICKNAME"),
+						rset.getString("PHONE"), rset.getString("EMAIL"),
+						rset.getDate("JOIN_DATE"),rset.getDate("MODIFY_DATE"),
+						rset.getInt("MEMBER_TYPE"));
+				
 			}
 
 		} catch (SQLException e) {
