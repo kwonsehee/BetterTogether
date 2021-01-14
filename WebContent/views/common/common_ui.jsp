@@ -248,7 +248,7 @@
 					<a>커뮤니티</a>
 				</button>
 				<ul>
-					<li><button class="nav_btn">
+					<li><button class="nav_btn" >
 							<a>자유게시판</a>
 						</button></li>
 					<li><button class="nav_btn">

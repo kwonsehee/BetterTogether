@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>  
+    pageEncoding="UTF-8"%>
+    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
- #main{
+  
+        #main{
             position: absolute;
             padding-top: 20px;
             width: 1000px;
@@ -61,8 +65,8 @@
         }
         .input_area input{
             position: absolute;
-            left: 27%;
-            right: 55.38%;
+            left: 26.5%;
+            right: 55%;
             margin-top: 150px; 
 
             background: #FFFFFF;
@@ -73,32 +77,61 @@
             position: absolute;
             width : 350px;
 		    height : 150px; 
+       
+
             background: #FFFFFF;
             border-radius: 5px;
 	        }
-
-            .btnArea {
-		text-align:center;
-		padding : 50px;
-        bottom: 0;
+        #btnArea1{
         
-	}
-		 
+        
+			position: absolute;
+			left: 46.33%;
+			right: 47.41%;
+			top: 92.53%;
+			bottom: 1.44%;
 
+			background: #F8BEBE;
+			border-radius: 5px;
+         
+        }
 
-</style>
-<!DOCTYPE html>
-<html>
+        #btnArea2{
 
-<head>
-<meta charset="UTF-8">
-<title>스터디카페</title>
+    	  position: absolute;
+			left: 51.74%;
+			right: 42%;
+			top: 92.53%;
+			bottom: 1.44%;
 
+			background: #F8BEBE;
+			border-radius: 5px;
+        }
+        
+   		.photo{
+    		   position: absolute;
+				left: 56.77%;
+				right: 37.28%;
+				top: 80.03%;
+				bottom: 14.08%; 
+    		}
+    	.photo2{
+    			position: absolute;
+				left: 67.21%;
+				right: 26.84%;
+				top: 80.03%;
+				bottom: 14.08%; 
+    	}
+ 
+    </style>
 </head>
 <body>
-	<%@ include file="../common/common_ui.jsp"%>
-	 <!--  스터디카페등록ㅇㅇ -->
-	 <section id="content" class="content_css">
+    <%@ include file="../common/common_ui.jsp"%>
+	 <!--  스터디카페ㅇㅇ -->
+	
+
+    
+    <section id="content" class="content_css">
        
         <div id ="main">
 
@@ -141,35 +174,45 @@
                             <input type="text" name="cafe_page" required required style="margin-top: 45%;">
                         </span>
  
+                     
+
 
                         <h4 class="studycafe_title2">카페소개글</h4>
                         <textarea name="content" style="resize:none;margin-left: 0px;left: 550px;top: 170px;"  required > </textarea>
                 
                         <h4 class="studycafe_title2" style="margin-top: 31%;">카페공지글</h4>
 				        <textarea name="content" style="resize:none;left: 550px;top: 330px;" required> </textarea>
-                         
-                         
-                         <h4 class="studycafe_title2" style="margin-top: 48%;">카페이미지</h4>
-                        <td><input type="file"  value="CAFE_PHOTO" name="file" style="
-                            margin-left: 550px;
-                            border-left-width: 50px;
-                            padding-left: 0px;
-                            margin-top: 480px;
-                        "></td>
+                       
+                        <h4 class="studycafe_title2" style="margin-top: 31%;">카페공지글</h4>
+				        <textarea name="content" style="resize:none;left: 550px;top: 330px;" required> </textarea>
                         
-                  
-                        <div class="btnArea" >
-                            <button type="button" onclick="javascript:history.back();">취소</button>
-                            <button type="submit"  style="  margin-top: 70px;">등록</button>
+                        <h4 class="studycafe_title2" style="margin-top: 48%;">내부사진,약도</h4> 
+                        <div class="photo">
+                        <input type="file"   name="cafe_photo"   > 
                         </div>
-                   
+                          <div class="photo2">
+                        <input type="file"  name="cafe_area""   > 
+                        </div>
+                        <div  >
+                            <button type="button"  id="btnArea2" onclick="javascript:history.back();">취소</button>
+                            <button type="submit"  id="btnArea1">등록</button>
+                        </div>
+                  
                     </form>
                 </div>
             </div>
         
+
+
+
          </div>
     </section>
-		 
+     
+  
 
+ 
+    <footer>
+        
+    </footer>
 </body>
 </html>

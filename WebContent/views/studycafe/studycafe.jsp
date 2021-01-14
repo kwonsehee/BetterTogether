@@ -43,7 +43,7 @@
             height: 22px; 
             background : url('<%= request.getContextPath() %>/resources/images/돋보기.jpg');
             margin-left: 785px;
-            margin-top:27px;
+            margin-top:7px;
          }
 
          #area{
@@ -172,8 +172,16 @@
             height:120px;
         } 
 
+		#studycafe{
+			position: absolute;
+			left: 90.72%;
+			right: 2.09%;
+			top: 94.4%;
+			bottom: 0.72%;
 
-
+			background: #FF6064;
+			border-radius: 5px;
+		}
 </style>
 <!DOCTYPE html>
 <html>
@@ -195,15 +203,11 @@
 	 <section id="content" class="content_css">
         <div id ="main">
             
-            <form action='스터디카페3.html'>
-                <!-- 상세 검색및 ,카페명 검색-->
-                
-                <input type="text" id="serch" placeholder="카페명을 검색하세요!"><input  type="submit" class="img-button" value=""></button>
-                </form>
-            <p>
+          
+              
+           
             <ul class="area"id="area1">
-            <table id="cafeTable">
-            <from>
+           	 <from>
                 <select id="area" name = "city1"> 지역
                     <optgroup label = "서초구">
                         <option value = "songpa-gu">방배</option>
@@ -237,7 +241,7 @@
                         <option value = "songpa-gu">사당</option>
                         <option value = "gangnam-gu">흑성동</option>
                         <option value = "seocho-gu">대방동</option>
-                        <option value = "junggu-gu">신대방</option>
+                        <option value = "junggu-gu">신대바</option>
                     </optgroup>
                     
                        <optgroup label = "노원구">
@@ -267,32 +271,31 @@
              </from>
             <hr id="line1">
             
-     		  
+     
             <div class="cafe" style="font-size : 10px" >  
-             <table id="cafeTable">
                 <div id="a">   
                     <img id='cafeimg' SRC="크기변환_1.jpg" align="bottom"> 
                     <a href="스터디카페정보.html"> 제휴카페1<br>
-                    [서울]
+                    [<% %>]
                     </a>
                    
                 </div>
                 <div id="b">   
                     <img id='cafeimg' SRC="크기변환_1.jpg" align="bottom"> 
                     <a href="스터디카페정보.html"> 제휴카페2<br>
-                        [인천]
+                      [<% %>]
                         </a>
                 </div> 
                 <div id="c">   
                     <img id='cafeimg' SRC="크기변환_1.jpg" align="bottom"> 
                     <a href="스터디카페정보.html" >  제휴카페3<br>
-                        [경기]
+                      [<% %>]
                         </a>
                 </div> 
                 <div id="d">   
                     <img id='cafeimg' SRC="크기변환_1.jpg" align="bottom"> 
                     <a href="스터디카페정보.html"> 제휴카페4<br>
-                        [부산]
+                       [<% %>]
                         </a>
                 </div>  
             </div>   
@@ -303,32 +306,46 @@
                 <div id="a">   
                     <img id='cafeimg' SRC="크기변환_1.jpg" align="bottom"> 
                     <a href="스터디카페정보.html"> 검색카페1<br>
-                        [송파구] </a>
+                        [<% %>]</a>
                 </div>
                 <div id="b">   
                     <img id='cafeimg' SRC="크기변환_1.jpg" align="bottom"> 
                     <a href="스터디카페정보.html"> 검색카페2<br>
-                        [송파구] </a>
+                        [<% %>] </a>
                 </div> 
                 <div id="c">   
                     <img id='cafeimg' SRC="크기변환_1.jpg" align="bottom"> 
                     <a href="스터디카페정보.html"> 검색카페3<br>
-                        [송파구] </a>
+                       [<% %>] </a>
                 </div> 
                 <div id="d">   
                     <img id='cafeimg' SRC="크기변환_1.jpg" align="bottom"> 
                     <a href="스터디카페정보.html"> 검색카페4<br>
-                        [송파구] </a>
+                       [<% %>] </a>
                 </div>  
-				</table>
+
                 
             </div>
-            <div id="num"  style="margin-top: 560px;" >
-                <P ALIGN="CENTER" ><B>    <a href="스터디카페메인.html">1</A>
-             <a href="메인2.html">2</A>
-             <a href="스터디카페메인.html">3</A>  </B></P>
-             </div>    
-          
+            
+            
+           	<div class="searchArea">
+			 <form>
+					
+			
+				<input type="text" id="serch" placeholder="카페명을 검색하세요!"><input  type="submit" class="img-button" value=""></button>
+				<% if(loginUser != null && loginUser.getUserId().equals("admin")) { %>
+            
+           		<button id="studycafe" type="button" >작성하기</button>
+            
+           			 <script>
+						const noticeInsert = document.getElementById('studycafe');
+						studycafe.addEventListener('click', function(){
+						location.href='<%= request.getContextPath() %>/views/studycafe/studycafeForm.jsp';
+						});
+				</script>
+				<% } %>
+      		</form>
+         	 </div>
         </div> 
        
     </section> 
