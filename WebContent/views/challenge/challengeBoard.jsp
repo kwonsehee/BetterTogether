@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String searchCondition = (String)request.getAttribute("searchCondition");
+	String search = (String)request.getAttribute("search");
+	String[] searchSelected = new String[2];
+	if(searchCondition != null){
+		if(searchCondition.equals("title")){
+			searchSelected[0] = "selected";
+		}else{
+			searchSelected[1] = "selected";
+		}
+	}
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,6 +84,34 @@
             padding-top: 50px;
             padding-left: 350px;
         }
+        
+        /* 검색하기 영역 */
+		.searchArea {
+			float:left;
+			margin-top:20px;
+			margin-left: -20px;
+		}
+		
+		#searchCondition{
+			font-family: "Do Hyeon";
+			font-size:20px;
+			height:30px;
+		}
+		
+		input:focus{
+			outline: none;
+		}
+		
+		#search_btn{
+		   font-family: "Do Hyeon";
+		   border-radius: 20px;
+           border: solid 1px #fdc8c6;
+           background-color: #fdc8c6;
+           padding:5px 15px 5px 15px;
+           font-size:17px;
+		}
+		
+		
     </style>
 </head>
 <body>
@@ -154,6 +195,23 @@
                 <a href="#">5</a>
                 <a href="#">6</a>
                 <a href="#">&raquo;</a>
+            </div>
+            
+            <div class="searchArea">
+            	<form action="<%= request.getContextPath() %>"/challenge/search" method="get"
+            	onsubmit="return checkSearchCondition();">
+            		<select id="searchCondition" name="searchCondition">
+						<option value="----">----</option>
+						<option value="title" <%= searchSelected[0]%>>제목</option>
+						<option value="category" <%= searchSelected[1] %>>카테고리</option>            		
+            		</select>
+            		<% if(search != null) {%>
+            		<input type="search" name="search" value="<%= search%>">
+            		<% } else { %>
+            		<input type="search" name="search">
+            		<% } %>
+            		<button type="submit" id="search_btn">검색하기</button>
+            	</form>
             </div>
 
         </section>
