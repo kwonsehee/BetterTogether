@@ -82,23 +82,24 @@
                 <div id="board_title">
                     <table style="width: 100%;">
                         <tr>
-                            <td><span>게시물 제목 : <%=n.getnTitle() %></span></td>
-                            <td><span>작성자 : <%=n.getnWriter() %></span></td>
-                            <td><span>작성날짜 : <%=n.getnDate() %></span></td>
+                            <td><span>게시물 제목 : <%=n.getaTitle() %></span></td>
+                            <td><span>작성자 : <%=n.getUser_id() %></span></td>
+                            <td><span>작성날짜 : <%=n.getaDate() %></span></td>
                         </tr>
                     </table>
                 </div>
-                    <div id="board_con"><span><%=n.getnContent() %></span></div>
+                    <div id="board_con"><span><%=n.getaContent() %></span></div>
                     <div class="btnArea">
 					<button type="button" id="listBtn" class="board_btn">목록으로</button>
-					<%if(loginUser !=null&&loginUser.getUserId().equals("admin")){  %>
+					<!--관리자 멤버타입은 3임!!!!!!! -->
+					<%if(loginUser !=null&&loginUser.getMembertype()==3){  %>
 					<button type="button" id="updateBtn" class="board_btn">수정하기</button>
 					<button type="button" id="deleteBtn" class="board_btn">삭제하기</button>
 					
 					<!-- form 태그를 POST 방식으로 제출
 					nno를 화면에 드러내지 않고 form을 submit하면서 넘길 수 있음 -->
 					<form id="nnoForm"method="post">
-						<input type="hidden" name="nno"value="<%=n.getnNo() %>">
+						<input type="hidden" name="ano"value="<%=n.getaNo() %>">
 					</form>
 					<script>
 					//수정하기 버튼 이벤트
@@ -109,6 +110,7 @@
 					});
 					
 					//삭제하기 버튼 이벤트
+					//*******삭제하기 위해서는 article_type 추가 필요함!!!!!!!!
 					const deleteBtn = document.getElementById('deleteBtn');
 					deleteBtn.addEventListener('click',function(){
 						$("#nnoForm").attr("action","<%=request.getContextPath()%>/notice/deleteForm");

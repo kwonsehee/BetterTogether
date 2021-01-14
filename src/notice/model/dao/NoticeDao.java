@@ -48,13 +48,16 @@ public class NoticeDao {
 			
 			while(rset.next()) {
 				
-				list.add(new Notice(rset.getInt("NNO"),
-									rset.getString("NTITLE"),
-									rset.getString("NCONTENT"),
-									rset.getString("NWRITER"),
-									rset.getInt("NCOUNT"),
-									rset.getDate("NDATE"),
-									rset.getString("STATUS")));
+				list.add(new Notice(rset.getInt("ARTICLE_NO"),
+									rset.getString("ARTICLE_TITLE"),
+									rset.getString("ARTICLE_CONTNENT"),
+									rset.getDate("ARTICLE_DATE"),
+									rset.getDate("ARTICLE_MODIFY"),
+									rset.getString("USER_ID"),
+									rset.getInt("ARTICLE_CNT"),
+									rset.getInt("ARTICLE_TYPE")));
+				
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -63,6 +66,8 @@ public class NoticeDao {
 			close(rset);
 			close(pstmt);
 		}
+		
+		
 		return list;
 	}
 	//2. 공지사항 글 작성용 dao
@@ -75,9 +80,9 @@ public class NoticeDao {
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setString(1, n.getnTitle());
-				pstmt.setString(2, n.getnContent());
-				pstmt.setString(3, n.getnWriter());
+				pstmt.setString(1, n.getaTitle());
+				pstmt.setString(2, n.getaContent());
+				pstmt.setString(3, n.getUser_id());
 				
 				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
@@ -91,7 +96,7 @@ public class NoticeDao {
 		}
 
 		//3. 조회수 증가용 메소드
-		public int increaseCount(Connection conn, int nno) {
+		public int increaseCount(Connection conn, int ano) {
 			int result = 0;
 			PreparedStatement pstmt= null;
 			String sql = prop.getProperty("increaseCount");
@@ -99,7 +104,7 @@ public class NoticeDao {
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setInt(1, nno);
+				pstmt.setInt(1, ano);
 				
 				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
@@ -113,7 +118,7 @@ public class NoticeDao {
 		}
 
 		//4. 공지사항 게시글 1개 상세보기
-		public Notice selectNotice(Connection conn, int nno) {
+		public Notice selectNotice(Connection conn, int ano) {
 			Notice n=null;
 			PreparedStatement pstmt= null;
 			ResultSet rset = null;
@@ -123,18 +128,18 @@ public class NoticeDao {
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setInt(1, nno);
+				pstmt.setInt(1, ano);
 				
 				rset = pstmt.executeQuery();
 				
 				if(rset.next()) {
-					n = new Notice(rset.getInt("nno"),
-									rset.getString("nTitle"),
-									rset.getString("ncontent"),
-									rset.getString("nwriter"),
-									rset.getInt("ncount"),
-									rset.getDate("ndate"),
-									rset.getString("status"));	
+					n = new Notice(rset.getInt("ARTICLE_NO"),
+							rset.getString("ARTICLE_TITLE"),
+							rset.getString("ARTICLE_CONTNENT"),
+							rset.getDate("ARTICLE_DATE"),
+							rset.getDate("ARTICLE_MODIFY"),
+							rset.getString("USER_ID"),
+							rset.getInt("ARTICLE_CNT"));
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -147,14 +152,14 @@ public class NoticeDao {
 		}
 
 		//5. 공지사항 삭제 
-		public int deleteNotice(Connection conn, int nno) {
+		public int deleteNotice(Connection conn, int ano) {
 			int result = 0;
 			PreparedStatement pstmt=null;
 			String sql =prop.getProperty("deleteNotice");
 			
 			try {
 				pstmt= conn.prepareStatement(sql);
-				pstmt.setInt(1, nno);
+				pstmt.setInt(1, ano);
 				
 				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
@@ -173,9 +178,9 @@ public class NoticeDao {
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, n.getnTitle());
-				pstmt.setString(2, n.getnContent());
-				pstmt.setInt(3, n.getnNo());
+				pstmt.setString(1, n.getaTitle());
+				pstmt.setString(2, n.getaContent());
+				pstmt.setInt(3, n.getaNo());
 				
 				result = pstmt.executeUpdate();
 				

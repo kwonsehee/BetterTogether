@@ -2,8 +2,6 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, notice.model.vo.Notice"%>
 <%
 	ArrayList<Notice> list= (ArrayList<Notice>)request.getAttribute("list");
-	
-
 %>
 <!DOCTYPE html>
 <html>
@@ -89,41 +87,40 @@
         </div>
         <section id="content-1">
             <table id="listTable" class="article_table">
-                <thead>
                     <tr>
-                        <th>유형(번호)</th>
+                        <th>유형</th>
+                        <th>번호</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>조회수</th>
                         <th>날짜</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="color: red;">필독</td>
-                        <td>
-                            <a href="articleView.html">공지합니다</a>
-                        </td>
-                        <td>manager</td>
-                        <td>2020.12.27</td>
-                        <td>999</td>
-                    </tr>
+
                     <!-- 공지사항에 글이 존재하지 않을 수 도 있음
 						list는 DAO에서 무조건 객체로 생성 되어 반환하므로 Null이 아님
 						list가 비어있는지 아닌지로 판단
 					 -->
 					<%if(list.isEmpty()){ %>
 					<tr>
-						<td colspan="5">존재하는 공지사항이 없습니다.</td>
+						<td colspan="6">존재하는 공지사항이 없습니다.</td>
 					</tr>
 					<%} else{ %>
 						<% for(Notice n:list){ %>
 						<tr>
-							<td><%= n.getnNo() %></td>
-							<td><%= n.getnTitle() %></td>
-							<td><%= n.getnWriter() %></td>
-							<td><%= n.getnCount() %></td>
-							<td><%= n.getnDate() %></td>
+							<td>
+							<!-- 필독이면 빨간 글씨 필독이라고 작성 -->
+							<%if(n.getaType()==2){ %>
+							<p style="color:red;">필독</p>
+							<!-- 필독이 아니면 검정 일반이라고 작성 -->
+							<%}else{ %>
+							<p>일반</p>
+							<%} %>
+							</td>
+							<td><%= n.getaNo() %></td>
+							<td><%= n.getaTitle() %></td>
+							<td><%= n.getUser_id()%></td>
+							<td><%= n.getaCnt() %></td>
+							<td><%= n.getaDate() %></td>
 						</tr>
 						<%} %>	
 					<%} %>
@@ -180,10 +177,10 @@
 			         }).mouseout(function(){
 			            $(this).parent().css("background", "#f9f1f1");
 			         }).click(function(){
-			            var num = $(this).parent().children().eq(0).text();
+			            var num = $(this).parent().children().eq(1).text();
 			          //쿼리 스트링을 이용하여 get방식으로 글 번호를 전달
 						
-			            location.href="<%= request.getContextPath() %>/notice/detail?nno=" +num;
+			            location.href="<%= request.getContextPath() %>/notice/detail?aNo=" +num;
 			         });
 			      });
 

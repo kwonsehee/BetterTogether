@@ -138,6 +138,7 @@
                 <p>공지사항 작성</p>
             </section>
             <section id="content-1">
+            <!--필독인지 아닌지 체크하는 부분 있어야함!!!!!!! -->
                 <table class="table">
                     <tr>
                         <th>
@@ -152,7 +153,7 @@
                         <td>
                             <div class="filebox">
                                 <label for="ex_file">파일 첨부</label>
-                                <input type="file" id="ex_file">
+                                <input type="file" name="afile" id="ex_file">
                             </div>
                         </td>
                     </tr>

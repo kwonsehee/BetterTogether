@@ -38,15 +38,15 @@ public class NoticeService {
 		}
 
 		//3. 공지사항 상세 보기 서비스
-		public Notice selectNotice(int nno) {
+		public Notice selectNotice(int ano) {
 			Connection conn = getConnection();
 			
 			//1. 조회수 증가
-			int result = new NoticeDao().increaseCount(conn,nno);
+			int result = new NoticeDao().increaseCount(conn,ano);
 			
 			//2. 해당 게시글 조회
 			if(result >0) {
-				n = new NoticeDao().selectNotice(conn,nno);
+				n = new NoticeDao().selectNotice(conn,ano);
 				commit(conn);
 			}else {
 				rollback(conn);
@@ -56,10 +56,10 @@ public class NoticeService {
 		}
 
 		//4. 공지사항 삭제 서비스
-		public int deleteNotice(int nno) {
+		public int deleteNotice(int ano) {
 			Connection conn = getConnection();
 			
-			int result = new NoticeDao().deleteNotice(conn,nno);
+			int result = new NoticeDao().deleteNotice(conn,ano);
 			
 			if(result >0) {
 				commit(conn);
@@ -71,10 +71,10 @@ public class NoticeService {
 			return result;
 		}
 		//5. 공지사항 게시글 1건 조회(조회수 증가 없이)
-		public Notice selectNotice2(int nno) {
+		public Notice selectNotice2(int ano) {
 			Connection conn = getConnection();
 			
-			Notice n = new NoticeDao().selectNotice(conn, nno);
+			Notice n = new NoticeDao().selectNotice(conn, ano);
 			
 			close(conn);
 			

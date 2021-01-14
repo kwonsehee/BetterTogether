@@ -3,40 +3,43 @@
 <properties>
 	<entry key="selectList">
 		SELECT
-			   NNO
-			 , NTITLE
-			 , NCONTENT
-			 , NWRITER
-			 , NCOUNT
-			 , NDATE
-			 , STATUS
+			   ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTNENT
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , USER_ID
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
 		  FROM
 		  	   NOTICE
 		 WHERE
-		 	   STATUS = 'Y'
+		 	   ARTICLE_TYPE != 3
 	  ORDER BY
-	  		   NNO DESC
+	  		   ARTICLE_NO DESC
 	</entry>
 	<entry key="insertNotice">
 		INSERT
 		INTO NOTICE
 		(
-			NNO
-		  , NTITLE
-		  , NCONTENT
-		  , NWRITER
-		  , NCOUNT
-		  , NDATE
-		  , STATUS
+			   ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTNENT
+			 , USER_ID
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
 		)
 		VALUES
 		(
-			SEQ_NNO.NEXTVAL
+			SEQ_NID.NEXTVAL
 		  , ?
 		  , ?
 		  , ?
 		  , DEFAULT
 		  , SYSDATE
+		  , DEFAULT
 		  , DEFAULT
 		)
 	</entry>
@@ -44,44 +47,42 @@
         UPDATE
                NOTICE
            SET
-               NCOUNT = NCOUNT + 1
+               ARTICLE_CNT = ARTICLE_CNT + 1
          WHERE
-               NNO = ?
-           AND STATUS = 'Y'
+               ARTICLE_NO = ?
   
   
   </entry>
   <entry key="selectNotice">
-        SELECT
-               NNO
-             , NTITLE
-             , NCONTENT
-             , NWRITER
-             , NCOUNT
-             , NDATE
-             , STATUS
-          FROM
-                NOTICE
+       SELECT
+			   ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTNENT
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , USER_ID
+			 , ARTICLE_CNT
+		  FROM
+		  	   NOTICE
           WHERE 
-                NNO = ?
-            AND STATUS = 'Y'
+                ARTICLE_NO = ?
   </entry>
   <entry key="deleteNotice">
   		UPDATE
   			   NOTICE
   		   SET
-  		   	   STATUS = 'N'
+  		   	   ARTICLE_TYPE = 3
   		 WHERE
-  		 	   NNO = ?
-  		   AND STATUS = 'Y'
+  		 	   ARTICLE_NO = ?
+  		   AND ARTICLE_TYPE = 1
   </entry>
   <entry key="updateNotice">
   		UPDATE
   			   NOTICE
   		   SET
-  		   	   NTITLE = ?
-  		   	 , NCONTENT = ?
+  		   	   ARTICLE_TITLE = ?
+  		   	 , ARTICLE_CONTNENT = ?
   		 WHERE
-  			   NNO = ?
+  			   ARTICLE_NO = ?
   </entry>
 </properties>

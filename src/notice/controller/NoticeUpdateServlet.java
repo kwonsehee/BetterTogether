@@ -34,12 +34,12 @@ public class NoticeUpdateServlet extends HttpServlet {
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int nno=Integer.parseInt(request.getParameter("nno"));
+		int ano=Integer.parseInt(request.getParameter("ano"));
 		
 		Notice n = new Notice();
-		n.setnTitle(title);
-		n.setnContent(content);
-		n.setnNo(nno);
+		n.setaTitle(title);
+		n.setaContent(content);
+		n.setaNo(ano);
 		
 		int result = new NoticeService().updateNotice(n);
 		
@@ -47,7 +47,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 			//수정된 결과로 조회된 해당 게시글 상세페이지
 			//디테일 서블릿쪽으로 이동
 			request.getSession().setAttribute("msg", "공지사항이 수정 완료 되었습니다.");
-			response.sendRedirect(request.getContextPath()+"/notice/detail?nno="+nno);
+			response.sendRedirect(request.getContextPath()+"/notice/detail?aNo="+ano);
 		}else {
 			request.setAttribute("msg", "공지사항 수정에 실패했습니다.");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);

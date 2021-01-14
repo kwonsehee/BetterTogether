@@ -30,9 +30,9 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int nno = Integer.parseInt(request.getParameter("nno"));
+		int aNo = Integer.parseInt(request.getParameter("aNo"));
 		
-		Notice notice = new NoticeService().selectNotice(nno);
+		Notice notice = new NoticeService().selectNotice(aNo);
 		
 		System.out.println("notice 상세 : " + notice);
 		
