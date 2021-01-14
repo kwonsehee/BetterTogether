@@ -1,6 +1,7 @@
 package notice.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,16 +13,16 @@ import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeUpdateFormServlet
+ * Servlet implementation class NoticeSearchServlet
  */
-@WebServlet("/notice/updateForm")
-public class NoticeUpdateFormServlet extends HttpServlet {
+@WebServlet("/notice/search")
+public class NoticeSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateFormServlet() {
+    public NoticeSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +31,19 @@ public class NoticeUpdateFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int ano = Integer.parseInt(request.getParameter("ano"));
-		 
-		//selectNotice는 공지사항 상세보기에서 작성했으므로 다시 만들 필요 없이 호출 가능
-		//단 조회수 증가 없이 
-		Notice notice = new NoticeService().selectNotice2(ano);
-		String page = "";
+		String searchCondition = request.getParameter("searchCondition");
+		String search = request.getParameter("search");
 		
-		if(notice!=null) {
-			request.setAttribute("notice", notice);
-			page = "/views/notice/noticeUpdateForm.jsp";
-			
-		}else {
-			request.setAttribute("msg", "공지사항 수정페이지 이동에 실패하였습니다.");
-			page = "/views/common/errorPage.jsp";
-		}
-		request.getRequestDispatcher(page).forward(request, response);
+		ArrayList<Notice>list = new NoticeService().selectList(search, searchCondition);
 		
+//		System.out.println("검색결과 : "+list);
 		
+		// 검색 결과 list를 가지고 기존에 가지고 있던 noticeListView.jsp로 forward
+		request.setAttribute("list", list);
+		request.setAttribute("searchCondition", searchCondition);
+		request.setAttribute("search", search);
 		
-		
+		request.getRequestDispatcher("/views/notice/noticeListView.jsp").forward(request, response);
 	}
 
 	/**

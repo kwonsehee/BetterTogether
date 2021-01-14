@@ -105,6 +105,7 @@
 			window.open("pwdUpdateForm.jsp","비밀번호 변경 창","width=500, height=300");
 		});
 		//3. 탈퇴하기 버튼 클릭 이벤트
+		//*******회원 탈퇴는 membertype=2로 변경해놓음*********8
 		const deleteBtn=document.getElementById('deleteBtn');
 		deleteBtn.addEventListener('click',function(){
 			if(confirm("정말로 탈퇴하시겠습니까?")){

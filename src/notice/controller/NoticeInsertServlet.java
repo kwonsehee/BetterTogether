@@ -34,14 +34,17 @@ public class NoticeInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		
+		Notice n =null;
 		request.setCharacterEncoding("UTF-8");
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
 		String writer = loginUser.getUserId();
-		
-		
-		Notice n = new Notice(title, content,writer);
+		if(request.getParameter("afile")!=null) {
+			String file = request.getParameter("afile");
+			n = new Notice(title, file,content,writer);
+		}else {
+			n = new Notice(title, content,writer);
+		}
 		
 		int result = new NoticeService().insertNotice(n);
 		

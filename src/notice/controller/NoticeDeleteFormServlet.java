@@ -28,9 +28,9 @@ public class NoticeDeleteFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-int nno = Integer.parseInt(request.getParameter("nno"));
+		int ano = Integer.parseInt(request.getParameter("ano"));
 		
-		int result = new NoticeService().deleteNotice(nno);
+		int result = new NoticeService().deleteNotice(ano);
 		
 		if(result>0) {
 			//공지사항 등록을 마친 뒤 공지사항 목록 화면을 응답하고자 할 때

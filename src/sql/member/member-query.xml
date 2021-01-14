@@ -16,7 +16,7 @@
 		  WHERE
 		  		USER_ID = ?
 		  	AND USER_PWD = ?
-		    AND MEMBER_TYPE = 1
+		    AND MEMBER_TYPE != 2
 	</entry>
 	<entry key="insertMember">
 		INSERT

@@ -134,7 +134,7 @@
 	
 	<section id="content" class="content_css">
         <form id="article-form" action="<%= request.getContextPath() %>/notice/update" method="post">
-        <input type="hidden" name="nno" value="<%= n.getnNo() %>">
+        <input type="hidden" name="ano" value="<%= n.getaNo() %>">
 			
             <section id="title">
                 <p>공지사항 수정</p>
@@ -146,7 +146,7 @@
                             제목
                         </th>
                         <td>
-                           <input type="text" name="title" value="<%= n.getnTitle() %>">
+                           <input type="text" name="title" value="<%= n.getaTitle() %>">
 						</td>
                     </tr>
                     <tr>
@@ -163,7 +163,7 @@
                         <th rowspan="5">내용</th>
                         <td>
                             <textarea cols="50" name="content" rows="15">
-                            <%= n.getnContent() %>
+                            <%= n.getaContent() %>
                             </textarea>
                         </td>
                     </tr>
