@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, notice.model.vo.Notice"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, notice.model.vo.Notice, common.model.vo.Search, common.model.vo.PageInfo"%>
 <%
 	ArrayList<Notice> list= (ArrayList<Notice>)request.getAttribute("list");
-	String searchCondition = (String)request.getAttribute("searchCondition");
-	String search = (String)request.getAttribute("search");
-	String[] searchSelected = new String[2];
-	if(searchCondition !=null){
-		if(searchCondition.equals("title")){
-			searchSelected[0]= "selected";
-	}else{
-		searchSelected[1]= "selected";
+	
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+
+	Search s = (Search)request.getAttribute("search");
+	String search = "";
+	String searchCondition = "";
+	String[] selected = new String[3];
+	if (s != null) {
+		search = s.getSearch();
+		searchCondition = s.getSearchCondition();
+		if (searchCondition.equals("writer")) {
+			selected[0] = "selected";
+		} else if (searchCondition.equals("title")) {
+			selected[1] = "selected";
+		} else {
+			selected[2] = "selected";
+		}
 	}
-}
 %>
 <!DOCTYPE html>
 <html>
@@ -45,13 +53,6 @@
             text-align: center;
         }
 
-        #page_css {
-            width: 100%;
-            height: 20%;
-            float: left;
-            padding-top: 50px;
-            padding-left: 350px;
-        }
 
         .sr-only,
         .page-link {
@@ -72,20 +73,35 @@
        
         }
         /*페이징 css*/
-        .pagination {
-            display: inline-block;
-        }
-
-        .pagination a {
-            font-family: "Do Hyeon";
-            color: black;
+  		#page_css {
+            width: 100%;
+            height: 15%;
             float: left;
-            padding: 8px 16px;
-            text-decoration: none;
+            padding-top: 50px;
+            padding-left :30%; 
         }
+	   #pagingArea {
+    	  margin:auto;
+  	   }
+      #pagingArea button {
+            font-family: "Do Hyeon";
+            font-size : 18px;
+            color: black;
+            text-decoration: none;
+
+            border: solid 1px #fdc8c6;
+            background-color: #fdc8c6;
+        }
+        
+        
+        /*검색하기 부분*/
   		#notice_area{
+  			padding-top:0px;
   			padding-left:25%;
+  			float : left;
   		}
+  		
+
     </style>
 </head>
 <body>
@@ -120,10 +136,10 @@
 							<td>
 							<!-- 필독이면 빨간 글씨 필독이라고 작성 -->
 							<%if(n.getaType()==2){ %>
-							<p style="color:red;">필독</p>
+							<span style="color:red;">필독</span>
 							<!-- 필독이 아니면 검정 일반이라고 작성 -->
 							<%}else{ %>
-							<p>일반</p>
+							<span>일반</span>
 							<%} %>
 							</td>
 							<td><%= n.getaNo() %></td>
@@ -134,32 +150,66 @@
 						</tr>
 						<%} %>	
 					<%} %>
-                </tbody>
             </table>
         </section>
 
-        <section id="page_css">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-            </div>
+     
+<!-- 페이징 바 -->		
+	 <section id="page_css">
+		<div id="pagingArea">
+		<% if(s ==null){ %>
+		<!-- 처음으로(<<) 이전페이지로(<) 페이지 목록 다음 페이지로(>) 맨끝으로(>>) -->
+		<!-- 처음으로(<<) -->
+		<button onclick= "location.href='<%=request.getContextPath() %>/notice/list?currentPage=1'">&lt;&lt;</button>
+		<%}else{ %>
+		<button onclick= "location.href='<%=request.getContextPath() %>/notice/search?currentPage=1&searchCondition=<%=searchCondition%>&search=<%=search%>'">&lt;&lt;</button>
+		<%} %>
+		<!-- 이전으로(<) -->
+         <% if(pi.getCurrentPage() == 1) { %>
+         <button disabled > &lt; </button>
+         <% } else if(s == null) { %>
+         <button onclick="location.href='<%= request.getContextPath() %>/notice/list?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
+         <% } else { %>
+         <button onclick="location.href='<%= request.getContextPath() %>/notice/search?currentPage=<%= pi.getCurrentPage() - 1 %>&searchCondition=<%= searchCondition %>&search=<%=search %>'"> &lt; </button>
+         <% } %>
 
+		
+		<!-- 10개의 페이지 목록 -->
+		<% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) {%>
+			<% if(p == pi.getCurrentPage()){ %>
+				<button style="background:lightgray;"disabled><%=p %></button>
+			<%}else if(s==null){ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/notice/list?currentPage=<%=p%>'"><%=p %></button>
+			<%} else{%>
+				<button onclick="location.href='<%=request.getContextPath()%>/notice/search?currentPage=<%=p%>&searchCondition=<%=searchCondition%>&search=<%=search%>'"><%=p %></button>
+			<%} %>
+		<%} %>
+		<!-- 다음으로(>) -->
+		<%if(pi.getCurrentPage() ==pi.getMaxPage()) {%>
+		<button disabled>&gt;</button>
+		<%}else if(s==null){ %>
+		<button onclick="location.href='<%=request.getContextPath() %>/notice/list?currentPage=<%=pi.getCurrentPage()+1 %>'">&gt;</button>
+		<%} else{ %>
+		<button onclick="location.href='<%=request.getContextPath() %>/notice/search?currentPage=<%=pi.getCurrentPage()+1 %>&searchCondition=<%= searchCondition %>&search=<%=search %>'">&gt;</button>
+		<%} %>
+		<!-- 맨 끝으로(>>) -->
+		<% if(s==null){ %>
+		<button onclick="location.href='<%=request.getContextPath() %>/notice/list?currentPage=<%=pi.getMaxPage() %>'">&gt;&gt;</button>
+		<%}else{ %>
+		<button onclick="location.href='<%=request.getContextPath() %>/notice/search?currentPage=<%=pi.getMaxPage() %>&searchCondition=<%=searchCondition%>&search=<%=search%>'">&gt;&gt;</button>
+		<%} %>
+		</div>
         </section>
 
             <section id="notice_area">
            <form action="<%=request.getContextPath()%>/notice/search"method="get"
 			onsubmit="return checkSearchCondition();">
 				<select id="searchCondition"name="searchCondition">
-					<option value="----">----</option>
-					<option value="title" <%=searchSelected[0] %>>제목</option>
-					<option value="content"  <%=searchSelected[1] %>>내용</option>
-				</select>
+					<option >----</option>
+					<option value="writer" <%=selected[0] %>>작성자</option>
+					<option value="title"<%=selected[1] %>>제목</option>
+					<option value="content"<%=selected[2] %>>내용</option>
+					</select>
 				<%if(search !=null){ %>
 				<input type="search" name="search" value="<%= search %>">
 				<%}else{ %>

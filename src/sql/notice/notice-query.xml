@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="selectList">
+	<entry key="getListCount">
+      SELECT
+            COUNT(*)
+        FROM
+              NOTICE                                                                                
+       WHERE 
+         	 ARTICLE_TYPE != 3
+   </entry>
+   
+	<entry key="selectList2">
 		SELECT
-			   ARTICLE_NO
+			   RNUM
+			 , ARTICLE_NO
 			 , ARTICLE_TITLE
 			 , ARTICLE_CONTNENT
 			 , ARTICLE_DATE
@@ -12,11 +22,9 @@
 			 , ARTICLE_CNT
 			 , ARTICLE_TYPE
 		  FROM
-		  	   NOTICE
+		  	   NLIST
 		 WHERE
-		 	   ARTICLE_TYPE != 3
-	  ORDER BY
-	  		   ARTICLE_NO DESC
+		 	   RNUM BETWEEN ? AND ?
 	</entry>
 	<entry key="insertNotice">
 		INSERT
@@ -122,4 +130,128 @@
   	  ORDER BY
   	  		   ARTICLE_NO DESC
   </entry>
+  	<entry key="getSearchWriterListCount">
+		SELECT
+			   COUNT(*)
+		  FROM
+		  	   NOTICE
+		 WHERE
+  		  	   ARTICLE_TYPE !=3
+  		   AND USER_ID LIKE '%' || ? || '%' 
+	</entry>
+	
+	<entry key="getSearchTitleListCount">
+		SELECT
+			   COUNT(*)
+		  FROM
+		  	   NOTICE
+		 WHERE
+  		  	   ARTICLE_TYPE !=3
+  		   AND ARTICLE_TITLE LIKE '%' || ? || '%' 
+	</entry>
+	<entry key="getSearchContentListCount">
+		SELECT
+			   COUNT(*)
+		  FROM
+		  	   NOTICE
+		 WHERE
+  		  	   ARTICLE_TYPE !=3
+  		   AND ARTICLE_CONTNENT LIKE '%' || ? || '%' 
+	</entry>
+	<entry key="selectSearchWriterList2">
+		SELECT
+			   RNUM
+			 , ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTNENT
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , USER_ID
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
+		FROM
+			 (SELECT ROWNUM RNUM, A.*
+      		  FROM(SELECT
+      		  			  ARTICLE_NO
+      		  			, ARTICLE_TITLE
+      		  			, ARTICLE_CONTNENT
+      		  			, ARTICLE_DATE
+      		  			, ARTICLE_MODIFY
+      		  			, USER_ID
+      		  			, ARTICLE_CNT
+      		  			, ARTICLE_TYPE
+            		FROM
+            			  NOTICE
+            		WHERE
+            			  ARTICLE_TYPE !=3
+            		  AND USER_ID LIKE '%' || ? || '%'
+            	 ORDER BY ARTICLE_NO DESC)
+          A)
+		WHERE
+			  RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectSearchTitleList2">
+		SELECT
+			   RNUM
+			 , ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTNENT
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , USER_ID
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
+		FROM
+			 (SELECT ROWNUM RNUM, A.*
+      		  FROM(SELECT
+      		  			  ARTICLE_NO
+      		  			, ARTICLE_TITLE
+      		  			, ARTICLE_CONTNENT
+      		  			, ARTICLE_DATE
+      		  			, ARTICLE_MODIFY
+      		  			, USER_ID
+      		  			, ARTICLE_CNT
+      		  			, ARTICLE_TYPE
+            		FROM
+            			  NOTICE
+            		WHERE
+            			  ARTICLE_TYPE !=3
+            		  AND ARTICLE_TITLE LIKE '%' || ? || '%'
+            	 ORDER BY ARTICLE_NO DESC)
+          A)
+		WHERE
+			  RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectSearchContentList2">
+		SELECT
+			   RNUM
+			 , ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTNENT
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , USER_ID
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
+		FROM
+			 (SELECT ROWNUM RNUM, A.*
+      		  FROM(SELECT
+      		  			  ARTICLE_NO
+      		  			, ARTICLE_TITLE
+      		  			, ARTICLE_CONTNENT
+      		  			, ARTICLE_DATE
+      		  			, ARTICLE_MODIFY
+      		  			, USER_ID
+      		  			, ARTICLE_CNT
+      		  			, ARTICLE_TYPE
+            		FROM
+            			  NOTICE
+            		WHERE
+            			  ARTICLE_TYPE !=3
+            		  AND ARTICLE_CONTNENT LIKE '%' || ? || '%'
+            	 ORDER BY ARTICLE_NO DESC)
+          A)
+		WHERE
+			  RNUM BETWEEN ? AND ?
+	</entry>
 </properties>

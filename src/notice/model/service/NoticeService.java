@@ -8,6 +8,8 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import common.model.vo.PageInfo;
+import common.model.vo.Search;
 import notice.model.dao.NoticeDao;
 import notice.model.vo.Notice;
 
@@ -23,6 +25,17 @@ public class NoticeService {
 		
 		return list;
 	}
+	
+	//1_1. 페이징 처리가 된 게시글 목록 조회
+		public ArrayList<Notice> selectList(PageInfo pi) {
+			Connection conn = getConnection();
+			
+			ArrayList<Notice> list = new NoticeDao().selectList(conn, pi);
+			
+			close(conn);
+			
+			return list;
+		}
 	//2. 공지사항 글 작성용 서비스
 		public int insertNotice(Notice n) {
 			Connection conn=getConnection();
@@ -107,7 +120,45 @@ public class NoticeService {
 			
 			return list;
 		}
+		//seach 객체 생성 해서 검색어와 관련된 공지사항 선택하기
+		public ArrayList<Notice> selectList(Search s) {
+			Connection conn = getConnection();
+			
+			ArrayList<Notice>list = new NoticeDao().selectList(conn, s);
+			
+			close(conn);
+			
+			return list;
+		}
+		//게시글 총 갯수 구하기
+		public int getListCount() {
+			Connection conn = getConnection();
+			
+			int listCount = new NoticeDao().getListCount(conn);
+			
+			close(conn);
+			
+			return listCount;
+		}
 
+		//검색용 리스트 카운트
+		public int getSearchListCount(Search s) {
+			Connection conn=getConnection();
+			int listCount = new NoticeDao().getSearchListCount(conn, s);
+			
+			close(conn);
+
+			return listCount;
+		}
+		//검색용 리스트 조회
+		public ArrayList<Notice> selectSearchList(PageInfo pi, Search s) {
+			Connection conn=getConnection();
+			ArrayList<Notice>list = new NoticeDao().selectSearchList(conn, pi, s);
+
+			close(conn);
+			
+			return list;
+		}
 		
 	
 }
