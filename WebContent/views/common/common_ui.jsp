@@ -245,14 +245,14 @@
 					<a>스터디카페 예약</a>
 				</button></li>
 			<li><button class="nav_btn">
-					<a>커뮤니티</a>
+					<a id="commuBtn">커뮤니티</a>
 				</button>
 				<ul>
 					<li><button class="nav_btn">
-							<a>자유게시판</a>
+							<a id="boardBtn">자유게시판</a>
 						</button></li>
 					<li><button class="nav_btn">
-							<a>후기</a>
+							<a id="reviewBtn">후기</a>
 						</button></li>
 				</ul></li>
 			<li><button class="nav_btn">
@@ -292,6 +292,26 @@
 	confirmBtn.addEventListener('click',function(){
 		location.href="<%= request.getContextPath()%>/confirm/list";
 	});
+	
+	// 커뮤니티버튼
+	const commuBtn = document.getElementById("commuBtn");
+	commuBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/commu/main";
+	});
+	
+	 // 자유게시판버튼
+	const boardBtn = document.getElementById("boardBtn");
+	boardBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/board/main";
+	});
+	
+	// 후기버튼
+	const reviewBtn = document.getElementById("reviewBtn");
+	reviewBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/review/main";
+	});
+	
+	
 	</script>
 	<!-- <section id="content" class="content_css"></section> -->
 </body>

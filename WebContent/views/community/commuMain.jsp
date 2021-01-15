@@ -15,6 +15,33 @@
             margin : auto;
             margin-top:15px;
         }
+        
+         /* 슬라이드 */
+		 #slide {
+		    width : 100%;
+		    height : 78%;
+		    float: left;
+		}
+		
+		.container {
+		    width: 300vw;
+		    transition: transform 0.5s;
+		    
+		}
+		.inner {
+		    width: 100vw;
+		    float: left;
+		}
+		
+		.inner img {
+		    width: 1000px;
+		    height: 500px;
+		}
+		
+		button:hover {
+		    cursor : pointer;
+		}
+        
 
         /* 챌린저 랭킹 배경*/
         #con2 {
@@ -159,13 +186,13 @@
             <div style="overflow: hidden;">
                 <div class="container">
                     <div class="inner">
-                        <img src="images/test1.jpeg">
+                        <img src='<%=request.getContextPath()%>/views/community/images/test1.jpeg'>
                     </div>
                     <div class="inner">
-                        <img src="images/test2.jpeg">
+                        <img src='<%=request.getContextPath()%>/views/community/images/test2.jpeg'>
                     </div>
                     <div class="inner">
-                        <img src="images/test3.jpeg">
+                        <img src='<%=request.getContextPath()%>/views/community/images/test3.jpeg'>
                     </div>
                 </div>
             </div>
@@ -213,23 +240,23 @@
 
         <!-- 랭킹 -->
         <div class="rankwrap">
-            <image src="images/1.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/1.png' class="ranknum"></image>
             <div class="rank"></div>
         </div>
         <div class="rankwrap">
-            <image src="images/2.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/2.png' class="ranknum"></image>
              <div class="rank"></div>
         </div>
         <div class="rankwrap">
-            <image src="images/3.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/3.png' class="ranknum"></image>
             <div class="rank"></div>
         </div>
         <div class="rankwrap">
-            <image src="images/4.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/4.png' class="ranknum"></image>
             <div class="rank"></div>
         </div>
         <div class="rankwrap">
-            <image src="images/5.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/5.png' class="ranknum"></image>
              <div class="rank"></div>
         </div> 
     </section>
