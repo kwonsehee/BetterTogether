@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Better Together</title>
 <style>
-/* 연분홍 배경 */
+		/* 연분홍 배경 */
         #con1 {
             width: 1000px;
             height: 704px;
@@ -15,6 +15,33 @@
             margin : auto;
             margin-top:15px;
         }
+        
+         /* 슬라이드 */
+		 #slide {
+		    width : 100%;
+		    height : 78%;
+		    float: left;
+		}
+		
+		.container {
+		    width: 300vw;
+		    transition: transform 0.5s;
+		}
+		
+		.inner {
+		    width: 100vw;
+		    float: left;
+		}
+		
+		.inner img {
+		    width: 1000px;
+		    height: 500px;
+		}
+		
+		button:hover {
+		    cursor : pointer;
+		}
+        
 
         /* 챌린저 랭킹 배경*/
         #con2 {
@@ -46,7 +73,6 @@
             background: #ff60657e;
             border: 0px;
             border-radius: 55px;
-            
         }
 
         .btn a {
@@ -79,7 +105,7 @@
             border: 3px solid rgba(255, 96, 100, 0.7);
         }
 
-        h1 {
+        .h1_title {
            margin-top: 50px;
            text-align: center;
            font-family: "Do Hyeon";
@@ -148,7 +174,7 @@
 
         <!-- 타이틀 -->
         <div id="con1_title">
-            <h1>인기 챌린지</h1>
+            <h1 class="h1_title">인기 챌린지</h1>
             <p><a>더보기</a></p>            
         </div>
 
@@ -159,13 +185,13 @@
             <div style="overflow: hidden;">
                 <div class="container">
                     <div class="inner">
-                        <img src="images/test1.jpeg">
+                        <img src='<%=request.getContextPath()%>/views/community/images/test1.jpeg'>
                     </div>
                     <div class="inner">
-                        <img src="images/test2.jpeg">
+                        <img src='<%=request.getContextPath()%>/views/community/images/test2.jpeg'>
                     </div>
                     <div class="inner">
-                        <img src="images/test3.jpeg">
+                        <img src='<%=request.getContextPath()%>/views/community/images/test3.jpeg'>
                     </div>
                 </div>
             </div>
@@ -206,30 +232,30 @@
     <section id="con2">
     <!-- 타이틀 -->
         <div id="con2_title">
-            <h1>챌린저 랭킹 TOP 5</h1>
+            <h1 class="h1_title">챌린저 랭킹 TOP 5</h1>
         </div>
         <div class="line"></div>
         <br><br><br>
 
         <!-- 랭킹 -->
         <div class="rankwrap">
-            <image src="images/1.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/1.png' class="ranknum"></image>
             <div class="rank"></div>
         </div>
         <div class="rankwrap">
-            <image src="images/2.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/2.png' class="ranknum"></image>
              <div class="rank"></div>
         </div>
         <div class="rankwrap">
-            <image src="images/3.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/3.png' class="ranknum"></image>
             <div class="rank"></div>
         </div>
         <div class="rankwrap">
-            <image src="images/4.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/4.png' class="ranknum"></image>
             <div class="rank"></div>
         </div>
         <div class="rankwrap">
-            <image src="images/5.png" class="ranknum"></image>
+            <image src='<%=request.getContextPath()%>/views/community/images/5.png' class="ranknum"></image>
              <div class="rank"></div>
         </div> 
     </section>

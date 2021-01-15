@@ -237,7 +237,9 @@
    <nav class="nav_css">
       <ul id="navi">
          <li><button class="nav_btn">
+
                <a id="challBtn">챌린지모집</a>
+
             </button></li>
          <li><button class="nav_btn">
                <a id="confirmBtn">나의 챌린지 인증</a>
@@ -276,11 +278,13 @@
       </ul>
    </nav>
    <script>
+
    
    const challBtn = document.getElementById("challBtn");
 	challBtn.addEventListener('click',function(){
 	      location.href="<%= request.getContextPath()%>/chall/list";
 	   });
+
    //home버튼
    const homeBtn = document.getElementById("homeBtn");
    homeBtn.addEventListener('click',function(){
@@ -331,6 +335,6 @@
 	});
 	
 	</script>
-	
+
 </body>
 </html>

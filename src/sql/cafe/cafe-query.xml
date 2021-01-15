@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="insertCafe">
+		INSERT
+		INTO CAFE
+		(
+		      CAFE_CODE
+			, CAFE_NAME
+			, CAFE_OH
+			, CAFE_AREA
+			, CAFE_PHONE
+			, CLOSED_DAYS
+			, CAFE_CAPACITY
+			, CAFE_PAGE
+			, DETAIL_ADDRESS
+			, CAFE_NOTICE
+			, CAFE_INFO
+			, CAFE_PHOTO
+			, CAFE_MAP
+			, USER_ID
+
+
+			)
+			VALUES
+			(
+			SEQ_SID.NEXTVAL
+			, ?
+			, ?
+			, ?
+			, ?
+			, ?
+			, ?
+			, ?
+			, ?
+			, ?
+			, ?
+			, ?
+			, ?
+			, ?
+
+	)
+</entry>
+</properties>
