@@ -9,7 +9,7 @@
 			 , JOIN_CALL_DATE	
 		 FROM
 		 	   CHALL_STATUS
-		 WHERE CHALL_STATUS = 1
+		 WHERE CHALL_STATUS != 3
 		   AND USER_ID = ?
 	
 	</entry>
