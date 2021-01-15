@@ -94,7 +94,7 @@
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
-<section id="content" class="content_css">
+	<section id="content" class="content_css">
 
         <section class="content_css">
             <p>참여중인 챌린지</p>
@@ -114,20 +114,35 @@
                     <p>2021년 1월 5일 ~ 2021년 2월 5일</p><!-- 챌린지 기간 -->
                     <p>달성률 : #%</p><!-- 달성률!!! -->
                 </div>
+                
+                <form id="confirm_btn" method="post">
                 <div class='ing_challenge3'>
                 <span>인증하기</span>
-                <button type="submit"class="btn_camera">
-                    <a>
-                    <img src="<%=request.getContextPath()%>/resources/images/camera_confirm.png"width="42px"height="33px">
-                    </a>
+                <button type="submit"class="btn_camera" id="confirm_submitBtn">
+                    <img src="<%=request.getContextPath()%>/resources/images/camera_confirm.png"width="42px"height="33px"> 
                 </button>
                 <span>결과보기</span>
-                <button type="submit"class="btn_camera">
-                    <a>
+                <button type="submit"class="btn_camera" id="confirm_resultBtn">                  
                     <img src="<%=request.getContextPath()%>/resources/images/result.png"width="42px"height="33px">
-                    </a>
                     </button>
                 </div>
+                </form>
+                <script>
+					//결과보기 버튼 이벤트
+					const confirm_resultBtn = document.getElementById('confirm_resultBtn');
+					confirm_resultBtn.addEventListener('click',function(){
+						$("#confirm_btn").attr("action","<%=request.getContextPath()%>/confirm/resultForm");
+						$("#confirm_btn").submit();
+					});
+					
+					//인증하기 버튼 이벤트
+					const confirm_submitBtn = document.getElementById('confirm_submitBtn');
+					confirm_submitBtn.addEventListener('click',function(){
+						$("#confirm_btn").attr("action","<%=request.getContextPath()%>/confirm/submitForm");
+						$("#confirm_btn").submit();
+					});
+					
+					</script>
             </div>
 				<%} %>	
             <%} %>
