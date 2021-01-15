@@ -332,7 +332,7 @@
 							<a>신고</a>
 						</button></li>
 					<li><button class="nav_btn">
-							<a>Q&A</a>
+							<a id="qnaBtn">Q&A</a>
 						</button></li>
 					<li><button class="nav_btn">
 							<a>F&A</a>
@@ -371,6 +371,12 @@
 	const studyBtn = document.getElementById("studyBtn");
 	studyBtn.addEventListener('click',function(){
 		location.href="<%= request.getContextPath()%>/views/studycafe/studycafe.jsp";
+	});
+	
+	//q&a 버튼
+	const qnaBtn = document.getElementById("qnaBtn");
+	qnaBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/qna/list";
 	});
 	</script>
 	<!-- <section id="content" class="content_css"></section> -->
