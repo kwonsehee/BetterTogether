@@ -212,7 +212,7 @@
             <tr>
                <td>
                   <i class="material-icons icon_css">mood</i>
-                  <span>님</span>
+                  <span><%=loginUser.getNickName() %>님</span>
                </td>
                <td>
                   <i class="material-icons icon_css">insert_chart</i>
@@ -240,7 +240,7 @@
                <a>챌린지모집</a>
             </button></li>
          <li><button class="nav_btn">
-               <a>나의 챌린지 인증</a>
+               <a id="confirmBtn">나의 챌린지 인증</a>
             </button></li>
          <li><button class="nav_btn">
                <a>스터디카페 예약</a>
@@ -288,6 +288,12 @@
       location.href="<%= request.getContextPath()%>/notice/list";
    });
    
+ 	//나의 챌린지 인증하기 버튼
+	const confirmBtn = document.getElementById("confirmBtn");
+	confirmBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/confirm/list";
+	});
+	
    // qna버튼
    const qnaBtn = document.getElementById("qnaBtn");
    qnaBtn.addEventListener('click',function(){
@@ -298,56 +304,8 @@
 	const commuBtn = document.getElementById("commuBtn");
 	commuBtn.addEventListener('click',function(){
 		location.href="<%= request.getContextPath()%>/commu/main";
-=======
-	<nav class="nav_css">
-		<ul id="navi">
-			<li><button class="nav_btn">
-					<a>챌린지모집</a>
-				</button></li>
-			<li><button class="nav_btn">
-					<a id="confirmBtn">나의 챌린지 인증</a>
-				</button></li>
-			<li><button class="nav_btn" id="studyBtn">
-					<a>스터디카페 예약</a>
-				</button></li>
-			<li><button class="nav_btn">
-					<a>커뮤니티</a>
-				</button>
-				<ul>
-					<li><button class="nav_btn">
-							<a>자유게시판</a>
-						</button></li>
-					<li><button class="nav_btn">
-							<a>후기</a>
-						</button></li>
-				</ul></li>
-			<li><button class="nav_btn">
-					<a>고객센터</a>
-				</button>
-				<ul>
-					<li><button class="nav_btn">
-							<a id="noticeBtn">공지사항</a>
-						</button></li>
-					<li><button class="nav_btn">
-							<a>신고</a>
-						</button></li>
-					<li><button class="nav_btn">
-							<a id="qnaBtn">Q&A</a>
-						</button></li>
-					<li><button class="nav_btn">
-							<a>F&A</a>
-						</button></li>
-				</ul></li>
-		</ul>
-	</nav>
-	<script>
-	//home버튼
-	const homeBtn = document.getElementById("homeBtn");
-	homeBtn.addEventListener('click',function(){
-		location.href="<%= request.getContextPath()%>";
-
-	});
-	
+	 });
+	  
 	 // 자유게시판버튼
 	const boardBtn = document.getElementById("boardBtn");
 	boardBtn.addEventListener('click',function(){
@@ -360,26 +318,15 @@
 		location.href="<%= request.getContextPath()%>/review/main";
 	});
 
-   
-   
-   </script>
-   <!-- <section id="content" class="content_css"></section> -->
 
-	
-	
 	//스터디카페버튼
 	const studyBtn = document.getElementById("studyBtn");
 	studyBtn.addEventListener('click',function(){
 		location.href="<%= request.getContextPath()%>/views/studycafe/studycafe.jsp";
 	});
 	
-	//q&a 버튼
-	const qnaBtn = document.getElementById("qnaBtn");
-	qnaBtn.addEventListener('click',function(){
-		location.href="<%= request.getContextPath()%>/qna/list";
-	});
 	</script>
-	<!-- <section id="content" class="content_css"></section> -->
+	<!— <section id="content" class="content_css"></section> —>
 
 </body>
 </html>
