@@ -40,6 +40,9 @@ public class ConfirmDao {
 		ArrayList<Confirm>list = new ArrayList<Confirm>();
 		PreparedStatement pstmt=null;
 		ResultSet rset = null;
+		
+		
+		//찜하기한 챌린지를 제외하고 다 가져오기
 		String sql = prop.getProperty("selectList");
 		try {
 			pstmt = conn.prepareStatement(sql);
