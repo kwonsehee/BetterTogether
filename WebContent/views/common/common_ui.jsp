@@ -233,6 +233,7 @@
 
    </header>
 
+
    <nav class="nav_css">
       <ul id="navi">
          <li><button class="nav_btn">
@@ -297,6 +298,54 @@
 	const commuBtn = document.getElementById("commuBtn");
 	commuBtn.addEventListener('click',function(){
 		location.href="<%= request.getContextPath()%>/commu/main";
+=======
+	<nav class="nav_css">
+		<ul id="navi">
+			<li><button class="nav_btn">
+					<a>챌린지모집</a>
+				</button></li>
+			<li><button class="nav_btn">
+					<a id="confirmBtn">나의 챌린지 인증</a>
+				</button></li>
+			<li><button class="nav_btn" id="studyBtn">
+					<a>스터디카페 예약</a>
+				</button></li>
+			<li><button class="nav_btn">
+					<a>커뮤니티</a>
+				</button>
+				<ul>
+					<li><button class="nav_btn">
+							<a>자유게시판</a>
+						</button></li>
+					<li><button class="nav_btn">
+							<a>후기</a>
+						</button></li>
+				</ul></li>
+			<li><button class="nav_btn">
+					<a>고객센터</a>
+				</button>
+				<ul>
+					<li><button class="nav_btn">
+							<a id="noticeBtn">공지사항</a>
+						</button></li>
+					<li><button class="nav_btn">
+							<a>신고</a>
+						</button></li>
+					<li><button class="nav_btn">
+							<a>Q&A</a>
+						</button></li>
+					<li><button class="nav_btn">
+							<a>F&A</a>
+						</button></li>
+				</ul></li>
+		</ul>
+	</nav>
+	<script>
+	//home버튼
+	const homeBtn = document.getElementById("homeBtn");
+	homeBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>";
+
 	});
 	
 	 // 자유게시판버튼
@@ -310,9 +359,21 @@
 	reviewBtn.addEventListener('click',function(){
 		location.href="<%= request.getContextPath()%>/review/main";
 	});
+
    
    
    </script>
    <!-- <section id="content" class="content_css"></section> -->
+
+	
+	
+	//스터디카페버튼
+	const studyBtn = document.getElementById("studyBtn");
+	studyBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/views/studycafe/studycafe.jsp";
+	});
+	</script>
+	<!-- <section id="content" class="content_css"></section> -->
+
 </body>
 </html>
