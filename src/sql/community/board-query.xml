@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="getListCount">
+		SELECT
+			   COUNT(*)
+		  FROM 
+		  	   BOARD
+		 WHERE 
+		 	   BOARD_STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectList">
+		SELECT
+			   RNUM
+			  ,BOARD_SEQ
+			  ,BOARD_TITLE
+			  ,BOARD_CONTENT
+			  ,BOARD_DATE
+			  ,BOARD_MODIFY
+			  ,BOARD_CNT
+			  ,BOARD_FILEPATH
+			  ,BOARD_STATUS
+			  ,USER_ID
+			  ,NICKNAME
+		 FROM BLIST
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="getSearchWriterListCount">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       BOARD
+		 WHERE
+		   	   BOARD_STATUS = 'Y'
+		   AND NICKNAME LIKE '%' || ? || '%'
+	</entry>
+	<entry key="getSearchTitleListCount">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       BOARD
+		 WHERE
+		   	   BOARD_STATUS = 'Y'
+		   AND BOARD_TITLE LIKE '%' || ? || '%'
+	</entry>
+	<entry key="getSearchContentListCount">
+		SELECT
+		       COUNT(*)
+		  FROM
+		       BOARD
+		 WHERE
+		       BOARD_STATUS = 'Y'
+		   AND BOARD_CONTENT LIKE '%' || ? || '%'
+	</entry>
+	<entry key="selectSearchWriterList">
+		SELECT 
+		      RNUM
+			  ,BOARD_SEQ
+			  ,BOARD_TITLE
+			  ,BOARD_CONTENT
+			  ,BOARD_DATE
+			  ,BOARD_MODIFY
+			  ,BOARD_CNT
+			  ,BOARD_FILEPATH
+			  ,BOARD_STATUS
+			  ,USER_ID
+			  ,NICKNAME
+		 FROM
+		      (SELECT 
+		              ROWNUM RNUM
+		            , A.*
+                 FROM
+                      (SELECT BOARD_SEQ
+							  ,BOARD_TITLE
+							  ,BOARD_CONTENT
+							  ,BOARD_DATE
+							  ,BOARD_MODIFY
+							  ,BOARD_CNT
+							  ,BOARD_FILEPATH
+							  ,BOARD_STATUS
+							  ,USER_ID
+							  ,NICKNAME
+                         FROM 
+                              BOARD 
+                        WHERE 
+                          	  BOARD_STATUS = 'Y'
+                          AND NICKNAME LIKE '%' || ? || '%'
+                     ORDER BY 
+                              BOARD_SEQ DESC) 
+                      A)
+		  WHERE 
+			    RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectSearchTitleList">
+		SELECT 
+		      RNUM
+			  ,BOARD_SEQ
+			  ,BOARD_TITLE
+			  ,BOARD_CONTENT
+			  ,BOARD_DATE
+			  ,BOARD_MODIFY
+			  ,BOARD_CNT
+			  ,BOARD_FILEPATH
+			  ,BOARD_STATUS
+			  ,USER_ID
+			  ,NICKNAME
+		 FROM
+		      (SELECT 
+		              ROWNUM RNUM
+		            , A.*
+                 FROM
+                      (SELECT BOARD_SEQ
+							  ,BOARD_TITLE
+							  ,BOARD_CONTENT
+							  ,BOARD_DATE
+							  ,BOARD_MODIFY
+							  ,BOARD_CNT
+							  ,BOARD_FILEPATH
+							  ,BOARD_STATUS
+							  ,USER_ID
+							  ,NICKNAME
+                         FROM 
+                              BOARD 
+                        WHERE 
+                          	  BOARD_STATUS = 'Y'
+                          AND BOARD_TITLE LIKE '%' || ? || '%'
+                     ORDER BY 
+                              BOARD_SEQ DESC) 
+                      A)
+		  WHERE 
+			    RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectSearchContentList">
+		SELECT 
+		      RNUM
+			  ,BOARD_SEQ
+			  ,BOARD_TITLE
+			  ,BOARD_CONTENT
+			  ,BOARD_DATE
+			  ,BOARD_MODIFY
+			  ,BOARD_CNT
+			  ,BOARD_FILEPATH
+			  ,BOARD_STATUS
+			  ,USER_ID
+			  ,NICKNAME
+		 FROM
+		      (SELECT 
+		              ROWNUM RNUM
+		            , A.*
+                 FROM
+                      (SELECT BOARD_SEQ
+							  ,BOARD_TITLE
+							  ,BOARD_CONTENT
+							  ,BOARD_DATE
+							  ,BOARD_MODIFY
+							  ,BOARD_CNT
+							  ,BOARD_FILEPATH
+							  ,BOARD_STATUS
+							  ,USER_ID
+							  ,NICKNAME
+                         FROM 
+                              BOARD 
+                        WHERE 
+                          	  BOARD_STATUS = 'Y'
+                          AND BOARD_CONTENT LIKE '%' || ? || '%'
+                     ORDER BY 
+                              BOARD_SEQ DESC) 
+                      A)
+		  WHERE 
+			    RNUM BETWEEN ? AND ?
+	</entry>
+
+
+
+	
+</properties>
