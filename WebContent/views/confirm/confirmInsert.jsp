@@ -73,21 +73,35 @@
             padding-top: 5px;
 
         }
+         /* 뒤로가기 버튼 */
+        .back_btn {
+            width: 130px;
+            font-family: "Do Hyeon";
+            font-size: 20px;
+            background: none;
+            border-radius : 20px;
+            border: 2px solid #ff60657e;
+            float: right;
+            margin-top : 2%;
+            margin-right : 10%;
+        }
     </style>
 </head>
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
-
+  <form action="<%= request.getContextPath() %>/confirm/insert" method="post">
+         
     <section id="content" class="content_css">
 
         <section id="content-1">
             <p>인증하기</p>
         </section> 
-    
-
+  
         <section id="content-2">
+         
             <div class='challenge_box_2'>
+            
                 <table style="border: 1px solid black;"width="100%;">
                     <tr >
                         <td rowspan="3">
@@ -95,7 +109,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2"><span>user1</span></td>
+                        <td colspan="2"><span name="">user1</span></td>
                   
                     </tr>
                     <tr>
@@ -107,21 +121,31 @@
                     <img src="img/하루1시간공부.jpeg" style="width: 390px;height: 450px;"/>
                 </div>
             </div>
-
+		
         </section>
 
         <section id="content-4">
         <!--댓글 등록 창만들기-->
-        <form method="POST" class="comment_box">
+        <div class="comment_box">
+        
             <input type="text"class="input_box_lag">
             <button type="submit" class="comment"><span>댓글 등록</span></button>
-
-        </form>
-           
+            <button type="button" id="backBtn" class="back_btn">목록으로</button>
+		
+		</div>     
         </section>
         
-
-       
     </section>
+    </form>
+    
+    <script>
+   
+     	//목록으로 버튼 이벤트
+     	const backBtn = document.getElementById('backBtn');
+     	backBtn.addEventListener('click',function(){
+     		location.href='<%=request.getContextPath()%>/confirm/list';
+     	});
+
+	</script>
 </body>
 </html>

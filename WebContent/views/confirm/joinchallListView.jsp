@@ -115,57 +115,64 @@
                     <p>달성률 : #%</p><!-- 달성률!!! -->
                 </div>
                 
-                <form id="confirm_btn" method="post">
+                
                 <div class='ing_challenge3'>
+                  
+       			<form action="" id="cnoForm" method="post">
+       				<input type="hidden" name="cno" value="<%=c.getChall_nol()%>">
+				</form>
+			
+                
                 <span>인증하기</span>
-                <!-- 종료된 챌린지는 인증하기 버튼 비활성화  -->
-                <%if(c.getChall_status()==2){%>
-                <button type="submit"class="btn_camera" disabled style="border: rgba(117, 117, 117, 0.5); background-color: rgba(117, 117, 117, 0.5);">
-                   
+                <%System.out.println("ddd : "+c.getChall_status()); %>
+                <!-- 참여중인 챌린지만 인증하기 버튼 활성화  -->
+                <%if(c.getChall_status()==1){%>
+                 <button type="button"class="btn_camera" id="confirm_submitBtn">
+                  
                 <%}else {%>
-                <button type="submit"class="btn_camera" id="confirm_submitBtn">
-                    
+                <button type="button"class="btn_camera"style=" border: rgba(117, 117, 117, 0.5); background-color: rgba(117, 117, 117, 0.5);"  onClick="alert('챌린가 종료되었습니다. ')" > 
                 <%} %>
                 <img src="<%=request.getContextPath()%>/resources/images/camera_confirm.png"width="42px"height="33px"> 
                 </button>
+                <script>
                 
+            	//인증하기 버튼
+        		const confirm_submitBtn = document.getElementById('confirm_submitBtn');
+        		confirm_submitBtn.addEventListener('click',function(){
+                  		$("#cnoForm").attr("action","<%= request.getContextPath() %>/confirm/list");
+                  		$("#cnoForm").submit();
+               });
+                </script>
                  <span>결과보기</span>
                  <!-- 종료된 챌린지만 결과보기 버튼 활성화  -->
                 <%if(c.getChall_status()==2){%>
-                <button type="submit"class="btn_camera" id="confirm_resultBtn">
+                <button type="button"class="btn_camera" id="confirm_resultBtn">
                
                 <%} else{%>
-                <button type="submit"class="btn_camera"  onClick="alert('챌린지 종료 후 확인가능합니다.')" >
+                <button type="button"class="btn_camera" style="border: rgba(117, 117, 117, 0.5); background-color: rgba(117, 117, 117, 0.5);"  onClick="alert('챌린지 종료 후 확인가능합니다.')" >
                 
                 <%} %>               
                     <img src="<%=request.getContextPath()%>/resources/images/result.png"width="42px"height="33px">
                  </button>
               
                 </div>
-                </form>
-                <script>
-					//결과보기 버튼 이벤트
-					const confirm_resultBtn = document.getElementById('confirm_resultBtn');
-					confirm_resultBtn.addEventListener('click',function(){
-						$("#confirm_btn").attr("action","<%=request.getContextPath()%>/confirm/resultForm");
-						$("#confirm_btn").submit();
-					});
-					
-					//인증하기 버튼 이벤트
-					const confirm_submitBtn = document.getElementById('confirm_submitBtn');
-					confirm_submitBtn.addEventListener('click',function(){
-						$("#confirm_btn").attr("action","<%=request.getContextPath()%>/confirm/submitForm");
-						$("#confirm_btn").submit();
-					});
-					
-					</script>
+              
             </div>
 				<%} %>	
             <%} %>
          
         </section>
        
+		<script>
 
+				//결과보기 버튼 이벤트
+				const confirm_resultBtn = document.getElementById('confirm_resultBtn');
+				confirm_resultBtn.addEventListener('click',function(){
+                  		$("#cnoForm").attr("action","<%= request.getContextPath() %>/confirm/resultForm");
+                  		$("#cnoForm").submit();
+               });
+
+		</script>
        
     </section>
 </body>
