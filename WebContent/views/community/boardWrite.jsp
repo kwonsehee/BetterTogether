@@ -169,9 +169,10 @@
         </script>
 
          <!-- 버튼 -->
-         <button class="btn" id="back"><a href="boardmain.html">뒤로가기</a></button>
-         <button class="btn" id="submit"><a href="boardmain.html">등록</a></button>
+         <button class="btn" id="back"><a href="<%= request.getContextPath()%>/board/main">뒤로가기</a></button>
+         <button class="btn" id="submit"><a href="<%= request.getContextPath()%>/board/main">등록</a></button>
     </section>
+    
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 </html>

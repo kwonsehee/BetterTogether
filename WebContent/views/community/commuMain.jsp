@@ -168,8 +168,8 @@
     <section id="con1"> 
         <!-- 세부 카테고리 버튼 -->
         <div id="btnwrap">
-            <button class="btn"><a href="boardmain.html">자유게시판</a></button>
-            <button class="btn"><a href="reviewmain.html">후기</a></button>
+            <button class="btn"><a href='<%= request.getContextPath()%>/board/main'>자유게시판</a></button>
+            <button class="btn"><a href='<%= request.getContextPath()%>/review/main'>후기</a></button>
         </div>
 
         <!-- 타이틀 -->
