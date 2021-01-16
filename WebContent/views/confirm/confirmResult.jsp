@@ -72,6 +72,18 @@
             font-family: "Do Hyeon";
             font-size : 30px;
         }
+         /* 뒤로가기 버튼 */
+        .back_btn {
+            width: 130px;
+             font-family: "Do Hyeon";
+            font-size: 20px;
+            background: none;
+            border-radius : 20px;
+            border: 2px solid #ff60657e;
+            float: right;
+            margin-top : 5%;
+            margin-right : 8%;
+        }
     </style>
 </head>
 <body>
@@ -131,17 +143,31 @@
                     </tr>
                     <tr class="">
                         <th><span>상금 받기</span></th>
-                        <!-- 챌린지 중이거나&&최소 달성률 통과 못할시 버튼 비화성화 만들어 놓기 -->
+                        <!-- 최소 달성률 통과 못할시 버튼 비화성화 만들어 놓기 -->
                         <td><button type="submit" class="circle"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="44px"height="44px"></td>
                     </tr>
 
                     
 
                 </table>
+                
+                 
             </div>
+            <button type="button" id="backBtn" class="back_btn">목록으로</button>
+			
         </section>
 
        
     </section>
+    
+    <script>   
+
+     	//목록으로 버튼 이벤트
+     	const backBtn = document.getElementById('backBtn');
+     	backBtn.addEventListener('click',function(){
+     		location.href='<%=request.getContextPath()%>/confirm/joinchalllist';
+     	});
+
+	</script>
 </body>
 </html>

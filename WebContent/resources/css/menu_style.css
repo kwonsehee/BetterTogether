@@ -166,6 +166,7 @@ background-color: #ff6064;
     visibility: hidden;
 }
 #navi li:hover ul{
+	cursor : pointer;
     /*메인 메뉴에 마우스 오버 시 서브메뉴 보이게*/
     opacity: 1;
     visibility: visible;
@@ -208,3 +209,9 @@ font-size: 20px;
     background-color:  #f9f1f1;
     float: left;
 }
+
+	/*버튼 관련 스타일*/
+	button:hover{
+		cursor : pointer;
+		
+	}

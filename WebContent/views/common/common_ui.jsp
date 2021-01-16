@@ -75,6 +75,7 @@
 
 .sidenav button:hover, .offcanvas button:focus {
    color: #88a1db;
+   cursor : pointer;
 }
 
 .closebtn {
@@ -89,6 +90,7 @@
 .openmenu:hover {
    color: white;
    transition: 0.5s ease-in-out;
+   cursor : pointer;
 }
 
 .openmenu {
@@ -245,7 +247,7 @@
                <a id="confirmBtn">나의 챌린지 인증</a>
             </button></li>
          <li><button class="nav_btn">
-               <a>스터디카페 예약</a>
+               <a id="studyBtn">스터디카페 예약</a>
             </button></li>
          <li><button class="nav_btn">
                <a id="commuBtn">커뮤니티</a>
@@ -300,7 +302,7 @@
  	//나의 챌린지 인증하기 버튼
 	const confirmBtn = document.getElementById("confirmBtn");
 	confirmBtn.addEventListener('click',function(){
-		location.href="<%= request.getContextPath()%>/confirm/list";
+		location.href="<%= request.getContextPath()%>/confirm/joinchalllist";
 	});
 	
    // qna버튼

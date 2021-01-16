@@ -61,6 +61,19 @@
             height: 7px;
             background-color: rgba(255, 96, 100, 0.7);
         }
+        
+        /* 뒤로가기 버튼 */
+        .back_btn {
+            width: 130px;
+            font-family: "Do Hyeon";
+            font-size: 20px;
+            background: none;
+            border-radius : 20px;
+            border: 2px solid #ff60657e;
+            float: right;
+            margin-top : 2%;
+            margin-right : 10%;
+        }
     </style>
 </head>
 <body>
@@ -92,6 +105,8 @@
                     </tr>
                 </table>
             </div>
+            <button type="button" id="backBtn" class="back_btn">목록으로</button>
+					
         </section>
 
        
@@ -101,6 +116,14 @@
          const plusBtn = document.getElementById('plusBtn');
          plusBtn.addEventListener('click',function(){
             location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp';});
+         
+
+     	//목록으로 버튼 이벤트
+     	const backBtn = document.getElementById('backBtn');
+     	backBtn.addEventListener('click',function(){
+     		location.href='<%=request.getContextPath()%>/confirm/joinchalllist';
+     	});
+
 	</script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package confirm.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +28,12 @@ public class ConfirmResultFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//로그인 세션의 회원 아이디와 넘어온 챌린지 넘버를 가지고 조회해야함 
+		
+		
+		RequestDispatcher view = request.getRequestDispatcher("/views/confirm/confirmResult.jsp");
+	    view.forward(request, response);
+
 	}
 
 	/**
