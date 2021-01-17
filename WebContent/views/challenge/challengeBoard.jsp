@@ -1,16 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.ArrayList, challenge.model.vo.*, common.model.vo.*"%>
 <%
-	String searchCondition = (String)request.getAttribute("searchCondition");
-	String search = (String)request.getAttribute("search");
-	String[] searchSelected = new String[2];
-	if(searchCondition != null){
+   // 챌린지 리스트 
+   ArrayList<Challenge> list = (ArrayList<Challenge>)request.getAttribute("list");
+
+   // 페이징 처리 
+   PageInfo pi = (PageInfo)request.getAttribute("pi");
+   
+   // 검색 기능
+   	Search s = (Search)request.getAttribute("search");
+	String search = "";
+	String searchCondition = "";
+	String[] selected = new String[3];
+	if(s != null){
+		search = s.getSearch();
+		searchCondition = s.getSearchCondition();
 		if(searchCondition.equals("title")){
-			searchSelected[0] = "selected";
-		}else{
-			searchSelected[1] = "selected";
+			selected[0] = "selected";
+		} else if(searchCondition.equals("category")){
+			selected[1] = "selected";
+		} else {
+			selected[2] = "selected";
 		}
 	}
+   
 
 %>
 <!DOCTYPE html>
@@ -65,165 +78,202 @@
 
 
         /*페이징 css*/
-        .pagination {
-            display: inline-block;
-        }
-
-        .pagination a {
+        #pagingArea {
+    	  margin:auto;
+  	   }
+      	#pagingArea button {
             font-family: "Do Hyeon";
+            font-size : 18px;
             color: black;
-            float: left;
-            padding: 8px 16px;
             text-decoration: none;
+            border: solid 1px #fdc8c6;
+            background-color: #fdc8c6;
+            
         }
         
-         #content-2 {
+         #page_css {
             width: 100%;
             height: 20%;
             float: left;
             padding-top: 50px;
-            padding-left: 350px;
+            padding-left: 400px;
         }
         
         /* 검색하기 영역 */
-		.searchArea {
-			float:left;
-			margin-top:20px;
-			margin-left: -20px;
-		}
-		
-		#searchCondition{
-			font-family: "Do Hyeon";
-			font-size:20px;
-			height:30px;
-		}
-		
-		input:focus{
-			outline: none;
-		}
-		
-		#search_btn{
-		   font-family: "Do Hyeon";
-		   border-radius: 20px;
+      .searchArea {
+         float:left;
+         margin-top:30px;
+         margin-left: -80px;
+      }
+      
+      #searchCondition{
+         font-family: "Do Hyeon";
+         font-size:20px;
+         height:30px;
+      }
+      
+      input:focus, #pagingArea button:focus{
+         outline: none;
+      }
+      
+      #search_btn{
+         font-family: "Do Hyeon";
+         border-radius: 20px;
            border: solid 1px #fdc8c6;
            background-color: #fdc8c6;
            padding:5px 15px 5px 15px;
            font-size:17px;
-		}
-		
-		
+      }
+      
+      #listTable th:nth-child(3){
+         width: 250px;
+      }
+      
+      
     </style>
 </head>
 <body>
-<%@ include file="../common/common_ui.jsp"%>
+  <%@ include file="../common/common_ui.jsp"%>
+  
   <section id="content" class="content_css">
         <section id="title">
             <h3>챌린지 모집 게시판</h3>
         </section>
         <section id="content-1">
-            <table class="challenge_table">
-                <thead>
+            <table id= "listTable" class="challenge_table">
                     <tr>
                         <th>번호</th>
+                        <th>카테고리</th>
                         <th>제목</th>
                         <th>모집인원수</th>
                         <th>작성자</th>
                         <th>작성일</th>
+                        <th>조회수</th>
                         <th>찜 횟수</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>6</td>
-                        <td><a href="challengeJoin.html">6:00 기상하기</a></td>
-                        <td>2/4명</td>
-                        <td>user6</td>
-                        <td>2020-12-27</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><a>7시 전 저녁 먹기</a></td>
-                        <td>[모집마감]</td>
-                        <td>user5</td>
-                        <td>2020-12-27</td>
-                        <td>7</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><a>제목 4</a></td>
-                        <td>3/4명</td>
-                        <td>user4</td>
-                        <td>2020-12-27</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><a>제목 3</a></td>
-                        <td>2/4명</td>
-                        <td>user4</td>
-                        <td>2020-12-27</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><a>제목 2</a></td>
-                        <td>2/4명</td>
-                        <td>user2</td>
-                        <td>2020-12-27</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><a>제목 1</a></td>
-                        <td>1/4명</td>
-                        <td>user1</td>
-                        <td>2020-12-27</td>
-                        <td>10</td>
-                    </tr>
-                </tbody>
+                
+                <% if(list.isEmpty()) { %>
+                <tr>
+                   <td colspan="8">조회 된 챌린지가 없습니다.</td>
+                </tr>
+                <% } else { %>
+                   <% for(Challenge ch : list) { %>
+                   <tr>
+                      <td><%= ch.getChallNo() %></td>
+                      <td><%= ch.getCateName() %></td>
+                      <td><%= ch.getChallTitle() %></td>
+                      <td><%= ch.getChallPeople() %></td>
+                      <td><%= ch.getNickName() %></td>
+                      <td><%= ch.getChallDate() %></td>
+                      <td><%= ch.getChallCnt() %></td>
+                      <td><%= ch.getChallHits() %></td>
+                   </tr>
+                   <% } %>
+                   <% } %>   
             </table>
         </section>
 
-        <section id="content-2">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+		<!-- 페이징 바 -->
+        <section id="page_css">
+            <div id="pagingArea">
+            <!-- 처음으로(<<) 이전페이지로(<) 페이지 목록 다음 페이지로(>) 맨 끝으로(>>) -->  
+              
+            <!-- 처음으로(<<) -->
+			<% if(s == null) { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=1'"> &lt;&lt;</button>
+			<% } else {%>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=1&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;&lt;</button>		
+			<% } %>  
+			
+			<!-- 이전으로(<) -->
+			<% if(pi.getCurrentPage() == 1) {%>
+			<button disabled> &lt; </button>
+			<% } else if(s == null) { %>		
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() - 1%>'"> &lt; </button>
+			<% } else {%>
+	        <button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() - 1%>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;</button>		
+			<% } %>
+			
+			<!-- 10개의 페이지 목록 -->
+			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) {%>
+			<% if(p == pi.getCurrentPage()) { %>
+			<button style="background:white;" disabled><%= p %></button>
+			<% } else if(s == null){%>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%=p %>'"> <%= p %> </button>
+			<% } else {%>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%=p %>&searchCondition=<%= searchCondition %>&search=<%=search %>'"> <%= p %></button>	
+			<% } %>
+			<% } %>
+            
+            <!-- 다음으로(>) -->
+			<% if(pi.getCurrentPage() == pi.getMaxPage()){ %>
+			<button disabled> &gt;</button>
+			<% } else if (s == null){%>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt;</button>
+			<% } else {%>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() + 1 %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;</button>				
+			<% } %>
+              
+             <!-- 맨 끝으로 (>>) -->
+			<% if(s == null) {%>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+			<% } else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getMaxPage() %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;&gt; </button>
+			<% }  %>  
+               
             </div>
             
+             <!-- 검색 영역 -->
             <div class="searchArea">
-            	<form action="<%= request.getContextPath() %>"/challenge/search" method="get"
-            	onsubmit="return checkSearchCondition();">
-            		<select id="searchCondition" name="searchCondition">
-						<option value="----">----</option>
-						<option value="title" <%= searchSelected[0]%>>제목</option>
-						<option value="category" <%= searchSelected[1] %>>카테고리</option>            		
-            		</select>
-            		<% if(search != null) {%>
-            		<input type="search" name="search" value="<%= search%>">
-            		<% } else { %>
-            		<input type="search" name="search">
-            		<% } %>
-            		<button type="submit" id="search_btn">검색하기</button>
-            	</form>
+               <form action="<%= request.getContextPath() %>/chall/search" method="get"
+               onsubmit="return checkSearchCondition();">
+                  <select id="searchCondition" name="searchCondition">
+	                  <option value="----">----</option>
+	                  <option value="title" <%= selected[0] %>>제목</option>
+					  <option value="category" <%= selected[1] %>>카테고리</option>
+					  <option value="writer" <%= selected[2] %>>작성자</option>                  
+                  </select>
+                  <% if(search != null) {%>
+                  <input type="search" name="search" value="<%= search%>">
+                  <% } else { %>
+                  <input type="search" name="search">
+                  <% } %>
+                  <button type="submit" id="search_btn">검색하기</button>
+               </form>
             </div>
 
         </section>
+        
+      
 
         <form method="POST">
             <section id="content-3">
-                <!-- 버튼 -->
-                <button id="challenge_btn" type="button"><a href="challengeMake.html">챌린지 개설</a></button>
+                <%-- 로그인 유저만 작성하기 버튼 보이기 --%>
+                <% if(loginUser != null) { %>
+                <button id="challenge_btn" type="button" onclick="location.href='<%= request.getContextPath() %>/views/challenge/challengeMake.jsp'">챌린지 개설</button>
+                <% } %>
             </section>
         </form>
 
     </section>
+    
+     <script>
+       // 챌린지 상세보기 기능 (jQuery를 통해 작업)
+
+      $(function(){
+         $("#listTable td").mouseenter(function(){
+            $(this).parent().css({"background":"white", "cursor":"pointer"});
+         }).mouseout(function(){
+            $(this).parent().css("backgroundColor", "#f9f1f1");
+         }).click(function(){
+            var num = $(this).parent().children().eq(0).text();
+              // 쿼리 스트링을 이용하여 get방식으로 글 번호를 전달 
+            location.href="<%= request.getContextPath() %>/chall/join?challNo=" +num;
+         });
+      });
+       
+    </script>
+    
 
 </body>
 </html>
