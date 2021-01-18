@@ -298,7 +298,7 @@
 		<%-- 로그인 유저만 글쓰기, 내가쓴글보기 버튼 보이기 --%>
 		<% if(loginUser != null) { %>
 			  <button class="btn" id="mywrite"><a href="myBoard.html">내가 쓴 글 보기</a></button>
-			  <button class="btn" id="write"><a href='<%= request.getContextPath()%>/board/write'>글쓰기</a></button>
+			  <button class="btn" id="write"><a href='<%= request.getContextPath()%>/views/community/boardWrite.jsp'>글쓰기</a></button>
 		<% } %>
 				
     </section>

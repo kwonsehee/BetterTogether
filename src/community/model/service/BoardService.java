@@ -1,6 +1,6 @@
 package community.model.service;
 
-import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.*;
 import static common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -55,6 +55,23 @@ public class BoardService {
 		close(conn);
 			
 		return list;
+	}
+
+	// 글쓰기 
+	public int insertBoard(Board b) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().insertBoard(conn, b);;
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 	
 }
