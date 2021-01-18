@@ -3,7 +3,7 @@ package challenge.model.vo;
 import java.sql.Date;
 
 public class Challenge {
-   
+
    /*
     * CHALL_NO   NUMBER
       CHALL_TITLE   VARCHAR2(100 BYTE)
@@ -22,7 +22,7 @@ public class Challenge {
       CHALL_CNT   NUMBER
       CHALL_START   DATE
     */
-   
+
      private int challNo; // 챌린지 번호
      private String challTitle; // 챌린지 제목
      private int challPeople; // 모집 인원수
@@ -38,14 +38,15 @@ public class Challenge {
      private String userId;  // user_id 참조값
      // user_id가 아닌 USER_INFO 조인 결과 NICKNAME으로 선언 ..
      private String nickName; // 회원 이름 
-     // cateId가 아닌 CHALL_CATEGORY 조인 결과 CATE_NAME로 선언 .. 
+     // cateId가 아닌 CHALL_CATEGORY 조인 결과 CATE_NAME로 선언 ..
+     private int cateId;//카테고리 선택시 이동화면에 필요***********
      private String cateName; // 카테고리 이름
      private int challCnt; // 조회수 
      private String challStart; // 챌린지 시작일
-     
+
      public Challenge () {}
-     
-     
+
+
 
    public Challenge(int challNo, String challTitle, int challPeople, Date challDate, int challHits, String challFile,
          String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
@@ -93,7 +94,7 @@ public class Challenge {
       this.challCnt = challCnt;
       this.challStart = challStart;
    }
-   
+
    // 챌린지 개설 
    public Challenge(String challTitle, String cateName, String challFile, String challConfirm, String challFrequency, String challPeriod, 
          String challStart, int challPay,int challPeople, String challContent, String userId) {
@@ -112,13 +113,39 @@ public class Challenge {
    }
 
 
+   //카테고리 선택시 이동하는 화면에 필요
+   
 
 
    public String getUserId() {
       return userId;
    }
 
-   public void setUserId(String userId) {
+   public Challenge(int challNo, String challTitle, int challPeople, Date challDate, int challHits, String challFile,
+		String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
+		int confirmCnt, String userId, int cateId, int challCnt, String challStart) {
+	super();
+	this.challNo = challNo;
+	this.challTitle = challTitle;
+	this.challPeople = challPeople;
+	this.challDate = challDate;
+	this.challHits = challHits;
+	this.challFile = challFile;
+	this.challConfirm = challConfirm;
+	this.challFrequency = challFrequency;
+	this.challPeriod = challPeriod;
+	this.challPay = challPay;
+	this.challContent = challContent;
+	this.confirmCnt = confirmCnt;
+	this.userId = userId;
+	this.cateId = cateId;
+	this.challCnt = challCnt;
+	this.challStart = challStart;
+}
+
+
+
+public void setUserId(String userId) {
       this.userId = userId;
    }
 
@@ -253,17 +280,31 @@ public class Challenge {
 
 
 
-   @Override
-   public String toString() {
-      return "Challenge [challNo=" + challNo + ", challTitle=" + challTitle + ", challPeople=" + challPeople
-            + ", challDate=" + challDate + ", challHits=" + challHits + ", challFile=" + challFile
-            + ", challConfirm=" + challConfirm + ", challFrequency=" + challFrequency + ", challPeriod="
-            + challPeriod + ", challPay=" + challPay + ", challContent=" + challContent + ", confirmCnt="
-            + confirmCnt + ", userId=" + userId + ", nickName=" + nickName + ", cateName=" + cateName
-            + ", challCnt=" + challCnt + ", challStart=" + challStart + "]";
-   }
+public int getCateId() {
+	return cateId;
+}
+
+
+
+public void setCateId(int cateId) {
+	this.cateId = cateId;
+}
+
+
+
+@Override
+public String toString() {
+	return "Challenge [challNo=" + challNo + ", challTitle=" + challTitle + ", challPeople=" + challPeople
+			+ ", challDate=" + challDate + ", challHits=" + challHits + ", challFile=" + challFile + ", challConfirm="
+			+ challConfirm + ", challFrequency=" + challFrequency + ", challPeriod=" + challPeriod + ", challPay="
+			+ challPay + ", challContent=" + challContent + ", confirmCnt=" + confirmCnt + ", userId=" + userId
+			+ ", nickName=" + nickName + ", cateId=" + cateId + ", cateName=" + cateName + ", challCnt=" + challCnt
+			+ ", challStart=" + challStart + "]";
+}
+
+
 
    
-     
 
-}
+
+} 
