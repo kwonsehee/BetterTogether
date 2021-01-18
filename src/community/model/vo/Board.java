@@ -41,6 +41,17 @@ public class Board {
 		this.userId = userId;
 		this.nickName = nickName;
 	}
+	
+	
+
+	public Board(String bTitle, String bContent, String userId, String nickName) {
+		super();
+		this.bTitle = bTitle;
+		this.bContent = bContent;
+		this.userId = userId;
+		this.nickName = nickName;
+		
+	}
 
 	public int getbId() {
 		return bId;

@@ -170,6 +170,23 @@
 		  WHERE 
 			    RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="insertBoard">
+		INSERT
+        INTO BOARD
+        VALUES (
+        		SEQ_FID.NEXTVAL
+        		,?
+        		,?
+        		,SYSDATE
+        		,SYSDATE
+        		,DEFAULT
+        		,NULL
+        		,DEFAULT
+        		,?
+        		,?
+        	   )
+		
+	</entry>
 
 
 
