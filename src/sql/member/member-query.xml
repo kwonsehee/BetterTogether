@@ -59,6 +59,7 @@
 			USER_ID = ?
 	</entry>
 	<entry key="selectMember">
+	
 		SELECT
 		    USER_ID
 		  , USER_PWD

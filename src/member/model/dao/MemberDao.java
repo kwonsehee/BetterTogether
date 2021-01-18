@@ -232,6 +232,7 @@ public class MemberDao {
 				close(pstmt);
 			}
 
+			
 			return result;
 		}
 

@@ -112,7 +112,7 @@ public class MemberService {
 				rollback(conn);
 			}
 			close(conn);
-			System.out.println("service : "+updateMember);
+			
 			return updateMember;
 		}
 		

@@ -9,8 +9,7 @@
 		System.out.println(cate_id);
 		
 		if(cate_id!=0){
-			
-			
+
 			switch(cate_id){
 			case 10 : checkedInterest[0] = "checked"; break;
 			case 20 : checkedInterest[1] = "checked"; break;

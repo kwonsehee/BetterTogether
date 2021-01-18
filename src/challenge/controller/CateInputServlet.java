@@ -55,9 +55,7 @@ public class CateInputServlet extends HttpServlet {
 				if(updateMember!=null){
 					//해당 클라이언트에 대한 세션 객체 가져오기
 					session = request.getSession();
-//					session.setMaxInactiveInterval(600);
-					//->10분 뒤 세션 객체 만료  -> 10분뒤 자동 로그아웃
-					//안넣으면 브라우져탭닫을때 세션만료
+					//관심있는 카테고리 값을 변경한 updateMember를 로그인 유저로변경
 					session.setAttribute("loginUser", updateMember);
 					
 				}else {
