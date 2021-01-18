@@ -146,7 +146,7 @@
                
             </div>
          </section>
-       
+
       <section id="logo_block">
 
           <img src="<%=request.getContextPath()%>/resources/images/logo.png"
