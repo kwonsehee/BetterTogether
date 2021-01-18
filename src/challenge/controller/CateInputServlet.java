@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import challenge.model.service.ChallService;
 import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
+import member.model.service.MemberService;
 import member.model.vo.Member;
 
 /**
@@ -38,15 +39,40 @@ public class CateInputServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
+		//선택한 카테고리 가져오기
+		int cate = Integer.parseInt(request.getParameter("cate"));
+		System.out.println("선택한 카테고리 : "+cate);
+
 		// 로그인 유저가 있으면 관심카테고리를 변경해주고 선택한 카테고리에 관한 챌린지 리스트를 띄워줌
 		if (loginUser != null) {
-			String userId = loginUser.getUserId();
+			if(loginUser.getUser_cate()!=cate) {
+				//loginuser의 관심카테고리와 선택한 카테고리가 다를경우 멤버를 업데이트 해줘야함
+				Member m = new Member(loginUser.getUserId(),cate);
+				System.out.println("수정하고자 하는 정보 : " + m);
+				
+				Member updateMember = new MemberService().updateCateMember(m);
+				
+				if(updateMember!=null){
+					//해당 클라이언트에 대한 세션 객체 가져오기
+					session = request.getSession();
+//					session.setMaxInactiveInterval(600);
+					//->10분 뒤 세션 객체 만료  -> 10분뒤 자동 로그아웃
+					//안넣으면 브라우져탭닫을때 세션만료
+					session.setAttribute("loginUser", updateMember);
+					
+				}else {
+					
+					request.setAttribute("msg", "회원 정보 수정에 실패했습니다.");
+					RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+					view.forward(request, response);
+				}
+			}
 
-		} else {// 로그인 유저가 없으면 선택한 카테고리에 관한 챌린지 리스트를 띄워줌
+		} 
+		
+		// 로그인 유저가 없으면 선택한 카테고리에 관한 챌린지 리스트를 띄워줌
 			
-			int cate = Integer.parseInt(request.getParameter("cate"));
-			System.out.println(cate);
-
+			
 				
 		//================페이징 처리해야함============
 		// * currentPage : 현재 요청 페이지
@@ -93,10 +119,10 @@ public class CateInputServlet extends HttpServlet {
 	    request.setAttribute("list", list);
 	    request.setAttribute("cate", cate);
 	      
-	      RequestDispatcher view = request.getRequestDispatcher("/views/challenge/challengeBoard.jsp");
-	      view.forward(request, response);
+	    RequestDispatcher view = request.getRequestDispatcher("/views/challenge/challengeBoard.jsp");
+	    view.forward(request, response);
 
-		}
+		
 		
 	}
 
