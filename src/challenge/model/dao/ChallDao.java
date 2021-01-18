@@ -85,14 +85,14 @@ public class ChallDao {
       PreparedStatement pstmt = null;
       ResultSet rset = null;
       String sql = prop.getProperty("selectChall");
-      
+
       try {
          pstmt = conn.prepareStatement(sql);
-         
+
          pstmt.setInt(1, challNo);
-         
+
          rset = pstmt.executeQuery();
-         
+
          if(rset.next()) {
             ch = new Challenge(rset.getInt("CHALL_NO"),
                      rset.getString("CHALL_TITLE"),
@@ -110,18 +110,19 @@ public class ChallDao {
                      rset.getString("CATE_NAME"),
                      rset.getInt("CHALL_CNT"),
                      rset.getString("CHALL_START"));
-            
+
          }
-         
+
       } catch (SQLException e) {
          e.printStackTrace();
       } finally {
          close(pstmt);
          close(rset);
       }
-      
+
       return ch;
    }
+
 
    // 챌린지 등록 
    public int insertChall(Connection conn, Challenge ch) {
@@ -295,6 +296,89 @@ public class ChallDao {
 		}
 		
 		return result;
+	}
+
+
+	//카테고리에 맞는 챌린지리스트 뽑아오기
+	public ArrayList<Challenge> selectCateList(Connection conn, int cate, PageInfo pi) {
+		ArrayList<Challenge> list = new ArrayList<>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String sql = prop.getProperty("selectCateList");
+	      
+	      try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+
+				pstmt.setInt(1, cate);
+
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+	         
+	         rset = pstmt.executeQuery();
+	         
+	         while(rset.next()) {
+	            list.add(new Challenge(rset.getInt(2),
+	                              rset.getString(3),
+	                              rset.getInt(4),
+	                              rset.getDate(5),
+	                              rset.getInt(6),
+	                              rset.getString(7),
+	                              rset.getString(8),
+	                              rset.getString(9),
+	                              rset.getString(10),
+	                              rset.getInt(11),
+	                              rset.getString(12),
+	                              rset.getInt(13),
+	                              rset.getString(14),
+	                              rset.getInt(15),
+	                              rset.getInt(16),
+	                              rset.getString(17)));
+	            
+	         }
+	         
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	    	 close(rset);
+	         close(pstmt);
+	      }
+	      
+	      
+	      return list;
+	}
+
+
+	//카테고리에 맞는 게시글카운트 구하기
+	public int getCateListCount(Connection conn, int cate) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getCateListCount");
+		
+		try {
+			pstmt =conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, cate);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
 	}
 
 }

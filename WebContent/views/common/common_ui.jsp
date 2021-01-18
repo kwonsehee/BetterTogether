@@ -140,58 +140,13 @@
                 <button id="myPageBtn" class="mypageMenu1" style="padding-left: 10px;">개인정보수정</button>
                 <button id="joinedBtn" class="mypageMenu1"style="padding-left: 10px;">참여했던 챌린지그룹</button>
                 <button id="likeBtn" class="mypageMenu1"style="padding-left: 10px;">찜하기한 챌린지그룹</button>
-                <button id="challBtn" class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
+                <button id="challingBtn" class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
                 <button id="myChallBtn" class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
                 <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고</button>
                
             </div>
          </section>
-         <% if(loginUser != null) { %>
-         <script>
-         //정보수정 버튼 클릭 이벤트
-         const myPageBtn = document.getElementById('myPageBtn');
-         myPageBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/member/MemberEdit.jsp';
-         });
-    	
-         //참여했던 챌린지 그룹
-         const joinedBtn = document.getElementById('joinedBtn');
-         joinedBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/myPage/joinedChallenge.jsp';
-         });
-         
-       	 //찜하기한 챌린지 그룹
-         const likeBtn = document.getElementById('likeBtn');
-         likeBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/myPage/likeChallenge.jsp';
-         });
-         
-         //참여중인 챌린지 그룹
-         const challBtn = document.getElementById('challBtn');
-         challBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/myPage/joiningChallenge.jsp';
-         });
-         
-         //내가 모집한 챌린지 그룹 버튼
-         const myChallBtn = document.getElementById('myChallBtn');
-         myChallBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/myPage/myJoinChallenge.jsp';
-         });
-         
-         //내가 신고한 글
-         const myReportBtn = document.getElementById('myReportBtn');
-         myReportBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/myPage/myReport.jsp';
-         });
-         </script>
-         <% } else { %>
-         <script>
-         const menu = document.getElementById('menu');
-         menu.addEventListener('click', function(){
-        	 alert("로그인 후 이용 가능합니다.");
-         });
-         </script>
-         <% } %>
+       
       <section id="logo_block">
 
           <img src="<%=request.getContextPath()%>/resources/images/logo.png"
@@ -375,6 +330,8 @@
 	});
 	
 	</script>
+
+
 
 </body>
 </html>

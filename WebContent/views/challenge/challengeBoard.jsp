@@ -3,7 +3,11 @@
 <%
    // 챌린지 리스트 
    ArrayList<Challenge> list = (ArrayList<Challenge>)request.getAttribute("list");
-
+   
+   //cate
+   int cate = Integer.parseInt((String.valueOf(request.getAttribute("cate"))));
+   
+   
    // 페이징 처리 
    PageInfo pi = (PageInfo)request.getAttribute("pi");
    
@@ -24,7 +28,7 @@
 		}
 	}
    
-
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -138,6 +142,7 @@
   <section id="content" class="content_css">
         <section id="title">
             <h3>챌린지 모집 게시판</h3>
+            <!-- 어떤 카테고리의 것인지 표시해주기 -->
         </section>
         <section id="content-1">
             <table id= "listTable" class="challenge_table">
@@ -179,46 +184,62 @@
             <!-- 처음으로(<<) 이전페이지로(<) 페이지 목록 다음 페이지로(>) 맨 끝으로(>>) -->  
               
             <!-- 처음으로(<<) -->
-			<% if(s == null) { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=1'"> &lt;&lt;</button>
-			<% } else {%>
+			<% if(s != null) { %>
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=1&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;&lt;</button>		
+			<%}else if(cate !=0){ %>
+			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=1&cate=<%= cate %>'"> &lt;&lt;</button>		
+			<% } else {%>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=1'"> &lt;&lt;</button>	
 			<% } %>  
 			
 			<!-- 이전으로(<) -->
 			<% if(pi.getCurrentPage() == 1) {%>
 			<button disabled> &lt; </button>
-			<% } else if(s == null) { %>		
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() - 1%>'"> &lt; </button>
+			<% } else if(s != null) { %>		
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() - 1%>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;</button>	
+			
+			<%}else if(cate !=0){ %>
+			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getCurrentPage() - 1%>&cate=<%= cate %>'"> &lt;</button>		
 			<% } else {%>
-	        <button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() - 1%>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;</button>		
+	        <button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() - 1%>'"> &lt; </button>
 			<% } %>
 			
 			<!-- 10개의 페이지 목록 -->
 			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) {%>
 			<% if(p == pi.getCurrentPage()) { %>
 			<button style="background:white;" disabled><%= p %></button>
-			<% } else if(s == null){%>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%=p %>'"> <%= p %> </button>
-			<% } else {%>
+			<% } else if(s != null){%>
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%=p %>&searchCondition=<%= searchCondition %>&search=<%=search %>'"> <%= p %></button>	
+			<%}else if(cate !=0){ %>
+			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= p%>&cate=<%= cate %>'">  <%= p %></button>		
+			
+			<% } else {%>
+			
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%=p %>'"> <%= p %> </button>
 			<% } %>
 			<% } %>
             
             <!-- 다음으로(>) -->
 			<% if(pi.getCurrentPage() == pi.getMaxPage()){ %>
 			<button disabled> &gt;</button>
-			<% } else if (s == null){%>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt;</button>
-			<% } else {%>
+			<% } else if (s != null){%>
+			
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() + 1 %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;</button>				
-			<% } %>
+			<%}else if(cate !=0){ %>
+			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getCurrentPage() + 1%>&cate=<%= cate %>'"> &gt;</button>		
+			
+			<% } else {%>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt;</button><% } %>
               
              <!-- 맨 끝으로 (>>) -->
-			<% if(s == null) {%>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
-			<% } else { %>
+			<% if(s != null) {%>
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getMaxPage() %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;&gt; </button>
+			<%}else if(cate !=0){ %>
+			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getMaxPage()%>&cate=<%= cate %>'">  &gt; &gt;</button>		
+			
+			<% } else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+			
 			<% }  %>  
                
             </div>
