@@ -32,6 +32,13 @@ public class Member {
 	public Member() {
 		
 	}
+	
+	public Member(String userId, int user_cate) {
+		super();
+		this.userId = userId;
+		this.user_cate = user_cate;
+	}
+
 	public Member(String userId, String userPwd) {
 		super();
 		this.userId = userId;
@@ -48,7 +55,7 @@ public class Member {
 		this.email = email;
 	}
 	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
-			Date modifyDate, int membertype) {
+			Date modifyDate, int membertype, int user_cate) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -58,6 +65,7 @@ public class Member {
 		this.joinDate = joinDate;
 		this.modifyDate = modifyDate;
 		this.membertype = membertype;
+		this.user_cate=user_cate;
 	}
 	
 	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
@@ -80,6 +88,22 @@ public class Member {
 		this.nickName = nickName;
 		this.phone = phone;
 		this.email = email;
+		this.user_cate = user_cate;
+	}
+	
+	
+	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
+			Date modifyDate, int membertype, String writer_active, int user_cate) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.nickName = nickName;
+		this.phone = phone;
+		this.email = email;
+		this.joinDate = joinDate;
+		this.modifyDate = modifyDate;
+		this.membertype = membertype;
+		this.writer_active = writer_active;
 		this.user_cate = user_cate;
 	}
 	public String getUserId() {

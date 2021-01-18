@@ -56,7 +56,9 @@ public class MemberDao {
 						rset.getString("USER_PWD"), rset.getString("NICKNAME"),
 						rset.getString("PHONE"), rset.getString("EMAIL"),
 						rset.getDate("JOIN_DATE"),rset.getDate("MODIFY_DATE"),
-						rset.getInt("MEMBER_TYPE"));
+						rset.getInt("MEMBER_TYPE"),
+						rset.getString("WRITE_ACTIVE"),
+						rset.getInt("USER_CATE"));
 			}
 
 		} catch (SQLException e) {
@@ -145,7 +147,7 @@ public class MemberDao {
 						rset.getString("USER_PWD"), rset.getString("NICKNAME"),
 						rset.getString("PHONE"), rset.getString("EMAIL"),
 						rset.getDate("JOIN_DATE"),rset.getDate("MODIFY_DATE"),
-						rset.getInt("MEMBER_TYPE"));
+						rset.getInt("MEMBER_TYPE"), rset.getInt("USER_CATE"));
 				
 			}
 
@@ -205,6 +207,31 @@ public class MemberDao {
 			} finally {
 				close(pstmt);
 			}
+			
+			return result;
+		}
+
+		//관심있는 카테고리 변경 메소드
+		public int updateCateMember(Connection conn, Member m) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("updateCateMember");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, m.getUser_cate());
+				pstmt.setString(2, m.getUserId());
+
+				result = pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
 			
 			return result;
 		}

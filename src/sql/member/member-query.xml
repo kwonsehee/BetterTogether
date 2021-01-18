@@ -11,6 +11,8 @@
 		  , JOIN_DATE
 		  , MODIFY_DATE
 		  , MEMBER_TYPE
+		  , WRITE_ACTIVE
+		  , USER_CATE
 		  FROM
 		  		USER_INFO
 		  WHERE
@@ -57,6 +59,7 @@
 			USER_ID = ?
 	</entry>
 	<entry key="selectMember">
+	
 		SELECT
 		    USER_ID
 		  , USER_PWD
@@ -66,6 +69,7 @@
 		  , JOIN_DATE
 		  , MODIFY_DATE
 		  , MEMBER_TYPE
+		  , USER_CATE
 		  FROM
 		  		USER_INFO
 		  WHERE
@@ -90,5 +94,13 @@
 		 WHERE
 		 	   USER_ID = ?
 		
+	</entry>
+	<entry key="updateCateMember">
+		UPDATE USER_INFO
+		SET
+		    USER_CATE = ?
+		  , MODIFY_DATE = SYSDATE
+		WHERE 
+			USER_ID = ?
 	</entry>
 </properties>
