@@ -67,7 +67,7 @@ public class ChallDao {
                               rset.getInt(16),
                               rset.getString(17)));
          }
-         
+         System.out.println(list);
          
       } catch (SQLException e) {
          e.printStackTrace();
@@ -180,7 +180,7 @@ public class ChallDao {
 			close(rset);
 			close(stmt);
 		}
-		
+		System.out.println("dao count : "+listCount);
 		return listCount;
 	}
 

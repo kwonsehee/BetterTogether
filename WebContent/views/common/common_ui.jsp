@@ -329,6 +329,12 @@
 		location.href="<%= request.getContextPath()%>/views/studycafe/studycafe.jsp";
 	});
 	
+	//마이페이지 정보수정버튼
+	const myPageBtn = document.getElementById("myPageBtn");
+	myPageBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/views/member/MemberEdit.jsp";
+	});
+	
 	</script>
 
 

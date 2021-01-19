@@ -21,7 +21,7 @@ public class ChallService {
       Connection conn = getConnection();
       
       ArrayList<Challenge> list = new ChallDao().selectList(conn, pi);
-      
+      System.out.println("서비스 : "+list);
       close(conn);
       
       return list;

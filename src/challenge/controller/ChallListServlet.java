@@ -79,7 +79,8 @@ public class ChallListServlet extends HttpServlet {
       request.setAttribute("list", list);
       
       RequestDispatcher view = request.getRequestDispatcher("/views/challenge/challengeBoard.jsp");
-      view.forward(request, response);
+	  view.forward(request, response);
+   
    }
 
    /**

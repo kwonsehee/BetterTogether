@@ -355,7 +355,7 @@
    		 	  CHALL
    		WHERE
    			  CATE_ID= ?
-   
+   </entry>
 
    <entry key="insertChallStatus">
    		INSERT

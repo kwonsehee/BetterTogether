@@ -3,11 +3,12 @@
 <%
    // 챌린지 리스트 
    ArrayList<Challenge> list = (ArrayList<Challenge>)request.getAttribute("list");
-   
+   int cate = 0;
    //cate
-   int cate = Integer.parseInt((String.valueOf(request.getAttribute("cate"))));
-   
-   
+   if(request.getAttribute("cate")!=null){
+     cate = Integer.parseInt((String.valueOf(request.getAttribute("cate"))));
+   }
+
    // 페이징 처리 
    PageInfo pi = (PageInfo)request.getAttribute("pi");
    
