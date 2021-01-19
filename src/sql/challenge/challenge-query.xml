@@ -303,5 +303,35 @@
    	     	   CHALL_NO = ?
    </entry>
    
-
+   <entry key="insertChallStatus">
+   		INSERT
+   		INTO CHALL_STATUS
+   		(
+   			USER_ID
+   		  , CHALL_NO
+   		  , CHALL_STATUS
+   		  , JOIN_CALL_DATE
+   		)
+   		VALUES
+   		(
+   			?
+   		  , ?
+   		  , 1
+   		  , SYSDATE
+   		)
+   
+   </entry>
+   
+   <entry key="countStatus">
+   		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL_STATUS
+   		WHERE
+   			  CHALL_NO = ?
+   		   AND
+   		      CHALL_STATUS = 1
+   </entry>
+   
+   
 </properties>
