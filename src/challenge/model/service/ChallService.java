@@ -12,6 +12,7 @@ import challenge.model.dao.ChallDao;
 import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
 import common.model.vo.Search;
+import member.model.vo.Member;
 
 public class ChallService {
    
@@ -26,22 +27,16 @@ public class ChallService {
       return list;
    }
    
-   // 챌린지 참여 상세페이지 (조회수 증가)
+   // 챌린지 참여 상세페이지 (조회수 증가) -- 조회수 추후 수정(쿠키x)
    public Challenge selectChall(int challNo) {
 	   Connection conn = getConnection();
 		
 		ChallDao cd = new ChallDao();
 		
-		int result = cd.increaseCount(conn, challNo);
+		// int result = cd.increaseCount(conn, challNo);
 		
-		Challenge ch = null;
+		Challenge ch = cd.selectChall(conn, challNo);
 		
-		if(result > 0) {
-			commit(conn);
-			ch = cd.selectChall(conn, challNo);
-		} else {
-			rollback(conn);
-		}
 		close(conn);
 		return ch;
    }
@@ -99,15 +94,44 @@ public class ChallService {
 
 
 	
-	// 게시글 상세보기 (조회수 증가 없이) 
-	public Challenge selectChallNoCnt(int challNo) {
+//	// 게시글 상세보기 (조회수 증가 없이) 
+//	public Challenge selectChallNoCnt(int challNo) {
+//		Connection conn = getConnection();
+//		Challenge ch = new ChallDao().selectChall(conn, challNo);
+//		
+//		close(conn);
+//		
+//		return ch;
+//	}
+	
+	// 챌린지 현황 인원 추가 
+	public int insertChallStatus(int challNo, String userId) {
 		Connection conn = getConnection();
-		Challenge ch = new ChallDao().selectChall(conn, challNo);
+		int result = new ChallDao().insertChallStatus(conn, challNo, userId);
 		
-		close(conn);
-		
-		return ch;
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
 	}
+	
+	// 챌린지 참여중 인원 카운트 
+	public int countStatus(int challNo) {
+		Connection conn = getConnection();
+		int countStatus = new ChallDao().countStatus(conn,challNo);
+		
+		if(countStatus > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return countStatus;
+	}
+	
+
+	
 
 	//카테고리에 맞는 챌린지 리스트 뽑아오기
 	public ArrayList<Challenge> selectCate(int cate, PageInfo pi) {

@@ -15,6 +15,7 @@ import java.util.Properties;
 import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
 import common.model.vo.Search;
+import member.model.vo.Member;
 
 public class ChallDao {
    
@@ -276,19 +277,43 @@ public class ChallDao {
 		return list;
 	}
 
-	// 조회수 증가
-	public int increaseCount(Connection conn, int challNo) {
+//	// 조회수 증가
+//	public int increaseCount(Connection conn, int challNo) {
+//		int result = 0;
+//		PreparedStatement pstmt = null;
+//		String sql = prop.getProperty("increaseCount");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			pstmt.setInt(1, challNo);
+//			
+//			result = pstmt.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		
+//		return result;
+//	}
+
+	
+	// 챌린지 인원 추가 
+	public int insertChallStatus(Connection conn, int challNo, String userId) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("increaseCount");
+		String sql = prop.getProperty("insertChallStatus");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, challNo);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, challNo);
 			
-			result = pstmt.executeUpdate();
-			
+	        result = pstmt.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -297,6 +322,29 @@ public class ChallDao {
 		
 		return result;
 	}
+
+	// 참여중 인원 카운트 
+	public int countStatus(Connection conn, int challNo) {
+		int countStatus = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("countStatus");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, challNo);
+			
+			countStatus = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return countStatus;
+	}
+
 
 
 	//카테고리에 맞는 챌린지리스트 뽑아오기
@@ -380,5 +428,6 @@ public class ChallDao {
 		
 		return listCount;
 	}
+
 
 }

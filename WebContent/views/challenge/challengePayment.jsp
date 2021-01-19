@@ -2,6 +2,11 @@
    pageEncoding="UTF-8" import="challenge.model.vo.Challenge"%>
 <%
 	Challenge ch = (Challenge)request.getAttribute("challenge");   
+	Member m = (Member)session.getAttribute("loginUser");
+	
+	String name = m.getNickName();
+	String email = m.getEmail();
+	String phone = m.getPhone();
 
 %>
 <!DOCTYPE html>
@@ -9,6 +14,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- 결제 연동 jsp 경로 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <style>
 /* content 부분 */
@@ -34,26 +43,39 @@
 
 #challenge_btn {
    font-family: "Do Hyeon";
-   width: 150px;
+   width: 130px;
    height: 50px;
    border-radius: 20px;
    border: solid 1px #fdc8c6;
    background-color: #fdc8c6;
    float: right;
    font-size: 20px;
-   margin-right: 350px;
+   margin-right: 430px;
 }
 
 #back_btn{
    font-family: "Do Hyeon";
-   width: 150px;
+   width: 130px;
    height: 50px;
    border-radius: 20px;
    border: solid 1px #fdc8c6;
    background-color: #fdc8c6;
    float: left;
    font-size: 20px;
-   margin-left: 330px;
+   margin-left: 290px;
+}
+
+#list_btn{
+   font-family: "Do Hyeon";
+   width: 130px;
+   height: 50px;
+   border-radius: 20px;
+   border: solid 1px #fdc8c6;
+   background-color: #fdc8c6;
+   float: right;
+   font-size: 20px;
+   margin-right: 280px;
+   margin-top: -49px;
 }
 
 #sec-1 {
@@ -187,12 +209,70 @@ button:focus{
       <section id="content-2">
          <button id="back_btn" type="button" onclick="javascript:history.back();">뒤로가기</button>
          <!-- 결제 버튼 (API) 추후 수정-->
-         <button id="challenge_btn">
-            <a href="#">결제하기</a>
-         </button>
+         <button id="challenge_btn">결제하기</button>
+         <button id="list_btn">완료</button>
       </section>
    </section>
    
+   <!-- 결제 API -->
+   
+   <script>
+   
+   const challenge_btn = document.getElementById("challenge_btn");
+   challenge_btn.addEventListener('click',function(){
+	   var IMP = window.IMP; // 생략가능
+       IMP.init('imp63477997'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+       
+       IMP.request_pay({
+           pg : 'kakaopay',
+           pay_method : 'card',
+           merchant_uid : 'merchant_' + new Date().getTime(),
+           name : 'Better Together 챌린지 결제',
+           amount : <%=ch.getChallPay()%>,
+           buyer_email : '<%=email%>',
+           buyer_name : '<%=name%>',
+           buyer_tel : '<%=phone%>',
+           buyer_addr : '',
+           buyer_postcode : '123-456',
+           //m_redirect_url : 'http://www.naver.com'
+       }, function(rsp) {
+    	   console.log(rsp);
+          if (rsp.success) {
+                  var msg = '결제가 완료되었습니다.';
+                  msg += '\n고유ID : ' + rsp.imp_uid;
+                  msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                  msg += '\n결제 금액 : ' + rsp.paid_amount;
+                  msg += '\n카드 승인번호 : ' + rsp.apply_num;
+                //성공시 이동할 페이지
+                //location.href="<%=request.getContextPath()%>/order/paySuccess?challNo="+<%=ch.getChallNo()%>;
+          } else {
+               var msg = '결제에 실패하였습니다.';
+               msg += '에러내용 : ' + rsp.error_msg;
+               //실패시 이동할 페이지
+               location.href="<%=request.getContextPath()%>/order/payFail";
+           } 
+           alert(msg);
+       });
+      
+   });
+   
+   </script>
+   
+    <!-- form 태그를 post 방식으로 제출 
+	challNo를 화면에 드러내지 않고 form을 submit 하면서 넘길 수 있음-->
+	<form id="challNoForm" method="post">
+		<input type="hidden" name="challNo" value="<%= ch.getChallNo() %>"> 
+	</form>
+	
+	<!-- 결제 후 완료 버튼 누르기 (챌린지현황에 회원 참여중으로 insert됨) -->
+	<script>
+	const list_btn = document.getElementById('list_btn');
+	list_btn.addEventListener('click',function(){
+		$("#challNoForm").attr("action", "<%= request.getContextPath()%>/order/paySuccess");
+		$("#challNoForm").submit();
+	});
+	
+	</script>
 
 </body>
 </html>
