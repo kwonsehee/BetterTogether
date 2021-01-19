@@ -302,7 +302,61 @@
    	     WHERE
    	     	   CHALL_NO = ?
    </entry>
+    <entry key="selectCateList">
+   	SELECT 
+   			RNUM
+   		 , CHALL_NO
+         , CHALL_TITLE
+         , CHALL_PEOPLE
+         , CHALL_DATE
+         , CHALL_HITS
+         , FILE_PATH
+         , CHALL_CONFIRM
+         , CHALL_FREQUENCY
+         , CHALL_PERIOD
+         , CHALL_PAYMENT
+         , CHALL_CONTENT
+         , CHALL_COUNT
+         , USER_ID
+         , CATE_ID
+         , CHALL_CNT
+         , CHALL_START
+	  FROM
+		   (SELECT ROWNUM RNUM,A.*
+    		  FROM (SELECT
+      	   					CHALL_NO
+        				  , CHALL_TITLE
+       					  , CHALL_PEOPLE
+       					  , CHALL_DATE
+       					  , CHALL_HITS
+       					  , FILE_PATH
+       					  , CHALL_CONFIRM
+        				  , CHALL_FREQUENCY
+     				      , CHALL_PERIOD
+       				      , CHALL_PAYMENT
+        				  , CHALL_CONTENT
+          				  , CHALL_COUNT
+        				  , USER_ID
+        				  , CATE_ID
+      				      , CHALL_CNT
+          				  , CHALL_START
+       				  FROM 
+        			        CHALL
+        			  WHERE
+           				    CATE_ID=?
+        		   ORDER BY CHALL_NO DESC)A)
+		WHERE RNUM BETWEEN ? AND ?
+   </entry>
    
+   <entry key = "getCateListCount">
+   		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL
+   		WHERE
+   			  CATE_ID= ?
+   
+
    <entry key="insertChallStatus">
    		INSERT
    		INTO CHALL_STATUS
@@ -334,4 +388,5 @@
    </entry>
    
    
+
 </properties>

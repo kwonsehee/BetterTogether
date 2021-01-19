@@ -133,4 +133,26 @@ public class ChallService {
 
 	
 
+	//카테고리에 맞는 챌린지 리스트 뽑아오기
+	public ArrayList<Challenge> selectCate(int cate, PageInfo pi) {
+		Connection conn = getConnection();
+	      
+	      ArrayList<Challenge> list = new ChallDao().selectCateList(conn,cate,pi );
+	      
+	      close(conn);
+	      
+	      return list;
+	}
+
+	//카테고리에 맞는 챌린지 갯수 구하기
+	public int getListCount(int cate) {
+		Connection conn = getConnection();
+		
+		int listCount = new ChallDao().getCateListCount(conn,cate);
+		
+		close(conn);
+		
+		return listCount;
+	}
+
 }

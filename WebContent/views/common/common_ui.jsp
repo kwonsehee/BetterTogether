@@ -131,29 +131,22 @@
 </style>
 </head>
 <body>
-    <!--  스터디카페ㅇㅇ -->
+
    <header>
       <section id="mypage">
-            <p class="openmenu" onclick='openNav()'><i class="material-icons fa fa-angle-double-left fa-5" aria-hidden="true" style="font-size : 80px">menu</i></p>
+            <p class="openmenu" onclick='openNav()'><i class="material-icons fa fa-angle-double-left fa-5" id="menu" aria-hidden="true" style="font-size : 80px">menu</i></p>
             <div id="mysidenav" class="sidenav">
                 <a href="#" class="closebtn" onclick='closeNav()'>x</a>
                 <button id="myPageBtn" class="mypageMenu1" style="padding-left: 10px;">개인정보수정</button>
-                <button class="mypageMenu1"style="padding-left: 10px;">참여했던 챌린지그룹</button>
-                <button class="mypageMenu1"style="padding-left: 10px;">찜하기한 챌린지그룹</button>
-                <button class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
-                <button class="mypageMenu1"style="padding-left: 10px;">스터디카페 예약</button>
-                <button class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
+                <button id="joinedBtn" class="mypageMenu1"style="padding-left: 10px;">참여했던 챌린지그룹</button>
+                <button id="likeBtn" class="mypageMenu1"style="padding-left: 10px;">찜하기한 챌린지그룹</button>
+                <button id="challingBtn" class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
+                <button id="myChallBtn" class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
+                <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고</button>
                
             </div>
          </section>
-         <script>
-             //정보수정 버튼 클릭 이벤트
-         const myPageBtn = document.getElementById('myPageBtn');
-         myPageBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/member/MemberEdit.jsp';
-         });
-         
-         </script>
+
       <section id="logo_block">
 
           <img src="<%=request.getContextPath()%>/resources/images/logo.png"
@@ -337,6 +330,8 @@
 	});
 	
 	</script>
+
+
 
 </body>
 </html>

@@ -146,17 +146,19 @@
         </div>
         <div class="line"></div>
 
+		<form action="<%=request.getContextPath()%>/board/write" method="post">
+		
         <!-- 글쓰기 박스 -->
         <div id="writebox">
             <!-- 제목 입력-->
-           <input type="text" id ="write_title" placeholder="  글제목을 입력해주세요">
+           <input type="text" id ="write_title" placeholder="  글제목을 입력해주세요" name="title">
            <!-- 파일 첨부, 이미지, 동영상 등 -->
            <div id="write_option">
                 <label><input type="file" class="file-input"></label>
                 <span class="filename">파일을 선택해주세요.</span>
            </div>
            <!-- 글 입력-->
-           <textarea id="writeArea"rows="5"></textarea>
+           <textarea id="writeArea"rows="5" name="content"></textarea>
         </div>
         <script>
              $(document).on("change", ".file-input", function(){
@@ -169,9 +171,12 @@
         </script>
 
          <!-- 버튼 -->
-         <button class="btn" id="back"><a href="boardmain.html">뒤로가기</a></button>
-         <button class="btn" id="submit"><a href="boardmain.html">등록</a></button>
+         <button class="btn" id="back"><a href="<%= request.getContextPath()%>/board/main">뒤로가기</a></button>
+         <button class="btn" id="submit"><a>등록</a></button>
+   		</form>
     </section>
+    
+    
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 </html>

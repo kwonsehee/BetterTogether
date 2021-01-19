@@ -13,18 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import common.model.vo.PageInfo;
 import community.model.service.BoardService;
 import community.model.vo.Board;
+import community.model.vo.Search;
 
 /**
- * Servlet implementation class BoardMainServlet
+ * Servlet implementation class BoardSearchServlet
  */
-@WebServlet("/board/main")
-public class BoardMainServlet extends HttpServlet {
+@WebServlet("/board/search")
+public class BoardSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardMainServlet() {
+    public BoardSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,48 +34,35 @@ public class BoardMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardService bs = new BoardService();
-		
-		// 현재 요청 페이지
-		// 하지만 페이지 전환 시 전달 받은 현재 페이지가 있을 경우 해당 페이지를 currentPage로 적용
+		Search s = new Search(request.getParameter("searchCondition"), request.getParameter("search"));
+		// 기본적으로 게시판은 1페이지부터 시작
 		int currentPage = 1;
+				
+		// 페이지 전환 시 전달 받은 currentPage 값이 있을 경우 적용
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+				
+		BoardService bs = new BoardService();
 		
-		// 게시글 총 갯수 구하기
-		int listCount = bs.getListCount();
-//		System.out.println("listCount : " + listCount);
+		// 검색 기준의 검색 결과의 총 갯수 구하기
+		int listCount = bs.getSearchListCount(s);
 		
+		// 검색 기준으로 페이징 처리
 		int pageLimit = 10;
 		int boardLimit = 10;
-		int maxPage;
-		int startPage;
-		int endPage;
-		
-		maxPage = (int)Math.ceil((double)listCount / boardLimit);
-		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
-		endPage = startPage + pageLimit - 1;
-		
-		// 마지막 페이지 수가 총 페이지 수보다 클 경우는 있을 수 없으므로
-		if(maxPage < endPage) {
-			endPage = maxPage;
-		}
-		
-		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit,
-				maxPage, startPage, endPage);
-		
-		
-		ArrayList<Board> list = bs.selectList(pi);
-		
-//		System.out.println("pi : " + pi);
-//		System.out.println("list : " + list);
-		
-		request.setAttribute("pi", pi);
+				
+		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
+				
+		ArrayList<Board> list = bs.selectSearchList(pi, s);
+				
 		request.setAttribute("list", list);
-		
-		RequestDispatcher view= request.getRequestDispatcher("/views/community/boardMain.jsp");
+		request.setAttribute("pi", pi);
+		request.setAttribute("search", s);
+				
+		RequestDispatcher view = request.getRequestDispatcher("/views/community/boardMain.jsp");
 		view.forward(request, response);
+				
 	
 	}
 
