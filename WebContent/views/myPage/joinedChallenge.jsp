@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, challenge.model.vo.Challenge"%>
+<%
+	ArrayList<Challenge> challList = new ArrayList<>();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,7 +121,13 @@
         <button type="button" id="month3">1년 전</button>
         <button type="submit" id="check">조회</button>
         
+      <%--   <% if(loginUser != null && challList != null) { %>
+        <div id=joined>
+        	<div id="joinedChall"><%= challTitle() %><%= challPeriod() %></div>
+        </div>
+        <% } else { %>
         <div id=joined>참여했던 챌린지 그룹이 없습니다.</div>
+        <% } %> --%>
         
        <button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button>
        </section>

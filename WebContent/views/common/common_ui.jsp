@@ -137,16 +137,63 @@
             <p class="openmenu" onclick='openNav()'><i class="material-icons fa fa-angle-double-left fa-5" id="menu" aria-hidden="true" style="font-size : 80px">menu</i></p>
             <div id="mysidenav" class="sidenav">
                 <a href="#" class="closebtn" onclick='closeNav()'>x</a>
-                <button id="myPageBtn" class="mypageMenu1" style="padding-left: 10px;">개인정보수정</button>
-                <button id="joinedBtn" class="mypageMenu1"style="padding-left: 10px;">참여했던 챌린지그룹</button>
-                <button id="likeBtn" class="mypageMenu1"style="padding-left: 10px;">찜하기한 챌린지그룹</button>
+                <button id="myUpdateBtn" class="mypageMenu1" style="padding-left: 10px;">개인정보수정</button>
+                <button id="joinedChallBtn" class="mypageMenu1"style="padding-left: 10px;">참여했던 챌린지그룹</button>
+                <button id="likeChallBtn" class="mypageMenu1"style="padding-left: 10px;">찜하기한 챌린지그룹</button>
                 <button id="challingBtn" class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
                 <button id="myChallBtn" class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
-                <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고</button>
+                <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고내역</button>
                
             </div>
          </section>
-
+         
+         <% if(loginUser != null) { %>
+         <script>
+         //1.개인정보 수정
+         const myUpdateBtn = document.getElementById('myUpdateBtn');
+         myUpdateBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/views/member/MemberEdit.jsp";
+         });
+         
+         //2.참여했던 챌린지 그룹
+           const joinedChallBtn = document.getElementById('joinedChallBtn');
+           joinedChallBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/views/myPage/joinedChallenge.jsp";
+         });
+         
+         //3.찜하기한 챌린지 그룹
+          const likeChallBtn = document.getElementById('likeChallBtn');
+          likeChallBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/views/myPage/likeChallenge.jsp";
+         });
+         
+         //4.참여중인 챌린지 그룹
+          const challingBtn = document.getElementById('challingBtn');
+          challingBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/views/myPage/joiningChallenge.jsp";
+         });
+         
+         //5.내가 모집한 챌린지 그룹
+          const myChallBtn = document.getElementById('myChallBtn');
+          myChallBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/views/myPage/myJoinChallenge.jsp";
+         });
+         
+         //6.신고내역
+          const myReportBtn = document.getElementById('myReportBtn');
+          myReportBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/views/myPage/myReport.jsp";
+         });
+         </script>
+		<% } else { %>
+		<script>
+		 const menu = document.getElementById('menu');
+		 menu.addEventListener('click',function(){
+			 alert("로그인 후 이용 가능합니다.");
+            location.href="<%= request.getContextPath()%>/views/member/MemberLogin.jsp";
+         });
+		</script>
+		<% } %>
       <section id="logo_block">
 
           <img src="<%=request.getContextPath()%>/resources/images/logo.png"
