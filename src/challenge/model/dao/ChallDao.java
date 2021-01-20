@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import challenge.model.vo.Challenge;
+import challenge.model.vo.ChallengeStatus;
 import common.model.vo.PageInfo;
 import common.model.vo.Search;
 import member.model.vo.Member;
@@ -142,9 +143,10 @@ public class ChallDao {
          pstmt.setString(6, ch.getChallPeriod());
          pstmt.setInt(7, ch.getChallPay());
          pstmt.setString(8, ch.getChallContent());
-         pstmt.setString(9, ch.getUserId());
-         pstmt.setInt(10, Integer.parseInt(ch.getCateName()));
-         pstmt.setString(11, ch.getChallStart());
+         pstmt.setInt(9, ch.getConfirmCnt());
+         pstmt.setString(10, ch.getUserId());
+         pstmt.setInt(11, Integer.parseInt(ch.getCateName()));
+         pstmt.setString(12, ch.getChallStart());
          
          result = pstmt.executeUpdate();
          
@@ -300,11 +302,11 @@ public class ChallDao {
 //	}
 
 	
-	// 챌린지 인원 추가 
-	public int insertChallStatus(Connection conn, int challNo, String userId) {
+	// 챌린지 인원 현황 (참여중)
+	public int updateChallStatus(Connection conn, int challNo, String userId) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertChallStatus");
+		String sql = prop.getProperty("updateChallStatus");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -323,7 +325,7 @@ public class ChallDao {
 		return result;
 	}
 
-	// 참여중 인원 카운트 
+	// 참여중 인원 카운트 (추후 수정 예정) 
 	public int countStatus(Connection conn, int challNo) {
 		int countStatus = 0;
 		PreparedStatement pstmt = null;
@@ -426,6 +428,116 @@ public class ChallDao {
 		}
 		
 		return listCount;
+	}
+
+	
+	// 챌린지 찜하기 insert 
+	public int insertChallHits(Connection conn, int challNo, String userId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertChallHits");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, challNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+	// 찜상태 select 해오기!! 
+	public String selectHits(Connection conn, int challNo, String userId) {
+		String hits_status = "";
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectHits");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, challNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				hits_status = rset.getString(1);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return hits_status;
+	}
+
+	// 찜 상태 'Y'일 경우 지우기 
+	public int deleteChallHits(Connection conn, int challNo, String userId) {
+		int result = 0;  
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteChallHits");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, challNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	// 챌린지 상태 테이블 select
+	public ArrayList<ChallengeStatus> selectListChallStatus(Connection conn) {
+		ArrayList<ChallengeStatus> list = new ArrayList<>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String sql = prop.getProperty("selectListChallStatus");
+	      
+	      try {
+			pstmt = conn.prepareStatement(sql);
+			
+			 rset = pstmt.executeQuery();
+	         
+	         while(rset.next()) {
+	            list.add(new ChallengeStatus(rset.getString(1),
+	                              rset.getInt(2),
+	                              rset.getInt(3),
+	                              rset.getDate(4),
+	                              rset.getString(5)));
+	         }
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+	      
+		return list;
 	}
 
 

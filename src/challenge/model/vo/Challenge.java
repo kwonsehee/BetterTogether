@@ -97,7 +97,7 @@ public class Challenge {
 
    // 챌린지 개설 
    public Challenge(String challTitle, String cateName, String challFile, String challConfirm, String challFrequency, String challPeriod, 
-         String challStart, int challPay,int challPeople, String challContent, String userId) {
+         String challStart, int challPay,int challPeople, String challContent, int confirmCnt, String userId) {
       super();
       this.challTitle = challTitle;
       this.cateName = cateName;
@@ -109,6 +109,7 @@ public class Challenge {
       this.challPay = challPay;
       this.challPeople = challPeople;
       this.challContent = challContent;
+      this.confirmCnt = confirmCnt;
       this.userId = userId;
    }
 

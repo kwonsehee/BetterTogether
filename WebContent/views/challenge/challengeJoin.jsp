@@ -1,13 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="challenge.model.vo.Challenge, java.util.Date"%>
+	import="challenge.model.vo.*, java.util.Date, java.util.ArrayList"%>
 <%
-   Challenge ch = (Challenge)request.getAttribute("challenge");   
+
+   	Challenge ch = (Challenge)request.getAttribute("challenge");   
+
+	// 챌린지 상태 리스트 가져오기
+	ArrayList<ChallengeStatus> list = (ArrayList<ChallengeStatus>)request.getAttribute("list");
+	
+	// 찜 상태 받아오기 
+	String hits_status = "";
+	if(list != null){
+		hits_status = (String)request.getAttribute("hits_status");
+		System.out.println("찜 상태 : " + hits_status);
+	}
+	
 	
 	// 챌린지 시작일 값 추출 
 	String year = ch.getChallStart().substring(0, 4);
 	String month = ch.getChallStart().substring(5,7);
 	String day = ch.getChallStart().substring(8,10);
+	
+	System.out.println("인증방법 : " + ch.getChallConfirm());
+	
+	// 인증 방법 한글로 나타내기 
+	String confirmNum = ch.getChallConfirm();
+	String confirm[] = new String[3];
+	switch(confirmNum){
+		case "1" : confirm[0] = "주말"; break; 
+		case "2" : confirm[1] = "평일"; break; 
+		case "3" : confirm[2] = "상관없음"; break; 
+	}
+	
 	
 %>
 <!DOCTYPE html>
@@ -15,6 +39,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
 #content-1 {
 	margin-top: 10px;
@@ -112,7 +137,7 @@
 	margin-right: 15px;
 }
 
-#heart_img {
+.heart_img {
 	width: 40px;
 	height: 40px;
 }
@@ -266,7 +291,11 @@ button:focus {
 					<td><img
 						src="<%=request.getContextPath()%>/resources/images/camera.png"
 						class="img-size"></td>
-					<td>인증 방법 : <span><%=ch.getChallConfirm() %></span></td>
+					<% for(int i = 0; i < confirm.length; i++)  {%>
+						<% if(confirm[i] != null) { %>
+					<td>인증 방법 : <span><%= confirm[i] %></span></td>
+					<% }%>
+				<% } %>
 				</tr>
 			</table>
 
@@ -275,9 +304,16 @@ button:focus {
 				<button id="challenge_btn">챌린지 참가</button>
 				<div>
 					<button id="hits_btn">
+					<!-- 찜하기 버튼 ('Y'일 경우 -> 찜완료 (채워진 하트)/ 'N'일 경우 다시 찜 삭제 (빈하트))  -->
+					<% if(list != null && hits_status.equals("Y")) { %>
 						<img
 							src="<%=request.getContextPath()%>/resources/images/heart.png"
-							id="heart_img">
+							class="heart_img">
+						<%} else { %>
+						<img
+							src="<%=request.getContextPath()%>/resources/images/heart2.png"
+							class="heart_img">
+						<% } %>
 					</button>
 				</div>
 				<span>찜하기</span>
@@ -304,8 +340,19 @@ button:focus {
 			});
 			
 		
-
-		</script>
+		//찜하기 버튼 ('Y'일 경우 -> 찜완료 / 'N'일 경우 다시 찜 삭제) 
+		const hits_btn = document.getElementById('hits_btn');
+		hits_btn.addEventListener('click',function(){
+		<% if(list != null && hits_status.equals("Y")) { %>
+			alert("찜 취소!");
+			location.href='<%= request.getContextPath()%>/chall/hits?challNo='+<%=ch.getChallNo()%>;
+		<% } else {%> 
+			alert("찜 완료!");
+			location.href='<%= request.getContextPath()%>/chall/hits?challNo='+<%=ch.getChallNo()%>;
+		<% } %>	
+		});
+		
+		</script> 
 
 	</section>
 

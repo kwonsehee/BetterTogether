@@ -135,8 +135,13 @@ tr:nth-child(2) label {
    padding-right: 8px;
 }
 
+
 tr:nth-child(2) input {
-   margin-left: 12px;
+   margin-left: 3px;
+}
+
+tr:nth-child(4) input {
+   margin-left: 3px;
 }
 
 input:focus, textarea:focus {
@@ -162,21 +167,21 @@ input:focus, textarea:focus {
 
                <tr>
                   <th>카테고리 선택</th>
-                  <td><input type="radio" id="weight" name="category" value="1">
+                  <td><input type="radio" id="weight" name="category" value="10">
                      <label>체중관리</label>
-                     <input type="radio" id="exercise" name="category" value="2">
+                     <input type="radio" id="exercise" name="category" value="20">
                      <label>운동</label>
-                     <input type="radio" id="certificate" name="category" value="3">
+                     <input type="radio" id="certificate" name="category" value="30">
                      <label>자격증</label>
-                     <input type="radio" id="money" name="category" value="4">
+                     <input type="radio" id="money" name="category" value="40">
                      <label>돈관리</label>
-                     <input type="radio" id="habit" name="category" value="5">
+                     <input type="radio" id="habit" name="category" value="50">
                      <label>생활습관</label>
-                     <input type="radio" id="study" name="category" value="6">
+                     <input type="radio" id="study" name="category" value="60">
                      <label>공부</label>
-                     <input type="radio" id="skill" name="category" value="7">
+                     <input type="radio" id="skill" name="category" value="70">
                      <label>업무스킬</label>
-                     <input type="radio" id="language" name="category" value="8">
+                     <input type="radio" id="language" name="category" value="80">
                      <label>외국어</label>
                   </td>
                </tr>
@@ -193,19 +198,24 @@ input:focus, textarea:focus {
 
                <tr>
                   <th>인증 방법</th>
-                  <td><input type="text" name="confirm" maxlength="50" required>
+                  <td><input type="radio" id="weekend" name="confirm" value="1">
+                     <label>주말</label>
+                     <input type="radio" id="weekday" name="confirm" value="2">
+                     <label>평일</label>
+                     <input type="radio" id="both" name="confirm" value="3">
+                     <label>상관없음</label>
                   </td>
                </tr>
 
                <tr>
                   <th>인증 빈도</th>
                   <td><input type="text" name="frequency" maxlength="50"
-                     required></td>
+                     placeholder="예시) 주 2회" required></td>
                </tr>
 
                <tr>
                   <th>챌린지 기간</th>
-                  <td><input type="text" name="period" maxlength="50" required>
+                  <td><input type="text" name="period" maxlength="50" placeholder="예시) 2 주" required>
                   </td>
                </tr>
                
@@ -239,6 +249,9 @@ input:focus, textarea:focus {
 
             </table>
          </section>
+         
+         <!-- 총인증갯수도 숨겨서 보내기 -->
+		 <!-- <input type="hidden" name="confirmCnt" value="0"> -->
 
          <section id="content-2">
             <!-- 등록 버튼 -->
