@@ -86,7 +86,7 @@
      , ?
      , ?
      , ?
-     , 0
+     , ?
      , ?
      , ?
      , DEFAULT
@@ -357,23 +357,15 @@
    			  CATE_ID= ?
    </entry>
 
-   <entry key="insertChallStatus">
-   		INSERT
-   		INTO CHALL_STATUS
-   		(
-   			USER_ID
-   		  , CHALL_NO
-   		  , CHALL_STATUS
-   		  , JOIN_CALL_DATE
-   		)
-   		VALUES
-   		(
-   			?
-   		  , ?
-   		  , 1
-   		  , SYSDATE
-   		)
-   
+   <entry key="updateChallStatus">
+   		UPDATE 
+   			  CHALL_STATUS
+   		   SET
+   		  	  CHALL_STATUS = 1
+   		 WHERE
+   		 	  USER_ID = ? 
+   		   AND 
+   		   	  CHALL_NO = ?
    </entry>
    
    <entry key="countStatus">
@@ -387,6 +379,54 @@
    		      CHALL_STATUS = 1
    </entry>
    
+   
+   <entry key="insertChallHits">
+   	INSERT
+   		INTO CHALL_STATUS
+   		(
+   			USER_ID
+   		  , CHALL_NO
+   		  , JOIN_CALL_DATE
+   		  , C_HITS
+   		)
+   		VALUES
+   		(
+   			?
+   		  , ?
+   		  , SYSDATE
+   		  , 'Y'
+   		)
+   </entry>
+   
+   <entry key="selectHits">
+   		SELECT
+   			  C_HITS
+   		 FROM 
+   		 	  CHALL_STATUS
+   		WHERE
+   			  USER_ID = ?
+   		   AND
+   		      CHALL_NO = ?
+   </entry>
+   
+   <entry key="deleteChallHits">
+   		DELETE
+   		  FROM CHALL_STATUS
+   	     WHERE USER_ID = ? 
+   	       AND CHALL_NO = ? 
+   
+   </entry>
+   
+   <entry key="selectListChallStatus">
+   		SELECT
+   			   USER_ID
+   			 , CHALL_NO
+   			 , CHALL_STATUS
+   			 , JOIN_CALL_DATE
+   			 , C_HITS
+   		FROM
+   			 CHALL_STATUS
+   </entry>
    
 
 </properties>

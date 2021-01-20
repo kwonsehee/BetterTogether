@@ -2,18 +2,19 @@
 package challenge.controller;
 
 import java.io.IOException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import challenge.model.service.ChallService;
 import challenge.model.vo.Challenge;
+import challenge.model.vo.ChallengeStatus;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class ChallJoinServlet
@@ -90,17 +91,36 @@ public class ChallJoinServlet extends HttpServlet {
 //            ch = cs.selectChallNoCnt(challNo);
 //         }
 //      
-     int challNo = Integer.parseInt(request.getParameter("challNo"));
+	   
+	   
+	   int challNo = Integer.parseInt(request.getParameter("challNo"));
+	   
+	   HttpSession session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		String userId = loginUser.getUserId();
+	   
+		// chall_status 테이블 널이면 안됨 (널이면 hits_status 보내줄수없음)
+		ArrayList <ChallengeStatus> list = new ChallService().selectListChallStatus();
+		
 
+        // 찜 버튼 변화를 위해 상태 select 해오기 
+     	String hits_status = new ChallService().selectHits(challNo, userId); 
+     
         Challenge ch = new ChallService().selectChall(challNo);
       
       //System.out.println("chall 참여상세 : " + ch);
       
       String page = "";
-      if(ch != null) {
+      if(ch != null && list != null) {
+ 		 request.setAttribute("list", list);
+		 request.setAttribute("hits_status", hits_status);
          request.setAttribute("challenge", ch);
          page = "/views/challenge/challengeJoin.jsp";
          
+      } else if(list == null) {
+    	  request.setAttribute("list", list);
+    	  request.setAttribute("challenge", ch);
+          page = "/views/challenge/challengeJoin.jsp";
       } else {
          request.setAttribute("msg", "챌린지 참여 상세페이지를 불러오는데 실패하였습니다.");
          page = "/views/common/errorPage.jsp";

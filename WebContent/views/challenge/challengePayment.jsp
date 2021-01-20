@@ -264,7 +264,7 @@ button:focus{
 		<input type="hidden" name="challNo" value="<%= ch.getChallNo() %>"> 
 	</form>
 	
-	<!-- 결제 후 완료 버튼 누르기 (챌린지현황에 회원 참여중으로 insert됨) -->
+	<!-- 결제 후 완료 버튼 누르기 (챌린지현황에 회원 참여중으로 update됨) -->
 	<script>
 	const list_btn = document.getElementById('list_btn');
 	list_btn.addEventListener('click',function(){
@@ -273,6 +273,7 @@ button:focus{
 	});
 	
 	</script>
+	
 
 </body>
 </html>

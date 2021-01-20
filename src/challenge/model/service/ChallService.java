@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import challenge.model.dao.ChallDao;
 import challenge.model.vo.Challenge;
+import challenge.model.vo.ChallengeStatus;
 import common.model.vo.PageInfo;
 import common.model.vo.Search;
 import member.model.vo.Member;
@@ -105,9 +106,9 @@ public class ChallService {
 //	}
 	
 	// 챌린지 현황 인원 추가 
-	public int insertChallStatus(int challNo, String userId) {
+	public int updateChallStatus(int challNo, String userId) {
 		Connection conn = getConnection();
-		int result = new ChallDao().insertChallStatus(conn, challNo, userId);
+		int result = new ChallDao().updateChallStatus(conn, challNo, userId);
 		
 		if(result > 0) {
 			commit(conn);
@@ -154,5 +155,57 @@ public class ChallService {
 		
 		return listCount;
 	}
+
+	// 챌린지 찜하기 insert 
+	public int insertChallHits(int challNo, String userId) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().insertChallHits(conn, challNo, userId);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
+	}
+
+	// 찜 상태 알아내기 위해 
+	public String selectHits(int challNo, String userId) {
+		Connection conn = getConnection();
+		
+		String hits_status = new ChallDao().selectHits(conn, challNo, userId);
+		
+		close(conn);
+		
+		return hits_status;
+	}
+	
+	// 찜 상태 'Y'일 경우 지우기 
+	public int deleteChallHits(int challNo, String userId) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().deleteChallHits(conn, challNo, userId);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
+	// 챌린지 상태 테이블 select
+	public ArrayList<ChallengeStatus> selectListChallStatus() {
+		Connection conn = getConnection();
+		
+		ArrayList<ChallengeStatus> list = new ChallDao().selectListChallStatus(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
 
 }

@@ -42,7 +42,7 @@ public class PaySuccessServlet extends HttpServlet {
 		Challenge ch = new ChallService().selectChall(challNo);
 	    
 		// 챌린지 모집현황 인원 insert (참여중)
-		 int result = new ChallService().insertChallStatus(challNo, userId);
+		 int result = new ChallService().updateChallStatus(challNo, userId);
 		
 		if(result > 0) {
 			request.setAttribute("msg", "결제가 완료되었습니다.");
