@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectList">
+		SELECT
+				QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY	  
+			  , Q_REFERENCE
+			  , QNA_TYPE
+			  , USER_ID
+		 FROM
+		 		QNA
+	    WHERE
+	    		QNA_TYPE = 'Y'
+	 ORDER BY
+	 			QNA_NO DESC
+	</entry>
+	<entry key="insertQuestion">
+		INSERT
+		INTO QNA
+		(
+			QNA_NO
+		  , QNA_TITLE
+		  , QNA_CONTENT
+		  , QNA_DATE
+		  , QNA_MODIFY	  
+		  , FAQ
+		  , Q_REFERENCE
+		  , QNA_TYPE
+		  , USER_ID
+		)
+		VALUES
+		(
+		  	SEQ_QID.NEXTVAL
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , 'f'
+		  , 1
+		  , 'Y'
+		  , ?
+		)
+	</entry>
+	<entry key="selectQuestion">
+		SELECT
+				QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY	  
+			  , Q_REFERENCE
+			  , QNA_TYPE
+			  , USER_ID
+		 FROM
+		 		QNA
+	    WHERE
+	    		QNA_TYPE = 'Y'
+	      AND	QNA_NO = ?
+	      		
+	</entry>
+</properties>
