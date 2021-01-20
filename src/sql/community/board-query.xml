@@ -187,8 +187,78 @@
         	   )
 		
 	</entry>
+	<entry key="selectBoard">
+		SELECT 
+			   BOARD_SEQ, 
+			   BOARD_TITLE, 
+			   BOARD_CONTENT, 
+			   BOARD_DATE, 
+			   BOARD_MODIFY, 
+			   BOARD_CNT, 
+			   BOARD_FILEPATH, 
+			   BOARD_STATUS, 
+			   USER_ID, 
+			   NICKNAME
+         FROM 
+               BOARD 
+        WHERE  BOARD_STATUS = 'Y'
+          AND  BOARD_SEQ = ?
+	</entry>
+	<entry key="increaseCount">
+		UPDATE
+		       BOARD
+		   SET
+		       BOARD_CNT = BOARD_CNT + 1
+		 WHERE
+		       BOARD_SEQ = ?
+	</entry>
 
+	<entry key="selectMyBoardList">
+		SELECT
+			   RNUM
+			  ,BOARD_SEQ
+			  ,BOARD_TITLE
+			  ,BOARD_CONTENT
+			  ,BOARD_DATE
+			  ,BOARD_MODIFY
+			  ,BOARD_CNT
+			  ,BOARD_FILEPATH
+			  ,BOARD_STATUS
+			  ,USER_ID
+			  ,NICKNAME
+		 FROM BLIST
+		WHERE RNUM BETWEEN ? AND ?
+		  AND USER_ID = ?
+	</entry>
 
+	<entry key="getMyListCount">
+		SELECT
+			   COUNT(*)
+		  FROM 
+		  	   BOARD
+		 WHERE 
+		 	   BOARD_STATUS = 'Y'
+		   AND USER_ID = ?
+	</entry>
 
+	<entry key="updateBoard">
+		UPDATE 
+		       BOARD 
+		   SET 
+		       BOARD_TITLE = ?
+		     , BOARD_CONTENT = ?
+		     , BOARD_MODIFY = SYSDATE 
+		 WHERE 
+		       BOARD_SEQ = ?
+	</entry>
+	
+	<entry key="deleteBoard">
+		UPDATE 
+		       BOARD 
+		   SET 
+		       BOARD_STATUS = 'N' 
+		 WHERE 
+		       BOARD_SEQ = ?
+	</entry>
 	
 </properties>

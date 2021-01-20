@@ -95,6 +95,7 @@
             font-size: 16px;
             margin-top:35px;
             margin-left:925px;
+            cursor:pointer;
         }
 
         #con1_title a:hover {
@@ -205,6 +206,7 @@
             <script>
                 document.querySelector('#slidebtn2').addEventListener('click', function(){
                     document.querySelector('.container').style.transform = 'translate(-100vw)';
+                    
                 })
                 document.querySelector('#slidebtn3').addEventListener('click', function(){
                     document.querySelector('.container').style.transform = 'translate(-200vw)';
