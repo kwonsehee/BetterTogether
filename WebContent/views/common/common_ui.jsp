@@ -142,6 +142,7 @@
                 <button id="likeChallBtn" class="mypageMenu1"style="padding-left: 10px;">찜하기한 챌린지그룹</button>
                 <button id="challingBtn" class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
                 <button id="myChallBtn" class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
+                <button id="refundBtn" class="mypageMenu1"style="padding-left: 10px;">환급받기</button>
                 <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고내역</button>
                
             </div>
@@ -183,6 +184,12 @@
           const myReportBtn = document.getElementById('myReportBtn');
           myReportBtn.addEventListener('click',function(){
             location.href="<%= request.getContextPath()%>/views/myPage/myReport.jsp";
+         });
+          
+         //7.환급받기
+          const refundBtn = document.getElementById('refundBtn');
+          refundBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/views/myPage/refundForm.jsp";
          });
          </script>
 		<% } else { %>
@@ -242,7 +249,7 @@
                <td>
                   <p style="text-align: center">
                      <button id="logoutBtn" type="button" class="login_logout">로그아웃</button>
-                     <!-- css안먹음 ㅅㅂㅅㅂㅅㅂ -->
+                     
                   </p>
                </td>
                <td>
@@ -376,11 +383,6 @@
 		location.href="<%= request.getContextPath()%>/views/studycafe/studycafe.jsp";
 	});
 	
-	//마이페이지 정보수정버튼
-	const myPageBtn = document.getElementById("myPageBtn");
-	myPageBtn.addEventListener('click',function(){
-		location.href="<%= request.getContextPath()%>/views/member/MemberEdit.jsp";
-	});
 	
 	</script>
 
