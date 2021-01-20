@@ -13,7 +13,7 @@
         /* 연분홍 배경 */
         #con1 {
             width: 1000px;
-            height: 704px;
+            height: 90%;
             background: #F9F1F1;
             border-radius: 20px;
             margin : auto;

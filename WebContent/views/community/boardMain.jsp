@@ -3,6 +3,7 @@
 <%
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	Board b = (Board)request.getAttribute("board");
 	
 	Search s = (Search)request.getAttribute("search");
 	String search = "";
@@ -77,7 +78,7 @@
         /* 게시판 */
         #board_tb {
             width: 100%;
-            height: 400px;      
+           /*  height: 400px;       */
             border-collapse: collapse;
             
         }
@@ -85,6 +86,9 @@
         #board_tb th, #board_tb td {
             border-bottom: 1px solid #75757552;
             padding: 2px;
+        }
+        #board_tb td {
+        	height : 30px;
         }
 
         #tb_title {
@@ -123,13 +127,13 @@
             font-size: 14px;
         }
 
-        #mywrite {
+        #mywriteBtn {
             width:100px;
             font-family: "Do Hyeon";
             background: none;
             border : 2px solid  #ff60657e;        
         }
-        #mywrite a {
+        #mywriteBtn a {
             font-size: 14px;
             color: #ff60657e;
         }
@@ -221,17 +225,16 @@
                 	<td colspan="5">조회 된 게시글이 없습니다.</td>
                 </tr>
                 <% } else { %>
-                	<% for(Board b : list) { %>
+                	<% for(Board bd : list) { %>
                 	<tr>
-                		<td style=text-align:center;><%= b.getbId() %></td>
-                		<td><%= b.getbTitle() %></td>
-                		<td style=text-align:center;><%= b.getNickName() %></td>
-                		<td style=text-align:center;><%= b.getCreateDate() %></td>
-                		<td style=text-align:center;><%= b.getbCount() %></td>
+                		<td style=text-align:center;><%= bd.getbId() %></td>
+                		<td><%= bd.getbTitle() %></td>
+                		<td style=text-align:center;><%= bd.getNickName() %></td>
+                		<td style=text-align:center;><%= bd.getCreateDate() %></td>
+                		<td style=text-align:center;><%= bd.getbCount() %></td>
                 	</tr>
                 	<% } %>
                 <% } %>
-              
             </table>
         </div>
         
@@ -295,13 +298,17 @@
 			</form>
 			
 		</div>
+		
 		<%-- 로그인 유저만 글쓰기, 내가쓴글보기 버튼 보이기 --%>
 		<% if(loginUser != null) { %>
-			  <button class="btn" id="mywrite"><a href="myBoard.html">내가 쓴 글 보기</a></button>
+			  <button class="btn" id="mywriteBtn"><a href='<%= request.getContextPath()%>/board/myboardView'>내가 쓴 글 보기</a></button>
 			  <button class="btn" id="write"><a href='<%= request.getContextPath()%>/views/community/boardWrite.jsp'>글쓰기</a></button>
 		<% } %>
-				
+    	
     </section>
+    <script>
+		var bId = $(this).parent().children().eq(0).text();
+    </script>
     
     <!-- 게시판 상세보기 -->
     <script>
@@ -322,7 +329,8 @@
 			});
 		})
 	</script>
-    
 	
+
+
 </body>
 </html>
