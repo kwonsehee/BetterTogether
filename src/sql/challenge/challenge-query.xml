@@ -303,7 +303,7 @@
    	     	   CHALL_NO = ?
    </entry>
     <entry key="selectCateList">
-   	SELECT 
+  		SELECT 
    			RNUM
    		 , CHALL_NO
          , CHALL_TITLE
@@ -317,8 +317,8 @@
          , CHALL_PAYMENT
          , CHALL_CONTENT
          , CHALL_COUNT
-         , USER_ID
-         , CATE_ID
+         , NICKNAME
+         , CATE_NAME
          , CHALL_CNT
          , CHALL_START
 	  FROM
@@ -336,14 +336,15 @@
        				      , CHALL_PAYMENT
         				  , CHALL_CONTENT
           				  , CHALL_COUNT
-        				  , USER_ID
-        				  , CATE_ID
+        				  , NICKNAME
+        				  , CATE_NAME
       				      , CHALL_CNT
           				  , CHALL_START
-       				  FROM 
-        			        CHALL
+       				   FROM CHALL
+          			   JOIN CHALL_CATEGORY USING(CATE_ID)
+          			   JOIN USER_INFO USING (USER_ID)
         			  WHERE
-           				    CATE_ID=?
+           				    CATE_ID= ?
         		   ORDER BY CHALL_NO DESC)A)
 		WHERE RNUM BETWEEN ? AND ?
    </entry>

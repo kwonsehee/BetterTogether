@@ -368,26 +368,25 @@ public class ChallDao {
 	         rset = pstmt.executeQuery();
 	         
 	         while(rset.next()) {
-	            list.add(new Challenge(rset.getInt(2),
-	                              rset.getString(3),
-	                              rset.getInt(4),
-	                              rset.getDate(5),
-	                              rset.getInt(6),
-	                              rset.getString(7),
-	                              rset.getString(8),
-	                              rset.getString(9),
-	                              rset.getString(10),
-	                              rset.getInt(11),
-	                              rset.getString(12),
-	                              rset.getInt(13),
-	                              rset.getString(14),
-	                              rset.getInt(15),
-	                              rset.getInt(16),
-	                              rset.getString(17)));
-	            
-	         }
+	             list.add(new Challenge(rset.getInt(2),
+	                               rset.getString(3),
+	                               rset.getInt(4),
+	                               rset.getDate(5),
+	                               rset.getInt(6),
+	                               rset.getString(7),
+	                               rset.getString(8),
+	                               rset.getString(9),
+	                               rset.getString(10),
+	                               rset.getInt(11),
+	                               rset.getString(12),
+	                               rset.getInt(13),
+	                               rset.getString(14),
+	                               rset.getString(15),
+	                               rset.getInt(16),
+	                               rset.getString(17)));
+	          }
 	         
-	         
+	        System.out.println("dao list: "+list);
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      } finally {

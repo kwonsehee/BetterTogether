@@ -138,7 +138,7 @@ public class ChallService {
 		Connection conn = getConnection();
 	      
 	      ArrayList<Challenge> list = new ChallDao().selectCateList(conn,cate,pi );
-	      
+	      System.out.println("service list : "+list);
 	      close(conn);
 	      
 	      return list;
