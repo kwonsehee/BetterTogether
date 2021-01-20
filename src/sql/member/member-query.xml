@@ -13,6 +13,7 @@
 		  , MEMBER_TYPE
 		  , WRITE_ACTIVE
 		  , USER_CATE
+		  , POINT
 		  FROM
 		  		USER_INFO
 		  WHERE
@@ -70,6 +71,7 @@
 		  , MODIFY_DATE
 		  , MEMBER_TYPE
 		  , USER_CATE
+		  , POINT
 		  FROM
 		  		USER_INFO
 		  WHERE
@@ -99,6 +101,14 @@
 		UPDATE USER_INFO
 		SET
 		    USER_CATE = ?
+		  , MODIFY_DATE = SYSDATE
+		WHERE 
+			USER_ID = ?
+	</entry>
+	<entry key="updatePoint">
+		UPDATE USER_INFO
+		SET
+			POINT = ?
 		  , MODIFY_DATE = SYSDATE
 		WHERE 
 			USER_ID = ?
