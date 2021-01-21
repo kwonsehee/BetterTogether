@@ -428,6 +428,13 @@
    		FROM
    			 CHALL_STATUS
    </entry>
-   
+    <entry key="selectTitle">
+   		SELECT
+   			  CHALL_TITLE
+   		 FROM 
+   		 	  CHALL
+   		WHERE
+   		      CHALL_NO = ?
+   </entry>
 
 </properties>

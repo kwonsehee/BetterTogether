@@ -42,6 +42,20 @@ public class ChallService {
 		return ch;
    }
    
+   // 챌린지 인증에서 사용
+   // 참여했던 챌린지의 정보를 가져오기 위한 서비스
+   public Challenge selectJoinChall(int challNo) {
+	   Connection conn = getConnection();
+		
+		ChallDao cd = new ChallDao();
+		
+		
+		Challenge ch = cd.selectChall(conn, challNo);
+		
+		close(conn);
+		return ch;
+   }
+   
    // 챌린지 등록 
    public int insertChall(Challenge ch) {
       Connection conn = getConnection();
@@ -205,6 +219,17 @@ public class ChallService {
 		close(conn);
 		
 		return list;
+	}
+
+	//챌린지 이름 알아오기
+	public String getTitle(int cno) {
+		Connection conn = getConnection();
+		
+		String c_title = new ChallDao().selectCtitle(conn, cno);
+		
+		close(conn);
+		
+		return c_title;
 	}
 	
 

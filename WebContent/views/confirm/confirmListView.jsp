@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, confirm.model.vo.Cer, common.model.vo.PageInfo"%>
+<%
+	ArrayList<Cer> list = (ArrayList<Cer>)request.getAttribute("list");
+	String title = (String)request.getAttribute("title");
+	int loop = 4<list.size() ? 4 :list.size();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +43,7 @@
             text-align: center;
             border: 1px solid black; 
             padding-top: 10%;
-            /* background: white; */
+            background: white; 
         }
         .confirm img{
             width : 180px;
@@ -74,6 +79,12 @@
             margin-top : 2%;
             margin-right : 10%;
         }
+        .confirm_table td{
+        	width: 250px;
+        	height: 180px;
+        	border: 1px solid red;
+        	
+        }
     </style>
 </head>
 <body>
@@ -88,25 +99,35 @@
 
         <section id="content-2">
             <div class='confirm'>
-                <table class="confirm_table"style="width : 100%; height: 80%;">
-                    <tr>
-                        <td><img src="img/confirm.jpeg"></td>
-                        <td><img src="img/confirm.jpeg"></td>
-                        <td><img src="img/confirm.jpeg"></td>
-                        <td><img src="img/confirm.jpeg"></td>
+                <table class="confirm_table"style="width : 100%; height: 80%; border : solid 1px red;">
+                 <% if(list.isEmpty()) { %>
+                 <tr style="border : solid 1px red;">
+                 	<p>아직 <%=title %> 챌린지 인증사진이 없습니다.</p>
+                 </tr>
+                 <tr>
+                   <td ><input type="submit" value="+" class="plus_btn" id="plusBtn"></td>
+                 </tr>
+                  <% } else { %>
+                  		
+                  <tr style="border : solid 1px red;">
+                    <% for(int i=0;i<loop;i++) { %>
+                        <td style="border : solid 1px red;"><%=list.get(i).getCer_pic() %></td>
+                    <% } %>
                     </tr>
                     <tr>
-                        <td><img src="img/confirm.jpeg"></td>
-                        <td><img src="img/confirm.jpeg"></td>
-                        <td><img src="img/confirm.jpeg"></td>
-                        
+                    <% for(int i=4;i<list.size();i++) { %>
+                        <td style="border : solid 1px red;"><%=list.get(i).getCer_pic() %></td>
+                    <% } %>
+                    
+                    
                         <td ><input type="submit" value="+" class="plus_btn" id="plusBtn"></td>
-                        
-                    </tr>
+                    </tr>    
+                    
+                 <% } %>
                 </table>
             </div>
             <button type="button" id="backBtn" class="back_btn">목록으로</button>
-					
+			
         </section>
 
        
@@ -115,13 +136,14 @@
     //+버튼 클릭 이벤트
          const plusBtn = document.getElementById('plusBtn');
          plusBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp';});
+            location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp';
+         });
          
 
      	//목록으로 버튼 이벤트
      	const backBtn = document.getElementById('backBtn');
      	backBtn.addEventListener('click',function(){
-     		location.href='<%=request.getContextPath()%>/confirm/joinchalllist';
+     		location.href='<%= request.getContextPath()%>/confirm/joinchalllist';
      	});
 
 	</script>

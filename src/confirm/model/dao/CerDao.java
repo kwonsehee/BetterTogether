@@ -1,5 +1,7 @@
 package confirm.model.dao;
 
+import static common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,16 +13,15 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
+import confirm.model.vo.Cer;
 import confirm.model.vo.Confirm;
 import notice.model.vo.Notice;
 
-import static common.JDBCTemplate.*;
-
-public class ConfirmDao {
-	private Properties prop = new Properties();
+public class CerDao {
+private Properties prop = new Properties();
 	
-	public ConfirmDao() {
-		String fileName=Notice.class.getResource("/sql/confirm/confirm-query.xml").getPath();
+	public CerDao() {
+		String fileName=Notice.class.getResource("/sql/confirm/cer-query.xml").getPath();
 		try {
 			prop.loadFromXML(new FileInputStream(fileName));
 		} catch (InvalidPropertiesFormatException e) {
@@ -34,29 +35,25 @@ public class ConfirmDao {
 			e.printStackTrace();
 		}
 	}
-	
-	//로그인된 회원의 참여중인 챌린지 정보 가져오기
-	public ArrayList<Confirm> selectList(Connection conn, String userid) {
-		ArrayList<Confirm>list = new ArrayList<Confirm>();
+
+	//user_id가 선택한 챌린지를 인증한 것을 cer디비에서 가져오기
+	public ArrayList<Cer> selectList(Connection conn, String user_id, int cno) {
+		ArrayList<Cer>list = new ArrayList<Cer>();
 		PreparedStatement pstmt=null;
 		ResultSet rset = null;
 		
-		
-		//찜하기한 챌린지를 제외하고 다 가져오기
-		String sql = prop.getProperty("selectList");
+		String sql = prop.getProperty("selectCerList");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userid);
+			pstmt.setString(1, user_id);
+			pstmt.setInt(2, cno);
+			
 			rset = pstmt.executeQuery();
 		
 			while(rset.next()) {
-				list.add(new Confirm(rset.getString("USER_ID"),
-									 rset.getInt("CHALL_NO"),
-									 rset.getInt("CHALL_STATUS"),
-									 rset.getDate("JOIN_CALL_DATE"),
-									 rset.getString("CHALL_TITLE"),
-									 rset.getString("FILE_PATH"),
-									 rset.getString("CHALL_START")));
+				list.add(new Cer(rset.getInt("CER_ID"),
+								 rset.getString("CER_PIC"),
+								 rset.getString("CHALL_TITLE")));
 				
 			}
 		} catch (SQLException e) {
@@ -69,5 +66,4 @@ public class ConfirmDao {
 		
 		return list;
 	}
-
 }

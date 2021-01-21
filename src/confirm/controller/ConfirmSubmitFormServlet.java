@@ -26,7 +26,9 @@ public class ConfirmSubmitFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		int cno = Integer.parseInt(request.getParameter("cno"));
+		System.out.println("confirm servlet cno : "+cno);
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
