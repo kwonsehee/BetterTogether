@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.Date, java.text.SimpleDateFormat"%>
+<%
+SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd");
+Date currentTime = new Date ();
+String day = mSimpleDateFormat.format ( currentTime );
+String title = (String)request.getAttribute("title");
+System.out.println(title);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,7 +120,7 @@
                   
                     </tr>
                     <tr>
-                        <td><span>날짜 : 2021-01-12</span></td>
+                        <td><span>날짜 : <%=day %></span></td>
                         <td><span>챌린지제목날짜날짜</span></td>
                     </tr>
                 </table>
@@ -129,7 +136,7 @@
         <div class="comment_box">
         
             <input type="text"class="input_box_lag">
-            <button type="submit" class="comment"><span>댓글 등록</span></button>
+            <button type="submit" class="comment"><span>인증하기</span></button>
             <button type="button" id="backBtn" class="back_btn">목록으로</button>
 		
 		</div>     

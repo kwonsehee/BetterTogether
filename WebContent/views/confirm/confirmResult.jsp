@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="challenge.model.vo.Challenge"%>
+<%
+	Challenge c = (Challenge)request.getAttribute("challenge");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,11 +109,11 @@
                 <table class="result_chall"style="border : 1px solid black;">
                     <tr class="">
                         <td><img src="img/영어필사.jpg"width="200px"height="170px"></td>
-                        <td><span>챌린지 제목</span></td>
+                        <td><span><%=c.getChallTitle() %></span></td>
                     </tr>
                     <tr>
                         <td><span>총인원</span></td>
-                        <td><span>#명</span></td>
+                        <td><span>#명</span></td><!-- 참여인원수는 챌린지 현황 디비에서 확인 -->
                     </tr>
                     <tr>
                         <td><span>평균 달성률</span></td>
@@ -139,7 +143,7 @@
                     </tr>
                     <tr>
                         <th><span>인증 갯수</span></th>
-                        <th><span>#개</span></th>
+                        <th><span>#개</span></th><!-- 챌린지 현황 디비에서  -->
                     </tr>
                     <tr class="">
                         <th><span>상금 받기</span></th>

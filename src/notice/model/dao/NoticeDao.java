@@ -99,7 +99,7 @@ public class NoticeDao {
 									rset.getString("ARTICLE_CONTNENT"),
 									rset.getDate("ARTICLE_DATE"),
 									rset.getDate("ARTICLE_MODIFY"),
-									rset.getString("USER_ID"),
+									rset.getString("NICKNAME"),
 									rset.getInt("ARTICLE_CNT"),
 									rset.getInt("ARTICLE_TYPE")));
 				
