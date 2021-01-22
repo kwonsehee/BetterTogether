@@ -83,6 +83,10 @@
                     
                 </tr>
                 <tr>
+                	<td><lable for="user_cate" class="text_font">관심 카테고리</lable></td>
+                	<td colspan="2"></td>
+                </tr>
+                <tr>
                     <th><button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button></th>
                     <th> <button id="updateBtn" class="text_font joinform_btn">수정하기</button></th>
                     <!--type=button이 없으면 form태그가 submit 되는 상황임  -->

@@ -56,7 +56,7 @@ public class NoticeListServlet extends HttpServlet {
 		// 공지사항에 대한 목록 요청
 		ArrayList<Notice> list = new NoticeService().selectList(pi);
 //		System.out.println("pi : "+pi);
-//		System.out.println("list: "+list );
+		System.out.println("list: "+list );
 		
 		request.setAttribute("pi", pi);
 		
