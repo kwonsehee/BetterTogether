@@ -98,8 +98,8 @@
                         </tr>
                  		<tr>
                             <th><label for="pass" class="text_font">비밀번호 확인</label></th>
-                            <td colspan="2"><input type="password" name="pass" id="pass"class="input_box" /></td>
-                           
+                            <td><input type="password" name="pass" id="pass"class="input_box" /></td>
+                            <td><label id="pwdResult"></label></td>
                         </tr>
           
                         <tr>
@@ -139,6 +139,11 @@
 				if($("#pass").val().trim().length==0){
 					alert('비밀번호를 입력하세요');
 					$("#pass").focus();
+					return false;
+				}
+				//비밀번호 - 비밀번호 확인 일치여부
+				if(<%=userPwd%> != $("#pass").val()){
+					$("#pwdResult").text("비밀번호 불일치").css("color","red");
 					return false;
 				}
 				

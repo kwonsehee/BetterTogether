@@ -42,40 +42,32 @@ public class RefundServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String userId = loginUser.getUserId();
-		String userPwd = loginUser.getUserPwd();// login객체에 저장된 비밀번호
 		
 		String bank = request.getParameter("bank");
 		String account = request.getParameter("account");
 		int money = Integer.parseInt(request.getParameter("money"));
-		String inputPwd = request.getParameter("pass");// 입력받은 비밀번호
 		
-		System.out.println(inputPwd + " " + userPwd + " " );
-
+		
 		
 		Refund refund = new Refund(userId,bank, account, money);
 		String page="";
-		if(userPwd.equals(inputPwd)) {
-			//환불 디비에 값 입력
-			int result = new RefundService().insertrefund(refund);
+		//환불 디비에 값 입력
+		int result = new RefundService().insertrefund(refund);
 			
-			if(result >0) {
-				System.out.println(loginUser.getPoint()-money+"원 여기오니?22");
-				Member updateMember = new MemberService().updatePoint(loginUser.getPoint()-money, loginUser);
+		if(result >0) {
+			System.out.println(loginUser.getPoint()-money+"원 여기오니?22");
+			Member updateMember = new MemberService().updatePoint(loginUser.getPoint()-money, loginUser);
 				
-				//로그인 세션 값 변경
-				request.getSession().setAttribute("loginUser", updateMember);
+			//로그인 세션 값 변경
+			request.getSession().setAttribute("loginUser", updateMember);
 			
-				request.getSession().setAttribute("msg", "환급 완료 되었습니다.");
-				page = "/views/myPage/refundForm.jsp";
-			}else {
-				request.setAttribute("msg", "환급 데이터베이스에 입력 실패하였습니다.");
-				page = "/views/common/errorPage.jsp";
-			}
+			request.getSession().setAttribute("msg", "환급 완료 되었습니다.");
+			page = "/views/myPage/refundForm.jsp";
 		}else {
-			request.setAttribute("msg", "비밀번호가 일치하지 않아 환급에 실패하였습니다.");
+			request.setAttribute("msg", "환급 데이터베이스에 입력 실패하였습니다.");
 			page = "/views/common/errorPage.jsp";
 		}
-		
+
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}
