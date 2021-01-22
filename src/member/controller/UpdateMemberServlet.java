@@ -39,8 +39,7 @@ public class UpdateMemberServlet extends HttpServlet {
 		String nickName=request.getParameter("nickName");
 		String phone=request.getParameter("phone");
 		String email=request.getParameter("email");
-//		int user_cate=Integer.parseInt(request.getParameter("user_cate"));
-		int user_cate = 1;
+		int user_cate = Integer.parseInt(request.getParameter("cate"));
 		Member m = new Member(userId, nickName,phone, email, user_cate);
 		
 		System.out.println("수정하고자 하는 정보 : " + m);
