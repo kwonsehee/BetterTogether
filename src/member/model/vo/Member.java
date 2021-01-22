@@ -47,13 +47,14 @@ public class Member {
 	}
 	
 	
-	public Member(String userId, String userPwd, String nickName, String phone, String email) {
+	public Member(String userId, String userPwd, String nickName, String phone, String email, int user_cate) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.nickName = nickName;
 		this.phone = phone;
 		this.email = email;
+		this.user_cate=user_cate;
 	}
 	
 	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,

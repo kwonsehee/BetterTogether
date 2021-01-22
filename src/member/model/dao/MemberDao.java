@@ -84,6 +84,7 @@ public class MemberDao {
 			pstmt.setString(3, mem.getNickName());
 			pstmt.setString(4, mem.getPhone());
 			pstmt.setString(5, mem.getEmail());
+			pstmt.setInt(6, mem.getUser_cate());
 			
 			result = pstmt.executeUpdate();
 
@@ -261,5 +262,34 @@ public class MemberDao {
 			
 			return result;
 		}
+		
+		//아이디 중복 체크
+		public int idCheck(Connection conn, String userId) {
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int result=0;
+			
+			String sql=prop.getProperty("idCheck");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
 
+				pstmt.setString(1, userId);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					result = rset.getInt(1);
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return result;
+		}
 }

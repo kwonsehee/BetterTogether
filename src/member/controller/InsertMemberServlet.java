@@ -41,21 +41,10 @@ public class InsertMemberServlet extends HttpServlet {
 		String phone=request.getParameter("phone");
 		String email=request.getParameter("email");
 		
-//		String[] addressArr = request.getParameterValues("address");
-//		String[] interestArr = request.getParameterValues("interest");
+		int cate = Integer.parseInt(request.getParameter("cate"));
 		
-		// 배열 값은 문자열 합치기를 통해 하나의 문자열로 변경
-//		String address = "";
-//		String interest = "";
-//		
-//		if(addressArr !=null) {
-//			address=String.join(",", addressArr);
-//		}
-//		if(interestArr !=null) {
-//			interest=String.join(",", interestArr);
-//		}
 		
-		Member mem = new Member(userId, userPwd, nickName, phone,email);
+		Member mem = new Member(userId, userPwd, nickName, phone,email, cate);
 		System.out.println("잘 넘어오는지 확인 : "+mem);
 		
 		//3. 비지니스 로직을 수행 할 서비스 메소드 호출하고 결과 값 받기

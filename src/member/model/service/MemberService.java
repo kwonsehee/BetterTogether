@@ -137,6 +137,18 @@ public class MemberService {
 			
 			return updateMember;
 		}
-		
 
+		//중복아이디체크
+		public int idCheck(String userId) {
+			Connection conn=getConnection();	
+			
+			int result = new MemberDao().idCheck(conn, userId);
+			
+			
+			close(conn);
+					
+			
+			return result;
+		
+		}
 }
