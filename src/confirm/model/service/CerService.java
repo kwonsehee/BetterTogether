@@ -1,8 +1,6 @@
 package confirm.model.service;
 
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.getConnection;
-
+import static common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -21,5 +19,20 @@ public class CerService {
 		close(conn);
 		
 		return list;
+	}
+
+	//인증디비에 insert 
+	public int insertCer(Cer c) {
+		Connection conn = getConnection();
+		int result = new CerDao().insertCer(conn, c);
+	
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+	
+		return result;
 	}
 }

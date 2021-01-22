@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.Date, java.text.SimpleDateFormat"%>
+    pageEncoding="UTF-8"%>
 <%
-SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd");
-Date currentTime = new Date ();
-String day = mSimpleDateFormat.format ( currentTime );
-Member m = (Member)session.getAttribute("loginUser");
-String nickName = m.getNickName();
-String title = (String)request.getParameter("title");
-System.out.println("insert와서 "+title);
-int cno = Integer.parseInt(request.getParameter("cno"));
-System.out.println(cno);
+//챌린지 모집에서 인증보기 버튼 클릭시 이동
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>인증하기작성</title>
+<title>인증하기 상세보기</title>
     <style>
       #content-1{
          border:solid 1px red;  
@@ -36,7 +29,7 @@ System.out.println(cno);
 
     }
     	#content-4{
-         border:solid 4px pink;  
+         border:solid 1px yellowgreen;  
         width: 100%;
         height: 10%;
 	 }
@@ -54,16 +47,15 @@ System.out.println(cno);
         }
         .challenge_box_2 {
             border: 1px solid black;
-            width: 60%;
+            width: 40%;
             height: 90%;
-            margin-left: 20%;
+            margin-left: 30%;
             margin-top: 3%;
             background-color: rgba(196, 196, 196, 0.15);
             float: left;
         }
         .challenge_box_2 tr, .challenge_box_2 td, .challenge_box_2 th{
-        		font-size : 10px;
-                border:solid 4px yellowgreen;  
+                border:solid 1px yellowgreen;  
         }
         #content-3 span{
             font-size: 25px;
@@ -102,7 +94,7 @@ System.out.println(cno);
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
-  <form action="<%= request.getContextPath() %>/confirm/submitForm" method="post">
+  <form action="<%= request.getContextPath() %>/confirm/insert" method="post">
          
     <section id="content" class="content_css">
 
@@ -121,31 +113,29 @@ System.out.println(cno);
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2"><span name="nickName"><%=nickName %>님</span></td>
+                        <td colspan="2"><span name="">user1</span></td>
                   
                     </tr>
                     <tr>
-                        <td><span>날짜 : <%=day %></span></td>
-                        <td><span>챌린지제목 : <%=title %></span></td>
+                        <td><span>날짜 : ></span></td>
+                        <td><span>챌린지제목 : </span></td>
                     </tr>
                 </table>
-                <div class='challenge_box'style="text-align : center;" >
-                <!-- 사진추가하기 -->
-                    <img name="pic"src="" style="width: 400px;height: 450px;border:1px solid black;"/>
+                <div class='challenge_box'>
+                    <img src="" style="width: 390px;height: 450px;"/>
                 </div>
             </div>
-		<input type="hidden"name="cno"value=<%=cno %>>
-		<input type="hidden"name="userId"value=<%=m.getUserId() %>>
+		
         </section>
 
         <section id="content-4">
         <!--댓글 등록 창만들기-->
         <div class="comment_box">
         
-            <input type="text"class="input_box_lag" name="comment">
-            <button type="submit" class="comment"><span>인증하기</span></button>
-            <button type="button" id="backBtn" class="back_btn">목록으로</button>
-		
+            <input type="text"class="input_box_lag">
+            <button type="submit" class="comment"><span>신고하기</span></button>
+            <button type="button" id="backBtn" class="back_btn"  onclick="javascript:history.back();">뒤로가기</button>
+
 		</div>     
         </section>
         
@@ -154,12 +144,7 @@ System.out.println(cno);
     
     <script>
    
-     	//목록으로 버튼 이벤트
-     	const backBtn = document.getElementById('backBtn');
-     	backBtn.addEventListener('click',function(){
-     		location.href='<%=request.getContextPath()%>/confirm/list';
-     	});
-
+     
 	</script>
 </body>
 </html>

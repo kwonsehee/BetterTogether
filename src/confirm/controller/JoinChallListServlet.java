@@ -49,6 +49,7 @@ public class JoinChallListServlet extends HttpServlet {
 			System.out.println("로그인 된 회원의 참여중인 챌린지"+list);
 			
 			request.setAttribute("list", list);
+			
 			RequestDispatcher view = request.getRequestDispatcher("/views/confirm/joinchallListView.jsp");
 			view.forward(request, response);
 		}
