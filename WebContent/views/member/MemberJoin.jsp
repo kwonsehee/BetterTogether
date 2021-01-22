@@ -79,7 +79,7 @@
                		 <input type="checkbox" id="돈관리" value="40"name="cate"class="check_box"onclick="oneCheckbox(this)"><label for="돈관리"><span>돈관리</span></label>
                 	 <br>
                		 <input type="checkbox" id="생활습관" value="50"name="cate"class="check_box"onclick="oneCheckbox(this)"><label for="생활습관"><span>생활습관</span></label>
-                	 <input type="checkbox" id="공부" value="60"name="cate"lass="check_box"onclick="oneCheckbox(this)"><label for="공부"><span>공부</span></label>
+                	 <input type="checkbox" id="공부" value="60"name="cate"class="check_box"onclick="oneCheckbox(this)"><label for="공부"><span>공부</span></label>
              	     <input type="checkbox" id="업무스킬" value="70"name="cate"class="check_box"onclick="oneCheckbox(this)"><label for="업무스킬"><span>업무스킬</span></label>
                 	 <input type="checkbox" id="외국어" value="80"name="cate"class="check_box"onclick="oneCheckbox(this)"><label for="외국어"><span>외국어</span></label>
        
@@ -88,7 +88,7 @@
                 </tr>
                 <tr>
                     <th><button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button></th>
-                    <th colspan="2"> <button id="joinBtn" type="submit" class="text_font joinform_btn">회원가입</button></th>
+                    <th colspan="2"> <button id="joinBtn" type="submit" class="text_font joinform_btn"disabled>회원가입</button></th>
                 </tr>
             </table>
 
