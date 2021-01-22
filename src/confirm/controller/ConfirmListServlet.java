@@ -54,7 +54,8 @@ public class ConfirmListServlet extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		request.setAttribute("title", c_title);
-		
+		request.setAttribute("cno", cno);
+//		request.setAttribute("join", true);
 		RequestDispatcher view = request.getRequestDispatcher("/views/confirm/confirmListView.jsp");
 	    view.forward(request, response);
 	}

@@ -13,4 +13,26 @@
 		  	    C.USER_ID = ?
 		  	AND CHALL_NO = ?
 	</entry>
+	<entry key="insertCer">
+		INSERT INTO
+			CER
+			(
+				CER_ID
+			  , CER_PIC
+			  , CER_COMMENT
+			  , CER_DATE
+			  , USER_ID
+			  , CHALL_NO
+			
+			)
+		VALUES
+			(
+				SEQ_PID.NEXTVAL
+			  , ?
+			  , ?
+			  , SYSDATE
+			  , ?
+			  , ?
+			)	
+	</entry>
 </properties>

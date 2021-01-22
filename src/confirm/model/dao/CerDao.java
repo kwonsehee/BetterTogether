@@ -66,4 +66,31 @@ private Properties prop = new Properties();
 		
 		return list;
 	}
+
+	//인증디비에 insert
+	public int insertCer(Connection conn, Cer c) {
+		PreparedStatement pstmt=null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertCer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "사진경로11");
+			pstmt.setString(2, c.getCer_comment());
+			pstmt.setString(3, c.getUser_id());
+			pstmt.setInt(4, c.getChall_no());
+			
+			result = pstmt.executeUpdate();
+		
+	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

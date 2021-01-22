@@ -2,7 +2,11 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, confirm.model.vo.Cer, common.model.vo.PageInfo"%>
 <%
 	ArrayList<Cer> list = (ArrayList<Cer>)request.getAttribute("list");
+	System.out.println(list);
 	String title = (String)request.getAttribute("title");
+	System.out.println(title);
+	int cno = Integer.parseInt((String.valueOf(request.getAttribute("cno"))));
+	System.out.println(cno);
 	int loop = 4<list.size() ? 4 :list.size();
 %>
 <!DOCTYPE html>
@@ -98,7 +102,9 @@
         </section> 
 
         <section id="content-2">
-            <div class='confirm'>
+        	
+            <div class='confirm'style="padding-top: 7%;">
+            <p style="text-align: center; margin-top:0px;"><%=title %></p>
                 <table class="confirm_table"style="width : 100%; height: 80%; border : solid 1px red;">
                  <% if(list.isEmpty()) { %>
                  <tr style="border : solid 1px red;">
@@ -129,14 +135,13 @@
             <button type="button" id="backBtn" class="back_btn">목록으로</button>
 			
         </section>
-
-       
+	  
     </section>
 	<script>
     //+버튼 클릭 이벤트
          const plusBtn = document.getElementById('plusBtn');
          plusBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp';
+            location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>';
          });
          
 
