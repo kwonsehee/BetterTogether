@@ -32,7 +32,11 @@
 		case "3" : confirm[2] = "상관없음"; break; 
 	}
 	
-	
+	// chall_status (참여중이면 이미 참여했다고 alert 띄우기)
+	int chall_status = Integer.parseInt((String.valueOf(request.getAttribute("chall_status"))));
+	// 참여중인 인원 카운트 
+	int joinPeopleCnt = Integer.parseInt((String.valueOf(request.getAttribute("joinPeopleCnt"))));
+
 %>
 <!DOCTYPE html>
 <html>
@@ -261,8 +265,7 @@ button:focus {
 					<td><img
 						src="<%=request.getContextPath()%>/resources/images/member.png"
 						class="img-size"></td>
-					<td>참가인원 : <span>2 </span><span>/ </span><span><%= ch.getChallPeople() %></span>
-						명
+					<td>참가인원 : <span style="color:#ff6064"><%= joinPeopleCnt %> </span><span style="color:#ff6064">/ </span><span style="color:#ff6064"><%= ch.getChallPeople() %> 명</span>
 					</td>
 				</tr>
 				<tr>
@@ -331,17 +334,25 @@ button:focus {
 		// 챌린지 참가하기 버튼 이벤트 (로그인 해야 참여가능)
 			const challenge_btn = document.getElementById('challenge_btn');
 			challenge_btn.addEventListener('click',function(){
-				<% if(loginUser != null){ %>	
+				<% if(loginUser != null && (joinPeopleCnt < ch.getChallPeople())){ %>	
 				location.href='<%= request.getContextPath()%>/chall/pay?challNo='+<%=ch.getChallNo()%>;
-				<%} else { %>
+				<%} if(loginUser == null ) { %>
 				alert('로그인 해야만 챌린지 참가가 가능합니다.');
 				location.href="<%= request.getContextPath()%>/views/member/MemberLogin.jsp";
-			<%}%>
+			<%} if(joinPeopleCnt == ch.getChallPeople()){%>
+				alert('챌린지 인원 마감입니다!!!');
+				location.href="<%= request.getContextPath()%>/chall/list";
+			<%} if (chall_status == 1) {%>
+				alert('이미 참여한 챌린지 입니다!!!');
+				location.href="<%= request.getContextPath()%>/chall/list";
+			<% } %>
 			});
 			
 		
 		//찜하기 버튼 ('Y'일 경우 -> 찜완료 / 'N'일 경우 다시 찜 삭제) 
 		const hits_btn = document.getElementById('hits_btn');
+		
+		<% if(loginUser != null) { %>
 		hits_btn.addEventListener('click',function(){
 		<% if(list != null && hits_status.equals("Y")) { %>
 			alert("찜 취소!");
@@ -351,7 +362,10 @@ button:focus {
 			location.href='<%= request.getContextPath()%>/chall/hits?challNo='+<%=ch.getChallNo()%>;
 		<% } %>	
 		});
-		
+	<%} else {%>
+			$("#hits_btn").attr("disabled", true);
+	<%}%>
+	
 		</script> 
 
 	</section>

@@ -1,4 +1,3 @@
-
 package challenge.controller;
 
 import java.io.IOException;
@@ -92,39 +91,87 @@ public class ChallJoinServlet extends HttpServlet {
 //         }
 //      
 	   
-	   
 	   int challNo = Integer.parseInt(request.getParameter("challNo"));
 	   
-	   HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		String userId = loginUser.getUserId();
 	   
-		// chall_status 테이블 널이면 안됨 (널이면 hits_status 보내줄수없음)
-		ArrayList <ChallengeStatus> list = new ChallService().selectListChallStatus();
+	   	HttpSession session = request.getSession();
+	   	Member loginUser = (Member)session.getAttribute("loginUser");
 		
-
-        // 찜 버튼 변화를 위해 상태 select 해오기 
-     	String hits_status = new ChallService().selectHits(challNo, userId); 
-     
-        Challenge ch = new ChallService().selectChall(challNo);
-      
-      //System.out.println("chall 참여상세 : " + ch);
-      
-      String page = "";
-      if(ch != null && list != null) {
- 		 request.setAttribute("list", list);
-		 request.setAttribute("hits_status", hits_status);
-         request.setAttribute("challenge", ch);
-         page = "/views/challenge/challengeJoin.jsp";
-         
-      } else if(list == null) {
-    	  request.setAttribute("list", list);
-    	  request.setAttribute("challenge", ch);
-          page = "/views/challenge/challengeJoin.jsp";
-      } else {
-         request.setAttribute("msg", "챌린지 참여 상세페이지를 불러오는데 실패하였습니다.");
-         page = "/views/common/errorPage.jsp";
-      }
+		
+		ChallService cs = new ChallService();
+		   
+		// chall_status 테이블 널이면 안됨 (널이면 hits_status 보내줄수없음)
+		ArrayList <ChallengeStatus> list = cs.selectListChallStatus();
+		
+       
+        int result = 0;
+        
+		
+		String page = "";
+		if((Member)session.getAttribute("loginUser") == null) {
+			// 찜 카운트 가져오기 위해 
+	        Challenge ch1 = cs.selectChall(challNo);
+	        
+			request.setAttribute("challenge", ch1);
+	         page = "/views/challenge/challengeJoin.jsp";
+		} else {
+			
+			 	String userId = loginUser.getUserId();
+			 
+			 	// 찜 버튼 변화를 위해 찜상태 select 해오기
+		     	String hits_status = cs.selectHits(challNo, userId); 
+		     	
+		     	// 찜 카운트 가져오기 위해 
+		        Challenge ch2 = cs.selectChall(challNo);
+			 
+			 
+			 // 챌린지를 참여하려고 들어왔는데 chall_status가 없다!!!! -> 즉, hits_status == "" 일때 
+		       if(hits_status == "") { 
+		    	   // 찜 상태 'N' (찜버튼 누르기 전 이니깐)으로 컬럼 삽입 
+		    	   result = new ChallService().insertChallStatus(challNo,userId); 
+		    	   hits_status = cs.selectHits(challNo, userId); // select 해오기 -> 'N'
+		       } else {
+		    	   hits_status = cs.selectHits(challNo, userId); // 테이블이 이미 있다면 , ('Y'든 'N'이든 select해오기) 
+		       }
+		       
+		       // chall_status count 해오기 
+		       int joinPeopleCnt = new ChallService().selectJoinCount(challNo);
+		       System.out.println("joinPPPPPLLLLCCOCO 제발 ㅠㅠㅠ: " + joinPeopleCnt);
+		       
+		       // chall_status 가져오기 (참여중인지 아닌지 여부)
+		       int chall_status = new ChallService().selectJoinChallStatus(challNo, userId);
+		       
+		       
+		      //String page = "";
+		      if(ch2 != null && list != null && hits_status.equals("Y")) {
+		    	 request.setAttribute("joinPeopleCnt", joinPeopleCnt);
+		 		 request.setAttribute("list", list);
+				 request.setAttribute("hits_status", hits_status);
+		         request.setAttribute("challenge", ch2);
+		         request.setAttribute("chall_status", chall_status);
+		         page = "/views/challenge/challengeJoin.jsp";
+		         
+		      } else if(list == null) { 
+		    	  request.setAttribute("joinPeopleCnt", joinPeopleCnt);
+		    	  request.setAttribute("list", list);
+		    	  request.setAttribute("challenge", ch2);
+		    	  request.setAttribute("chall_status", chall_status);
+		          page = "/views/challenge/challengeJoin.jsp";
+		          
+		      } else if(ch2 != null && list != null && hits_status.equals("N"))  {
+		    	  request.setAttribute("joinPeopleCnt", joinPeopleCnt);
+		    	  request.setAttribute("list", list);
+		    	  request.setAttribute("hits_status", hits_status);
+		          request.setAttribute("challenge", ch2);
+		          request.setAttribute("chall_status", chall_status);
+		          page = "/views/challenge/challengeJoin.jsp";
+		      } else {
+		         request.setAttribute("msg", "챌린지 참여 상세페이지를 불러오는데 실패하였습니다.");
+		         page = "/views/common/errorPage.jsp";
+		      }
+			
+		}
+		
       
       request.getRequestDispatcher(page).forward(request, response);
 

@@ -1,4 +1,4 @@
-    <%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, challenge.model.vo.*, common.model.vo.*"%>
 <%
    // 챌린지 리스트 
@@ -8,7 +8,7 @@
    if(request.getAttribute("cate")!=null){
      cate = Integer.parseInt((String.valueOf(request.getAttribute("cate"))));
    }
-
+   
    // 페이징 처리 
    PageInfo pi = (PageInfo)request.getAttribute("pi");
    
@@ -28,7 +28,6 @@
 			selected[2] = "selected";
 		}
 	}
-   
 	
 %>
 <!DOCTYPE html>
@@ -155,7 +154,6 @@
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>조회수</th>
-                        <th>찜 횟수</th>
                     </tr>
                 
                 <% if(list.isEmpty()) { %>
@@ -168,11 +166,10 @@
                       <td><%= ch.getChallNo() %></td>
                       <td><%= ch.getCateName() %></td>
                       <td><%= ch.getChallTitle() %></td>
-                      <td><%= ch.getChallPeople() %></td>
+                      <td><%= ch.getChallPeople() %>명</td>
                       <td><%= ch.getNickName() %></td>
                       <td><%= ch.getChallDate() %></td>
                       <td><%= ch.getChallCnt() %></td>
-                      <td><%= ch.getChallHits() %></td>
                    </tr>
                    <% } %>
                    <% } %>   
@@ -290,7 +287,7 @@
          }).click(function(){
             var num = $(this).parent().children().eq(0).text();
               // 쿼리 스트링을 이용하여 get방식으로 글 번호를 전달 
-            location.href="<%= request.getContextPath() %>/chall/join?challNo=" +num;
+              location.href="<%= request.getContextPath() %>/chall/join?challNo=" +num;
          });
       });
        

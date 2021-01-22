@@ -72,8 +72,17 @@ public class ChallListServlet extends HttpServlet {
 	  
       ArrayList<Challenge> list = cs.selectList(pi);
       
-      System.out.println("pi : " + pi);
-      System.out.println("챌린지 list : " + list);
+      // System.out.println("pi : " + pi);
+      // System.out.println("챌린지 list : " + list);
+      
+      // joinPeopleCnt이 0일때 다시 select 해주기 
+//      int joinPeopleCnt = 0;
+//      int challNo = 0;
+//      if(request.getParameter("joinPeopleCnt")==null ) {
+//    	  challNo = Integer.parseInt(request.getParameter("challNo"));
+//    	  joinPeopleCnt = Integer.parseInt(request.getParameter("joinPeopleCnt"));
+//    	  joinPeopleCnt = new ChallService().countJoinStatus(challNo);
+//      }
       
       request.setAttribute("pi", pi);
       request.setAttribute("list", list);

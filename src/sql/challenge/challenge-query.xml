@@ -8,7 +8,6 @@
          , CHALL_TITLE
          , CHALL_PEOPLE
          , CHALL_DATE
-         , CHALL_HITS
          , FILE_PATH
          , CHALL_CONFIRM
          , CHALL_FREQUENCY
@@ -32,7 +31,6 @@
          , CHALL_TITLE
          , CHALL_PEOPLE
          , CHALL_DATE
-         , CHALL_HITS
          , FILE_PATH
          , CHALL_CONFIRM
          , CHALL_FREQUENCY
@@ -60,7 +58,6 @@
      , CHALL_TITLE
      , CHALL_PEOPLE
      , CHALL_DATE
-     , CHALL_HITS
      , FILE_PATH
      , CHALL_CONFIRM
      , CHALL_FREQUENCY
@@ -71,7 +68,7 @@
      , USER_ID
      , CATE_ID
      , CHALL_CNT
-     , CHALL_START   
+     , CHALL_START
    )
    VALUES
    (
@@ -79,7 +76,6 @@
      , ?
      , ?
      , SYSDATE
-     , DEFAULT
      , ?
      , ?
      , ?
@@ -137,7 +133,6 @@
 	         , CHALL_TITLE
 	         , CHALL_PEOPLE
 	         , CHALL_DATE
-	         , CHALL_HITS
 	         , FILE_PATH
 	         , CHALL_CONFIRM
 	         , CHALL_FREQUENCY
@@ -159,7 +154,6 @@
 	    	 				 , CHALL_TITLE
 	    	 				 , CHALL_PEOPLE
 	    	 				 , CHALL_DATE
-	    	 				 , CHALL_HITS
 	    	 				 , FILE_PATH
 	    	 				 , CHALL_CONFIRM
 	    	 				 , CHALL_FREQUENCY
@@ -170,7 +164,7 @@
                 			 , NICKNAME
                 			 , CATE_NAME
                 			 , CHALL_CNT
-                			 , CHALL_START  
+                			 , CHALL_START
          				 FROM
          				 	   CHALL
           					   JOIN CHALL_CATEGORY USING(CATE_ID)
@@ -191,7 +185,6 @@
 	         , CHALL_TITLE
 	         , CHALL_PEOPLE
 	         , CHALL_DATE
-	         , CHALL_HITS
 	         , FILE_PATH
 	         , CHALL_CONFIRM
 	         , CHALL_FREQUENCY
@@ -213,7 +206,6 @@
 	    	 				 , CHALL_TITLE
 	    	 				 , CHALL_PEOPLE
 	    	 				 , CHALL_DATE
-	    	 				 , CHALL_HITS
 	    	 				 , FILE_PATH
 	    	 				 , CHALL_CONFIRM
 	    	 				 , CHALL_FREQUENCY
@@ -224,7 +216,7 @@
                 			 , NICKNAME
                 			 , CATE_NAME
                 			 , CHALL_CNT
-                			 , CHALL_START  
+                			 , CHALL_START 
          				 FROM
          				 	   CHALL
           					   JOIN CHALL_CATEGORY USING(CATE_ID)
@@ -246,7 +238,6 @@
 	         , CHALL_TITLE
 	         , CHALL_PEOPLE
 	         , CHALL_DATE
-	         , CHALL_HITS
 	         , FILE_PATH
 	         , CHALL_CONFIRM
 	         , CHALL_FREQUENCY
@@ -268,7 +259,6 @@
 	    	 				 , CHALL_TITLE
 	    	 				 , CHALL_PEOPLE
 	    	 				 , CHALL_DATE
-	    	 				 , CHALL_HITS
 	    	 				 , FILE_PATH
 	    	 				 , CHALL_CONFIRM
 	    	 				 , CHALL_FREQUENCY
@@ -279,7 +269,7 @@
                 			 , NICKNAME
                 			 , CATE_NAME
                 			 , CHALL_CNT
-                			 , CHALL_START  
+                			 , CHALL_START
          				 FROM
          				 	   CHALL
           					   JOIN CHALL_CATEGORY USING(CATE_ID)
@@ -309,7 +299,6 @@
          , CHALL_TITLE
          , CHALL_PEOPLE
          , CHALL_DATE
-         , CHALL_HITS
          , FILE_PATH
          , CHALL_CONFIRM
          , CHALL_FREQUENCY
@@ -328,7 +317,6 @@
         				  , CHALL_TITLE
        					  , CHALL_PEOPLE
        					  , CHALL_DATE
-       					  , CHALL_HITS
        					  , FILE_PATH
        					  , CHALL_CONFIRM
         				  , CHALL_FREQUENCY
@@ -368,18 +356,6 @@
    		   AND 
    		   	  CHALL_NO = ?
    </entry>
-   
-   <entry key="countStatus">
-   		SELECT
-   			  COUNT(*)
-   		 FROM 
-   		 	  CHALL_STATUS
-   		WHERE
-   			  CHALL_NO = ?
-   		   AND
-   		      CHALL_STATUS = 1
-   </entry>
-   
    
    <entry key="insertChallHits">
    	INSERT
@@ -428,6 +404,95 @@
    		FROM
    			 CHALL_STATUS
    </entry>
+
+   
+   
+  
+   
+   <entry key="joinPeopleCnt">
+   		SELECT 
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL_STATUS
+   		WHERE 
+   		      CHALL_NO = ? 
+   		  AND
+   		  	  CHALL_STATUS = 1 
+   </entry>
+   
+   <entry key = "selectChallStatus">
+   		SELECT
+   			  	USER_ID
+   			  , CHALL_NO
+   			  , CHALL_STATUS
+   			  , JOIN_CALL_DATE
+   			  , C_HITS
+   	      FROM
+   	      	   CHALL_STATUS
+   	      WHERE
+   	      	    CHALL_NO = ? 
+   	      	AND 
+   	      		USER_ID = ? 
+   </entry>
+   
+   <entry key = "insertChallStatus">
+   		INSERT
+   		INTO CHALL_STATUS
+   		(
+   			USER_ID
+   		  , CHALL_NO
+   		  , JOIN_CALL_DATE
+   		  , C_HITS
+   		)
+   		VALUES
+   		(
+   			?
+   		  , ?
+   		  , SYSDATE
+   		  , 'N'
+   		) 
+   
+   </entry>
+   
+   <entry key ="updateHitsStatus">
+   		UPDATE
+			  CHALL_STATUS 
+		  SET
+		  	  C_HITS = 'Y'
+		WHERE 
+			 USER_ID = ?
+		  AND
+		     CHALL_NO = ? 
+		  AND 
+		  	 C_HITS = 'N'
+   </entry>
+   
+   <entry key ="selectJoinChallStatus">
+   		SELECT
+   			  CHALL_STATUS
+   		 FROM 
+   		 	  CHALL_STATUS
+   		WHERE
+   			  USER_ID = ?
+   		   AND
+   		      CHALL_NO = ?
+   </entry>
+   
+   <entry key ="updateHitsStatus1">
+   		UPDATE
+			  CHALL_STATUS 
+		  SET
+		  	  C_HITS = 'N'
+		WHERE 
+			 USER_ID = ?
+		  AND
+		     CHALL_NO = ? 
+		  AND 
+		  	 C_HITS = 'Y'
+   </entry>
+   
+   
+
     <entry key="selectTitle">
    		SELECT
    			  CHALL_TITLE
@@ -436,5 +501,6 @@
    		WHERE
    		      CHALL_NO = ?
    </entry>
+
 
 </properties>
