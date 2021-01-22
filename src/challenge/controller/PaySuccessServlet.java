@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import challenge.model.service.ChallService;
 import challenge.model.vo.Challenge;
+import challenge.model.vo.ChallengeStatus;
 import member.model.vo.Member;
 
 /**
@@ -38,11 +39,24 @@ public class PaySuccessServlet extends HttpServlet {
 		  HttpSession session = request.getSession();
 		  Member loginUser = (Member)session.getAttribute("loginUser");
 		  String userId = loginUser.getUserId();
+		  
+		  int result = 0;
+		// Challenge ch = new ChallService().selectChall(challNo);
+		 
+		// 1. chall_status 테이블에 해당 번호, 유저아이디 컬럼이 있는지 확인 부터 하기 
+		ChallengeStatus cs = new ChallService().selectChallStatus(challNo, userId);
+		
+		if(cs == null) {
+			result = new ChallService().insertChallStatus(challNo,userId);
+			// 챌린지 모집현황 인원 insert (참여중)
+			result = new ChallService().updateChallStatus(challNo, userId);
+		} else {
+			// 챌린지 모집현황 인원 insert (참여중)
+			result = new ChallService().updateChallStatus(challNo, userId);
+		}
+		 
 		
 		Challenge ch = new ChallService().selectChall(challNo);
-	    
-		// 챌린지 모집현황 인원 insert (참여중)
-		 int result = new ChallService().updateChallStatus(challNo, userId);
 		
 		if(result > 0) {
 			request.setAttribute("msg", "결제가 완료되었습니다.");
@@ -52,6 +66,9 @@ public class PaySuccessServlet extends HttpServlet {
 	         request.setAttribute("msg", "챌린지 모집 현황 등록을 실패하였습니다.");
 		     request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
+		
+		
+		//response.sendRedirect(request.getContextPath() + "/chall/list");
 		
 		
 	}

@@ -115,23 +115,11 @@ public class ChallService {
 		} else {
 			rollback(conn);
 		}
+		
+		close(conn);
+		
 		return result;
 	}
-	
-	// 챌린지 참여중 인원 카운트 
-	public int countStatus(int challNo) {
-		Connection conn = getConnection();
-		int countStatus = new ChallDao().countStatus(conn,challNo);
-		
-		if(countStatus > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		return countStatus;
-	}
-	
-
 	
 
 	//카테고리에 맞는 챌린지 리스트 뽑아오기
@@ -167,6 +155,8 @@ public class ChallService {
 		} else {
 			rollback(conn);
 		}
+		
+		close(conn);
 		return result;
 	}
 
@@ -193,6 +183,8 @@ public class ChallService {
 			rollback(conn);
 		}
 		
+		close(conn);
+		
 		return result;
 	}
 	
@@ -206,6 +198,109 @@ public class ChallService {
 		
 		return list;
 	}
+	
+
+	
+	// 챌린지 참여중 인원 카운트  --> 삭제 
+	public int updateJoinCount(int challNo) {
+		Connection conn = getConnection();
+		int joinPeopleCnt = new ChallDao().updateJoinCount(conn,challNo);
+		
+		if(joinPeopleCnt > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return joinPeopleCnt;
+	}
+	
+	// 참여중 인원 카운트 해오기 (chall_status테이블에서) 
+	public int selectJoinCount(int challNo) {
+		Connection conn = getConnection();
+		
+		int joinPeopleCnt = new ChallDao().selectJoinCount(conn,challNo);
+		
+		close(conn);
+		
+		return joinPeopleCnt;
+	}
+	
+	
+	// 챌린지 현황 테이블 확인부터 (해당 챌린지, 유저가 있는지) 
+	public ChallengeStatus selectChallStatus(int challNo, String userId) {
+		Connection conn = getConnection();
+		
+		ChallengeStatus cs = new ChallDao().selectChallStatus(conn, challNo, userId);
+		
+		close(conn);
+		
+		return cs;
+	}
+	
+	// 찜하기 & 참여하기 했을 때 챌린지 현황이 없다면 챌린지 현황 테이블 insert 해주기 
+	public int insertChallStatus(int challNo, String userId) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().insertChallStatus(conn, challNo,userId);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+
+	// 찜 상태 업데이트 --> 'Y' 
+	public int updateHitsStatus(int challNo, String userId) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().updateHitsStatus(conn, challNo, userId);
+
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	// 찜 'Y'이면서 참여중인 사람 
+	public int selectJoinChallStatus(int challNo, String userId) {
+		Connection conn = getConnection();
+		
+		int chall_status = new ChallDao().selectJoinChallStatus(conn, challNo, userId);
+		
+		close(conn);
+		
+		return chall_status;
+	}
+	
+	// 참여중인데 찜 취소하고싶을때 'N'으로 업뎃 
+	public int updateHitsStatus1(int challNo, String userId) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().updateHitsStatus1(conn, challNo, userId);
+
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 	
 
 }

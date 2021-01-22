@@ -1,6 +1,8 @@
 package challenge.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import challenge.model.service.ChallService;
 import challenge.model.vo.Challenge;
+import challenge.model.vo.ChallengeStatus;
 import member.model.vo.Member;
 
 /**
@@ -39,27 +42,43 @@ public class ChallHitsServlet extends HttpServlet {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String userId = loginUser.getUserId(); 
 		
+		// 변수 선언
+		int result = 0;
+		int updateHitsCount = 0;
+
+		
+		// 1. chall_status 테이블에 해당 번호, 유저아이디 컬럼이 있는지 확인 부터 하기 
+		ChallengeStatus cs = new ChallService().selectChallStatus(challNo, userId);
+		
 		// hits_status 가져오기 (찜 상태 알아내기위해!!) 
 		String hits_status = new ChallService().selectHits(challNo, userId); 
-		int result = 0;
 		
-		// 만약 'Y' --> delete!! 
-		if(hits_status.equals("Y")) {
+		// chall_status 가져오기 (참여중인지 아닌지 여부)
+		int chall_status = new ChallService().selectJoinChallStatus(challNo, userId);
+		
+		
+		// 찜하기 경우의 수로 나누기  ( 1. 참여 :0 찜 : Y / 2. 참여:0 찜: N / 3. 참여:1 찜: N / 4. 참여:1 찜: Y 
+		 if (cs != null && hits_status.equals("Y") && chall_status == 0) { 
+			// 참여중은 아닌데 찜만 한 경우 
 			result = new ChallService().deleteChallHits(challNo, userId);
-		} else { // 만약 'N' --> 다시 insert 
-			// 챌린지 모집현황 찜하기 insert 
-			result = new ChallService().insertChallHits(challNo, userId);
+		} else if (cs != null && chall_status == 1 && hits_status.equals("Y")) {
+			// 참여중이면서 찜하기가 'Y' -- > 찜하기 취소하고 싶음 (삭제말고 ! 업데이트로) --> C_hits를 'N'으로 업데이트함 (where userid = ?, challno = ?, challstatus=1)
+			result = new ChallService().updateHitsStatus1(challNo, userId); // 'N'으로
+		} else if (cs != null && chall_status == 0 && hits_status.equals("N")) {
+			result = new ChallService().updateHitsStatus(challNo, userId); // 'Y'로
+		} else { // cs != null + hits_status -> 'N'
+			// 참여중인데 찜하기가 'N' -- > 'Y'로 바꿔주기
+			// result = new ChallService().insertChallHits(challNo, userId);
+			result = new ChallService().updateHitsStatus(challNo, userId); // 'Y'로
 		}
+		
 		
 		// select된 챌린지 다시 보내주기 
 		Challenge ch = new ChallService().selectChall(challNo);
 		
 		
 		if(result > 0) {
-			//request.setAttribute("hits_status", hits_status);
-			request.setAttribute("challenge", ch);
-			//request.getRequestDispatcher("/views/challenge/challengeJoin.jsp").forward(request, response);
-			//request.setAttribute("msg","챌린지 찜하기 완료");
+			request.setAttribute("challenge", ch); // 찜 횟수 반영 
 			response.sendRedirect(request.getContextPath() + "/chall/list");
 		} else {
 			request.setAttribute("msg", "챌린지 찜하기를 실패하였습니다.");

@@ -268,6 +268,7 @@ button:focus{
 	<script>
 	const list_btn = document.getElementById('list_btn');
 	list_btn.addEventListener('click',function(){
+		alert("결제완료!");
 		$("#challNoForm").attr("action", "<%= request.getContextPath()%>/order/paySuccess");
 		$("#challNoForm").submit();
 	});
