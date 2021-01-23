@@ -99,12 +99,24 @@ public class Challenge {
 		this.confirmCnt = confirmCnt;
 		this.userId = userId;
 	}
+	
+	// 커뮤니티 슬라이드 인기 챌린지 조회용
+	public Challenge(int challNo, String challTitle, String challFile, String challFrequency,String challPeriod, String challStart) {
+		super();
+		this.challNo = challNo;
+		this.challTitle = challTitle;
+		this.challFile = challFile;
+		this.challFrequency = challFrequency;
+		this.challPeriod = challPeriod;
+		this.challStart = challStart;
+	}
 
 	// 카테고리 선택시 이동하는 화면에 필요
 
 	public String getUserId() {
 		return userId;
 	}
+
 
 
 	public void setUserId(String userId) {

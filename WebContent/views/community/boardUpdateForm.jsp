@@ -60,6 +60,7 @@ body {
 	border: 0px;
 	border-bottom: 1px solid #75757552;
 	background: none;
+	color: #757575;
 }
 
 #write_option {

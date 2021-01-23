@@ -3,7 +3,6 @@
 <%
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	Board b = (Board)request.getAttribute("board");
 	
 	Search s = (Search)request.getAttribute("search");
 	String search = "";

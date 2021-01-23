@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<!-- 세미콜론 지워라!!!!!!!!!!!!!!!!! -->
+	<entry key="getRankListCount">
+		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  RANKLIST
+	</entry>
+	
+	
+	<entry key="selectRankList">
+		SELECT 
+				RNUM, 
+				CHALL_NO, 
+				CHALL_TITLE, 
+				FILE_PATH, 
+				CHALL_FREQUENCY,
+				CHALL_PERIOD, 
+				CHALL_START
+		  FROM  
+		  		RANKLIST
+	     WHERE  
+	     		RNUM BETWEEN ? AND ?
+	</entry>
+	
+
+
+
+</properties>
