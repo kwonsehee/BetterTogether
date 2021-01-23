@@ -86,7 +86,7 @@ public class ChallDao {
 						rset.getDate("CHALL_DATE"), rset.getString("FILE_PATH"),
 						rset.getString("CHALL_CONFIRM"), rset.getString("CHALL_FREQUENCY"),
 						rset.getString("CHALL_PERIOD"), rset.getInt("CHALL_PAYMENT"), rset.getString("CHALL_CONTENT"),
-						rset.getInt("CHALL_COUNT"), rset.getString("NICKNAME"), rset.getString("CATE_NAME"),
+						rset.getInt("CHALL_COUNT"), rset.getString("NICKNAME"), rset.getString("USER_ID"),rset.getString("CATE_NAME"),
 						rset.getInt("CHALL_CNT"), rset.getString("CHALL_START"));
 
 			}
@@ -642,6 +642,71 @@ public class ChallDao {
 		}
 
 		return result;
+	}
+	
+	// challBoardType에 맞는 챌린지 갯수 구하기
+	public int getChallTypeListCount(Connection conn, int challBoardType) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getChallTypeListCount");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, Integer.toString(challBoardType));
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+
+	// challBoardType 1/2/3 select해오기 
+	public ArrayList<Challenge> selectChallBoardType(Connection conn, int challBoardType, PageInfo pi) {
+		ArrayList<Challenge> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectChallBoardType");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
+			pstmt.setString(1, Integer.toString(challBoardType));
+
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
+						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
+						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
+						rset.getString(16)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
 	}
 
 	//챌린지 이름 알아오기

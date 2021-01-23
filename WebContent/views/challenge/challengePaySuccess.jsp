@@ -46,7 +46,7 @@
 
         #pay_table tr{
             font-family: "Do Hyeon";
-            font-size: 25px;
+            font-size: 15px;
         }
 
         #pay_table td{
@@ -78,7 +78,7 @@
 		<h1 id="msg_content" align='center'><%= message %></h1>
 		<table id="pay_table">
                     <tr>
-                       <td><img src="<%=request.getContextPath()%>/resources/images/check1.png" class="pay_img">주문자 명 : <%=ch.getNickName() %></td>
+                       <td><img src="<%=request.getContextPath()%>/resources/images/check1.png" class="pay_img">주문자 명 : <%=loginUser.getNickName() %></td>
                     </tr>
                     <tr>
                         <td><img src="<%=request.getContextPath()%>/resources/images/check1.png" class="pay_img">챌린지 명 : <%=ch.getChallTitle() %></td> 

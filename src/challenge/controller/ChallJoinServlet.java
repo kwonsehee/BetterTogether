@@ -136,7 +136,7 @@ public class ChallJoinServlet extends HttpServlet {
 		       
 		       // chall_status count 해오기 
 		       int joinPeopleCnt = new ChallService().selectJoinCount(challNo);
-		       System.out.println("joinPPPPPLLLLCCOCO 제발 ㅠㅠㅠ: " + joinPeopleCnt);
+		       //System.out.println("joinPPPPPLLLLCCOCO 제발 ㅠㅠㅠ: " + joinPeopleCnt);
 		       
 		       // chall_status 가져오기 (참여중인지 아닌지 여부)
 		       int chall_status = new ChallService().selectJoinChallStatus(challNo, userId);

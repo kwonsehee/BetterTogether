@@ -9,6 +9,12 @@
      cate = Integer.parseInt((String.valueOf(request.getAttribute("cate"))));
    }
    
+   // challBoard type 1:시작전,2:진행중,3:종료
+   int challBoardType = 0;
+   if(request.getAttribute("challBoardType")!=null){
+	   challBoardType = Integer.parseInt((String.valueOf(request.getAttribute("challBoardType"))));
+   }
+   
    // 페이징 처리 
    PageInfo pi = (PageInfo)request.getAttribute("pi");
    
@@ -38,24 +44,26 @@
 
     <style>
          #title{
+         	margin-top:50px;
             width: 100%;
         }
-        #title h3 {
+        #title span {
             font-size: 30px;
             font-family: "Do Hyeon";
             text-align: center;
             padding-top: 10px;
+            margin-left:400px;
         }
 
 
         .challenge_table {
             font-family: "Do Hyeon";
             font-size: medium;
-            margin-top: 20px;
             margin-left: 40px;
             width: 90%;
             border-top: 2px solid #ff6064;
             border-collapse: collapse;
+            margin-top:30px;
         }
 
         .challenge_table th,
@@ -133,7 +141,25 @@
          width: 250px;
       }
       
+      #btnType_area{
+      	 margin-left:373px;
+      	 margin-top:60px;
+      	
+      }
       
+      #btnType_area button {
+      	 font-family: "Do Hyeon";
+            width: 80px;
+            height: 30px;
+            border-radius: 20px;
+            border: solid 1px #fdc8c6;
+            background-color: white;
+            font-size:17px;
+            margin-top:20px;
+      }
+      
+
+ 
     </style>
 </head>
 <body>
@@ -141,9 +167,20 @@
   
   <section id="content" class="content_css">
         <section id="title">
-            <h3>챌린지 모집 게시판</h3>
+            <span>챌린지 모집 게시판</span>
             <!-- 어떤 카테고리의 것인지 표시해주기 -->
         </section>
+        
+        <!-- 1:시작전 2:진행중 3:종료 -->
+        <form action="<%= request.getContextPath() %>/chall/type" method="post" id="type_form">
+        	<span id="btnType_area">
+				<button type="submit" name="challBoardType" value="1">시작전</button>
+				<button type="submit" name="challBoardType" value="2">진행중</button>
+				<button type="submit" name="challBoardType" value="3">종료</button>
+			</span>
+        </form>
+        
+        
         <section id="content-1">
             <table id= "listTable" class="challenge_table">
                     <tr>
@@ -186,6 +223,8 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=1&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;&lt;</button>		
 			<%}else if(cate !=0){ %>
 			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=1&cate=<%= cate %>'"> &lt;&lt;</button>		
+			<% }else if(challBoardType !=0 ){ %>
+			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=1&challBoardType=<%= challBoardType %>'"> &lt;&lt;</button>		
 			<% } else {%>
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=1'"> &lt;&lt;</button>	
 			<% } %>  
@@ -198,6 +237,8 @@
 			
 			<%}else if(cate !=0){ %>
 			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getCurrentPage() - 1%>&cate=<%= cate %>'"> &lt;</button>		
+			 <%}else if(challBoardType !=0){ %>
+			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?challBoardType=<%= pi.getCurrentPage() - 1 %>&challBoardType=<%= challBoardType %>'"> &lt;</button>
 			<% } else {%>
 	        <button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() - 1%>'"> &lt; </button>
 			<% } %>
@@ -210,9 +251,9 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%=p %>&searchCondition=<%= searchCondition %>&search=<%=search %>'"> <%= p %></button>	
 			<%}else if(cate !=0){ %>
 			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= p%>&cate=<%= cate %>'">  <%= p %></button>		
-			
+			<%} else if(challBoardType !=0) {%>
+			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=<%= p%>&challBoardType=<%= challBoardType %>'">  <%= p %></button>		
 			<% } else {%>
-			
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%=p %>'"> <%= p %> </button>
 			<% } %>
 			<% } %>
@@ -225,7 +266,8 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() + 1 %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;</button>				
 			<%}else if(cate !=0){ %>
 			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getCurrentPage() + 1%>&cate=<%= cate %>'"> &gt;</button>		
-			
+			<% } else if (challBoardType !=0) {%>
+			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=<%= pi.getCurrentPage() + 1%>&challBoardType=<%= challBoardType %>'"> &gt;</button>		
 			<% } else {%>
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt;</button><% } %>
               
@@ -233,8 +275,9 @@
 			<% if(s != null) {%>
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getMaxPage() %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;&gt; </button>
 			<%}else if(cate !=0){ %>
-			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getMaxPage()%>&cate=<%= cate %>'">  &gt; &gt;</button>		
-			
+			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getMaxPage()%>&cate=<%= cate %>'">  &gt;&gt;</button>		
+			<% } else if(challBoardType !=0){ %>
+			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=<%= pi.getMaxPage()%>&challBoardType=<%= challBoardType %>'">  &gt;&gt;</button>		
 			<% } else { %>
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 			

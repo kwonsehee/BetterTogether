@@ -80,6 +80,28 @@ public class Challenge {
 		this.challCnt = challCnt;
 		this.challStart = challStart;
 	}
+	
+	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
+			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
+			int confirmCnt, String nickName, String userId, String cateName, int challCnt, String challStart) {
+		super();
+		this.challNo = challNo;
+		this.challTitle = challTitle;
+		this.challPeople = challPeople;
+		this.challDate = challDate;
+		this.challFile = challFile;
+		this.challConfirm = challConfirm;
+		this.challFrequency = challFrequency;
+		this.challPeriod = challPeriod;
+		this.challPay = challPay;
+		this.challContent = challContent;
+		this.confirmCnt = confirmCnt;
+		this.nickName = nickName;
+		this.userId = userId;
+		this.cateName = cateName;
+		this.challCnt = challCnt;
+		this.challStart = challStart;
+	}
 
 	// 챌린지 개설
 	public Challenge(String challTitle, String cateName, String challFile, String challConfirm, String challFrequency,
@@ -101,7 +123,6 @@ public class Challenge {
 	}
 
 	// 카테고리 선택시 이동하는 화면에 필요
-
 	public String getUserId() {
 		return userId;
 	}
