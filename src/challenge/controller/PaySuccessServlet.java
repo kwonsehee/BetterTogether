@@ -40,6 +40,9 @@ public class PaySuccessServlet extends HttpServlet {
 		  Member loginUser = (Member)session.getAttribute("loginUser");
 		  String userId = loginUser.getUserId();
 		  
+		// 1: 카카오페이인지, 2: 회원보유포인트인지 판단 
+		int payment = Integer.parseInt(request.getParameter("payment"));
+		  
 		  int result = 0;
 		// Challenge ch = new ChallService().selectChall(challNo);
 		 
@@ -54,21 +57,30 @@ public class PaySuccessServlet extends HttpServlet {
 			// 챌린지 모집현황 인원 insert (참여중)
 			result = new ChallService().updateChallStatus(challNo, userId);
 		}
-		 
+		
+		// 2. 결제 테이블에 insert (카카오페이)
+		if(payment ==1) {
+			// 1) 해당 챌린지번호의 결제금액 알아오기 
+			int totalPay = new ChallService().selectTotalPay(challNo);
+			// 2) PAYMENT 테이블에 INSERT
+			result = new ChallService().insertChallPay(totalPay,challNo,userId,payment);
+		}
+		
+		System.out.println("result 결제~ : " + result);
 		
 		Challenge ch = new ChallService().selectChall(challNo);
 		
-		if(result > 0) {
-			request.setAttribute("msg", "결제가 완료되었습니다.");
+		if(result > 0 && payment == 1) {
+			//request.setAttribute("msg", "결제가 완료되었습니다.");
 			request.setAttribute("challenge", ch);
-	        request.getRequestDispatcher("/views/challenge/challengePaySuccess.jsp").forward(request, response);
+	        request.getRequestDispatcher("/views/challenge/challengeAPIPay.jsp").forward(request, response);
+		} else if(payment == 2) {
+			// 회원 포인트 결제 화면으로 
+	        request.getRequestDispatcher("/views/challenge/challengeMake.jsp").forward(request, response);
 		} else {
 	         request.setAttribute("msg", "챌린지 모집 현황 등록을 실패하였습니다.");
 		     request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		
-		//response.sendRedirect(request.getContextPath() + "/chall/list");
 		
 		
 	}

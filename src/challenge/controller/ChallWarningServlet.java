@@ -26,8 +26,17 @@ public class ChallWarningServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 챌린지 번호
+		int challNo = Integer.parseInt(request.getParameter("challNo"));
+		// 신고대상
+		String name = request.getParameter("name");
+		// 챌린지 (제목)
+		String title = request.getParameter("title");
+		
+		
+		
+		
+
 	}
 
 	/**

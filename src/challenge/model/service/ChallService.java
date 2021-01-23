@@ -1,3 +1,4 @@
+
 package challenge.model.service;
 
 import static common.JDBCTemplate.close;
@@ -347,6 +348,33 @@ public class ChallService {
 
 		return result;
 	}
+  	// challNo에 맞는 참가비 select해오기
+	public int selectTotalPay(int challNo) {
+		Connection conn = getConnection();
+		
+		int totalPay = new ChallDao().selectTotalPay(conn, challNo);
+		
+		close(conn);
+		
+		return totalPay;
+	}
+	
+	// 결제테이블의 insert
+	public int insertChallPay(int totalPay, int challNo, String userId, int payment) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().insertChallPay(conn, totalPay,challNo,userId,payment);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
+
 	
 
 }
