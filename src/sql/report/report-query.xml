@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+   	<entry key="insertReport">
+		INSERT ALL
+		INTO REPORT
+		(
+			   REPORT_NO
+			 , REPORT_TITLE
+			 , REPORTED_ID
+			 , REPORT_CONTENT
+			 , REPORT_DATE
+			 , REPORT_MODIFY
+			 , T_F
+			 , USER_ID
+		)
+		VALUES
+		(
+			SEQ_REPID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+        INTO 
+        	 CER_REPORT
+        VALUES
+        (
+        	SEQ_REPID.CURRVAL
+          , ?
+        )
+        SELECT *
+        FROM DUAL
+	</entry>
+	<entry key="insertReport2">
+		INSERT ALL
+		INTO REPORT
+		(
+			   REPORT_NO
+			 , REPORT_TITLE
+			 , REPORTED_ID
+			 , REPORT_FILE
+			 , REPORT_CONTENT
+			 , REPORT_DATE
+			 , REPORT_MODIFY
+			 , T_F
+			 , USER_ID
+		)
+		VALUES
+		(
+			SEQ_REPID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+		INTO 
+        	 CER_REPORT
+        VALUES
+        (
+        	SEQ_REPID.CURRVAL
+          , ?
+        )
+        SELECT *
+        FROM DUAL
+	</entry>
+
+</properties>

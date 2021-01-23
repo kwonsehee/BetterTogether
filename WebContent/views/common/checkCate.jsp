@@ -24,7 +24,7 @@
 		}
 		System.out.println(checkedInterest[1]);
 	}
-	System.out.println("qkR"+checkedInterest[1]);
+	System.out.println("cate_id : "+checkedInterest[1]);
 %>
 
 <!DOCTYPE html>

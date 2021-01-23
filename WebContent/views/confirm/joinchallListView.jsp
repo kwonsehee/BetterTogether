@@ -89,6 +89,10 @@
             border:rgba(117, 117, 117, 0.5);
             background-color:rgba(117, 117, 117, 0.5);
         }
+        #cno{
+        	display : none;
+        }
+       
     </style>
 </head>
 <body>
@@ -104,24 +108,20 @@
             <div class="empty_chall">참여중인 챌린지가 없습니다!!</div>
             <%}else{ %>
             	<% for(Confirm c:list){ %>
-          		<div class='ing_challenge'>
+          <div class='ing_challenge'>
                 <div class='ing_challenge1'>
-                    <img src="img/스쿼트.png"width="200px"height="140px">
-                    <!--  원래는 여기 챌린지 테이블이랑 조인해서 챌린지 테이블의 파일이 있어야한다. -->
+                    <img src=""width="200px"height="140px">
+                    <!--  file_path()들어가야하는 자리 -->
                 </div>
                 <div class='ing_challenge2'>
-                    <p>챌린지 이름</p><!-- 여기도 챌린지명 -->
-                    <p>2021년 1월 5일 ~ 2021년 2월 5일</p><!-- 챌린지 기간 -->
+                    <p><%=c.getChall_title() %></p><!-- 여기도 챌린지명 -->
+                    <p><%=c.getChall_start() %> ~</p><!-- 챌린지 기간 -->
                     <p>달성률 : #%</p><!-- 달성률!!! -->
                 </div>
                 
                 
-                <div class='ing_challenge3'>
-                  
-       			<form action="" id="cnoForm" method="post">
-       				<input type="hidden" name="cno" value="<%=c.getChall_nol()%>">
-				</form>
-			
+            <div class='ing_challenge3'>
+                 <div id="cno"name="cno" value="<%=c.getChall_no()%>"><%=c.getChall_no()%></div>
                 
                 <span>인증하기</span>
                 <%System.out.println("ddd : "+c.getChall_status()); %>
@@ -134,15 +134,7 @@
                 <%} %>
                 <img src="<%=request.getContextPath()%>/resources/images/camera_confirm.png"width="42px"height="33px"> 
                 </button>
-                <script>
-                
-            	//인증하기 버튼
-        		const confirm_submitBtn = document.getElementById('confirm_submitBtn');
-        		confirm_submitBtn.addEventListener('click',function(){
-                  		$("#cnoForm").attr("action","<%= request.getContextPath() %>/confirm/list");
-                  		$("#cnoForm").submit();
-               });
-                </script>
+             
                  <span>결과보기</span>
                  <!-- 종료된 챌린지만 결과보기 버튼 활성화  -->
                 <%if(c.getChall_status()==2){%>
@@ -162,18 +154,38 @@
             <%} %>
          
         </section>
-       
+     
 		<script>
-
-				//결과보기 버튼 이벤트
-				const confirm_resultBtn = document.getElementById('confirm_resultBtn');
-				confirm_resultBtn.addEventListener('click',function(){
-                  		$("#cnoForm").attr("action","<%= request.getContextPath() %>/confirm/resultForm");
-                  		$("#cnoForm").submit();
-               });
-
-		</script>
-       
+		
+   //인증 리스트로 이동 
+		$(function(){
+			$(".ing_challenge #confirm_submitBtn").mouseover(function(){
+				$(this).parent().parent().css("background","#f7dede");
+			}).mouseout(function(){
+				$(this).parent().parent().css("background", "#f9f1f1");
+			}).click(function(){
+				var cno = $(this).parent().children().eq(0).text();
+				console.log(cno);
+				location.href='<%= request.getContextPath() %>/confirm/list?cno=' + cno;
+				
+			});
+		});
+   //결과보기 화면으로 이동
+		$(function(){
+			$(".ing_challenge #confirm_resultBtn").mouseover(function(){
+				$(this).parent().parent().css("background","#f7dede");
+			}).mouseout(function(){
+				$(this).parent().parent().css("background", "#f9f1f1");
+			}).click(function(){
+				var cno = $(this).parent().children().eq(0).text();
+				console.log(cno);
+				location.href='<%= request.getContextPath() %>/confirm/resultForm?cno=' + cno;
+				
+			});
+		});
+	</script>
+	
+   
     </section>
 </body>
 </html>

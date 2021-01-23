@@ -3,14 +3,18 @@
 <properties>
 	<entry key="selectList">
 		SELECT
-			   USER_ID
+			   CS.USER_ID
 			 , CHALL_NO
 			 , CHALL_STATUS
-			 , JOIN_CALL_DATE	
+			 , JOIN_CALL_DATE
+             , CHALL_TITLE
+             , FILE_PATH
+             , CHALL_START
 		 FROM
-		 	   CHALL_STATUS
+		 	   CHALL_STATUS CS
+               JOIN CHALL USING(CHALL_NO)
 		 WHERE CHALL_STATUS != 3
-		   AND USER_ID = ?
+		   AND CS.USER_ID = ?
 	
 	</entry>
 </properties>

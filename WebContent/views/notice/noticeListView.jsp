@@ -77,11 +77,10 @@
             width: 100%;
             height: 15%;
             float: left;
-            padding-top: 50px;
-            padding-left :30%; 
+            padding-top: 50px; 
         }
-	   #pagingArea {
-    	  margin:auto;
+	    #pagingArea {
+	  	text-align:center;
   	   }
       #pagingArea button {
             font-family: "Do Hyeon";

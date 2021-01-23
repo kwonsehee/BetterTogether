@@ -19,59 +19,77 @@
 </script>
 <%		}
 	}%>
+<!-- 스타일  -->
+<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css'>
+<!-- 글씨체 -->
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
 <style>
+    #updatePwdForm{
+    width : 480px;
+    height : 400px;
+    border-radius: 20px;
+    border: solid 1px  #f9f1f1;
+    background-color:  #f9f1f1;
+    }
    h3 {
       text-align:center;
    }
    /* 테이블 스타일 */
-   table{
+   #pwdEdit{
       margin:auto;
    }
-   td {
+   #updatePwdForm td {
       text-align:right;
+      font-family: 'do Hyeon';
+      font-size: 20px;
    }
    /* 버튼 관련 스타일 */
    button:hover {
       cursor:pointer
    }
+   .btn_edit{
+
+width: 120px;
+height: 40px;
+border-radius: 20px;
+border: #f7dede;
+background-color: #f7dede;
+font-family: "Do Hyeon";
+font-size: 20px;
+
+}
    
-   button {
-      margin-top:5px;   
-      width:110px;
-      height:25px;
-      color:white;
-      background:lightblue;
-      border:lightblue;
-      border-radius:5px;
-   }
 </style>
 </head>
 <body>
-	<h3>비밀번호 변경</h3>
-	<br>
 	<form id="updatePwdForm"action="<%=request.getContextPath()%>/member/updatePwd"
 	method="post"onsubmit="return checkPwd();">
-	<table>
+	<p style="text-align : center;">비밀번호 변경</p>
+	<br>
+
+	<table id="pwdEdit">
 		<tr>
 			<td><label>현재 비밀번호</label></td>
 			<td width ="50"></td>
-			<td><input type="password"name="userPwd" id="userPwd"maxlength="15"></td>
+			<td><input type="password"name="userPwd" id="userPwd"maxlength="15"class="input_box"></td>
 		</tr>
 		<tr>
 			<td><label>변경할 비밀번호</label></td>
 			<td width ="50"></td>
-			<td><input type="password"name="userPwd1" id="userPwd1"maxlength="15"></td>
+			<td><input type="password"name="userPwd1" id="userPwd1"maxlength="15"class="input_box"></td>
 		</tr>
 		<tr>
 			<td><label>변경할 비밀번호 확인</label></td>
 			<td width ="50"></td>
-			<td><input type="password"name="userPwd2" id="userPwd2"maxlength="15"></td>
+			<td><input type="password"name="userPwd2" id="userPwd2"maxlength="15"class="input_box"></td>
 		</tr>
 	
 	</table>
 	<br><br>
 	<div class="btns" align="center">
-		<button id="updatePwdBtn">변경하기</button>
+		<button id="updatePwdBtn" class="btn_edit"><span>변경하기</span></button>
 	</div>
 	</form>
 	

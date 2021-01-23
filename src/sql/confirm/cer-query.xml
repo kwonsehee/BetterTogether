@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectCerList">	
+		SELECT
+			   CER_ID
+			 , CER_PIC
+             , CHALL_TITLE
+		  FROM
+		  	    CER C
+                JOIN CHALL USING(CHALL_NO)
+		  WHERE
+		  	    C.USER_ID = ?
+		  	AND CHALL_NO = ?
+	</entry>
+	<entry key="insertCer">
+		INSERT INTO
+			CER
+			(
+				CER_ID
+			  , CER_PIC
+			  , CER_COMMENT
+			  , CER_DATE
+			  , USER_ID
+			  , CHALL_NO
+			
+			)
+		VALUES
+			(
+				SEQ_PID.NEXTVAL
+			  , ?
+			  , ?
+			  , SYSDATE
+			  , ?
+			  , ?
+			)	
+	</entry>
+</properties>

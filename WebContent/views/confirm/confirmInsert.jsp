@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.Date, java.text.SimpleDateFormat"%>
+<%
+SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd");
+Date currentTime = new Date ();
+String day = mSimpleDateFormat.format ( currentTime );
+Member m = (Member)session.getAttribute("loginUser");
+String nickName = m.getNickName();
+String title = (String)request.getParameter("title");
+System.out.println("insert와서 "+title);
+int cno = Integer.parseInt(request.getParameter("cno"));
+System.out.println(cno);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +36,7 @@
 
     }
     	#content-4{
-         border:solid 1px yellowgreen;  
+         border:solid 4px pink;  
         width: 100%;
         height: 10%;
 	 }
@@ -43,15 +54,16 @@
         }
         .challenge_box_2 {
             border: 1px solid black;
-            width: 40%;
+            width: 60%;
             height: 90%;
-            margin-left: 30%;
+            margin-left: 20%;
             margin-top: 3%;
             background-color: rgba(196, 196, 196, 0.15);
             float: left;
         }
         .challenge_box_2 tr, .challenge_box_2 td, .challenge_box_2 th{
-                border:solid 1px yellowgreen;  
+        		font-size : 10px;
+                border:solid 4px yellowgreen;  
         }
         #content-3 span{
             font-size: 25px;
@@ -90,7 +102,7 @@
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
-  <form action="<%= request.getContextPath() %>/confirm/insert" method="post">
+  <form action="<%= request.getContextPath() %>/confirm/submitForm" method="post">
          
     <section id="content" class="content_css">
 
@@ -109,27 +121,29 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2"><span name="">user1</span></td>
+                        <td colspan="2"><span name="nickName"><%=nickName %>님</span></td>
                   
                     </tr>
                     <tr>
-                        <td><span>날짜 : 2021-01-12</span></td>
-                        <td><span>챌린지제목날짜날짜</span></td>
+                        <td><span>날짜 : <%=day %></span></td>
+                        <td><span>챌린지제목 : <%=title %></span></td>
                     </tr>
                 </table>
-                <div class='challenge_box'>
-                    <img src="img/하루1시간공부.jpeg" style="width: 390px;height: 450px;"/>
+                <div class='challenge_box'style="text-align : center;" >
+                <!-- 사진추가하기 -->
+                    <img name="pic"src="" style="width: 400px;height: 450px;border:1px solid black;"/>
                 </div>
             </div>
-		
+		<input type="hidden"name="cno"value=<%=cno %>>
+		<input type="hidden"name="userId"value=<%=m.getUserId() %>>
         </section>
 
         <section id="content-4">
         <!--댓글 등록 창만들기-->
         <div class="comment_box">
         
-            <input type="text"class="input_box_lag">
-            <button type="submit" class="comment"><span>댓글 등록</span></button>
+            <input type="text"class="input_box_lag" name="comment">
+            <button type="submit" class="comment"><span>인증하기</span></button>
             <button type="button" id="backBtn" class="back_btn">목록으로</button>
 		
 		</div>     
