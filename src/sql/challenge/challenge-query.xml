@@ -39,6 +39,7 @@
          , CHALL_CONTENT
          , CHALL_COUNT
          , NICKNAME
+         , USER_ID
          , CATE_NAME
          , CHALL_CNT
          , CHALL_START
@@ -488,6 +489,62 @@
 		     CHALL_NO = ? 
 		  AND 
 		  	 C_HITS = 'Y'
+   </entry>
+   
+   <!-- 우선 CHALL_CONTENT에 1/2/3 구분해두기 -->
+   <entry key = "getChallTypeListCount">
+   		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL
+   		WHERE
+   			  CHALL_CONTENT= ? 
+   </entry>
+   
+    <!-- 우선 CHALL_CONTENT에 1/2/3 구분해두기 -->
+   <entry key="selectChallBoardType">
+       SELECT 
+   			RNUM
+   		 , CHALL_NO
+         , CHALL_TITLE
+         , CHALL_PEOPLE
+         , CHALL_DATE
+         , FILE_PATH
+         , CHALL_CONFIRM
+         , CHALL_FREQUENCY
+         , CHALL_PERIOD
+         , CHALL_PAYMENT
+         , CHALL_CONTENT
+         , CHALL_COUNT
+         , NICKNAME
+         , CATE_NAME
+         , CHALL_CNT
+         , CHALL_START
+	  FROM
+		   (SELECT ROWNUM RNUM,T.*
+    		  FROM (SELECT
+      	   					CHALL_NO
+        				  , CHALL_TITLE
+       					  , CHALL_PEOPLE
+       					  , CHALL_DATE
+       					  , FILE_PATH
+       					  , CHALL_CONFIRM
+        				  , CHALL_FREQUENCY
+     				      , CHALL_PERIOD
+       				      , CHALL_PAYMENT
+        				  , CHALL_CONTENT
+          				  , CHALL_COUNT
+        				  , NICKNAME
+        				  , CATE_NAME
+      				      , CHALL_CNT
+          				  , CHALL_START
+       				   FROM CHALL
+          			   JOIN CHALL_CATEGORY USING(CATE_ID)
+          			   JOIN USER_INFO USING (USER_ID)
+        			  WHERE
+           				    CHALL_CONTENT= ?
+        		   ORDER BY CHALL_NO DESC)T)
+		WHERE RNUM BETWEEN ? AND ?
    </entry>
    
    

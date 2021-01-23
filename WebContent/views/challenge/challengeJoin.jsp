@@ -33,9 +33,18 @@
 	}
 	
 	// chall_status (참여중이면 이미 참여했다고 alert 띄우기)
-	int chall_status = Integer.parseInt((String.valueOf(request.getAttribute("chall_status"))));
+	int chall_status = 0;
+	if ((request.getAttribute("chall_status")!=null)){
+		chall_status = Integer.parseInt((String.valueOf(request.getAttribute("chall_status"))));
+	}
+	//int chall_status = Integer.parseInt((String.valueOf(request.getAttribute("chall_status"))));
+	
+	int joinPeopleCnt = 0;
+	if((request.getAttribute("joinPeopleCnt")!=null)){
+		joinPeopleCnt = Integer.parseInt((String.valueOf(request.getAttribute("joinPeopleCnt"))));
+	}
 	// 참여중인 인원 카운트 
-	int joinPeopleCnt = Integer.parseInt((String.valueOf(request.getAttribute("joinPeopleCnt"))));
+	//int joinPeopleCnt = Integer.parseInt((String.valueOf(request.getAttribute("joinPeopleCnt"))));
 
 %>
 <!DOCTYPE html>
@@ -82,6 +91,32 @@
 	margin-left: 25px;
 	margin-top: 10px;
 	font-size: 20px;
+}
+
+#challConfirm_btn {
+	font-family: "Do Hyeon";
+	width: 70px;
+	height: 30px;
+	border-radius: 20px;
+	border: solid 1px #fdc8c6;
+	background-color: #fdc8c6;
+	margin-left: 10px;
+	margin-top: -15px;
+	font-size: 15px;
+}
+
+#warning_btn{
+	font-family: "Do Hyeon";
+	width: 70px;
+	height: 30px;
+	border-radius: 20px;
+	border: solid 1px #ff6064;
+	background-color: #ff6064;
+	margin-left: 10px;
+	margin-top: -15px;
+	font-size: 15px;
+	color:white;
+
 }
 
 #call_img {
@@ -258,7 +293,7 @@ button:focus {
 					<td><img
 						src="<%=request.getContextPath()%>/resources/images/user.png"
 						class="img-size"></td>
-					<td>방장 : <span><%=ch.getNickName()%></span></td>
+					<td>방장 : <span><%=ch.getUserId()%></span><button id="warning_btn"> 신고하기</button></td>
 				</tr>
 				<tr>
 
@@ -282,7 +317,12 @@ button:focus {
 				</tr>
 			</table>
 			<hr color=#ff6064 width="450px" id="line">
-			<p id="join_title2">챌린지 인증 방법</p>
+			<p id="join_title2">챌린지 인증 방법 
+			<!-- 인증보기 버튼 (참여중/종료)일때만 보이기 -->
+			<% if(ch.getChallContent().equals("2") || ch.getChallContent().equals("3")){ %>
+			<button id="challConfirm_btn">인증보기</button>
+			<%} %>
+			</p>
 			<table id="join_table2">
 				<tr>
 					<td><img
@@ -365,8 +405,24 @@ button:focus {
 	<%} else {%>
 			$("#hits_btn").attr("disabled", true);
 	<%}%>
-	
+		
 		</script> 
+		
+		<!-- form 태그를 post 방식으로 제출 신고대상, 챌린지번호, "챌린지" 이름을 화면에 드러내지 않고 form을 submit 하면서 넘길 수 있음-->
+	<form id="warningForm" method="post">
+		<input type="hidden" name="challNo" value="<%= ch.getChallNo() %>">
+		<input type="hidden" name="name" value="<%= ch.getUserId() %>"> 
+		<input type="hidden" name="title" value="챌린지">  
+	</form>
+	
+	<script>
+	const warning_btn = document.getElementById('warning_btn');
+	warning_btn.addEventListener('click',function(){
+		$("#warningForm").attr("action", "<%= request.getContextPath()%>/chall/warning");
+		$("#warningForm").submit();
+	});
+	
+	</script>
 
 	</section>
 
