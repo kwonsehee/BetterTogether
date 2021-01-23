@@ -547,5 +547,33 @@
 		WHERE RNUM BETWEEN ? AND ?
    </entry>
    
+   <entry key="selectTotalPay">
+   		SELECT
+   			  CHALL_PAYMENT
+   	    FROM 
+   	    	  CHALL
+   	    WHERE CHALL_NO = ?  
+   </entry>
+   
+   <entry key="insertChallPay">
+   		INSERT
+   			INTO PAYMENT 
+   		 	( PAY_NO,
+   		 	  PAYMENT,
+   		 	  PAYMENT_DATE,
+   		 	  PAYMENT_WAY,
+   		 	  USER_ID,
+   		 	  CHALL_NO
+   		 	 )
+			VALUES
+			( SEQ_PID.NEXTVAL,
+			  ?,
+			  SYSDATE,
+			  ?,
+			  ?,
+			  ?
+			)
+   </entry>
+   
    
 </properties>

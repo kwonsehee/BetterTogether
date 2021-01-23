@@ -708,5 +708,60 @@ public class ChallDao {
 
 		return list;
 	}
+	
+	// challNo에 맞는 참가비 select해오기
+	public int selectTotalPay(Connection conn, int challNo) {
+		int totalPay = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTotalPay");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, challNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				totalPay = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		return totalPay;
+	}
+	
+	// 결제 완료 후 insert 해주기
+	public int insertChallPay(Connection conn, int totalPay, int challNo, String userId, int payment) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertChallPay");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, totalPay);
+			pstmt.setInt(2, payment);
+			pstmt.setString(3, userId);
+			pstmt.setInt(4, challNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }

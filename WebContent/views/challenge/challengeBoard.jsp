@@ -77,12 +77,12 @@
 
         #challenge_btn {
             font-family: "Do Hyeon";
-            width: 170px;
+            width: 150px;
             height: 50px;
             border-radius: 20px;
             border: solid 1px #fdc8c6;
             background-color: #fdc8c6;
-            margin: 5px;
+            margin-top: -25px;
             float: right;
             font-size: 20px;
             margin-right: 50px;
