@@ -58,7 +58,7 @@ public class MemberDao {
 						rset.getDate("JOIN_DATE"),rset.getDate("MODIFY_DATE"),
 						rset.getInt("MEMBER_TYPE"),
 						rset.getString("WRITE_ACTIVE"),
-						rset.getInt("USER_CATE"));
+						rset.getInt("USER_CATE"), rset.getInt("POINT"));
 			}
 
 		} catch (SQLException e) {
@@ -84,6 +84,7 @@ public class MemberDao {
 			pstmt.setString(3, mem.getNickName());
 			pstmt.setString(4, mem.getPhone());
 			pstmt.setString(5, mem.getEmail());
+			pstmt.setInt(6, mem.getUser_cate());
 			
 			result = pstmt.executeUpdate();
 
@@ -133,7 +134,7 @@ public class MemberDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectMember");
-		System.out.println("여기 아직 못옴");
+		
 		// 1. 미리sql문 전달 세팅을 미리하는 거
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -147,7 +148,8 @@ public class MemberDao {
 						rset.getString("USER_PWD"), rset.getString("NICKNAME"),
 						rset.getString("PHONE"), rset.getString("EMAIL"),
 						rset.getDate("JOIN_DATE"),rset.getDate("MODIFY_DATE"),
-						rset.getInt("MEMBER_TYPE"), rset.getInt("USER_CATE"));
+						rset.getInt("MEMBER_TYPE"), rset.getInt("USER_CATE"),
+						rset.getInt("POINT"));
 				
 			}
 
@@ -236,4 +238,58 @@ public class MemberDao {
 			return result;
 		}
 
+		//환급 후 포인트 변경 
+		public int updatePoint(Connection conn, int point, Member m) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("updatePoint");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, point);
+				pstmt.setString(2, m.getUserId());
+
+				result = pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			
+			return result;
+		}
+		
+		//아이디 중복 체크
+		public int idCheck(Connection conn, String userId) {
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int result=0;
+			
+			String sql=prop.getProperty("idCheck");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, userId);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					result = rset.getInt(1);
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return result;
+		}
 }

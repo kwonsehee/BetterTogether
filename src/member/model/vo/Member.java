@@ -22,12 +22,13 @@ public class Member {
 	private String nickName;
 	private String phone;
 	private String email;
-	private String chall;
+
 	private Date joinDate;
 	private Date modifyDate;
 	private int membertype;
 	private String writer_active;
 	private int user_cate;
+	private int point;
 	
 	public Member() {
 		
@@ -46,16 +47,18 @@ public class Member {
 	}
 	
 	
-	public Member(String userId, String userPwd, String nickName, String phone, String email) {
+	public Member(String userId, String userPwd, String nickName, String phone, String email, int user_cate) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.nickName = nickName;
 		this.phone = phone;
 		this.email = email;
+		this.user_cate=user_cate;
 	}
+	
 	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
-			Date modifyDate, int membertype, int user_cate) {
+			Date modifyDate, int membertype, int user_cate, int point) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -66,6 +69,7 @@ public class Member {
 		this.modifyDate = modifyDate;
 		this.membertype = membertype;
 		this.user_cate=user_cate;
+		this.point = point;
 	}
 	
 	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
@@ -106,6 +110,23 @@ public class Member {
 		this.writer_active = writer_active;
 		this.user_cate = user_cate;
 	}
+	
+	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
+			Date modifyDate, int membertype, String writer_active, int user_cate, int point) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.nickName = nickName;
+		this.phone = phone;
+		this.email = email;
+		this.joinDate = joinDate;
+		this.modifyDate = modifyDate;
+		this.membertype = membertype;
+		this.writer_active = writer_active;
+		this.user_cate = user_cate;
+		this.point = point;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -136,12 +157,7 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getChall() {
-		return chall;
-	}
-	public void setChall(String chall) {
-		this.chall = chall;
-	}
+
 	public Date getJoinDate() {
 		return joinDate;
 	}
@@ -173,11 +189,21 @@ public class Member {
 	public void setUser_cate(int user_cate) {
 		this.user_cate = user_cate;
 	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", nickName=" + nickName + ", phone=" + phone
-				+ ", email=" + email + ", chall=" + chall + ", joinDate=" + joinDate + ", modifyDate=" + modifyDate
-				+ ", membertype=" + membertype + ", writer_active=" + writer_active + ", user_cate=" + user_cate + "]";
+				+ ", email=" + email +", joinDate=" + joinDate + ", modifyDate=" + modifyDate
+				+ ", membertype=" + membertype + ", writer_active=" + writer_active + ", user_cate=" + user_cate
+				+ ", point=" + point + "]";
 	}
 	
 	

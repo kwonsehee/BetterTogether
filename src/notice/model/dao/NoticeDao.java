@@ -99,7 +99,7 @@ public class NoticeDao {
 									rset.getString("ARTICLE_CONTNENT"),
 									rset.getDate("ARTICLE_DATE"),
 									rset.getDate("ARTICLE_MODIFY"),
-									rset.getString("USER_ID"),
+									rset.getString("NICKNAME"),
 									rset.getInt("ARTICLE_CNT"),
 									rset.getInt("ARTICLE_TYPE")));
 				
@@ -118,18 +118,31 @@ public class NoticeDao {
 	}
 	
 	//2. 공지사항 글 작성용 dao
+	//************파일도 디비에 넣으려 할때 생각해야함!!!***********
 		public int insertNotice(Connection conn, Notice n) {
 			int result = 0;
 			PreparedStatement pstmt=null;
 			
-			String sql=prop.getProperty("insertNotice");
-			
+			String sql="";
+		
 			try {
-				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setString(1, n.getaTitle());
-				pstmt.setString(2, n.getaContent());
-				pstmt.setString(3, n.getUser_id());
+				if(n.getaFile()==null) {
+					sql=prop.getProperty("insertNotice");
+					pstmt = conn.prepareStatement(sql);
+				
+					pstmt.setString(1, n.getaTitle());
+					pstmt.setString(2, n.getaContent());
+					pstmt.setString(3, n.getUser_id());
+				}else {
+					sql=prop.getProperty("insertNotice2");
+					pstmt = conn.prepareStatement(sql);
+				
+					pstmt.setString(1, n.getaTitle());
+					pstmt.setString(2, n.getaContent());
+					pstmt.setString(3, n.getUser_id());
+					pstmt.setString(4, n.getaFile());
+				}
 				
 				result = pstmt.executeUpdate();
 			} catch (SQLException e) {

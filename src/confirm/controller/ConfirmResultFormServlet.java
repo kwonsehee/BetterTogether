@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import challenge.model.service.ChallService;
+import challenge.model.vo.Challenge;
+
 /**
  * Servlet implementation class ConfirmResultServlet
  */
@@ -28,8 +31,15 @@ public class ConfirmResultFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//로그인 세션의 회원 아이디와 넘어온 챌린지 넘버를 가지고 조회해야함 
 		
+		int cno = Integer.parseInt(request.getParameter("cno"));
+		System.out.println("result servlet cno : "+cno);
+		
+		//로그인 세션의 회원 아이디와 넘어온 챌린지 넘버를 가지고 조회해야함 
+		//챌린지 정보 가져와야함
+		Challenge challenge=new ChallService().selectJoinChall(cno);
+		
+		request.setAttribute("challenge", challenge);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/confirm/confirmResult.jsp");
 	    view.forward(request, response);

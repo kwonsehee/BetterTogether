@@ -18,7 +18,7 @@
 			 , ARTICLE_CONTNENT
 			 , ARTICLE_DATE
 			 , ARTICLE_MODIFY
-			 , USER_ID
+			 , NICKNAME
 			 , ARTICLE_CNT
 			 , ARTICLE_TYPE
 		  FROM
@@ -42,6 +42,33 @@
 		VALUES
 		(
 			SEQ_NID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , DEFAULT
+		  , SYSDATE
+		  , DEFAULT
+		  , DEFAULT
+		)
+	</entry>
+	<entry key="insertNotice2">
+		INSERT
+		INTO NOTICE
+		(
+			   ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTNENT
+			 , USER_ID
+			 , ARTICLE_FILE
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
+		)
+		VALUES
+		(
+			SEQ_NID.NEXTVAL
+		  , ?
 		  , ?
 		  , ?
 		  , ?

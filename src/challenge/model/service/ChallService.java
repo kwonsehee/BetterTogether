@@ -1,3 +1,4 @@
+
 package challenge.model.service;
 
 import static common.JDBCTemplate.close;
@@ -40,26 +41,45 @@ public class ChallService {
 
 		close(conn);
 		return ch;
-	}
 
-	// 챌린지 등록
-	public int insertChall(Challenge ch) {
-		Connection conn = getConnection();
-
-		int result = new ChallDao().insertChall(conn, ch);
-
-		if (result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-
-		close(conn);
-
-		return result;
-	}
 
 	// 게시글 페이징을 위해 총 게시글 갯수 구하기
+   }
+   
+   // 챌린지 인증에서 사용
+   // 참여했던 챌린지의 정보를 가져오기 위한 서비스
+   public Challenge selectJoinChall(int challNo) {
+	   Connection conn = getConnection();
+		
+		ChallDao cd = new ChallDao();
+		
+		
+		Challenge ch = cd.selectChall(conn, challNo);
+		
+		close(conn);
+		return ch;
+   }
+   
+   // 챌린지 등록 
+   public int insertChall(Challenge ch) {
+      Connection conn = getConnection();
+      
+      int result = new ChallDao().insertChall(conn, ch);
+      
+      if(result > 0) {
+         commit(conn);
+      } else {
+         rollback(conn);
+      }
+      
+      close(conn);
+      
+      
+      
+      return result;
+   }
+   
+    // 게시글 페이징을 위해 총 게시글 갯수 구하기 
 	public int getListCount() {
 		Connection conn = getConnection();
 
@@ -216,6 +236,20 @@ public class ChallService {
 		return list;
 	}
 
+
+	//챌린지 이름 알아오기
+	public String getTitle(int cno) {
+		Connection conn = getConnection();
+		
+		String c_title = new ChallDao().selectCtitle(conn, cno);
+		
+		close(conn);
+		
+		return c_title;
+	}
+	
+
+
 	// 챌린지 참여중 인원 카운트 --> 삭제
 	public int updateJoinCount(int challNo) {
 		Connection conn = getConnection();
@@ -314,8 +348,7 @@ public class ChallService {
 
 		return result;
 	}
-
-	// challNo에 맞는 참가비 select해오기
+  	// challNo에 맞는 참가비 select해오기
 	public int selectTotalPay(int challNo) {
 		Connection conn = getConnection();
 		
@@ -340,6 +373,8 @@ public class ChallService {
 		
 		return result;
 	}
+	
+
 	
 
 }

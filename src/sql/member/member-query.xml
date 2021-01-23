@@ -13,6 +13,7 @@
 		  , MEMBER_TYPE
 		  , WRITE_ACTIVE
 		  , USER_CATE
+		  , POINT
 		  FROM
 		  		USER_INFO
 		  WHERE
@@ -29,6 +30,7 @@
 		  , NICKNAME
 		  , PHONE
 		  , EMAIL
+		  , USER_CATE
 		  , JOIN_DATE
 		  , MODIFY_DATE
 		  , MEMBER_TYPE
@@ -37,6 +39,7 @@
 		VALUES
 		(
 			?
+		  , ?
 		  , ?
 		  , ?
 		  , ?
@@ -70,6 +73,7 @@
 		  , MODIFY_DATE
 		  , MEMBER_TYPE
 		  , USER_CATE
+		  , POINT
 		  FROM
 		  		USER_INFO
 		  WHERE
@@ -102,5 +106,22 @@
 		  , MODIFY_DATE = SYSDATE
 		WHERE 
 			USER_ID = ?
+	</entry>
+	<entry key="updatePoint">
+		UPDATE USER_INFO
+		SET
+			POINT = ?
+		  , MODIFY_DATE = SYSDATE
+		WHERE 
+			USER_ID = ?
+	</entry>
+	<entry key="idCheck">
+		SELECT
+			   COUNT(*)
+		  FROM
+		  	   USER_INFO
+		 WHERE
+		 	   USER_ID = ?
+	
 	</entry>
 </properties>

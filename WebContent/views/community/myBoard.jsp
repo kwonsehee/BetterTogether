@@ -116,6 +116,7 @@ body {
 	border: 2px solid #ff60657e;
 	border-radius: 55px;
 	font-family: "Do Hyeon";
+	color: #757575;
 }
 
 .btn2 a {

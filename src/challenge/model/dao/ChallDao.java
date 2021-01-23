@@ -764,4 +764,35 @@ public class ChallDao {
 		return result;
 	}
 
+	//챌린지 이름 알아오기
+	public String selectCtitle(Connection conn, int cno) {
+		String c_title = "";
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectTitle");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+
+			pstmt.setInt(1, cno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				c_title = rset.getString(1);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return c_title;
+	}
+
+
 }

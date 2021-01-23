@@ -46,7 +46,7 @@ public class NoticeInsertServlet extends HttpServlet {
 			n = new Notice(title, content,writer);
 		}
 		
-		int result = new NoticeService().insertNotice(n);
+int result = new NoticeService().insertNotice(n);
 		
 		if(result>0) {
 			//공지사항 등록을 마친 뒤 공지사항 목록 화면을 응답하고자 할 때

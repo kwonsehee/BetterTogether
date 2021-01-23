@@ -53,7 +53,10 @@ public class ConfirmDao {
 				list.add(new Confirm(rset.getString("USER_ID"),
 									 rset.getInt("CHALL_NO"),
 									 rset.getInt("CHALL_STATUS"),
-									 rset.getDate("JOIN_CALL_DATE")));
+									 rset.getDate("JOIN_CALL_DATE"),
+									 rset.getString("CHALL_TITLE"),
+									 rset.getString("FILE_PATH"),
+									 rset.getString("CHALL_START")));
 				
 			}
 		} catch (SQLException e) {

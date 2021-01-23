@@ -35,7 +35,7 @@ public class BoardDeleteServlet extends HttpServlet {
 		int result = new BoardService().deleteBoard(bId);
 		
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/board/main");
+			response.sendRedirect(request.getContextPath() + "/board/myboardView");
 			request.getSession().setAttribute("msg", "게시글 삭제가 완료되었습니다.");
 		} else {
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
