@@ -100,13 +100,10 @@
             width:100px;
             font-family: "Do Hyeon";
             background: none;
-            border : 2px solid  #ff60657e;        
-        }
-        #back a {
+            border : 2px solid  #ff60657e;  
             font-size: 14px;
-            color: #ff60657e;
+            color: #ff60657e;      
         }
-        
         #write_option label{
         display:inline-block;
         background:#ff60657e;
@@ -171,7 +168,7 @@
         </script>
 
          <!-- 버튼 -->
-         <button class="btn" id="back"><a href="<%= request.getContextPath()%>/board/main">뒤로가기</a></button>
+         <button type="button" class="btn" id="back" onclick="javascript:history.back();">뒤로가기</button>
          <button class="btn" id="submit"><a>등록</a></button>
    		</form>
     </section>

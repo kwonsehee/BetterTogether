@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, common.model.vo.PageInfo, challenge.model.vo.*"%>
+ <%
+ 	ArrayList<Challenge> list = (ArrayList<Challenge>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	// 참여중인 인원 카운트 
+	//int joinPeopleCnt = Integer.parseInt((String.valueOf(request.getAttribute("joinPeopleCnt"))));
+
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +36,103 @@
 		    transition: transform 0.5s;
 		}
 		
-		.inner {
+			.outer {
 		    width: 100vw;
 		    float: left;
+		    height:500px;
 		}
 		
-		.inner img {
-		    width: 1000px;
-		    height: 500px;
+		.chall_box{
+			width:480px;
+			height:150px;
+			border:1px solid #F9F1F1;
+			margin-bottom:10px;
 		}
+		 
+		 
+		.chall_img {
+			width:150px;
+			height:90px;
+			margin-top:30px;
+			margin-left:10px;
+			float:left;
+		}
+		
+		
+		 .inner {
+			float:left;
+			margin:10px;
+		}
+		
+		.cTitle{
+			width:300px;
+			height:22px;
+			margin-left:170px;
+			margin-top:30px;
+			font-size:18px;
+			color : #757575;
+			font-weight: bold;
+			
+		}
+		
+		.cDate{
+			font-size:14px;
+			color : #757575;
+			margin-left:170px;
+			margin-top:0;
+		}
+		.cFrequency{
+		width:60px;
+		height:20px;
+		line-height:20px;
+		text-align:center;
+			font-size:14px;
+			color:white;
+			background-color : #bdbdbd;
+			border-radius:25px;
+		}
+		.cPeriod{
+		width:40px;
+		height:20px;
+		line-height:20px;
+		text-align:center;
+			font-size:14px;
+			color:white;
+			background-color : #bdbdbd;
+			border-radius:25px;
+			margin-right:100px;
+		}
+		
+		 .pCountArea{
+            border: 1px solid black;
+            width:80px;
+            height:20px;
+            background: #ff60657e;
+            color:white;
+            border-radius: 25px;
+            border:0px;
+            display:inline-block;
+			
+        }
+        .personIcon {
+            width:20px;
+            height: 18px;
+            float: left;
+            padding-left:5px;
+        }
+        .cpCount {
+            line-height: 20px;
+            font-size:14px;
+        }
+		
+		
+		.aaa {
+			float:left;
+			margin-left:10px;
+			margin-top:0;
+		}
+		
+		
 		
 		button:hover {
 		    cursor : pointer;
@@ -176,7 +272,7 @@
         <!-- 타이틀 -->
         <div id="con1_title">
             <h1 class="h1_title">인기 챌린지</h1>
-            <p><a>더보기</a></p>            
+            <p><a href="<%=request.getContextPath()%>/chall/list">더보기</a></p>            
         </div>
 
         <div class="line"></div>
@@ -185,17 +281,155 @@
         <section id="slide">
             <div style="overflow: hidden;">
                 <div class="container">
-                    <div class="inner">
-                        <img src='<%=request.getContextPath()%>/views/community/images/test1.jpeg'>
+                	<!-- 첫번째 슬라이드 -->
+					 <div class="outer">
+                    	 <div class="inner">
+                       	<% for(int i = 0; i < 3; i++){ %>
+                    	<% for(Challenge c : list){ %>
+                    	<% if(list.indexOf(c) == i){ %>
+                    		<div class="chall_box">
+                    		<img src="<%= request.getContextPath() %>/views/community/images/test1.jpeg" class="chall_img">
+                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<div class="pCountArea">
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+                       		</div>
+                       		</div>
+                       		<% } %>
+                       		<% } %>
+                       		<% } %>
+                    	</div>
+                    	<div class="inner">
+                    	<% for(int i = 3; i < 6; i++){ %>
+                    	<% for(Challenge c : list){ %>
+                    	<% if(list.indexOf(c) == i){ %>
+                    		<div class="chall_box">
+                    		<img src="<%= request.getContextPath() %>/views/community/images/test1.jpeg" class="chall_img">
+                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<div class="pCountArea">
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+                       		</div>
+                       		</div>
+                       		<% } %>
+                       		<% } %>
+                       		<% } %>
+                    	</div> 
+                    	<%-- <% for(Challenge c : list){ %>
+                    	<div class="chall_box">
+                    		<img src="<%= request.getContextPath() %>/views/community/images/test1.jpeg" class="chall_img">
+                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<div class="pCountArea">
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+                       		</div>
+                       		</div>
+                    	<% } %> --%>
                     </div>
+                    <!-- 두번째 슬라이드 -->
+                    <div class="outer">
                     <div class="inner">
-                        <img src='<%=request.getContextPath()%>/views/community/images/test2.jpeg'>
+                       	<% for(int i = 6; i < 9; i++){ %>
+                    	<% for(Challenge c : list){ %>
+                    	<% if(list.indexOf(c) == i){ %>
+                    		<div class="chall_box">
+                    		<img src="<%= request.getContextPath() %>/views/community/images/test1.jpeg" class="chall_img">
+                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<div class="pCountArea">
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+                       		</div>
+                       		</div>
+                       		<% } %>
+                       		<% } %>
+                       		<% } %>
+                    	</div>
+                    	<div class="inner">
+                    	<% for(int i = 9; i < 12; i++){ %>
+                    	<% for(Challenge c : list){ %>
+                    	<% if(list.indexOf(c) == i){ %>
+                    		<div class="chall_box">
+                    		<img src="<%= request.getContextPath() %>/views/community/images/test1.jpeg" class="chall_img">
+                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<div class="pCountArea">
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+                       		</div>
+                       		</div>
+                       		<% } %>
+                       		<% } %>
+                       		<% } %>
+                    	</div> 
                     </div>
-                    <div class="inner">
-                        <img src='<%=request.getContextPath()%>/views/community/images/test3.jpeg'>
+                    <!-- 세번째 슬라이드 -->
+                    <div class="outer">
+                    	 <div class="inner">
+                       	<% for(int i = 12; i < 15; i++){ %>
+                    	<% for(Challenge c : list){ %>
+                    	<% if(list.indexOf(c) == i){ %>
+                    		<div class="chall_box">
+                    		<img src="<%= request.getContextPath() %>/views/community/images/test1.jpeg" class="chall_img">
+                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<div class="pCountArea">
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+                       		</div>
+                       		</div>
+                       		<% } %>
+                       		<% } %>
+                       		<% } %>
+                    	</div>
+                    	<div class="inner">
+                    	<% for(int i = 15; i < 18; i++){ %>
+                    	<% for(Challenge c : list){ %>
+                    	<% if(list.indexOf(c) == i){ %>
+                    		<div class="chall_box">
+                    		<img src="<%= request.getContextPath() %>/views/community/images/test1.jpeg" class="chall_img">
+                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<div class="pCountArea">
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+                       		</div>
+                       		</div>
+                       		<% } %>
+                       		<% } %>
+                       		<% } %>
+                    	</div> 
                     </div>
                 </div>
             </div>
+            
+            <!-- 페이징으로 할때 슬라이드 버튼 -->
+           <%--  <div id="slidebtn_div">
+                <button id="slidebtn1" class="slidebtn" onclick="location.href='<%= request.getContextPath() %>/commu/main?currentPage=1'"> </button>
+                <% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+                <button id="slidebtn2" class="slidebtn" onclick="location.href='<%= request.getContextPath() %>/commu/main?currentPage=<%= p+1 %>'"> </button>
+                <% } %>
+                <button id="slidebtn3" class="slidebtn" onclick="location.href='<%= request.getContextPath() %>/commu/main?currentPage=<%= pi.getMaxPage() %>'"> </button>
+            </div> --%>
+            
+            <!-- 페이징ㄴㄴ 슬라이드 버튼 -->
             <div id="slidebtn_div">
                 <button id="slidebtn1" class="slidebtn"> </button>
                 <button id="slidebtn2" class="slidebtn"> </button>
@@ -203,28 +437,18 @@
             </div>
             
 
-            <script>
+             <script>
                 document.querySelector('#slidebtn2').addEventListener('click', function(){
                     document.querySelector('.container').style.transform = 'translate(-100vw)';
                     
                 })
                 document.querySelector('#slidebtn3').addEventListener('click', function(){
-                    document.querySelector('.container').style.transform = 'translate(-200vw)';
+                	document.querySelector('.container').style.transform = 'translate(-200vw)';
                 })
                 document.querySelector('#slidebtn1').addEventListener('click', function(){
                     document.querySelector('.container').style.transform = 'translate(0vw)';
                 })
 
-                var slidebtn = document.getElementsByClassName("slidebtn");
-            
-                for(var i = 0; i < slidebtn.length; i++){
-                    slidebtn[i].addEventListener('click',function(){
-                        for(var j = 0; j < slidebtn.length; j++){
-                            slidebtn[j].style.color = "#ff6064";
-                        }
-                        this.style.color = "rgba(255, 96, 100, 0.3)";
-                    })
-                }
             </script>
         </section>   
     </section>
