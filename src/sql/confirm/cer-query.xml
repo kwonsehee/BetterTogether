@@ -35,4 +35,30 @@
 			  , ?
 			)	
 	</entry>
+	<entry key="selectAllCerList">
+		SELECT
+			   CER_ID
+			 , CER_PIC
+             , CHALL_TITLE
+		  FROM
+		  	    CER C
+                JOIN CHALL USING(CHALL_NO)
+		  WHERE
+		  	    CHALL_NO = ?
+	</entry>
+	<entry key="selectCer">
+		SELECT 
+			   CER_ID
+			 , CER_PIC
+			 , CER_COMMENT
+			 , CER_DATE
+			 , C.USER_ID
+             , CHALL_TITLE
+		  FROM
+		  	    CER C
+		  	    JOIN CHALL USING(CHALL_NO)
+		  WHERE
+		  	    CER_ID = ?
+	
+	</entry>
 </properties>

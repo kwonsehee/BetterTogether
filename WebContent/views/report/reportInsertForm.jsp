@@ -11,7 +11,7 @@
 	
 	//각 카테고리의 고유번호 가져오기
 	int no = Integer.parseInt((String.valueOf(request.getAttribute("no"))));
-
+ 
 	
 %>
 <!DOCTYPE html>
@@ -160,7 +160,7 @@
 <section id="content" class="content_css">
         <form id="report_form" action="<%= request.getContextPath() %>/report/insert" method="post">
           <section id="title">
-                <p> <%=category %> 신고</p>
+                <p> <%-- <%=category %> --%> 신고</p>
                  <div class="line"></div>
             </section>
             <section id="content-1">
@@ -177,14 +177,14 @@
                     <tr>
                         <th><%=category %>번호</th>
                         <td>
-                           <input type="hidden"name="confirm_no"value="<%=no %>" readonly>
+                           <input type="hidden"name="confirm_no"value="<%=no %>" readonly> <%=no %>
                         </td>
                     </tr>
 
                     <tr>
                         <th>대상 닉네임</th>
                         <td>
-                            <input type="text" maxlength="50" name = "reported_id"value="<%=reported_id %>" readonly>
+                            <input type="text" maxlength="50" name = "reported_id"value=" <%=reported_id %> " readonly>
                         </td>
                     </tr>
 
@@ -194,6 +194,7 @@
                             <div class="filebox">
                                 <label for="ex_file">파일 첨부</label>
                                 <input type="file" id="ex_file" name="ex_file">
+                                <span class="filename">파일을 선택해주세요.</span>
                             </div>
                         </td>
                     </tr>
@@ -216,5 +217,14 @@
             
         </form>
     </section>
+       <script>
+             $(document).on("change", "#ex_file", function(){
+                var filename = $(this).val();
+                console.log(filename);
+                if(filename == "")
+                    filename = "파일을 선택해주세요.";
+                $(".filename").text(filename);
+                })
+        </script>
 </body>
 </html>

@@ -22,6 +22,16 @@ CHALL_NO	NUMBER
 		
 	}
 
+	public Cer(int cer_id, String cer_pic, String cer_comment, Date cer_date, String user_id, String chall_title) {
+		super();
+		this.cer_id = cer_id;
+		this.cer_pic = cer_pic;
+		this.cer_comment = cer_comment;
+		this.cer_date = cer_date;
+		this.user_id = user_id;
+		this.chall_title = chall_title;
+	}
+
 	public Cer(int cer_id, String cer_pic, String cer_comment, Date cer_date, String user_id, int chall_no) {
 		super();
 		this.cer_id = cer_id;

@@ -76,7 +76,7 @@ private Properties prop = new Properties();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, "사진경로11");
+			pstmt.setString(1, c.getCer_pic());
 			pstmt.setString(2, c.getCer_comment());
 			pstmt.setString(3, c.getUser_id());
 			pstmt.setInt(4, c.getChall_no());
@@ -92,5 +92,68 @@ private Properties prop = new Properties();
 		}
 		
 		return result;
+	}
+
+	//챌린지의 모든 인증은 가져오는 dao
+	public ArrayList<Cer> selectAllList(Connection conn, int cno) {
+		ArrayList<Cer>list = new ArrayList<Cer>();
+		PreparedStatement pstmt=null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAllCerList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cno);
+			
+			rset = pstmt.executeQuery();
+		
+			while(rset.next()) {
+				list.add(new Cer(rset.getInt("CER_ID"),
+								 rset.getString("CER_PIC"),
+								 rset.getString("CHALL_TITLE")));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	//디테일 뷰에 보여줄 인증하나 가져오기
+	public Cer selectCer(Connection conn, int ceno) {
+		PreparedStatement pstmt=null;
+		ResultSet rset = null;
+		Cer c=null;
+		
+		String sql = prop.getProperty("selectCer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, ceno);
+			
+			rset = pstmt.executeQuery();
+		
+			while(rset.next()) {
+				c = new Cer(rset.getInt("CER_ID"),
+						rset.getString("CER_PIC"),
+							rset.getString("CER_COMMENT"),
+							rset.getDate("CER_DATE"),
+							rset.getString("USER_ID"),
+							rset.getString("CHALL_TITLE"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return c;
 	}
 }

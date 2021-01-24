@@ -36,26 +36,47 @@ public class ConfirmListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-	//cer 디비사용
-	//로그인 세션의 회원 아이디와 넘어온 챌린지 넘버를 가지고 조회해야함 
-		HttpSession session = request.getSession();
-		Member m = (Member)session.getAttribute("loginUser");
-		String user_id = m.getUserId();
+		//cer 디비사용
+		String user_id="";
 		int cno = Integer.parseInt(request.getParameter("cno"));
-		System.out.println("confirm list servlet cno : "+cno);
 		
-		//챌린지 이름 알아오기
+		System.out.println("confirm list servlet cno : " + cno);
+
+		int join=0;
+		//로그인 세션의 회원 아이디와 넘어온 챌린지 넘버를 가지고 조회해야함 
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginUser") != null) {
+			Member m = (Member) session.getAttribute("loginUser");
+			user_id = m.getUserId();
+//			//user_id가 해당 챌린지 참여중인지 확인
+//			//1이면 참여중, 0이면 참여아님
+//			join = new ChallService().CheckJoin(user_id, cno);
+//			System.out.println("참여중인지 : "+join);
+		}
+	
+		// 챌린지 이름 알아오기
 		String c_title = new ChallService().getTitle(cno);
-		ArrayList <Cer>list = new CerService().selectCerList(user_id,cno);
 		
+		ArrayList <Cer>list = new ArrayList<Cer>();
+		
+		if(request.getParameter("title")==null) {
+			//챌린지모집에서 넘어왔을때는 인증 못하게 만들기
+			join=1;
+			list = new CerService().selectCerList(user_id,cno);
+			System.out.println("챌린지 인증에서 넘어왔을 때 : "+list);
+		}else {
+			join=0;
+			list = new CerService().selectAllCerList(cno);
+			System.out.println("챌린지 모집에서 인증보기로 넘어왔을 때 : "+list);
+		}
+			
 		System.out.println("cer list : "+list);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("title", c_title);
 		request.setAttribute("cno", cno);
-//		request.setAttribute("join", true);
+		request.setAttribute("join", join);
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/confirm/confirmListView.jsp");
 	    view.forward(request, response);
 	}

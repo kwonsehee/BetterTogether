@@ -585,7 +585,17 @@
    		 	  CHALL
    		WHERE
    		      CHALL_NO = ?
-   </entry>
-
+   	</entry>
+	<entry key="checkJoin">
+		SELECT
+			  COUNT(*)
+		  FROM
+		  	  CHALL_STATUS
+		 WHERE
+		 	  USER_ID = ?
+		  AND CHALL_NO = ?
+		  AND CHALL_STATUS = 1
+	</entry>
+	
 
 </properties>

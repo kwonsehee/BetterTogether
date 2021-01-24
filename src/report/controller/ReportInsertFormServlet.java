@@ -29,20 +29,21 @@ public class ReportInsertFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//인증, 자유게시판, 스터디카페, 챌린지신고클릭시 여기로 이동
-		
+		//한글 값 인코딩 처리
+		request.setCharacterEncoding("UTF-8");
+				
 		//confirm, board, cafe, challenge값을 받아옴
-		String category = request.getParameter("");
+		String category = request.getParameter("category");
 		//신고당하는 사람의 id값을 받아옴
-		String reported_id = request.getParameter("");
+		String reported_id = request.getParameter("reported_id");
 		//각 카테고리의 고유번호를 받아옴
-		int no = Integer.parseInt(request.getParameter(""));
-
+		int no = Integer.parseInt(request.getParameter("no"));
+		System.out.println(category +", "+reported_id+", "+no);
 		request.setAttribute("category", category);
 		request.setAttribute("reported_id", reported_id);
 		request.setAttribute("no", no);
 
-		RequestDispatcher view = request.getRequestDispatcher("/views/report/reportInserForm.jsp");
-		view.forward(request, response);
+		request.getRequestDispatcher("/views/report/reportInsertForm.jsp").forward(request, response);
 	}
 
 	/**

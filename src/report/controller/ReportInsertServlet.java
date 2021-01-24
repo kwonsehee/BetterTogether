@@ -42,8 +42,9 @@ public class ReportInsertServlet extends HttpServlet {
 		String reported_id=request.getParameter("reported_id");
 		String writer = loginUser.getUserId();
 		//인증번호 가져오기 
-		int confirm_no = Integer.parseInt(request.getParameter("confirm_no"));
-		System.out.println("서블릿 : "+title+content +reported_id+writer);
+		String confirm_no = request.getParameter("confirm_no");
+		int ceno=Integer.parseInt(confirm_no);
+		System.out.println("신고서블릿 : "+title+"신고서블릿 : "+content +"신고서블릿 : "+reported_id+"신고서블릿 : "+writer+"신고서블릿 : "+ceno);
 		//신고파일 처리
 		if(request.getParameter("ex_file")!=null) {
 			String file = request.getParameter("ex_file");
@@ -54,7 +55,7 @@ public class ReportInsertServlet extends HttpServlet {
 		System.out.println(r);
 		//신고 디비에 insert하는 과정
 		//인증신고 디비에 신고번호와 인증번호를 넣어줌
-		int result = new ReportService().insertReport(r, confirm_no);
+		int result = new ReportService().insertReport(r, ceno);
 		
 		if(result>0) {
 		

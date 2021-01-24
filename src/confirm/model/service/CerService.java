@@ -35,4 +35,24 @@ public class CerService {
 	
 		return result;
 	}
+
+	//챌린지의 모든 인증을 가져오는 서비스
+	public ArrayList<Cer> selectAllCerList(int cno) {
+		Connection conn = getConnection();
+		ArrayList<Cer>list = new CerDao().selectAllList(conn, cno);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	//디테일뷰에 보여줄 인증 하나 가져오기 
+	public Cer selectCer(int ceno) {
+		Connection conn = getConnection();
+		Cer c = new CerDao().selectCer(conn, ceno);
+		
+		close(conn);
+		
+		return c;
+	}
 }

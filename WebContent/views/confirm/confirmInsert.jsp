@@ -47,10 +47,12 @@ System.out.println(cno);
             
         }
   		.challenge_box{
-            width: 99%;
-            height: 80%;
+            
+            width: 400px;
+            height: 450px;
             border: 1px solid blue;
             float: left;
+            margin-left:18%;
         }
         .challenge_box_2 {
             border: 1px solid black;
@@ -102,7 +104,7 @@ System.out.println(cno);
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
-  <form action="<%= request.getContextPath() %>/confirm/submitForm" method="post">
+  <form action="<%= request.getContextPath() %>/confirm/submitForm" method="post" enctype="multipart/form-data">
          
     <section id="content" class="content_css">
 
@@ -129,9 +131,10 @@ System.out.println(cno);
                         <td><span>챌린지제목 : <%=title %></span></td>
                     </tr>
                 </table>
-                <div class='challenge_box'style="text-align : center;" >
+                <input type="file" name="pic"style="text-align : center;"required>
+                <div class='challenge_box'>
                 <!-- 사진추가하기 -->
-                    <img name="pic"src="" style="width: 400px;height: 450px;border:1px solid black;"/>
+                  	 <img id ="thumbnail" >
                 </div>
             </div>
 		<input type="hidden"name="cno"value=<%=cno %>>
@@ -144,7 +147,7 @@ System.out.println(cno);
         
             <input type="text"class="input_box_lag" name="comment">
             <button type="submit" class="comment"><span>인증하기</span></button>
-            <button type="button" id="backBtn" class="back_btn">목록으로</button>
+       		<button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();">목록으로</button>
 		
 		</div>     
         </section>
@@ -152,14 +155,41 @@ System.out.println(cno);
     </section>
     </form>
     
-    <script>
-   
-     	//목록으로 버튼 이벤트
-     	const backBtn = document.getElementById('backBtn');
-     	backBtn.addEventListener('click',function(){
-     		location.href='<%=request.getContextPath()%>/confirm/list';
-     	});
+   <script>
+			$(function(){
+				//input type="file"태그에 파일이 첨부될때 동작하는 이벤트
+				$("[type=file]").change(function(){
+					loadImg(this);
+				});
+			});
+			function loadImg(element){
+				//element를 판별해서 알맞은 위치에 preview표현하기
+				/* console.log(element.name); */
+				
+				//input type="file" 엘리먼트에 첨부파일 속성, 첨부파일이 잘 존재하는지 확인
+				if(element.files && element.files[0]){
+					//파일을 읽어들일 FileReader 객체 생성
+					var reader = new FileReader();
+					
+					//파일 읽기가 다 완료 되었을 때 실행되는 메소드
+					reader.onload =function(e){
+						var selector;
+						var size;
+				
+						selector = "#thumbnail";
+						size = {width: "400px", height: "450px", border:"1px solid black"};
+						$(selector).attr("src",e.target.result).css(size);
+						console.log(e);
+						console.log(e.target);
+						console.log(e.target.result);
+					}
+					//파일 읽기 하는 메소드
+					reader.readAsDataURL(element.files[0]);
 
-	</script>
+					
+				}
+			}
+			</script>
+
 </body>
 </html>
