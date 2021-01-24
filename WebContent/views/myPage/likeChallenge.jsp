@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, challenge.model.vo.Challenge"%>
+    
+<%
+	ArrayList<Challenge> cList = (ArrayList<Challenge>)request.getAttribute("cList");
+	
+	String challTitle = (String)request.getAttribute("challTitle");
+	String challPeriod = (String)request.getAttribute("challPeriod");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>찜하기한 챌린지 그룹</title>
 <style>
-	#likeChallForm{
+	.like_content{
         width: 950px;
 		height: 800px;
 		/* border: 1px solid black; */
@@ -24,7 +32,6 @@
         }
         
     #like1{
-          background-color: white;
           margin-top: 50px;
           margin-left: 00px;
           width: 900px;
@@ -35,21 +42,22 @@
           border-radius: 20px;
         }  
         
-       #readBtn{
+       #likeDetailBtn {
 	       border: 1px solid #fdc8c6;
 	       background-color: #fdc8c6;
 	       border-radius: 20px;
 	       font-family: "Do Hyeon";
 	       font-size: 18px;
-	       margin-right: 20px;
+	       margin-left: 20px;
   	 }
 
-    #deleteBtn{
+    #likeDeleteBtn{
         border: 1px solid #fdc8c6;
         background-color: #fdc8c6;
         border-radius: 20px;
         font-family: "Do Hyeon";
         font-size: 18px;
+        margin-left:20px;
     }
         
 	 #goMainBtn{
@@ -61,31 +69,65 @@
             margin-left : 400px;
             margin-top : 100px;
         }  
+       #like1 {
+           font-family: "Do Hyeon";
+            font-size: 36px;
+            margin-left: 0px;
+            margin-top: 50px;
+        }
+        
+        #like {
+        	font-family: "Do Hyeon";
+            font-size: 20px;
+            font-align : "center";
+            margin-left: 30px;
+            margin-top: 50px;
+            background-color : White;
+            width : 90%;
+        }
+        
+        #likeList {
+        	margin:auto;
+        	
+        	
+        }
         
       
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp" %>
-	<form id="likeChallForm" action="<%= request.getContextPath() %>/myPage/like" 
-	method="post">
-		<section id="content-1">
+
+		<section id="content" class="like_content">
            	<h1 id="title">찜하기한 챌린지 그룹</h1>
-           	<div id="like1"><a href="#"></a>
-           		<button type="button" id="readBtn"><a href="#">상세보기</a></button>
-               	<button type="remove" id="deleteBtn"><a href="#">삭제</a></button>
-  
-           	</div>
-    	</section>
-    	
+           		<% if(loginUser != null && cList!=null) { %>
+            		<div id="like">
+                 		<div id="likdChall">
+                 		<table id="likeList">
+                 			<tr>
+                 				<td>챌린지 제목</td>
+                 				<td>챌린지 기간</td>
+                 			</tr>
+         			<% for(Challenge chall : cList) { %>
+                 			<tr>
+                 				<td><%= chall.getChallTitle() %></td>
+                 				<td><%= chall.getChallPeriod() %><%-- <button id="likeDetailBtn" onclick="location.href='<%=request.getContextPath() %>/chall/join?chall_no='"+chall_no>상세보기</button> --%><button type="delete" id="likeDeleteBtn">찜하기 취소</button></td>
+                 			</tr>
+          			<% } %> 
+                 		</table>
+                 		</div>
+           			</div>
+      			<% } else { %>
+       				 <div id="like1">찜하기한 챌린지 그룹이 없습니다.</div>
+       			<% } %>
     	<button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button>
-    	
-    </form>
+    	</section>	
+ 
    	<script>
 	 //1.메인으로 돌아가기
 	const goMainBtn = document.getElementById('goMainBtn');
 	goMainBtn.addEventListener('click',function(){
-		location.href='<%=request.getContextPath()%>';
+		location.href='<%= request.getContextPath()%>';
 	});
    	</script>
 </body>

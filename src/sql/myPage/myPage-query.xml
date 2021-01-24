@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key = "getListCount">
+   		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL C
+   		 	  JOIN CHALL_STATUS S USING(CHALL_NO)
+   		WHERE 
+   			  CHALL_STATUS = 2
+   	      AND S.USER_ID = ?
+	 </entry>
+	 <entry key="joinedSelectList">
+      SELECT
+      	     RNUM
+           , CHALL_NO
+           , CHALL_TITLE
+           , CHALL_PEOPLE
+           , CHALL_DATE
+           , FILE_PATH
+           , CHALL_CONFIRM
+           , CHALL_FREQUENCY
+           , CHALL_PERIOD
+           , CHALL_PAYMENT
+           , CHALL_CONTENT
+           , CHALL_COUNT
+           , NICKNAME
+           , CATE_NAME
+           , CHALL_CNT
+           , CHALL_START
+        FROM 
+             CLIST
+             JOIN CHALL_STATUS USING(CHALL_NO)
+       WHERE
+     	     RNUM BETWEEN ? AND ?    
+         AND CHALL_STATUS = 2
+         AND USER_ID = ?
+   </entry>
+   
+   <entry key="getjoinedSearchTitleListCount">
+   	   SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL
+   		 	  JOIN CHALL_STATUS USING(CHALL_NO)
+   		WHERE
+   			  CHALL_TITLE LIKE '%' || ? || '%'
+   		  AND CHALL_STATUS = 2
+   </entry>
+   
+   <entry key="getjoinedSearchCategoryListCount">
+   	   SELECT
+   			  COUNT(*)
+   		 FROM
+   		 	  CHALL
+   		 	  JOIN CATEGORY USING (CATE_ID)
+   		 	  JOIN CHALL_STATUS USING(CHALL_NO)
+   		WHERE
+   			  CATE_NAME LIKE '%' || ? || '%'
+   		  AND CHALL_STATUS = 2
+   </entry>
+   
+   <entry key="getjoinedSearchWriterListCount">
+   	   SELECT
+   		      COUNT(*)
+   		 FROM 
+   		 	  CHALL
+   		 	  JOIN USER_INFO USING (USER_ID)
+   		 	  JOIN CHALL_STATUS USING(CHALL_NO)
+   		WHERE
+   			  NICKNAME LIKE '%' || ? || '%' 	
+   		  AND CHALL_STATUS = 2  
+   </entry>
+	<entry key="joinedselectSearchTitleListCount">
+   		SELECT
+	   		   RNUM
+	         , CHALL_NO
+	         , CHALL_TITLE
+	         , CHALL_PEOPLE
+	         , CHALL_DATE
+	         , FILE_PATH
+	         , CHALL_CONFIRM
+	         , CHALL_FREQUENCY
+	         , CHALL_PERIOD
+	         , CHALL_PAYMENT
+	         , CHALL_CONTENT
+	         , CHALL_COUNT
+	         , NICKNAME
+	         , CATE_NAME
+	         , CHALL_CNT
+	         , CHALL_START
+	      FROM
+	    	   (SELECT
+	    	 		   ROWNUM RNUM
+	    	 	     , C.*
+	    	      FROM
+	    	 		   (SELECT
+    	 				       CHALL_NO
+    	 				     , CHALL_TITLE
+    	 				     , CHALL_PEOPLE
+    	 				     , CHALL_DATE
+    	 				     , FILE_PATH
+    	 				     , CHALL_CONFIRM
+    	 				     , CHALL_FREQUENCY
+    	 				     , CHALL_PERIOD
+    	 				     , CHALL_PAYMENT
+               			     , CHALL_CONTENT
+               			     , CHALL_COUNT
+               			     , NICKNAME
+               			     , CATE_NAME
+               			     , CHALL_CNT
+               			     , CHALL_START  
+         				  FROM
+         				 	   CHALL
+          					   JOIN CHALL_CATEGORY USING(CATE_ID)
+          					   JOIN USER_INFO USING (USER_ID)
+          					   JOIN CHALL_STATUS USING (CHALL_NO)
+          			     WHERE 
+          					   CHALL_TITLE LIKE '%' || ? || '%'
+          			  ORDER BY
+          					   CHALL_NO DESC)
+          	    C)
+          WHERE
+          	    RNUM BETWEEN ? AND ? 
+          	AND CHALL_STATUS = 2
+   </entry>
+   
+   <entry key="joinedselectSearchCategoryListCount">
+   		SELECT
+	   		   RNUM
+	         , CHALL_NO
+	         , CHALL_TITLE
+	         , CHALL_PEOPLE
+	         , CHALL_DATE
+	         , FILE_PATH
+	         , CHALL_CONFIRM
+	         , CHALL_FREQUENCY
+	         , CHALL_PERIOD
+	         , CHALL_PAYMENT
+	         , CHALL_CONTENT
+	         , CHALL_COUNT
+	         , NICKNAME
+	         , CATE_NAME
+	         , CHALL_CNT
+	         , CHALL_START
+	      FROM
+	    	   (SELECT
+	    	 		   ROWNUM RNUM
+	    	 		 , C.*
+	    	 	  FROM
+	    	 		   (SELECT
+	    	 				   CHALL_NO
+	    	 				 , CHALL_TITLE
+	    	 				 , CHALL_PEOPLE
+	    	 				 , CHALL_DATE
+	    	 				 , FILE_PATH
+	    	 				 , CHALL_CONFIRM
+	    	 				 , CHALL_FREQUENCY
+	    	 				 , CHALL_PERIOD
+	    	 				 , CHALL_PAYMENT
+                			 , CHALL_CONTENT
+                			 , CHALL_COUNT
+                			 , NICKNAME
+                			 , CATE_NAME
+                			 , CHALL_CNT
+                			 , CHALL_START  
+         				  FROM
+         				 	   CHALL
+          					   JOIN CHALL_CATEGORY USING(CATE_ID)
+          					   JOIN USER_INFO USING (USER_ID)
+          					   JOIN CHALL_STATUS USING(CHALL_NO)
+          				 WHERE 
+          					   CATE_NAME LIKE '%' || ? || '%'
+          			  ORDER BY
+          					   CHALL_NO DESC)
+          	    C)
+          WHERE
+          	    RNUM BETWEEN ? AND ? 
+          	AND CHALL_STATUS = 2 
+   
+   </entry>
+   
+   <entry key="joinedselectSearchWriterListCount">
+   		SELECT
+	   		   RNUM
+	         , CHALL_NO
+	         , CHALL_TITLE
+	         , CHALL_PEOPLE
+	         , CHALL_DATE
+	         , FILE_PATH
+	         , CHALL_CONFIRM
+	         , CHALL_FREQUENCY
+	         , CHALL_PERIOD
+	         , CHALL_PAYMENT
+	         , CHALL_CONTENT
+	         , CHALL_COUNT
+	         , NICKNAME
+	         , CATE_NAME
+	         , CHALL_CNT
+	         , CHALL_START
+	      FROM
+	    	   (SELECT
+	    	 		   ROWNUM RNUM
+	    	 		 , C.*
+	    	 	  FROM
+	    	 		   (SELECT
+	    	 				   CHALL_NO
+	    	 				 , CHALL_TITLE
+	    	 				 , CHALL_PEOPLE
+	    	 				 , CHALL_DATE
+	    	 				 , FILE_PATH
+	    	 				 , CHALL_CONFIRM
+	    	 				 , CHALL_FREQUENCY
+	    	 				 , CHALL_PERIOD
+	    	 				 , CHALL_PAYMENT
+                			 , CHALL_CONTENT
+                			 , CHALL_COUNT
+                			 , NICKNAME
+                			 , CATE_NAME
+                			 , CHALL_CNT
+                			 , CHALL_START  
+         				 FROM
+         				 	   CHALL
+          					   JOIN CHALL_CATEGORY USING(CATE_ID)
+          					   JOIN USER_INFO USING (USER_ID)
+          					   JOIN CHALL_STATUS USING(CHALL_NO)
+          				WHERE 
+          					   NICKNAME LIKE '%' || ? || '%'
+          			 ORDER BY
+          					   CHALL_NO DESC)
+          		C)
+          WHERE
+          	    RNUM BETWEEN ? AND ? 
+          	AND CHALL_STATUS = 2
+   
+   </entry>
+   <entry key="joinedList">
+   		SELECT
+   			   CHALL_NO
+   			 , CHALL_TITLE
+   			 , CHALL_PERIOD
+   		  FROM 
+   		  	   CHALL C
+   		  	   JOIN CHALL_STATUS S USING(CHALL_NO)
+   		 WHERE 
+   		 	   C.USER_ID = ?
+   		   AND CHALL_STATUS = 2
+   		  	 
+   </entry>
+   
+   
+   <entry key="likeList">
+   		SELECT
+   			   CHALL_NO
+   			 , CHALL_TITLE
+   			 , CHALL_PERIOD
+   		  FROM 
+   		  	   CHALL C
+   		  	   JOIN CHALL_STATUS S USING(CHALL_NO)
+   		 WHERE 
+   		 	   C.USER_ID = ?
+   		   AND C_HITS = 'Y'	
+   </entry>
+   
+   <entry key="joiningList">
+   		SELECT
+   			   CHALL_NO
+   			 , CHALL_TITLE
+   			 , CHALL_PERIOD
+   		  FROM 
+   		  	   CHALL C
+   		  	   JOIN CHALL_STATUS S USING(CHALL_NO)
+   		 WHERE 
+   		 	   C.USER_ID = ?
+   		   AND CHALL_STATUS = 1		
+   </entry>
+</properties>
