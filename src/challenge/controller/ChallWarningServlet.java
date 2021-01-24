@@ -1,6 +1,8 @@
 package challenge.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,14 +29,18 @@ public class ChallWarningServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 챌린지 번호
-		int challNo = Integer.parseInt(request.getParameter("challNo"));
+		int no = Integer.parseInt(request.getParameter("no"));
 		// 신고대상
-		String name = request.getParameter("name");
+		String reported_id = request.getParameter("reported_id");
 		// 챌린지 (제목)
-		String title = request.getParameter("title");
+		String category = request.getParameter("category");
 		
+		request.setAttribute("no", no);
+		request.setAttribute("reported_id", reported_id);
+		request.setAttribute("category", category);
 		
-		
+		RequestDispatcher view = request.getRequestDispatcher("/views/challenge/reportInsertForm.jsp");
+		view.forward(request, response);
 		
 
 	}
