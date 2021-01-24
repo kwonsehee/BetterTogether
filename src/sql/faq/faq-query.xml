@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectFAQ">
+		SELECT
+				FAQ_NO
+		  	  , FAQ_TITLE
+		  	  , FAQ_CONTENT
+		  	  , FAQ_DATE
+		  	  , FAQ_MODIFY	  
+		      , FAQ_STATUS
+		  	  , USER_ID
+		 FROM
+		 		FAQ
+	    WHERE
+				FAQ_STATUS = 'Y'	
+	</entry>
+	<entry key="insertFAQ">
+		INSERT
+		INTO FAQ
+		(
+			FAQ_NO
+		  , FAQ_TITLE
+		  , FAQ_CONTENT
+		  , FAQ_DATE
+		  , FAQ_MODIFY	  
+		  , FAQ_STATUS
+		  , USER_ID
+		)
+		VALUES
+		(
+		  	SEQ_FAQID.NEXTVAL
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+	</entry>
+</properties>

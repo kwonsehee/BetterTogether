@@ -267,7 +267,7 @@
                      <a id="qnaBtn">Q&A</a>
                   </button></li>
                <li><button class="nav_btn">
-                     <a>F&A</a>
+                     <a id="faqBtn">FAQ</a>
                   </button></li>
             </ul></li>
       </ul>
@@ -335,6 +335,17 @@
 		location.href="<%= request.getContextPath()%>/views/member/MemberEdit.jsp";
 	});
 	
+	// FAQ버튼
+	const faqBtn = document.getElementById("faqBtn");
+	faqBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/faq/list";
+	 });
+	
+	// 신고버튼
+	const reportBtn = document.getElementById("reportBtn");
+	reportBtn.addEventListener('click',function(){
+		location.href="<%= request.getContextPath()%>/report/list";
+	 });
 	</script>
 
 

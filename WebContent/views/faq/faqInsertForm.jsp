@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/qnaStyle.css'>--%>
+<%-- <link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/FAQStyle.css'>--%>
 <style>
 body {
 	width: 1000px;
@@ -29,7 +29,6 @@ body {
 }
 
 #title {
-
 	text-align: center;
 	font-family: "Do Hyeon";
 	font-size: 24px;
@@ -42,7 +41,7 @@ body {
 	width: 990px;
 }
 
-.qnaTable {
+.FAQTable {
 	border-top: 3px solid rgba(255, 96, 100, 0.7);
 	width: 990px;
 }
@@ -68,9 +67,7 @@ body {
 	background: none;
 	font-family: "Do Hyeon";
 	font-size: 20px;
-	
 }
-
 
 .btn {
 	width: 130px;
@@ -115,41 +112,42 @@ body {
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
-	<form action="<%= request.getContextPath() %>/qna/insert" method="POST"
-		id="QnA-form">
+	<form action="<%=request.getContextPath()%>/faq/insert" method="POST"
+		id="FAQ-form">
 		<section id="con1">
 			<table id="writebox">
 				<tr>
 					<td>
-						<h1 id="title">Q & A</h1>
+						<h1 id="title">F A Q</h1>
 					</td>
 				</tr>
 				<tr>
-					<td class="qnaTable"><input type="text" maxlength="50" name="title" id="write_title" placeholder="제목을 입력해주세요."></td>
+					<td class="FAQTable"><input type="text" maxlength="50"
+						name="title" id="write_title" placeholder="제목을 입력해주세요."></td>
 				</tr>
-				<tr >
-					<td class="qnaTable"><textarea cols="50" id="writeArea" rows="15"
-							name="content" placeholder="내용을 입력해주세요."></textarea></td>
+				<tr>
+					<td class="FAQTable"><textarea cols="50" id="writeArea"
+							rows="15" name="content" placeholder="내용을 입력해주세요."></textarea></td>
 				</tr>
 			</table>
 		</section>
 
 		<!-- 등록 버튼 , 나가기 버튼 -->
 		<div>
-		<button type="button" class="btn" id="backBtn">
-			<a>뒤로가기</a>
-		</button>
-		<button type="submit" class="btn">
-			<a>등록하기</a>
-		</button>
+			<button type="button" class="btn" id="backBtn">
+				<a>뒤로가기</a>
+			</button>
+			<button type="submit" class="btn">
+				<a>등록하기</a>
+			</button>
 
-		<script>
+			<script>
 		// 뒤로가기
 		const backBtn = document.getElementById('backBtn');
 		backBtn.addEventListener('click',function(){
-			location.href='<%=request.getContextPath()%>/qna/list';
-		});
-		</script>
+			location.href='<%=request.getContextPath()%>/faq/list';
+				});
+			</script>
 		</div>
 	</form>
 </body>

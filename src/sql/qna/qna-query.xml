@@ -2,21 +2,21 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="selectList">
-		SELECT
-				QNA_NO
+		 SELECT
+		 	    RNUM
+			  , QNA_NO
 			  , QNA_TITLE
 			  , QNA_CONTENT
 			  , QNA_DATE
 			  , QNA_MODIFY	  
 			  , Q_REFERENCE
 			  , QNA_TYPE
+              , QNA_STATUS
 			  , USER_ID
-		 FROM
-		 		QNA
-	    WHERE
-	    		QNA_TYPE = 'Y'
-	 ORDER BY
-	 			QNA_NO DESC
+		   FROM
+		 		BLIST 
+          WHERE 
+          		RNUM BETWEEN ? AND ?
 	</entry>
 	<entry key="insertQuestion">
 		INSERT
@@ -30,6 +30,7 @@
 		  , FAQ
 		  , Q_REFERENCE
 		  , QNA_TYPE
+		  , QNA_STATUS
 		  , USER_ID
 		)
 		VALUES
@@ -39,8 +40,9 @@
 		  , ?
 		  , SYSDATE
 		  , SYSDATE
-		  , 'f'
-		  , 1
+		  , DEFAULT
+		  , NULL
+		  , 'Q'
 		  , 'Y'
 		  , ?
 		)
@@ -54,12 +56,56 @@
 			  , QNA_MODIFY	  
 			  , Q_REFERENCE
 			  , QNA_TYPE
+			  , QNA_STATUS
 			  , USER_ID
 		 FROM
 		 		QNA
 	    WHERE
-	    		QNA_TYPE = 'Y'
+	    		QNA_TYPE = 'Q'
 	      AND	QNA_NO = ?
 	      		
+	</entry>
+	<entry key="getListCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	QNA
+		 WHERE
+		 	  	QNA_TYPE = 'Q'
+		   AND	QNA_STATUS = 'Y'
+	</entry>
+	<entry key="selectQnA">
+		 SELECT
+			    QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY
+			  , Q_REFERENCE
+			  , QNA_TYPE
+			  , QNA_STATUS
+			  , USER_ID
+		  FROM
+		  	    QNA
+          WHERE 
+                QNA_NO = ?
+	</entry>
+	<entry key="updateQuestion">
+		UPDATE
+  			   QNA
+  		   SET
+  		   	   QNA_TITLE = ?
+  		   	 , QNA_CONTENT = ?
+  		 WHERE
+  			   QNA_NO = ?
+	</entry>
+	<entry key="deleteQuestion">
+		UPDATE
+  			   QNA
+  		   SET
+  		   	   QNA_STATUS = 'N'
+  		 WHERE
+  		 	   QNA_NO = ?
+  		   AND QNA_TYPE = 'Q'	   
 	</entry>
 </properties>

@@ -15,13 +15,13 @@ import qna.model.vo.QnA;
  * Servlet implementation class qnaDetailServlet
  */
 @WebServlet("/qna/detail")
-public class qnaDetailServlet extends HttpServlet {
+public class QnADetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public qnaDetailServlet() {
+	public QnADetailServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

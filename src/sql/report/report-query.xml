@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="getListCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	REPORT
+	</entry>
+	<entry key="selectList">
+		 SELECT
+		 	    RNUM
+			  ,	REPORT_NO
+              , REPORT_TITLE
+              , REPORTED_ID
+              , REPORT_FILE
+              , REPORT_CONTENT
+              , REPORT_DATE
+              , REPORT_MODIFY
+              , T_F
+              , USER_ID
+		   FROM
+		 		RELIST
+          WHERE 
+          		RNUM BETWEEN ? AND ?
+	</entry>
+</properties>

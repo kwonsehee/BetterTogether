@@ -23,6 +23,7 @@ public class QnA {
 	private	int qReference;
 	private String qnaType;
 	private String userId;
+	private String qnaStatus;
 	
 	public QnA() {}
 
@@ -40,8 +41,10 @@ public class QnA {
 		this.userId = userId;
 	}
 	
+	
+
 	public QnA(int qnaNo, String qnaTitle, String qnaContent, Date qnaDate, Date qnaModify, int qReference,
-			String qnaType, String userId) {
+			String qnaType, String userId, String qnaStatus) {
 		super();
 		this.qnaNo = qnaNo;
 		this.qnaTitle = qnaTitle;
@@ -50,10 +53,9 @@ public class QnA {
 		this.qnaModify = qnaModify;
 		this.qReference = qReference;
 		this.qnaType = qnaType;
+		this.qnaStatus = qnaStatus;
 		this.userId = userId;
 	}
-	
-	
 
 	public QnA(String qnaTitle, String qnaContent, String userId) {
 		super();
@@ -126,6 +128,13 @@ public class QnA {
 		this.qnaType = qnaType;
 	}
 
+	public String getQnaStatus() {
+		return qnaStatus;
+	}
+	
+	public void setQnaStatus(String qnaStatus) {
+		this.qnaStatus = qnaStatus;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -138,8 +147,7 @@ public class QnA {
 	public String toString() {
 		return "QnA [qnaNo=" + qnaNo + ", qnaTitle=" + qnaTitle + ", qnaContent=" + qnaContent + ", qnaDate=" + qnaDate
 				+ ", qnaModify=" + qnaModify + ", faq=" + faq + ", qReference=" + qReference + ", qnaType=" + qnaType
-				+ ", userId=" + userId + "]";
+				+ ", userId=" + userId + ", qnaStatus=" + qnaStatus + "]";
 	}
-	
-	
+
 }

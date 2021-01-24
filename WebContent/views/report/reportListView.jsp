@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, qna.model.vo.QnA, common.model.vo.PageInfo"%>
- <% 
-	ArrayList<QnA> qnaList = (ArrayList<QnA>)request.getAttribute("list");
- 	PageInfo pi = (PageInfo)request.getAttribute("pi");
- %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, report.model.vo.Report, common.model.vo.PageInfo"%>
+<%
+	ArrayList<Report> reList = (ArrayList<Report>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/qnaStyle.css'>--%>
 <style>
 	 body {
             width: 1000px;
@@ -150,25 +149,23 @@
                     <tr id="th_title">
                         <th id="tb_num">번호</th>
                         <th id="tb_title">제목</th>
-                        <th id="tb_author">작성자</th>
-                        <th id="tb_date">날짜</th>
+                        <th id="tb_author">신고 날짜</th>
+                        <th id="tb_date">처리여부</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <%if(qnaList.isEmpty()){ %>
+                    <%if(reList.isEmpty()){ %>
 					<tr>
 						<td colspan="6">존재하는 질문이 없습니다.</td>
 					</tr>
 					<%} else { %>
-						<% for(QnA q : qnaList){ %>
-							<% if(q.getQnaType().equals("Q")) { %>
+						<% for(Report r : reList){ %>
 						<tr>
-							<td><%= q.getQnaNo() %></td>
-							<td><%= q.getQnaTitle() %></td>
-							<td><%= q.getUserId()%></td>
-							<td><%= q.getQnaDate()%></td>
+							<td><%= r.getReportNo() %></td>
+							<td><%= r.getReportTitle() %></td>
+							<td><%= r.getReportDate() %></td>
+							<td><%= r.getT_F() %></td>
 						</tr>
-							<%} %>
 						<%} %>	
 					<%} %>
                 </tbody>
@@ -179,13 +176,13 @@
             <!-- 페이징 바 -->
 			<div class="pagingArea">
 			<!-- 맨 처음으로 (<<) -->
-			<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=1'"> &lt;&lt; </button>
+			<button onclick="location.href='<%= request.getContextPath() %>/report/list?currentPage=1'"> &lt;&lt; </button>
 			
 			<!-- 이전 페이지로 (<) -->
 			<% if(pi.getCurrentPage() == 1){ %>
 				<button disabled> &lt; </button>
 			<%} else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
+				<button onclick="location.href='<%= request.getContextPath() %>/report/list?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
 			<% } %>
 			
 			<!-- 10개의 페이지 목록 -->
@@ -193,24 +190,24 @@
 				<% if(p == pi.getCurrentPage()){ %>
 				<button style="background:lightgray;" disabled> <%= p %> </button>
 				<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= p %>'"> <%= p %> </button>				
+				<button onclick="location.href='<%= request.getContextPath() %>/report/list?currentPage=<%= p %>'"> <%= p %> </button>				
 				<% } %>
 			<%} %>
 			<!-- 다음 페이지로(>) -->
 			<%if(pi.getCurrentPage() == pi.getMaxPage()){ %>
 				<button disabled> &gt; </button>
 				<%} else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
+				<button onclick="location.href='<%= request.getContextPath() %>/report/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
 			<% } %>
 			
 			<!-- 맨 끝으로(>>) -->
-			<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+			<button onclick="location.href='<%= request.getContextPath() %>/report/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 		</div>
 		
 		<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
 				<% if(loginUser != null) { %>
 				<button id="questionBtn" type="button" 
-				onclick="location.href='<%= request.getContextPath() %>/views/qna/qnaInsertForm.jsp'"><a>질문하기</a></button>
+				onclick="location.href='<%= request.getContextPath() %>/views/report/qnaInsertForm.jsp'"><a>신고하기</a></button>
 				<% } %>
         </div>
         
@@ -224,11 +221,11 @@
 			}).mouseout(function(){
 				$(this).parent().css("background", "#f9f1f1");
 			}).click(function(){
-				var qnaNo = $(this).parent().children().eq(0).text();
+				var reportNo = $(this).parent().children().eq(0).text();
 				
 				// 로그인 한 사람만 게시글 상세 페이지 접근 가능하도록
 				<% if(loginUser != null) { %>
-					location.href='<%= request.getContextPath() %>/qna/detail?qnaNo=' + qnaNo;
+					location.href='<%= request.getContextPath() %>/report/detail?reportNo=' + reportNo;
 				<% } else { %>
 					alert('로그인 해야만 게시글 보기가 가능합니다.');
 				<% } %>
