@@ -158,19 +158,19 @@
          //2.참여했던 챌린지 그룹
            const joinedChallBtn = document.getElementById('joinedChallBtn');
            joinedChallBtn.addEventListener('click',function(){
-            location.href="<%= request.getContextPath()%>/views/myPage/joinedChallenge.jsp";
+            location.href="<%= request.getContextPath()%>/joined/list";
          });
          
          //3.찜하기한 챌린지 그룹
           const likeChallBtn = document.getElementById('likeChallBtn');
           likeChallBtn.addEventListener('click',function(){
-            location.href="<%= request.getContextPath()%>/views/myPage/likeChallenge.jsp";
+            location.href="<%= request.getContextPath()%>/like/list";
          });
          
          //4.참여중인 챌린지 그룹
           const challingBtn = document.getElementById('challingBtn');
           challingBtn.addEventListener('click',function(){
-            location.href="<%= request.getContextPath()%>/views/myPage/joiningChallenge.jsp";
+            location.href="<%= request.getContextPath()%>/joining/list";
          });
          
          //5.내가 모집한 챌린지 그룹
