@@ -370,10 +370,21 @@ public class ChallService {
 		}else {
 			rollback(conn);
 		}
-		
+		close(conn);
 		return result;
 	}
-	
+
+//	//user_id가 cno에 참여중인지 확인
+//	public int CheckJoin(String user_id, int cno) {
+//		Connection conn = getConnection();
+//		
+//		int result = new ChallDao().CheckJoin(conn, user_id, cno);
+//		
+//		close(conn);
+//		
+//		return result;
+//	}
+//	
 
 	
 

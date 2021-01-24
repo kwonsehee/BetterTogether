@@ -8,6 +8,8 @@
 	int cno = Integer.parseInt((String.valueOf(request.getAttribute("cno"))));
 	System.out.println(cno);
 	int loop = 4<list.size() ? 4 :list.size();
+	int join = Integer.parseInt((String.valueOf(request.getAttribute("join"))));
+	System.out.println("confirmListView : "+join);
 %>
 <!DOCTYPE html>
 <html>
@@ -97,7 +99,11 @@
 <section id="content" class="content_css">
 
         <section id="content-1">
+        <%if(join==0){ %>
+         <p>인증모아보기</p>	
+        <%}else{ %>
             <p>인증하기</p>
+		<%} %>
             <div class="line"></div>
         </section> 
 
@@ -108,49 +114,84 @@
                 <table class="confirm_table"style="width : 100%; height: 80%; border : solid 1px red;">
                  <% if(list.isEmpty()) { %>
                  <tr style="border : solid 1px red;">
-                 	<p>아직 <%=title %> 챌린지 인증사진이 없습니다.</p>
+                 	<th style="color : red; font-size:35px;">챌린지 인증사진이 없습니다.</th>
                  </tr>
                  <tr>
-                   <td ><input type="submit" value="+" class="plus_btn" id="plusBtn"></td>
+                   <%if(join>0){ %>
+                        <th ><input type="submit" value="+" class="plus_btn" id="plusBtn"></th>
+                    <%} %>
                  </tr>
                   <% } else { %>
                   		
                   <tr style="border : solid 1px red;">
-                    <% for(int i=0;i<loop;i++) { %>
-                        <td style="border : solid 1px red;"><%=list.get(i).getCer_pic() %></td>
+                    <% for(int i=0;i<4;i++) { %>
+                        <td style="border : solid 1px red;">
+                       <%--  <div type="hidden" value="<%=list.get(i).getCer_id() %>"></div> --%>
+                        <input type="hidden" name="ceno" value="<%=list.get(i).getCer_id() %>">	
+                        <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= list.get(i).getCer_pic()%>">
+                        </td>
                     <% } %>
                     </tr>
                     <tr>
                     <% for(int i=4;i<list.size();i++) { %>
-                        <td style="border : solid 1px red;"><%=list.get(i).getCer_pic() %></td>
+                        <td style="border : solid 1px red;">
+                        <input type="hidden" value="<%=list.get(i).getCer_id() %>">   
+                        <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= list.get(i).getCer_pic()%>">
+                        </td>
                     <% } %>
                     
-                    
-                        <td ><input type="submit" value="+" class="plus_btn" id="plusBtn"></td>
+                    <%if(join>0){ %>
+                        <th><input type="submit" value="+" class="plus_btn" id="plusBtn"></th>
+                     <script>
+                        
+                        //+버튼 클릭 이벤트
+                        const plusBtn = document.getElementById('plusBtn');
+                        plusBtn.addEventListener('click',function(){
+                           location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>';
+                        });
+                        
+						</script>  
+                 
+                    <%} %>
+                     
                     </tr>    
                     
                  <% } %>
                 </table>
             </div>
-            <button type="button" id="backBtn" class="back_btn">목록으로</button>
-			
+            <button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();">목록으로</button>
+		
+            
         </section>
 	  
     </section>
 	<script>
-    //+버튼 클릭 이벤트
+   <%--  //+버튼 클릭 이벤트
          const plusBtn = document.getElementById('plusBtn');
          plusBtn.addEventListener('click',function(){
             location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>';
          });
          
-
-     	//목록으로 버튼 이벤트
+ --%>
+     <%-- 	//목록으로 버튼 이벤트
      	const backBtn = document.getElementById('backBtn');
      	backBtn.addEventListener('click',function(){
      		location.href='<%= request.getContextPath()%>/confirm/joinchalllist';
      	});
-
+ --%>
+  //인증 디테일으로 이동
+	$(function(){
+		$(".confirm_table td").mouseover(function(){
+			console.log("들어옴 ");
+			$(this).css("background","#f7dede");
+		}).mouseout(function(){
+			$(this).css("background", "#f9f1f1");
+		}).click(function(){
+			var ceno = $(this).children().eq(0).val();
+			location.href='<%= request.getContextPath() %>/confirm/detail?ceno=' + ceno;
+			
+		});
+	});
 	</script>
 </body>
 </html>

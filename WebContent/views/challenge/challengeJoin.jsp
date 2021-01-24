@@ -317,12 +317,21 @@ button:focus {
 				</tr>
 			</table>
 			<hr color=#ff6064 width="450px" id="line">
+			
+			
+		<!-- 인증모아보기 갈때 challeng_no가져가기 -->
+			<form id="confirmForm" method="post">
+				<input type="hidden" name="cno" value="<%= ch.getChallNo() %>">	
+				<input type="hidden" name="title" value="챌린지">  
 			<p id="join_title2">챌린지 인증 방법 
 			<!-- 인증보기 버튼 (참여중/종료)일때만 보이기 -->
 			<% if(ch.getChallContent().equals("2") || ch.getChallContent().equals("3")){ %>
 			<button id="challConfirm_btn">인증보기</button>
 			<%} %>
 			</p>
+			</form>
+			
+			
 			<table id="join_table2">
 				<tr>
 					<td><img
@@ -422,6 +431,12 @@ button:focus {
 		$("#warningForm").submit();
 	});
 	
+	//인증리스트보기
+	const challConfirm_btn = document.getElementById('challConfirm_btn');
+	challConfirm_btn.addEventListener('click',function(){
+		$("#confirmForm").attr("action", "<%= request.getContextPath()%>/confirm/list");
+		$("#confirmForm").submit();
+	});
 	</script>
 
 	</section>

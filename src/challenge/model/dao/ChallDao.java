@@ -793,6 +793,38 @@ public class ChallDao {
 		
 		return c_title;
 	}
+//	//user_id가 cno에 참여중인지 확인
+//	public int CheckJoin(Connection conn, String user_id, int cno) {
+//		ResultSet rset = null;
+//		PreparedStatement pstmt = null;
+//		int result = 0;
+//		
+//		String sql = prop.getProperty("checkJoin");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			
+//
+//			
+//			pstmt.setString(1, user_id);
+//			pstmt.setInt(2, cno);
+//			
+//			rset = pstmt.executeQuery();
+//			
+//			if(rset.next()) {
+//				result = rset.getInt(1);
+//				
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//			close(rset);
+//		}
+//		
+//		return result;
+//	}
 
 
 }
