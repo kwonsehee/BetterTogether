@@ -82,7 +82,7 @@
             border-radius: 20px;
             border: solid 1px #fdc8c6;
             background-color: #fdc8c6;
-            margin-top: -25px;
+            margin-top: -60px;
             float: right;
             font-size: 20px;
             margin-right: 50px;

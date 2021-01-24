@@ -2,6 +2,13 @@
 	pageEncoding="UTF-8"
 	import="challenge.model.vo.Challenge, member.model.vo.Member"%>
 <%
+	// 1:카카오페이 받기위해 
+	int payment = Integer.parseInt((String.valueOf(request.getAttribute("payment"))));
+	
+	// 결제할 챌린지 넘버 받기위해
+	//int challNo = Integer.parseInt((String.valueOf(request.getAttribute("challNo"))));
+	
+	// 해당 챌린지의 결제 정보 알아오기 위해 
 	Challenge ch = (Challenge)request.getAttribute("challenge");   
 	Member m = (Member)session.getAttribute("loginUser");
 
@@ -72,13 +79,32 @@ button:focus {
 	width: 20px;
 	height: 20px;
 }
+
+#paySuccessBtn {
+	font-family: "Do Hyeon";
+	width: 130px;
+	height: 50px;
+	border-radius: 20px;
+	border: solid 1px #fdc8c6;
+	background-color: #fdc8c6;
+	float: left;
+	font-size: 20px;
+	margin-left: 430px;
+	margin-top: 40px;
+}
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
 
+<%-- 	<form method="POST" id="payForm">
+		<input type="hidden" name="challNo" value="<%= ch.getChallNo() %>">
+		<input type="hidden" name="payment" value="<%= payment %>">
+	</form>
+ --%>
 	<section id="content" class="content_css">
-	</section>
+	</section> 
+
 
 	<script>
 	$(function(){
@@ -105,7 +131,7 @@ button:focus {
 	                  msg += '\n상점 거래ID : ' + rsp.merchant_uid;
 	                  msg += '\n결제 금액 : ' + rsp.paid_amount;
 	                  msg += '\n카드 승인번호 : ' + rsp.apply_num;
-		              location.href="<%=request.getContextPath()%>/chall/list";
+		              location.href="<%=request.getContextPath()%>/pay/insert?challNo=<%= ch.getChallNo()%>&payment=<%= payment%>";
 	          } else {
 	               var msg = '결제에 실패하였습니다.';
 	               msg += '에러내용 : ' + rsp.error_msg;
@@ -116,10 +142,23 @@ button:focus {
 	       });		
 		
 	});
+	
+	// response.sendRedirect(request.getContextPath() + "/chall/join?challNo="+challNo);
 
 
 </script>
-		
+
+<%-- 
+	<script>
+	const paySuccessBtn = document.getElementById('paySuccessBtn');
+	paySuccessBtn.addEventListener('click',function(){
+		alert("챌린지 참여가 되었습니다!!");
+		$("#payForm").attr("action", "<%= request.getContextPath()%>/pay/insert");
+		$("#payForm").submit();
+	});
+	
+	</script> --%>
+
 
 </body>
 </html>

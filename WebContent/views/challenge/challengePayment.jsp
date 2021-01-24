@@ -224,10 +224,6 @@ font-family: "Do Hyeon";
       </form>
    </section>
  
-   
-   <!-- 결제 API / 회원보유포인트 (선택)-->
-	
-	<!-- 결제 후 완료 버튼 누르기 (챌린지현황에 회원 참여중으로 update됨) -->
 
 
 </body>

@@ -419,9 +419,9 @@ button:focus {
 		
 		<!-- form 태그를 post 방식으로 제출 신고대상, 챌린지번호, "챌린지" 이름을 화면에 드러내지 않고 form을 submit 하면서 넘길 수 있음-->
 	<form id="warningForm" method="post">
-		<input type="hidden" name="challNo" value="<%= ch.getChallNo() %>">
-		<input type="hidden" name="name" value="<%= ch.getUserId() %>"> 
-		<input type="hidden" name="title" value="챌린지">  
+		<input type="hidden" name="no" value="<%= ch.getChallNo() %>">
+		<input type="hidden" name="reported_id" value="<%= ch.getUserId() %>"> 
+		<input type="hidden" name="category" value="챌린지">  
 	</form>
 	
 	<script>
