@@ -31,7 +31,7 @@ public class Challenge {
 	private int cateId;// 카테고리 선택시 이동화면에 필요***********
 	private String cateName; // 카테고리 이름
 	private int challCnt; // 조회수
-	private String challStart; // 챌린지 시작일
+	private Date challStart; // 챌린지 시작일
 
 	public Challenge() {
 	}
@@ -39,7 +39,7 @@ public class Challenge {
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
 			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
 			int confirmCnt, String userId, String nickName, int cateId, String cateName, int challCnt,
-			String challStart) {
+			Date challStart) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -62,7 +62,7 @@ public class Challenge {
 
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
 			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
-			int confirmCnt, String nickName, String cateName, int challCnt, String challStart) {
+			int confirmCnt, String nickName, String cateName, int challCnt, Date challStart) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -83,7 +83,7 @@ public class Challenge {
 	
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
 			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
-			int confirmCnt, String nickName, String userId, String cateName, int challCnt, String challStart) {
+			int confirmCnt, String nickName, String userId, String cateName, int challCnt, Date challStart) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -105,7 +105,7 @@ public class Challenge {
 
 	// 챌린지 개설
 	public Challenge(String challTitle, String cateName, String challFile, String challConfirm, String challFrequency,
-			String challPeriod, String challStart, int challPay, int challPeople, String challContent, int confirmCnt,
+			String challPeriod, Date challStart, int challPay, int challPeople, String challContent, int confirmCnt,
 			String userId) {
 		super();
 		this.challTitle = challTitle;
@@ -123,7 +123,7 @@ public class Challenge {
 	}
 	
 	// 커뮤니티 슬라이드 인기 챌린지 조회용
-	public Challenge(int challNo, String challTitle, String challFile, String challFrequency,String challPeriod, String challStart) {
+	public Challenge(int challNo, String challTitle, String challFile, String challFrequency,String challPeriod, Date challStart) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -257,11 +257,11 @@ public class Challenge {
 		this.challCnt = challCnt;
 	}
 
-	public String getChallStart() {
+	public Date getChallStart() {
 		return challStart;
 	}
 
-	public void setChallStart(String challStart) {
+	public void setChallStart(Date challStart) {
 		this.challStart = challStart;
 	}
 

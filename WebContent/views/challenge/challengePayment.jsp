@@ -7,6 +7,9 @@
 	String name = m.getNickName();
 	String email = m.getEmail();
 	String phone = m.getPhone();
+	
+	// 참가인원 총 결제 금액
+	int pplTotalPay = ch.getChallPay() * ch.getChallPeople();
 
 %>
 <!DOCTYPE html>
@@ -130,10 +133,10 @@ button:focus{
 
 #totalPay{
 font-family: "Do Hyeon";
-	width: 90px;
+	width: 100px;
 	height: 30px;
 	border-radius: 10px;
-	border: solid 1px #fdc8c6;
+	border: solid 1px  rgb(156, 154, 154);
 	background-color: rgb(156, 154, 154);
 	font-size: 20px;
 	padding-bottom:7px;
@@ -180,7 +183,7 @@ font-family: "Do Hyeon";
             <table id="table-2">
                <tr>
                	  <!-- 현재 참가 인원수 * 참가비 (추후수정) -->
-                  <td>참가 인원 총 금액  :<span> 40,000 원 </span></td>
+                  <td>참가 인원 총 금액  : <span><%=pplTotalPay %> 원</span></td>
                </tr>
             </table>
          </section>
