@@ -67,7 +67,7 @@
         }
         
        #bwriter{
-         margin-left: 70%;	 
+         margin-left: 75%;	 
          font-size: 16px;  
          color:#757575;
         } 
@@ -93,6 +93,16 @@
         #back a {
             font-size: 14px;
             color: #ff60657e;
+        }
+        #report {
+         background: none;
+            border : 2px solid  #ff60657e;   
+        	 width:70px;
+        	margin-left:795px;
+        }
+        #report a {
+        	  color: #ff60657e;
+        
         }
 </style>
 </head>
@@ -123,5 +133,6 @@
 
         <!-- 버튼 -->
         <button class="btn" id="back"><a href='<%= request.getContextPath()%>/board/main'>뒤로가기</a></button>
+        <button class="btn" id="report"><a href='<%= request.getContextPath()%>/report/insertForm'>신고</a></button>
 </body>
 </html>

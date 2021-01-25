@@ -107,22 +107,21 @@
             border: 1px solid black;
             width:80px;
             height:20px;
-            background: #ff60657e;
-            color:white;
+            color:rgba(255, 96, 100, 0.7);
             border-radius: 25px;
             border:0px;
             display:inline-block;
 			
         }
         .personIcon {
-            width:20px;
-            height: 18px;
+            width:22px;
+            height: 20px;
             float: left;
             padding-left:5px;
         }
         .cpCount {
             line-height: 20px;
-            font-size:14px;
+            font-size:16px;
         }
 		
 		
@@ -294,8 +293,8 @@
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -313,27 +312,15 @@
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
                        		</div>
                        		</div>
                        		<% } %>
                        		<% } %>
                        		<% } %>
                     	</div> 
-                    	<%-- <% for(Challenge c : list){ %>
-                    	<div class="chall_box">
-                    		<img src="<%= request.getContextPath() %>/views/community/images/test1.jpeg" class="chall_img">
-                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
-                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
-                       		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
-                       		</div>
-                       		</div>
-                    	<% } %> --%>
+                    	
                     </div>
                     <!-- 두번째 슬라이드 -->
                     <div class="outer">
@@ -348,8 +335,8 @@
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -367,8 +354,8 @@
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -389,8 +376,8 @@
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -408,8 +395,8 @@
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/person.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234명</p>
+	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -420,14 +407,6 @@
                 </div>
             </div>
             
-            <!-- 페이징으로 할때 슬라이드 버튼 -->
-           <%--  <div id="slidebtn_div">
-                <button id="slidebtn1" class="slidebtn" onclick="location.href='<%= request.getContextPath() %>/commu/main?currentPage=1'"> </button>
-                <% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
-                <button id="slidebtn2" class="slidebtn" onclick="location.href='<%= request.getContextPath() %>/commu/main?currentPage=<%= p+1 %>'"> </button>
-                <% } %>
-                <button id="slidebtn3" class="slidebtn" onclick="location.href='<%= request.getContextPath() %>/commu/main?currentPage=<%= pi.getMaxPage() %>'"> </button>
-            </div> --%>
             
             <!-- 페이징ㄴㄴ 슬라이드 버튼 -->
             <div id="slidebtn_div">

@@ -75,6 +75,11 @@ public class CommuMainServlet extends HttpServlet {
 	      request.setAttribute("list", list);
 	     // request.setAttribute("joinPeopleCnt", joinPeopleCnt);
 		
+	      // 찜횟수 가져오기
+	     // int hitsCount = cs.getHitsCount(cNo);
+	      
+	     // request.setAttribute("hitsCount", hitsCount);
+	      
 		RequestDispatcher view= request.getRequestDispatcher("/views/community/commuMain.jsp");
 		view.forward(request, response);
 	
