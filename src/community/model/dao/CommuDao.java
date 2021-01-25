@@ -79,7 +79,7 @@ public class CommuDao {
 									   rset.getString(4),
 									   rset.getString(5),
 									   rset.getString(6),
-									   rset.getString(7)
+									   rset.getDate(7)
 									   ));
 			}
 			
