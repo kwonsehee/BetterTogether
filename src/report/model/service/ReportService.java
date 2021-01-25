@@ -1,13 +1,12 @@
 package report.model.service;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import common.model.vo.PageInfo;
-import qna.model.dao.QnADao;
-import qna.model.vo.QnA;
 import report.model.dao.ReportDao;
 import report.model.vo.Report;
 
@@ -24,6 +23,7 @@ public class ReportService {
 		return listCount;
 	}
 
+	// 신고페이징뷰
 	public ArrayList<Report> selectList(PageInfo pi) {
 		Connection conn = getConnection();
 
@@ -32,6 +32,16 @@ public class ReportService {
 		close(conn);
 
 		return list;
+	}
+
+	public Report selectReport(int rNo) {
+		Connection conn = getConnection();
+
+		Report r = new ReportDao().selectReport(conn, rNo);
+
+		close(conn);
+
+		return r;
 	}
 
 }

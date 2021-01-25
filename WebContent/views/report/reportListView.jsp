@@ -32,7 +32,6 @@
         }
 
         #con2_title h1{
-            /* position: absolute; */
             width: 1000px;  
             text-align: center;
             margin-top: 25px;
@@ -40,16 +39,14 @@
         }
 
         .h1_title {
-           border-bottom: 3px solid #ff60657e;          
-           margin-top: 50px;
-           text-align: center;
            font-family: "Do Hyeon";
            font-size: 24px;
            color : #757575;
         }
 
-        .line {
-            border: 3px solid rgba(255, 96, 100, 0.7);
+        #line {
+            border: 2px solid rgba(255, 96, 100, 0.7);
+            margin-bottom: 10px;
         }
 
         /* 게시판 */
@@ -61,7 +58,6 @@
         }
 
         #qnaBoard th, #qnaBoard td {
-            border-bottom: 1px solid #75757552;
             padding: 2px;
             padding-left: 10px;
             text-align: center;
@@ -130,6 +126,10 @@
 		.pagingArea button:hover {
 			cursor:pointer;
 		}
+		
+		.pagingArea {
+			padding-top: 2%;
+		}
 </style>
 </head>
 <body>
@@ -141,6 +141,7 @@
         <div id="con2_title">
             <h1 class="h1_title">Q n A</h1>
         </div>
+        <div id="line"></div>
         
         <!-- qnaBoard -->
         <div id="board_div">
@@ -160,12 +161,14 @@
 					</tr>
 					<%} else { %>
 						<% for(Report r : reList){ %>
+						<% if(r.getReportStatus().equals("Y")) { %>
 						<tr>
 							<td><%= r.getReportNo() %></td>
 							<td><%= r.getReportTitle() %></td>
 							<td><%= r.getReportDate() %></td>
-							<td><%= r.getT_F() %></td>
+							<td><%= r.getT_F()%></td>
 						</tr>
+							<%} %>
 						<%} %>	
 					<%} %>
                 </tbody>
@@ -205,7 +208,7 @@
 		</div>
 		
 		<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
-				<% if(loginUser != null) { %>
+				<% if(loginUser != null && loginUser.getMembertype() != 0) { %>
 				<button id="questionBtn" type="button" 
 				onclick="location.href='<%= request.getContextPath() %>/views/report/qnaInsertForm.jsp'"><a>신고하기</a></button>
 				<% } %>
@@ -221,11 +224,11 @@
 			}).mouseout(function(){
 				$(this).parent().css("background", "#f9f1f1");
 			}).click(function(){
-				var reportNo = $(this).parent().children().eq(0).text();
+				var rNo = $(this).parent().children().eq(0).text();
 				
 				// 로그인 한 사람만 게시글 상세 페이지 접근 가능하도록
 				<% if(loginUser != null) { %>
-					location.href='<%= request.getContextPath() %>/report/detail?reportNo=' + reportNo;
+					location.href='<%= request.getContextPath() %>/report/detail?rNo=' + rNo;
 				<% } else { %>
 					alert('로그인 해야만 게시글 보기가 가능합니다.');
 				<% } %>

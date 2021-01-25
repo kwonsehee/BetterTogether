@@ -79,7 +79,8 @@ public class ReportDao {
 						         rset.getDate(7),
 						         rset.getDate(8),
 						         rset.getString(9),
-						         rset.getString(10)));
+						         rset.getString(10),
+						         rset.getString(11)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,6 +90,41 @@ public class ReportDao {
 		}
 		
 		return list;
+	}
+
+	public Report selectReport(Connection conn, int rNo) {
+		Report r = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReport");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, rNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = new Report(rset.getInt("REPORT_NO"),
+							rset.getString("REPORT_TITLE"),
+							rset.getString("REPORTED_ID"),
+							rset.getString("REPORT_FILE"),
+							rset.getString("REPORT_CONTENT"),
+							rset.getDate("REPORT_DATE"),
+							rset.getDate("REPORT_MODIFY"),
+							rset.getString("T_F"),
+							rset.getString("REPORT_STATUS"),
+							rset.getString("USER_ID"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return r;
 	}
 
 }

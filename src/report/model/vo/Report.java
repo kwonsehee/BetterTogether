@@ -23,12 +23,13 @@ public class Report {
 	private Date reportDate;
 	private Date reportModify;
 	private String T_F;
+	private String reportStatus;
 	private String userId;
 	
 	public Report() {}
 
 	public Report(int reportNo, String reportTitle, String reportedId, String reportFile, String reportContent,
-			Date reportDate, Date reportModify, String t_F, String userId) {
+			Date reportDate, Date reportModify, String t_F, String reportStatus,String userId) {
 		super();
 		this.reportNo = reportNo;
 		this.reportTitle = reportTitle;
@@ -37,7 +38,8 @@ public class Report {
 		this.reportContent = reportContent;
 		this.reportDate = reportDate;
 		this.reportModify = reportModify;
-		T_F = t_F;
+		this.T_F = t_F;
+		this.reportStatus = reportStatus;
 		this.userId = userId;
 	}
 
@@ -108,6 +110,16 @@ public class Report {
 	public String getUserId() {
 		return userId;
 	}
+	
+	
+
+	public String getReportStatus() {
+		return reportStatus;
+	}
+
+	public void setReportStatus(String reportStatus) {
+		this.reportStatus = reportStatus;
+	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -117,7 +129,8 @@ public class Report {
 	public String toString() {
 		return "Report [reportNo=" + reportNo + ", reportTitle=" + reportTitle + ", reportedId=" + reportedId
 				+ ", reportFile=" + reportFile + ", reportContent=" + reportContent + ", reportDate=" + reportDate
-				+ ", reportModify=" + reportModify + ", T_F=" + T_F + ", userId=" + userId + "]";
+				+ ", reportModify=" + reportModify + ", T_F=" + T_F + ", reportStatus=" + reportStatus + ", userId="
+				+ userId + "]";
 	}
-	
+
 }

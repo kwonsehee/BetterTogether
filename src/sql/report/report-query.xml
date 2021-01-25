@@ -24,4 +24,20 @@
           WHERE 
           		RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="selectReport">
+		SELECT
+				REPORT_NO
+			  , REPORT_TITLE
+			  , REPORTED_ID
+			  , REPORT_FILE
+			  , REPORT_CONTENT
+			  , REPORT_DATE
+			  , REPORT_MODIFY
+			  , T_F
+			  , USER_ID
+		 FROM
+		 		REPORT
+		WHERE	
+				REPORT_NO = ?
+	</entry>
 </properties>
