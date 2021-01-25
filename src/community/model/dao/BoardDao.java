@@ -13,6 +13,7 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
 import common.model.vo.PageInfo;
+import community.model.vo.Attachment;
 import community.model.vo.Board;
 import community.model.vo.Search;
 
@@ -186,8 +187,8 @@ public class BoardDao {
 		} finally {
 			close(pstmt);
 		}
-
 		return result;
+		
 	}
 
 	// 조회수 증가
@@ -360,6 +361,36 @@ public class BoardDao {
 
 		return result;
 		
+	}
+
+	// 게시글 파일 첨부
+	public int insertPhoto(Connection conn, ArrayList<Attachment> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertPhoto");
+		
+		try {
+			for(int i = 0; i < fileList.size(); i++) {
+				
+			pstmt = conn.prepareStatement(sql);
+			
+			Attachment at = fileList.get(i);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result += pstmt.executeUpdate();
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
 	}
 
 }

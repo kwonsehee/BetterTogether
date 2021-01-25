@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import common.model.vo.PageInfo;
 import community.model.dao.BoardDao;
+import community.model.vo.Attachment;
 import community.model.vo.Board;
 import community.model.vo.Search;
 
@@ -57,14 +58,14 @@ public class BoardService {
 		return list;
 	}
 
-	// 글쓰기
-	public int insertBoard(Board b) {
+	// 글쓰기 & 파일 첨부
+	public int insertBoard(Board b, ArrayList<Attachment> fileList) {
 		Connection conn = getConnection();
 
 		int result = new BoardDao().insertBoard(conn, b);
-		;
+		int result2 = new BoardDao().insertPhoto(conn, fileList);
 
-		if (result > 0) {
+		if (result > 0 && result2 == fileList.size()) {
 			commit(conn);
 		} else {
 			rollback(conn);
@@ -72,6 +73,8 @@ public class BoardService {
 
 		close(conn);
 
+		System.out.println(result);
+		System.out.println(result2);
 		return result;
 	}
 
