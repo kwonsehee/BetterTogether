@@ -34,7 +34,7 @@ public class ReportDao {
 	}
 	
 	//신고 디비에 값 넣기
-	public int insertReport(Connection conn, Report r, int confirm_no) {
+	public int insertConfirmReport(Connection conn, Report r, int no) {
 		int result = 0;
 		PreparedStatement pstmt=null;
 		
@@ -43,17 +43,17 @@ public class ReportDao {
 		try {
 			
 			if(r.getReport_file()==null) {
-				sql=prop.getProperty("insertReport");
+				sql=prop.getProperty("insertConfirmReport");
 				pstmt = conn.prepareStatement(sql);
 
 				pstmt.setString(1, r.getReport_title());
 				pstmt.setString(2, r.getReported_id());
 				pstmt.setString(3, r.getReport_content());
 				pstmt.setString(4, r.getUser_id());
-				pstmt.setInt(5, confirm_no);
+				pstmt.setInt(5, no);
 				
 			}else {
-				sql=prop.getProperty("insertReport2");
+				sql=prop.getProperty("insertConfirmReport2");
 				pstmt = conn.prepareStatement(sql);
 			
 				pstmt.setString(1, r.getReport_title());
@@ -61,7 +61,7 @@ public class ReportDao {
 				pstmt.setString(3, r.getReport_file());
 				pstmt.setString(4, r.getReport_content());
 				pstmt.setString(5, r.getUser_id());
-				pstmt.setInt(6, confirm_no);
+				pstmt.setInt(6, no);
 			
 			}
 			
@@ -78,4 +78,135 @@ public class ReportDao {
 		return result;
 	}
 
+	public int insertChallReport(Connection conn, Report r, int no) {
+		int result = 0;
+		PreparedStatement pstmt=null;
+		
+		String sql="";
+		
+		try {
+			
+			if(r.getReport_file()==null) {
+				sql=prop.getProperty("insertChallReport");
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, r.getReport_title());
+				pstmt.setString(2, r.getReported_id());
+				pstmt.setString(3, r.getReport_content());
+				pstmt.setString(4, r.getUser_id());
+				pstmt.setInt(5, no);
+				
+			}else {
+				sql=prop.getProperty("insertChallReport2");
+				pstmt = conn.prepareStatement(sql);
+			
+				pstmt.setString(1, r.getReport_title());
+				pstmt.setString(2, r.getReported_id());
+				pstmt.setString(3, r.getReport_file());
+				pstmt.setString(4, r.getReport_content());
+				pstmt.setString(5, r.getUser_id());
+				pstmt.setInt(6, no);
+			
+			}
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertBoardReport(Connection conn, Report r, int no) {
+		int result = 0;
+		PreparedStatement pstmt=null;
+		
+		String sql="";
+		
+		try {
+			
+			if(r.getReport_file()==null) {
+				sql=prop.getProperty("insertBoardReport");
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, r.getReport_title());
+				pstmt.setString(2, r.getReported_id());
+				pstmt.setString(3, r.getReport_content());
+				pstmt.setString(4, r.getUser_id());
+				pstmt.setInt(5, no);
+				
+			}else {
+				sql=prop.getProperty("insertBoardReport2");
+				pstmt = conn.prepareStatement(sql);
+			
+				pstmt.setString(1, r.getReport_title());
+				pstmt.setString(2, r.getReported_id());
+				pstmt.setString(3, r.getReport_file());
+				pstmt.setString(4, r.getReport_content());
+				pstmt.setString(5, r.getUser_id());
+				pstmt.setInt(6, no);
+			
+			}
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertCafeReport(Connection conn, Report r, int no) {
+		int result = 0;
+		PreparedStatement pstmt=null;
+		
+		String sql="";
+		
+		try {
+			
+			if(r.getReport_file()==null) {
+				sql=prop.getProperty("insertCafeReport");
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, r.getReport_title());
+				pstmt.setString(2, r.getReported_id());
+				pstmt.setString(3, r.getReport_content());
+				pstmt.setString(4, r.getUser_id());
+				pstmt.setInt(5, no);
+				
+			}else {
+				sql=prop.getProperty("insertCafeReport2");
+				pstmt = conn.prepareStatement(sql);
+			
+				pstmt.setString(1, r.getReport_title());
+				pstmt.setString(2, r.getReported_id());
+				pstmt.setString(3, r.getReport_file());
+				pstmt.setString(4, r.getReport_content());
+				pstmt.setString(5, r.getUser_id());
+				pstmt.setInt(6, no);
+			
+			}
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			close(pstmt);
+		}
+		return result;
+	}
 }

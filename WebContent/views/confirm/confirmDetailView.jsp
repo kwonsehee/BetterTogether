@@ -135,7 +135,7 @@ Cer c=(Cer)request.getAttribute("cer");
 		
 			<input type="hidden" name="no" value="<%= c.getCer_id() %>">
 			<input type="hidden" name="reported_id" value="<%= c.getUser_id() %>"> 
-			<input type="hidden" name="category" value="cer">  
+			<input type="hidden" name="category" value="인증">  
 		
 	
         <section id="content-4">

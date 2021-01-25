@@ -417,7 +417,7 @@ button:focus {
 		
 		</script> 
 		
-		<!-- form 태그를 post 방식으로 제출 신고대상, 챌린지번호, "챌린지" 이름을 화면에 드러내지 않고 form을 submit 하면서 넘길 수 있음-->
+<!-- form 태그를 post 방식으로 제출 신고대상, 챌린지번호, "챌린지" 이름을 화면에 드러내지 않고 form을 submit 하면서 넘길 수 있음-->
 	<form id="warningForm" method="post">
 		<input type="hidden" name="no" value="<%= ch.getChallNo() %>">
 		<input type="hidden" name="reported_id" value="<%= ch.getUserId() %>"> 
@@ -427,7 +427,7 @@ button:focus {
 	<script>
 	const warning_btn = document.getElementById('warning_btn');
 	warning_btn.addEventListener('click',function(){
-		$("#warningForm").attr("action", "<%= request.getContextPath()%>/chall/warning");
+		$("#warningForm").attr("action", "<%= request.getContextPath()%>/report/insertForm");
 		$("#warningForm").submit();
 	});
 	

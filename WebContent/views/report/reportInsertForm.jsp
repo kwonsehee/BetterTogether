@@ -160,7 +160,7 @@
 <section id="content" class="content_css">
         <form id="report_form" action="<%= request.getContextPath() %>/report/insert" method="post">
           <section id="title">
-                <p> <%-- <%=category %> --%> 신고</p>
+                <p><input type="hidden"name="category"value="<%=category %>" readonly><%=category %> 신고</p>
                  <div class="line"></div>
             </section>
             <section id="content-1">
@@ -177,7 +177,7 @@
                     <tr>
                         <th><%=category %>번호</th>
                         <td>
-                           <input type="hidden"name="confirm_no"value="<%=no %>" readonly> <%=no %>
+                           <input type="hidden"name="no"value="<%=no %>" readonly> <%=no %>
                         </td>
                     </tr>
 
