@@ -1,19 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+/* 	Member m = (Member)(session.getAttribute("loginUser"));
+ */
+%>
+
+<%
+	if(request.getAttribute("msg")!=null){
+		if(request.getAttribute("msg").equals("success")){
+%>
+<script>
+	alert("신고에 성공하였습니다.");
+	window.close();
+</script>
+<%}
+}%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>내가 신고한 글</title>
 <style>
-	#joinedChallForm{
+	#report_form{
         width: 950px;
-		height: 800px;
-		/* border: 1px solid black; */
-		margin-top: -6%;
-		padding-left: 5%;
-		 background-color: #f9f1f1;
-		 border-radius: 20px;
+      height: 1000px;
+      /* border: 1px solid black; */
+      margin-top: -6%;
+      padding-left: 5%;
+       background-color: #f9f1f1;
+       border-radius: 20px;
         }
     
     #title{
@@ -25,8 +41,8 @@
         
      #report {
             background-color: white;
-            width: 900px;
-            height: 170px;
+            width: 850px;
+            height: 800px;
             text-align: center;
             font-family: "Do Hyeon";
             font-size: 24px;
@@ -47,8 +63,13 @@
 	<%@ include file="../common/common_ui.jsp" %>
 	<form id="joinedChallForm" action="<%= request.getContextPath() %>/myPage/joined" 
 	method="post">
-	<section id="content-1">
+	<section id="report_form">
 		<h1 id="title">내가 신고한 글</h1>
+		<!-- 내가신고당한 횟수를 알려주는 부분  -->
+		
+		<div>
+		
+		</div>
         <div id="report">
                 신고 대상<br>
                 카테고리<br>
@@ -64,7 +85,7 @@
 		 //1.메인으로 돌아가기
 		const goMainBtn = document.getElementById('goMainBtn');
 		goMainBtn.addEventListener('click',function(){
-			location.href='<%=request.getContextPath()%>';
+			location.href="<%= request.getContextPath()%>";
 		});
     </script>
     </form>

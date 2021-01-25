@@ -13,9 +13,9 @@ import report.model.vo.Report;
 public class ReportService {
 
 	//인증신고
-	public int insertReport(Report r, int confirm_no) {
+	public int insertConfirmReport(Report r, int no) {
 		Connection conn=getConnection();
-		int result = new ReportDao().insertReport(conn,r, confirm_no);
+		int result = new ReportDao().insertConfirmReport(conn,r, no);
 		
 		if(result>0) {	
 			commit(conn);
@@ -26,4 +26,42 @@ public class ReportService {
 		return result;
 	}
 
+	public int insertChallReport(Report r, int no) {
+		Connection conn=getConnection();
+		int result = new ReportDao().insertChallReport(conn,r, no);
+		
+		if(result>0) {	
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+
+	public int insertBoardReport(Report r, int no) {
+		Connection conn=getConnection();
+		int result = new ReportDao().insertBoardReport(conn,r, no);
+		
+		if(result>0) {	
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int insertCafeReport(Report r, int no) {
+		Connection conn=getConnection();
+		int result = new ReportDao().insertCafeReport(conn,r, no);
+		
+		if(result>0) {	
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
