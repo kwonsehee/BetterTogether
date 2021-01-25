@@ -263,7 +263,7 @@ input:focus, textarea:focus {
 		
 	</script>
 	
-<!-- 	<!-- 파일첨부 미리보기 -->
+<!-- 	파일첨부 미리보기 
 	<script>
 	$(function(){
 		//input type="file"태그에 파일이 첨부될때 동작하는 이벤트
@@ -300,8 +300,7 @@ input:focus, textarea:focus {
 	}
 	</script> -->
 	
-	<!-- width: 400px;
-	height: 330px; -->
+
 
 
 </body>
