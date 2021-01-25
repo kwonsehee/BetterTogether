@@ -383,6 +383,11 @@
 		location.href="<%= request.getContextPath()%>/views/studycafe/studycafe.jsp";
 	});
 	
+	// 신고버튼
+	   const reportBtn = document.getElementById("reportBtn");
+	   reportBtn.addEventListener('click',function(){
+	      location.href="<%= request.getContextPath()%>/report/list";
+	   });
 	
 	</script>
 

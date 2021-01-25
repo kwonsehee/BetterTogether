@@ -282,4 +282,46 @@
         SELECT *
         FROM DUAL
 	</entry>
+	<entry key="getListCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	REPORT
+	</entry>
+	<entry key="selectList">
+		 SELECT
+		 	    RNUM
+			  ,	REPORT_NO
+              , REPORT_TITLE
+              , REPORTED_ID
+              , REPORT_FILE
+              , REPORT_CONTENT
+              , REPORT_DATE
+              , REPORT_MODIFY
+              , T_F
+              , REPORT_STATUS
+              , USER_ID
+		   FROM
+		 		RELIST
+          WHERE 
+          		RNUM BETWEEN ? AND ?
+            AND REPORT_STATUS = 'Y'
+	</entry>
+	<entry key="selectReport">
+		SELECT
+				REPORT_NO
+			  , REPORT_TITLE
+			  , REPORTED_ID
+			  , REPORT_FILE
+			  , REPORT_CONTENT
+			  , REPORT_DATE
+			  , REPORT_MODIFY
+			  , T_F
+			  , REPORT_STATUS
+			  , USER_ID
+		 FROM
+		 		REPORT
+		WHERE	
+				REPORT_NO = ?
+	</entry>
 </properties>

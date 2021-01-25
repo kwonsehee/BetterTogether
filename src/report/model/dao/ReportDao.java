@@ -7,10 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
+import common.model.vo.PageInfo;
 import notice.model.vo.Notice;
 import report.model.vo.Report;
 
@@ -208,5 +212,103 @@ public class ReportDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public int getListCount(Connection conn) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getListCount");
+		
+		try {
+			stmt = conn.createStatement();
+
+			rset = stmt.executeQuery(sql);
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return listCount;
+	}
+
+	public ArrayList<Report> selectList(Connection conn, PageInfo pi) {
+		ArrayList<Report> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Report(rset.getInt(2),
+						         rset.getString(3),
+						         rset.getString(4),
+						         rset.getString(5),
+						         rset.getString(6),
+						         rset.getDate(7),
+						         rset.getDate(8),
+						         rset.getString(9),
+						         rset.getString(10),
+						         rset.getString(11)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public Report selectReport(Connection conn, int rNo) {
+		Report r = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReport");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, rNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = new Report(rset.getInt("REPORT_NO"),
+						rset.getString("REPORT_TITLE"),
+						rset.getString("REPORTED_ID"),
+						rset.getString("REPORT_FILE"),
+						rset.getString("REPORT_CONTENT"),
+						rset.getDate("REPORT_DATE"),
+						rset.getDate("REPORT_MODIFY"),
+						rset.getString("T_F"),
+						rset.getString("REPORT_STATUS"),
+						rset.getString("USER_ID"));
+		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return r;
 	}
 }
