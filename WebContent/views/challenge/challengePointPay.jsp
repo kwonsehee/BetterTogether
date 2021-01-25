@@ -98,12 +98,12 @@
                         </tr>
                         <tr>
                             <th><label for="money" class="text_font">결제할 금액</label></th>
-                            <td colspan="2"><input type="text" id="money" class="input_box" value="<%=ch.getChallPay()%>">원</td>
+                            <td colspan="2"><input type="text" id="money" class="input_box" value="<%=ch.getChallPay()%>"> 원</td>
                             
                         </tr>
                         <tr>
                             <th><label for="bank" class="text_font">남은 금액</label></th>
-                            <td colspan="2"><input type="text" name="point" id="bank" class="input_box" value="<%=remainPay%>">원</td>
+                            <td colspan="2"><input type="text" name="point" id="bank" class="input_box" value="<%=remainPay%>"> 원</td>
                         </tr>
                  		<tr>
                             <th><label for="pass" class="text_font">비밀번호 확인</label></th>
@@ -112,7 +112,7 @@
                         </tr>
           
                         <tr>
-                            <th > <button type="reset" class="btn">취소</button></th>
+                            <th > <button type="button" class="btn" onclick="javascript:history.back();">취소</button></th>
                             <th colspan="2"> <button id="pointBtn" class="btn">포인트결제</button></th>
                             
                         </tr>
@@ -127,27 +127,12 @@
             <script>
 			// checkInput함수작성
 			function checkInput(){
-				if($("#money").val().trim().length==0){
-					alert('환급받을 금액을 입력하세요');
-					$("#money").focus();
-					return false;
-				}
-				//보유금액보다 큰 금액 입력시 alert후 focus 처리->submit X 
+				
+				<%-- //보유금액보다 큰 금액 입력시 alert후 focus 처리->submit X 
 				if($("#money").val().trim()> <%=money%>){
 					alert('보유 금액보다 더 큰 액수를 입력할수 없습니다.');
-					$("#money").focus();
 					return false;
-				}
-				if($("#bank").val().trim().length==0){
-					alert('은행명을 입력하세요');
-					$("#bank").focus();
-					return false;
-				}
-				if($("#account").val().trim().length==0){
-					alert('계좌번호를 입력하세요');
-					$("#account").focus();
-					return false;
-				}
+				} --%>
 				if($("#pass").val().trim().length==0){
 					alert('비밀번호를 입력하세요');
 					$("#pass").focus();
@@ -171,11 +156,15 @@
     <!-- 결제버튼  -->
     <script>
 	const pointBtn = document.getElementById('pointBtn');
+	<%if(money >= ch.getChallPay()) {%>
 	pointBtn.addEventListener('click',function(){
 		alert("챌린지 참여가 되었습니다!!");
 		$("#joinForm").attr("action", "<%= request.getContextPath()%>/pay/insert");
 		$("#joinForm").submit();
 	});
+	<% } else {%>
+		$("#pointBtn").attr("disabled", true);
+	<%}%>
 	
 	</script>
 	

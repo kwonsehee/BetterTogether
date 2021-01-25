@@ -1,6 +1,10 @@
 package challenge.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +43,9 @@ public class ChallInsertServlet extends HttpServlet {
       String confirm = request.getParameter("confirm");
       String frequency = request.getParameter("frequency");
       String period = request.getParameter("period");
-      String startDate = request.getParameter("startDate");
+      //챌린지 시작일을 String으로 받아와서 sql에 맞게 변환해주기
+      String start = request.getParameter("startDate");
+      Date startDate = Date.valueOf(start);
       int payment = Integer.parseInt(request.getParameter("payment"));
       int people = Integer.parseInt(request.getParameter("people"));
       String content = request.getParameter("content");
@@ -62,7 +68,7 @@ public class ChallInsertServlet extends HttpServlet {
       String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
       
       Challenge ch = new Challenge(title, category, picture, confirm, frequency, period,
-            startDate, payment, people, content, confirmCnt, userId);
+    		  startDate, payment, people, content, confirmCnt, userId);
       
 	  System.out.println("잘 넘어오는지 확인 : " + ch);
 
