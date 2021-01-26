@@ -137,6 +137,30 @@ Connection conn = getConnection();
 		}
 
 
+		public int updateCafe(Cafe cafe) {
+			Connection conn = getConnection();
+			
+			int result = new CafeDao().updateCafe(conn, cafe);
+			
+			if(result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			
+			close(conn);
+
+			return result;
+		}
+
+
+		public Cafe selectCafeCnt(int cafe_code) {
+			Connection conn = getConnection();
+			Cafe b = new CafeDao().selectStudyCafe(conn, cafe_code);
+			close(conn);
+			return b;
+		}
+
 
 	
 

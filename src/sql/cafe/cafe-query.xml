@@ -248,6 +248,28 @@
 			, DEFAULT
 		)
 	</entry>
+	<entry key="selectCafe">
+	SELECT
+		 CAFE_CODE
+		,CAFE_OH
+		,CAFE_NAME
+		,CAFE_AREA
+		,CAFE_PHONE
+		,CAFE_CAPACITY
+		,CAFE_NOTICE
+		,CAFE_INFO
+		,CAFE_PHOTO
+		,AFFILIATED_CAFE
+		,CAFE_MAP
+		,DETAIL_ADDRESS 
+		,CLOSED_DAYS
+		,CAFE_PAGE 
+		,USER_ID
+	FROM
+		 CAFE 
+	WHERE
+		CAFE_CODE = ? 
+	</entry>
 	
 	
 	<entry key="selectStudyCafe">
@@ -271,6 +293,28 @@
 		 CAFE 
 	WHERE
 		CAFE_CODE = ?
+	 
+	</entry>
+	<entry key="updateCafe">
+		UPDATE
+			   CAFE
+		   SET  
+			  CAFE_OH =?
+			, CAFE_NAME =?
+			, CAFE_AREA =?
+			, CAFE_PHONE  =?
+			, CAFE_CAPACITY =?
+			, CAFE_NOTICE =?
+			, CAFE_INFO =? 
+			, CAFE_PHOTO =? 
+			, CAFE_MAP =?
+			, DETAIL_ADDRESS =?
+			, CLOSED_DAYS =?
+			, CAFE_PAGE   =? 
+		WHERE 
+		CAFE_CODE = ?
+ 
+	
 	 
 	</entry>
 	

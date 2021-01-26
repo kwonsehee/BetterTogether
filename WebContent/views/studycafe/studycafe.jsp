@@ -5,7 +5,7 @@
  
  			ArrayList<Cafe> list2 =(ArrayList<Cafe>)request.getAttribute("list2"); // 제후카페 검색용 list 
  
- 			PageInfo pi = (PageInfo)request.getAttribute("pi");
+ 	       PageInfo pi = (PageInfo)request.getAttribute("pi");
 
  		 	//PageInfo pi2 = (PageInfo)request.getAttribute("pi2"); // 임시 삭제 왜만들었는지 까먹음
  		 	
@@ -53,7 +53,7 @@
 }
 
 #line1 {
-	border: 1px solid #FF6064;
+  border: 3px solid rgba(255, 96, 100, 0.7);
 }
 
 .gallery_list {
@@ -67,7 +67,7 @@
 
 .gallery_list2 {
 	width: 210px;
-	border: 2px solid #fdc8c6;
+	border: 3px solid #fdc8c6;
 	display: inline-block;
 	padding: 5px;
 	margin: 7px;
@@ -177,19 +177,24 @@
 					<form action="<%=request.getContextPath()%>/cafe/search"
 						method="get" style="width:-50px;float:left;  ">
 							
-						<select id="area" name="search" value="<%= search %>" >
-							<optgroup label="서초구">
-								<option value="방배">방배</option>
-								<option value="반포">반포</option>
-								<option value="서초">서초</option>
-								<option value="잠원">잠원</option>
+						<select id="area" name="search"   >
+						 <%if(searchCondition.equals("area")){ %> 
+						 <option value="<%= searchCondition %>" >선택:<%= search %> </option> 
+						 <% }%>
+							 
+							<optgroup label="서초구"> 
+								
+								<option  value="방배">방배</option>
+								<option  value="반포">반포</option>
+								<option  value="서초">서초</option>
+								<option  value="잠원">잠원</option>
 							</optgroup>
 
 							<optgroup label="강남구">
-									<option value="역삼">역삼</option>
-									<option value="논현">논현</option>
-									<option value="압구정">압구정</option>
-									<option value="신사">신사</option>
+									<option  value="역삼">역삼</option>
+									<option  value="논현">논현</option>
+									<option  value="압구정">압구정</option>
+									<option  value="신사">신사</option>
 								</optgroup>
 
 							<optgroup label="송파구">
@@ -219,8 +224,7 @@
 								<option value="북구">북구</option>
 								<option value="중구">중구</option>
 							</optgroup>
-
-
+						 
 						</select>
 						<button id="bt1" type="submit" name="searchCondition" value="area" <%= selected[0] %>
 							style="width: 60px; height: 25.5px; background: #FEFDFD; ">적용</button> 
@@ -231,8 +235,16 @@
 					<form action="<%=request.getContextPath()%>/cafe/search"
 						method="get"
 						style="  left: 55%; right: 10.01%; top: 32%; bottom: 67.1%;float:rigth; ">
-						<input type="text" id="search" value="<%= search %>"   name="search" 
-							placeholder="카페명을 검색하세요!"  >
+						
+						
+						
+						<%if(searchCondition.equals("title")){ %> 
+						<input type="text" id="search"     name="search"  value="<%= search %>"
+						placeholder="카페명을 검색하세요!"  >
+						<%} else{ %>
+						<input type="text" id="search"     name="search"   
+						placeholder="카페명을 검색하세요!"  > 
+						<% }%>
 						<button type="submit" class="img-button" name="searchCondition" <%= selected[1] %>
 							value="title"                                
 							style="width: 50px; height: 30px; background: #FEFDFD;">검색
