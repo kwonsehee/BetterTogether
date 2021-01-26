@@ -1,16 +1,18 @@
 package community.model.service;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
 import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import common.model.vo.PageInfo;
+import common.model.vo.Search;
 import community.model.dao.BoardDao;
 import community.model.vo.Attachment;
 import community.model.vo.Board;
-import community.model.vo.Search;
 
 public class BoardService {
 

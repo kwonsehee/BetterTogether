@@ -80,6 +80,7 @@ public class CommuDao {
 									   rset.getString(6),
 									   rset.getString(7),
 									   rset.getDate(8)
+
 									   ));
 			}
 			

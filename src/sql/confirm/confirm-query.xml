@@ -5,7 +5,7 @@
 		SELECT
 			   CS.USER_ID
 			 , CHALL_NO
-			 , CHALL_STATUS
+			 , CS.CHALL_STATUS
 			 , JOIN_CALL_DATE
              , CHALL_TITLE
              , FILE_PATH
@@ -13,7 +13,7 @@
 		 FROM
 		 	   CHALL_STATUS CS
                JOIN CHALL USING(CHALL_NO)
-		 WHERE CHALL_STATUS != 3
+		 WHERE CS.CHALL_STATUS != 3
 		   AND CS.USER_ID = ?
 	
 	</entry>
