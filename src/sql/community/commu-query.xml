@@ -12,7 +12,8 @@
 	
 	<entry key="selectRankList">
 		SELECT 
-				RNUM, 
+				RNUM,
+				RANKING, 
 				CHALL_NO, 
 				CHALL_TITLE, 
 				FILE_PATH, 
@@ -22,7 +23,7 @@
 		  FROM  
 		  		RANKLIST
 	     WHERE  
-	     		RNUM BETWEEN ? AND ?
+	     		RNUM &lt;= 18
 	</entry>
 	
 

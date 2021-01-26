@@ -393,6 +393,40 @@ public class BoardDao {
 		return result;
 	}
 
+	// 게시글 사진 조회
+	public ArrayList<Attachment> selectBoardPhoto(Connection conn, int bId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Attachment> list = new ArrayList<>();
+		String sql = prop.getProperty("selectBoardPhoto");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				list.add(new Attachment(rset.getInt(1),
+										rset.getInt(2),
+										rset.getString(3),
+										rset.getString(4),
+										rset.getString(5),
+										rset.getString(6)));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println("dao - 파일첨부 리스트 : " + list);
+		return list;
+	}
+
 }
 
 
