@@ -24,7 +24,7 @@
    crossorigin="anonymous"></script>
    
 <!-- 스타일  -->
-<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css'>
+<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css?after'>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -377,10 +377,11 @@
 	});
 
 
+
 	//스터디카페버튼
 	const studyBtn = document.getElementById("studyBtn");
 	studyBtn.addEventListener('click',function(){
-		location.href="<%= request.getContextPath()%>/views/studycafe/studycafe.jsp";
+		location.href="<%= request.getContextPath()%>/cafe/list";
 	});
 	
 	
