@@ -305,7 +305,7 @@
 		 		RELIST
           WHERE 
           		RNUM BETWEEN ? AND ?
-            AND REPORT_STATUS = 'Y'
+            AND REPORT_STATUS = 'N'
 	</entry>
 	<entry key="selectReport">
 		SELECT
