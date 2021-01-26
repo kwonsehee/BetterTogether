@@ -1,29 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+	<entry key="getListCount">
+		SELECT
+			COUNT(*)
+		FROM
+			CAFE 
+	</entry>
+	
+
+	
+	<entry key="selectList2">
+	 SELECT
+	 		RNUM
+	 		,CAFE_CODE
+	 		,CAFE_OH
+	 		,CAFE_NAME
+	 		,CAFE_AREA
+	 		,CAFE_PHONE
+	 		,CAFE_CAPACITY
+	 		,CAFE_NOTICE
+	 		,CAFE_INFO
+	 		,CAFE_PHOTO 
+	 		,AFFILIATED_CAFE
+            ,CAFE_MAP
+            ,DETAIL_ADDRESS
+            ,CLOSED_DAYS
+            ,CAFE_PAGE
+            ,USER_ID
+         FROM 
+           	 ALIST   
+         WHERE
+          	RNUM BETWEEN ? AND ? 
+            ORDER BY AFFILIATED_CAFE DESC , CAFE_CODE DESC
+	</entry>
+	
+	
+	<entry key="getSearchcafe_areaListCount">
+		SELECT
+			COUNT(*)
+		FROM
+			CAFE
+		WHERE
+			CAFE_AREA LIKE '%' || ? || '%'  
+	</entry> 
+	<entry key="getSearchcafe_nameListCount">
+		SELECT 
+			COUNT(*)
+		  FROM 
+			CAFE
+		WHERE 	
+			CAFE_NAME LIKE '%' || ? || '%'    
+	</entry>
+
+
+	
+		<entry key="selectSearchcafe_areaList2">
+		SELECT 
+			RNUM
+			,CAFE_CODE
+			,CAFE_OH
+			,CAFE_NAME
+			,CAFE_AREA
+			,CAFE_PHONE
+			,CAFE_CAPACITY
+			,CAFE_NOTICE
+			,CAFE_INFO,
+            CAFE_PHOTO
+            ,AFFILIATED_CAFE
+            ,CAFE_MAP,DETAIL_ADDRESS
+            ,CLOSED_DAYS
+            ,CAFE_PAGE
+            ,USER_ID
+ 		FROM
+ 			(SELECT 
+ 					ROWNUM RNUM
+ 					, A.*
+    				FROM
+    				(SELECT CAFE_CODE
+    				,CAFE_OH
+    				,CAFE_NAME
+    				,CAFE_AREA
+    				,CAFE_PHONE
+    				,CAFE_CAPACITY
+    				,CAFE_NOTICE
+    				,CAFE_INFO,
+           			 CAFE_PHOTO
+           			 ,AFFILIATED_CAFE
+           			 ,CAFE_MAP
+           			 ,DETAIL_ADDRESS
+           			 ,CLOSED_DAYS
+           			 ,CAFE_PAGE,USER_ID
+       		 FROM CAFE 
+       				 WHERE CAFE_AREA LIKE '%' || ? || '%' 
+       				  
+      			   	 ORDER BY 
+      			    		AFFILIATED_CAFE 
+      			    			DESC) A)
+			 WHERE
+          			RNUM BETWEEN ? AND ?  
+	
+	</entry>
+
+
+
+
+	<entry key="selectSearchcafe_nameList2">
+	SELECT 
+			RNUM
+			,CAFE_CODE
+			,CAFE_OH
+			,CAFE_NAME
+			,CAFE_AREA
+			,CAFE_PHONE
+			,CAFE_CAPACITY
+			,CAFE_NOTICE
+			,CAFE_INFO,
+            CAFE_PHOTO
+            ,AFFILIATED_CAFE
+            ,CAFE_MAP,DETAIL_ADDRESS
+            ,CLOSED_DAYS
+            ,CAFE_PAGE
+            ,USER_ID
+ 		FROM
+ 			(SELECT 
+ 					ROWNUM RNUM
+ 					, A.*
+    				FROM
+    				(SELECT CAFE_CODE
+    				,CAFE_OH
+    				,CAFE_NAME
+    				,CAFE_AREA
+    				,CAFE_PHONE
+    				,CAFE_CAPACITY
+    				,CAFE_NOTICE
+    				,CAFE_INFO,
+           			 CAFE_PHOTO
+           			 ,AFFILIATED_CAFE
+           			 ,CAFE_MAP
+           			 ,DETAIL_ADDRESS
+           			 ,CLOSED_DAYS
+           			 ,CAFE_PAGE,USER_ID
+       		 FROM CAFE 
+       				 WHERE CAFE_NAME LIKE '%' || ? || '%'  
+      			   	 ORDER BY 
+      			    		AFFILIATED_CAFE 
+      			    			DESC) A)
+			 WHERE
+          			RNUM BETWEEN ? AND ?  
+	</entry>
+
+
+	<entry key="deleteCafe">
+		DELETE 
+		FROM CAFE
+    	WHERE CAFE_CODE = ?
+	 
+	</entry>
+
+
+
+
 	<entry key="insertCafe">
-		INSERT
+		INSERT 
 		INTO CAFE
 		(
 		      CAFE_CODE
-			, CAFE_NAME
 			, CAFE_OH
+			, CAFE_NAME
 			, CAFE_AREA
-			, CAFE_PHONE
-			, CLOSED_DAYS
+			, CAFE_PHONE 
 			, CAFE_CAPACITY
-			, CAFE_PAGE
-			, DETAIL_ADDRESS
 			, CAFE_NOTICE
 			, CAFE_INFO
 			, CAFE_PHOTO
+			, AFFILIATED_CAFE	
 			, CAFE_MAP
+			, DETAIL_ADDRESS
+			, CLOSED_DAYS 
+			, CAFE_PAGE  
 			, USER_ID
 
 
 			)
 			VALUES
 			(
+			
 			SEQ_SID.NEXTVAL
 			, ?
 			, ?
@@ -37,8 +199,79 @@
 			, ?
 			, ?
 			, ?
+			, ? 
 			, ?
-
+			 
 	)
-</entry>
+	</entry>
+	<entry key="insertGalleryPhoto">
+		INSERT INTO
+		ATTACHMENT
+		(
+		  CAFE_CODE
+			, CAFE_OH
+			, CAFE_NAME
+			, CAFE_AREA
+			, CAFE_PHONE 
+			, CAFE_CAPACITY
+			, CAFE_NOTICE
+			, CAFE_INFO
+			, CAFE_PHOTO
+			, AFFILIATED_CAFE	
+			, CAFE_MAP
+			, DETAIL_ADDRESS
+			, CLOSED_DAYS 
+			, CAFE_PAGE 
+			, RENAME_FILE 
+			, CAFE_FILEPATH
+			, USER_ID
+
+
+			)
+			VALUES
+			(
+			
+			SEQ_SID.CURRVAL
+			, DEFAULT
+			, DEFAULT
+			, DEFAULT
+			, DEFAULT
+			, DEFAULT
+			, DEFAULT
+			, DEFAULT
+			, ?
+			, DEFAULT
+			, DEFAULT
+			, DEFAULT
+			, DEFAULT
+			, DEFAULT 
+			, DEFAULT
+		)
+	</entry>
+	
+	
+	<entry key="selectStudyCafe">
+	SELECT
+		 CAFE_CODE
+		,CAFE_OH
+		,CAFE_NAME
+		,CAFE_AREA
+		,CAFE_PHONE
+		,CAFE_CAPACITY
+		,CAFE_NOTICE
+		,CAFE_INFO
+		,CAFE_PHOTO
+		,AFFILIATED_CAFE
+		,CAFE_MAP
+		,DETAIL_ADDRESS 
+		,CLOSED_DAYS
+		,CAFE_PAGE 
+		,USER_ID
+	FROM
+		 CAFE 
+	WHERE
+		CAFE_CODE = ?
+	 
+	</entry>
+	
 </properties>

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList , studycafe.model.vo.*" %>
 
-
+<%
+	Cafe c = (Cafe)request.getAttribute("Cafe"); 
+ 
+%>
 
 <!DOCTYPE html>
 <html>
@@ -75,17 +78,12 @@ textarea {
 
 #btnArea1 {
 	position: absolute;
-	left: 44.33%;
-	right: 45.41%;
+	left: 46.33%;
+	right: 47.41%;
 	top: 92.53%;
 	bottom: 1.44%;
-	width: 60px;
-	height: 30px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
-	background: #fff;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
+	background: #F8BEBE;
+	border-radius: 5px;
 }
 
 #btnArea2 {
@@ -94,13 +92,8 @@ textarea {
 	right: 42%;
 	top: 92.53%;
 	bottom: 1.44%;
-	width: 60px;
-	height: 30px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
-	background: #fff;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
+	background: #F8BEBE;
+	border-radius: 5px;
 }
 
 #area5 {
@@ -128,14 +121,14 @@ textarea {
 	bottom: 14.08%;
 }
 
-.photo3 {
-	position: absolute;
-	left: 56.77%;
+.photo3{
+position: absolute;
+left: 56.77%;
 	right: 37.28%;
-	top: 86%;
-	bottom: 11.21%;
-}
+top: 86%;
+bottom: 11.21%;
 
+}
 </style>
 </head>
 <body>
@@ -144,11 +137,11 @@ textarea {
 
 
 
- 
+	<section id="content" class="content_css">
 
-		<div id="main"  >
+		<div id="main">
 
-		 
+			<div class="outer">
 				<div class="tableArea">
 					<h1 id="title">스터디카페 등록</h1>
 					<form action="<%=request.getContextPath()%>/cafe/insert"
@@ -166,7 +159,7 @@ textarea {
 						</span>
 
 						<h4 class="studycafe_title" style="bottom: 49%;">지역</h4>
-						<span class="input_area"> <select id="area5" 
+						<span class="input_area"> <select id="area5"
 							name="cafe_area">
 								<optgroup label="서초구">
 									<option value="방배">방배</option>
@@ -176,7 +169,7 @@ textarea {
 								</optgroup>
 
 								<optgroup label="강남구">
-									<option value="역삼">역삼</option>
+									<option value="역심">역삼</option>
 									<option value="논현">논현</option>
 									<option value="압구정">압구정</option>
 									<option value="신사">신사</option>
@@ -223,8 +216,8 @@ textarea {
 						</span>
 
 						<h4 class="studycafe_title" style="bottom: 25%;">예약가능인원</h4>
-						<span class="input_area" >
-						 <input type="text" required name="cafe_capacity"  placeholder="최대8명 ex)6"  style="margin-top: 40%;">
+						<span class="input_area">
+						 <input type="text" name="cafe_capacity"  placeholder="최대8명 ex)6"  style="margin-top: 40%;">
 						</span>
 
 						<h4 class="studycafe_title" style="bottom: 17%;">카페홈페이지</h4>
@@ -243,12 +236,12 @@ textarea {
 
 						<h4 class="studycafe_title2">카페소개글</h4>
 						<textarea name="cafe_info"
-							style="resize: none; left: 550px; top: 170px;" maxlength="110"> </textarea>
+							style="resize: none; left: 550px; top: 170px;" value="<%= c.getCafe_info() %>" > </textarea>
 
 
 						<h4 class="studycafe_title2" style="margin-top: 31%;">카페공지글</h4>
-						<textarea name="cafe_notice"  
-							style="resize: none; left: 550px; top: 330px;" maxlength="110" > </textarea>
+						<textarea name="cafe_notice"
+							style="resize: none; left: 550px; top: 330px;" required> </textarea>
 
 						<h4 class="studycafe_title2" style="margin-top: 48%;">내부사진,약도</h4>
 						<div class="photo">
@@ -263,14 +256,11 @@ textarea {
 								<option value="N">일반</option>
 								<option value="Y">제휴</option>
 							</select>
-						  
 						   
-						 
-						  
 						<div>
 							<button type="button" id="btnArea2"
 								onclick="javascript:history.back();">취소</button> 
-							<button type="submit" id="btnArea1">등록</button>
+							<button type="submit" id="btnArea1">수정</button>
 						</div>
 
 					</form>
@@ -281,8 +271,9 @@ textarea {
 			</div>
  
 
-		 
- 
+		</div>
+	</section>
+
 
 
 
