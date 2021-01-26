@@ -155,7 +155,7 @@ input:focus, textarea:focus {
 			<p>챌린지 개설</p>
 		</section>
 		<form action="<%=request.getContextPath()%>/chall/insert"
-			method="POST" id="challenge-form">
+			method="POST" id="challenge-form"  enctype="multipart/form-data">
 			<section id="content-1">
 				<table class="table">
 					<tr>
