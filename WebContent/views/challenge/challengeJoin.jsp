@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="challenge.model.vo.*, java.util.Date, java.util.ArrayList"%>
+	import="challenge.model.vo.*, java.util.Date, java.util.ArrayList, java.text.SimpleDateFormat"%>
 <%
 
    	Challenge ch = (Challenge)request.getAttribute("challenge");   
@@ -17,9 +17,14 @@
 	
 	
 	// 챌린지 시작일 값 추출 
-	//String year = ch.getChallStart();
-	//String month = ch.getChallStart().substring(5,7);
-	//String day = ch.getChallStart().substring(8,10);
+	Date from = ch.getChallStart();
+	SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+	String to = transFormat.format(from);
+	
+	String year = to.substring(0,4);
+	String month = to.substring(5,7);
+	String day = to.substring(8,10);
+
 	
 	System.out.println("인증방법 : " + ch.getChallConfirm());
 	
@@ -250,7 +255,7 @@ button:focus {
 		<!-- 카운트 다운  -->
 		<script>
         // 챌린지 시작일 세팅
-        var countDownDate = new Date("10 21 2021 00:00:00").getTime();
+        var countDownDate = new Date("<%=month%> <%=day%> <%=year%> 00:00:00").getTime();
       
         // 1초마다 카운트 
         var x = setInterval(function() {
@@ -281,7 +286,8 @@ button:focus {
       </script>
 
 		<section id="content-1">
-			<img src="<%= ch.getChallFile()%>" id="call_img">
+			<!-- width: 400px; height: 330px; -->
+			<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 400px;height: 330px;">
 			<p id="chall_title"><%= ch.getChallTitle() %></p>
 			<p id="chall_intro"><%= ch.getChallContent() %></p>
 		</section>
@@ -441,43 +447,6 @@ button:focus {
 
 	</section>
 	
-	
-	<script>
-	$(function(){
-		//input type="file"태그에 파일이 첨부될때 동작하는 이벤트
-		$("[type=file]").change(function(){
-			loadImg(this);
-		});
-	});
-	function loadImg(element){
-		//element를 판별해서 알맞은 위치에 preview표현하기
-		/* console.log(element.name); */
-		
-		//input type="file" 엘리먼트에 첨부파일 속성, 첨부파일이 잘 존재하는지 확인
-		if(element.files && element.files[0]){
-			//파일을 읽어들일 FileReader 객체 생성
-			var reader = new FileReader();
-			
-			//파일 읽기가 다 완료 되었을 때 실행되는 메소드
-			reader.onload =function(e){
-				var selector;
-				var size;
-		
-				selector = "#thumbnail";
-				size = {width: "400px", height: "450px", border:"1px solid black"};
-				$(selector).attr("src",e.target.result).css(size);
-				console.log(e);
-				console.log(e.target);
-				console.log(e.target.result);
-			}
-			//파일 읽기 하는 메소드
-			reader.readAsDataURL(element.files[0]);
-
-			
-		}
-	}
-		
-	</script>
 	
 	
 

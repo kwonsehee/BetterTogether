@@ -32,14 +32,15 @@ public class Challenge {
 	private String cateName; // 카테고리 이름
 	private int challCnt; // 조회수
 	private Date challStart; // 챌린지 시작일
+	private int challStatus; // 챌린지 게시물 삭제 여부 
 
 	public Challenge() {
 	}
-
+	
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
 			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
 			int confirmCnt, String userId, String nickName, int cateId, String cateName, int challCnt,
-			Date challStart) {
+			Date challStart,int challStatus) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -58,6 +59,7 @@ public class Challenge {
 		this.cateName = cateName;
 		this.challCnt = challCnt;
 		this.challStart = challStart;
+		this.challStatus = challStatus;
 	}
 
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
@@ -272,6 +274,14 @@ public class Challenge {
 	public void setCateId(int cateId) {
 		this.cateId = cateId;
 	}
+	
+	public int getChallStatus() {
+		return challStatus;
+	}
+
+	public void setChallStatus(int challStatus) {
+		this.challStatus = challStatus;
+	}
 
 	@Override
 	public String toString() {
@@ -280,7 +290,7 @@ public class Challenge {
 				+ ", challFrequency=" + challFrequency + ", challPeriod=" + challPeriod + ", challPay=" + challPay
 				+ ", challContent=" + challContent + ", confirmCnt=" + confirmCnt + ", userId=" + userId + ", nickName="
 				+ nickName + ", cateId=" + cateId + ", cateName=" + cateName + ", challCnt=" + challCnt
-				+ ", challStart=" + challStart + "]";
+				+ ", challStart=" + challStart + ", challStatus=" + challStatus + "]";
 	}
 
 	
