@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.model.vo.PageInfo;
 import studycafe.model.service.CafeService;
 import studycafe.model.vo.Cafe;
-import studycafe.model.vo.PageInfo;
-
  
 
 /**

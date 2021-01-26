@@ -1,20 +1,23 @@
 package studycafe.model.service;
  
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
- 
+
+import common.model.vo.PageInfo;
+import common.model.vo.Search;
 import studycafe.model.dao.CafeDao;
 import studycafe.model.vo.Cafe;
-import studycafe.model.vo.PageInfo;
-import studycafe.model.vo.Search;
-
-import static common.JDBCTemplate.*;
 
  
 
 public class CafeService {
 
-		// ī�� �Խñ� ����¡ 
+		
 		public int getListCount() { 
 			Connection conn = getConnection();
 			
@@ -24,7 +27,7 @@ public class CafeService {
 			return listCount;
 		}
 	 
-	//����¡ ó���� ����ī�� �Խñ� ��� ��ȸ
+	
 	public ArrayList<Cafe> selectList2(PageInfo pi) {
 Connection conn = getConnection();
 		
@@ -35,7 +38,7 @@ Connection conn = getConnection();
 		return list;
 	}
 
-	//����¡ ó���� �Ϲ�ī�� �Խñ� ��� ��ȸ
+	
 	public ArrayList<Cafe> selectList(PageInfo pi) { 
 		Connection conn = getConnection();
 		
@@ -46,7 +49,7 @@ Connection conn = getConnection();
 		return list;
 	}
 	
-	//ī�� �߰�
+	
 		public int insertCafe(Cafe n ) {
 			Connection conn = getConnection();
 			
@@ -71,7 +74,7 @@ Connection conn = getConnection();
 
 
 
-		//�˻��� ����Ʈ ī��� 
+		
 		public int getSearchListCount(Search s) { 
 			Connection conn = getConnection();
 			
@@ -83,7 +86,7 @@ Connection conn = getConnection();
 
 
 
-		//�˻��� ����Ʈ ��ȸ
+		
 		public ArrayList<Cafe> selectSearchList(PageInfo pi, Search s) {
 			Connection conn = getConnection();
 			
@@ -101,7 +104,7 @@ Connection conn = getConnection();
 		}
 
 	
-		//�Խñ� ��ȸ��
+		
 		 
 		public Cafe selectStudyCafe(int cafe_code) {
 			Connection conn = getConnection();

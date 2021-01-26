@@ -1,23 +1,21 @@
 package community.model.dao;
 
-import java.sql.Connection;
+import static common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
 import common.model.vo.PageInfo;
+import common.model.vo.Search;
 import community.model.vo.Attachment;
 import community.model.vo.Board;
-import community.model.vo.Search;
-
-import static common.JDBCTemplate.close;
 
 public class BoardDao {
 	private Properties prop = new Properties();

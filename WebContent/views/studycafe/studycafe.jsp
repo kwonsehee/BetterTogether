@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList , studycafe.model.vo.*" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList , studycafe.model.vo.*, common.model.vo.*" %>
     
  <% 
  

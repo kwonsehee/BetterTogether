@@ -1,5 +1,7 @@
 package studycafe.model.dao;
 
+import static common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,14 +11,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
- 
- 
 
-import static common.JDBCTemplate.close;
-
+import common.model.vo.PageInfo;
+import common.model.vo.Search;
 import studycafe.model.vo.Cafe;
-import studycafe.model.vo.PageInfo;
-import studycafe.model.vo.Search;
 
 public class CafeDao {
 	private Properties prop = new Properties();
@@ -32,7 +30,7 @@ public class CafeDao {
 		
 	}
 	
-	//ī����� ��� ���
+
 	public int insertCafe(Connection conn, Cafe n ) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -75,7 +73,7 @@ public class CafeDao {
 	 	
 		
 	}
-	//ī�� �Խñ� ����ȸ
+
 	public int getListCount(Connection conn) {
 		int listCount = 0;
 		Statement stmt = null;
@@ -102,7 +100,7 @@ public class CafeDao {
 	
 	 
 	 
-	//�̰��� ������ �ؿ� ����Ƽ��2�� ��¥ ����¡ó�����
+
 	public ArrayList<Cafe> selectList(Connection conn,  PageInfo pi) { 
 		ArrayList<Cafe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -112,7 +110,7 @@ public class CafeDao {
 		
 		return list;
 	}
-	//����¡ ó��
+
 	public ArrayList<Cafe> selectList2(Connection conn, PageInfo pi) {
 		ArrayList<Cafe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -122,8 +120,8 @@ public class CafeDao {
 		 try {
 			pstmt = conn.prepareStatement(sql);
 			
-			int startRow=(pi.getCurrentPage()-1)*pi.getCafeLimit() +1;
-			int endRow = startRow + pi.getCafeLimit() -1;
+			int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit() +1;
+			int endRow = startRow + pi.getBoardLimit() -1;
 			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -197,7 +195,7 @@ public class CafeDao {
 		
 		return listCount;
 	}
-	//�̰��� ������
+
 	public ArrayList<Cafe> selectSearchList(Connection conn, PageInfo pi, Search s) {
 		ArrayList<Cafe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -208,7 +206,7 @@ public class CafeDao {
 		
 		return list;
 	}
-	//�˻� ����Ʈ ��ȸ
+
 	public ArrayList<Cafe> selectSearchList2(Connection conn, PageInfo pi, Search s) {
 		ArrayList<Cafe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -225,8 +223,8 @@ public class CafeDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			int startRow = (pi.getCurrentPage()-1) *pi.getCafeLimit()+1;
-			int endRow = startRow+pi.getCafeLimit() -1;
+			int startRow = (pi.getCurrentPage()-1) *pi.getBoardLimit()+1;
+			int endRow = startRow+pi.getBoardLimit() -1;
 			
 			pstmt.setString(1, s.getSearch());
 			pstmt.setInt(2,  startRow);
