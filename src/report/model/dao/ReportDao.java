@@ -273,7 +273,8 @@ public class ReportDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		 System.out.println("list : " + list);
+			
 		return list;
 	}
 
@@ -310,5 +311,98 @@ public class ReportDao {
 		}
 
 		return r;
+	}
+
+	public int getMyListCount(Connection conn, String userId) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getMyListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+
+	public ArrayList<Report> selectMyList(Connection conn, String userId, PageInfo pi) {
+		ArrayList<Report> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMyList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Report(rset.getInt(2),
+						         rset.getString(3),
+						         rset.getString(4),
+						         rset.getString(5),
+						         rset.getString(6),
+						         rset.getDate(7),
+						         rset.getDate(8),
+						         rset.getString(9),
+						         rset.getString(10),
+						         rset.getString(11)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		 System.out.println("list : " + list);
+			
+		return list;
+	}
+	
+	//신고내역 삭제
+
+	public int deleteReport(Connection conn, int rNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteReport");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, rNo);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+	
+			close(pstmt);
+		}
+
+		return result;
 	}
 }

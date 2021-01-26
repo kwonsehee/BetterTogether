@@ -85,7 +85,8 @@ public class ReportService {
 			ArrayList<Report> list = new ReportDao().selectList(conn, pi);
 
 			close(conn);
-
+			 System.out.println("list ㅇㅇㅇㅇ: " + list);
+				
 			return list;
 		}
 
@@ -97,5 +98,42 @@ public class ReportService {
 			close(conn);
 
 			return r;
+		}
+
+		public int getMyListCount(String userId) {
+			Connection conn = getConnection();
+			
+			int listCount = new ReportDao().getMyListCount(conn, userId);
+			
+			close(conn);
+			
+			return listCount;
+		}
+
+		public ArrayList<Report> selectMyList(String userId, PageInfo pi) {
+			Connection conn = getConnection();
+
+			ArrayList<Report> list = new ReportDao().selectMyList(conn, userId, pi);
+
+			close(conn);
+			 System.out.println("list ㅇㅇㅇㅇ: " + list);
+				
+			return list;
+		}
+
+		//신고내역 삭제
+		public int deleteReport(int rNo) {
+			Connection conn = getConnection();
+			
+			int result = new ReportDao().deleteReport(conn,rNo);
+			
+			if(result>0) {	
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
 		}
 }
