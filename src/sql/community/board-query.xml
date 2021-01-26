@@ -282,5 +282,21 @@
 		   ,DEFAULT
 		)
 	</entry>
+	<entry key="selectBoardPhoto">
+	   SELECT
+			  FID,
+			  BOARD_SEQ,
+			  ORIGIN_NAME,
+			  CHANGE_NAME,
+			  FILEPATH,
+			  STATUS
+		 FROM
+			  ADDFILE
+	    WHERE 
+	    	  BOARD_SEQ = ?
+	      AND STATUS = 'N'
+	 ORDER BY FID
+		
+	</entry>
 	
 </properties>

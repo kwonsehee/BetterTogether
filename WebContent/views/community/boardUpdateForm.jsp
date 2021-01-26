@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="community.model.vo.Board" %>
+	pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList" %>
 <%
 	Board b = (Board)request.getAttribute("b");
+	ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");	
 
 %>
 <!DOCTYPE html>

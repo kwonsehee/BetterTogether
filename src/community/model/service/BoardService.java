@@ -168,6 +168,18 @@ public class BoardService {
 		return result;
 		
 	}
+
+	// 게시글 사진 조회
+	public ArrayList<Attachment> selectBoardPhoto(int bId) {
+		Connection conn = getConnection();
+		
+		ArrayList<Attachment> list = new BoardDao().selectBoardPhoto(conn, bId);
+		
+		close(conn);
+		
+		return list;
+		
+	}
 	
 	
 

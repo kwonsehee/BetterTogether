@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="community.model.vo.Board"%>
+    pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList"%>
 <%
 	Board b = (Board)request.getAttribute("board");
+	ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -67,7 +69,7 @@
         }
         
        #bwriter{
-         margin-left: 75%;	 
+         margin-left: 70%;	 
          font-size: 16px;  
          color:#757575;
         } 
@@ -104,6 +106,15 @@
         	  color: #ff60657e;
         
         }
+        .imgAreaInner {
+		display:inline-block; 
+		text-align:center;
+		}
+        .addImg {
+        width:200px;
+		height:180px; 
+		
+        }
 </style>
 </head>
 <body>
@@ -129,6 +140,15 @@
            <span id="bwriter">글쓴이 : <%= b.getNickName() %></span>
            </div>
            <div id="board_con"><p><%= (b.getbContent()).replace("\n", "<br>") %></p></div>
+           
+           <div id="imgAreaOuter">
+           	<% for(int i = 0; i < fileList.size(); i++) { %>
+           	<div class="imgAreaInner">
+           	<img class="addImg"
+					src="<%= request.getContextPath() %><%= fileList.get(i).getFilePath() %><%= fileList.get(i).getChangeName() %>">
+           	</div>
+           	<% } %>
+           </div>
         </div>
 
         <!-- 버튼 -->

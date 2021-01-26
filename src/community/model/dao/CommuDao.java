@@ -68,18 +68,19 @@ public class CommuDao {
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
 
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+//			pstmt.setInt(1, startRow);
+//			pstmt.setInt(2, endRow);
 
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Challenge(rset.getInt(2),
-									   rset.getString(3),
+				list.add(new Challenge(rset.getInt(3),
 									   rset.getString(4),
 									   rset.getString(5),
 									   rset.getString(6),
-									   rset.getDate(7)
+									   rset.getString(7),
+									   rset.getDate(8)
+
 									   ));
 			}
 			
