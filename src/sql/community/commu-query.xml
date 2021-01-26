@@ -23,7 +23,7 @@
 		  FROM  
 		  		RANKLIST
 	     WHERE  
-	     		RNUM &lt;= 18
+	     		RNUM BETWEEN 1 AND 18
 	</entry>
 	
 
