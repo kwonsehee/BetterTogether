@@ -324,6 +324,45 @@ public class CafeDao {
 
 		return result;
 	}
+
+
+	public int updateCafe(Connection conn, Cafe cafe) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateCafe");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, cafe.getCafe_oh());
+			pstmt.setString(2, cafe.getCafe_name());
+			pstmt.setString(3, cafe.getCafe_area());
+			pstmt.setString(4, cafe.getCafe_phone());
+			pstmt.setString(5,  cafe.getCafe_capacity());
+			pstmt.setString(6, cafe.getCafe_notice());
+			pstmt.setString(7, cafe.getCafe_info());
+			pstmt.setString(8, cafe.getCafe_photo());  
+			pstmt.setString(9, cafe.getCafe_map());
+			pstmt.setString(10, cafe.getDetail_address());
+			pstmt.setString(11, cafe.getClosed_day()); 
+			pstmt.setString(12, cafe.getCafe_page());   
+			pstmt.setInt(13, cafe.getCafe_code());
+			
+			
+			 
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+
+	 
 	  
 	
 }

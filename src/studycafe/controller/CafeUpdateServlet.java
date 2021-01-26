@@ -1,4 +1,4 @@
- package studycafe.controller;
+package studycafe.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,24 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import common.MyFileRenamePolicy;
-import member.model.vo.Member;
+import common.model.vo.MyFileRenamePolicy;
 import studycafe.model.service.CafeService;
 import studycafe.model.vo.Cafe;
 
 /**
- * Servlet implementation class cafeInsertServlet
+ * Servlet implementation class CafeUpdateServlet
  */
-@WebServlet("/cafe/insert")
-public class cafeInsertServlet extends HttpServlet {
+@WebServlet("/cafe/update")
+public class CafeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cafeInsertServlet() {
+    public CafeUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,11 +37,15 @@ public class cafeInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		 
+		request.setCharacterEncoding("UTF-8");
+		
+		
+		
+		
+		
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
-		 
+			 
 			int maxSize = 1024*1024*10;
 			
 			// 웹 서버 컨테이너 경로 추출
@@ -77,49 +79,81 @@ public class cafeInsertServlet extends HttpServlet {
 					// -> 실제 사용자가 업로드 할 때의 파일명
 					originFiles.add(multiRequest.getOriginalFileName(name));
 				}
-			}
-		
-		 
-			
-			
-			
-			String cafe_oh = multiRequest.getParameter("cafe_oh");
-			String cafe_name = multiRequest.getParameter("cafe_name");
-			String cafe_area = multiRequest.getParameter("cafe_area");
-			String cafe_phone = multiRequest.getParameter("cafe_phone"); 
-			String cafe_capacity = multiRequest.getParameter("cafe_capacity");
-			String cafe_notice = multiRequest.getParameter("cafe_notice");
-			String cafe_info = multiRequest.getParameter("cafe_info");
-			String cafe_photo = multiRequest.getFilesystemName("cafe_photo");
-			String AFFILIATED_CAFE= multiRequest.getParameter("AFFILIATED_CAFE");
-			String cafe_map= multiRequest.getFilesystemName("cafe_map");
-			String detail_address = multiRequest.getParameter("detail_address");
-			String closed_day = multiRequest.getParameter("closed_day"); 
-			String cafe_page = multiRequest.getParameter("cafe_page"); 
-			String UserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-			
-			
-			Cafe n = new Cafe(cafe_oh,cafe_name,cafe_area,cafe_phone, cafe_capacity ,cafe_notice,cafe_info,cafe_photo,AFFILIATED_CAFE,cafe_map,detail_address,closed_day,cafe_page,UserId);
-			
-			int result = new CafeService().insertCafe(n ) ;
-			
-			 
-		 
-			
-			if(result > 0) {
+			}	
 
-				response.sendRedirect(request.getContextPath() + "/cafe/list");
-			} else {
-				request.setAttribute("msg", "카페 등록에 실패하였습니다.");
-				request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
-			}
-			 
-			
-			
-			
-		}
-		 
+
+			int Cafe_code = Integer.parseInt(multiRequest.getParameter("Cafe_code"));
 		
+			Cafe cafe = new Cafe();
+			
+		
+			
+			
+			String Cafe_photo = multiRequest.getParameter("Cafe_photo"); //히든값으로 이미지 값 넘겨와서 새로운 파일이없으면 기존 이미지 사용
+			String Cafe_map = multiRequest.getParameter("Cafe_map");
+			
+			System.out.println("Cafe_photo" + " "+Cafe_photo); // 새로운 수정이미지 파일이 없으면 기존 이미지파일이 불러저 오는지 실험
+			
+			
+			
+			
+			
+			
+			cafe.setCafe_oh(multiRequest.getParameter("cafe_oh")); 
+			cafe.setCafe_name(multiRequest.getParameter("cafe_name"))  ;
+			cafe.setCafe_area(multiRequest.getParameter("cafe_area")); 
+			cafe.setCafe_phone(multiRequest.getParameter("cafe_phone")); 
+			cafe.setCafe_capacity(multiRequest.getParameter("cafe_capacity"));
+			cafe.setCafe_notice(multiRequest.getParameter("cafe_notice"));   
+			cafe.setCafe_info(multiRequest.getParameter("cafe_info"));   
+			
+			
+			if(multiRequest.getFilesystemName("cafe_photo") == null) {
+				cafe.setCafe_photo(Cafe_photo);
+			} else { 
+				cafe.setCafe_photo(multiRequest.getFilesystemName("cafe_photo"));
+			}
+			
+			cafe.setAFFILIATED_CAFE(multiRequest.getParameter("AFFILIATED_CAFE"));   
+			
+			if(multiRequest.getFilesystemName("cafe_map") == null) {
+			 cafe.setCafe_map(Cafe_map); 
+				
+			}else {
+			cafe.setCafe_map(multiRequest.getFilesystemName("cafe_map"));  
+			}
+			
+			cafe.setDetail_address(multiRequest.getParameter("detail_address"));  
+			cafe.setClosed_day(multiRequest.getParameter("closed_day"));   
+			cafe.setCafe_page(multiRequest.getParameter("cafe_page"));   
+			cafe.setCafe_code(Cafe_code);
+		 
+	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 
+			 
+			 
+			 
+			CafeService service = new CafeService();
+	
+			  int result = service.updateCafe(cafe);
+	
+			 if(result > 0) {                             
+			 response.sendRedirect(request.getContextPath() + "/study/detail?cafe_code=" + Cafe_code);
+			 } else {
+				 request.setAttribute("msg", "게시글 수정에 실패했습니다.");
+				 request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			 }
+	
+		}
 	}
 
 	/**
