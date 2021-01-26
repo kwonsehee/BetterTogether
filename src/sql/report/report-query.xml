@@ -324,4 +324,40 @@
 		WHERE	
 				REPORT_NO = ?
 	</entry>
+	<entry key="getMyListCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	REPORT
+		  WHERE
+		  		USER_ID = ?
+	</entry>
+	<entry key="selectMyList">
+		 SELECT
+		 	    RNUM
+			  ,	REPORT_NO
+              , REPORT_TITLE
+              , REPORTED_ID
+              , REPORT_FILE
+              , REPORT_CONTENT
+              , REPORT_DATE
+              , REPORT_MODIFY
+              , T_F
+              , REPORT_STATUS
+              , USER_ID
+		   FROM
+		 		RELIST
+          WHERE 
+          		RNUM BETWEEN ? AND ?
+            AND REPORT_STATUS = 'N'
+            AND USER_ID = ?
+	</entry>
+	<entry key="deleteReport">
+		UPDATE
+			   REPORT
+		   SET
+		   	   REPORT_STATUS = 'Y'
+		 WHERE
+		 	   REPORT_NO = ?	
+	</entry>
 </properties>

@@ -3,6 +3,7 @@
 <%
 	ArrayList<Report> reList = (ArrayList<Report>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	System.out.println("jsp list : "+reList);
 %>
 <!DOCTYPE html>
 <html>
@@ -40,8 +41,8 @@
 
         .h1_title {
            font-family: "Do Hyeon";
-           font-size: 24px;
-           color : #757575;
+           font-size: 30px;
+          /*  color : #757575; */
         }
 
         #line {
@@ -139,7 +140,7 @@
 	 
 	 <!-- title -->
         <div id="con2_title">
-            <h1 class="h1_title">Q n A</h1>
+            <h1 class="h1_title">신 고</h1>
         </div>
         <div id="line"></div>
         
@@ -161,7 +162,7 @@
 					</tr>
 					<%} else { %>
 						<% for(Report r : reList){ %>
-						<% if(r.getReport_Status().equals("Y")) { %>
+						<% if(r.getReport_Status().equals("N")) { %>
 						<tr>
 							<td><%= r.getReport_no() %></td>
 							<td><%= r.getReport_title() %></td>

@@ -112,7 +112,7 @@
 	<!-- form 태그를 POST 방식으로 제출
 					nno를 화면에 드러내지 않고 form을 submit하면서 넘길 수 있음 -->
 	<form id="reportForm" method="post">
-		<input type="hidden" name="" value="<%= r.getReported_id() %>">
+		<input type="hidden" name="rNo" value="<%= r.getReport_no() %>">
 	</form>
 
 	<script>				

@@ -183,7 +183,7 @@
          //6.신고내역
           const myReportBtn = document.getElementById('myReportBtn');
           myReportBtn.addEventListener('click',function(){
-            location.href="<%= request.getContextPath()%>/views/myPage/myReport.jsp";
+            location.href="<%= request.getContextPath()%>/report/mylist";
          });
           
          //7.환급받기
