@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.model.vo.PageInfo;
+import common.model.vo.Search;
 import community.model.service.BoardService;
 import community.model.vo.Board;
-import community.model.vo.Search;
 
 /**
  * Servlet implementation class BoardSearchServlet
