@@ -597,5 +597,16 @@
 		  AND CHALL_STATUS = 1
 	</entry>
 	
+	<!-- 찜 갯수 구하기 -->
+	<entry key="hitsCount">
+		SELECT
+			  COUNT(*)
+		FROM
+			  CHALL_STATUS 
+		WHERE 
+			  C_HITS = 'Y'
+		  AND CHALL_NO = ?
+	</entry>
+	
 
 </properties>
