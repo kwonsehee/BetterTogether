@@ -1,196 +1,230 @@
-package studycafe.model.vo;
-
+ package studycafe.model.vo;
+ 
 public class Cafe {
 
-	private int no;    // Ä«ÆäÄÚµå
-	private String cafe_name;  //Ä«Æä¸í
-	private String cafe_oh;  //Ä«Æä ¿ÀÇÂ½Ã°£
-	private String cafe_area; //Ä«ÆäÁö¿ª 
-	private String cafe_phone; // Ä«Æä  ÀüÈ­¹øÈ£
-	private String closed_day; // Ä«Æä ÈŞ¹«ÀÏ
-	private int cafe_capacity; //Ä«Æä ÃÖ´ë¼ö¿ëÀÎ¿ø
-	private String cafe_page; //Ä«Æä È¨ÆäÀÌÁö
-	private String detail_address;  //Ä«Æä »ó¼¼ÁÖ¼Ò
-	private String cafe_info; //Ä«Æä ¼Ò°³±Û
-	private String cafe_notice;  //Ä«Æä °øÁö±Û
-	private String cafe_photo; //Ä«Æä »çÁø 
-	private String cafe_map; //Ä«Æä ¾àµµ
-	private char AFFILIATED_CAFE; //Á¦ÈŞÁ¤º¸
-	private String UserId;
+	private int cafe_code;    // ì¹´í˜ì½”ë“œ ëª…
+	private String cafe_oh;  //ì¹´í˜ ì˜¤í”ˆì‹œê°„
+	private String cafe_name;  //ì¹´í˜ì´ë¦„		
+	private String cafe_area; //ì¹´í˜ì§€ì—­ 
+	private String cafe_phone; // ì¹´í˜  ì „í™”ë²ˆí˜¸ 
+	private String cafe_capacity; //ì¹´í˜ ìµœëŒ€ìˆ˜ìš©ì¸ì›  
+	private String cafe_notice;  //ì¹´í˜ ê³µì§€ê¸€
+	private String cafe_info; //ì¹´í˜ ì†Œê°œê¸€ 
+	private String cafe_photo; //ì¹´í˜ ì‚¬ì§„ 
+	private String AFFILIATED_CAFE; //ì œíœ´ì •ë³´(/ì¼ë°˜ê²Œì‹œíŒ , ì œíœ´ ê²Œì‹œíŒ) 
+	private String cafe_map; //ì¹´í˜ ì•½ë„
+	private String detail_address;  //ì¹´í˜ ìƒì„¸ì£¼ì†Œ
+	private String closed_day; // ì¹´í˜ íœ´ë¬´ì¼
+	private String cafe_page; //ì¹´í˜ í™ˆí˜ì´ì§€ 
+	private String UserId;    // ìœ ì € ì•„ì´ë””
+	
 	
 	public  Cafe() {}
 
-	public Cafe(int no, String cafe_name, String cafe_oh, String cafe_area, String cafe_phone, String closed_day,
-			int cafe_capacity, String cafe_page, String detail_address, String cafe_info, String cafe_notice,
-			String cafe_photo, String cafe_map, char aFFILIATED_CAFE) {
-		super();
-		this.no = no;
-		this.cafe_name = cafe_name;
-		this.cafe_oh = cafe_oh;
-		this.cafe_area = cafe_area;
-		this.cafe_phone = cafe_phone;
-		this.closed_day = closed_day;
-		this.cafe_capacity = cafe_capacity;
-		this.cafe_page = cafe_page;
-		this.detail_address = detail_address;
-		this.cafe_info = cafe_info;
-		this.cafe_notice = cafe_notice;
-		this.cafe_photo = cafe_photo;
-		this.cafe_map = cafe_map;
-		AFFILIATED_CAFE = aFFILIATED_CAFE;
-	}
 
-	public Cafe(String cafe_name, String cafe_oh, String cafe_area, String cafe_phone, String closed_day,
-			int cafe_capacity, String cafe_page, String detail_address, String cafe_info, String cafe_notice,
-			String cafe_photo, String cafe_map, String userId) {
+	public Cafe(int cafe_code, String cafe_oh, String cafe_name, String cafe_area, String cafe_phone,
+			String cafe_capacity, String cafe_notice, String cafe_info, String cafe_photo, String aFFILIATED_CAFE,
+			String cafe_map, String detail_address, String closed_day, String cafe_page, String userId) {
 		super();
-		this.cafe_name = cafe_name;
+		this.cafe_code = cafe_code;
 		this.cafe_oh = cafe_oh;
+		this.cafe_name = cafe_name;
 		this.cafe_area = cafe_area;
 		this.cafe_phone = cafe_phone;
-		this.closed_day = closed_day;
 		this.cafe_capacity = cafe_capacity;
-		this.cafe_page = cafe_page;
-		this.detail_address = detail_address;
-		this.cafe_info = cafe_info;
 		this.cafe_notice = cafe_notice;
+		this.cafe_info = cafe_info;
 		this.cafe_photo = cafe_photo;
+		AFFILIATED_CAFE = aFFILIATED_CAFE;
 		this.cafe_map = cafe_map;
+		this.detail_address = detail_address;
+		this.closed_day = closed_day;
+		this.cafe_page = cafe_page;
 		UserId = userId;
 	}
 
-	public int getNo() {
-		return no;
-	}
 
-	public void setNo(int no) {
-		this.no = no;
-	}
-
-	public String getCafe_name() {
-		return cafe_name;
-	}
-
-	public void setCafe_name(String cafe_name) {
+	public Cafe(String cafe_oh, String cafe_name, String cafe_area, String cafe_phone, String cafe_capacity,
+			String cafe_notice, String cafe_info, String cafe_photo, String aFFILIATED_CAFE, String cafe_map,
+			String detail_address, String closed_day, String cafe_page, String userId) {
+		super();
+		this.cafe_oh = cafe_oh;
 		this.cafe_name = cafe_name;
+		this.cafe_area = cafe_area;
+		this.cafe_phone = cafe_phone;
+		this.cafe_capacity = cafe_capacity;
+		this.cafe_notice = cafe_notice;
+		this.cafe_info = cafe_info;
+		this.cafe_photo = cafe_photo;
+		AFFILIATED_CAFE = aFFILIATED_CAFE;
+		this.cafe_map = cafe_map;
+		this.detail_address = detail_address;
+		this.closed_day = closed_day;
+		this.cafe_page = cafe_page;
+		UserId = userId;
 	}
+
+
+	public int getCafe_code() {
+		return cafe_code;
+	}
+
+
+	public void setCafe_code(int cafe_code) {
+		this.cafe_code = cafe_code;
+	}
+
 
 	public String getCafe_oh() {
 		return cafe_oh;
 	}
 
+
 	public void setCafe_oh(String cafe_oh) {
 		this.cafe_oh = cafe_oh;
 	}
+
+
+	public String getCafe_name() {
+		return cafe_name;
+	}
+
+
+	public void setCafe_name(String cafe_name) {
+		this.cafe_name = cafe_name;
+	}
+
 
 	public String getCafe_area() {
 		return cafe_area;
 	}
 
+
 	public void setCafe_area(String cafe_area) {
 		this.cafe_area = cafe_area;
 	}
+
 
 	public String getCafe_phone() {
 		return cafe_phone;
 	}
 
+
 	public void setCafe_phone(String cafe_phone) {
 		this.cafe_phone = cafe_phone;
 	}
 
-	public String getClosed_day() {
-		return closed_day;
-	}
 
-	public void setClosed_day(String closed_day) {
-		this.closed_day = closed_day;
-	}
-
-	public int getCafe_capacity() {
+	public String getCafe_capacity() {
 		return cafe_capacity;
 	}
 
-	public void setCafe_capacity(int cafe_capacity) {
+
+	public void setCafe_capacity(String cafe_capacity) {
 		this.cafe_capacity = cafe_capacity;
 	}
 
-	public String getCafe_page() {
-		return cafe_page;
-	}
-
-	public void setCafe_page(String cafe_page) {
-		this.cafe_page = cafe_page;
-	}
-
-	public String getDetail_address() {
-		return detail_address;
-	}
-
-	public void setDetail_address(String detail_address) {
-		this.detail_address = detail_address;
-	}
-
-	public String getCafe_info() {
-		return cafe_info;
-	}
-
-	public void setCafe_info(String cafe_info) {
-		this.cafe_info = cafe_info;
-	}
 
 	public String getCafe_notice() {
 		return cafe_notice;
 	}
 
+
 	public void setCafe_notice(String cafe_notice) {
 		this.cafe_notice = cafe_notice;
 	}
+
+
+	public String getCafe_info() {
+		return cafe_info;
+	}
+
+
+	public void setCafe_info(String cafe_info) {
+		this.cafe_info = cafe_info;
+	}
+
 
 	public String getCafe_photo() {
 		return cafe_photo;
 	}
 
+
 	public void setCafe_photo(String cafe_photo) {
 		this.cafe_photo = cafe_photo;
 	}
+
+
+	public String getAFFILIATED_CAFE() {
+		return AFFILIATED_CAFE;
+	}
+
+
+	public void setAFFILIATED_CAFE(String aFFILIATED_CAFE) {
+		AFFILIATED_CAFE = aFFILIATED_CAFE;
+	}
+
 
 	public String getCafe_map() {
 		return cafe_map;
 	}
 
+
 	public void setCafe_map(String cafe_map) {
 		this.cafe_map = cafe_map;
 	}
 
-	public char getAFFILIATED_CAFE() {
-		return AFFILIATED_CAFE;
+
+	public String getDetail_address() {
+		return detail_address;
 	}
 
-	public void setAFFILIATED_CAFE(char aFFILIATED_CAFE) {
-		AFFILIATED_CAFE = aFFILIATED_CAFE;
+
+	public void setDetail_address(String detail_address) {
+		this.detail_address = detail_address;
 	}
+
+
+	public String getClosed_day() {
+		return closed_day;
+	}
+
+
+	public void setClosed_day(String closed_day) {
+		this.closed_day = closed_day;
+	}
+
+
+	public String getCafe_page() {
+		return cafe_page;
+	}
+
+
+	public void setCafe_page(String cafe_page) {
+		this.cafe_page = cafe_page;
+	}
+
 
 	public String getUserId() {
 		return UserId;
 	}
 
+
 	public void setUserId(String userId) {
 		UserId = userId;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Cafe [no=" + no + ", cafe_name=" + cafe_name + ", cafe_oh=" + cafe_oh + ", cafe_area=" + cafe_area
-				+ ", cafe_phone=" + cafe_phone + ", closed_day=" + closed_day + ", cafe_capacity=" + cafe_capacity
-				+ ", cafe_page=" + cafe_page + ", detail_address=" + detail_address + ", cafe_info=" + cafe_info
-				+ ", cafe_notice=" + cafe_notice + ", cafe_photo=" + cafe_photo + ", cafe_map=" + cafe_map
-				+ ", AFFILIATED_CAFE=" + AFFILIATED_CAFE + ", UserId=" + UserId + "]";
+		return "Cafe [cafe_code=" + cafe_code + ", cafe_oh=" + cafe_oh + ", cafe_name=" + cafe_name + ", cafe_area="
+				+ cafe_area + ", cafe_phone=" + cafe_phone + ", cafe_capacity=" + cafe_capacity + ", cafe_notice="
+				+ cafe_notice + ", cafe_info=" + cafe_info + ", cafe_photo=" + cafe_photo + ", AFFILIATED_CAFE="
+				+ AFFILIATED_CAFE + ", cafe_map=" + cafe_map + ", detail_address=" + detail_address + ", closed_day="
+				+ closed_day + ", cafe_page=" + cafe_page + ", UserId=" + UserId + "]";
 	}
-
-	 
 	
- 
+	
 	
 	
 	

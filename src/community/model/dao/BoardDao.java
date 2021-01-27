@@ -1,22 +1,21 @@
 package community.model.dao;
 
-import java.sql.Connection;
+import static common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
 import common.model.vo.PageInfo;
+import common.model.vo.Search;
+import community.model.vo.Attachment;
 import community.model.vo.Board;
-import community.model.vo.Search;
-
-import static common.JDBCTemplate.close;
 
 public class BoardDao {
 	private Properties prop = new Properties();
@@ -186,8 +185,8 @@ public class BoardDao {
 		} finally {
 			close(pstmt);
 		}
-
 		return result;
+		
 	}
 
 	// 조회수 증가
@@ -360,6 +359,70 @@ public class BoardDao {
 
 		return result;
 		
+	}
+
+	// 게시글 파일 첨부
+	public int insertPhoto(Connection conn, ArrayList<Attachment> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertPhoto");
+		
+		try {
+			for(int i = 0; i < fileList.size(); i++) {
+				
+			pstmt = conn.prepareStatement(sql);
+			
+			Attachment at = fileList.get(i);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result += pstmt.executeUpdate();
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	// 게시글 사진 조회
+	public ArrayList<Attachment> selectBoardPhoto(Connection conn, int bId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Attachment> list = new ArrayList<>();
+		String sql = prop.getProperty("selectBoardPhoto");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				list.add(new Attachment(rset.getInt(1),
+										rset.getInt(2),
+										rset.getString(3),
+										rset.getString(4),
+										rset.getString(5),
+										rset.getString(6)));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println("dao - 파일첨부 리스트 : " + list);
+		return list;
 	}
 
 }

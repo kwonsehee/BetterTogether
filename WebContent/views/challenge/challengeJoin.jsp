@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="challenge.model.vo.*, java.util.Date, java.util.ArrayList"%>
+	import="challenge.model.vo.*, java.util.Date, java.util.ArrayList, java.text.SimpleDateFormat"%>
 <%
-
-   	Challenge ch = (Challenge)request.getAttribute("challenge");   
+	Challenge ch = (Challenge)request.getAttribute("challenge");   
 
 	// 챌린지 상태 리스트 가져오기
 	ArrayList<ChallengeStatus> list = (ArrayList<ChallengeStatus>)request.getAttribute("list");
@@ -15,37 +14,47 @@
 		System.out.println("찜 상태 : " + hits_status);
 	}
 	
-	
+
 	// 챌린지 시작일 값 추출 
-	String year = ch.getChallStart().substring(0, 4);
-	String month = ch.getChallStart().substring(5,7);
-	String day = ch.getChallStart().substring(8,10);
-	
+	Date from = ch.getChallStart();
+	SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+	String to = transFormat.format(from);
+
+	String year = to.substring(0, 4);
+	String month = to.substring(5, 7);
+	String day = to.substring(8, 10);
+
 	System.out.println("인증방법 : " + ch.getChallConfirm());
-	
+
 	// 인증 방법 한글로 나타내기 
 	String confirmNum = ch.getChallConfirm();
 	String confirm[] = new String[3];
-	switch(confirmNum){
-		case "1" : confirm[0] = "주말"; break; 
-		case "2" : confirm[1] = "평일"; break; 
-		case "3" : confirm[2] = "상관없음"; break; 
+	switch (confirmNum) {
+	case "1":
+		confirm[0] = "주말";
+		break;
+	case "2":
+		confirm[1] = "평일";
+		break;
+	case "3":
+		confirm[2] = "상관없음";
+		break;
 	}
-	
+
 	// chall_status (참여중이면 이미 참여했다고 alert 띄우기)
 	int chall_status = 0;
-	if ((request.getAttribute("chall_status")!=null)){
+	if ((request.getAttribute("chall_status") != null)) {
 		chall_status = Integer.parseInt((String.valueOf(request.getAttribute("chall_status"))));
 	}
-	//int chall_status = Integer.parseInt((String.valueOf(request.getAttribute("chall_status"))));
-	
+
 	int joinPeopleCnt = 0;
-	if((request.getAttribute("joinPeopleCnt")!=null)){
+	if ((request.getAttribute("joinPeopleCnt") != null)) {
 		joinPeopleCnt = Integer.parseInt((String.valueOf(request.getAttribute("joinPeopleCnt"))));
 	}
-	// 참여중인 인원 카운트 
-	//int joinPeopleCnt = Integer.parseInt((String.valueOf(request.getAttribute("joinPeopleCnt"))));
-
+	
+	// 쨈 갯수 카운트
+	int hits = Integer.parseInt((String.valueOf(request.getAttribute("hits"))));
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -71,7 +80,7 @@
 
 #challenge_btn {
 	font-family: "Do Hyeon";
-	width: 130px;
+	width: 120px;
 	height: 50px;
 	border-radius: 20px;
 	border: solid 1px #fdc8c6;
@@ -83,12 +92,12 @@
 
 #chall_backBtn {
 	font-family: "Do Hyeon";
-	width: 130px;
+	width: 120px;
 	height: 50px;
 	border-radius: 20px;
 	border: solid 1px #fdc8c6;
 	background-color: #fdc8c6;
-	margin-left: 25px;
+	margin-left: 30px;
 	margin-top: 10px;
 	font-size: 20px;
 }
@@ -190,13 +199,13 @@
 
 #btn-form div {
 	float: right;
-	margin-right: 130px;
+	margin-right: 155px;
 }
 
 #btn-form span {
 	float: right;
 	margin-right: 80px;
-	margin-top: -36px;
+	margin-top: -42px;
 }
 
 #btn-form {
@@ -250,7 +259,7 @@ button:focus {
 		<!-- 카운트 다운  -->
 		<script>
         // 챌린지 시작일 세팅
-        var countDownDate = new Date("<%= month%> <%=day%>, <%=year%> 00:00:00").getTime();
+        var countDownDate = new Date("<%=month%> <%=day%> <%=year%> 00:00:00").getTime();
       
         // 1초마다 카운트 
         var x = setInterval(function() {
@@ -281,7 +290,8 @@ button:focus {
       </script>
 
 		<section id="content-1">
-			<img src="<%= ch.getChallFile()%>" id="call_img">
+			<!-- width: 400px; height: 330px; -->
+			<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 400px;height: 330px;">
 			<p id="chall_title"><%= ch.getChallTitle() %></p>
 			<p id="chall_intro"><%= ch.getChallContent() %></p>
 		</section>
@@ -368,7 +378,7 @@ button:focus {
 						<% } %>
 					</button>
 				</div>
-				<span>찜하기</span>
+				<span>찜하기 +<%=hits %></span>
 			</section>
 		</section>
 
@@ -393,7 +403,7 @@ button:focus {
 				location.href="<%= request.getContextPath()%>/chall/list";
 			<%} if (chall_status == 1) {%>
 				alert('이미 참여한 챌린지 입니다!!!');
-				location.href="<%= request.getContextPath()%>/chall/list";
+				location.href="<%= request.getContextPath()%>/chall/join?challNo="+<%=ch.getChallNo()%>;
 			<% } %>
 			});
 			
@@ -417,17 +427,17 @@ button:focus {
 		
 		</script> 
 		
-		<!-- form 태그를 post 방식으로 제출 신고대상, 챌린지번호, "챌린지" 이름을 화면에 드러내지 않고 form을 submit 하면서 넘길 수 있음-->
+<!-- form 태그를 post 방식으로 제출 신고대상, 챌린지번호, "챌린지" 이름을 화면에 드러내지 않고 form을 submit 하면서 넘길 수 있음-->
 	<form id="warningForm" method="post">
-		<input type="hidden" name="challNo" value="<%= ch.getChallNo() %>">
-		<input type="hidden" name="name" value="<%= ch.getUserId() %>"> 
-		<input type="hidden" name="title" value="챌린지">  
+		<input type="hidden" name="no" value="<%= ch.getChallNo() %>">
+		<input type="hidden" name="reported_id" value="<%= ch.getUserId() %>"> 
+		<input type="hidden" name="category" value="챌린지">  
 	</form>
 	
 	<script>
 	const warning_btn = document.getElementById('warning_btn');
 	warning_btn.addEventListener('click',function(){
-		$("#warningForm").attr("action", "<%= request.getContextPath()%>/chall/warning");
+		$("#warningForm").attr("action", "<%= request.getContextPath()%>/report/insertForm");
 		$("#warningForm").submit();
 	});
 	
@@ -440,6 +450,9 @@ button:focus {
 	</script>
 
 	</section>
+	
+	
+	
 
 </body>
 </html>

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="community.model.vo.Board"%>
+    pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList"%>
 <%
 	Board b = (Board)request.getAttribute("board");
+	ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -94,6 +96,25 @@
             font-size: 14px;
             color: #ff60657e;
         }
+        #report {
+         background: none;
+            border : 2px solid  #ff60657e;   
+        	 width:70px;
+        	margin-left:795px;
+        }
+        #report a {
+        	  color: #ff60657e;
+        
+        }
+        .imgAreaInner {
+		display:inline-block; 
+		text-align:center;
+		}
+        .addImg {
+        width:200px;
+		height:180px; 
+		
+        }
 </style>
 </head>
 <body>
@@ -119,9 +140,19 @@
            <span id="bwriter">글쓴이 : <%= b.getNickName() %></span>
            </div>
            <div id="board_con"><p><%= (b.getbContent()).replace("\n", "<br>") %></p></div>
+           
+           <div id="imgAreaOuter">
+           	<% for(int i = 0; i < fileList.size(); i++) { %>
+           	<div class="imgAreaInner">
+           	<img class="addImg"
+					src="<%= request.getContextPath() %><%= fileList.get(i).getFilePath() %><%= fileList.get(i).getChangeName() %>">
+           	</div>
+           	<% } %>
+           </div>
         </div>
 
         <!-- 버튼 -->
         <button class="btn" id="back"><a href='<%= request.getContextPath()%>/board/main'>뒤로가기</a></button>
+        <button class="btn" id="report"><a href='<%= request.getContextPath()%>/report/insertForm'>신고</a></button>
 </body>
 </html>

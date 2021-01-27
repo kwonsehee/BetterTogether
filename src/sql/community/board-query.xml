@@ -261,4 +261,42 @@
 		       BOARD_SEQ = ?
 	</entry>
 	
+	<entry key="insertPhoto">
+		INSERT INTO
+		ADDFILE
+		(
+			FID
+		   ,BOARD_SEQ
+		   ,ORIGIN_NAME
+		   ,CHANGE_NAME
+		   ,FILEPATH
+		   ,STATUS
+		)
+		VALUES
+		(
+			SEQ_PHOTOID.NEXTVAL
+		   ,SEQ_FID.CURRVAL
+		   ,?
+		   ,?
+		   ,?
+		   ,DEFAULT
+		)
+	</entry>
+	<entry key="selectBoardPhoto">
+	   SELECT
+			  FID,
+			  BOARD_SEQ,
+			  ORIGIN_NAME,
+			  CHANGE_NAME,
+			  FILEPATH,
+			  STATUS
+		 FROM
+			  ADDFILE
+	    WHERE 
+	    	  BOARD_SEQ = ?
+	      AND STATUS = 'N'
+	 ORDER BY FID
+		
+	</entry>
+	
 </properties>

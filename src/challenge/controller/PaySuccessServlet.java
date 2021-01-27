@@ -46,39 +46,45 @@ public class PaySuccessServlet extends HttpServlet {
 		  int result = 0;
 		// Challenge ch = new ChallService().selectChall(challNo);
 		 
-		// 1. chall_status 테이블에 해당 번호, 유저아이디 컬럼이 있는지 확인 부터 하기 
-		ChallengeStatus cs = new ChallService().selectChallStatus(challNo, userId);
-		
-		if(cs == null) {
-			result = new ChallService().insertChallStatus(challNo,userId);
-			// 챌린지 모집현황 인원 insert (참여중)
-			result = new ChallService().updateChallStatus(challNo, userId);
-		} else {
-			// 챌린지 모집현황 인원 insert (참여중)
-			result = new ChallService().updateChallStatus(challNo, userId);
-		}
-		
-		// 2. 결제 테이블에 insert (카카오페이)
-		if(payment ==1) {
-			// 1) 해당 챌린지번호의 결제금액 알아오기 
-			int totalPay = new ChallService().selectTotalPay(challNo);
-			// 2) PAYMENT 테이블에 INSERT
-			result = new ChallService().insertChallPay(totalPay,challNo,userId,payment);
-		}
+//		// 1. chall_status 테이블에 해당 번호, 유저아이디 컬럼이 있는지 확인 부터 하기 
+//		ChallengeStatus cs = new ChallService().selectChallStatus(challNo, userId);
+//		
+//		if(cs == null) {
+//			result = new ChallService().insertChallStatus(challNo,userId);
+//			// 챌린지 모집현황 인원 insert (참여중)
+//			result = new ChallService().updateChallStatus(challNo, userId);
+//		} else {
+//			// 챌린지 모집현황 인원 insert (참여중)
+//			result = new ChallService().updateChallStatus(challNo, userId);
+//		}
+//		
+//		// 2. 결제 테이블에 insert (카카오페이)
+//		if(payment ==1) {
+//			// 1) 해당 챌린지번호의 결제금액 알아오기 
+//			int totalPay = new ChallService().selectTotalPay(challNo);
+//			// 2) PAYMENT 테이블에 INSERT
+//			result = new ChallService().insertChallPay(totalPay,challNo,userId,payment);
+//		}
 		
 		System.out.println("result 결제~ : " + result);
 		
 		Challenge ch = new ChallService().selectChall(challNo);
 		
-		if(result > 0 && payment == 1) {
+		// result > 0
+		if(payment == 1) {
 			//request.setAttribute("msg", "결제가 완료되었습니다.");
 			request.setAttribute("challenge", ch);
+			request.setAttribute("payment", payment);
+			//request.setAttribute("challNo", challNo);
 	        request.getRequestDispatcher("/views/challenge/challengeAPIPay.jsp").forward(request, response);
 		} else if(payment == 2) {
 			// 회원 포인트 결제 화면으로 
-	        request.getRequestDispatcher("/views/challenge/challengeMake.jsp").forward(request, response);
+			request.setAttribute("challenge", ch);
+			request.setAttribute("payment", payment);
+			//request.setAttribute("challNo", challNo);
+	        request.getRequestDispatcher("/views/challenge/challengePointPay.jsp").forward(request, response);
 		} else {
-	         request.setAttribute("msg", "챌린지 모집 현황 등록을 실패하였습니다.");
+	         request.setAttribute("msg", "결제 화면 이동 실패하였습니다.");
 		     request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
 		

@@ -53,7 +53,7 @@ public class ChallDao {
 				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
 						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
 						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
-						rset.getString(16)));
+						rset.getDate(16)));
 			}
 			System.out.println(list);
 
@@ -87,7 +87,7 @@ public class ChallDao {
 						rset.getString("CHALL_CONFIRM"), rset.getString("CHALL_FREQUENCY"),
 						rset.getString("CHALL_PERIOD"), rset.getInt("CHALL_PAYMENT"), rset.getString("CHALL_CONTENT"),
 						rset.getInt("CHALL_COUNT"), rset.getString("NICKNAME"), rset.getString("USER_ID"),rset.getString("CATE_NAME"),
-						rset.getInt("CHALL_CNT"), rset.getString("CHALL_START"));
+						rset.getInt("CHALL_CNT"), rset.getDate("CHALL_START"));
 
 			}
 
@@ -121,7 +121,7 @@ public class ChallDao {
 			pstmt.setInt(9, ch.getConfirmCnt());
 			pstmt.setString(10, ch.getUserId());
 			pstmt.setInt(11, Integer.parseInt(ch.getCateName()));
-			pstmt.setString(12, ch.getChallStart());
+			pstmt.setDate(12, ch.getChallStart());
 
 			result = pstmt.executeUpdate();
 
@@ -227,7 +227,7 @@ public class ChallDao {
 				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
 						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
 						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
-						rset.getString(16)));
+						rset.getDate(16)));
 			}
 
 		} catch (SQLException e) {
@@ -309,7 +309,7 @@ public class ChallDao {
 				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
 						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
 						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
-						rset.getString(16)));
+						rset.getDate(16)));
 			}
 
 			System.out.println("dao list: " + list);
@@ -696,7 +696,7 @@ public class ChallDao {
 				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
 						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
 						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
-						rset.getString(16)));
+						rset.getDate(16)));
 			}
 
 		} catch (SQLException e) {
@@ -825,6 +825,63 @@ public class ChallDao {
 //		
 //		return result;
 //	}
+	
+	// 찜 갯수 카운트 
+	public int selectHitsCount(Connection conn, int challNo) {
+		int hits = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("hitsCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, challNo);
+			
+			rset = pstmt.executeQuery();
+					
+			while(rset.next()) {
+				hits = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+			close(rset);
+		}
+		
+		
+		return hits;
+	}
+
+	public int selectMyJoinCount(Connection conn, String userId) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getMyListCount");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
 
 
 }

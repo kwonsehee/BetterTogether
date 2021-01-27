@@ -216,7 +216,7 @@
 				<%} %>
 				<button type ="submit" class="article_btn">검색하기</button>
 				<!-- 2. 공지사항 글쓰기 기능 : 관리자만 사용하는 기능(로그인 유저가 관리자일 때만 보여줌) -->
-				<%if(loginUser!=null&&loginUser.getUserId().equals("admin")) {%>
+				<%if(loginUser!=null&&loginUser.getMembertype()==0) {%>
 				<button id="noticeInsert" type="button"class="article_btn">작성하기</button>
 				<script>
 					//공지사항 작성하기

@@ -7,6 +7,9 @@
 	String name = m.getNickName();
 	String email = m.getEmail();
 	String phone = m.getPhone();
+	
+	// 참가인원 총 결제 금액
+	int pplTotalPay = ch.getChallPay() * ch.getChallPeople();
 
 %>
 <!DOCTYPE html>
@@ -22,123 +25,150 @@
 <style>
 /* content 부분 */
 #content-1 {
-   margin-top:-40px;
-   width: 100%;
-   height: 85%;
+	margin-top: -60px;
+	width: 100%;
+	height: 85%;
 }
 
 #content-1 p {
-   margin-left: 25px;
-   margin-top: -1px;
-   font-size: 25px;
-   color: #ff6064;
-   float: left;
+	margin-left: 10px;
+	font-size: 25px;
+	color: rgb(156, 154, 154);
+	float: left;
 }
 
 #content-2 {
-   margin-top:-120px;
-   width: 100%;
-   height: 15%;
+	margin-top: -120px;
+	width: 100%;
+	height: 15%;
 }
 
 #challenge_btn {
-   font-family: "Do Hyeon";
-   width: 130px;
-   height: 50px;
-   border-radius: 20px;
-   border: solid 1px #fdc8c6;
-   background-color: #fdc8c6;
-   float: right;
-   font-size: 20px;
-   margin-right: 370px;
-   margin-top:40px;
+	font-family: "Do Hyeon";
+	width: 130px;
+	height: 50px;
+	border-radius: 20px;
+	border: solid 1px #fdc8c6;
+	background-color: #fdc8c6;
+	float: right;
+	font-size: 20px;
+	margin-right: 370px;
+	margin-top: 40px;
 }
 
-#back_btn{
-   font-family: "Do Hyeon";
-   width: 130px;
-   height: 50px;
-   border-radius: 20px;
-   border: solid 1px #fdc8c6;
-   background-color: #fdc8c6;
-   float: left;
-   font-size: 20px;
-   margin-left: 350px;
-   margin-top:40px;
-   
+#back_btn {
+	font-family: "Do Hyeon";
+	width: 130px;
+	height: 50px;
+	border-radius: 20px;
+	border: solid 1px #fdc8c6;
+	background-color: #fdc8c6;
+	float: left;
+	font-size: 20px;
+	margin-left: 350px;
+	margin-top: 40px;
 }
 
 #sec-1 {
-   width: 15%;
-   height: 20%;
-}
-
-#sec-1 img {
-   margin-left: 50px;
-   margin-top: -14px;
-   width: 50px;
-   height: 50px;
+	width: 30%;
+	height: 20%;
 }
 
 #sec-2 {
-   width: 85%;
-   float: right;
+	width: 70%;
+	float: right;
 }
 
 .sec-3 {
-   width: 20%;
+	width: 20%;
 }
 
 .sec-3 img {
-   margin-left: 50px;
-   margin-top: -14px;
-   width: 50px;
-   height: 50px;
+	margin-left: 50px;
+	margin-top: -14px;
+	width: 50px;
+	height: 50px;
 }
 
 .sec-4 {
-   width: 85%;
-   height: 20%;
-   float: right;
-   margin-top: -100px;
+	width: 85%;
+	height: 20%;
+	float: right;
+	margin-top: -100px;
 }
 
 #table-1 {
-   font-family: "Do Hyeon";
-   font-size: 20px;
-   margin-top: -70px;
-   margin-bottom:15px;
+	font-family: "Do Hyeon";
+	font-size: 20px;
+	margin-left: 20px;
+	margin-top: -120px;
+	margin-bottom: 15px;
+}
+
+#table-1 tr:nth-child(1){
+	font-size:30px;
 }
 
 #table-2, #table-3, #table-4 {
-   font-family: "Do Hyeon";
-   font-size: 20px;
-   margin-top: 50px;
+	font-family: "Do Hyeon";
+	font-size: 20px;
+	margin-top: 50px;
 }
 
-
-#pay_title{
-   font-family: "Do Hyeon";
-   font-size: 35px;
-   margin-left:435px;
-   margin-top:30px;
+#pay_title {
+	font-family: "Do Hyeon";
+	font-size: 35px;
+	margin-left: 435px;
 }
 
-button:focus{
-	outline:none;
+button:focus {
+	outline: none;
 }
 
-#totalPay{
-font-family: "Do Hyeon";
-	width: 90px;
+#totalPay {
+	font-family: "Do Hyeon";
+	width: 100px;
 	height: 30px;
 	border-radius: 10px;
 	border: solid 1px #fdc8c6;
-	background-color: rgb(156, 154, 154);
+	background-color: #fdc8c6;
 	font-size: 20px;
-	padding-bottom:7px;
-	color:white;
+	padding-bottom: 7px;
+	color: white;
+}
 
+#payBackInfo {
+	font-family: "Do Hyeon";
+	width: 320px;
+	height: 30px;
+	border-radius: 20px;
+	border: solid 1px #fdc8c6;
+	background-color: white;
+	font-size: 20px;
+}
+
+#challImg{
+	width:100px;
+	height:100px;
+
+}
+
+#sec-1 img {
+	margin-left: 50px;
+	margin-top: -14px;
+	width: 250px;
+	height: 150px;
+}
+
+.challInfo{
+font-family: "Do Hyeon";
+	width: 80px;
+	height: 30px;
+	border-radius: 20px;
+	border: solid 1px #fdc8c6;
+	background-color: white;
+	font-size: 20px;
+	margin-right:10px;
 }
 
 
@@ -149,38 +179,35 @@ font-family: "Do Hyeon";
    <%@ include file="../common/common_ui.jsp"%>
 	
    <section id="content" class="content_css">
-   <form action="<%= request.getContextPath()%>/order/paySuccess" id="challNoForm" method="post">
-      <p id="pay_title">결제정보</p>
+   <form action="<%=request.getContextPath()%>/order/paySuccess" id="challNoForm" method="post">
+      <p id="pay_title">결제정보</p> 
       <section id="content-1">
          <br>
-         <hr color=#ff6064 width="970px">
          <section id="sec-1">
-            <p>페이백 정보</p>
-            <br><img src="<%= request.getContextPath() %>/resources/images/offer.png">
+            <p>챌린지 정보</p>
+            <hr color=#9c9a9a width="970px">
+            <br><img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" style="width: 250px;height: 150px;">
          </section>
          <section id="sec-2">
             <table id="table-1">
-               <tr>
-                  <td>100% 성공 : 전액 페이백 + 상금</td>
-               </tr>
-               <tr>
-                  <td>85% 이상 성공 : 전액 페이백</td>
-               </tr>
-               <tr>
-                  <td>85% 미만 성공 : 부분 페이백</td>
-               </tr>
+         		<tr>
+         		<td><%=ch.getChallTitle() %></td>
+         		</tr>
+         		<tr>
+         		<td><button class="challInfo"><%=ch.getChallFrequency() %></button><button class="challInfo"><%=ch.getChallPeriod() %></button></td>
+         		</tr>
             </table>
          </section>
-         <hr color=#ff6064 width="970px">
          <section class="sec-3">
             <p>참가 비용 정보</p>
+            <hr color=#9c9a9a width="970px">
             <br> <img src="<%= request.getContextPath()%>/resources/images/member.png">
          </section>
          <section class="sec-4">
             <table id="table-2">
                <tr>
                	  <!-- 현재 참가 인원수 * 참가비 (추후수정) -->
-                  <td>참가 인원 총 금액  :<span> 40,000 원 </span></td>
+                  <td>참가 인원 총 금액  : <span><%=pplTotalPay %> 원</span></td>
                </tr>
             </table>
          </section>
@@ -196,10 +223,22 @@ font-family: "Do Hyeon";
             </table>
          </section>
          
-         <hr color=#ff6064 width="970px">
+         <!-- 페이백 정보 -->
+         <section class="sec-3">
+            <br> <img src="<%= request.getContextPath()%>/resources/images/offer.png">
+         </section>
+         <section class="sec-4">
+            <table id="table-3">
+               <tr>
+                  <td><button id="payBackInfo">달성률 85%만 되어도 참가비 전액 환급!</button></td>
+               </tr>
+            </table>
+         </section>
+         
          
          <section class="sec-3">
             <p>결제 수단</p>
+            <hr color=#9c9a9a width="970px">
             <br> <img src="<%= request.getContextPath()%>/resources/images/payment.png">
          </section>
          <section class="sec-4">
@@ -224,10 +263,6 @@ font-family: "Do Hyeon";
       </form>
    </section>
  
-   
-   <!-- 결제 API / 회원보유포인트 (선택)-->
-	
-	<!-- 결제 후 완료 버튼 누르기 (챌린지현황에 회원 참여중으로 update됨) -->
 
 
 </body>

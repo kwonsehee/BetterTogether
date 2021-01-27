@@ -1,23 +1,27 @@
-package challenge.controller;
+package report.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import report.model.service.ReportService;
+import report.model.vo.Report;
+
 /**
- * Servlet implementation class ChallWarningServlet
+ * Servlet implementation class ReportDetailServlet
  */
-@WebServlet("/chall/warning")
-public class ChallWarningServlet extends HttpServlet {
+@WebServlet("/report/detail")
+public class ReportDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChallWarningServlet() {
+    public ReportDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,17 +30,20 @@ public class ChallWarningServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 챌린지 번호
-		int challNo = Integer.parseInt(request.getParameter("challNo"));
-		// 신고대상
-		String name = request.getParameter("name");
-		// 챌린지 (제목)
-		String title = request.getParameter("title");
-		
-		
-		
-		
+		int rNo = Integer.parseInt(request.getParameter("rNo"));
 
+		Report  r = new ReportService().selectReport(rNo);
+		
+		String page = "";
+		if (r != null) {
+			request.setAttribute("r", r);
+			page = "/views/report/reportDetailView.jsp";
+		} else {
+			request.setAttribute("msg", "신고 상세페이지를 불러오는데 실패하였습니다.");
+			page = "/views/common/errorPage.jsp";
+		}
+
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

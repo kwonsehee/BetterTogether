@@ -3,6 +3,7 @@ package community.controller;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import community.model.service.BoardService;
+import community.model.vo.Attachment;
 import community.model.vo.Board;
 
 /**
@@ -87,8 +89,11 @@ public class BoardDetailServlet extends HttpServlet {
 					b = bs.selectBoardNoCnt(bId);
 				}
 				
+				ArrayList<Attachment> fileList = bs.selectBoardPhoto(bId);
+				
 				if(b != null) {
 					request.setAttribute("board", b);
+					request.setAttribute("fileList", fileList);
 					request.getRequestDispatcher("/views/community/boardDetail.jsp").forward(request, response);
 				} else {
 					request.setAttribute("msg", "게시글 상세 조회에 실패하였습니다.");

@@ -75,12 +75,17 @@ textarea {
 
 #btnArea1 {
 	position: absolute;
-	left: 46.33%;
-	right: 47.41%;
+	left: 44.33%;
+	right: 45.41%;
 	top: 92.53%;
 	bottom: 1.44%;
-	background: #F8BEBE;
-	border-radius: 5px;
+	width: 60px;
+	height: 30px;
+	color: #ff60657e;
+	font-family: "Do Hyeon";
+	background: #fff;
+	border: 2px solid #ff60657e;
+	border-radius: 55px;
 }
 
 #btnArea2 {
@@ -89,8 +94,13 @@ textarea {
 	right: 42%;
 	top: 92.53%;
 	bottom: 1.44%;
-	background: #F8BEBE;
-	border-radius: 5px;
+	width: 60px;
+	height: 30px;
+	color: #ff60657e;
+	font-family: "Do Hyeon";
+	background: #fff;
+	border: 2px solid #ff60657e;
+	border-radius: 55px;
 }
 
 #area5 {
@@ -117,6 +127,15 @@ textarea {
 	top: 80.03%;
 	bottom: 14.08%;
 }
+
+.photo3 {
+	position: absolute;
+	left: 56.77%;
+	right: 37.28%;
+	top: 86%;
+	bottom: 11.21%;
+}
+
 </style>
 </head>
 <body>
@@ -125,15 +144,16 @@ textarea {
 
 
 
-	<section id="content" class="content_css">
+ 
 
-		<div id="main">
+		<div id="main"  >
 
-			<div class="outer">
+		 
 				<div class="tableArea">
 					<h1 id="title">스터디카페 등록</h1>
 					<form action="<%=request.getContextPath()%>/cafe/insert"
-						method="post">
+						method="post" enctype="multipart/form-data"> 
+						
 						<h4 class="studycafe_title" style="bottom: 65%;">카페이름</h4>
 						<span class="input_area"> <input type="text"
 							name="cafe_name" maxlength="40" required style="margin-top: 15%;">
@@ -146,7 +166,7 @@ textarea {
 						</span>
 
 						<h4 class="studycafe_title" style="bottom: 49%;">지역</h4>
-						<span class="input_area"> <select id="area5"
+						<span class="input_area"> <select id="area5" 
 							name="cafe_area">
 								<optgroup label="서초구">
 									<option value="방배">방배</option>
@@ -156,9 +176,9 @@ textarea {
 								</optgroup>
 
 								<optgroup label="강남구">
-									<option value="역심">역삼</option>
+									<option value="역삼">역삼</option>
 									<option value="논현">논현</option>
-									<option value="암구정"">압구정</option>
+									<option value="압구정">압구정</option>
 									<option value="신사">신사</option>
 								</optgroup>
 
@@ -203,9 +223,8 @@ textarea {
 						</span>
 
 						<h4 class="studycafe_title" style="bottom: 25%;">예약가능인원</h4>
-						<span class="input_area"> <input type="text"
-							placeholder="최대8명 ex)6" name="cafe_capacity" required
-							style="margin-top: 40%;">
+						<span class="input_area" >
+						 <input type="text" required name="cafe_capacity"  placeholder="최대8명 ex)6"  style="margin-top: 40%;">
 						</span>
 
 						<h4 class="studycafe_title" style="bottom: 17%;">카페홈페이지</h4>
@@ -215,8 +234,8 @@ textarea {
 
 						<h4 class="studycafe_title" style="bottom: 9%;">카페상세주소</h4>
 						<span class="input_area"> <input type="text"
-							placeholder="ex)서초구 방배동 123-45" name="detail_address"  
-							required style="margin-top: 50%;">
+							placeholder="ex)서초구 방배동 123-45" name="detail_address" required
+							style="margin-top: 50%;">
 						</span>
 
 
@@ -224,37 +243,46 @@ textarea {
 
 						<h4 class="studycafe_title2">카페소개글</h4>
 						<textarea name="cafe_info"
-							style="resize: none; margin-left: 0px; left: 550px; top: 170px;"
-							required> </textarea>
+							style="resize: none; left: 550px; top: 170px;" maxlength="110"> </textarea>
 
-					 
+
 						<h4 class="studycafe_title2" style="margin-top: 31%;">카페공지글</h4>
-						<textarea name="cafe_notice"
-							style="resize: none; left: 550px; top: 330px;" required> </textarea>
+						<textarea name="cafe_notice"  
+							style="resize: none; left: 550px; top: 330px;" maxlength="110" > </textarea>
 
 						<h4 class="studycafe_title2" style="margin-top: 48%;">내부사진,약도</h4>
 						<div class="photo">
-							<input type="file" name="cafe_photo">
+							<input type="file" name="cafe_photo" >
 						</div>
 						<div class="photo2">
-							<input type="file" name="cafe_map""   >
+							<input type="file" name="cafe_map">
 						</div>
+						<h4 class="studycafe_title2" style="margin-top: 51%;">카페제휴정보</h4>
+						   
+							<select class="photo3" name="AFFILIATED_CAFE" >
+								<option value="N">일반</option>
+								<option value="Y">제휴</option>
+							</select>
+						  
+						   
+						 
+						  
 						<div>
 							<button type="button" id="btnArea2"
-								onclick="javascript:history.back();">취소</button>
+								onclick="javascript:history.back();">취소</button> 
 							<button type="submit" id="btnArea1">등록</button>
 						</div>
 
 					</form>
+					
+					
+					
 				</div>
 			</div>
+ 
 
-
-
-
-		</div>
-	</section>
-
+		 
+ 
 
 
 

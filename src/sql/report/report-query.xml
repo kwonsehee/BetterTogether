@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-   	<entry key="insertReport">
+   	<entry key="insertConfirmReport">
 		INSERT ALL
 		INTO REPORT
 		(
@@ -36,7 +36,7 @@
         SELECT *
         FROM DUAL
 	</entry>
-	<entry key="insertReport2">
+	<entry key="insertConfirmReport2">
 		INSERT ALL
 		INTO REPORT
 		(
@@ -72,5 +72,292 @@
         SELECT *
         FROM DUAL
 	</entry>
-
+	<entry key="insertChallReport">
+		INSERT ALL
+		INTO REPORT
+		(
+			   REPORT_NO
+			 , REPORT_TITLE
+			 , REPORTED_ID
+			 , REPORT_CONTENT
+			 , REPORT_DATE
+			 , REPORT_MODIFY
+			 , T_F
+			 , USER_ID
+		)
+		VALUES
+		(
+			SEQ_REPID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+        INTO 
+        	 CHALL_REPORT
+        VALUES
+        (
+        	SEQ_REPID.CURRVAL
+          , ?
+        )
+        SELECT *
+        FROM DUAL
+	</entry>
+	<entry key="insertChallReport2">
+		INSERT ALL
+		INTO REPORT
+		(
+			   REPORT_NO
+			 , REPORT_TITLE
+			 , REPORTED_ID
+			 , REPORT_FILE
+			 , REPORT_CONTENT
+			 , REPORT_DATE
+			 , REPORT_MODIFY
+			 , T_F
+			 , USER_ID
+		)
+		VALUES
+		(
+			SEQ_REPID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+		INTO 
+        	 CHALL_REPORT
+        VALUES
+        (
+        	SEQ_REPID.CURRVAL
+          , ?
+        )
+        SELECT *
+        FROM DUAL
+	</entry>
+	<entry key="insertBoardReport">
+		INSERT ALL
+		INTO REPORT
+		(
+			   REPORT_NO
+			 , REPORT_TITLE
+			 , REPORTED_ID
+			 , REPORT_CONTENT
+			 , REPORT_DATE
+			 , REPORT_MODIFY
+			 , T_F
+			 , USER_ID
+		)
+		VALUES
+		(
+			SEQ_REPID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+        INTO 
+        	 BOARD_REPORT
+        VALUES
+        (
+        	SEQ_REPID.CURRVAL
+          , ?
+        )
+        SELECT *
+        FROM DUAL
+	</entry>
+	<entry key="insertBoardReport2">
+		INSERT ALL
+		INTO REPORT
+		(
+			   REPORT_NO
+			 , REPORT_TITLE
+			 , REPORTED_ID
+			 , REPORT_FILE
+			 , REPORT_CONTENT
+			 , REPORT_DATE
+			 , REPORT_MODIFY
+			 , T_F
+			 , USER_ID
+		)
+		VALUES
+		(
+			SEQ_REPID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+		INTO 
+        	 BOARD_REPORT
+        VALUES
+        (
+        	SEQ_REPID.CURRVAL
+          , ?
+        )
+        SELECT *
+        FROM DUAL
+	</entry>
+	<entry key="insertCafeReport">
+		INSERT ALL
+		INTO REPORT
+		(
+			   REPORT_NO
+			 , REPORT_TITLE
+			 , REPORTED_ID
+			 , REPORT_CONTENT
+			 , REPORT_DATE
+			 , REPORT_MODIFY
+			 , T_F
+			 , USER_ID
+		)
+		VALUES
+		(
+			SEQ_REPID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+        INTO 
+        	 CAFE_REPORT
+        VALUES
+        (
+        	SEQ_REPID.CURRVAL
+          , ?
+        )
+        SELECT *
+        FROM DUAL
+	</entry>
+	<entry key="insertCafeReport2">
+		INSERT ALL
+		INTO REPORT
+		(
+			   REPORT_NO
+			 , REPORT_TITLE
+			 , REPORTED_ID
+			 , REPORT_FILE
+			 , REPORT_CONTENT
+			 , REPORT_DATE
+			 , REPORT_MODIFY
+			 , T_F
+			 , USER_ID
+		)
+		VALUES
+		(
+			SEQ_REPID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+		INTO 
+        	 CAFE_REPORT
+        VALUES
+        (
+        	SEQ_REPID.CURRVAL
+          , ?
+        )
+        SELECT *
+        FROM DUAL
+	</entry>
+	<entry key="getListCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	REPORT
+	</entry>
+	<entry key="selectList">
+		 SELECT
+		 	    RNUM
+			  ,	REPORT_NO
+              , REPORT_TITLE
+              , REPORTED_ID
+              , REPORT_FILE
+              , REPORT_CONTENT
+              , REPORT_DATE
+              , REPORT_MODIFY
+              , T_F
+              , REPORT_STATUS
+              , USER_ID
+		   FROM
+		 		RELIST
+          WHERE 
+          		RNUM BETWEEN ? AND ?
+            AND REPORT_STATUS = 'N'
+	</entry>
+	<entry key="selectReport">
+		SELECT
+				REPORT_NO
+			  , REPORT_TITLE
+			  , REPORTED_ID
+			  , REPORT_FILE
+			  , REPORT_CONTENT
+			  , REPORT_DATE
+			  , REPORT_MODIFY
+			  , T_F
+			  , REPORT_STATUS
+			  , USER_ID
+		 FROM
+		 		REPORT
+		WHERE	
+				REPORT_NO = ?
+	</entry>
+	<entry key="getMyListCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	REPORT
+		  WHERE
+		  		USER_ID = ?
+	</entry>
+	<entry key="selectMyList">
+		 SELECT
+		 	    RNUM
+			  ,	REPORT_NO
+              , REPORT_TITLE
+              , REPORTED_ID
+              , REPORT_FILE
+              , REPORT_CONTENT
+              , REPORT_DATE
+              , REPORT_MODIFY
+              , T_F
+              , REPORT_STATUS
+              , USER_ID
+		   FROM
+		 		RELIST
+          WHERE 
+          		RNUM BETWEEN ? AND ?
+            AND REPORT_STATUS = 'N'
+            AND USER_ID = ?
+	</entry>
+	<entry key="deleteReport">
+		UPDATE
+			   REPORT
+		   SET
+		   	   REPORT_STATUS = 'Y'
+		 WHERE
+		 	   REPORT_NO = ?	
+	</entry>
 </properties>

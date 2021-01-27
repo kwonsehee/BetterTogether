@@ -155,13 +155,13 @@ background-color: #ff6064;
   /*서브 메뉴 설정*/
   #navi li>ul{
     position: absolute;
-
+	z-index:1;
     /*블릿제거 및 공백제거*/
     list-style-type: none;
     padding: 0;
-    margin: 0;
-
+    margin: 0; 
     /*평소에는 보이지 않게*/
+    z-index:1;
     opacity: 0;
     visibility: hidden;
 }
@@ -169,8 +169,7 @@ background-color: #ff6064;
 	cursor : pointer;
     /*메인 메뉴에 마우스 오버 시 서브메뉴 보이게*/
     opacity: 1;
-    visibility: visible;
-
+    visibility: visible; 
     /*트렌지션*/
     transition: all 0.6s;
 
