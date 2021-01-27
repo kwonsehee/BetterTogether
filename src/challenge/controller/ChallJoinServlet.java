@@ -103,7 +103,7 @@ public class ChallJoinServlet extends HttpServlet {
 		// chall_status 테이블 널이면 안됨 (널이면 hits_status 보내줄수없음)
 		ArrayList <ChallengeStatus> list = cs.selectListChallStatus();
 		
-       
+		
         int result = 0;
         
 		

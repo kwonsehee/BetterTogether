@@ -32,7 +32,7 @@ public class Challenge {
 	private String cateName; // 카테고리 이름
 	private int challCnt; // 조회수
 	private Date challStart; // 챌린지 시작일
-	private int challStatus; // 챌린지 게시물 삭제 여부 
+	private String challStatus; // 챌린지 게시물 삭제 여부 
 
 	public Challenge() {
 	}
@@ -40,7 +40,7 @@ public class Challenge {
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
 			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
 			int confirmCnt, String userId, String nickName, int cateId, String cateName, int challCnt,
-			Date challStart,int challStatus) {
+			Date challStart,String challStatus) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -64,7 +64,7 @@ public class Challenge {
 
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
 			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
-			int confirmCnt, String nickName, String cateName, int challCnt, Date challStart) {
+			int confirmCnt, String nickName, String cateName, int challCnt, Date challStart ,String challStatus) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -81,11 +81,12 @@ public class Challenge {
 		this.cateName = cateName;
 		this.challCnt = challCnt;
 		this.challStart = challStart;
+		this.challStatus = challStatus;
 	}
 	
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
 			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
-			int confirmCnt, String nickName, String userId, String cateName, int challCnt, Date challStart) {
+			int confirmCnt, String nickName, String userId, String cateName, int challCnt, Date challStart, String challStatus) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -103,6 +104,7 @@ public class Challenge {
 		this.cateName = cateName;
 		this.challCnt = challCnt;
 		this.challStart = challStart;
+		this.challStatus = challStatus;
 	}
 
 	// 챌린지 개설
@@ -133,6 +135,27 @@ public class Challenge {
 		this.challFrequency = challFrequency;
 		this.challPeriod = challPeriod;
 		this.challStart = challStart;
+	}
+	
+	
+	// 내가 모집한 탤린지 조회용
+	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
+			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
+			int cateId, Date challStart, String challStatus) {
+		super();
+		this.challNo = challNo;
+		this.challTitle = challTitle;
+		this.challPeople = challPeople;
+		this.challDate = challDate;
+		this.challFile = challFile;
+		this.challConfirm = challConfirm;
+		this.challFrequency = challFrequency;
+		this.challPeriod = challPeriod;
+		this.challPay = challPay;
+		this.challContent = challContent;
+		this.cateId = cateId;
+		this.challStart = challStart;
+		this.challStatus = challStatus;
 	}
 
 	// 카테고리 선택시 이동하는 화면에 필요
@@ -275,11 +298,11 @@ public class Challenge {
 		this.cateId = cateId;
 	}
 	
-	public int getChallStatus() {
+	public String getChallStatus() {
 		return challStatus;
 	}
 
-	public void setChallStatus(int challStatus) {
+	public void setChallStatus(String challStatus) {
 		this.challStatus = challStatus;
 	}
 
