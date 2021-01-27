@@ -5,11 +5,10 @@
    		SELECT
    			  COUNT(*)
    		 FROM 
-   		 	  CHALL C
-   		 	  JOIN CHALL_STATUS S USING(CHALL_NO)
+   		 	   CHALL_STATUS
    		WHERE 
    			  CHALL_STATUS = 2
-   	      AND S.USER_ID = ?
+   	      AND USER_ID = ?
 	 </entry>
 	 <entry key="joinedSelectList">
 	 	SELECT 
@@ -119,7 +118,7 @@
    		 	  CHALL C
    		 	  JOIN CHALL_STATUS S USING(CHALL_NO)
    		WHERE 
-   			  CHALL_STATUS = 1
+   			  S.CHALL_STATUS = 1
    	      AND S.USER_ID = ?
 	 </entry>
 	 <entry key="joiningSelectList">
@@ -141,7 +140,7 @@
              , CHALL_CNT
              , CHALL_START
              , CHALL_NO 
-		  FROM (SELECT 
+		  FROM ( SELECT 
 		  			   ROWNUM RNUM
 		  			 , CHALL_NO
 		  			 , CHALL_TITLE
@@ -152,7 +151,7 @@
 		  			 , CHALL_FREQUENCY
 		  			 , CHALL_PERIOD
 		  			 , CHALL_PAYMENT
-                	 ,CHALL_CONTENT
+                	 , CHALL_CONTENT
                 	 , CHALL_COUNT
                 	 , NICKNAME
                 	 , CATE_NAME
@@ -160,11 +159,11 @@
                 	 , CHALL_START  
                   FROM 
                   	   CHALL CH
-                	   JOIN CHALL_CATEGORY USING(CATE_ID)
+                	   JOIN CHALL_CATEGORY USING (CATE_ID)
                 	   JOIN USER_INFO U ON (U.USER_ID = CH.USER_ID)
-                	   JOIN CHALL_STATUS USING(CHALL_NO)
+                	   JOIN CHALL_STATUS CS USING(CHALL_NO)
                  WHERE U.USER_ID = ?
-                   AND CHALL_STATUS = 1)
+                   AND CS.CHALL_STATUS = 1)
 		JOIN CHALL_STATUS USING(CHALL_NO)
 		WHERE RNUM BETWEEN ? AND ?
 		AND CHALL_STATUS = 1
