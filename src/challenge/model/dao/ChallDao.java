@@ -825,6 +825,36 @@ public class ChallDao {
 //		
 //		return result;
 //	}
+	
+	// 찜 갯수 카운트 
+	public int selectHitsCount(Connection conn, int challNo) {
+		int hits = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("hitsCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, challNo);
+			
+			rset = pstmt.executeQuery();
+					
+			while(rset.next()) {
+				hits = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+			close(rset);
+		}
+		
+		
+		return hits;
+	}
 
 
 }

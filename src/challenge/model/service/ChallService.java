@@ -374,6 +374,16 @@ public class ChallService {
 		return result;
 	}
 
+	// 찜 갯수 카운트
+	public int selectHitsCount(int challNo) {
+		Connection conn = getConnection();
+		int hits = new ChallDao().selectHitsCount(conn, challNo);
+		
+		close(conn);
+		
+		return hits;
+	}
+
 //	//user_id가 cno에 참여중인지 확인
 //	public int CheckJoin(String user_id, int cno) {
 //		Connection conn = getConnection();

@@ -78,8 +78,8 @@ public class ChallHitsServlet extends HttpServlet {
 		
 		
 		if(result > 0) {
-			request.setAttribute("challenge", ch); // 찜 횟수 반영 
-			response.sendRedirect(request.getContextPath() + "/chall/list");
+			request.setAttribute("challenge", ch); 
+			response.sendRedirect(request.getContextPath() + "/chall/join?challNo="+ch.getChallNo());
 		} else {
 			request.setAttribute("msg", "챌린지 찜하기를 실패하였습니다.");
 		    request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
