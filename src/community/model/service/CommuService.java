@@ -13,7 +13,7 @@ import community.model.dao.CommuDao;
 
 public class CommuService {
 
-	
+	// 인기챌린지 갯수
 	public int getRankListCount() {
 		Connection conn = getConnection();
 		
@@ -25,7 +25,8 @@ public class CommuService {
 		return listCount;
 		
 	}
-
+	
+	// 인기챌린지 리스트
 	public ArrayList<Challenge> selectRankList(PageInfo pi) {
 		Connection conn = getConnection();
 
@@ -35,6 +36,17 @@ public class CommuService {
 
 		return list;
 
+	}
+
+	// 찜 갯수 카운트
+	public int getHitsCount(int cNo) {
+		Connection conn = getConnection();
+		
+		int hit = new CommuDao().getHitsCount(conn, cNo);
+		
+		close(conn);
+		
+		return hit;
 	}
 
 }

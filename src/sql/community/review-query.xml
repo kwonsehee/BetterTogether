@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<!-- 세미콜론 지워라!!!!!!!!!!!!!!!!! -->
+
+<entry key="insertReview">
+	INSERT
+	INTO REVIEW
+	()
+	VALUES
+	()
+</entry>
+<entry key="selectJoinedList">
+	SELECT 
+	 		   RNUM
+           	 , CHALL_NO
+           	 , CHALL_TITLE
+           	 , CHALL_PEOPLE
+           	 , CHALL_DATE
+             , FILE_PATH
+           	 , CHALL_CONFIRM
+             , CHALL_FREQUENCY
+             , CHALL_PERIOD
+             , CHALL_PAYMENT
+             , CHALL_CONTENT
+             , CHALL_COUNT
+             , NICKNAME
+             , CATE_NAME
+             , CHALL_CNT
+             , CHALL_START
+		  FROM (SELECT
+		      	     RNUM
+		           , CHALL_NO
+		           , CHALL_TITLE
+		           , CHALL_PEOPLE
+		           , CHALL_DATE
+		           , FILE_PATH
+		           , CHALL_CONFIRM
+		           , CHALL_FREQUENCY
+		           , CHALL_PERIOD
+		           , CHALL_PAYMENT
+		           , CHALL_CONTENT
+		           , CHALL_COUNT
+		           , NICKNAME
+		           , CATE_NAME
+		           , CHALL_CNT
+		           , CHALL_START
+        		FROM 
+             		 CLIST
+             	     JOIN CHALL_STATUS USING(CHALL_NO)
+               WHERE USER_ID = ?)
+          JOIN CHALL_STATUS USING(CHALL_NO)
+		 WHERE CHALL_STATUS = 2
+
+</entry>
+<entry key="selectTotalReviewList">
+	SELECT 
+			RNUM,
+			REVIEW_SEQ, 
+			REVIEW_CONTENT, 
+			REVIEW_DATE, 
+			REVIEW_MODIFY, 
+			REVIEW_GRADE, 
+			CHALL_TITLE, 
+			CHALL_NO,
+			REVIEW_STATUS, 
+			USER_ID, 
+			NICKNAME
+	  FROM  
+	  		RLIST
+	 WHERE  RNUM BETWEEN ? AND ?
+</entry>
+<entry key="getListCount">
+	SELECT
+			COUNT(*)
+	  FROM
+			REVIEW
+	 WHERE	
+	 		REVIEW_STATUS = 'Y'	
+</entry>
+	
+
+
+
+</properties>

@@ -68,17 +68,15 @@ public class CommuMainServlet extends HttpServlet {
 	      
 	     // System.out.println("서블릿 - 인기챌린지 리스트 :" + list);
 	      
-	      // 참여중인 인원 수 가져오기
-	     // int joinPeopleCnt = new ChallService().selectJoinCount(challNo);
 	      
 	      request.setAttribute("pi", pi);
 	      request.setAttribute("list", list);
-	     // request.setAttribute("joinPeopleCnt", joinPeopleCnt);
 		
 	      // 찜횟수 가져오기
-	     // int hitsCount = cs.getHitsCount(cNo);
+	     //int cNo = Integer.parseInt(request.getParameter("cNo"));
+	     //int hitsCount = cs.getHitsCount(cNo);
 	      
-	     // request.setAttribute("hitsCount", hitsCount);
+	     //request.setAttribute("hitsCount", hitsCount);
 	      
 		RequestDispatcher view= request.getRequestDispatcher("/views/community/commuMain.jsp");
 		view.forward(request, response);

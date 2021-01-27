@@ -73,9 +73,16 @@ public class BoardDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new Board(rset.getInt(2), rset.getString(3), rset.getString(4), rset.getDate(5),
-						rset.getDate(6), rset.getInt(7), rset.getString(8), rset.getString(9), rset.getString(10),
-						rset.getString(11)));
+				list.add(new Board(rset.getInt(2), 
+								   rset.getString(3), 
+								   rset.getString(4), 
+								   rset.getDate(5),
+								   rset.getDate(6), 
+								   rset.getInt(7), 
+								   rset.getString(8), 
+								   rset.getString(9), 
+								   rset.getString(10),
+								   rset.getString(11)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
