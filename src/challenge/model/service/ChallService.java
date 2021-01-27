@@ -384,7 +384,7 @@ public class ChallService {
 		close(conn);
 
 		return myjoinCnt;
-
+	}
 	// 찜 갯수 카운트
 	public int selectHitsCount(int challNo) {
 		Connection conn = getConnection();
