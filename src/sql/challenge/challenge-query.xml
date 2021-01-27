@@ -596,6 +596,13 @@
 		  AND CHALL_NO = ?
 		  AND CHALL_STATUS = 1
 	</entry>
-	
+	<entry key = "getMyListCount">
+   		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL_STATUS
+   		WHERE
+   			  USER_ID = ?
+  	</entry>
 
 </properties>

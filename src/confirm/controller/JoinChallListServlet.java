@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import challenge.model.service.ChallService;
+import common.model.vo.PageInfo;
 import confirm.model.service.ConfirmService;
 import confirm.model.vo.Confirm;
 import member.model.vo.Member;
@@ -44,10 +46,37 @@ public class JoinChallListServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/views/member/MemberLogin.jsp");
 		}else {
 			Member loginUser = (Member)session.getAttribute("loginUser");
+			String userId=loginUser.getUserId();
+			
 //			System.out.println("loginUser:  "+loginUser);
-			ArrayList<Confirm>list = new ConfirmService().selectList(loginUser.getUserId());
+			
+			// * currentPage : 현재 요청 페이지
+			// 기본적으로 게시판은 1페이지부터 시작함
+			int currentPage = 1;
+
+			// 하지만 페이지 전환 시 전달받은 현재 페이지가 있을 경우 해당 페이지를 currentPage로 적용
+			if (request.getParameter("currentPage") != null) {
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			}
+			
+			ChallService cs = new ChallService();
+			
+			// 1_1. 게시글 총 갯수 구하기
+			int listCount = cs.getMyListCount(userId);
+			 System.out.println("listcount : " + listCount);
+
+			// 1_2. 페이징 처리를 위한 변수 선언 및 연산
+			int pageLimit = 10;
+			int boardLimit = 3;
+
+			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
+			System.out.println("page boardLimit : " + pi);
+
+			
+			ArrayList<Confirm>list = new ConfirmService().selectList(loginUser.getUserId(), pi);
 			System.out.println("로그인 된 회원의 참여중인 챌린지"+list);
 			
+			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			
 			RequestDispatcher view = request.getRequestDispatcher("/views/confirm/joinchallListView.jsp");

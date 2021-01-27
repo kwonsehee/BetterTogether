@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import challenge.model.service.ChallService;
+import common.model.vo.PageInfo;
 import confirm.model.service.CerService;
 import confirm.model.vo.Cer;
 import member.model.vo.Member;
@@ -48,25 +49,55 @@ public class ConfirmListServlet extends HttpServlet {
 		if (session.getAttribute("loginUser") != null) {
 			Member m = (Member) session.getAttribute("loginUser");
 			user_id = m.getUserId();
-//			//user_id가 해당 챌린지 참여중인지 확인
-//			//1이면 참여중, 0이면 참여아님
-//			join = new ChallService().CheckJoin(user_id, cno);
-//			System.out.println("참여중인지 : "+join);
 		}
 	
 		// 챌린지 이름 알아오기
 		String c_title = new ChallService().getTitle(cno);
 		
+		// * currentPage : 현재 요청 페이지
+		// 기본적으로 게시판은 1페이지부터 시작함
+		int currentPage = 1;
+
+		// 하지만 페이지 전환 시 전달받은 현재 페이지가 있을 경우 해당 페이지를 currentPage로 적용
+		if (request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			System.out.println("현재페이지 : "+currentPage);
+		}
+
+		CerService cs = new CerService();
+
+		// 1_1. 게시글 총 갯수 구하기
+		int listCount = 0;
+
+		// 1_2. 페이징 처리를 위한 변수 선언 및 연산
+		int pageLimit = 10;
+		int boardLimit = 8;
+
+		PageInfo pi = new PageInfo();
+		
 		ArrayList <Cer>list = new ArrayList<Cer>();
 		
 		if(request.getParameter("title")==null) {
-			//챌린지모집에서 넘어왔을때는 인증 못하게 만들기
 			join=1;
-			list = new CerService().selectCerList(user_id,cno);
+			// 1_1. 게시글 총 갯수 구하기
+			listCount = cs.getMyListCount(cno, user_id);
+			System.out.println("listcount : " + listCount);
+
+			pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
+			
+			list = new CerService().selectCerList(user_id,cno, pi);
 			System.out.println("챌린지 인증에서 넘어왔을 때 : "+list);
 		}else {
+			//챌린지모집에서 넘어왔을때는 인증 못하게 만들기
 			join=0;
-			list = new CerService().selectAllCerList(cno);
+			
+			// 1_1. 게시글 총 갯수 구하기
+			listCount = cs.getALlListCount(cno);
+			System.out.println("listcount : " + listCount);
+			
+			pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
+			System.out.println("paging"+pi);
+			list = new CerService().selectAllCerList(cno, pi);
 			System.out.println("챌린지 모집에서 인증보기로 넘어왔을 때 : "+list);
 		}
 			
@@ -76,6 +107,7 @@ public class ConfirmListServlet extends HttpServlet {
 		request.setAttribute("title", c_title);
 		request.setAttribute("cno", cno);
 		request.setAttribute("join", join);
+		request.setAttribute("pi", pi);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/confirm/confirmListView.jsp");
 	    view.forward(request, response);

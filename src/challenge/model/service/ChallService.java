@@ -374,6 +374,17 @@ public class ChallService {
 		return result;
 	}
 
+	//챌린지 인증에서 회원이 참여했던 챌린지 갯수가져오기
+	public int getMyListCount(String userId) {
+		Connection conn = getConnection();
+
+		int myjoinCnt = new ChallDao().selectMyJoinCount(conn, userId);
+
+		close(conn);
+
+		return myjoinCnt;
+	}
+
 //	//user_id가 cno에 참여중인지 확인
 //	public int CheckJoin(String user_id, int cno) {
 //		Connection conn = getConnection();
