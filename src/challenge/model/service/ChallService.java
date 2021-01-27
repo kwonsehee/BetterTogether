@@ -384,6 +384,7 @@ public class ChallService {
 		close(conn);
 
 		return myjoinCnt;
+	}
 
 	// 찜 갯수 카운트
 	public int selectHitsCount(int challNo) {
@@ -395,6 +396,65 @@ public class ChallService {
 		return hits;
 
 	}
+	
+	// 내가 모집한 챌린지 조회
+	public ArrayList<Challenge> selectMyJoinList(String userId) {
+		Connection conn = getConnection();
+		
+		ArrayList<Challenge> list = new ChallDao().selectMyJoinList(conn, userId);
+		
+		//System.out.println("내가 모집한 챌린지 조회: " + list);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	// 챌린지 게시물 수정
+	public int updateChall(Challenge ch) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().updateChall(conn, ch);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	// 챌린지 게시물 삭제 (챌린지 'N' -> 'Y' 업데이트) 
+	public int deleteChall(int challNo) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().deleteChall(conn, challNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+/*	// 게시물 삭제 여부 상태 가져오기 
+	public String getChallStatus(int challNo) {
+		Connection conn = getConnection();
+
+		String challStatus = new ChallDao().getChallStatus(conn, challNo);
+		
+		close(conn);
+
+		return challStatus;
+	}*/
+	
 
 //	//user_id가 cno에 참여중인지 확인
 //	public int CheckJoin(String user_id, int cno) {
