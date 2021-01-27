@@ -108,6 +108,7 @@
                  <div id="joiningChall">
                  <table id="joiningList">
                     <tr>
+                    	<th>챌린지 번호</th>
                     	<th>카테고리</th>
                     	<!-- <th>카테고리 명</th> -->
                        <th>챌린지 명</th>
@@ -115,6 +116,7 @@
                     </tr>
          <% for(Challenge chall : cList) { %>
                     <tr>
+                    	<td><%= chall.getChallNo() %></td>
                     	<td><%= chall.getCateName() %></td>
                        <td><%= chall.getChallTitle() %></td>
                        <td><%= chall.getChallPeriod() %></td>

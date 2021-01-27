@@ -212,7 +212,7 @@
     	  //챌린지 찜하기 취소 버튼 클릭 시 찜하기한 챌린지에서 삭제하기
     	  $("#likeDeleteBtn").click(function(e){
     		  //likeList에 이벤트를 걸어놔서 버튼에도 이벤트가 걸림 stopProagation으로 막아줌
-         	 e.stopPropagation();
+         	 e.stopPropagation(); 
     		  //td에 있는 버튼 
          	 var num = $(this).parent().parent().children().eq(0).text();
     		  //찜하기 취소 버튼 클릭 시 넘어가게 하기
