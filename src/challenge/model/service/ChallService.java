@@ -374,6 +374,17 @@ public class ChallService {
 		return result;
 	}
 
+
+	//챌린지 인증에서 회원이 참여했던 챌린지 갯수가져오기
+	public int getMyListCount(String userId) {
+		Connection conn = getConnection();
+
+		int myjoinCnt = new ChallDao().selectMyJoinCount(conn, userId);
+
+		close(conn);
+
+		return myjoinCnt;
+
 	// 찜 갯수 카운트
 	public int selectHitsCount(int challNo) {
 		Connection conn = getConnection();
@@ -382,6 +393,7 @@ public class ChallService {
 		close(conn);
 		
 		return hits;
+
 	}
 
 //	//user_id가 cno에 참여중인지 확인

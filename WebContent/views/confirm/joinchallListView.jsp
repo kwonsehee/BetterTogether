@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, confirm.model.vo.Confirm"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, confirm.model.vo.Confirm, common.model.vo.PageInfo"%>
 <%
 	ArrayList<Confirm> list= (ArrayList<Confirm>)request.getAttribute("list");
+PageInfo pi = (PageInfo)request.getAttribute("pi");
 %>
 <!DOCTYPE html>
 <html>
@@ -153,6 +154,37 @@
 				<%} %>	
             <%} %>
          
+             <!-- 페이징 바 -->
+			<div class="pagingArea">
+			<!-- 맨 처음으로 (<<) -->
+			<button onclick="location.href='<%= request.getContextPath() %>/confirm/joinchalllist?currentPage=1'"> &lt;&lt; </button>
+			
+			<!-- 이전 페이지로 (<) -->
+			<% if(pi.getCurrentPage() == 1){ %>
+				<button disabled> &lt; </button>
+			<%} else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/confirm/joinchalllist?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
+			<% } %>
+			
+			<!-- 10개의 페이지 목록 -->
+			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+				<% if(p == pi.getCurrentPage()){ %>
+				<button style="background:lightgray;" disabled> <%= p %> </button>
+				<% } else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/confirm/joinchalllist?currentPage=<%= p %>'"> <%= p %> </button>				
+				<% } %>
+			<%} %>
+			<!-- 다음 페이지로(>) -->
+			<%if(pi.getCurrentPage() == pi.getMaxPage()){ %>
+				<button disabled> &gt; </button>
+				<%} else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/confirm/joinchalllist?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
+			<% } %>
+			
+			<!-- 맨 끝으로(>>) -->
+			<button onclick="location.href='<%= request.getContextPath() %>/confirm/joinchalllist?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+			</div>
+			
         </section>
      
 		<script>

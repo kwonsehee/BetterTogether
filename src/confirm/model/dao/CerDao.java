@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
+import common.model.vo.PageInfo;
 import confirm.model.vo.Cer;
-import confirm.model.vo.Confirm;
 import notice.model.vo.Notice;
 
 public class CerDao {
@@ -37,7 +37,7 @@ private Properties prop = new Properties();
 	}
 
 	//user_id가 선택한 챌린지를 인증한 것을 cer디비에서 가져오기
-	public ArrayList<Cer> selectList(Connection conn, String user_id, int cno) {
+	public ArrayList<Cer> selectList(Connection conn, String user_id, int cno, PageInfo pi) {
 		ArrayList<Cer>list = new ArrayList<Cer>();
 		PreparedStatement pstmt=null;
 		ResultSet rset = null;
@@ -45,9 +45,15 @@ private Properties prop = new Properties();
 		String sql = prop.getProperty("selectCerList");
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
 			pstmt.setString(1, user_id);
 			pstmt.setInt(2, cno);
-			
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+
 			rset = pstmt.executeQuery();
 		
 			while(rset.next()) {
@@ -95,7 +101,7 @@ private Properties prop = new Properties();
 	}
 
 	//챌린지의 모든 인증은 가져오는 dao
-	public ArrayList<Cer> selectAllList(Connection conn, int cno) {
+	public ArrayList<Cer> selectAllList(Connection conn, int cno, PageInfo pi) {
 		ArrayList<Cer>list = new ArrayList<Cer>();
 		PreparedStatement pstmt=null;
 		ResultSet rset = null;
@@ -103,8 +109,14 @@ private Properties prop = new Properties();
 		String sql = prop.getProperty("selectAllCerList");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cno);
 			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
+			pstmt.setInt(1, cno);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
 			rset = pstmt.executeQuery();
 		
 			while(rset.next()) {
@@ -155,5 +167,69 @@ private Properties prop = new Properties();
 			close(pstmt);
 		}
 		return c;
+	}
+
+	public int selectMyJoinCount(Connection conn, int cno, String user_id) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getMyListCount");
+		try {
+	
+			sql = prop.getProperty("getMyListCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cno);
+			pstmt.setString(2, user_id);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println("챌린지 인증에서 넘어올때 service  " + listCount);
+		return listCount;
+	}
+
+	public int selectAllCount(Connection conn, int cno) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getAllListCount");
+		
+		try {
+			
+		
+			sql = prop.getProperty("getAllListCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cno);
+			
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+
+		System.out.println("챌린지모집에서 넘어올때 service  : " + listCount);
+		return listCount;
 	}
 }

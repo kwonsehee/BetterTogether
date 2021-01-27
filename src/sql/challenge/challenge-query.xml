@@ -596,6 +596,16 @@
 		  AND CHALL_NO = ?
 		  AND CHALL_STATUS = 1
 	</entry>
+
+	<entry key = "getMyListCount">
+   		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL_STATUS
+   		WHERE
+   			  USER_ID = ?
+  	</entry>
+
 	
 	<!-- 찜 갯수 구하기 -->
 	<entry key="hitsCount">
@@ -608,5 +618,6 @@
 		  AND CHALL_NO = ?
 	</entry>
 	
+
 
 </properties>
