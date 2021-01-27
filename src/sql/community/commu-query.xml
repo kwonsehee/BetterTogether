@@ -25,7 +25,23 @@
 	     WHERE  
 	     		RNUM BETWEEN 1 AND 18
 	</entry>
-	
+	<entry key="getHitsCount">
+		SELECT 
+				CHALL_NO, COUNT(*) CNT
+   		  FROM 
+   		  		CHALL_STATUS 
+    	   JOIN 
+    	   		RANKLIST
+    	  USING 
+    	  		(CHALL_NO)
+    	  WHERE 
+    	  		C_HITS = 'Y'
+        	AND 
+        		CHALL_NO = ?
+       GROUP BY 
+       			CHALL_NO;
+    
+	</entry>
 
 
 
