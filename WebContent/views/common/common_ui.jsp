@@ -144,6 +144,7 @@
                 <button id="myChallBtn" class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
                 <button id="refundBtn" class="mypageMenu1"style="padding-left: 10px;">환급받기</button>
                 <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고내역</button>
+                 <button id="pointcharginBtn" class="mypageMenu1"style="padding-left: 10px;">포인트충전</button>
                
             </div>
          </section>
@@ -191,6 +192,16 @@
           refundBtn.addEventListener('click',function(){
             location.href="<%= request.getContextPath()%>/views/myPage/refundForm.jsp";
          });
+          
+          //8.포인트 충전하기
+          const pointcharginBtn = document.getElementById('pointcharginBtn');
+          pointcharginBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/views/myPage/PointCharging.jsp";
+         });
+          
+          
+          
+          
          </script>
 		<% } else { %>
 		<script>

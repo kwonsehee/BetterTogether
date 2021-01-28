@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import challenge.model.dao.ChallDao;
+import challenge.model.dao.ChallDao; 
 import refund.model.vo.Refund;
 
 import static common.JDBCTemplate.*;
@@ -37,6 +37,32 @@ public class RefundDao {
 			pstmt.setString(2, refund.getBank_name());
 			pstmt.setString(3, refund.getAccount_number());
 			pstmt.setInt(4, refund.getMoney());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("dao : "+result);
+		return result;
+	}
+
+
+	public int insertcharging(Connection conn, Refund ch) {
+		PreparedStatement pstmt=null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertrefund2");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ch.getUser_id()); 
+			pstmt.setString(2, ch.getUser_id()); 
+			pstmt.setString(3, ch.getUser_id()); 
+			pstmt.setInt(4, ch.getMoney());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

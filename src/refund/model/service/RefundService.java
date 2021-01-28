@@ -25,4 +25,19 @@ public class RefundService {
 		return result;
 	}
 
+	//충전
+	public int insertcharging(Refund ch) {
+		Connection conn = getConnection();
+		int result = new RefundDao().insertcharging(conn, ch);
+		
+		if(result >0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		System.out.println("service : "+result);
+		return result;
+	}
+
 }
