@@ -263,7 +263,7 @@ button:hover {
                     	<%for (Challenge c : list) {%>
                     	<%if (list.indexOf(c) == i) {%>
                     		<div class="chall_box">
-                    		<img src="<%=c.getChallFile()%>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%=c.getChallFile()%>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%=c.getChallTitle()%></p>
                        		<p name="cDate" class="cDate"><%=c.getChallStart()%> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
@@ -282,7 +282,7 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
@@ -305,7 +305,7 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
@@ -324,7 +324,7 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
@@ -346,7 +346,7 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
@@ -365,7 +365,7 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
@@ -402,7 +402,6 @@ button:hover {
                 document.querySelector('#slidebtn1').addEventListener('click', function(){
                     document.querySelector('.container').style.transform = 'translate(0vw)';
                 })
-
             </script>
         </section>   
     </section>
