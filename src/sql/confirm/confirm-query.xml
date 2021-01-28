@@ -2,19 +2,19 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="selectList">
-		SELECT
-			   CS.USER_ID
-			 , CHALL_NO
-			 , CS.CHALL_STATUS
-			 , JOIN_CALL_DATE
-             , CHALL_TITLE
-             , FILE_PATH
-             , CHALL_START
-		 FROM
-		 	   CHALL_STATUS CS
-               JOIN CHALL USING(CHALL_NO)
-		 WHERE CS.CHALL_STATUS != 3
-		   AND CS.USER_ID = ?
-	
+		SELECT 
+				RNUM
+			  , CSUSER_ID
+			  , CHALL_NO
+			  , CSCHALL_STATUS
+			  , JOIN_CALL_DATE
+			  , CHALL_TITLE
+			  , FILE_PATH
+			  , CHALL_START
+		  FROM
+		  	   CEIST
+         WHERE
+         	   CSUSER_ID = ?
+           AND RNUM BETWEEN ? AND ?
 	</entry>
 </properties>

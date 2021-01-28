@@ -5,6 +5,7 @@ import static common.JDBCTemplate.close; // close 임포트
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,7 +54,7 @@ public class ChallDao {
 				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
 						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
 						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
-						rset.getDate(16)));
+						rset.getDate(16),rset.getString(17)));
 			}
 			System.out.println(list);
 
@@ -87,7 +88,7 @@ public class ChallDao {
 						rset.getString("CHALL_CONFIRM"), rset.getString("CHALL_FREQUENCY"),
 						rset.getString("CHALL_PERIOD"), rset.getInt("CHALL_PAYMENT"), rset.getString("CHALL_CONTENT"),
 						rset.getInt("CHALL_COUNT"), rset.getString("NICKNAME"), rset.getString("USER_ID"),rset.getString("CATE_NAME"),
-						rset.getInt("CHALL_CNT"), rset.getDate("CHALL_START"));
+						rset.getInt("CHALL_CNT"), rset.getDate("CHALL_START"),rset.getString("CHALL_STATUS"));
 
 			}
 
@@ -227,7 +228,7 @@ public class ChallDao {
 				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
 						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
 						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
-						rset.getDate(16)));
+						rset.getDate(16),rset.getString(17)));
 			}
 
 		} catch (SQLException e) {
@@ -309,7 +310,7 @@ public class ChallDao {
 				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
 						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
 						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
-						rset.getDate(16)));
+						rset.getDate(16),rset.getString(17)));
 			}
 
 			System.out.println("dao list: " + list);
@@ -696,7 +697,7 @@ public class ChallDao {
 				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
 						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
 						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
-						rset.getDate(16)));
+						rset.getDate(16),rset.getString(17)));
 			}
 
 		} catch (SQLException e) {
@@ -825,6 +826,177 @@ public class ChallDao {
 //		
 //		return result;
 //	}
+	
+	// 찜 갯수 카운트 
+	public int selectHitsCount(Connection conn, int challNo) {
+		int hits = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("hitsCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, challNo);
+			
+			rset = pstmt.executeQuery();
+					
+			while(rset.next()) {
+				hits = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+			close(rset);
+		}
+		
+		
+		return hits;
+	}
+
+	public int selectMyJoinCount(Connection conn, String userId) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getMyListCount");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+	
+	// 내가 모집한 챌린지 select
+	public ArrayList<Challenge> selectMyJoinList(Connection conn, String userId) {
+		ArrayList<Challenge> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMyJoinList");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				list.add(new Challenge(rset.getInt(1), rset.getString(2), rset.getInt(3), rset.getDate(4),
+						rset.getString(5), rset.getString(6), rset.getString(7), rset.getString(8), rset.getInt(9),rset.getString(10),
+						rset.getInt(11),rset.getDate(12),rset.getString(13)));
+			}
+			//System.out.println("내가 모집한 챌린지 출력 : " + list);
+    } catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 
 
+		return list;
+	}
+
+	// 신고 게시물 비활성화 시키기
+	public int disabledPost(Connection conn, int cer_id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("disabledPost");
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cer_id);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	
+	// 챌린지 게시물 수정
+	public int updateChall(Connection conn, Challenge ch) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateChall");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ch.getChallTitle());
+			pstmt.setInt(2, ch.getChallPeople());
+			pstmt.setString(3, ch.getChallFile());
+			pstmt.setString(4, ch.getChallConfirm());
+			pstmt.setString(5, ch.getChallFrequency());
+			pstmt.setString(6, ch.getChallPeriod());
+			pstmt.setInt(7, ch.getChallPay());
+			pstmt.setString(8, ch.getChallContent());
+			pstmt.setInt(9, ch.getConfirmCnt());
+			pstmt.setString(10, ch.getUserId());
+			pstmt.setInt(11, Integer.parseInt(ch.getCateName()));
+			pstmt.setDate(12, ch.getChallStart());
+			pstmt.setInt(13, ch.getChallNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	// 게시물 삭제 
+	public int deleteChall(Connection conn, int challNo) {
+	      PreparedStatement pstmt = null;
+	      int result = 0;
+
+	      String sql = prop.getProperty("deleteChall");
+
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, challNo);
+
+	         result = pstmt.executeUpdate();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	      }
+
+	      return result;
+	}
+	
+	
+	
+	
 }

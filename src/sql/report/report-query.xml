@@ -324,4 +324,64 @@
 		WHERE	
 				REPORT_NO = ?
 	</entry>
+	<entry key="getMyListCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	REPORT
+		  WHERE
+		  		USER_ID = ?
+	</entry>
+	<entry key="selectMyList">
+		 SELECT
+		 	    RNUM
+			  ,	REPORT_NO
+              , REPORT_TITLE
+              , REPORTED_ID
+              , REPORT_FILE
+              , REPORT_CONTENT
+              , REPORT_DATE
+              , REPORT_MODIFY
+              , T_F
+              , REPORT_STATUS
+              , USER_ID
+		   FROM
+		 		RELIST
+          WHERE 
+          		RNUM BETWEEN ? AND ?
+            AND REPORT_STATUS = 'N'
+            AND USER_ID = ?
+	</entry>
+	<entry key="deleteReport">
+		UPDATE
+			   REPORT
+		   SET
+		   	   REPORT_STATUS = 'Y'
+		 WHERE
+		 	   REPORT_NO = ?	
+	</entry>
+	<entry key="processReport">
+		UPDATE
+			   REPORT
+		   SET
+		   	   T_F = 'T'
+		 WHERE
+		 	   REPORT_NO = ?	
+	</entry>
+	<entry key="disabledGetPost">
+		SELECT 
+			    C.CAFE_CODE
+			  , CH.CHALL_NO
+			  , CE.CER_ID
+			  , B.BOARD_SEQ
+		  FROM
+		   	    REPORT R
+				LEFT JOIN CAFE_REPORT C ON (R.REPORT_NO=C.REPORT_NO)
+				LEFT JOIN CHALL_REPORT CH ON (R.REPORT_NO=CH.REPORT_NO)
+				LEFT JOIN CER_REPORT CE ON (R.REPORT_NO=CE.REPORT_NO)
+				LEFT JOIN BOARD_REPORT B ON (R.REPORT_NO=B.REPORT_NO)
+		  WHERE 
+		  		R.REPORT_NO = ?
+	
+	</entry>
 </properties>

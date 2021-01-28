@@ -302,7 +302,7 @@ hr {
 						</li>
 						<li>
 							<button class="nav_btn" id="bt2"
-								onclick="location.href='https://<%= c.getCafe_page() %>'">
+								onclick="window.open('https://<%= c.getCafe_page() %>')" >
 								<a>예약하기</a>
 							</button>
 						</li>
@@ -319,8 +319,16 @@ hr {
 
 				<div class="btnArea" id="btnArea">
 				
-				<button type="button" id="btnArea2"
-				onclick="javascript:history.back();">목록</button>
+				<button type="button" id="btnArea2" >목록</button>
+				
+				
+				<script>
+				
+				const btnArea2 = document.getElementById("btnArea2");
+				btnArea2.addEventListener('click',function(){
+				location.href="<%= request.getContextPath()%>/cafe/list";
+				});
+				</script>
 		
 				<button type="button" id="btnArea3">신고</button>
 
@@ -337,10 +345,12 @@ hr {
 					</form>
 
 					<script>
+				 
+				
 				// 수정하기 버튼 이벤트
 				const updateBtn = document.getElementById('updateBtn');
 				updateBtn.addEventListener('click', function(){
-					$("#Cafe_codeForm").attr("action", "<%=request.getContextPath()%>/Cafe/updateForm");
+					$("#Cafe_codeForm").attr("action", "<%=request.getContextPath()%>/cafe/updateForm");
 					$("#Cafe_codeForm").submit();
 				});
 				
@@ -396,12 +406,16 @@ hr {
 						<br>
 						<span style ="display:block;width:480px; ">
 							 상세주소 :
+							 	 <a style="font-size: 16px;"> 
 							&nbsp<%= c.getDetail_address() %>
+							</a>
 						</span>
 						<br>
 						<br>
 
 						 
+						 
+					
 						<div class="map">
 							약도 <img id='maps'
 								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_map() %>"
@@ -410,23 +424,7 @@ hr {
 
 
 					</table>
-
-
-
-
-
-
-
-
-
-
-			
-			
-			
-			
-			
-			
-			
+ 	
 			
 		</div> 
 	</section>

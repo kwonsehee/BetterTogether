@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
+import common.model.vo.PageInfo;
 import confirm.model.vo.Confirm;
 import notice.model.vo.Notice;
 
@@ -36,7 +37,7 @@ public class ConfirmDao {
 	}
 	
 	//로그인된 회원의 참여중인 챌린지 정보 가져오기
-	public ArrayList<Confirm> selectList(Connection conn, String userid) {
+	public ArrayList<Confirm> selectList(Connection conn, String userid, PageInfo pi) {
 		ArrayList<Confirm>list = new ArrayList<Confirm>();
 		PreparedStatement pstmt=null;
 		ResultSet rset = null;
@@ -46,13 +47,21 @@ public class ConfirmDao {
 		String sql = prop.getProperty("selectList");
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
 			pstmt.setString(1, userid);
+			
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
 			rset = pstmt.executeQuery();
 		
 			while(rset.next()) {
-				list.add(new Confirm(rset.getString("USER_ID"),
+				list.add(new Confirm(rset.getString("CSUSER_ID"),
 									 rset.getInt("CHALL_NO"),
-									 rset.getInt("CHALL_STATUS"),
+									 rset.getInt("CSCHALL_STATUS"),
 									 rset.getDate("JOIN_CALL_DATE"),
 									 rset.getString("CHALL_TITLE"),
 									 rset.getString("FILE_PATH"),

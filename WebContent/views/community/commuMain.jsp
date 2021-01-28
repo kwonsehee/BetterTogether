@@ -401,7 +401,6 @@ button:hover {
                 document.querySelector('#slidebtn1').addEventListener('click', function(){
                     document.querySelector('.container').style.transform = 'translate(0vw)';
                 })
-
             </script>
         </section>   
     </section>

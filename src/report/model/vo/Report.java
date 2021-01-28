@@ -15,10 +15,26 @@ public class Report {
 	private String report_Status;
 	private String user_id;
 	
+	//어떤 게시글인지 확인하기 위한 변수
+	private int cafe_code;
+	private int chall_no;
+	private int cer_id;
+	private int board_seq;
+	
 	public Report() {
 		
 	}
 	
+	//어떤 게시글인지 확인하기 위한 변수
+	public Report(int cafe_code, int chall_no, int cer_id, int board_seq) {
+		super();
+		this.cafe_code = cafe_code;
+		this.chall_no = chall_no;
+		this.cer_id = cer_id;
+		this.board_seq = board_seq;
+	}
+
+
 	public Report(int report_no, String report_title, String reported_id, String report_file, String report_content,
 			Date report_date, Date report_modify, String t_f, String report_Status, String user_id) {
 		super();
@@ -137,6 +153,38 @@ public class Report {
 	}
 
 
+
+	public int getCafe_code() {
+		return cafe_code;
+	}
+
+	public void setCafe_code(int cafe_code) {
+		this.cafe_code = cafe_code;
+	}
+
+	public int getChall_no() {
+		return chall_no;
+	}
+
+	public void setChall_no(int chall_no) {
+		this.chall_no = chall_no;
+	}
+
+	public int getCer_id() {
+		return cer_id;
+	}
+
+	public void setCer_id(int cer_id) {
+		this.cer_id = cer_id;
+	}
+
+	public int getBoard_seq() {
+		return board_seq;
+	}
+
+	public void setBoard_seq(int board_seq) {
+		this.board_seq = board_seq;
+	}
 
 	@Override
 	public String toString() {

@@ -16,16 +16,16 @@ import member.model.vo.Member;
 import myPage.model.service.myPageService;
 
 /**
- * Servlet implementation class likeChallengeServlet
+ * Servlet implementation class joiningChallengeServlet
  */
-@WebServlet("/like/list")
-public class likeChallengeServlet extends HttpServlet {
+@WebServlet("/joining/list")
+public class joiningChallengeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public likeChallengeServlet() {
+    public joiningChallengeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,8 +51,8 @@ public class likeChallengeServlet extends HttpServlet {
 
 		//1_1.게시글 총 갯수 구하기
 		//게시글이 작성 될 때마다 새로운 글이 젤 위에 있기 때문에 게시글 총 갯수를 알아와야함
-		int listCount = ms.likegetListCount(userId);
-		System.out.println("likeList : " + listCount);
+		int listCount = ms.joininggetListCount(userId);
+		System.out.println("joiningCount : " + listCount);
 		
 		//1_2.페이징 처리를 위한 변수 선언 및 연산
 		int pageLimit = 10;		//한 페이지 하단에 보여질 페이지 수
@@ -99,14 +99,14 @@ public class likeChallengeServlet extends HttpServlet {
 		Challenge chall = new Challenge();
 		chall.setUserId(userId);
 		
-		ArrayList<Challenge> cList = ms.likeSelectList(pi, userId);
+		ArrayList<Challenge> cList = ms.joiningSelectList(pi, userId);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("cList", cList);
 		
 		System.out.println("cList : " + cList);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/myPage/likeChallenge.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/myPage/joiningChallenge.jsp");
 		view.forward(request, response);
 	}
 

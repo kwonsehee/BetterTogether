@@ -2,16 +2,18 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="selectCerList">	
-		SELECT
-			   CER_ID
+		SELECT 
+			   RNUM
+			 , CER_ID
 			 , CER_PIC
-             , CHALL_TITLE
-		  FROM
-		  	    CER C
-                JOIN CHALL USING(CHALL_NO)
-		  WHERE
-		  	    C.USER_ID = ?
-		  	AND CHALL_NO = ?
+			 , CHALL_TITLE
+			 , CHALL_NO
+		 FROM
+		 	  CERLIST
+		WHERE
+			  USER_ID = ?
+		  AND CHALL_NO = ?
+		  AND RNUM BETWEEN ? AND ?
 	</entry>
 	<entry key="insertCer">
 		INSERT INTO
@@ -36,15 +38,17 @@
 			)	
 	</entry>
 	<entry key="selectAllCerList">
-		SELECT
-			   CER_ID
+		SELECT 
+			   RNUM
+			 , CER_ID
 			 , CER_PIC
-             , CHALL_TITLE
-		  FROM
-		  	    CER C
-                JOIN CHALL USING(CHALL_NO)
-		  WHERE
-		  	    CHALL_NO = ?
+			 , CHALL_TITLE
+			 , CHALL_NO
+		 FROM
+		 	  CERLIST
+		WHERE
+			  CHALL_NO = ?
+		  AND RNUM BETWEEN ? AND ?
 	</entry>
 	<entry key="selectCer">
 		SELECT 
@@ -61,4 +65,29 @@
 		  	    CER_ID = ?
 	
 	</entry>
+	<entry key = "getMyListCount">
+   		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CER
+   		WHERE
+   			  CHALL_NO = ?
+   		  AND USER_ID = ?
+  	</entry>
+  	<entry key = "getAllListCount">
+   		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CER
+   		WHERE
+   			  CHALL_NO = ?
+  	</entry>
+  	<entry key="disabledPost">
+  		UPDATE
+  			   CER
+		   SET
+		   	   CER_STATUS = 'Y'
+		 WHERE
+		 	   CER_ID = ?
+  	</entry>
 </properties>

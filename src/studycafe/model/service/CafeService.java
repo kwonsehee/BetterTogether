@@ -8,6 +8,7 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import challenge.model.dao.ChallDao;
 import common.model.vo.PageInfo;
 import common.model.vo.Search;
 import studycafe.model.dao.CafeDao;
@@ -137,8 +138,70 @@ Connection conn = getConnection();
 		}
 
 
+		public int updateCafe(Cafe cafe) {
+			Connection conn = getConnection();
+			
+			int result = new CafeDao().updateCafe(conn, cafe);
+			
+			if(result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			
+			close(conn);
+
+			return result;
+		}
+
+
+		public Cafe selectCafeCnt(int cafe_code) {
+			Connection conn = getConnection();
+			Cafe b = new CafeDao().selectStudyCafe(conn, cafe_code);
+			close(conn);
+			return b;
+		}
+
+
+		//신고받은 게시물 비활성화 시키기
+	public int disabledPost(int cer_id) {
+		Connection conn = getConnection();
+
+		int result = new CafeDao().disabledPost(conn, cer_id);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		
+		return result;
+	}
 
 	
+
+	 	public int deleteCafe2(String cafe_name, String cafe_phone) {
+			Connection conn = getConnection();
+
+			int result = new CafeDao().deleteCafe2(conn, cafe_name, cafe_phone);
+
+			if (result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+
+			close(conn);
+
+			return result;
+		}
+
+
+		 
+
+
 
 
 	

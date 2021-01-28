@@ -6,6 +6,7 @@
       
       PageInfo pi = (PageInfo)request.getAttribute("pi");
       
+      
      /*  Search s = (Search)request.getAttribute("search");
       String search = "";
       String searchCondition = "";
@@ -21,7 +22,8 @@
             selected[2] = "selected";
          }
       }   */
-   
+   	
+      
 %>
 <!DOCTYPE html>
 <html>
@@ -71,34 +73,33 @@
            font-size: 18px;
        }
 
-       #month1{
+       .threemons{
            border: 1px solid #fdc8c6;
            border-radius: 20px;
            background-color: #fdc8c6;
            font-family: "Do Hyeon";
-           margin-left: 40px;
-           margin-top: 10px;
-           font-size: 16px;
+           margin-left: 300px;
+           font-size: 24px;
        }
 
-       #month2{
+       .sixmons {
            border: 1px solid #fdc8c6;
            border-radius: 20px;
            background-color: #fdc8c6;
            font-family: "Do Hyeon";
            margin-left: 10px;
            margin-top: 10px;
-           font-size: 16px;
+           font-size: 24px;
        }
 
-       #month3{
+       .year {
            border: 1px solid #fdc8c6;
            border-radius: 20px;
            background-color: #fdc8c6;
            font-family: "Do Hyeon";
            margin-left: 10px;
            margin-top: 10px;
-           font-size: 16px;
+           font-size: 24px;
        }
 
        #check{
@@ -116,9 +117,17 @@
             background-color: #fdc8c6;
             border-radius: 20px;
             font-family: "Do Hyeon";
-            font-size: 18px;
-            margin-left : 400px;
-            margin-top : 100px;
+            font-size: 24px;
+            margin-left : -20px;
+            margin-top : 50px;
+        }
+        
+        #backBtn {
+        	border: 1px solid #fdc8c6;
+            background-color: #fdc8c6;
+            border-radius: 20px;
+            font-family: "Do Hyeon";
+            font-size: 24px;
         }
         
         #joined {
@@ -156,7 +165,8 @@
         
       /*페이징 css*/
         #pagingArea {
-    	  margin:auto;
+    	  /* margin:auto; */
+    	  margin-left:-40px;
   	   }
       	#pagingArea button {
             font-family: "Do Hyeon";
@@ -213,29 +223,38 @@
    
    <section id="content" class="joined_content">
       <h3 id="title">참여했던 챌린지 그룹</h3>
-     <!--  <input type="date" id="date"> ~ <input type="date" id="date2">
-      <button type="button" id="month1">한달 전</button>
-      <button type="button" id="month2">세달 전</button>
-      <button type="button" id="month3">1년 전</button>
-      <button type="submit" id="check">조회</button> -->
-      
       <% if(loginUser!=null && cList!=null) { %>
+     <%--  <form action="<%= request.getContextPath() %>/joined/dateSelect" method="post">
+      <input type="hidden" name="threemonths" value="3개월">
+     <input type="button" id="month1" class="threemons" name="3개월">3개월 전
+      </form>
+      
+      <form action="<%= request.getContextPath() %>/joined/dateSelect" method="post">
+      <input type="hidden" name="sixmonths" value="6개월">
+      <input type="button" id="month2" class="sixmons" name="6개월">6개월 전      
+      </form>
+      
+      <form action="<%= request.getContextPath() %>/joined/dateSelect" method="post">
+      <input type="hidden" name="oneyear" value="12개월">
+      <input type="button" id="month3" class="year" name="1년 전">1년 전      
+      </form> --%>
+      
             <div id="joined">
                  <div id="joinedChall">
                  <table id="joinedList">
                     <tr>
                     	<th>챌린지 번호</th>
-                    	<th>카테고리 명</th>
+                    	<th>카테고리</th>
+                    	<!-- <th>카테고리 명</th> -->
                        <th>챌린지 명</th>
                        <th>챌린지 기간</th>
                     </tr>
          <% for(Challenge chall : cList) { %>
                     <tr>
                     	<td><%= chall.getChallNo() %></td>
-                       	<td><%= chall.getCateName() %></td>
+                    	<td><%= chall.getCateName() %></td>
                        <td><%= chall.getChallTitle() %></td>
                        <td><%= chall.getChallPeriod() %></td>
-                       <%-- <td><button id="joinedDetailBtn" onclick="location.href='<%= request.getContextPath() %>/chall/join'">상세보기</button></td> --%>
                     </tr>
           <% } %> 
                  </table>
@@ -283,6 +302,8 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
                
             </div>
+                <button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button>
+                <button id="backBtn" type="button" class="text_font joinform_btn" onclick="javascript:history.back();">뒤로가기</button>
             
       
      <%--   <!-- 검색 영역 -->
@@ -309,8 +330,7 @@
     </section>
     
      <script>
-       // 챌린지 상세보기 기능 (jQuery를 통해 작업)
-
+       // 챌린지 상세보기 기능 (jQuery를 통해 작업) 
       $(function(){
          $("#joinedList td").mouseenter(function(){
             $(this).parent().css({"background":"white", "cursor":"pointer"});
@@ -333,5 +353,13 @@
          location.href='<%=request.getContextPath()%>';
       });
     </script>
+    
+   <%--  <script>
+    	//1.3개월 전 
+    	const month1 = document.getElementById('month1');
+    	month1.addEventListener('click', function(){
+    		location.href='<%= request.getContextPath()%>/joined/3mons';
+    	});
+    </script> --%>
 </body>
 </html>

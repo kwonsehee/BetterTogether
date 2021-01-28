@@ -3,11 +3,13 @@
 <%
 	ArrayList<Cer> list = (ArrayList<Cer>)request.getAttribute("list");
 	System.out.println(list);
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	String title = (String)request.getAttribute("title");
 	System.out.println(title);
 	int cno = Integer.parseInt((String.valueOf(request.getAttribute("cno"))));
 	System.out.println(cno);
 	int loop = 4<list.size() ? 4 :list.size();
+	System.out.println(loop);
 	int join = Integer.parseInt((String.valueOf(request.getAttribute("join"))));
 	System.out.println("confirmListView : "+join);
 %>
@@ -56,7 +58,7 @@
             height : 150px;
             border: 1px solid black;
         }
-        .plus_btn{ 
+/*         .plus_btn{ 
             width : 180px;
             height : 150px;
             border: 0px;
@@ -64,7 +66,7 @@
             font-size: 60px;
             background-color: rgba(196, 196, 196, 0.5);
 
-        }
+        } */
 
         .line{
             float: left;
@@ -74,7 +76,7 @@
         }
         
         /* 뒤로가기 버튼 */
-        .back_btn {
+        .back_btn,  .plus_btn {
             width: 130px;
             font-family: "Do Hyeon";
             font-size: 20px;
@@ -124,9 +126,8 @@
                   <% } else { %>
                   		
                   <tr style="border : solid 1px red;">
-                    <% for(int i=0;i<4;i++) { %>
+                    <% for(int i=0;i<loop;i++) { %>
                         <td style="border : solid 1px red;">
-                       <%--  <div type="hidden" value="<%=list.get(i).getCer_id() %>"></div> --%>
                         <input type="hidden" name="ceno" value="<%=list.get(i).getCer_id() %>">	
                         <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= list.get(i).getCer_pic()%>">
                         </td>
@@ -140,28 +141,76 @@
                         </td>
                     <% } %>
                     
-                    <%if(join>0){ %>
-                        <th><input type="submit" value="+" class="plus_btn" id="plusBtn"></th>
-                     <script>
-                        
-                        //+버튼 클릭 이벤트
-                        const plusBtn = document.getElementById('plusBtn');
-                        plusBtn.addEventListener('click',function(){
-                           location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>';
-                        });
-                        
-						</script>  
-                 
-                    <%} %>
+                   
                      
                     </tr>    
                     
                  <% } %>
                 </table>
+                
             </div>
+             <%if(join>0){ %>
+                 <button type="button" id="plusBtn" class="plus_btn">인증하기</button>
+                 <script>
+                        
+                    //+버튼 클릭 이벤트
+                    const plusBtn = document.getElementById('plusBtn');
+                    plusBtn.addEventListener('click',function(){
+                       location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>';
+                    });
+                        
+						</script>  
+                 
+                    <%} %>
             <button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();">목록으로</button>
 		
-            
+              <!-- 페이징 바 -->
+			<div class="pagingArea">
+			<!-- 맨 처음으로 (<<) -->
+			<%if(join>0){ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?cno=<%=cno%>&currentPage=1'"> &lt;&lt; </button>
+			<%}else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?title=챌린지&cno=<%=cno%>&currentPage=1'"> &lt;&lt; </button>
+			<%} %>
+			
+			<!-- 이전 페이지로 (<) -->
+			<% if(pi.getCurrentPage() == 1){ %>
+				<button disabled> &lt; </button>
+			<%}else if(join>0){ %>	
+				<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?cno=<%=cno%>&currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
+			<%} else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?title=챌린지&cno=<%=cno%>&currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
+			<% } %>
+			
+			<!-- 10개의 페이지 목록 -->
+			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+				<% if(p == pi.getCurrentPage()){ %>
+				<button style="background:lightgray;" disabled> <%= p %> </button>
+				<% } else { %>
+					<%if(join>0){ %>
+					<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?cno=<%=cno%>&currentPage=<%= p %>'"> <%= p %> </button>
+					<%}else { %>
+					<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?title=챌린지&cno=<%=cno%>&currentPage=<%= p%>'"> <%= p%> </button>		
+					<% } %>
+				<% } %>
+			<%} %>
+			<!-- 다음 페이지로(>) -->
+			<%if(pi.getCurrentPage() == pi.getMaxPage()){ %>
+				<button disabled> &gt; </button>
+				<%} else if(join>0) { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?cno=<%=cno%>&currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
+				<%} else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?title=챌린지&cno=<%=cno%>&currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
+			<% } %>
+			
+			<!-- 맨 끝으로(>>) -->
+			<%if(join>0){ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?cno=<%=cno%>&currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+			<%}else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?title=챌린지&cno=<%=cno%>&currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+			<%} %>
+			</div>
+			
         </section>
 	  
     </section>

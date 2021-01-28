@@ -103,7 +103,7 @@ public class ChallJoinServlet extends HttpServlet {
 		// chall_status 테이블 널이면 안됨 (널이면 hits_status 보내줄수없음)
 		ArrayList <ChallengeStatus> list = cs.selectListChallStatus();
 		
-       
+		
         int result = 0;
         
 		
@@ -141,9 +141,14 @@ public class ChallJoinServlet extends HttpServlet {
 		       // chall_status 가져오기 (참여중인지 아닌지 여부)
 		       int chall_status = new ChallService().selectJoinChallStatus(challNo, userId);
 		       
+		       // 찜 갯수 카운트 
+			   int hits = new ChallService().selectHitsCount(challNo); 
+			   System.out.println("찜ㄱ수구룰거ㅝ: " + hits);
+		       
 		       
 		      //String page = "";
 		      if(ch2 != null && list != null && hits_status.equals("Y")) {
+		    	 request.setAttribute("hits", hits);
 		    	 request.setAttribute("joinPeopleCnt", joinPeopleCnt);
 		 		 request.setAttribute("list", list);
 				 request.setAttribute("hits_status", hits_status);
@@ -152,6 +157,7 @@ public class ChallJoinServlet extends HttpServlet {
 		         page = "/views/challenge/challengeJoin.jsp";
 		         
 		      } else if(list == null) { 
+		    	  request.setAttribute("hits", hits);
 		    	  request.setAttribute("joinPeopleCnt", joinPeopleCnt);
 		    	  request.setAttribute("list", list);
 		    	  request.setAttribute("challenge", ch2);
@@ -159,6 +165,7 @@ public class ChallJoinServlet extends HttpServlet {
 		          page = "/views/challenge/challengeJoin.jsp";
 		          
 		      } else if(ch2 != null && list != null && hits_status.equals("N"))  {
+		    	  request.setAttribute("hits", hits);
 		    	  request.setAttribute("joinPeopleCnt", joinPeopleCnt);
 		    	  request.setAttribute("list", list);
 		    	  request.setAttribute("hits_status", hits_status);
