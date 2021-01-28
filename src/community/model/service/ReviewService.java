@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
+import community.model.dao.BoardDao;
 import community.model.dao.ReviewDao;
 import community.model.vo.Review;
 
@@ -69,6 +70,41 @@ public class ReviewService {
 		close(conn);
 
 		return listCount;
+		
+	}
+
+	
+	// 페이징 처리 된 내가 쓴 후기 리스트
+	public ArrayList<Review> selectMyReviewList(PageInfo pi, String userId) {
+		Connection conn = getConnection();
+		ReviewDao rd = new ReviewDao();
+		ArrayList<Review> rList = null;
+		
+		rList = rd.selectMyReviewList(conn, pi, userId);
+		
+		close(conn);
+		
+		System.out.println("service MyReviewList : " + rList);
+		
+		return rList;
+	}
+
+
+	// 후기 삭제
+	public int deleteReview(int rId) {
+		Connection conn = getConnection();
+
+		int result = new ReviewDao().deleteBoard(conn, rId);
+
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+
+		close(conn);
+
+		return result;
 		
 	}
 

@@ -104,6 +104,7 @@
 	margin-right: 10px;
 }
 
+/* 페이징 바 */
 #pagenum {
 	width: 200px;
 	height: 30px;
@@ -340,7 +341,7 @@
 		$(function(){
 			$("#myReview").click(function(){
 				<%if(loginUser != null) {%>
-				location.href='<%=request.getContextPath()%>/views/community/myReview.jsp';
+				location.href='<%=request.getContextPath()%>/review/myReview';
 				<% } else {%>
 				alert('로그인을 해주세요.');
 				<% } %>

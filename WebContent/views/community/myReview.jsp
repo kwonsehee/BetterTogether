@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList, challenge.model.vo.Challenge, common.model.vo.*"%>
+<%
+	ArrayList<Review> rList = (ArrayList<Review>) request.getAttribute("rList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +17,6 @@ body {
 
 #con1 {
 	width: 1000px;
-	height: 704px;
 	background: #F9F1F1;
 	border-radius: 20px;
 	margin: auto;
@@ -67,20 +70,73 @@ body {
 }
 
 /* 후기 목록 */
-.reviewdiv_1 {
+.reviewWrap {margin-top:100px;}
+
+.reviewdiv{
 	width: 90%;
-	height: 70px;
+	height: 100px;
 	background: #fff;
 	margin: auto;
-	margin-top: 110px;
+	margin-top:35px;
 }
 
-.reviewdiv {
-	width: 90%;
-	height: 70px;
-	background: #fff;
+#reviewTb {
+	width: 100%;
+	height: 100px;
+}
+ #reviewTb tr:nth-child(1) {height:20%; margin-top:5px;}
+
+#nickname, #starArea, #createDate, #challName {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+#starArea {
+	margin-left: 10px;
+	color: rgba(255, 96, 100, 0.7);
+}
+
+#createDate {
+	 margin-left: 550px; 
+}
+
+#contentArea {
+	margin-left: 10px;
+	margin-top: 3px;
+	margin-right: 10px;
+}
+
+/* 페이징 바 */
+#pagenum {
+	width: 200px;
+	height: 30px;
 	margin: auto;
 	margin-top: 20px;
+	text-align: center;
+}
+
+#pagenum a {
+	font-family: "Do Hyeon";
+	font-size: 18px;
+	padding: 5px;
+	color: #757575;
+}
+
+.pagingArea {
+	text-align: center;
+}
+
+.pagingArea button {
+	width: 25px;
+	margin-top: 20px;
+	border: 0px;
+	background:#fff;
+	font-family: "Do Hyeon";
+	color: #757575;
+}
+
+.pagingArea button:hover {
+	cursor: pointer;
 }
 
 .btnwrap {
@@ -92,13 +148,14 @@ body {
 
 .btn2 {
 	width: 50px;
-	height: 20px;
+	height:20px;
 	background: none;
 	text-align: center;
 	border: 2px solid #ff60657e;
 	border-radius: 55px;
 	font-family: "Do Hyeon";
 	font-size: 12px;
+	
 }
 
 .btn2 a {
@@ -143,39 +200,74 @@ body {
 
 		<div class="line"></div>
 
-		<!-- 후기 목록 -->
-		<div class="reviewdiv_1"></div>
-		<div class="btnwrap">
-			<button class="btn2">
-				<a href="myReviewUpdate.html">수정</a>
-			</button>
-			<button class="btn2">
-				<a>삭제</a>
-			</button>
+		
+		<div class="reviewWrap">
+		<% if(rList != null) { %>
+		<% for(Review r : rList)  {%>
+		
+		<div class="reviewdiv">
+			<table id="reviewTb">
+				<tr>
+					<td id="nickname"><%= r.getNickName() %></td>
+					<td id="challName"><%= r.getChallTitle() %></td>
+					<td id="starArea"><%if(r.getrGrade() == 5) { %> ★★★★★ 
+									  <% } else if(r.getrGrade() == 4) { %>★★★★
+									  <% } else if(r.getrGrade() == 3) { %>★★★
+									  <% } else if(r.getrGrade() == 2) { %>★★
+									  <% } else { %>★<% } %>
+					</td>
+					<td id="createDate"><%= r.getCreateDate() %></td>
+				</tr>
+				<tr>
+					<td id="contentArea"><%= r.getrContent() %></td>
+				</tr>
+			</table>
+				<button class="btn2" onclick="location.href='<%= request.getContextPath() %>/review/update?rId=<%=r.getrId()%>'">
+				수정
+				</button>
+		
+				<button class="btn2" onclick="location.href='<%= request.getContextPath() %>/review/delete?rId=<%=r.getrId()%>'">
+				삭제
+				</button>
 		</div>
-
-		<div class="reviewdiv"></div>
-		<div class="btnwrap">
-			<button class="btn2">
-				<a href="myReviewUpdate.html">수정</a>
-			</button>
-			<button class="btn2">
-				<a>삭제</a>
-			</button>
+		<% } %>
+		<% } %>
 		</div>
-		<div class="reviewdiv"></div>
-		<div class="btnwrap">
-			<button class="btn2">
-				<a href="myReviewUpdate.html">수정</a>
-			</button>
-			<button class="btn2">
-				<a>삭제</a>
-			</button>
+		
+		<!-- 페이징 바 -->
+		<div class="pagingArea">
+			<!-- 맨 처음으로 (<<) -->
+			<button onclick="location.href='<%= request.getContextPath() %>/review/myReview?currentPage=1'"> &lt;&lt; </button>
+			
+			<!-- 이전 페이지로 (<) -->
+			<% if(pi.getCurrentPage() == 1){ %>
+				<button disabled> &lt; </button>
+			<%} else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/review/myReview?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
+			<%} %>	
+			
+			<!-- 10개의 페이지 목록 -->
+			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+				<% if(p == pi.getCurrentPage()){ %>
+					<button style="background:lightgray;" disabled> <%= p %> </button>
+				<%}else{ %>
+					<button onclick="location.href='<%= request.getContextPath() %>/review/myReview?currentPage=<%= p %>'"> <%= p %> </button>
+				<% } %>
+			<%} %>
+			
+			<!-- 다음 페이지로(>) -->
+			<%if(pi.getCurrentPage() == pi.getMaxPage()){ %>
+				<button disabled> &gt; </button>
+			<%} else {%>
+				<button onclick="location.href='<%= request.getContextPath() %>/review/myReview?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
+			<% } %>
+			
+			<!-- 맨 끝으로(>>) -->
+			<button onclick="location.href='<%= request.getContextPath() %>/review/myReview?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 		</div>
-
-		<button class="btn" id="back">
-			<a href='<%= request.getContextPath()%>/views/community/reviewMain.jsp'>뒤로가기</a>
-		</button>
+		
+		<!-- 뒤로가기 버튼 -->
+		<button class="btn" type="button" onclick="javascript:history.back();" id="back">뒤로가기</button>
 	</section>
 
 </body>

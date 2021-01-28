@@ -96,13 +96,13 @@
             font-size: 14px;
             color: #ff60657e;
         }
-        #report {
+        #warning_btn {
          background: none;
             border : 2px solid  #ff60657e;   
         	 width:70px;
         	margin-left:795px;
         }
-        #report a {
+        #warning_btn a {
         	  color: #ff60657e;
         
         }
@@ -151,8 +151,23 @@
            </div>
         </div>
 
+		<!-- 신고 버튼 누르면 bId, 신고대상, "자유게시판" 넘기기 -->
+		<form id="warningForm" method="post">
+		<input type="hidden" name="no" value="<%= b.getbId() %>">
+		<input type="hidden" name="reported_id" value="<%= b.getUserId() %>"> 
+		<input type="hidden" name="category" value="자유게시판">  
+		</form>
+		
         <!-- 버튼 -->
-        <button class="btn" id="back"><a href='<%= request.getContextPath()%>/board/main'>뒤로가기</a></button>
-        <button class="btn" id="report"><a href='<%= request.getContextPath()%>/report/insertForm'>신고</a></button>
+        <button type="button" class="btn" id="back" onclick="javascript:history.back();" id="back">뒤로가기</button>
+        <button class="btn" id="warning_btn">신고</button>
+        
+        <script>
+        const warning_btn = document.getElementById('warning_btn');
+    	warning_btn.addEventListener('click',function(){
+    		$("#warningForm").attr("action", "<%= request.getContextPath()%>/report/insertForm");
+    		$("#warningForm").submit();
+    	});
+        </script>
 </body>
 </html>
