@@ -73,8 +73,8 @@ public class CommuMainServlet extends HttpServlet {
 	      request.setAttribute("list", list);
 		
 	      // 찜횟수 가져오기
-	     //int cNo = Integer.parseInt(request.getParameter("cNo"));
-	     //int hitsCount = cs.getHitsCount(cNo);
+	    // int cNo = Integer.parseInt(request.getParameter("cNo"));
+	    // int hitsCount = cs.getHitsCount(cNo);
 	      
 	     //request.setAttribute("hitsCount", hitsCount);
 	      

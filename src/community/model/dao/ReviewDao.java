@@ -36,20 +36,32 @@ public class ReviewDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getrContent());
+			pstmt.setInt(2, r.getrGrade());
+			pstmt.setInt(3, r.getChallNo());
+			pstmt.setString(4, r.getUserId());
+			pstmt.setString(5, r.getNickName());
 			
-			
-			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("result : " + result);
 		
-		return 0;
+		return result;
+		
 	}
 
 	// 리뷰 조회
 	public ArrayList<Review> selectReviewList(Connection conn, int rId) {
-		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		
+		
+		
+		
 		return null;
 	}
 

@@ -32,15 +32,17 @@ public class Challenge {
 	private String cateName; // 카테고리 이름
 	private int challCnt; // 조회수
 	private Date challStart; // 챌린지 시작일
-	private int challStatus; // 챌린지 게시물 삭제 여부 
+	private String challStatus; // 챌린지 게시물 삭제 여부 
+	private int hitsCount;	// 찜하기 갯수(슬라이드에서 찜하기 갯수 갖고와야 해서)
 
 	public Challenge() {
 	}
 	
+	
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
 			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
 			int confirmCnt, String userId, String nickName, int cateId, String cateName, int challCnt,
-			Date challStart,int challStatus) {
+			Date challStart,String challStatus) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -60,6 +62,7 @@ public class Challenge {
 		this.challCnt = challCnt;
 		this.challStart = challStart;
 		this.challStatus = challStatus;
+		
 	}
 
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
@@ -125,7 +128,7 @@ public class Challenge {
 	}
 	
 	// 커뮤니티 슬라이드 인기 챌린지 조회용
-	public Challenge(int challNo, String challTitle, String challFile, String challFrequency,String challPeriod, Date challStart) {
+	public Challenge(int challNo, String challTitle, String challFile, String challFrequency,String challPeriod, Date challStart, int hitsCount, String challStatus) {
 		super();
 		this.challNo = challNo;
 		this.challTitle = challTitle;
@@ -133,6 +136,8 @@ public class Challenge {
 		this.challFrequency = challFrequency;
 		this.challPeriod = challPeriod;
 		this.challStart = challStart;
+		this.hitsCount = hitsCount;
+		this.challStatus = challStatus;
 	}
 
 	// 카테고리 선택시 이동하는 화면에 필요
@@ -275,13 +280,23 @@ public class Challenge {
 		this.cateId = cateId;
 	}
 	
-	public int getChallStatus() {
+	public String getChallStatus() {
 		return challStatus;
 	}
 
-	public void setChallStatus(int challStatus) {
+	public void setChallStatus(String challStatus) {
 		this.challStatus = challStatus;
 	}
+	
+	
+	public int getHitsCount() {
+		return hitsCount;
+	}
+
+	public void setHitsCount(int hitsCount) {
+		this.hitsCount = hitsCount;
+	}
+
 
 	@Override
 	public String toString() {

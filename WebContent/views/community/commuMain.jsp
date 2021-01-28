@@ -3,7 +3,7 @@
  <%
  	ArrayList<Challenge> list = (ArrayList<Challenge>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	/* int hitsCount = (int)request.getAttribute("hitsCount"); */
+ 	// int hitsCount = (int)request.getAttribute("hitsCount");
 	
  %>
 <!DOCTYPE html>
@@ -263,14 +263,14 @@ button:hover {
                     	<%for (Challenge c : list) {%>
                     	<%if (list.indexOf(c) == i) {%>
                     		<div class="chall_box">
-                    		<img src="<%=c.getChallFile()%>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%=c.getChallFile()%>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%=c.getChallTitle()%></p>
                        		<p name="cDate" class="cDate"><%=c.getChallStart()%> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa">234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -282,21 +282,20 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"> <%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
                        		<% } %>
                        		<% } %>
                     	</div> 
-                    	
                     </div>
                     <!-- 두번째 슬라이드 -->
                     <div class="outer">
@@ -305,14 +304,14 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -324,14 +323,14 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -346,14 +345,14 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -365,14 +364,14 @@ button:hover {
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
                     		<div class="chall_box">
-                    		<img src="<%= c.getChallFile() %>" class="chall_img">
+                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
                        		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
