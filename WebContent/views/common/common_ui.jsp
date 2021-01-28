@@ -177,7 +177,7 @@
          //5.내가 모집한 챌린지 그룹
           const myChallBtn = document.getElementById('myChallBtn');
           myChallBtn.addEventListener('click',function(){
-            location.href="<%= request.getContextPath()%>/views/myPage/myJoinChallenge.jsp";
+            location.href="<%= request.getContextPath()%>/challMake/list";
          });
          
          //6.신고내역

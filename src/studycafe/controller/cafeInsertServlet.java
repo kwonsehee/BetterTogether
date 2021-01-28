@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -40,7 +41,7 @@ public class cafeInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		 
+		HttpSession session = request.getSession(); 
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
 		 
@@ -101,11 +102,19 @@ public class cafeInsertServlet extends HttpServlet {
 			
 			Cafe n = new Cafe(cafe_oh,cafe_name,cafe_area,cafe_phone, cafe_capacity ,cafe_notice,cafe_info,cafe_photo,AFFILIATED_CAFE,cafe_map,detail_address,closed_day,cafe_page,UserId);
 			
-			int result = new CafeService().insertCafe(n ) ;
+			int result = new CafeService().insertCafe(n) ;
 			
-			 
-		 
 			
+			 if(AFFILIATED_CAFE.equals("Y")) {
+				 request.setAttribute("cafe_name", cafe_name);
+				 request.setAttribute("cafe_phone", cafe_phone);
+				 
+			 request.getRequestDispatcher("/views/studycafe/cafeAPIPay.jsp").forward(request, response);
+				 
+				 
+			 }else {
+			
+			  
 			if(result > 0) {
 
 				response.sendRedirect(request.getContextPath() + "/cafe/list");
@@ -114,7 +123,7 @@ public class cafeInsertServlet extends HttpServlet {
 				request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 			}
 			 
-			
+			 }
 			
 			
 		}

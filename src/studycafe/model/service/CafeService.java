@@ -182,6 +182,27 @@ Connection conn = getConnection();
 
 	
 
+	 	public int deleteCafe2(String cafe_name, String cafe_phone) {
+			Connection conn = getConnection();
+
+			int result = new CafeDao().deleteCafe2(conn, cafe_name, cafe_phone);
+
+			if (result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+
+			close(conn);
+
+			return result;
+		}
+
+
+		 
+
+
+
 
 	
 }

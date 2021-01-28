@@ -148,8 +148,7 @@ public class ChallInsertServlet extends HttpServlet {
       Challenge ch = new Challenge(title, category, changeFiles.get(0), confirm, frequency, period,
     		  startDate, payment, people, content, confirmCnt, userId);
       
-	  System.out.println("잘 넘어오는지 확인 : " + ch);
-
+	  //System.out.println("잘 넘어오는지 확인 : " + ch);
       
       int result = new ChallService().insertChall(ch);
       

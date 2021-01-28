@@ -19,10 +19,13 @@
          , CATE_NAME
          , CHALL_CNT
          , CHALL_START
+         , CHALL_STATUS
       FROM 
            CLIST
      WHERE
-     	   RNUM BETWEEN ? AND ?    
+     	   RNUM BETWEEN ? AND ?
+       AND 
+       	   CHALL_STATUS = 'N'
    </entry>
    
    <entry key = "selectChall">
@@ -43,12 +46,15 @@
          , CATE_NAME
          , CHALL_CNT
          , CHALL_START
+         , CHALL_STATUS
       FROM
           CHALL
           JOIN CHALL_CATEGORY USING(CATE_ID)
           JOIN USER_INFO USING (USER_ID)
       WHERE 
-           CHALL_NO = ?
+           CHALL_NO = ? 
+       AND 
+       	   CHALL_STATUS = 'N'
    </entry>
    
    <entry key ="insertChall">
@@ -70,6 +76,7 @@
      , CATE_ID
      , CHALL_CNT
      , CHALL_START
+     , CHALL_STATUS
    )
    VALUES
    (
@@ -88,6 +95,7 @@
      , ?
      , DEFAULT
      , ?
+     , DEFAULT
    )
    </entry>
    
@@ -96,6 +104,8 @@
    			  COUNT(*)
    		 FROM 
    		 	  CHALL
+   		WHERE
+   			  CHALL_STATUS = 'N'
    </entry>
    
    <entry key="getSearchTitleListCount">
@@ -105,6 +115,7 @@
    		 	  CHALL
    		WHERE
    			  CHALL_TITLE LIKE '%' || ? || '%'
+   		  AND CHALL_STATUS = 'N'
    </entry>
    
    <entry key="getSearchCategoryListCount">
@@ -115,6 +126,7 @@
    		 	  JOIN CATEGORY USING (CATE_ID)
    		WHERE
    			  CATE_NAME LIKE '%' || ? || '%'
+   		  AND CHALL_STATUS = 'N'
    </entry>
    
    <entry key="getSearchWriterListCount">
@@ -124,7 +136,8 @@
    		 	  CHALL
    		 	  JOIN USER_INFO USING (USER_ID)
    		WHERE
-   			  NICKNAME LIKE '%' || ? || '%' 	  
+   			  NICKNAME LIKE '%' || ? || '%' 
+   		  AND CHALL_STATUS = 'N'	  
    </entry>
    
    <entry key="selectSearchTitleListCount">
@@ -145,6 +158,7 @@
 	         , CATE_NAME
 	         , CHALL_CNT
 	         , CHALL_START
+	         , CHALL_STATUS
 	    FROM
 	    	 (SELECT
 	    	 			ROWNUM RNUM
@@ -166,12 +180,14 @@
                 			 , CATE_NAME
                 			 , CHALL_CNT
                 			 , CHALL_START
+                			 , CHALL_STATUS
          				 FROM
          				 	   CHALL
           					   JOIN CHALL_CATEGORY USING(CATE_ID)
           					   JOIN USER_INFO USING (USER_ID)
           				WHERE 
           					   CHALL_TITLE LIKE '%' || ? || '%'
+          			      AND  CHALL_STATUS = 'N'
           				ORDER BY
           						 CHALL_NO DESC)
           				 C)
@@ -197,6 +213,7 @@
 	         , CATE_NAME
 	         , CHALL_CNT
 	         , CHALL_START
+	         , CHALL_STATUS
 	    FROM
 	    	 (SELECT
 	    	 			ROWNUM RNUM
@@ -218,12 +235,14 @@
                 			 , CATE_NAME
                 			 , CHALL_CNT
                 			 , CHALL_START 
+                			 , CHALL_STATUS
          				 FROM
          				 	   CHALL
           					   JOIN CHALL_CATEGORY USING(CATE_ID)
           					   JOIN USER_INFO USING (USER_ID)
           				WHERE 
           					   CATE_NAME LIKE '%' || ? || '%'
+          				  AND  CHALL_STATUS = 'N'
           				ORDER BY
           						 CHALL_NO DESC)
           				 C)
@@ -250,6 +269,7 @@
 	         , CATE_NAME
 	         , CHALL_CNT
 	         , CHALL_START
+	         , CHALL_STATUS
 	    FROM
 	    	 (SELECT
 	    	 			ROWNUM RNUM
@@ -271,12 +291,14 @@
                 			 , CATE_NAME
                 			 , CHALL_CNT
                 			 , CHALL_START
+                			 , CHALL_STATUS
          				 FROM
          				 	   CHALL
           					   JOIN CHALL_CATEGORY USING(CATE_ID)
           					   JOIN USER_INFO USING (USER_ID)
           				WHERE 
           					   NICKNAME LIKE '%' || ? || '%'
+          				  AND  CHALL_STATUS = 'N'
           				ORDER BY
           						 CHALL_NO DESC)
           				 C)
@@ -311,6 +333,7 @@
          , CATE_NAME
          , CHALL_CNT
          , CHALL_START
+         , CHALL_STATUS
 	  FROM
 		   (SELECT ROWNUM RNUM,A.*
     		  FROM (SELECT
@@ -329,11 +352,13 @@
         				  , CATE_NAME
       				      , CHALL_CNT
           				  , CHALL_START
+          				  , CHALL_STATUS
        				   FROM CHALL
           			   JOIN CHALL_CATEGORY USING(CATE_ID)
           			   JOIN USER_INFO USING (USER_ID)
         			  WHERE
            				    CATE_ID= ?
+           		        AND CHALL_STATUS = 'N'
         		   ORDER BY CHALL_NO DESC)A)
 		WHERE RNUM BETWEEN ? AND ?
    </entry>
@@ -345,6 +370,7 @@
    		 	  CHALL
    		WHERE
    			  CATE_ID= ?
+   		  AND CHALL_STATUS = 'N'
    </entry>
 
    <entry key="updateChallStatus">
@@ -500,6 +526,8 @@
    		 	  CHALL
    		WHERE
    			  CHALL_CONTENT= ? 
+   		  AND 
+   		   	  CHALL_STATUS = 'N'
    </entry>
    
     <!-- 우선 CHALL_CONTENT에 1/2/3 구분해두기 -->
@@ -521,6 +549,7 @@
          , CATE_NAME
          , CHALL_CNT
          , CHALL_START
+         , CHALL_STATUS
 	  FROM
 		   (SELECT ROWNUM RNUM,T.*
     		  FROM (SELECT
@@ -539,11 +568,13 @@
         				  , CATE_NAME
       				      , CHALL_CNT
           				  , CHALL_START
+          				  , CHALL_STATUS
        				   FROM CHALL
           			   JOIN CHALL_CATEGORY USING(CATE_ID)
           			   JOIN USER_INFO USING (USER_ID)
         			  WHERE
            				    CHALL_CONTENT= ?
+           			   AND  CHALL_STATUS = 'N'
         		   ORDER BY CHALL_NO DESC)T)
 		WHERE RNUM BETWEEN ? AND ?
    </entry>
@@ -618,6 +649,7 @@
 		  AND CHALL_NO = ?
 	</entry>
 	
+
 	<entry key="disabledPost">
   		UPDATE
   			   CHALL
@@ -626,6 +658,64 @@
 		 WHERE
 		 	   CHALL_NO = ?
   	</entry>
+
+
+	<!-- 내가 모집한 챌린지 조회 -->
+	<entry key="selectMyJoinList">
+		SELECT 
+			   CHALL_NO,
+			   CHALL_TITLE,
+			   CHALL_PEOPLE,
+			   CHALL_DATE,
+			   FILE_PATH,
+			   CHALL_CONFIRM,
+			   CHALL_FREQUENCY,
+			   CHALL_PERIOD,
+			   CHALL_PAYMENT,
+			   CHALL_CONTENT,
+			   CATE_ID,
+			   CHALL_START,
+			   CHALL_STATUS
+		 FROM 
+			   CHALL 
+		WHERE
+			   USER_ID = ?
+		  AND
+		  	   CHALL_STATUS = 'N' 
+	</entry>
+	
+	<!-- 내가 모집한 챌린지 수정 -->
+	<entry key="updateChall">
+		UPDATE
+			   CHALL
+		   SET
+		       CHALL_TITLE = ?
+		     , CHALL_PEOPLE = ?
+		     , CHALL_DATE = SYSDATE
+		     , FILE_PATH = ?
+		     , CHALL_CONFIRM = ?
+		     , CHALL_FREQUENCY = ?
+		     , CHALL_PERIOD = ?
+		     , CHALL_PAYMENT = ?
+		     , CHALL_CONTENT = ?
+		     , CHALL_COUNT = ?
+		     , USER_ID = ?
+		     , CATE_ID = ?
+		     , CHALL_CNT = DEFAULT
+		     , CHALL_START = ? 
+		     , CHALL_STATUS = DEFAULT
+		WHERE
+			  CHALL_NO = ?
+	</entry>
+	
+	<entry key="deleteChall">
+		UPDATE 
+			  CHALL
+		   SET
+		   	  CHALL_STATUS = 'Y'
+		 WHERE
+		 	  CHALL_NO = ?
+	</entry>
 
 
 </properties>

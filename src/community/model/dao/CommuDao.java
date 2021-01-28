@@ -97,4 +97,30 @@ public class CommuDao {
 		
 	}
 
+	public int getHitsCount(Connection conn, int cNo) {
+		int hit = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getHitsCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			pstmt.setInt(1, cNo);
+			
+			if(rset.next()) {
+				hit = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(rset);
+		}
+		
+		return hit;
+	}
+
 }

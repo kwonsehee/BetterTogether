@@ -11,7 +11,7 @@
 
 	
 	<entry key="selectList2">
-	 SELECT
+ SELECT
 	 		RNUM
 	 		,CAFE_CODE
 	 		,CAFE_OH
@@ -28,11 +28,13 @@
             ,CLOSED_DAYS
             ,CAFE_PAGE
             ,USER_ID
+            ,CAFE_STATUS
          FROM 
-           	 ALIST   
+           	 ALIST    
          WHERE
-          	RNUM BETWEEN ? AND ? 
-            ORDER BY AFFILIATED_CAFE DESC , CAFE_CODE DESC
+          	RNUM BETWEEN ? AND ?
+            AND CAFE_STATUS='N'
+           ORDER BY AFFILIATED_CAFE DESC , CAFE_CODE DESC
 	</entry>
 	
 	
@@ -43,6 +45,7 @@
 			CAFE
 		WHERE
 			CAFE_AREA LIKE '%' || ? || '%'  
+		 AND CAFE_STATUS='N'
 	</entry> 
 	<entry key="getSearchcafe_nameListCount">
 		SELECT 
@@ -51,6 +54,7 @@
 			CAFE
 		WHERE 	
 			CAFE_NAME LIKE '%' || ? || '%'    
+		 AND CAFE_STATUS='N'
 	</entry>
 
 
@@ -93,7 +97,7 @@
            			 ,CAFE_PAGE,USER_ID
        		 FROM CAFE 
        				 WHERE CAFE_AREA LIKE '%' || ? || '%' 
-       				  
+       				  AND CAFE_STATUS='N'
       			   	 ORDER BY 
       			    		AFFILIATED_CAFE 
       			    			DESC) A)
@@ -142,7 +146,10 @@
            			 ,CLOSED_DAYS
            			 ,CAFE_PAGE,USER_ID
        		 FROM CAFE 
-       				 WHERE CAFE_NAME LIKE '%' || ? || '%'  
+       				 WHERE 
+       				 	CAFE_NAME LIKE '%' || ? || '%'  
+       				 AND 
+       				 	CAFE_STATUS='N'
       			   	 ORDER BY 
       			    		AFFILIATED_CAFE 
       			    			DESC) A)
@@ -180,6 +187,7 @@
 			, CLOSED_DAYS 
 			, CAFE_PAGE  
 			, USER_ID
+			, CAFE_STATUS
 
 
 			)
@@ -201,6 +209,7 @@
 			, ?
 			, ? 
 			, ?
+			, DEFAULT
 			 
 	)
 	</entry>
@@ -225,6 +234,7 @@
 			, RENAME_FILE 
 			, CAFE_FILEPATH
 			, USER_ID
+			, CAFE_STATUS
 
 
 			)
@@ -245,6 +255,7 @@
 			, DEFAULT
 			, DEFAULT
 			, DEFAULT 
+			, DEFAULT
 			, DEFAULT
 		)
 	</entry>
@@ -312,10 +323,18 @@
 			, CLOSED_DAYS =?
 			, CAFE_PAGE   =? 
 		WHERE 
-		CAFE_CODE = ?
- 
+		CAFE_CODE = ? 
+	</entry>
 	
-	 
+	
+	<entry key="deleteCafe2">
+	DELETE 
+		FROM 
+			CAFE
+    	WHERE
+    		CAFE_NAME = ? 
+    	AND 
+    		CAFE_PHONE = ?
 	</entry>
 	<entry key="disabledPost">
   		UPDATE
