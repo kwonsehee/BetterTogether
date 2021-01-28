@@ -13,35 +13,23 @@
 	<entry key="selectRankList">
 		SELECT 
 				RNUM,
-				RANKING, 
-				CHALL_NO, 
-				CHALL_TITLE, 
+				RANKING,
+				CHALL_NO,
+				CHALL_TITLE,
 				FILE_PATH, 
 				CHALL_FREQUENCY,
 				CHALL_PERIOD, 
-				CHALL_START
+				CHALL_START,
+				CNT, 
+				CHALL_STATUS
 		  FROM  
 		  		RANKLIST
-	     WHERE  
-	     		RNUM BETWEEN 1 AND 18
+		 WHERE  
+		 		CHALL_STATUS = 'N'
+		   AND 
+		   		RNUM BETWEEN 1 AND 18
 	</entry>
-	<entry key="getHitsCount">
-		SELECT 
-				CHALL_NO, COUNT(*) CNT
-   		  FROM 
-   		  		CHALL_STATUS 
-    	   JOIN 
-    	   		RANKLIST
-    	  USING 
-    	  		(CHALL_NO)
-    	  WHERE 
-    	  		C_HITS = 'Y'
-        	AND 
-        		CHALL_NO = ?
-       GROUP BY 
-       			CHALL_NO;
-    
-	</entry>
+	
 
 
 

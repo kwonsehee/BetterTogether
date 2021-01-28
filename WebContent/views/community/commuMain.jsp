@@ -3,7 +3,7 @@
  <%
  	ArrayList<Challenge> list = (ArrayList<Challenge>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	/* int hitsCount = (int)request.getAttribute("hitsCount"); */
+ 	// int hitsCount = (int)request.getAttribute("hitsCount");
 	
  %>
 <!DOCTYPE html>
@@ -270,7 +270,7 @@ button:hover {
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa">234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -289,14 +289,13 @@ button:hover {
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"> <%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
                        		<% } %>
                        		<% } %>
                     	</div> 
-                    	
                     </div>
                     <!-- 두번째 슬라이드 -->
                     <div class="outer">
@@ -312,7 +311,7 @@ button:hover {
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -331,7 +330,7 @@ button:hover {
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -353,7 +352,7 @@ button:hover {
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>
@@ -372,7 +371,7 @@ button:hover {
                        		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> 234</p>
+	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
                        		<% } %>

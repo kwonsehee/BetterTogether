@@ -5,10 +5,30 @@
 
 <entry key="insertReview">
 	INSERT
-	INTO REVIEW
-	()
+	  INTO REVIEW
+	  	   (
+	  		REVIEW_SEQ,
+	  		REVIEW_CONTENT,
+	  		REVIEW_DATE,
+	  		REVIEW_MODIFY,
+	  		REVIEW_GRADE,
+	  		CHALL_NO,
+	  		REVIEW_STATUS,
+	  		USER_ID,
+	  		NICKNAME
+	  	   )
 	VALUES
-	()
+		   (
+		   	  SEQ_RID.NEXTVAL,
+		   	  ?,	<!-- content -->
+		   	  SYSDATE,
+		   	  SYSDATE,
+		   	  ?,	<!-- grade -->
+		   	  ?,	<!-- challNo -->
+		   	  DEFAULT,
+		   	  ?,	<!-- userId -->
+		   	  ?		<!-- nickname -->
+		   )
 </entry>
 <entry key="selectJoinedList">
 	SELECT 
