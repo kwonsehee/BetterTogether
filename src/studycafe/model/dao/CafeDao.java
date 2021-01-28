@@ -361,7 +361,32 @@ public class CafeDao {
 		return result;
 	}
 
+	//결제 취소시 삭제
+ 	public int deleteCafe2(Connection conn, String cafe_name, String cafe_phone) {
+		PreparedStatement pstmt = null;
+		int result = 0;
 
+		String query = prop.getProperty("deleteCafe2");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, cafe_name); 
+			pstmt.setString(2, cafe_phone); 
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	} 
+
+
+ 
+	 
 	 
 	  
 	
