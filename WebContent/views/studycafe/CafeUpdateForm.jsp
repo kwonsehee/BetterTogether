@@ -181,7 +181,7 @@ bottom: 11.21%;
 								</optgroup>
 
 								<optgroup label="강남구" >
-									<option value="역심"  >역삼</option>
+									<option value="역삼"  >역삼</option>
 									<option value="논현"  >논현</option>
 									<option value="압구정"  >압구정</option>
 									<option value="신사" >신사</option>
