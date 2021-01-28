@@ -8,6 +8,7 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import challenge.model.dao.ChallDao;
 import common.model.vo.PageInfo;
 import common.model.vo.Search;
 import studycafe.model.dao.CafeDao;
@@ -161,6 +162,23 @@ Connection conn = getConnection();
 			return b;
 		}
 
+
+		//신고받은 게시물 비활성화 시키기
+	public int disabledPost(int cer_id) {
+		Connection conn = getConnection();
+
+		int result = new CafeDao().disabledPost(conn, cer_id);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		
+		return result;
+	}
 
 	
 

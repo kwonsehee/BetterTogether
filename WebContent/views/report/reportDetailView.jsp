@@ -15,7 +15,7 @@
             height: 50px;
             line-height: 50px;
             text-align: center;
-            margin-top: -40px;
+            margin-top: 40px;
         }
         .btn {
             width: 85px;
@@ -97,24 +97,21 @@
 			</div>
 		</div>
 		
-	<!-- 버튼 -->
-	</section>
-	<div id="btnArea"></div>
-	<%if(loginUser.getMembertype() != 0) { %>
-	<button type="button" id="deleteBtn" class="btn">삭제하기</button>
-	<button type="button" id="listBtn" class="btn">목록으로</button>
-	<% } else { %>
-	<button type="button" id="cancleBtn" class="btn">신고철회</button>
-	<button type="button" id="reportBtn" class="btn">신고처리</button>
-	<button type="button" id="listBtn" class="btn">목록으로</button>
-	<%} %>
 	
-	<!-- form 태그를 POST 방식으로 제출
-					nno를 화면에 드러내지 않고 form을 submit하면서 넘길 수 있음 -->
+	
+	</section>
+	<!-- 버튼 -->
+<!-- form 태그를 POST 방식으로 제출 nno를 화면에 드러내지 않고 form을 submit하면서 넘길 수 있음 -->
 	<form id="reportForm" method="post">
 		<input type="hidden" name="rNo" value="<%= r.getReport_no() %>">
+		<input type="hidden" name="list" value="list">
 	</form>
-
+	
+	<div id="btnArea">	
+	<%if(loginUser.getUserId().equals(r.getUser_id())) { %>
+	<button type="button" id="deleteBtn" class="btn">삭제하기</button>
+	<button type="button" id="listBtn" class="btn">목록으로</button>
+	
 	<script>				
 			//삭제하기 버튼 이벤트
 			const deleteBtn = document.getElementById('deleteBtn');
@@ -122,16 +119,34 @@
 				$("#reportForm").attr("action","<%=request.getContextPath()%>/report/delete");
 				$("#reportForm").submit();
 			});
-	</script>
-	<script>
-			//신고처리 이벤트
-			const answerBtn = document.getElementById('answerBtn');
-			answerBtn.addEventListener('click',function(){
-				$("#reportForm").attr("action","<%=request.getContextPath()%>/report/processing");
-				$("#reportForm").submit();
-			});
-	</script>
-	<script>
+	</script>		
+	<% } %>
+	
+	<%if(loginUser.getMembertype() == 0) { %>
+	<!-- 신고철회버튼 누르면 신고삭제되게 해버리기 -->
+	<button type="button" id="cancleBtn" class="btn">신고철회</button>
+	<button type="button" id="report_btn" class="btn">신고처리</button>
+		<script>
+		//신고 철회 버튼 이벤트
+		const cancleBtn = document.getElementById('cancleBtn');
+		cancleBtn.addEventListener('click',function(){
+			$("#reportForm").attr("action","<%=request.getContextPath()%>/report/delete");
+			$("#reportForm").submit();
+		});
+
+		//신고처리 이벤트
+		const report_btn = document.getElementById('report_btn');
+		report_btn.addEventListener('click',function(){
+			$("#reportForm").attr("action","<%=request.getContextPath()%>/report/processing");
+			$("#reportForm").submit();
+		});
+		</script>	
+	<%} %>
+	<button type="button" id="listBtn" class="btn">목록으로</button>
+</div>
+
+	
+	<script>		
 			//목록으로 버튼 이벤트
 			const listBtn = document.getElementById('listBtn');
 			listBtn.addEventListener('click',function(){

@@ -81,4 +81,21 @@ public class CerService {
 		System.out.println("챌린지모집에서 넘어올때 service  : " + myjoinCnt);
 		return myjoinCnt;
 	}
+
+	//신고받은 게시물 비활성화 시키기
+	public int disabledPost(int cer_id) {
+		Connection conn = getConnection();
+
+		int result = new CerDao().disabledPost(conn, cer_id);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		
+		return result;
+	}
 }

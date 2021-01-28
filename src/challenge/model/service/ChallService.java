@@ -14,6 +14,7 @@ import challenge.model.vo.Challenge;
 import challenge.model.vo.ChallengeStatus;
 import common.model.vo.PageInfo;
 import common.model.vo.Search;
+import confirm.model.dao.CerDao;
 import member.model.vo.Member;
 
 public class ChallService {
@@ -407,7 +408,22 @@ public class ChallService {
 //		return result;
 //	}
 //	
+	//신고받은 게시물 비활성화 시키기
+	public int disabledPost(int cer_id) {
+		Connection conn = getConnection();
 
+		int result = new ChallDao().disabledPost(conn, cer_id);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		
+		return result;
+	}
 	
 
 }

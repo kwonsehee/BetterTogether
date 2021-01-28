@@ -362,6 +362,31 @@ public class CafeDao {
 	}
 
 
+	// 신고 게시물 비활성화 시키기
+	public int disabledPost(Connection conn, int cer_id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("disabledPost");
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cer_id);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+
 	 
 	  
 	
