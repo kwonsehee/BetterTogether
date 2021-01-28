@@ -649,6 +649,17 @@
 		  AND CHALL_NO = ?
 	</entry>
 	
+
+	<entry key="disabledPost">
+  		UPDATE
+  			   CHALL
+		   SET
+		   	   CHALL_STATUS = 'Y'
+		 WHERE
+		 	   CHALL_NO = ?
+  	</entry>
+
+
 	<!-- 내가 모집한 챌린지 조회 -->
 	<entry key="selectMyJoinList">
 		SELECT 
@@ -705,5 +716,6 @@
 		 WHERE
 		 	  CHALL_NO = ?
 	</entry>
+
 
 </properties>

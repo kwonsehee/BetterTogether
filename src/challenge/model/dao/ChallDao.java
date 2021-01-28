@@ -904,16 +904,41 @@ public class ChallDao {
 						rset.getInt(11),rset.getDate(12),rset.getString(13)));
 			}
 			//System.out.println("내가 모집한 챌린지 출력 : " + list);
-
-		} catch (SQLException e) {
+    } catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
 
+
 		return list;
 	}
+
+	// 신고 게시물 비활성화 시키기
+	public int disabledPost(Connection conn, int cer_id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("disabledPost");
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cer_id);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 	
 	// 챌린지 게시물 수정
 	public int updateChall(Connection conn, Challenge ch) {

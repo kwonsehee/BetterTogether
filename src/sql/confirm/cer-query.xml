@@ -82,4 +82,12 @@
    		WHERE
    			  CHALL_NO = ?
   	</entry>
+  	<entry key="disabledPost">
+  		UPDATE
+  			   CER
+		   SET
+		   	   CER_STATUS = 'Y'
+		 WHERE
+		 	   CER_ID = ?
+  	</entry>
 </properties>

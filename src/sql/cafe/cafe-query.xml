@@ -336,5 +336,12 @@
     	AND 
     		CAFE_PHONE = ?
 	</entry>
-	
+	<entry key="disabledPost">
+  		UPDATE
+  			   CAFE
+		   SET
+		   	   CAFE_STATUS = 'Y'
+		 WHERE
+		 	   CAFE_CODE = ?
+  	</entry>
 </properties>

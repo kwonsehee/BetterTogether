@@ -176,9 +176,7 @@ private Properties prop = new Properties();
 		
 		String sql = prop.getProperty("getMyListCount");
 		try {
-	
-			sql = prop.getProperty("getMyListCount");
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cno);
 			pstmt.setString(2, user_id);
@@ -209,9 +207,6 @@ private Properties prop = new Properties();
 		
 		try {
 			
-		
-			sql = prop.getProperty("getAllListCount");
-			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cno);
 			
@@ -231,5 +226,32 @@ private Properties prop = new Properties();
 
 		System.out.println("챌린지모집에서 넘어올때 service  : " + listCount);
 		return listCount;
+	}
+
+	//신고 게시물 비활성화 시키기
+	public int disabledPost(Connection conn, int cer_id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		
+		String sql = prop.getProperty("disabledPost");
+		
+		try {
+		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cer_id);
+			
+			result = pstmt.executeUpdate();
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+		
+
+		return result;
 	}
 }

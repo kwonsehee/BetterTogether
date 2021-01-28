@@ -31,7 +31,10 @@ public class ReportDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int rNo = Integer.parseInt(request.getParameter("rNo"));
 		System.out.println("delete servlet : "+rNo);
-		
+		String list ="";
+		if(request.getParameter("list")!=null) {
+			list = request.getParameter("list");
+		}
 		int result = new ReportService().deleteReport(rNo);
 
 		if(result>0) {
@@ -39,11 +42,23 @@ public class ReportDeleteServlet extends HttpServlet {
 			//noticeListView.jsp로 forwarding 처리하면x
 			//새로 갱신 된 공지사항 목록을 불러오면 Servlet을 실행해야함
 			///notice/list호출
-			request.getSession().setAttribute("msg", "신고가 성공적으로 삭제되었습니다.");
-			response.sendRedirect(request.getContextPath()+"/report/mylist");
+			if(list==null) {
+				request.getSession().setAttribute("msg", "신고가 성공적으로 삭제되었습니다.");
+				response.sendRedirect(request.getContextPath()+"/report/mylist");
+			}else {
+				request.getSession().setAttribute("msg", "신고철회가 성공적으로 되었습니다.");
+				response.sendRedirect(request.getContextPath()+"/report/list");	
+			}
+			
 		
 		}else {
-			request.setAttribute("msg", "신고 삭제에 실패하였습니다.");
+			if(list==null) {
+				request.setAttribute("msg", "신고 삭제에 실패하였습니다.");
+				
+			}else {
+				request.setAttribute("msg", "신고철회에 실패하였습니다.");
+				
+			}
 			request.getRequestDispatcher("/views/common/errorPage.jsp");
 		}
 	}

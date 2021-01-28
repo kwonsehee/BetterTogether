@@ -298,5 +298,12 @@
 	 ORDER BY FID
 		
 	</entry>
-	
+	<entry key="disabledPost">
+  		UPDATE
+  			   BOARD
+		   SET
+		   	   BOARD_STATUS = 'N'
+		 WHERE
+		 	   BAORD_SEQ = ?
+  	</entry>
 </properties>
