@@ -10,23 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
 import community.model.service.ReviewService;
 import community.model.vo.Review;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class ReviewMainServlet
+ * Servlet implementation class MyReviewServlet
  */
-@WebServlet("/review/main")
-public class ReviewMainServlet extends HttpServlet {
+@WebServlet("/review/myReview")
+public class MyReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewMainServlet() {
+    public MyReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,27 +34,17 @@ public class ReviewMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 로그인 유저의 참여했던 챌린지 조회해야 함(셀렉-옵션 칸 안에 넣음)
-		String userId = "";
-		Challenge chall = new Challenge();
 		ReviewService rs = new ReviewService();
-		
-		if((Member)request.getSession().getAttribute("loginUser") != null) {
-		 userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		 chall.setUserId(userId);
-		 ArrayList<Challenge> cList = rs.selectJoinedList(userId);
-		 request.setAttribute("cList", cList);
-		} 
-		
-		
-		
-		// 페이징 영역
-		// 게시글 총 갯수 구하기
+
+		// 현재 요청 페이지
+		// 하지만 페이지 전환 시 전달 받은 현재 페이지가 있을 경우 해당 페이지를 currentPage로 적용
 		int currentPage = 1;
-		if(request.getParameter("currentPage") != null) {
+		if (request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		
+
+		String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
+	
 		int listCount = rs.getListCount();
 		
 		int pageLimit = 10;
@@ -75,17 +64,16 @@ public class ReviewMainServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit,
 				maxPage, startPage, endPage);
+	
+		ArrayList<Review> rList = rs.selectMyReviewList(pi, userId);
 		
-		// pi넘겨서 페이징 처리하기
-		ArrayList<Review> rList = rs.selectReviewList(pi);
-		
+		// System.out.println("servlet MyReviewList : " + rList);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("rList", rList);
 		
-		RequestDispatcher view= request.getRequestDispatcher("/views/community/reviewMain.jsp");
+		RequestDispatcher view= request.getRequestDispatcher("/views/community/myReview.jsp");
 		view.forward(request, response);
-	
 	}
 
 	/**

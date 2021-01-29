@@ -89,6 +89,7 @@
 	  FROM  
 	  		RLIST
 	 WHERE  RNUM BETWEEN ? AND ?
+	   AND  REVIEW_STATUS = 'Y'
 </entry>
 <entry key="getListCount">
 	SELECT
@@ -98,8 +99,34 @@
 	 WHERE	
 	 		REVIEW_STATUS = 'Y'	
 </entry>
-	
-
+<entry key="selectMyReviewList">
+	SELECT 
+			RNUM, 
+			REVIEW_SEQ, 
+			REVIEW_CONTENT, 
+			REVIEW_DATE, 
+			REVIEW_MODIFY, 
+			REVIEW_GRADE, 
+			CHALL_TITLE, 
+			CHALL_NO, 
+			REVIEW_STATUS, 
+			USER_ID, 
+			NICKNAME
+	  FROM 
+	  		RLIST
+     WHERE 
+     		RNUM BETWEEN ? AND ?
+       AND  USER_ID = ?
+       AND  REVIEW_STATUS = 'Y'
+</entry>
+<entry key="deleteReview">
+	UPDATE 
+			REVIEW
+	   SET		
+			REVIEW_STATUS = 'N'
+	 WHERE  
+	 		REVIEW_SEQ = ?
+</entry>
 
 
 </properties>
