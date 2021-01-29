@@ -100,7 +100,7 @@
        				  AND CAFE_STATUS='N'
       			   	 ORDER BY 
       			    		AFFILIATED_CAFE 
-      			    			DESC) A)
+      			    			DESC , CAFE_CODE DESC) A)
 			 WHERE
           			RNUM BETWEEN ? AND ?  
 	
@@ -152,7 +152,7 @@
        				 	CAFE_STATUS='N'
       			   	 ORDER BY 
       			    		AFFILIATED_CAFE 
-      			    			DESC) A)
+      			    			DESC , CAFE_CODE DESC) A)
 			 WHERE
           			RNUM BETWEEN ? AND ?  
 	</entry>

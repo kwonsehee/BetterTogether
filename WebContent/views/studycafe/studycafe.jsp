@@ -6,7 +6,9 @@
  			ArrayList<Cafe> list2 =(ArrayList<Cafe>)request.getAttribute("list2"); // 제후카페 검색용 list 
  
  	       PageInfo pi = (PageInfo)request.getAttribute("pi");
-
+	
+ 			
+ 			
  		 	//PageInfo pi2 = (PageInfo)request.getAttribute("pi2"); // 임시 삭제 왜만들었는지 까먹음
  		 	
  		 	 
@@ -181,9 +183,8 @@
 						 <%if(searchCondition.equals("area")){ %> 
 						 <option value="<%= searchCondition %>" >선택:<%= search %> </option> 
 						 <% }%>
-							 
-							<optgroup label="서초구"> 
-								
+							 <option  value="">전체</option>
+							<optgroup label="서초구">  
 								<option  value="방배">방배</option>
 								<option  value="반포">반포</option>
 								<option  value="서초">서초</option>
@@ -193,7 +194,7 @@
 							<optgroup label="강남구">
 									<option  value="역삼">역삼</option>
 									<option  value="논현">논현</option>
-									<option  value="압구정">압구정</option>
+									<option  value="강남">강남</option>
 									<option  value="신사">신사</option>
 								</optgroup>
 
@@ -205,10 +206,10 @@
 							</optgroup>
 
 							<optgroup label=" 관악구">
-								<option value="해운대구">해운대구</option>
-								<option value="동래구">동래구</option>
-								<option value="서구">서구</option>
-								<option value="중구">중구</option>
+								<option value="봉천">봉천</option>
+								<option value="남현">남현</option>
+								<option value="행운동">행운동</option>
+								<option value="신림">신림</option>
 							</optgroup>
 
 							<optgroup label="동작구">

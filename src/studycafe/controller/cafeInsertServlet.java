@@ -93,7 +93,7 @@ public class cafeInsertServlet extends HttpServlet {
 			String cafe_info = multiRequest.getParameter("cafe_info");
 			String cafe_photo = multiRequest.getFilesystemName("cafe_photo");
 			String AFFILIATED_CAFE= multiRequest.getParameter("AFFILIATED_CAFE");
-			String cafe_map= multiRequest.getFilesystemName("cafe_map");
+			String cafe_map= multiRequest.getParameter("cafe_map");
 			String detail_address = multiRequest.getParameter("detail_address");
 			String closed_day = multiRequest.getParameter("closed_day"); 
 			String cafe_page = multiRequest.getParameter("cafe_page"); 
@@ -101,6 +101,10 @@ public class cafeInsertServlet extends HttpServlet {
 			
 			
 			Cafe n = new Cafe(cafe_oh,cafe_name,cafe_area,cafe_phone, cafe_capacity ,cafe_notice,cafe_info,cafe_photo,AFFILIATED_CAFE,cafe_map,detail_address,closed_day,cafe_page,UserId);
+			
+			
+			System.out.println("cafe_map:" +cafe_map);
+			
 			
 			int result = new CafeService().insertCafe(n) ;
 			
