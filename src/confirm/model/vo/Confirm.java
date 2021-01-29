@@ -11,8 +11,9 @@ public class Confirm {
 	//챌린지 정보를 가지고 오기 위한 데이터
 	private String chall_title;
 	private String file_path;
-	private String chall_start;
-	
+	private Date chall_start;
+	private int status;
+	private Date end_date;
 	
 	public Confirm() {
 		
@@ -27,7 +28,7 @@ public class Confirm {
 	}
 
 	public Confirm(String user_id, int chall_no, int chall_status, Date join_call_date, String chall_title,
-			String file_path, String chall_start) {
+			String file_path, Date chall_start, int status, Date end_date) {
 		super();
 		this.user_id = user_id;
 		this.chall_no = chall_no;
@@ -36,6 +37,8 @@ public class Confirm {
 		this.chall_title = chall_title;
 		this.file_path = file_path;
 		this.chall_start = chall_start;
+		this.status=status;
+		this.end_date = end_date;
 	}
 
 	public String getUser_id() {
@@ -86,12 +89,29 @@ public class Confirm {
 		this.file_path = file_path;
 	}
 
-	public String getChall_start() {
+	
+	public Date getChall_start() {
 		return chall_start;
 	}
 
-	public void setChall_start(String chall_start) {
+	public void setChall_start(Date chall_start) {
 		this.chall_start = chall_start;
+	}
+
+	public Date getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	@Override

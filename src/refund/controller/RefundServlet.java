@@ -51,7 +51,7 @@ public class RefundServlet extends HttpServlet {
 		
 		Refund refund = new Refund(userId,bank, account, money);
 		String page="";
-		//환불 디비에 값 입력
+		//환급 디비에 값 입력
 		int result = new RefundService().insertrefund(refund);
 			
 		if(result >0) {

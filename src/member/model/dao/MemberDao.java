@@ -316,4 +316,28 @@ public class MemberDao {
 			
 			return result;
 		}
+
+		public int payback(Connection conn, String userId, int money) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("payback");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, money);
+				pstmt.setString(2, userId);
+
+				result = pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			
+			return result;
+		}
 }

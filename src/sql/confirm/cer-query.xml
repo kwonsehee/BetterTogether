@@ -8,11 +8,13 @@
 			 , CER_PIC
 			 , CHALL_TITLE
 			 , CHALL_NO
+			 , CHALL_CONFIRM
 		 FROM
 		 	  CERLIST
 		WHERE
 			  USER_ID = ?
 		  AND CHALL_NO = ?
+		  AND CER_STATUS != 'Y'
 		  AND RNUM BETWEEN ? AND ?
 	</entry>
 	<entry key="insertCer">
@@ -25,6 +27,7 @@
 			  , CER_DATE
 			  , USER_ID
 			  , CHALL_NO
+			  , CER_STATUS
 			
 			)
 		VALUES
@@ -35,6 +38,7 @@
 			  , SYSDATE
 			  , ?
 			  , ?
+			  , 'N'
 			)	
 	</entry>
 	<entry key="selectAllCerList">
@@ -44,6 +48,7 @@
 			 , CER_PIC
 			 , CHALL_TITLE
 			 , CHALL_NO
+			 , CHALL_CONFIRM
 		 FROM
 		 	  CERLIST
 		WHERE
@@ -58,11 +63,13 @@
 			 , CER_DATE
 			 , C.USER_ID
              , CHALL_TITLE
+             , CHALL_NO
 		  FROM
 		  	    CER C
 		  	    JOIN CHALL USING(CHALL_NO)
 		  WHERE
 		  	    CER_ID = ?
+		  	AND CER_STATUS != 'Y'
 	
 	</entry>
 	<entry key = "getMyListCount">
@@ -73,6 +80,7 @@
    		WHERE
    			  CHALL_NO = ?
    		  AND USER_ID = ?
+   		  AND CER_STATUS != 'Y'
   	</entry>
   	<entry key = "getAllListCount">
    		SELECT
@@ -81,6 +89,7 @@
    		 	  CER
    		WHERE
    			  CHALL_NO = ?
+   		  AND CER_STATUS != 'Y'
   	</entry>
   	<entry key="disabledPost">
   		UPDATE
@@ -89,5 +98,22 @@
 		   	   CER_STATUS = 'Y'
 		 WHERE
 		 	   CER_ID = ?
+  	</entry>
+  	<entry key="deleteCer">
+  		UPDATE
+  			   CER
+		   SET
+		   	   CER_STATUS = 'Y'
+		 WHERE
+		 	   CER_ID = ?
+  	</entry>
+  	<entry key="getAchieve">
+  		SELECT COUNT(DISTINCT CER_DATE), CHALL_COUNT, COUNT(DISTINCT CER_DATE)/CHALL_COUNT AS 달성률
+		 FROM CER
+		 	  JOIN CHALL USING(CHALL_NO)
+		WHERE CER.USER_ID = ?
+		  AND CHALL_NO = ?
+		  AND CER_STATUS = 'N'
+		GROUP BY CHALL_COUNT
   	</entry>
 </properties>

@@ -63,8 +63,7 @@ System.out.println("jsp list : "+reList);%>
 
 	<section id="report_form">
 		
-          
-		<h1 id="title">내가 신고한 글</h1>
+      <h1 id="title">내가 신고한 글</h1>
         </div>
         <div id="line"></div>
         
