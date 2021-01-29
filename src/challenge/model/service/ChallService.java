@@ -160,7 +160,7 @@ public class ChallService {
 		return listCount;
 	}
 
-	// challBoardType에 맞는 챌린지 갯수 구하기
+	// challBoardType에 맞는 챌린지 갯수 구하기 --> 삭제하기 
 	public int getListCount2(int challBoardType) {
 		Connection conn = getConnection();
 
@@ -171,7 +171,7 @@ public class ChallService {
 		return listCount;
 	}
 	
-	// challBoardType 1/2/3 select해오기 
+	// challBoardType 1/2/3 select해오기 ----> 지우기 
 	public ArrayList<Challenge> selectChallBoardType(int challBoardType, PageInfo pi) {
 		Connection conn = getConnection();
 
@@ -444,6 +444,74 @@ public class ChallService {
 		
 		return result;
 	}
+	
+	
+	// 챌린지 시작 전 select 해오기
+	public ArrayList<Challenge> selectChallBeforeStart(PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Challenge> beforeStart = new ChallDao().selectChallBeforeStart(conn, pi);
+		
+		close(conn);
+		
+		return beforeStart;
+	}
+	
+	// 진행 중 select 해오기 
+	public ArrayList<Challenge> selectChallStarting(PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Challenge> startIng = new ChallDao().selectChallStarting(conn, pi);
+		
+		close(conn);
+		
+		return startIng;
+	}
+	
+	// 종료된 챌린지 select 해오기 
+	public ArrayList<Challenge> selectChallEnd(PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Challenge> end = new ChallDao().selectChallEnd(conn, pi);
+		
+		close(conn);
+		
+		return end;
+	}
+
+	// 시작전 게시글 총 갯수 구하기 
+	public int getBeforeCnt() {
+		Connection conn = getConnection();
+
+		int beforeCnt = new ChallDao().getBeforeCnt(conn);
+		
+		close(conn);
+
+		return beforeCnt;
+	}
+	
+	// 진행중 게시글 총 갯수 구하기 
+	public int getStartCnt() {
+		Connection conn = getConnection();
+		
+		int startIngCnt = new ChallDao().getStartCnt(conn);
+		
+		close(conn);
+		
+		return startIngCnt;
+	}
+	
+	// 종료된 게시글 총 갯수 구하기 
+	public int getEndCnt() {
+		Connection conn = getConnection();
+		
+		int endCnt = new ChallDao().getEndCnt(conn);
+
+		close(conn);
+		
+		return endCnt;
+	}
+	
 	
 /*	// 게시물 삭제 여부 상태 가져오기 
 	public String getChallStatus(int challNo) {

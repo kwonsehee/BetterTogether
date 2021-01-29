@@ -9,11 +9,11 @@
      cate = Integer.parseInt((String.valueOf(request.getAttribute("cate"))));
    }
    
-   // challBoard type 1:시작전,2:진행중,3:종료
+ //challBoard type 1:시작전,2:진행중,3:종료
    int challBoardType = 0;
    if(request.getAttribute("challBoardType")!=null){
 	   challBoardType = Integer.parseInt((String.valueOf(request.getAttribute("challBoardType"))));
-   }
+   } 
    
    // 페이징 처리 
    PageInfo pi = (PageInfo)request.getAttribute("pi");
@@ -330,7 +330,7 @@
          }).click(function(){
             var num = $(this).parent().children().eq(0).text();
               // 쿼리 스트링을 이용하여 get방식으로 글 번호를 전달 
-              location.href="<%= request.getContextPath() %>/chall/join?challNo=" +num;
+              location.href="<%= request.getContextPath() %>/chall/join?challNo="+num;
          });
       });
        

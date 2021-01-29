@@ -53,7 +53,14 @@
 	}
 	
 	// 쨈 갯수 카운트
-	int hits = Integer.parseInt((String.valueOf(request.getAttribute("hits"))));
+	int hits=0;
+	if ((request.getAttribute("hits") != null)) {
+		hits = Integer.parseInt((String.valueOf(request.getAttribute("hits"))));
+	}
+	//int hits = Integer.parseInt((String.valueOf(request.getAttribute("hits"))));
+	
+	// challBoardType (시작전: 1 / 진행중:2 / 종료:3)
+	//int challBoardType = Integer.parseInt((String.valueOf(request.getAttribute("challBoardType"))));
 	
 %>
 <!DOCTYPE html>
@@ -280,7 +287,9 @@ button:focus {
         document.getElementById("countDown").innerHTML = days + "일 " + hours + "시간 "
         + minutes + "분 " + seconds + "초 ";
         
-        // 카운트 끝날시 텍스트 대체
+        // 카운트 진행중 & 종료 문구 바꾸기
+     	
+        
         if (distance < 0) {
           clearInterval(x);
           document.getElementById("countDown").innerHTML = "챌린지 오늘 시작";
@@ -323,7 +332,7 @@ button:focus {
 					<td><img
 						src="<%=request.getContextPath()%>/resources/images/date.png"
 						class="img-size"></td>
-					<td>챌린지 기간 : <span><%= ch.getChallPeriod() %></span></td>
+					<td>챌린지 기간 : <span><%= ch.getChallPeriod() %> 주</span></td>
 				</tr>
 			</table>
 			<hr color=#ff6064 width="450px" id="line">
@@ -347,7 +356,7 @@ button:focus {
 					<td><img
 						src="<%=request.getContextPath()%>/resources/images/check.png"
 						class="img-size"></td>
-					<td>인증 빈도 : <span><%=ch.getChallFrequency() %></span></td>
+					<td>인증 빈도 : <span>주 <%=ch.getChallFrequency() %>회</span></td>
 				</tr>
 				<tr>
 					<td><img

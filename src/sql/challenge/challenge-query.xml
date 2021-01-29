@@ -518,7 +518,7 @@
 		  	 C_HITS = 'Y'
    </entry>
    
-   <!-- 우선 CHALL_CONTENT에 1/2/3 구분해두기 -->
+   <!-- 우선 CHALL_CONTENT에 1/2/3 구분해두기 (삭제하기!!!!!!!)-->
    <entry key = "getChallTypeListCount">
    		SELECT
    			  COUNT(*)
@@ -724,6 +724,197 @@
 		 WHERE
 		 	  CHALL_NO = ?
 	</entry>
+
+	
+	
+	
+	<!-- 챌린지 시작전 select 쿼리문  -->
+	<entry key="selectChallBeforeStart">
+	 SELECT 
+   			RNUM
+   		 , CHALL_NO
+         , CHALL_TITLE
+         , CHALL_PEOPLE
+         , CHALL_DATE
+         , FILE_PATH
+         , CHALL_CONFIRM
+         , CHALL_FREQUENCY
+         , CHALL_PERIOD
+         , CHALL_PAYMENT
+         , CHALL_CONTENT
+         , CHALL_COUNT
+         , NICKNAME
+         , CATE_NAME
+         , CHALL_CNT
+         , CHALL_START
+         , CHALL_STATUS
+	  FROM
+		   (SELECT ROWNUM RNUM,T.*
+    		  FROM (SELECT
+      	   					CHALL_NO
+        				  , CHALL_TITLE
+       					  , CHALL_PEOPLE
+       					  , CHALL_DATE
+       					  , FILE_PATH
+       					  , CHALL_CONFIRM
+        				  , CHALL_FREQUENCY
+     				      , CHALL_PERIOD
+       				      , CHALL_PAYMENT
+        				  , CHALL_CONTENT
+          				  , CHALL_COUNT
+        				  , NICKNAME
+        				  , CATE_NAME
+      				      , CHALL_CNT
+          				  , CHALL_START
+          				  , CHALL_STATUS
+       				   FROM CHALL
+          			   JOIN CHALL_CATEGORY USING(CATE_ID)
+          			   JOIN USER_INFO USING (USER_ID)
+        			  WHERE
+                            SYSDATE &lt; CHALL_START
+           			   AND  CHALL_STATUS = 'N'
+        		   ORDER BY CHALL_NO DESC)T)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	<!-- 진행중 챌린지 select -->
+	<entry key="selectChallStarting">
+	 SELECT 
+   			RNUM
+   		 , CHALL_NO
+         , CHALL_TITLE
+         , CHALL_PEOPLE
+         , CHALL_DATE
+         , FILE_PATH
+         , CHALL_CONFIRM
+         , CHALL_FREQUENCY
+         , CHALL_PERIOD
+         , CHALL_PAYMENT
+         , CHALL_CONTENT
+         , CHALL_COUNT
+         , NICKNAME
+         , CATE_NAME
+         , CHALL_CNT
+         , CHALL_START
+         , CHALL_STATUS
+	  FROM
+		   (SELECT ROWNUM RNUM,T.*
+    		  FROM (SELECT
+      	   					CHALL_NO
+        				  , CHALL_TITLE
+       					  , CHALL_PEOPLE
+       					  , CHALL_DATE
+       					  , FILE_PATH
+       					  , CHALL_CONFIRM
+        				  , CHALL_FREQUENCY
+     				      , CHALL_PERIOD
+       				      , CHALL_PAYMENT
+        				  , CHALL_CONTENT
+          				  , CHALL_COUNT
+        				  , NICKNAME
+        				  , CATE_NAME
+      				      , CHALL_CNT
+          				  , CHALL_START
+          				  , CHALL_STATUS
+       				   FROM CHALL
+          			   JOIN CHALL_CATEGORY USING(CATE_ID)
+          			   JOIN USER_INFO USING (USER_ID)
+        			  WHERE
+                            SYSDATE BETWEEN CHALL_START AND CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7)
+           			   AND  CHALL_STATUS = 'N'
+        		   ORDER BY CHALL_NO DESC)T)
+		WHERE RNUM BETWEEN ? AND ?	
+	</entry>
+
+
+	<!-- 종료된 챌린지 select -->	
+	<entry key="selectChallEnd">
+		 SELECT 
+   			RNUM
+   		 , CHALL_NO
+         , CHALL_TITLE
+         , CHALL_PEOPLE
+         , CHALL_DATE
+         , FILE_PATH
+         , CHALL_CONFIRM
+         , CHALL_FREQUENCY
+         , CHALL_PERIOD
+         , CHALL_PAYMENT
+         , CHALL_CONTENT
+         , CHALL_COUNT
+         , NICKNAME
+         , CATE_NAME
+         , CHALL_CNT
+         , CHALL_START
+         , CHALL_STATUS
+	  FROM
+		   (SELECT ROWNUM RNUM,T.*
+    		  FROM (SELECT
+      	   					CHALL_NO
+        				  , CHALL_TITLE
+       					  , CHALL_PEOPLE
+       					  , CHALL_DATE
+       					  , FILE_PATH
+       					  , CHALL_CONFIRM
+        				  , CHALL_FREQUENCY
+     				      , CHALL_PERIOD
+       				      , CHALL_PAYMENT
+        				  , CHALL_CONTENT
+          				  , CHALL_COUNT
+        				  , NICKNAME
+        				  , CATE_NAME
+      				      , CHALL_CNT
+          				  , CHALL_START
+          				  , CHALL_STATUS
+       				   FROM CHALL
+          			   JOIN CHALL_CATEGORY USING(CATE_ID)
+          			   JOIN USER_INFO USING (USER_ID)
+        			  WHERE
+                            CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt;= SYSDATE
+           			   AND  CHALL_STATUS = 'N'
+        		   ORDER BY CHALL_NO DESC)T)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	<!-- 시작전 게시물 총 갯수 구하기 -->
+	<entry key="getBeforeCnt">
+		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL
+   		WHERE
+   			  SYSDATE &lt; CHALL_START 
+   		  AND 
+   		   	  CHALL_STATUS = 'N'
+	</entry>
+	
+	<!-- 진행중 게시물 총 갯수 구하기 -->
+	<entry key="getStartCnt">
+		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL
+   		WHERE
+   			  SYSDATE BETWEEN CHALL_START AND CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) 
+   		  AND 
+   		   	  CHALL_STATUS = 'N'
+	</entry>	
+	
+	<!-- 종료된 챌린지 총 갯수 구하기 -->
+	<entry key="getEndCnt">
+		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL
+   		WHERE
+   			  CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt;= SYSDATE
+   		  AND 
+   		   	  CHALL_STATUS = 'N'
+	</entry>
+	
+
 	<entry key="getComfirm">
 		SELECT
 			  CHALL_CONFIRM
@@ -777,4 +968,5 @@
 		  WHERE 달성률 &lt; 0.85
 	
 	</entry>
+
 </properties>

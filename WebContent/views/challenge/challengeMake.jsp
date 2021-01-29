@@ -146,6 +146,37 @@ input:focus, textarea:focus {
 	color: #757575b7;
 }
 </style>
+<!-- select option 1:주말 2:평일 3:상관없음 -->
+
+<script type="text/javascript">
+function Activity(name, list){
+    this.name = name; // 주말/평일/상관없음 vlaue
+    this.list = list; // 해당되는 select option list 
+}
+
+var acts = new Array(); //배열 
+    acts[0] = new Activity('1', ['1', '2']);
+    acts[1] = new Activity('2', ['1', '2', '3', '4', '5']);
+    acts[2] = new Activity('3', ['1', '2', '3', '4', '5', '6', '7']);
+
+function updateFreq(str){
+    var frm = document.myForm; //입력 폼 name --> myForm 
+    var oriLen = frm.frequency.length; //select option "name" 가져오기 --> frequency
+    var numActs;
+
+    for (var i = 0; i < acts.length; i++){
+        if (str == acts[i].name) { //str: 주말/평일/상관없음 1,2,3
+            numActs = acts[i].list.length; // 해당되는 select option 길이 가져와서 담기
+            for (var j = 0; j < numActs; j++)
+                frm.frequency.options[j] = new Option(acts[i].list[j],
+                acts[i].list[j]);
+            for (var j = numActs; j < oriLen; j++)
+                frm.frequency.options[numActs] = null;
+        }
+    }
+}
+</script>
+
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
@@ -155,7 +186,7 @@ input:focus, textarea:focus {
 			<p>챌린지 개설</p>
 		</section>
 		<form action="<%=request.getContextPath()%>/chall/insert"
-			method="POST" id="challenge-form"  enctype="multipart/form-data">
+			method="POST" id="challenge-form" name="myForm" enctype="multipart/form-data">
 			<section id="content-1">
 				<table class="table">
 					<tr>
@@ -192,22 +223,29 @@ input:focus, textarea:focus {
 
 					<tr>
 						<th>인증 방법</th>
-						<td><input type="radio" id="weekend" name="confirm" value="1">
-							<label>주말</label> <input type="radio" id="weekday" name="confirm"
-							value="2"> <label>평일</label> <input type="radio"
-							id="both" name="confirm" value="3"> <label>상관없음</label></td>
+						<td><input type="radio" id="weekend" name="confirm" value="1" onclick="updateFreq(this.value)"><label>주말</label>
+							<input type="radio" id="weekday" name="confirm" value="2" onclick="updateFreq(this.value)"><label>평일</label>
+							<input type="radio" id="both" name="confirm" value="3" onclick="updateFreq(this.value)"><label>상관없음</label>
+						</td>
 					</tr>
 
 					<tr>
 						<th>인증 빈도</th>
-						<td><input type="text" name="frequency" maxlength="50"
-							placeholder="예시) 주 2회" required></td>
+						<td><select name="frequency">
+							<option>---</option>
+							</select>
+						</td>
 					</tr>
 
 					<tr>
 						<th>챌린지 기간</th>
-						<td><input type="text" name="period" maxlength="50"
-							placeholder="예시) 2 주" required></td>
+						<td><select name="period">
+							<option>---</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select></td>
 					</tr>
 
 					<tr>
@@ -251,6 +289,7 @@ input:focus, textarea:focus {
 			</section>
 		</form>
 	</section>
+	
 
 	<script>
 		$(document).on("change", "#file-input", function() {

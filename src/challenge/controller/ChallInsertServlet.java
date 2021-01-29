@@ -130,16 +130,15 @@ public class ChallInsertServlet extends HttpServlet {
       
     
       // 인증빈도, 기간 숫자만 추출하기 
-      int freqNum = Integer.parseInt(frequency.substring(2, 3));
-      int periodNum = Integer.parseInt(period.substring(0,1));
+      //int freqNum = Integer.parseInt(frequency.substring(2, 3));
+      //int periodNum = Integer.parseInt(period.substring(0,1));
       
-     //System.out.println("인증빈도 숫자로 : " + freqNum);
-      //System.out.println("인증 기간 숫자로 : " + periodNum);
+      // 인증 빈도 String -> Number
+      int freqNum = Integer.parseInt(frequency);
+      int periodNum = Integer.parseInt(period);
       
       // 총 인증 갯수 계산 : frequency * period = confirmCnt 
       int confirmCnt = freqNum * periodNum;
-      
-      //System.out.println("인증 총 갯수 카운트  : " + confirmCnt); 
       
       // 테이블의 USER_ID는 멤버(USER_INFO)의 USER_ID이므로
       // 로그인 유저로부터 userId 도출 

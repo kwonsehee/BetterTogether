@@ -36,9 +36,6 @@ public class ChallBoardTypeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 회원이 클릭한 버튼 가져오기
-		int challBoardType = Integer.parseInt(request.getParameter("challBoardType"));
-		System.out.println("선택한 challBoard 버튼 종류 : " + challBoardType); // 1,2,3
 
 		// ================페이징 처리해야함============
 		// * currentPage : 현재 요청 페이지
@@ -51,9 +48,24 @@ public class ChallBoardTypeServlet extends HttpServlet {
 		}
 		ChallService cs = new ChallService();
 
-		// 1_1. 게시글 총 갯수 구하기
-		int listCount = cs.getListCount2(challBoardType);
-		System.out.println("챌린지보드타입 listCount :" + listCount);
+		// *********(수정하기) 1. 게시글 총 갯수 구하기 3개쓰기 (시작전/진행중/종료)********** 
+		//int listCount = cs.getListCount2(challBoardType);
+		//System.out.println("챌린지보드타입 listCount :" + listCount);
+		
+		// switch case문 button 값이 1,2,3
+		// 회원이 클릭한 버튼 가져오기
+		int challBoardType = Integer.parseInt(request.getParameter("challBoardType"));
+		// System.out.println("선택한 challBoard 버튼 종류 : " + challBoardType); // 1,2,3
+		
+		int listCount = 0;
+		switch(challBoardType) {
+			// 1. 시작전 게시글 총 갯수 구하기
+			case 1 : listCount = cs.getBeforeCnt(); break;
+			// 2. 진행중 게시글 총 갯수 구하기
+			case 2 : listCount = cs.getStartCnt(); break;
+			// 3. 종료 게시글 총 갯수 구하기 
+			case 3 : listCount = cs.getEndCnt(); break;
+		}
 
 		// 1_2. 페이징 처리를 위한 변수 선언 및 연산
 		int pageLimit = 10; // 한 페이지 하단에 보여질 페이지 수
@@ -61,7 +73,7 @@ public class ChallBoardTypeServlet extends HttpServlet {
 		int maxPage; // 전체 페이지에서 가장 마지막 페이지
 		int startPage; // 한 페이지 하단에 보여질 시작 페이지
 		int endPage; // 한 페이지 하단에 보여질 끝 페이지
-
+		
 		// * maxPage : 총 페이지의 마지막 수
 		maxPage = (int) Math.ceil((double) listCount / boardLimit);
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
@@ -74,8 +86,19 @@ public class ChallBoardTypeServlet extends HttpServlet {
 
 		// 페이징 처리와 관련 된 변수를 클래스 형식으로 만들어 담기
 		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit, maxPage, startPage, endPage);
-
-		ArrayList<Challenge> list = cs.selectChallBoardType(challBoardType, pi);
+		
+		
+		// *********(수정하기) 2. 게시글 셀렉해오기 3개쓰기 (시작전/진행중/종료)********** 
+		ArrayList<Challenge> list = null;
+		switch(challBoardType) {
+			// 1. 시작 전 
+			case 1: list = cs.selectChallBeforeStart(pi); break;
+			// 2. 진행 중 
+			case 2: list = cs.selectChallStarting(pi); break;
+			// 3. 종료  
+			case 3: list = cs.selectChallEnd(pi); break;
+		}
+		
 
 		System.out.println("pi : " + pi);
 		System.out.println("challBoardType list : " + list);
