@@ -243,7 +243,7 @@
 			          //쿼리 스트링을 이용하여 get방식으로 글 번호를 전달
 						
 			          <% if(list.isEmpty()) { %>
-							$("#qnaBoard td").click(funtion(){
+							$("#qnaBoard td").click(function(){
 							$(this).off("click");
 							});
 						<% } %>

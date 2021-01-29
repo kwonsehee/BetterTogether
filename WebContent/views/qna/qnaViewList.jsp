@@ -226,7 +226,7 @@
 				var qnaNo = $(this).parent().children().eq(0).text();
 				
 				<% if(qnaList.isEmpty()) { %>
-					$("#qnaBoard td").click(funtion(){
+					$("#qnaBoard td").click(function(){
 						$(this).off("click");
 					});
 				<% } %>
