@@ -1,4 +1,4 @@
-package qna.controller;
+package faq.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,16 +15,16 @@ import qna.model.service.QnAService;
 import qna.model.vo.QnA;
 
 /**
- * Servlet implementation class QnAListServlet
+ * Servlet implementation class faqListServlet
  */
-@WebServlet("/qna/list")
-public class QnAListServlet extends HttpServlet {
+@WebServlet("/faq/list")
+public class FAQListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnAListServlet() {
+    public FAQListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,9 +41,9 @@ public class QnAListServlet extends HttpServlet {
 		if (request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		
+
 		QnAService qs = new QnAService();
-		
+
 		// 1_1. 게시글 총 갯수 구하기
 		int listCount = qs.getListCount();
 		// System.out.println("listcount : " + listCount);
@@ -53,17 +53,13 @@ public class QnAListServlet extends HttpServlet {
 		int boardLimit = 10;
 
 		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
-		
-		// 리스트 객체 생성하기
-		ArrayList<QnA> list = new QnAService().selectList(pi);
-		
-		// System.out.println("PI : " + pi);
-		// System.out.println("list : " + list);
+				
+		ArrayList<QnA> list = new QnAService().selectFAQ(pi);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/qna/qnaViewList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/faq/faqListView.jsp");
 		view.forward(request, response);
 	}
 

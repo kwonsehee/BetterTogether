@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+	
 	<entry key="selectList">
-		SELECT
-				QNA_NO
+		 SELECT
+		 	    RNUM
+			  , QNA_NO
 			  , QNA_TITLE
 			  , QNA_CONTENT
 			  , QNA_DATE
 			  , QNA_MODIFY	  
 			  , Q_REFERENCE
 			  , QNA_TYPE
-			  , USER_ID
-		 FROM
-		 		QNA
-	    WHERE
-	    		QNA_TYPE = 'Y'
-	 ORDER BY
-	 			QNA_NO DESC
+              , QNA_STATUS
+			  , I.NICKNAME
+		   FROM
+		 		QLIST Q
+     			JOIN USER_INFO I ON(Q.USER_ID = I.USER_ID) 
+          WHERE 
+          		RNUM BETWEEN ? AND ?
 	</entry>
 	<entry key="insertQuestion">
 		INSERT
@@ -27,9 +29,9 @@
 		  , QNA_CONTENT
 		  , QNA_DATE
 		  , QNA_MODIFY	  
-		  , FAQ
 		  , Q_REFERENCE
 		  , QNA_TYPE
+		  , QNA_STATUS
 		  , USER_ID
 		)
 		VALUES
@@ -39,8 +41,8 @@
 		  , ?
 		  , SYSDATE
 		  , SYSDATE
-		  , 'f'
-		  , 1
+		  , DEFAULT
+		  , 'Q'
 		  , 'Y'
 		  , ?
 		)
@@ -54,12 +56,242 @@
 			  , QNA_MODIFY	  
 			  , Q_REFERENCE
 			  , QNA_TYPE
+			  , QNA_STATUS
 			  , USER_ID
 		 FROM
 		 		QNA
 	    WHERE
-	    		QNA_TYPE = 'Y'
+	    		QNA_TYPE = 'Q'
 	      AND	QNA_NO = ?
 	      		
+	</entry>
+	<entry key="getListCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	QNA
+		 WHERE
+		 	  	QNA_TYPE = 'Q'
+		   AND	QNA_STATUS = 'Y'
+	</entry>
+	<entry key="selectQnA">
+		 SELECT
+			    QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY
+			  , Q_REFERENCE
+			  , QNA_TYPE
+			  , QNA_STATUS
+			  , USER_ID
+		  FROM
+		  	    QNA
+          WHERE 
+                QNA_NO = ?
+	</entry>
+	<entry key="updateQuestion">
+		UPDATE
+  			   QNA
+  		   SET
+  		   	   QNA_TITLE = ?
+  		   	 , QNA_CONTENT = ?
+  		 WHERE
+  			   QNA_NO = ?
+	</entry>
+	<entry key="deleteQuestion">
+		UPDATE
+  			   QNA
+  		   SET
+  		   	   QNA_STATUS = 'N'
+  		 WHERE
+  		 	   QNA_NO = ?
+  		   AND QNA_TYPE = 'Q'	   
+	</entry>
+	<entry key="insertAnswer">
+		INSERT
+		INTO QNA
+		(
+			QNA_NO
+		  , QNA_TITLE
+		  , QNA_CONTENT
+		  , QNA_DATE
+		  , QNA_MODIFY	  
+		  , Q_REFERENCE
+		  , QNA_TYPE
+		  , QNA_STATUS
+		  , USER_ID
+		)
+		VALUES
+		(
+		  	SEQ_QID.NEXTVAL
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , ?
+		  , 'A'
+		  , 'N'
+		  , ?
+		)
+		
+	</entry>
+	<entry key="selectAns">
+		 SELECT
+			    QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY
+			  , Q_REFERENCE
+			  , QNA_TYPE
+			  , QNA_STATUS
+			  , USER_ID
+		  FROM
+		  	    QNA
+          WHERE 
+                Q_REFERENCE = ?
+	</entry>
+	<entry key="insertFAQ">
+		INSERT
+		INTO QNA
+		(
+			QNA_NO
+		  , QNA_TITLE
+		  , QNA_CONTENT
+		  , QNA_DATE
+		  , QNA_MODIFY	  
+		  , Q_REFERENCE
+		  , QNA_TYPE
+		  , QNA_STATUS
+		  , USER_ID
+		)
+		VALUES
+		(
+		  	SEQ_QID.NEXTVAL
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , NULL
+		  , 'F'
+		  , 'Y'
+		  , ?
+		)
+	</entry>
+	<entry key="selectFAQ">
+		SELECT
+		 	    RNUM
+			  , QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY	  
+			  , Q_REFERENCE
+			  , QNA_TYPE
+              , QNA_STATUS
+			  , USER_ID
+		   FROM
+		 		FAQLIST
+          WHERE 
+          		RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectAnswer">
+		SELECT
+				QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY	  
+			  , Q_REFERENCE
+			  , QNA_TYPE
+			  , QNA_STATUS
+			  , USER_ID
+		 FROM
+		 		QNA
+	    WHERE
+	    		QNA_TYPE = 'A'
+	      AND	Q_REFERENCE = ?
+	      		
+	</entry>
+	<entry key="updateAnswer">
+		UPDATE
+  			   QNA
+  		   SET
+  		   	   QNA_TITLE = ?
+  		   	 , QNA_CONTENT = ?
+  		 WHERE
+  			   QNA_NO = ?
+	</entry>
+	<entry key="updateFAQ">
+		UPDATE
+  			   QNA
+  		   SET
+  		   	   QNA_TITLE = ?
+  		   	 , QNA_CONTENT = ?
+  		 WHERE
+  			   QNA_NO = ?
+  		   AND QNA_TYPE = 'F'
+	</entry>
+	<entry key="selectFAQ2">
+		SELECT
+				QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY	  
+			  , Q_REFERENCE
+			  , QNA_TYPE
+			  , QNA_STATUS
+			  , USER_ID
+		 FROM
+		 		QNA
+	    WHERE
+	    		QNA_TYPE = 'F'
+	      AND	QNA_NO = ?
+	      		
+	</entry>
+	<entry key="getSearchQuestionListCount">
+		SELECT
+				COUNT(*)
+		  FROM
+		  		QNA
+		 WHERE
+		 		QNA_STATUS = 'Y'
+		   AND	QNA_TYPE = 'F'
+		   AND	QNA_TITLE LIKE '%' || ? || '%'		
+	</entry>
+	<entry key="selectQuestionSearchList">
+		SELECT 
+				RNUM
+			  , QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY	  
+			  , Q_REFERENCE
+			  , QNA_TYPE
+			  , USER_ID
+              , QNA_STATUS     
+       FROM   (SELECT ROWNUM RNUM, A.*
+          FROM (SELECT
+				QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY	  
+			  , Q_REFERENCE
+			  , QNA_TYPE
+			  , USER_ID
+              , QNA_STATUS
+		 FROM
+		 		QNA
+	    WHERE
+	    		QNA_STATUS = 'Y'
+          AND   QNA_TYPE = 'F'
+          AND   QNA_TITLE LIKE '%' || ? || '%'
+	 ORDER BY
+	 			QNA_NO DESC) A)
+WHERE RNUM BETWEEN ? AND ?
 	</entry>
 </properties>

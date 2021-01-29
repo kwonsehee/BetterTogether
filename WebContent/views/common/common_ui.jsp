@@ -332,7 +332,7 @@
                      <a id="qnaBtn">Q&A</a>
                   </button></li>
                <li><button class="nav_btn">
-                     <a>F&A</a>
+                     <a id="faqBtn">FAQ</a>
                   </button></li>
             </ul></li>
       </ul>
@@ -400,6 +400,12 @@
 	   reportBtn.addEventListener('click',function(){
 	      location.href="<%= request.getContextPath()%>/report/list";
 	   });
+	   
+	 //faq버튼
+		const faqBtn = document.getElementById("faqBtn");
+		faqBtn.addEventListener('click',function(){
+			location.href="<%= request.getContextPath()%>/faq/list";
+		});
 	
 	</script>
 
