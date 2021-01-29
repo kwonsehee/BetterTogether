@@ -201,7 +201,7 @@
         </section>
 
             <section id="notice_area">
-           <form action="<%=request.getContextPath()%>/notice/search"method="get"
+           	<form action="<%=request.getContextPath()%>/notice/search"method="get"
 			onsubmit="return checkSearchCondition();">
 				<select id="searchCondition"name="searchCondition">
 					<option >----</option>
@@ -242,6 +242,12 @@
 			            var num = $(this).parent().children().eq(1).text();
 			          //쿼리 스트링을 이용하여 get방식으로 글 번호를 전달
 						
+			          <% if(list.isEmpty()) { %>
+							$("#qnaBoard td").click(funtion(){
+							$(this).off("click");
+							});
+						<% } %>
+			          
 			            location.href="<%= request.getContextPath() %>/notice/detail?aNo=" +num;
 			         });
 			      });

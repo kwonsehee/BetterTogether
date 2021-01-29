@@ -205,8 +205,8 @@
 			<!-- 맨 끝으로(>>) -->
 			<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 		</div>
-		
-		<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
+				
+				<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
 				<% if(loginUser != null) { %>
 				<button id="questionBtn" type="button" 
 				onclick="location.href='<%= request.getContextPath() %>/views/qna/qnaInsertForm.jsp'"><a>질문하기</a></button>
@@ -225,12 +225,19 @@
 			}).click(function(){
 				var qnaNo = $(this).parent().children().eq(0).text();
 				
+				<% if(qnaList.isEmpty()) { %>
+					$("#qnaBoard td").click(funtion(){
+						$(this).off("click");
+					});
+				<% } %>
 				// 로그인 한 사람만 게시글 상세 페이지 접근 가능하도록
 				<% if(loginUser != null) { %>
 					location.href='<%= request.getContextPath() %>/qna/detail?qnaNo=' + qnaNo;
 				<% } else { %>
 					alert('로그인 해야만 게시글 보기가 가능합니다.');
 				<% } %>
+				
+				
 			});
 		});
 	</script>
