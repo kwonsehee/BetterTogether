@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="qna.model.vo.QnA"%>
+<%
+	int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/qnaStyle.css'>--%>
 <style>
 body {
 	width: 1000px;
@@ -115,13 +117,14 @@ body {
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
-	<form action="<%= request.getContextPath() %>/qna/insert" method="POST"
+	<form action="<%= request.getContextPath() %>/qna/answer" method="POST"
 		id="QnA-form">
+		<input type="hidden" name="qnaNo" value="<%= qnaNo %>">
 		<section id="con1">
 			<table id="writebox">
 				<tr>
 					<td>
-						<h1 id="title">Q & A</h1>
+						<h1 id="title">Answer</h1>
 					</td>
 				</tr>
 				<tr>
@@ -136,20 +139,13 @@ body {
 
 		<!-- 등록 버튼 , 나가기 버튼 -->
 		<div>
-		<button type="button" class="btn" id="backBtn">
+		<button type="button" class="btn" id="backBtn" onclick="javascript:history.back();">
 			<a>뒤로가기</a>
 		</button>
 		<button type="submit" class="btn">
 			<a>등록하기</a>
 		</button>
 
-		<script>
-		// 뒤로가기
-		const backBtn = document.getElementById('backBtn');
-		backBtn.addEventListener('click',function(){
-			location.href='<%=request.getContextPath()%>/qna/list';
-		});
-		</script>
 		</div>
 	</form>
 </body>

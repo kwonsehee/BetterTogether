@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, qna.model.vo.QnA"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, qna.model.vo.QnA, common.model.vo.PageInfo"%>
  <% 
 	ArrayList<QnA> qnaList = (ArrayList<QnA>)request.getAttribute("list");
+ 	PageInfo pi = (PageInfo)request.getAttribute("pi");
  %>
 <!DOCTYPE html>
 <html>
@@ -42,7 +43,6 @@
         .h1_title {
            border-bottom: 3px solid #ff60657e;          
            margin-top: 50px;
-           text-align: center;
            font-family: "Do Hyeon";
            font-size: 24px;
            color : #757575;
@@ -114,7 +114,22 @@
             cursor : pointer;
         }
         
-        
+        /* 페이징바 영역 */
+		.pagingArea {
+			text-align:center;
+		}
+		.pagingArea button {
+			width:25px;
+			margin-top:20px;
+			border : 0px;
+			background:#fff;
+			font-family: "Do Hyeon";
+			color : #757575;
+		}
+		
+		.pagingArea button:hover {
+			cursor:pointer;
+		}
 </style>
 </head>
 <body>
@@ -141,28 +156,63 @@
                 <tbody>
                     <%if(qnaList.isEmpty()){ %>
 					<tr>
-						<td colspan="6">존재하는 공지사항이 없습니다.</td>
+						<td colspan="6">존재하는 질문이 없습니다.</td>
 					</tr>
 					<%} else { %>
 						<% for(QnA q : qnaList){ %>
+							<% if(q.getQnaType().equals("Q")) { %>
 						<tr>
 							<td><%= q.getQnaNo() %></td>
 							<td><%= q.getQnaTitle() %></td>
 							<td><%= q.getUserId()%></td>
 							<td><%= q.getQnaDate()%></td>
 						</tr>
+							<%} %>
 						<%} %>	
 					<%} %>
                 </tbody>
             </table>
             
-            <%-- 로그인 유저만 작성하기 버튼 보이기 --%>
+            
+
+            <!-- 페이징 바 -->
+			<div class="pagingArea">
+			<!-- 맨 처음으로 (<<) -->
+			<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=1'"> &lt;&lt; </button>
+			
+			<!-- 이전 페이지로 (<) -->
+			<% if(pi.getCurrentPage() == 1){ %>
+				<button disabled> &lt; </button>
+			<%} else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
+			<% } %>
+			
+			<!-- 10개의 페이지 목록 -->
+			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+				<% if(p == pi.getCurrentPage()){ %>
+				<button style="background:lightgray;" disabled> <%= p %> </button>
+				<% } else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= p %>'"> <%= p %> </button>				
+				<% } %>
+			<%} %>
+			<!-- 다음 페이지로(>) -->
+			<%if(pi.getCurrentPage() == pi.getMaxPage()){ %>
+				<button disabled> &gt; </button>
+				<%} else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
+			<% } %>
+			
+			<!-- 맨 끝으로(>>) -->
+			<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+		</div>
+		
+		<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
 				<% if(loginUser != null) { %>
 				<button id="questionBtn" type="button" 
 				onclick="location.href='<%= request.getContextPath() %>/views/qna/qnaInsertForm.jsp'"><a>질문하기</a></button>
 				<% } %>
-            
         </div>
+        
 	</section>
 	
 	<script>

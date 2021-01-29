@@ -15,13 +15,13 @@ import qna.model.vo.QnA;
  * Servlet implementation class qnaDetailServlet
  */
 @WebServlet("/qna/detail")
-public class qnaDetailServlet extends HttpServlet {
+public class QnADetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public qnaDetailServlet() {
+	public QnADetailServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,12 +33,19 @@ public class qnaDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
 
-		QnA  qna = new QnAService().selectQuestion(qnaNo);
+		QnA  q = new QnAService().selectQuestion(qnaNo);
 		
-		System.out.println(qnaNo);
+		
+		QnA a = new QnAService().selectAns(qnaNo);
+		if(a!=null) {
+			request.setAttribute("a", a);
+		}
+		
+		
+		
 		String page = "";
-		if (qna != null) {
-			request.setAttribute("qna", qna);
+		if (q != null) {
+			request.setAttribute("q", q);
 			page = "/views/qna/qnaDetailView.jsp";
 		} else {
 			request.setAttribute("msg", "질문 상세페이지를 불러오는데 실패하였습니다.");
