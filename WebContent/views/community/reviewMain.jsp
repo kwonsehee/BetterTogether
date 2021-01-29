@@ -68,14 +68,14 @@
 }
 
 /* 후기 목록 */
-.reviewdiv tr nth:child(1){margin-top:100px;}
+.reviewWrap {margin-top:100px;}
 
 .reviewdiv{
 	width: 90%;
 	height: 100px;
 	background: #fff;
 	margin: auto;
-	margin-top: 15px;
+	margin-top:15px;
 }
 
 #reviewTb {
@@ -104,6 +104,7 @@
 	margin-right: 10px;
 }
 
+/* 페이징 바 */
 #pagenum {
 	width: 200px;
 	height: 30px;
@@ -243,7 +244,7 @@
 		<div class="line"></div>
 
 		<!-- 후기 목록 -->
-		
+		<div class="reviewWrap">
 		<% if(rList != null) { %>
 		<% for(Review r : rList) { %>
 		<div class="reviewdiv">
@@ -255,7 +256,7 @@
 									  <% } else if(r.getrGrade() == 4) { %>★★★★
 									  <% } else if(r.getrGrade() == 3) { %>★★★
 									  <% } else if(r.getrGrade() == 2) { %>★★
-									  <% } else { %>★★ <% } %>
+									  <% } else { %>★<% } %>
 					</td>
 					<td id="createDate"><%= r.getCreateDate() %></td>
 				</tr>
@@ -266,6 +267,7 @@
 		</div>
 		<% } %>
 		<% } %>
+		</div>
 	
 		<!-- 페이징 바 -->
 		<div class="pagingArea">
@@ -339,7 +341,7 @@
 		$(function(){
 			$("#myReview").click(function(){
 				<%if(loginUser != null) {%>
-				location.href='<%=request.getContextPath()%>/views/community/myReview.jsp';
+				location.href='<%=request.getContextPath()%>/review/myReview';
 				<% } else {%>
 				alert('로그인을 해주세요.');
 				<% } %>
@@ -375,11 +377,36 @@
         			url : "<%= request.getContextPath() %>/review/insert",
         			type : "post",
         			dataType : "json",
-        			data : {content : content, challNo : challNo, star : star}
+        			data : {content : content, challNo : challNo, star : star},
         			success : function(data){
         				// 갱신 된 rList를 후기 div에 적용
+        				reviewTable = $("#reviewTb");
+        				reviewTable.html("");	// 기존 테이블 정보 초기화
+        				
+        				// 새로 받아온 갱신된 댓글 리스트들을 for문을 통해 다시 table에 추가
+        				for(var key in data){
+        					console.log(key);
+        					console.log(data[key].createDate);
+        					var tr = $("<tr>");
+        					var writerTd = $("<td>").text(data[key].nickName);
+        					var challTitleTd = $("<td>").text(data[key].challTitle);
+        					var gradeTd = $("<td>").text(data[key].rGrade);
+        					var createDateTd = $("<td>").text(data[key].createDate);
+        					var contentTd = $("<td>").text(data[key].rContent);
+        					
+        					tr.append(writerTd, challTitleTd, gradeTd, creatdDateTd, contentTd);
+        					
+        					reviewTable.append(tr);
+        					
+        					// 댓글 작성 textarea 부분 리셋
+        					$("#reviewWriteArea").val("");
+        					
+        				}
+        			},
+        			error : function(e){
+        				console.log(e);
         			}
-        		}) 
+        		});
         		
         		<% } else { %>
         		alert('로그인을 해주세요.');

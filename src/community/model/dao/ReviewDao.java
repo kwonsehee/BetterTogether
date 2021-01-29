@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
+import community.model.vo.Board;
 import community.model.vo.Review;
 
 public class ReviewDao {
@@ -36,20 +37,32 @@ public class ReviewDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getrContent());
+			pstmt.setInt(2, r.getrGrade());
+			pstmt.setInt(3, r.getChallNo());
+			pstmt.setString(4, r.getUserId());
+			pstmt.setString(5, r.getNickName());
 			
-			
-			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("result : " + result);
 		
-		return 0;
+		return result;
+		
 	}
 
 	// 리뷰 조회
 	public ArrayList<Review> selectReviewList(Connection conn, int rId) {
-		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		
+		
+		
+		
 		return null;
 	}
 
@@ -159,6 +172,71 @@ public class ReviewDao {
 		}
 		
 		return listCount;
+	}
+
+	// 페이징 처리 된 내가 쓴 후기 리스트
+	public ArrayList<Review> selectMyReviewList(Connection conn, PageInfo pi, String userId) {
+		ArrayList<Review> rList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMyReviewList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				rList.add(new Review(rset.getInt(2),
+									 rset.getString(3),
+									 rset.getDate(4),
+									 rset.getDate(5),
+									 rset.getInt(6),
+									 rset.getString(7),
+									 rset.getInt(8),
+									 rset.getString(9),
+									 rset.getString(10),
+									 rset.getString(11)));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		//System.out.println("dao myReviewList : " + rList);
+		
+		return rList;
+	}
+
+	// 리뷰 삭제
+	public int deleteBoard(Connection conn, int rId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String sql = prop.getProperty("deleteReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	

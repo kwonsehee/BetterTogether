@@ -59,7 +59,9 @@ private Properties prop = new Properties();
 			while(rset.next()) {
 				list.add(new Cer(rset.getInt("CER_ID"),
 								 rset.getString("CER_PIC"),
-								 rset.getString("CHALL_TITLE")));
+								 rset.getString("CHALL_TITLE"),
+								 rset.getInt("CHALL_NO"),
+								 rset.getString("CHALL_CONFIRM")));
 				
 			}
 		} catch (SQLException e) {
@@ -122,7 +124,9 @@ private Properties prop = new Properties();
 			while(rset.next()) {
 				list.add(new Cer(rset.getInt("CER_ID"),
 								 rset.getString("CER_PIC"),
-								 rset.getString("CHALL_TITLE")));
+								 rset.getString("CHALL_TITLE"),
+								 rset.getInt("CHALL_NO"),
+								 rset.getString("CHALL_CONFIRM")));
 				
 			}
 		} catch (SQLException e) {
@@ -156,7 +160,8 @@ private Properties prop = new Properties();
 							rset.getString("CER_COMMENT"),
 							rset.getDate("CER_DATE"),
 							rset.getString("USER_ID"),
-							rset.getString("CHALL_TITLE"));
+							rset.getString("CHALL_TITLE"),
+							rset.getInt("CHALL_NO"));
 				
 			}
 		} catch (SQLException e) {
@@ -169,6 +174,7 @@ private Properties prop = new Properties();
 		return c;
 	}
 
+	//챌린지별 회원별 인증 갯수 카운트
 	public int selectMyJoinCount(Connection conn, int cno, String user_id) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
@@ -176,9 +182,7 @@ private Properties prop = new Properties();
 		
 		String sql = prop.getProperty("getMyListCount");
 		try {
-	
-			sql = prop.getProperty("getMyListCount");
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cno);
 			pstmt.setString(2, user_id);
@@ -199,7 +203,8 @@ private Properties prop = new Properties();
 		System.out.println("챌린지 인증에서 넘어올때 service  " + listCount);
 		return listCount;
 	}
-
+	
+	//챌린지별 회원별 인증 갯수 카운트
 	public int selectAllCount(Connection conn, int cno) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
@@ -208,9 +213,6 @@ private Properties prop = new Properties();
 		String sql = prop.getProperty("getAllListCount");
 		
 		try {
-			
-		
-			sql = prop.getProperty("getAllListCount");
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cno);
@@ -231,5 +233,92 @@ private Properties prop = new Properties();
 
 		System.out.println("챌린지모집에서 넘어올때 service  : " + listCount);
 		return listCount;
+	}
+
+	//신고 게시물 비활성화 시키기
+	public int disabledPost(Connection conn, int cer_id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		
+		String sql = prop.getProperty("disabledPost");
+		
+		try {
+		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cer_id);
+			
+			result = pstmt.executeUpdate();
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+		
+
+		return result;
+	}
+
+	//인증 삭제하기
+	public int deleteCer(Connection conn, int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		
+		String sql = prop.getProperty("deleteCer");
+		
+		try {
+		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			
+			result = pstmt.executeUpdate();
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+		
+
+		return result;
+
+	}
+
+	//회원별 달성률구하기
+	public Cer getAchieve(Connection conn, int cno, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Cer c = new Cer();
+		String sql = prop.getProperty("getAchieve");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			pstmt.setInt(2, cno);
+			
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				c = new Cer(rset.getInt(1),
+							rset.getDouble("달성률"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+
+		return c;
 	}
 }

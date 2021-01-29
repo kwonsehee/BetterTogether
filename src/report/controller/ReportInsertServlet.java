@@ -79,7 +79,8 @@ public class ReportInsertServlet extends HttpServlet {
 		if(result>0) {
 
 			request.setAttribute("msg", "success");
-			request.getRequestDispatcher("/views/myPage/myReport.jsp").forward(request, response);
+//			request.getRequestDispatcher("/views/myPage/myReport.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/report/mylist");
 		}else {
 			request.setAttribute("msg", "신고에 실패하였습니다.");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);

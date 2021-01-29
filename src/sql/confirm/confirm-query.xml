@@ -4,17 +4,33 @@
 	<entry key="selectList">
 		SELECT 
 				RNUM
-			  , CSUSER_ID
+			  , USER_ID
 			  , CHALL_NO
-			  , CSCHALL_STATUS
+			  , CHALL_STATUS
 			  , JOIN_CALL_DATE
 			  , CHALL_TITLE
 			  , FILE_PATH
 			  , CHALL_START
+              , STATUS
+              ,CHALL_PERIOD
+          , CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) END_DATE
 		  FROM
-		  	   CEIST
-         WHERE
-         	   CSUSER_ID = ?
-           AND RNUM BETWEEN ? AND ?
+		  	   (SELECT ROWNUM RNUM, CE.*
+                FROM(SELECT CS.USER_ID, CHALL_NO, CS.CHALL_STATUS, JOIN_CALL_DATE, CHALL_TITLE, FILE_PATH, CHALL_PERIOD, CHALL_START,   CASE 
+                    WHEN CHALL_START &gt; SYSDATE THEN 0
+                    WHEN CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt; SYSDATE THEN 2
+                    ELSE 1
+                    END AS STATUS
+                     FROM CHALL_STATUS CS
+                     JOIN CHALL USING(CHALL_NO)
+                     WHERE CS.USER_ID = ?
+                      AND CS.CHALL_STATUS != 0
+                     ORDER BY STATUS, JOIN_CALL_DATE DESC)CE
+                     WHERE STATUS != 0)
+         
+            WHERE RNUM BETWEEN ? AND ?
+            
+            
+              
 	</entry>
 </properties>

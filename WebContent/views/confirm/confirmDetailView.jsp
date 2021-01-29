@@ -3,6 +3,9 @@
 <%
 //챌린지 모집에서 인증보기 버튼 클릭시 이동
 Cer c=(Cer)request.getAttribute("cer");
+Member m = (Member)session.getAttribute("loginUser");
+
+String userId=m.getUserId();
 %>
 <!DOCTYPE html>
 <html>
@@ -97,7 +100,7 @@ Cer c=(Cer)request.getAttribute("cer");
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
-  <form action="<%= request.getContextPath() %>/report/insertForm" method="post">
+  <form action="<%= request.getContextPath() %>/report/insertForm" id="reportForm"method="post">
   
     <section id="content" class="content_css">
 
@@ -135,31 +138,36 @@ Cer c=(Cer)request.getAttribute("cer");
 		
 			<input type="hidden" name="no" value="<%= c.getCer_id() %>">
 			<input type="hidden" name="reported_id" value="<%= c.getUser_id() %>"> 
+			<input type="hidden" name="cno" value="<%= c.getChall_no() %>"> 
 			<input type="hidden" name="category" value="인증">  
 		
 	
         <section id="content-4">
         <!--댓글 등록 창만들기-->
-        <div class="comment_box">
+         <button type="button" id="backBtn" class="back_btn"  onclick="javascript:history.back();">뒤로가기</button>
         
+        <div class="comment_box">
             <input type="text"class="input_box_lag" value="<%=c.getCer_comment() %>">
-            <button type="submit" id="reportBtn"class="comment"><span>신고하기</span></button>
-            <button type="button" id="backBtn" class="back_btn"  onclick="javascript:history.back();">뒤로가기</button>
-
-		</div>     
+		</div>  
+		
+		<% if(userId.equals(c.getUser_id())){ %>  
+		 <button type="button" id="deleteCer"class="comment"><span>삭제하기</span></button>
+        <%}else{ %>  
+         <button type="submit" id="reportBtn"class="comment"><span>신고하기</span></button>
+         <%} %>
         </section>
         
     </section>
     </form>
     
     <script>
-	<%-- const reportBtn = document.getElementById('reportBtn');
-	reportBtn.addEventListener('click',function(){
-		$("#reportForm").attr("action", "<%= request.getContextPath()%>/report/confirm");
+	const deleteCer = document.getElementById('deleteCer');
+	deleteCer.addEventListener('click',function(){
+		$("#reportForm").attr("action", "<%= request.getContextPath()%>/confirm/delete");
 		$("#reportForm").submit();
 	});
 	
-      --%>
+     
 	</script>
 </body>
 </html>

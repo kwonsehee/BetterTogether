@@ -135,6 +135,7 @@ body {
 		</section>
 
 		<!-- 등록 버튼 , 나가기 버튼 -->
+		<div>
 		<button type="button" class="btn" id="backBtn">
 			<a>뒤로가기</a>
 		</button>
@@ -149,7 +150,7 @@ body {
 			location.href='<%=request.getContextPath()%>/qna/list';
 		});
 		</script>
-
+		</div>
 	</form>
 </body>
 </html>

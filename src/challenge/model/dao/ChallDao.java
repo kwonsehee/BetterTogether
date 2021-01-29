@@ -857,6 +857,7 @@ public class ChallDao {
 		return hits;
 	}
 
+	//
 	public int selectMyJoinCount(Connection conn, String userId) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
@@ -880,7 +881,7 @@ public class ChallDao {
 			close(rset);
 			close(pstmt);
 		}
-
+System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount);
 		return listCount;
 	}
 	
@@ -904,16 +905,41 @@ public class ChallDao {
 						rset.getInt(11),rset.getDate(12),rset.getString(13)));
 			}
 			//System.out.println("내가 모집한 챌린지 출력 : " + list);
-
-		} catch (SQLException e) {
+    } catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
 
+
 		return list;
 	}
+
+	// 신고 게시물 비활성화 시키기
+	public int disabledPost(Connection conn, int cer_id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("disabledPost");
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cer_id);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 	
 	// 챌린지 게시물 수정
 	public int updateChall(Connection conn, Challenge ch) {
@@ -969,6 +995,145 @@ public class ChallDao {
 	      }
 
 	      return result;
+	}
+
+	public String getComfirm(Connection conn, int cno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String confirm = "";
+		String sql = prop.getProperty("getComfirm");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, cno);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				confirm= rset.getString(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("내가 참여하고 있는 챌린지 인증방법 : "+confirm);
+		return confirm;
+	}
+
+	//챌린지에 참여한 총 인원수 구하기
+	public int totalCnt(Connection conn, int cno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int total = 0;
+		String sql = prop.getProperty("totalCnt");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, cno);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				total= rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("Dao 챌린지에 참여한 총 인원수 : "+total);
+		return total;
+	}
+
+	//해당 챌린지의 평균 달성률 구하기
+	public double avgTotal(Connection conn, int cno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		double avg = 0;
+		String sql = prop.getProperty("avgTotal");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, cno);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				avg= rset.getDouble(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("챌린지의 평균 달성률 : "+avg);
+		return avg;
+	}
+
+	//100%달성한 사람수
+	public int percent100(Connection conn, int cno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int num1 = 0;
+		String sql = prop.getProperty("percent100");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, cno);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				num1= rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("100%달성한 사람수 : "+num1);
+		return num1;
+	}
+
+	//85%미만 달성한 사람의 인원수
+	public int percent85(Connection conn, int cno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int num2 = 0;
+		String sql = prop.getProperty("percent85");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, cno);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				num2= rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("85%달성한 사람수 : "+num2);
+		return num2;
 	}
 	
 	

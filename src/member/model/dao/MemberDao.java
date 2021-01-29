@@ -292,4 +292,52 @@ public class MemberDao {
 			
 			return result;
 		}
+		
+		//신고당한 횟수 카운트 올리기
+		public int processUserReported(Connection conn, int rNo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("processUserReported");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, rNo);
+
+				result = pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			
+			return result;
+		}
+
+		public int payback(Connection conn, String userId, int money) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("payback");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, money);
+				pstmt.setString(2, userId);
+
+				result = pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			
+			return result;
+		}
 }

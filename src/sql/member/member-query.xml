@@ -124,4 +124,24 @@
 		 	   USER_ID = ?
 	
 	</entry>
+	<entry key="processUserReported">
+		UPDATE
+			   USER_INFO
+		   SET
+		   	   REPORTED = REPORTED + 1
+		 WHERE
+		 	   USER_ID = (SELECT R.REPORTED_ID
+                		  FROM REPORT R
+                		  JOIN USER_INFO U ON(R.REPORTED_ID = U.USER_ID)
+                		  WHERE REPORT_NO = ? )
+	</entry>
+	
+	<entry key="payback">
+		UPDATE USER_INFO
+		SET
+			POINT = POINT + ?
+		  , MODIFY_DATE = SYSDATE
+		WHERE 
+			USER_ID = ?
+	</entry>
 </properties>

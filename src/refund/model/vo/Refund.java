@@ -16,6 +16,18 @@ public class Refund {
 		
 	}
 
+	
+	
+	
+	public Refund(String user_id, int money) {
+		super();
+		this.user_id = user_id;
+		this.money = money;
+	}
+
+
+
+
 	public Refund(String user_id, String bank_name, String account_number, int money) {
 		super();
 		this.user_id = user_id;

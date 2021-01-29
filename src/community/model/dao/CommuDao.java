@@ -74,13 +74,14 @@ public class CommuDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Challenge(rset.getInt(3),
-									   rset.getString(4),
-									   rset.getString(5),
-									   rset.getString(6),
-									   rset.getString(7),
-									   rset.getDate(8)
-
+				list.add(new Challenge(rset.getInt("CHALL_NO"),
+									   rset.getString("CHALL_TITLE"),
+									   rset.getString("FILE_PATH"),
+									   rset.getString("CHALL_FREQUENCY"),
+									   rset.getString("CHALL_PERIOD"),
+									   rset.getDate("CHALL_START"),
+									   rset.getInt("CNT"),
+									   rset.getString("CHALL_STATUS")
 									   ));
 			}
 			

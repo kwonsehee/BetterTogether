@@ -31,8 +31,9 @@ public class CafeDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cafe_code = Integer.parseInt(request.getParameter("Cafe_code"));
-		
+		 
 		int result = new CafeService().deleteCafe(cafe_code);
+		
 		
 		if(result > 0) {
 			response.sendRedirect(request.getContextPath() + "/cafe/list");

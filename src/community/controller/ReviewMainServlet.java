@@ -80,7 +80,6 @@ public class ReviewMainServlet extends HttpServlet {
 		ArrayList<Review> rList = rs.selectReviewList(pi);
 		
 		
-		
 		request.setAttribute("pi", pi);
 		request.setAttribute("rList", rList);
 		

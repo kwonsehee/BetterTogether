@@ -61,6 +61,7 @@ public class CerService {
 		return c;
 	}
 
+	//인증 갯수 카운트(챌린지별 전체)
 	public int getMyListCount(int cno, String user_id) {
 		Connection conn = getConnection();
 
@@ -71,6 +72,7 @@ public class CerService {
 		return myjoinCnt;
 	}
 
+	//인증 갯수 카운트(챌린지별 회원별)
 	public int getALlListCount(int cno) {
 		Connection conn = getConnection();
 
@@ -80,5 +82,50 @@ public class CerService {
 		
 		System.out.println("챌린지모집에서 넘어올때 service  : " + myjoinCnt);
 		return myjoinCnt;
+	}
+
+	//신고받은 게시물 비활성화 시키기
+	public int disabledPost(int cer_id) {
+		Connection conn = getConnection();
+
+		int result = new CerDao().disabledPost(conn, cer_id);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		
+		return result;
+	}
+
+	//인증 삭제하기
+	public int deleteCer(int no) {
+		Connection conn = getConnection();
+
+		int result = new CerDao().deleteCer(conn, no);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		
+		return result;
+	}
+
+	//회원별 달성률구하기
+	public Cer getAchieve(int cno, String userId) {
+		Connection conn = getConnection();
+
+		Cer c = new CerDao().getAchieve(conn, cno, userId);
+
+		close(conn);
+		
+		return c;
 	}
 }

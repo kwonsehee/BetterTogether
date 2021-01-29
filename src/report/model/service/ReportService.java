@@ -8,9 +8,13 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import challenge.model.service.ChallService;
 import common.model.vo.PageInfo;
+import community.model.service.BoardService;
+import confirm.model.service.CerService;
 import report.model.dao.ReportDao;
 import report.model.vo.Report;
+import studycafe.model.service.CafeService;
 
 public class ReportService {
 
@@ -131,6 +135,45 @@ public class ReportService {
 				commit(conn);
 			}else {
 				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
+		}
+
+		//신고처리
+		public int processReport(int rNo) {
+			Connection conn = getConnection();
+			
+			int result = new ReportDao().processReport(conn,rNo);
+			
+			if(result>0) {	
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
+		}
+
+		//신고 게시물 비활성화 시키기
+		public int disabledPost(int rNo) {
+			Connection conn = getConnection();
+			int result = 0;
+			
+			//신고 게시물 가져오기
+			Report r = new ReportDao().disabledGetPost(conn,rNo);
+			
+			//신고게시물 비활성화시키기
+			if(r.getBoard_seq()!=0) {//자유게시판 신고
+				result = new BoardService().disabledPost(r.getCer_id());
+			}else if(r.getCafe_code()!=0) {//카페 신고 
+				result = new CafeService().disabledPost(r.getCer_id());
+			}else if(r.getCer_id()!=0) {// 인증 신고
+				result = new CerService().disabledPost(r.getCer_id());
+			}else if(r.getChall_no()!=0) {// 챌린지모집 신고
+				result = new ChallService().disabledPost(r.getCer_id());
 			}
 			close(conn);
 			

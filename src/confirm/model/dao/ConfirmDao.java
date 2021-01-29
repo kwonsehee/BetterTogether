@@ -50,7 +50,9 @@ public class ConfirmDao {
 			
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
-
+			System.out.println("시작 페이지 : "+startRow);
+			System.out.println("끝 페이지 : "+endRow);
+			
 			pstmt.setString(1, userid);
 			
 			pstmt.setInt(2, startRow);
@@ -59,15 +61,18 @@ public class ConfirmDao {
 			rset = pstmt.executeQuery();
 		
 			while(rset.next()) {
-				list.add(new Confirm(rset.getString("CSUSER_ID"),
+				list.add(new Confirm(rset.getString("USER_ID"),
 									 rset.getInt("CHALL_NO"),
-									 rset.getInt("CSCHALL_STATUS"),
+									 rset.getInt("CHALL_STATUS"),
 									 rset.getDate("JOIN_CALL_DATE"),
 									 rset.getString("CHALL_TITLE"),
 									 rset.getString("FILE_PATH"),
-									 rset.getString("CHALL_START")));
-				
+									 rset.getDate("CHALL_START"),
+									 rset.getInt("STATUS"),
+									 rset.getDate("END_DATE")));
+				System.out.println("내 리스트1 : "+list);
 			}
+			System.out.println("내 리스트 : "+list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

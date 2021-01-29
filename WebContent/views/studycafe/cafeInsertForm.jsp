@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+ 
 
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <title>Insert title here</title>
 <style>
 #main {
@@ -153,7 +157,7 @@ textarea {
 					<h1 id="title">스터디카페 등록</h1>
 					<form action="<%=request.getContextPath()%>/cafe/insert"
 						method="post" enctype="multipart/form-data"> 
-						
+					 
 						<h4 class="studycafe_title" style="bottom: 65%;">카페이름</h4>
 						<span class="input_area"> <input type="text"
 							name="cafe_name" maxlength="40" required style="margin-top: 15%;">
@@ -260,19 +264,28 @@ textarea {
 						<h4 class="studycafe_title2" style="margin-top: 51%;">카페제휴정보</h4>
 						   
 							<select class="photo3" name="AFFILIATED_CAFE" >
-								<option value="N">일반</option>
-								<option value="Y">제휴</option>
+								<option value="N" >일반</option>
+								<option value= "Y">제휴</option>
 							</select>
-						  
+						  <MARQUEE DIRECTION="left"  class="studycafe_title2" style="font-size: 14px;color:red;margin-top: 510px;border-left-width: 150px;margin-left: 150px;width: 200px;">※제휴선택시 50,000원 결제해야 이용가능합니다  </MARQUEE> 
 						   
 						 
 						  
 						<div>
 							<button type="button" id="btnArea2"
 								onclick="javascript:history.back();">취소</button> 
-							<button type="submit" id="btnArea1">등록</button>
-						</div>
+								
+							 
+							<button  id="btnArea1"  >등록</button>
+							 
+							 
 
+							
+							
+							
+						</div>
+					
+				
 					</form>
 					
 					
@@ -280,11 +293,7 @@ textarea {
 				</div>
 			</div>
  
-
-		 
  
-
-
 
 	<footer> </footer>
 </body>

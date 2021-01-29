@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, confirm.model.vo.Confirm, common.model.vo.PageInfo"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, java.text.SimpleDateFormat ,confirm.model.vo.Confirm, common.model.vo.PageInfo"%>
 <%
 	ArrayList<Confirm> list= (ArrayList<Confirm>)request.getAttribute("list");
-PageInfo pi = (PageInfo)request.getAttribute("pi");
+	System.out.println("참여중인 챌린지 리스트 : "+list);
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd");
 %>
 <!DOCTYPE html>
 <html>
@@ -115,8 +117,8 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
                     <!--  file_path()들어가야하는 자리 -->
                 </div>
                 <div class='ing_challenge2'>
-                    <p><%=c.getChall_title() %></p><!-- 여기도 챌린지명 -->
-                    <p><%=c.getChall_start() %> ~</p><!-- 챌린지 기간 -->
+                    <p><%=c.getChall_title() %></p>
+                    <p><%=c.getChall_start() %> ~ <%=c.getEnd_date() %></p>
                     <p>달성률 : #%</p><!-- 달성률!!! -->
                 </div>
                 
@@ -125,9 +127,9 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
                  <div id="cno"name="cno" value="<%=c.getChall_no()%>"><%=c.getChall_no()%></div>
                 
                 <span>인증하기</span>
-                <%System.out.println("ddd : "+c.getChall_status()); %>
+                <%System.out.println("ddd : "+c.getStatus()); %>
                 <!-- 참여중인 챌린지만 인증하기 버튼 활성화  -->
-                <%if(c.getChall_status()==1){%>
+                <%if(c.getStatus()==1){%>
                  <button type="button"class="btn_camera" id="confirm_submitBtn">
                   
                 <%}else {%>
@@ -138,7 +140,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
              
                  <span>결과보기</span>
                  <!-- 종료된 챌린지만 결과보기 버튼 활성화  -->
-                <%if(c.getChall_status()==2){%>
+                <%if(c.getStatus()==2){%>
                 <button type="button"class="btn_camera" id="confirm_resultBtn">
                
                 <%} else{%>
@@ -153,7 +155,8 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
             </div>
 				<%} %>	
             <%} %>
-         
+         	
+         	
              <!-- 페이징 바 -->
 			<div class="pagingArea">
 			<!-- 맨 처음으로 (<<) -->
@@ -211,7 +214,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
 			}).click(function(){
 				var cno = $(this).parent().children().eq(0).text();
 				console.log(cno);
-				location.href='<%= request.getContextPath() %>/confirm/resultForm?cno=' + cno;
+				location.href='<%= request.getContextPath() %>/confirm/result?cno=' + cno;
 				
 			});
 		});

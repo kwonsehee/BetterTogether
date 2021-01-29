@@ -405,4 +405,62 @@ public class ReportDao {
 
 		return result;
 	}
+
+	//신고처리
+	public int processReport(Connection conn, int rNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("processReport");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, rNo);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+	
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	//신고된 게시글 가져오기
+	public Report disabledGetPost(Connection conn, int rNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Report r = null;
+		
+		String sql = prop.getProperty("disabledGetPost");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, rNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				r = new Report(rset.getInt(1),
+							   rset.getInt(2),
+							   rset.getInt(3),
+							   rset.getInt(4));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+	
+			close(pstmt);
+		}
+
+		return r;
+	}
 }

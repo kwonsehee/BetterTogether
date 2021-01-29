@@ -24,6 +24,29 @@
 		)
 	
 	</entry>
+	<entry key="insertrefund2">
+		INSERT
+		INTO REFUND
+		(
+			REFUND_NO
+		  , USER_ID
+		  , BANK_NAME
+		  , ACCOUNT_NUMBER
+		  , MONEY
+		  , REFUND_DATE
+		  
+		)
+		VALUES
+		(
+			SEQ_REID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		)
+	
+	</entry>
    
 
 </properties>
