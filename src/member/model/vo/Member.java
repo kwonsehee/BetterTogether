@@ -29,6 +29,7 @@ public class Member {
 	private String writer_active;
 	private int user_cate;
 	private int point;
+	private int reported;
 	
 	public Member() {
 		
@@ -196,6 +197,14 @@ public class Member {
 
 	public void setPoint(int point) {
 		this.point = point;
+	}
+
+	public int getReported() {
+		return reported;
+	}
+
+	public void setReported(int reported) {
+		this.reported = reported;
 	}
 
 	@Override

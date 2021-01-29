@@ -135,4 +135,13 @@
                 		  JOIN USER_INFO U ON(R.REPORTED_ID = U.USER_ID)
                 		  WHERE REPORT_NO = ? )
 	</entry>
+	
+	<entry key="payback">
+		UPDATE USER_INFO
+		SET
+			POINT = POINT + ?
+		  , MODIFY_DATE = SYSDATE
+		WHERE 
+			USER_ID = ?
+	</entry>
 </properties>

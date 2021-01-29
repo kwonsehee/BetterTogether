@@ -3,6 +3,8 @@
 <%
 	ArrayList<Cer> list = (ArrayList<Cer>)request.getAttribute("list");
 	System.out.println(list);
+	String confirm = (String)request.getAttribute("confirm");
+
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	String title = (String)request.getAttribute("title");
 	System.out.println(title);
@@ -17,7 +19,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>인증하기 리스트</title>
+<title>인증 리스트</title>
    <style>
      /* content 부분 */
      	#content-1{
@@ -119,9 +121,9 @@
                  	<th style="color : red; font-size:35px;">챌린지 인증사진이 없습니다.</th>
                  </tr>
                  <tr>
-                   <%if(join>0){ %>
+                   <%-- <%if(join>0){ %>
                         <th ><input type="submit" value="+" class="plus_btn" id="plusBtn"></th>
-                    <%} %>
+                    <%} %> --%>
                  </tr>
                   <% } else { %>
                   		
@@ -156,7 +158,7 @@
                     //+버튼 클릭 이벤트
                     const plusBtn = document.getElementById('plusBtn');
                     plusBtn.addEventListener('click',function(){
-                       location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>';
+                       location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>&confirm=<%=confirm%>';
                     });
                         
 						</script>  

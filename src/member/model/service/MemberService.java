@@ -169,6 +169,36 @@ public class MemberService {
 			return result;
 		}
 
+		//챌린지 결과보기에서 상금받기 버튼 클릭시 유저point 증가
+		public int payback(String userId, int money) {
+			Connection conn=getConnection();
+			
+			//point 변경
+			int result  = new MemberDao().payback(conn, userId, money);
+			
+			//2. 수정이 잘 되었다면 수정 된 정보의 member객체 select 후 리턴
+			if(result >0) {
+			
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
+		}
+
+		//userId에 맞는 유저를 select
+		public Member selectMember(String userId) {
+			Connection conn=getConnection();
+
+			Member updateMember = new MemberDao().selectMember(conn,userId);
+			
+			close(conn);
+			
+			return updateMember;
+		}
+
 
 
 }

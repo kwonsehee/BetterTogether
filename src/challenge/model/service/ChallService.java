@@ -484,6 +484,61 @@ public class ChallService {
 		
 		return result;
 	}
-	
+
+	// 인증방법 가져오기
+	public String getComfirm(int cno) {
+		Connection conn = getConnection();
+		
+		String result = new ChallDao().getComfirm(conn, cno);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	//챌린지에 참여한 총 인원수 구하기
+	public int totalCnt(int cno) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().totalCnt(conn, cno);
+		System.out.println("service 챌린지에 참여한 총 인원수 : "+result);
+		close(conn);
+		
+		return result;
+	}
+
+	//해당 챌린지의 평균 달성률 구하기
+	public double avgTotal(int cno) {
+		Connection conn = getConnection();
+		
+		double result = new ChallDao().avgTotal(conn, cno);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	//100%달성한 사람의 인원수
+	public int percent100(int cno) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().percent100(conn, cno);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	//85%미만 달성한 사람의 인원수
+	public int percent85(int cno) {
+		Connection conn = getConnection();
+		
+		int result = new ChallDao().percent85(conn, cno);
+		
+		close(conn);
+		
+		return result;
+	}
+
 
 }

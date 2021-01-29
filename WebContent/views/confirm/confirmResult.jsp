@@ -1,8 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="challenge.model.vo.Challenge"%>
+    pageEncoding="UTF-8" import="challenge.model.vo.Challenge, confirm.model.vo.Cer"%>
 <%
 	Challenge c = (Challenge)request.getAttribute("challenge");
+	
+	int totalCnt = Integer.parseInt(String.valueOf(request.getAttribute("totalCnt")));
+	totalCnt = 3;
+	double avgTotal = Double.parseDouble(String.valueOf(request.getAttribute("avgTotal")));
+	int num1 = Integer.parseInt(String.valueOf(request.getAttribute("num1")));//100% 달성 인원
+	int num2 = Integer.parseInt(String.valueOf(request.getAttribute("num2")));//85%미만 달성 인원
+	int num3 = Integer.parseInt(String.valueOf(request.getAttribute("num3")));//85%이상 달성 인원
+	Cer cer = (Cer)request.getAttribute("cer");
 
+	//돌려받을 금액
+	int money=(int)(c.getChallPay()*cer.getAchieve());
+	//달성률이 100%이면 추가금액 지급 
+	if(cer.getAchieve()==1){
+		money = c.getChallPay()+(c.getChallPay()*num2)/totalCnt;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -68,6 +82,16 @@
             border-radius: 100%;
             border: #ff6064;
             background-color: #ff6064;
+            
+        }
+        .d_circle{
+            width: 65px;
+            height: 65px;
+            margin: 0 0 0 20px;
+            padding: 10.4px;
+            border-radius: 100%;
+            border: rgba(117, 117, 117, 0.5);
+           background-color: rgba(117, 117, 117, 0.5);
         }
         .chall_subTitle{
             width : 49%;
@@ -96,7 +120,7 @@
  
    <section id="content" class="content_css">
 
-        <p id="join_chall_title">챌린지 정보</p>
+        <p id="join_chall_title"><%=c.getChallTitle() %> 정보</p>
 
         <section id="join_chall_title2">
             <div class="line"></div>
@@ -113,23 +137,23 @@
                     </tr>
                     <tr>
                         <td><span>총인원</span></td>
-                        <td><span>#명</span></td><!-- 참여인원수는 챌린지 현황 디비에서 확인 -->
+                        <td><span><%=totalCnt %>명</span></td>
                     </tr>
                     <tr>
                         <td><span>평균 달성률</span></td>
-                        <td><span>#%</span></td>
+                        <td><span><%=avgTotal*100 %>%</span></td>
                     </tr>
                     <tr>
                         <td><span>100%달성</span></td>
-                        <td><span>#명</span></td>
+                        <td><span><%=num1 %>명</span></td>
                     </tr>
                     <tr>
                         <td><span>85%이상 달성</span></td>
-                        <td><span>#명</span></td>
+                        <td><span><%=num3 %>명</span></td>
                     </tr>
                     <tr>
                         <td><span>85%미만 달성</span></td>
-                        <td><span>#명</span></td>
+                        <td><span><%=num2 %>명</span></td>
                     </tr>
                     
 
@@ -139,16 +163,22 @@
                 <table class="result_chall" style="border : 1px solid black;">
                     <tr class="font-large">
                         <td >달성률</td>
-                        <td>###%</td>
+                        <td><%=cer.getAchieve()*100%>%</td>
                     </tr>
                     <tr>
                         <th><span>인증 갯수</span></th>
-                        <th><span>#개</span></th><!-- 챌린지 현황 디비에서  -->
+                        <th><span><%=cer.getChall_count() %>개</span></th><!-- 챌린지 현황 디비에서  -->
                     </tr>
                     <tr class="">
                         <th><span>상금 받기</span></th>
                         <!-- 최소 달성률 통과 못할시 버튼 비화성화 만들어 놓기 -->
-                        <td><button type="submit" class="circle"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="44px"height="44px"></td>
+                        <%if(cer.getAchieve()>=0.85){ %>
+                        <td><button type="button" class="circle" id="payback"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="44px"height="44px"></td>
+                     	<%}else{ %>
+                        <td><button type="button" class="d_circle" onclick="alert('최소 달성률을 통과하지 못하였습니다.')"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="44px"height="44px"></td>
+                        
+                   		<%} %>
+                   
                     </tr>
 
                     
@@ -170,6 +200,11 @@
      	const backBtn = document.getElementById('backBtn');
      	backBtn.addEventListener('click',function(){
      		location.href='<%=request.getContextPath()%>/confirm/joinchalllist';
+     	});
+     	//payback 버튼 이벤트
+     	 const payback = document.getElementById('payback');
+     	payback.addEventListener('click',function(){
+     		location.href='<%=request.getContextPath()%>/refund/payback?money='+<%=money%>;
      	});
 
 	</script>

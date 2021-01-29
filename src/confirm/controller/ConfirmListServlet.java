@@ -1,7 +1,6 @@
 package confirm.controller;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import challenge.model.service.ChallService;
 import common.model.vo.PageInfo;
 import confirm.model.service.CerService;
+import confirm.model.service.ConfirmService;
 import confirm.model.vo.Cer;
 import member.model.vo.Member;
 
@@ -43,6 +43,8 @@ public class ConfirmListServlet extends HttpServlet {
 		
 		System.out.println("confirm list servlet cno : " + cno);
 
+		//인증방법 알아오기
+		String confirm = new ChallService().getComfirm(cno);
 		int join=0;
 		//로그인 세션의 회원 아이디와 넘어온 챌린지 넘버를 가지고 조회해야함 
 		HttpSession session = request.getSession();
@@ -108,6 +110,7 @@ public class ConfirmListServlet extends HttpServlet {
 		request.setAttribute("cno", cno);
 		request.setAttribute("join", join);
 		request.setAttribute("pi", pi);
+		request.setAttribute("confirm", confirm);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/confirm/confirmListView.jsp");
 	    view.forward(request, response);
