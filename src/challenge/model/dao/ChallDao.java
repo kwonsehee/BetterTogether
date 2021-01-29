@@ -645,7 +645,7 @@ public class ChallDao {
 		return result;
 	}
 	
-	// challBoardType에 맞는 챌린지 갯수 구하기
+	// challBoardType에 맞는 챌린지 갯수 구하기 --> 삭제하기
 	public int getChallTypeListCount(Connection conn, int challBoardType) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
@@ -673,7 +673,7 @@ public class ChallDao {
 		return listCount;
 	}
 
-	// challBoardType 1/2/3 select해오기 
+	// challBoardType 1/2/3 select해오기 --> 지우기 
 	public ArrayList<Challenge> selectChallBoardType(Connection conn, int challBoardType, PageInfo pi) {
 		ArrayList<Challenge> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -969,6 +969,196 @@ public class ChallDao {
 	      }
 
 	      return result;
+	}
+	
+	
+	// 1. 시작전 챌린지 select 해오기 
+	public ArrayList<Challenge> selectChallBeforeStart(Connection conn, PageInfo pi) {
+		ArrayList<Challenge> beforeStart = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectChallBeforeStart");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				beforeStart.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
+						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
+						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
+						rset.getDate(16),rset.getString(17)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return beforeStart;
+	}
+	
+	// 2. 챌린지 진행중 select 해오기 
+	public ArrayList<Challenge> selectChallStarting(Connection conn, PageInfo pi) {
+		ArrayList<Challenge> startIng = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectChallStarting");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				startIng.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
+						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
+						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
+						rset.getDate(16),rset.getString(17)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return startIng;
+	}
+	
+	// 3. 종료된 챌린지 select 해오기 
+	public ArrayList<Challenge> selectChallEnd(Connection conn, PageInfo pi) {
+		ArrayList<Challenge> end = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectChallEnd");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				end.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
+						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),
+						rset.getString(11), rset.getInt(12), rset.getString(13), rset.getString(14), rset.getInt(15),
+						rset.getDate(16),rset.getString(17)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return end;
+	}
+
+	// 시작전 게시글 총 갯수 구하기 
+	public int getBeforeCnt(Connection conn) {
+		int beforeCnt = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getBeforeCnt");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			//pstmt.setString(1, Integer.toString(challBoardType));
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				beforeCnt = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return beforeCnt;
+	}
+	
+	// 진행중 게시글 총 갯수 구하기 
+	public int getStartCnt(Connection conn) {
+		int startIngCnt = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getStartCnt");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			//pstmt.setString(1, Integer.toString(challBoardType));
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				startIngCnt = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return startIngCnt;
+	}
+	
+	// 종료된 게시글 총 갯수 구하기
+	public int getEndCnt(Connection conn) {
+		int endCnt = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getEndCnt");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			//pstmt.setString(1, Integer.toString(challBoardType));
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				endCnt = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return endCnt;
 	}
 	
 	
