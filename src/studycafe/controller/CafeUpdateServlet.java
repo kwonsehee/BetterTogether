@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Synthesizer;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -90,8 +91,7 @@ public class CafeUpdateServlet extends HttpServlet {
 			
 			
 			String Cafe_photo = multiRequest.getParameter("Cafe_photo"); //히든값으로 이미지 값 넘겨와서 새로운 파일이없으면 기존 이미지 사용
-			String Cafe_map = multiRequest.getParameter("Cafe_map");
-			
+		
 			System.out.println("Cafe_photo" + " "+Cafe_photo); // 새로운 수정이미지 파일이 없으면 기존 이미지파일이 불러저 오는지 실험
 			
 			
@@ -114,15 +114,8 @@ public class CafeUpdateServlet extends HttpServlet {
 				cafe.setCafe_photo(multiRequest.getFilesystemName("cafe_photo"));
 			}
 			
-			cafe.setAFFILIATED_CAFE(multiRequest.getParameter("AFFILIATED_CAFE"));   
-			
-			if(multiRequest.getFilesystemName("cafe_map") == null) {
-			 cafe.setCafe_map(Cafe_map); 
-				
-			}else {
-			cafe.setCafe_map(multiRequest.getFilesystemName("cafe_map"));  
-			}
-			
+			cafe.setAFFILIATED_CAFE(multiRequest.getParameter("AFFILIATED_CAFE"));  
+			cafe.setCafe_map(multiRequest.getParameter("cafe_map"));  
 			cafe.setDetail_address(multiRequest.getParameter("detail_address"));  
 			cafe.setClosed_day(multiRequest.getParameter("closed_day"));   
 			cafe.setCafe_page(multiRequest.getParameter("cafe_page"));   
@@ -131,7 +124,7 @@ public class CafeUpdateServlet extends HttpServlet {
 	
 			
 			
-			
+	 
 			
 			
 			

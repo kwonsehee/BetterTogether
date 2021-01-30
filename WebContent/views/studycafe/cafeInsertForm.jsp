@@ -10,7 +10,7 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script> 
 <title>Insert title here</title>
 <style>
 #main {
@@ -39,7 +39,7 @@
 	position: absolute;
 	left: 47.27%;
 	right: 22.16%;
-	margin-top: 150px;
+	margin-top: 90px;
 	font-family: Do Hyeon;
 	font-style: normal;
 	font-weight: normal;
@@ -111,35 +111,74 @@ textarea {
 	position: absolute;
 	left: 26.6%;
 	right: 66.05%;
-	top: 43.25%;
-	bottom: 52.3%;
+	top: 33.25%;
+	bottom: 62%;
 	border-radius: 5px;
 }
 
 .photo {
 	position: absolute;
-	left: 56.77%;
+	left: 55%;
 	right: 37.28%;
-	top: 80.03%;
-	bottom: 14.08%;
-}
-
-.photo2 {
-	position: absolute;
-	left: 67.21%;
-	right: 26.84%;
-	top: 80.03%;
+	top: 70.03%;
 	bottom: 14.08%;
 }
 
 .photo3 {
 	position: absolute;
-	left: 56.77%;
-	right: 37.28%;
-	top: 86%;
-	bottom: 11.21%;
+	left: 56.07%;
+	right: 36.35%;
+	top: 82.18%;
+	bottom: 13.65%;
 }
 
+map_wrap {
+	position: relative;
+	width: 100%;
+	height: 350px;
+}
+
+.title {
+	font-weight: bold;
+	display: block;
+}
+
+.hAddr {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	border-radius: 2px;
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	z-index: 1;
+	padding: 5px;
+}
+
+#centerAddr {
+	display: block;
+	margin-top: 2px;
+	font-weight: normal;
+}
+
+.bAddr {
+	padding: 5px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#postcodify_search_button {
+	position: absolute;
+	left: 46.56%;
+	right: 48.03%;
+	top: 75.29%;
+	bottom: 20.98%;
+	color: #ff60657e;
+	font-family: "Do Hyeon";
+	background: #fff;
+	border: 2px solid #ff60657e;
+	border-radius: 55px;
+}
 </style>
 </head>
 <body>
@@ -148,152 +187,152 @@ textarea {
 
 
 
- 
-
-		<div id="main"  >
-
-		 
-				<div class="tableArea">
-					<h1 id="title">스터디카페 등록</h1>
-					<form action="<%=request.getContextPath()%>/cafe/insert"
-						method="post" enctype="multipart/form-data"> 
-					 
-						<h4 class="studycafe_title" style="bottom: 65%;">카페이름</h4>
-						<span class="input_area"> <input type="text"
-							name="cafe_name" maxlength="40" required style="margin-top: 15%;">
-						</span>
-
-						<h4 class="studycafe_title" style="bottom: 57%;">운영시간</h4>
-						<span class="input_area"> <input type="text"
-							placeholder="ex)9:30-20:30" name="cafe_oh" required
-							style="margin-top: 20%;">
-						</span>
-
-						<h4 class="studycafe_title" style="bottom: 49%;">지역</h4>
-						<span class="input_area"> <select id="area5" 
-							name="cafe_area">
-								<optgroup label="서초구">
-									<option value="방배">방배</option>
-									<option value="반포">반포</option>
-									<option value="서초">서초</option>
-									<option value="잠원">잠원</option>
-								</optgroup>
-
-								<optgroup label="강남구">
-									<option value="역삼">역삼</option>
-									<option value="논현">논현</option>
-									<option value="압구정">압구정</option>
-									<option value="신사">신사</option>
-								</optgroup>
-
-								<optgroup label="송파구">
-									<option value="장지">장지</option>
-									<option value="송파">송파</option>
-									<option value="문정">문정</option>
-									<option value="석촌">석촌</option>
-								</optgroup>
-
-								<optgroup label=" 관악구">
-									<option value="해운대구">해운대구</option>
-									<option value="동래구">동래구</option>
-									<option value="서구">서구</option>
-									<option value="중구">중구</option>
-								</optgroup>
-
-								<optgroup label="동작구">
-									<option value="사당">사당</option>
-									<option value="흑성동">흑성동</option>
-									<option value="대방동">대방동</option>
-									<option value="신대방">신대바</option>
-								</optgroup>
-
-								<optgroup label="노원구">
-									<option value="수성구">수성구</option>
-									<option value="남구">남구</option>
-									<option value="북구">북구</option>
-									<option value="중구">중구</option>
-								</optgroup>
-						</select>
-						</span>
-
-						<h4 class="studycafe_title" style="bottom: 41%;">전화번호</h4>
-						<span class="input_area"> <input type="text"
-							name="cafe_phone" required style="margin-top: 30%;">
-						</span>
-
-						<h4 class="studycafe_title" style="bottom: 33%;">휴무일</h4>
-						<span class="input_area"> <input type="text"
-							name="closed_day" style="margin-top: 35%;">
-						</span>
-
-						<h4 class="studycafe_title" style="bottom: 25%;">예약가능인원</h4>
-						<span class="input_area" >
-						 <input type="text" required name="cafe_capacity"  placeholder="최대8명 ex)6"  style="margin-top: 40%;">
-						</span>
-
-						<h4 class="studycafe_title" style="bottom: 17%;">카페홈페이지</h4>
-						<span class="input_area"> <input type="text"
-							name="cafe_page" required required style="margin-top: 45%;">
-						</span>
-
-						<h4 class="studycafe_title" style="bottom: 9%;">카페상세주소</h4>
-						<span class="input_area"> <input type="text"
-							placeholder="ex)서초구 방배동 123-45" name="detail_address" required
-							style="margin-top: 50%;">
-						</span>
 
 
+	<div id="main">
 
 
-						<h4 class="studycafe_title2">카페소개글</h4>
-						<textarea name="cafe_info"
-							style="resize: none; left: 550px; top: 170px;" maxlength="110"> </textarea>
+		<div class="tableArea">
+			<h1 id="title">스터디카페 등록</h1>
+			<form action="<%=request.getContextPath()%>/cafe/insert"
+				method="post" enctype="multipart/form-data">
+
+				<h4 class="studycafe_title" style="bottom: 65%;  margin-bottom: 80px;">카페이름</h4>
+				<span class="input_area"> <input type="text" name="cafe_name"
+					maxlength="40" required style="margin-top: 9%;">
+				</span>
+
+				<h4 class="studycafe_title" style="bottom: 57%; 	margin-bottom: 80px;">운영시간</h4>
+				<span class="input_area"> <input type="text"
+					placeholder="ex)9:30-20:30" name="cafe_oh" required
+					style="margin-top: 14%;">
+				</span>
+
+				<h4 class="studycafe_title" style="bottom: 49%; 	margin-bottom: 80px;">지역</h4>
+				<span class="input_area"> <select id="area5" name="cafe_area">
+						<optgroup label="서초구">
+							<option value="방배">방배</option>
+							<option value="반포">반포</option>
+							<option value="서초">서초</option>
+							<option value="잠원">잠원</option>
+						</optgroup>
+
+						<optgroup label="강남구">
+							<option value="역삼">역삼</option>
+							<option value="논현">논현</option>
+							<option value="강남">강남</option>
+							<option value="신사">신사</option>
+						</optgroup>
+
+						<optgroup label="송파구">
+							<option value="장지">장지</option>
+							<option value="송파">송파</option>
+							<option value="문정">문정</option>
+							<option value="석촌">석촌</option>
+						</optgroup>
+
+						<optgroup label=" 관악구">
+							<option value="봉천">봉천</option>
+							<option value="남현">남현</option>
+							<option value="행운동">행운동</option>
+						    <option value="신림">신림</option>
+						</optgroup>
+
+						<optgroup label="동작구">
+							<option value="사당">사당</option>
+							<option value="흑성동">흑성동</option>
+							<option value="대방동">대방동</option>
+							<option value="신대방">신대바</option>
+						</optgroup>
+
+						<optgroup label="노원구">
+							<option value="수성구">수성구</option>
+							<option value="남구">남구</option>
+							<option value="북구">북구</option>
+							<option value="중구">중구</option>
+						</optgroup>
+				</select>
+				</span>
+
+				<h4 class="studycafe_title" style="bottom: 41%; 	margin-bottom: 80px;">전화번호</h4>
+				<span class="input_area"> <input type="text"
+					name="cafe_phone" required style="margin-top: 24%;">
+				</span>
+
+				<h4 class="studycafe_title" style="bottom: 33%; 	margin-bottom: 80px;">휴무일</h4>
+				<span class="input_area"> <input type="text"
+					name="closed_day" style="margin-top: 29%;">
+				</span>
+
+				<h4 class="studycafe_title" style="bottom: 25%; 	margin-bottom: 80px;">예약가능인원</h4>
+				<span class="input_area"> <input type="text" required
+					name="cafe_capacity" placeholder="최대8명 ex)6"
+					style="margin-top: 34%;">
+				</span>
+
+				<h4 class="studycafe_title" style="bottom: 17%; 	margin-bottom: 80px;">카페홈페이지</h4>
+				<span class="input_area"> <input type="text" name="cafe_page"
+					  required style="margin-top: 39%;">
+				</span>
+
+				<h4 class="studycafe_title" style="bottom: 9%; 	margin-bottom: 80px;">도로명주소</h4>
+				<span class="input_area"> <input type="text"  class="postcodify_address" readonly  
+				   name="cafe_map" style="margin-top: 44%;"><button id="postcodify_search_button" type="button">검색</button>
+			
+				</span><h4 class="studycafe_title" style="bottom: 1%; 	margin-bottom: 80px;">상세주소</h4>
+				<span class="input_area"><input type="text"  name="detail_address"    class="postcodify_details"   required  style="margin-top: 49%;"></span>
+			
+				 
 
 
-						<h4 class="studycafe_title2" style="margin-top: 31%;">카페공지글</h4>
-						<textarea name="cafe_notice"  
-							style="resize: none; left: 550px; top: 330px;" maxlength="110" > </textarea>
 
-						<h4 class="studycafe_title2" style="margin-top: 48%;">내부사진,약도</h4>
-						<div class="photo">
-							<input type="file" name="cafe_photo" >
-						</div>
-						<div class="photo2">
-							<input type="file" name="cafe_map">
-						</div>
-						<h4 class="studycafe_title2" style="margin-top: 51%;">카페제휴정보</h4>
-						   
-							<select class="photo3" name="AFFILIATED_CAFE" >
-								<option value="N" >일반</option>
-								<option value= "Y">제휴</option>
-							</select>
-						  <MARQUEE DIRECTION="left"  class="studycafe_title2" style="font-size: 14px;color:red;margin-top: 510px;border-left-width: 150px;margin-left: 150px;width: 200px;">※제휴선택시 50,000원 결제해야 이용가능합니다  </MARQUEE> 
-						   
-						 
-						  
-						<div>
-							<button type="button" id="btnArea2"
-								onclick="javascript:history.back();">취소</button> 
-								
-							 
-							<button  id="btnArea1"  >등록</button>
-							 
-							 
 
-							
-							
-							
-						</div>
-					
-				
-					</form>
-					
-					
-					
+				<h4 class="studycafe_title2">카페소개글</h4>
+				<textarea name="cafe_info"
+					style="resize: none; left: 550px; top: 110px;" maxlength="110"> </textarea>
+
+
+				<h4 class="studycafe_title2" style="margin-top: 25%;">카페공지글</h4>
+				<textarea name="cafe_notice"
+					style="resize: none; left: 550px; top: 270px;" maxlength="110"> </textarea>
+
+				<h4 class="studycafe_title2" style="margin-top: 42%;">내부사진 </h4>
+				<div class="photo">
+					<input type="file" name="cafe_photo">
 				</div>
-			</div>
+				
+				<h4 class="studycafe_title2" style="margin-top: 49%;">카페제휴정보</h4>
+
+				<select class="photo3" name="AFFILIATED_CAFE">
+					<option value="N">일반</option>
+					<option value="Y">제휴</option>
+				</select>
+				<MARQUEE DIRECTION="left" class="studycafe_title2"
+					style="font-size: 14px; color: red; margin-top: 490px; border-left-width: 180px; margin-left: 140px; width: 200px;">※ 제휴선택시 결제해야 이용가능합니다 </MARQUEE>
+
+
+
+				<div>
+					<button type="button" id="btnArea2"
+						onclick="javascript:history.back();">취소</button>
+
+
+					<button id="btnArea1">등록</button>
+
  
- 
+				</div>
+				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+				<!-- 검색 버튼 클릭 시 팝업 레이어 열리도록 -->
+				<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+
+			</form>
+
+
+
+		</div>
+	</div>
+
+
 
 	<footer> </footer>
 </body>
