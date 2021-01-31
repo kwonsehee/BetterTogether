@@ -55,7 +55,7 @@
         /* 게시판 */
         #qnaBoard {
             width: 100%;
-            height: 400px;      
+           /*  height: 400px;      */ 
             border-collapse: collapse;
             
         }
