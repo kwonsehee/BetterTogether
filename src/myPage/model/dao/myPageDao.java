@@ -73,9 +73,9 @@ public class myPageDao {
 		      int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 		      int endRow = startRow + pi.getBoardLimit() - 1;
 		      
-		      pstmt.setInt(1, startRow);
-		      pstmt.setInt(2, endRow);
-		      pstmt.setString(3, userId);
+		      pstmt.setString(1, userId);
+		      pstmt.setInt(2, startRow);
+		      pstmt.setInt(3, endRow);
 		      
 		      rset = pstmt.executeQuery();
 		      
@@ -319,7 +319,8 @@ public class myPageDao {
 		}
 		return hits_status;
 	}
-
+	
+	//좋아요 취소 
 	public int likeDeleteHits(Connection conn, int challNo, String userId) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -338,17 +339,86 @@ public class myPageDao {
 		return result;
 	}
 	
-	
-	/*//3개월 버튼 게시글 리스트 총 갯수
-	public int joinedDateSelectListCount(Connection conn, String userId, int threemonths) {
+	//3개월전 참여했던 리스트 출력
+	public int threeMonthsListCount(Connection conn, String userId) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("joinedDateSelectListCount");
+		String sql = prop.getProperty("threeMonthsListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
+	
+	//페이징 처리된 상태로 3개월 전 참여했던 리스트 출력
+	public ArrayList<Challenge> threeMonthsSelectList(Connection conn, PageInfo pi, String userId) {
+		ArrayList<Challenge> cList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("threeMonthsSelectList");
+		
+		try {
+		      pstmt = conn.prepareStatement(sql);
+		      
+		      int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		      int endRow = startRow + pi.getBoardLimit() - 1;
+		      
+		      pstmt.setString(1, userId);
+		      pstmt.setInt(2, startRow);
+		      pstmt.setInt(3, endRow);
+		      
+		      rset = pstmt.executeQuery();
+		      
+		      while(rset.next()) {
+		            cList.add(new Challenge(rset.getInt(2),
+		                              rset.getString(3),
+		                             rset.getInt(4),
+		                              rset.getDate(5),
+		                              rset.getString(6),
+		                              rset.getString(7),
+		                              rset.getString(8),
+		                              rset.getString(9),
+		                              rset.getInt(10),
+		                              rset.getString(11),
+		                              rset.getInt(12),
+		                              rset.getString(13),
+		                              rset.getString(14),
+		                              rset.getInt(15),
+		                              rset.getDate(16)));
+		         }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return cList;
+	}
+	
+	//6개월 전 참여했던 리스트 갯수 출력 
+	public int sixMonthsListCount(Connection conn, String userId) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("sixMonthsListCount");
 		try {
 	         pstmt = conn.prepareStatement(sql);
 	         pstmt.setString(1, userId);
-	         pstmt.setInt(2, threemonths);
 	         rset = pstmt.executeQuery();
 	         
 	         if(rset.next()) {
@@ -364,196 +434,120 @@ public class myPageDao {
 	         close(rset);
 	         close(pstmt);
 	      }
-	      System.out.println("dateListCount : " + listCount);
+	      System.out.println("sixMonths : " + listCount);
 	      return listCount;
-	   }
+	}
 	
-	//3개월 버튼 클릭 시 페이징 처리된 상태에서 게시글 목록 조회
-	public ArrayList<Challenge> joinedDateSelectList(Connection conn, PageInfo pi, String userId, int threemonths) {
+	
+	//6개월 전 참여했던 챌린지 리스트 페이징 처리된 상태에서 출력 
+	public ArrayList<Challenge> sixMonthsSelectList(Connection conn, PageInfo pi, String userId) {
 		ArrayList<Challenge> cList = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("joinedDateSelectList");
 		
-		return null;
-	}*/
-}
+		String sql = prop.getProperty("sixMonthsSelectList");
+		
+		try {
+		      pstmt = conn.prepareStatement(sql);
+		      
+		      int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		      int endRow = startRow + pi.getBoardLimit() - 1;
+		      
+		      pstmt.setString(1, userId);
+		      pstmt.setInt(2, startRow);
+		      pstmt.setInt(3, endRow);
+		      
+		      rset = pstmt.executeQuery();
+		      
+		      while(rset.next()) {
+		            cList.add(new Challenge(rset.getInt(2),
+		                              rset.getString(3),
+		                             rset.getInt(4),
+		                              rset.getDate(5),
+		                              rset.getString(6),
+		                              rset.getString(7),
+		                              rset.getString(8),
+		                              rset.getString(9),
+		                              rset.getInt(10),
+		                              rset.getString(11),
+		                              rset.getInt(12),
+		                              rset.getString(13),
+		                              rset.getString(14),
+		                              rset.getInt(15),
+		                              rset.getDate(16)));
+		         }
+		      System.out.println("sixmonths : " + cList);
+		   } catch (SQLException e) {
+		      e.printStackTrace();
+		   } finally {
+		        close(rset);
+		        close(pstmt);
+		     }
+		      
+		      return cList;
+		   }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*public int getjoinedSearchListCount(Connection conn, Search s) {
+	//1년 전 참여했던 챌린지 리스트 갯수 불러오기
+	public int oneyearListCount(Connection conn, String userId) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = "";
+		String sql = prop.getProperty("oneyearListCount");
 		
-		if (s.getSearchCondition().equals("writer")) {
-	         sql = prop.getProperty("getjoinedSearchWriterListCount");
-	      } else if (s.getSearchCondition().equals("title")) {
-	         sql = prop.getProperty("getjoinedSearchTitleListCount");         
-	      } else {
-	         sql = prop.getProperty("getjoinedSearchContentListCount");
-	      }
-	         
-	      try {
-	         pstmt = conn.prepareStatement(sql);
-	         
-	         pstmt.setString(1, s.getSearch());
-	         
-	         rset = pstmt.executeQuery(); // 쿼리 select
-	         
-	         if (rset.next()) {
-	            listCount = rset.getInt(1);
-	         }
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      } finally {
-	         close(rset);
-	         close(pstmt);
-	      }
-	         
-	      return listCount;
-	   }
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
 	
-	//
-	public ArrayList<Challenge> joinedSelectSearchList(Connection conn, PageInfo pi, Search s) {
+	//1년전 참여했던 챌린지 리스트 페이징 처리된 상태에서 출력하기
+	public ArrayList<Challenge> oneyearSelectList(Connection conn, PageInfo pi, String userId) {
 		ArrayList<Challenge> cList = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = "";
 		
-		if(s.getSearchCondition().equals("title")) {
-			sql = prop.getProperty("joinedselectSearchTitleListCount");
-		} else if(s.getSearchCondition().equals("category")) {
-			sql = prop.getProperty("joinedselectSearchCategoryListCount");
-		} else {
-			sql = prop.getProperty("joinedselectSearchWriterListCount");
-		}
-		
+		String sql = prop.getProperty("oneyearSelectList");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
-			
-			pstmt.setString(1, s.getSearch());
+	      
+			pstmt.setString(1, userId);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
-				cList.add(new Challenge(rset.getInt(2),
-				                        rset.getString(3),
-				                        rset.getInt(4),
-				                        rset.getDate(5),
-				                        rset.getString(6),
-				                        rset.getString(7),
-				                        rset.getString(8),
-				                        rset.getString(9),
-				                        rset.getInt(10),
-				                        rset.getString(11),
-				                        rset.getInt(12),
-				                        rset.getString(13),
-				                        rset.getString(14),
-				                        rset.getInt(15),
-				                        rset.getString(16)));
-			}
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return cList;
-	}*/
-	
-	/*//userId로 참여했던 챌린지 그룹 넘어오게 하기
-	public ArrayList<Challenge> joinedList(Connection conn, String userId) {
-		System.out.println("5555");
-		ArrayList<Challenge> cList = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("joinedList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userId);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				cList.add(new Challenge(rset.getInt("CHALL_NO"),
-										rset.getString("CHALL_TITLE"),
-									    rset.getString("CHALL_PERIOD")));
-			}
-	         System.out.println("4444" + cList);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return cList;
-	}*/
-	
-	/*//찜하기 리스트
-		public ArrayList<Challenge> likeSelectList(Connection conn, String userId) {
-			System.out.println("5555");
-			ArrayList<Challenge> cList = new ArrayList<>();
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			String sql = prop.getProperty("likeSelectList");
-			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, userId);
-				
-				rset=pstmt.executeQuery();
-				while(rset.next()) {
-					cList.add(new Challenge(rset.getInt("CHALL_NO"),
-											rset.getString("CHALL_TITLE"),
-										    rset.getString("CHALL_PERIOD")));
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(pstmt);
-			}
-			return cList;
-		}*/
-		
-	//찜하기 챌린지 리스트
-	/*public ArrayList<Challenge> likeList(Connection conn, String userId) {
-		System.out.println("5555");
-		ArrayList<Challenge> cList = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("likeList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userId);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				cList.add(new Challenge(rset.getInt("CHALL_NO"),
-										rset.getString("CHALL_TITLE"),
-									    rset.getString("CHALL_PERIOD")));
-			}
-	         System.out.println("4444" + cList);
+			 while(rset.next()) {
+		            cList.add(new Challenge(rset.getInt(2),
+		                              rset.getString(3),
+		                             rset.getInt(4),
+		                              rset.getDate(5),
+		                              rset.getString(6),
+		                              rset.getString(7),
+		                              rset.getString(8),
+		                              rset.getString(9),
+		                              rset.getInt(10),
+		                              rset.getString(11),
+		                              rset.getInt(12),
+		                              rset.getString(13),
+		                              rset.getString(14),
+		                              rset.getInt(15),
+		                              rset.getDate(16)));
+		         }
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -562,32 +556,8 @@ public class myPageDao {
 		}
 		return cList;
 	}
+
 	
-	//참여중인 챌린지
-	public ArrayList<Challenge> joiningList(Connection conn, String userId) {
-		System.out.println("5555");
-		ArrayList<Challenge> cList = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("joiningList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userId);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				cList.add(new Challenge(rset.getInt("CHALL_NO"),
-										rset.getString("CHALL_TITLE"),
-									    rset.getString("CHALL_PERIOD")));
-			}
-	         System.out.println("4444" + cList);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return cList;
-	}*/
+	
+	
+}
