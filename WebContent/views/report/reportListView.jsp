@@ -167,7 +167,11 @@
 							<td><%= r.getReport_no() %></td>
 							<td><%= r.getReport_title() %></td>
 							<td><%= r.getReport_date() %></td>
-							<td><%= r.getT_f() %></td>
+							<%if(r.getT_f().equals("F")) {%>
+							<td><%= r.getT_f().replace("F", "X") %></td>
+							<% } else { %>
+							<td><%= r.getT_f().replace("T", "O") %></td>
+							<% } %>
 						</tr>
 							<%} %>
 						<%} %>	
