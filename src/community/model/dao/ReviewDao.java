@@ -239,6 +239,64 @@ public class ReviewDao {
 		return result;
 	}
 
+	// 수정 할 후기 한 개 불러 오기
+	public Review selectMyOneReview(Connection conn, int rId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMyOneReview");
+		Review r = new Review();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rId);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				r = new Review(rset.getInt(2),
+								 rset.getString(3),
+								 rset.getDate(4),
+								 rset.getDate(5),
+								 rset.getInt(6),
+								 rset.getString(7),
+								 rset.getInt(8),
+								 rset.getString(9),
+								 rset.getString(10),
+								 rset.getString(11));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return r;
+	}
+
+	// 후기 수정
+	public int updateReview(Connection conn, Review r) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateReview");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, r.getrGrade());
+			pstmt.setString(2, r.getrContent());
+			pstmt.setInt(3, r.getrId());
+			
+			
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println("dao : " + result);
+		return result;
+	}
+
 	
 	
 	

@@ -350,14 +350,6 @@
 		</script>
 		
 		<script>
-		// 별 클릭 이벤트
-        $('#star_grade a').click(function(){
-            $(this).parent().children("a").removeClass("on");  
-            $(this).addClass("on").prevAll("a").addClass("on"); 
-            return false;
-        });
-        
-        
     	 // 별 색 채워짐 이벤트
         $('#star a').click(function(){ 
             $(this).parent().children("a").removeClass("on"); 
@@ -366,6 +358,7 @@
             star = $(this).attr("value");
         });
  		</script>
+ 		
  		<script>
     	// [등록] 버튼 클릭 이벤트
         $(function(){
@@ -379,6 +372,7 @@
         			dataType : "json",
         			data : {content : content, challNo : challNo, star : star},
         			success : function(data){
+        				window.opener.document.location.reload();
         				// 갱신 된 rList를 후기 div에 적용
         				reviewTable = $("#reviewTb");
         				reviewTable.html("");	// 기존 테이블 정보 초기화
@@ -387,6 +381,7 @@
         				for(var key in data){
         					console.log(key);
         					console.log(data[key].createDate);
+        					
         					var tr = $("<tr>");
         					var writerTd = $("<td>").text(data[key].nickName);
         					var challTitleTd = $("<td>").text(data[key].challTitle);
@@ -421,8 +416,6 @@
 
 	</section>
 	<footer></footer>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-		crossorigin="anonymous"></script>
+	
 </body>
 </html>

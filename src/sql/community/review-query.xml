@@ -127,6 +127,34 @@
 	 WHERE  
 	 		REVIEW_SEQ = ?
 </entry>
-
+<entry key="selectMyOneReview">
+	SELECT 
+			RNUM, 
+			REVIEW_SEQ, 
+			REVIEW_CONTENT, 
+			REVIEW_DATE, 
+			REVIEW_MODIFY, 
+			REVIEW_GRADE, 
+			CHALL_TITLE, 
+			CHALL_NO, 
+			REVIEW_STATUS, 
+			USER_ID, 
+			NICKNAME
+	 FROM 
+	 		RLIST
+    WHERE 
+    		REVIEW_SEQ = ?
+	  AND   REVIEW_STATUS = 'Y'
+</entry>
+<entry key="updateReview">
+	UPDATE
+			REVIEW
+	SET
+			REVIEW_GRADE = ?,
+			REVIEW_CONTENT = ?,
+			REVIEW_MODIFY = SYSDATE
+	WHERE
+			REVIEW_SEQ = ?
+</entry>
 
 </properties>
