@@ -126,9 +126,9 @@ public class myJoinUpdateServlet extends HttpServlet {
 	      String content = multiRequest.getParameter("content");
 	      
 	    
-	      // 인증빈도, 기간 숫자만 추출하기 
-	      int freqNum = Integer.parseInt(frequency.substring(2, 3));
-	      int periodNum = Integer.parseInt(period.substring(0,1));
+	      // 인증 빈도 String -> Number
+	      int freqNum = Integer.parseInt(frequency);
+	      int periodNum = Integer.parseInt(period);
 	      
 	     //System.out.println("인증빈도 숫자로 : " + freqNum);
 	      //System.out.println("인증 기간 숫자로 : " + periodNum);

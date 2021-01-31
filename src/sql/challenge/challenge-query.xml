@@ -670,7 +670,8 @@
 
 	<!-- 내가 모집한 챌린지 조회 -->
 	<entry key="selectMyJoinList">
-		SELECT 
+		SELECT      
+               RNUM,
 			   CHALL_NO,
 			   CHALL_TITLE,
 			   CHALL_PEOPLE,
@@ -681,15 +682,18 @@
 			   CHALL_PERIOD,
 			   CHALL_PAYMENT,
 			   CHALL_CONTENT,
+               USER_ID,
 			   CATE_ID,
 			   CHALL_START,
 			   CHALL_STATUS
 		 FROM 
-			   CHALL 
+			   JLIST 
 		WHERE
 			   USER_ID = ?
 		  AND
 		  	   CHALL_STATUS = 'N' 
+          AND
+              RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<!-- 내가 모집한 챌린지 수정 -->
@@ -968,5 +972,17 @@
 		  WHERE 달성률 &lt; 0.85
 	
 	</entry>
+	
+	<!-- 내가 모집한 챌린지 총 게시글 갯수 구하기 -->
+	<entry key = "getListCountMyPage">
+   		SELECT
+   			  COUNT(*)
+   		 FROM 
+   		 	  CHALL
+   		WHERE
+   			  CHALL_STATUS = 'N'
+   		  AND 
+   		  	  USER_ID = ?
+   </entry>
 
 </properties>

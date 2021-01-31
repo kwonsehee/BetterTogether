@@ -886,7 +886,7 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 	}
 	
 	// 내가 모집한 챌린지 select
-	public ArrayList<Challenge> selectMyJoinList(Connection conn, String userId) {
+	public ArrayList<Challenge> selectMyJoinList(Connection conn, String userId, PageInfo pi) {
 		ArrayList<Challenge> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -894,18 +894,23 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new Challenge(rset.getInt(1), rset.getString(2), rset.getInt(3), rset.getDate(4),
-						rset.getString(5), rset.getString(6), rset.getString(7), rset.getString(8), rset.getInt(9),rset.getString(10),
-						rset.getInt(11),rset.getDate(12),rset.getString(13)));
+				list.add(new Challenge(rset.getInt(2), rset.getString(3), rset.getInt(4), rset.getDate(5),
+						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getInt(10),rset.getString(11),
+						rset.getString(12),rset.getInt(13),rset.getDate(14),rset.getString(15)));
 			}
 			//System.out.println("내가 모집한 챌린지 출력 : " + list);
-    } catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
@@ -1324,6 +1329,33 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 		}
 
 		return endCnt;
+	}
+	
+	// 마이페이지 : 내가 모집한 챌린지 총 갯수 구하기
+	public int getListCount(Connection conn, String userId) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getListCountMyPage");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,userId);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
 	}
 	
 	
