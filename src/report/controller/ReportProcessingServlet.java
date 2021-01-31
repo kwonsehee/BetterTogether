@@ -46,9 +46,11 @@ public class ReportProcessingServlet extends HttpServlet {
 		//신고당한 게시물을 비활성화 시키기
 		int result3 = rs.disabledPost(rNo);
 		
+		
+		System.out.println(result +", "+result2 +", "+result3 +", ");
 		if(result >0 && result2>0&& result3>0) {
 			request.getSession().setAttribute("msg", "신고처리가 성공적으로 되었습니다.");
-			response.sendRedirect(request.getContextPath()+"/report/detail?rNo="+rNo);
+			response.sendRedirect(request.getContextPath()+"/report/list");
 		}else {//신고 잘 안됐을 경우
 			request.setAttribute("msg", "신고처리에 실패하였습니다.");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);

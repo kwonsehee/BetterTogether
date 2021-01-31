@@ -184,7 +184,7 @@
                     <tr>
                         <th>대상 닉네임</th>
                         <td>
-                            <input type="text" maxlength="50" name = "reported_id"value=" <%=reported_id %> " readonly>
+                            <input type="text" maxlength="50" name = "reported_id"value="<%=reported_id %>" readonly>
                         </td>
                     </tr>
 

@@ -162,7 +162,7 @@ System.out.println("insert와서confirm :  "+confirm);
              <%} else if(confirm.equals("평일")&&(day1>5)){%>
               <button type="submit" class="comment" onClick="alert('해당 챌린지의 인증은 평일만 가능합니다.')"><span>인증하기</span></button>
              <%} else if(confirm.equals("주말")&&(day1<=5)){%>
-              <button type="submit" class="comment" onClick="alert('해당 챌린지의 인증은 주말만	 가능합니다.')"><span>인증하기</span></button>
+              <button type="submit" class="comment" onClick="alert('해당 챌린지의 인증은 주말만 가능합니다.')"><span>인증하기</span></button>
          
              <%} %>
        		<button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();">목록으로</button>
