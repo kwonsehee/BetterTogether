@@ -170,8 +170,8 @@
         	 BOARD_REPORT
         VALUES
         (
-        	SEQ_REPID.CURRVAL
-          , ?
+        	?
+          , SEQ_REPID.CURRVAL
         )
         SELECT *
         FROM DUAL
@@ -206,8 +206,8 @@
         	 BOARD_REPORT
         VALUES
         (
-        	SEQ_REPID.CURRVAL
-          , ?
+        	?
+          , SEQ_REPID.CURRVAL
         )
         SELECT *
         FROM DUAL

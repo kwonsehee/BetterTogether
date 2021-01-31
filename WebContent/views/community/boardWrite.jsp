@@ -8,9 +8,9 @@
 <!-- <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
 <!-- include summernote css/js-->
- <link
+<!--  <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
-	rel="stylesheet">
+	rel="stylesheet"> -->
 
 <title>Insert title here</title>
 <style>

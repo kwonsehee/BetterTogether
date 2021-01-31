@@ -187,9 +187,7 @@ textarea {
 			</script>
 
 			<!-- 버튼 -->
-			<button class="btn" id="back">
-				<a href="<%=request.getContextPath()%>/board/myboardView">뒤로가기</a>
-			</button>
+			<button type="button" class="btn" onclick="javascript:history.back();" id="back">뒤로가기</button>
 			<button class="btn" id="updateBtn" type="submit"><a>수정 완료</a></button>
 		</form>
 		

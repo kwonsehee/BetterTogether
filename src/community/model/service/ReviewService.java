@@ -108,5 +108,37 @@ public class ReviewService {
 		
 	}
 
+	// 수정할 후기 불러 오기
+	public Review selectMyOneReview(int rId) {
+		Connection conn = getConnection();
+		
+		Review r = new ReviewDao().selectMyOneReview(conn, rId);
+		
+		close(conn);
+		
+		return r;
+	}
+
+
+	// 후기 수정
+	public int updateReview(Review r) {
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().updateReview(conn, r);
+
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+
+		close(conn);
+
+		System.out.println("수정됐나 service : " + result);
+		
+		return result;
+		
+	}
+
 	
 }

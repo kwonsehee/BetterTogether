@@ -2,15 +2,11 @@ package community.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import community.model.service.ReviewService;
 import community.model.vo.Review;
@@ -18,14 +14,14 @@ import community.model.vo.Review;
 /**
  * Servlet implementation class ReviewUpdateServlet
  */
-@WebServlet("/review/update")
-public class ReviewUpdateServlet extends HttpServlet {
+@WebServlet("/review/updateForm")
+public class ReviewUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewUpdateServlet() {
+    public ReviewUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,35 +32,22 @@ public class ReviewUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		int rId = Integer.parseInt(request.getParameter("rId"));
-		String star = request.getParameter("star");
-		String content = request.getParameter("content");
+		int rId =  Integer.parseInt(request.getParameter("rId"));
 		
-		Review r = new Review();
-		r.setrId(rId);
-		r.setrContent(request.getParameter("content"));
-		r.setrGrade(Integer.parseInt(star));
+		Review r = new ReviewService().selectMyOneReview(rId);
+	
 		
-		
-		// System.out.println("잘 넘어오나 r : " + r);
-		
-		ReviewService rs = new ReviewService();
-		
-		int result = rs.updateReview(r);
-		
-		System.out.println("수정됐나 servlet : " + result);
-		
-		if(result > 0) {
-			request.setAttribute("result", "success");
+		if(r != null) {
 			request.setAttribute("r", r);
+			request.getRequestDispatcher("/views/community/reviewUpdateForm.jsp").forward(request, response);
 		} else {
-			request.setAttribute("result", "fail");
+			request.setAttribute("msg", "수정할 후기를 불러오는데 실패했습니다.");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		response.setContentType("application/json; charset=utf-8");
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(r, response.getWriter());
-		
+	
+	
+	
+	
 	}
 
 	/**

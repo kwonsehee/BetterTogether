@@ -3,7 +3,6 @@
  <%
  	ArrayList<Challenge> list = (ArrayList<Challenge>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
- 	// int hitsCount = (int)request.getAttribute("hitsCount");
 	
  %>
 <!DOCTYPE html>
@@ -22,7 +21,7 @@
 	margin-top: 15px;
 }
 
-/* 슬라이드 */
+/* 슬라이드 영역 */
 #slide {
 	width: 100%;
 	height: 78%;
@@ -44,6 +43,7 @@
 	height: 500px;
 }
 
+/* 무한 슬라이드 */
 @keyframes slide { 
 0% {margin-left: 0;} /* 정지 */
 25%{margin-left:0;} /* 변이 */
@@ -54,11 +54,16 @@
 100%{margin-left:0;} /* 0%랑 이어짐 */
 }
 
-.chall_box {
+/* chall_box로 시작하는 모든 클래스 */
+div[class^=chall_box] {
 	width: 480px;
 	height: 150px;
 	border: 1px solid #F9F1F1;
 	margin-bottom: 10px;
+}
+
+div[class^=chall_box]:hover{
+	cursor:pointer;
 }
 
 .chall_img {
@@ -262,7 +267,7 @@ button:hover {
                        	<%for (int i = 0; i < 3; i++) {	%>
                     	<%for (Challenge c : list) {%>
                     	<%if (list.indexOf(c) == i) {%>
-                    		<div class="chall_box">
+                    		<div class="chall_box<%= i %>">
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%=c.getChallFile()%>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%=c.getChallTitle()%></p>
                        		<p name="cDate" class="cDate"><%=c.getChallStart()%> 시작</p>
@@ -273,6 +278,13 @@ button:hover {
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
+                       		<script>
+                       			$(function(){
+                       				$(".chall_box<%= i %>").click(function(){
+                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                       				});
+                       			});
+                       		</script>
                        		<% } %>
                        		<% } %>
                        		<% } %>
@@ -281,7 +293,7 @@ button:hover {
                     	<% for(int i = 3; i < 6; i++){ %>
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box">
+                    		<div class="chall_box<%= i %>">
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
@@ -292,6 +304,13 @@ button:hover {
 	                       		<p name="cpCount" class="cpCount aaa"> <%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
+                       		<script>
+                       			$(function(){
+                       				$(".chall_box<%= i %>").click(function(){
+                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                       				});
+                       			});
+                       		</script>
                        		<% } %>
                        		<% } %>
                        		<% } %>
@@ -303,7 +322,7 @@ button:hover {
                        	<% for(int i = 6; i < 9; i++){ %>
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box">
+                    		<div class="chall_box<%= i %>">
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
@@ -314,6 +333,13 @@ button:hover {
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
+                       		<script>
+                       			$(function(){
+                       				$(".chall_box<%= i %>").click(function(){
+                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                       				});
+                       			});
+                       		</script>
                        		<% } %>
                        		<% } %>
                        		<% } %>
@@ -322,7 +348,7 @@ button:hover {
                     	<% for(int i = 9; i < 12; i++){ %>
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box">
+                    		<div class="chall_box<%= i %>">
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
@@ -333,6 +359,13 @@ button:hover {
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
+                       		<script>
+                       			$(function(){
+                       				$(".chall_box<%= i %>").click(function(){
+                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                       				});
+                       			});
+                       		</script>
                        		<% } %>
                        		<% } %>
                        		<% } %>
@@ -344,7 +377,7 @@ button:hover {
                        	<% for(int i = 12; i < 15; i++){ %>
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box">
+                    		<div class="chall_box<%= i %>">
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
@@ -355,6 +388,13 @@ button:hover {
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
+                       		<script>
+                       			$(function(){
+                       				$(".chall_box<%= i %>").click(function(){
+                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                       				});
+                       			});
+                       		</script>
                        		<% } %>
                        		<% } %>
                        		<% } %>
@@ -363,7 +403,7 @@ button:hover {
                     	<% for(int i = 15; i < 18; i++){ %>
                     	<% for(Challenge c : list){ %>
                     	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box">
+                    		<div class="chall_box<%= i %>">
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
@@ -374,6 +414,13 @@ button:hover {
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
                        		</div>
                        		</div>
+                       		<script>
+                       			$(function(){
+                       				$(".chall_box<%= i %>").click(function(){
+                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                       				});
+                       			});
+                       		</script>
                        		<% } %>
                        		<% } %>
                        		<% } %>

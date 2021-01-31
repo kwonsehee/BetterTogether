@@ -208,6 +208,7 @@ body {
 		<div class="reviewdiv">
 			<table id="reviewTb">
 				<tr>
+					<input type="hidden" id="rId" name="rId" value="<%=r.getrId()%>">
 					<td id="nickname"><%= r.getNickName() %></td>
 					<td id="challName"><%= r.getChallTitle() %></td>
 					<td id="starArea"><%if(r.getrGrade() == 5) { %> ★★★★★ 
@@ -222,17 +223,19 @@ body {
 					<td id="contentArea"><%= r.getrContent() %></td>
 				</tr>
 			</table>
-				<button class="btn2" onclick="location.href='<%= request.getContextPath() %>/review/update?rId=<%=r.getrId()%>'">
-				수정
-				</button>
+			
+				<button class="btn2" id="updateBtn" onclick="window.open('<%= request.getContextPath() %>/review/updateForm?rId=<%=r.getrId()%>', '댓글 수정 창', 'width=1000, height=300')">수정</button>
 		
 				<button class="btn2" onclick="location.href='<%= request.getContextPath() %>/review/delete?rId=<%=r.getrId()%>'">
 				삭제
 				</button>
 		</div>
+		
 		<% } %>
 		<% } %>
+		
 		</div>
+		
 		
 		<!-- 페이징 바 -->
 		<div class="pagingArea">
