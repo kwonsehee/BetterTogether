@@ -166,27 +166,22 @@ public class Challenge {
 	}
 	
 	// 커뮤니티 - 리뷰 - 내가 참여했던 챌린지 조회용
-	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
-			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
-			int confirmCnt, String nickName, String cateName, int challCnt, Date challStart) {
+	public Challenge(String userId, int challNo, String challStatus, Date challDate, String challTitle, String challFile, String challPeriod, Date challStart) {
 		super();
+		this.userId = userId;
 		this.challNo = challNo;
-		this.challTitle = challTitle;
-		this.challPeople = challPeople;
+		this.challStatus = challStatus;
 		this.challDate = challDate;
+		this.challTitle = challTitle;
 		this.challFile = challFile;
-		this.challConfirm = challConfirm;
-		this.challFrequency = challFrequency;
 		this.challPeriod = challPeriod;
-		this.challPay = challPay;
-		this.challContent = challContent;
-		this.confirmCnt = confirmCnt;
-		this.nickName = nickName;
-		this.cateName = cateName;
-		this.challCnt = challCnt;
 		this.challStart = challStart;
 	}
+	
+	
+ 
 
+	
 
 	// 카테고리 선택시 이동하는 화면에 필요
 	public String getUserId() {

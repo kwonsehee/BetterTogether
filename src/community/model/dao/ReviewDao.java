@@ -82,21 +82,15 @@ public class ReviewDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-	            cList.add(new Challenge(rset.getInt(2),
+	            cList.add(new Challenge(rset.getString(1),
+		                              rset.getInt(2),
 		                              rset.getString(3),
-		                              rset.getInt(4),
-		                              rset.getDate(5),
+		                              rset.getDate(4),
+		                              rset.getString(5),
 		                              rset.getString(6),
 		                              rset.getString(7),
-		                              rset.getString(8),
-		                              rset.getString(9),
-		                              rset.getInt(10),
-		                              rset.getString(11),
-		                              rset.getInt(12),
-		                              rset.getString(13),
-		                              rset.getString(14),
-		                              rset.getInt(15),
-		                              rset.getDate(16)));
+		                              rset.getDate(8))
+		                             );
 	         }
 			
 			
