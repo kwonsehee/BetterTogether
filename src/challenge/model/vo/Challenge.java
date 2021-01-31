@@ -147,7 +147,7 @@ public class Challenge {
 	
 	// 내가 모집한 탤린지 조회용
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
-			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
+			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent, String userId,
 			int cateId, Date challStart, String challStatus) {
 		super();
 		this.challNo = challNo;
@@ -160,6 +160,7 @@ public class Challenge {
 		this.challPeriod = challPeriod;
 		this.challPay = challPay;
 		this.challContent = challContent;
+		this.userId = userId;
 		this.cateId = cateId;
 		this.challStart = challStart;
 		this.challStatus = challStatus;

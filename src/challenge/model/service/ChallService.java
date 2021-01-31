@@ -399,10 +399,10 @@ public class ChallService {
 	}
 	
 	// 내가 모집한 챌린지 조회
-	public ArrayList<Challenge> selectMyJoinList(String userId) {
+	public ArrayList<Challenge> selectMyJoinList(String userId, PageInfo pi) {
 		Connection conn = getConnection();
 		
-		ArrayList<Challenge> list = new ChallDao().selectMyJoinList(conn, userId);
+		ArrayList<Challenge> list = new ChallDao().selectMyJoinList(conn, userId, pi);
 		
 		//System.out.println("내가 모집한 챌린지 조회: " + list);
 		
@@ -606,6 +606,17 @@ public class ChallService {
 		close(conn);
 		
 		return result;
+	}
+	
+	// 마이페이지 : 내가 모집한 챌린지 게시물 총 갯수 
+	public int getListCount(String userId) {
+		Connection conn = getConnection();
+
+		int listCount = new ChallDao().getListCount(conn, userId);
+
+		close(conn);
+
+		return listCount;
 	}
 
 
