@@ -52,7 +52,7 @@ public class myPageService {
 		Connection conn = getConnection();
 		
 		ArrayList<Challenge> cList = new myPageDao().joinedSelectList(conn, pi, userId);
-		System.out.println("33333" +cList);
+		System.out.println("참여했던 챌린지 리스트" +cList);
 		close(conn);
 		return cList;
 	}

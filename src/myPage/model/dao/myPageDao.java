@@ -37,7 +37,7 @@ public class myPageDao {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("getListCount");
+		String sql = prop.getProperty("getJoinedListCount");
 		try {
 	         pstmt = conn.prepareStatement(sql);
 	         pstmt.setString(1, userId);
@@ -80,21 +80,15 @@ public class myPageDao {
 		      rset = pstmt.executeQuery();
 		      
 		      while(rset.next()) {
-		            cList.add(new Challenge(rset.getInt(2),
-		                              rset.getString(3),
-		                             rset.getInt(4),
-		                              rset.getDate(5),
-		                              rset.getString(6),
-		                              rset.getString(7),
-		                              rset.getString(8),
-		                              rset.getString(9),
-		                              rset.getInt(10),
-		                              rset.getString(11),
-		                              rset.getInt(12),
-		                              rset.getString(13),
-		                              rset.getString(14),
-		                              rset.getInt(15),
-		                              rset.getDate(16)));
+		            cList.add(new Challenge(rset.getInt("CHALL_NO"),
+		            						rset.getString("CHALL_TITLE"),
+		            						rset.getString("FILE_PATH"),
+		            						rset.getString("CHALL_PERIOD"),
+		            						rset.getString("USER_ID"),
+		            						rset.getString("CATE_NAME"),
+		            						rset.getDate("CHALL_START"),
+		            						rset.getString("CHALL_STATUS"),
+		                              		rset.getDate("END_DATE")));
 		         }
 		      System.out.println("joined : " + cList);
 
@@ -157,21 +151,15 @@ public class myPageDao {
 		      rset = pstmt.executeQuery();
 		      
 		      while(rset.next()) {
-		            cList.add(new Challenge(rset.getInt(2),
-		                              rset.getString(3),
-		                             rset.getInt(4),
-		                              rset.getDate(5),
-		                              rset.getString(6),
-		                              rset.getString(7),
-		                              rset.getString(8),
-		                              rset.getString(9),
-		                              rset.getInt(10),
-		                              rset.getString(11),
-		                              rset.getInt(12),
-		                              rset.getString(13),
-		                              rset.getString(14),
-		                              rset.getInt(15),
-		                              rset.getDate(16)));
+		            cList.add(new Challenge(rset.getInt("CHALL_NO"),
+		            						rset.getString("CHALL_TITLE"),
+		            						rset.getString("FILE_PATH"),
+		            						rset.getString("CHALL_PERIOD"),
+		            						rset.getString("USER_ID"),
+		            						rset.getString("CATE_NAME"),
+		            						rset.getDate("CHALL_START"),
+		            						rset.getString("CHALL_STATUS"),
+		                              		rset.getDate("END_DATE")));
 		         }
 		      System.out.println("like : " + cList);
 		   } catch (SQLException e) {
@@ -233,21 +221,15 @@ public class myPageDao {
 		      rset = pstmt.executeQuery();
 		      
 		      while(rset.next()) {
-		            cList.add(new Challenge(rset.getInt(2),
-		                              rset.getString(3),
-		                             rset.getInt(4),
-		                              rset.getDate(5),
-		                              rset.getString(6),
-		                              rset.getString(7),
-		                              rset.getString(8),
-		                              rset.getString(9),
-		                              rset.getInt(10),
-		                              rset.getString(11),
-		                              rset.getInt(12),
-		                              rset.getString(13),
-		                              rset.getString(14),
-		                              rset.getInt(15),
-		                              rset.getDate(16)));
+		            cList.add(new Challenge(rset.getInt("CHALL_NO"),
+		            						rset.getString("CHALL_TITLE"),
+		            						rset.getString("FILE_PATH"),
+		            						rset.getString("CHALL_PERIOD"),
+		            						rset.getString("USER_ID"),
+		            						rset.getString("CATE_NAME"),
+		            						rset.getDate("CHALL_START"),
+		            						rset.getString("CHALL_STATUS"),
+		                              		rset.getDate("END_DATE")));
 		         }
 		      System.out.println("joining : " + cList);
 		   } catch (SQLException e) {
