@@ -390,7 +390,7 @@ button:focus {
 				<input type="hidden" name="title" value="챌린지">  
 			<p id="join_title2">챌린지 인증 방법 
 			<!-- 인증보기 버튼 (참여중/종료)일때만 보이기 -->
-			<% if(ch.getChallContent().equals("2") || ch.getChallContent().equals("3")){ %>
+			<% if((compare < 0 && compare2 < 0) || compare3 < 0){ %>
 			<button id="challConfirm_btn">인증보기</button>
 			<%} %>
 			</p>
