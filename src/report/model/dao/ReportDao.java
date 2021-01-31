@@ -87,7 +87,7 @@ public class ReportDao {
 		PreparedStatement pstmt=null;
 		
 		String sql="";
-		
+		System.out.println("신고 insert 챌린지 : "+r.getReported_id());
 		try {
 			
 			if(r.getReport_file()==null) {
@@ -460,7 +460,7 @@ public class ReportDao {
 	
 			close(pstmt);
 		}
-
+System.out.println("신고된 게시글 가져오니 ?"+r);
 		return r;
 	}
 }

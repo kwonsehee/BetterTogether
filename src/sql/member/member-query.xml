@@ -130,10 +130,9 @@
 		   SET
 		   	   REPORTED = REPORTED + 1
 		 WHERE
-		 	   USER_ID = (SELECT R.REPORTED_ID
-                		  FROM REPORT R
-                		  JOIN USER_INFO U ON(R.REPORTED_ID = U.USER_ID)
-                		  WHERE REPORT_NO = ? )
+		 	   USER_ID = (SELECT REPORTED_ID
+                		  FROM REPORT
+                		  WHERE REPORT_NO = ?)
 	</entry>
 	
 	<entry key="payback">

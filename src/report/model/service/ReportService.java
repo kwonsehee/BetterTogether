@@ -164,16 +164,17 @@ public class ReportService {
 			
 			//신고 게시물 가져오기
 			Report r = new ReportDao().disabledGetPost(conn,rNo);
-			
+			System.out.println("신고될 게시물 : "+r);
 			//신고게시물 비활성화시키기
 			if(r.getBoard_seq()!=0) {//자유게시판 신고
-				result = new BoardService().disabledPost(r.getCer_id());
+				result = new BoardService().disabledPost(r.getBoard_seq());
 			}else if(r.getCafe_code()!=0) {//카페 신고 
-				result = new CafeService().disabledPost(r.getCer_id());
+				result = new CafeService().disabledPost(r.getCafe_code());
 			}else if(r.getCer_id()!=0) {// 인증 신고
 				result = new CerService().disabledPost(r.getCer_id());
 			}else if(r.getChall_no()!=0) {// 챌린지모집 신고
-				result = new ChallService().disabledPost(r.getCer_id());
+				result = new ChallService().disabledPost(r.getChall_no());
+				System.out.println("프로세싱 서비스 : 여기오니?"+result);
 			}
 			close(conn);
 			

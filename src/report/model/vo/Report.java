@@ -190,7 +190,11 @@ public class Report {
 	public String toString() {
 		return "Report [report_no=" + report_no + ", report_title=" + report_title + ", reported_id=" + reported_id
 				+ ", report_file=" + report_file + ", report_content=" + report_content + ", report_date=" + report_date
-				+ ", t_f=" + t_f + ", report_Status=" + report_Status + ", user_id=" + user_id + "]";
+				+ ", report_modify=" + report_modify + ", t_f=" + t_f + ", report_Status=" + report_Status
+				+ ", user_id=" + user_id + ", cafe_code=" + cafe_code + ", chall_no=" + chall_no + ", cer_id=" + cer_id
+				+ ", board_seq=" + board_seq + "]";
 	}
+
+	
 
 }
