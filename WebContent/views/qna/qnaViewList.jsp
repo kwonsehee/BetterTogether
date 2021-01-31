@@ -225,6 +225,11 @@
 			}).click(function(){
 				var qnaNo = $(this).parent().children().eq(0).text();
 				
+				<% if(qnaList.isEmpty()) { %>
+				$("#qnaBoard td").click(function(){
+					$(this).off("click");
+				});
+				<% } %>
 				// 로그인 한 사람만 게시글 상세 페이지 접근 가능하도록
 				<% if(loginUser != null) { %>
 					location.href='<%= request.getContextPath() %>/qna/detail?qnaNo=' + qnaNo;

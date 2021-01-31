@@ -242,6 +242,11 @@
 			            var num = $(this).parent().children().eq(1).text();
 			          //쿼리 스트링을 이용하여 get방식으로 글 번호를 전달
 						
+			          <% if(list.isEmpty()) { %>
+						$("#listTable td").click(function(){
+						$(this).off("click");
+						});
+					  <% } %>
 			            location.href="<%= request.getContextPath() %>/notice/detail?aNo=" +num;
 			         });
 			      });
