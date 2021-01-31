@@ -157,7 +157,7 @@ System.out.println("insert와서confirm :  "+confirm);
             <input type="text"class="input_box_lag" name="comment">
             
             <!-- 요일에 맞지 않으면 버튼 비활성화 -->
-             <%if(confirm.equals("관계없음")||confirm.equals("평일")&&(day1<=5)||confirm.equals("주말")&&(day1>5)){ %>
+             <%if(confirm.equals("상관없음")||confirm.equals("평일")&&(day1<=5)||confirm.equals("주말")&&(day1>5)){ %>
              <button type="submit" class="comment"><span>인증하기</span></button>
              <%} else if(confirm.equals("평일")&&(day1>5)){%>
               <button type="submit" class="comment" onClick="alert('해당 챌린지의 인증은 평일만 가능합니다.')"><span>인증하기</span></button>

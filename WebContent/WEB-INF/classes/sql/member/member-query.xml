@@ -3,41 +3,42 @@
 <properties>
 	<entry key="loginMember">
 		SELECT
-			USER_NO
-		  , USER_ID
+		    USER_ID
 		  , USER_PWD
-		  , USER_NAME
+		  , NICKNAME
 		  , PHONE
 		  , EMAIL
-		  , ADDRESS
-		  , INTEREST
-		  , ENROLL_DATE
+		  , JOIN_DATE
 		  , MODIFY_DATE
-		  , STATUS
+		  , MEMBER_TYPE
+		  , WRITE_ACTIVE
+		  , USER_CATE
+		  , POINT
 		  FROM
-		  		MEMBER
+		  		USER_INFO
 		  WHERE
 		  		USER_ID = ?
 		  	AND USER_PWD = ?
-		    AND STATUS = 'Y'
+		    AND MEMBER_TYPE != 2
 	</entry>
 	<entry key="insertMember">
 		INSERT
-		INTO MEMBER
+		INTO USER_INFO
 		(
-			USER_NO
-		  , USER_ID
+		    USER_ID
 		  , USER_PWD
-		  , USER_NAME
+		  , NICKNAME
 		  , PHONE
 		  , EMAIL
-		  , ENROLL_DATE
+		  , USER_CATE
+		  , JOIN_DATE
 		  , MODIFY_DATE
-		  , STATUS
+		  , MEMBER_TYPE
+		  , WRITE_ACTIVE
 		)
 		VALUES
 		(
-			SEQ_UNO.NEXTVAL
+			?
 		  , ?
 		  , ?
 		  , ?
@@ -46,42 +47,42 @@
 		  , SYSDATE
 		  , SYSDATE
 		  , DEFAULT
+		  , DEFAULT
 		)
 	</entry>
 	<entry key="updateMember">
-		UPDATE MEMBER
+		UPDATE USER_INFO
 		SET
-			USER_NAME = ?
+			NICKNAME = ?
 		  , PHONE = ?
 		  , EMAIL = ?
-		  , ADDRESS = ?
-		  , INTEREST = ?
+		  , USER_CATE = ?
 		  , MODIFY_DATE = SYSDATE
 		WHERE 
 			USER_ID = ?
 	</entry>
 	<entry key="selectMember">
+	
 		SELECT
-			USER_NO
-		  , USER_ID
+		    USER_ID
 		  , USER_PWD
-		  , USER_NAME
+		  , NICKNAME
 		  , PHONE
 		  , EMAIL
-		  , ADDRESS
-		  , INTEREST
-		  , ENROLL_DATE
+		  , JOIN_DATE
 		  , MODIFY_DATE
-		  , STATUS
+		  , MEMBER_TYPE
+		  , USER_CATE
+		  , POINT
 		  FROM
-		  		MEMBER
+		  		USER_INFO
 		  WHERE
 		  		USER_ID = ?
 	</entry>
 
 	 <entry key="updatePwd">
       UPDATE 
-           MEMBER
+           USER_INFO
         SET
              USER_PWD = ?
       WHERE 
@@ -91,11 +92,55 @@
 	
 	<entry key="deleteMember">
 		UPDATE
-			   MEMBER
+			   USER_INFO
 		   SET
-		   	   STATUS = 'N'
+		   	   MEMBER_TYPE = 2
 		 WHERE
 		 	   USER_ID = ?
 		
+	</entry>
+	<entry key="updateCateMember">
+		UPDATE USER_INFO
+		SET
+		    USER_CATE = ?
+		  , MODIFY_DATE = SYSDATE
+		WHERE 
+			USER_ID = ?
+	</entry>
+	<entry key="updatePoint">
+		UPDATE USER_INFO
+		SET
+			POINT = ?
+		  , MODIFY_DATE = SYSDATE
+		WHERE 
+			USER_ID = ?
+	</entry>
+	<entry key="idCheck">
+		SELECT
+			   COUNT(*)
+		  FROM
+		  	   USER_INFO
+		 WHERE
+		 	   USER_ID = ?
+	
+	</entry>
+	<entry key="processUserReported">
+		UPDATE
+			   USER_INFO
+		   SET
+		   	   REPORTED = REPORTED + 1
+		 WHERE
+		 	   USER_ID = (SELECT REPORTED_ID
+                		  FROM REPORT
+                		  WHERE REPORT_NO = ?)
+	</entry>
+	
+	<entry key="payback">
+		UPDATE USER_INFO
+		SET
+			POINT = POINT + ?
+		  , MODIFY_DATE = SYSDATE
+		WHERE 
+			USER_ID = ?
 	</entry>
 </properties>

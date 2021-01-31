@@ -129,84 +129,22 @@ public class myPageService {
 		return result;
 	}
 	
-	//3개월전 참여했던 리스트 카운트
-	public int threeMonthsListCount(String userId) {
+	//몇개월전 참여했던 리스트 카운트
+	public int getMonthCount(String userId, int month) {
 		Connection conn = getConnection();
-		int listCount = new myPageDao().threeMonthsListCount(conn, userId);
+		int listCount = new myPageDao().getMonthCount(conn, userId, month);
 		close(conn);
 		return listCount;
 		
 	}
 	
-	//3개월전 참여했던 게시글 목록 리스트 페이징 처리된 상태에서 출력
-	public ArrayList<Challenge> threeMonthsSelectList(PageInfo pi,  String userId) {
+	//몇개월전 참여했던 게시글 목록 리스트 페이징 처리된 상태에서 출력
+	public ArrayList<Challenge> getMonthList(PageInfo pi,  String userId, int month) {
 		Connection conn = getConnection();
-		ArrayList<Challenge> cList = new myPageDao().threeMonthsSelectList(conn, pi,userId);
+		ArrayList<Challenge> cList = new myPageDao().getMonthList(conn, pi,userId, month);
 		close(conn);
 		return cList;
 	}
-	
-	//6개월전 참여했던 리스트 카운트
-	public int sixMonthsListCount(String userId) {
-		Connection conn = getConnection();
-		int listCount = new myPageDao().sixMonthsListCount(conn, userId);
-		close(conn);
-		return listCount;
-	}
-	
-	//6개월 전 참여했던 게시글 목록 리스트 페이징 처리 된 상태에서 출력 
-	public ArrayList<Challenge> sixMonthsSelectList(PageInfo pi, String userId) {
-		Connection conn = getConnection();
-		ArrayList<Challenge> cList = new myPageDao().sixMonthsSelectList(conn, pi, userId);
-		close(conn);
-		return cList;
-	}
-	
-	//1년전 참여했던 챌린지 게시글 리스트 갯수 출력
-	public int oneyearListCount(String userId) {
-		Connection conn = getConnection();
-		int listCount = new myPageDao().oneyearListCount(conn, userId);
-		close(conn);
-		return listCount;
-	}
-	
-	//1년전 참여했던 챌린지 게시글 페이징 처리 된 상태로 출력
-	public ArrayList<Challenge> oneyearSelectList(PageInfo pi, String userId) {
-		Connection conn = getConnection();
-		ArrayList<Challenge> cList = new myPageDao().oneyearSelectList(conn, pi, userId);
-		return cList;
-	}
-
-	
-	
-
-	
-	
-	
-	
-	/*//3개월 버튼 게시글 총 갯수 구하기
-	public int joinedDateSelectListCount(String userId, int threemonths) {
-		Connection conn = getConnection();
-		int listCount = new myPageDao().joinedDateSelectListCount(conn, userId, threemonths);
-		close(conn);
-		return listCount;
-	}
-	
-	//3개월 버튼 페이징 처리 된 후 게시글 목록 조회
-	public ArrayList<Challenge> joinedDateSelectList(PageInfo pi, String userId, int threemonths) {
-		Connection conn = getConnection();
-		ArrayList<Challenge> cList = new myPageDao().joinedDateSelectList(conn, pi, userId, threemonths);
-		return cList;
-	}
-	*/
-
-	
-	
-	
-
-	
-	
-	
 	
 	
 	

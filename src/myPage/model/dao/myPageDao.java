@@ -321,17 +321,19 @@ public class myPageDao {
 		return result;
 	}
 	
-	//3개월전 참여했던 리스트 출력
-	public int threeMonthsListCount(Connection conn, String userId) {
+	//몇개월 전 참여했던 리스트 갯수 출력 
+	public int getMonthCount(Connection conn, String userId, int month) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("threeMonthsListCount");
+		String sql = prop.getProperty("getMonthCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, month);
+			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -346,13 +348,13 @@ public class myPageDao {
 		return listCount;
 	}
 	
-	//페이징 처리된 상태로 3개월 전 참여했던 리스트 출력
-	public ArrayList<Challenge> threeMonthsSelectList(Connection conn, PageInfo pi, String userId) {
+	//페이징 처리된 상태로 몇개월 전 참여했던 리스트 출력
+	public ArrayList<Challenge> getMonthList(Connection conn, PageInfo pi, String userId, int month) {
 		ArrayList<Challenge> cList = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("threeMonthsSelectList");
+		String sql = prop.getProperty("getMonthList");
 		
 		try {
 		      pstmt = conn.prepareStatement(sql);
@@ -361,27 +363,23 @@ public class myPageDao {
 		      int endRow = startRow + pi.getBoardLimit() - 1;
 		      
 		      pstmt.setString(1, userId);
-		      pstmt.setInt(2, startRow);
-		      pstmt.setInt(3, endRow);
+		      pstmt.setInt(2, month);
+		      pstmt.setInt(3, startRow);
+		      pstmt.setInt(4, endRow);
+		      
 		      
 		      rset = pstmt.executeQuery();
-		      
+		     
 		      while(rset.next()) {
-		            cList.add(new Challenge(rset.getInt(2),
-		                              rset.getString(3),
-		                             rset.getInt(4),
-		                              rset.getDate(5),
-		                              rset.getString(6),
-		                              rset.getString(7),
-		                              rset.getString(8),
-		                              rset.getString(9),
-		                              rset.getInt(10),
-		                              rset.getString(11),
-		                              rset.getInt(12),
-		                              rset.getString(13),
-		                              rset.getString(14),
-		                              rset.getInt(15),
-		                              rset.getDate(16)));
+		            cList.add(new Challenge(rset.getInt("CHALL_NO"),
+		            						rset.getString("CHALL_TITLE"),
+		            						rset.getString("FILE_PATH"),
+		            						rset.getString("CHALL_PERIOD"),
+		            						rset.getString("USER_ID"),
+		            						rset.getString("CATE_NAME"),
+		            						rset.getDate("CHALL_START"),
+		            						rset.getString("CHALL_STATUS"),
+		                              		rset.getDate("END_DATE")));
 		         }
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -392,152 +390,152 @@ public class myPageDao {
 		return cList;
 	}
 	
-	//6개월 전 참여했던 리스트 갯수 출력 
-	public int sixMonthsListCount(Connection conn, String userId) {
-		int listCount = 0;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("sixMonthsListCount");
-		try {
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setString(1, userId);
-	         rset = pstmt.executeQuery();
-	         
-	         if(rset.next()) {
-	            // 게시글의 첫번째 숫자는 1 ....105로 늘어나게 하기
-	           // sql에서 count를 select하는 명령문을 실행했을 때 
-	           // 결과적으로 조회되는 컬럼의 갯수는 1임 (count = n개)
-	            listCount = rset.getInt(1);
-	         }
-	         
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      } finally {
-	         close(rset);
-	         close(pstmt);
-	      }
-	      System.out.println("sixMonths : " + listCount);
-	      return listCount;
-	}
-	
-	
-	//6개월 전 참여했던 챌린지 리스트 페이징 처리된 상태에서 출력 
-	public ArrayList<Challenge> sixMonthsSelectList(Connection conn, PageInfo pi, String userId) {
-		ArrayList<Challenge> cList = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("sixMonthsSelectList");
-		
-		try {
-		      pstmt = conn.prepareStatement(sql);
-		      
-		      int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-		      int endRow = startRow + pi.getBoardLimit() - 1;
-		      
-		      pstmt.setString(1, userId);
-		      pstmt.setInt(2, startRow);
-		      pstmt.setInt(3, endRow);
-		      
-		      rset = pstmt.executeQuery();
-		      
-		      while(rset.next()) {
-		            cList.add(new Challenge(rset.getInt(2),
-		                              rset.getString(3),
-		                             rset.getInt(4),
-		                              rset.getDate(5),
-		                              rset.getString(6),
-		                              rset.getString(7),
-		                              rset.getString(8),
-		                              rset.getString(9),
-		                              rset.getInt(10),
-		                              rset.getString(11),
-		                              rset.getInt(12),
-		                              rset.getString(13),
-		                              rset.getString(14),
-		                              rset.getInt(15),
-		                              rset.getDate(16)));
-		         }
-		      System.out.println("sixmonths : " + cList);
-		   } catch (SQLException e) {
-		      e.printStackTrace();
-		   } finally {
-		        close(rset);
-		        close(pstmt);
-		     }
-		      
-		      return cList;
-		   }
-	
-	//1년 전 참여했던 챌린지 리스트 갯수 불러오기
-	public int oneyearListCount(Connection conn, String userId) {
-		int listCount = 0;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("oneyearListCount");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userId);
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				listCount = rset.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return listCount;
-	}
-	
-	//1년전 참여했던 챌린지 리스트 페이징 처리된 상태에서 출력하기
-	public ArrayList<Challenge> oneyearSelectList(Connection conn, PageInfo pi, String userId) {
-		ArrayList<Challenge> cList = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("oneyearSelectList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-			int endRow = startRow + pi.getBoardLimit() - 1;
-	      
-			pstmt.setString(1, userId);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
-			
-			rset = pstmt.executeQuery();
-			
-			 while(rset.next()) {
-		            cList.add(new Challenge(rset.getInt(2),
-		                              rset.getString(3),
-		                             rset.getInt(4),
-		                              rset.getDate(5),
-		                              rset.getString(6),
-		                              rset.getString(7),
-		                              rset.getString(8),
-		                              rset.getString(9),
-		                              rset.getInt(10),
-		                              rset.getString(11),
-		                              rset.getInt(12),
-		                              rset.getString(13),
-		                              rset.getString(14),
-		                              rset.getInt(15),
-		                              rset.getDate(16)));
-		         }
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return cList;
-	}
+//	//6개월 전 참여했던 리스트 갯수 출력 
+//	public int sixMonthsListCount(Connection conn, String userId) {
+//		int listCount = 0;
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		String sql = prop.getProperty("sixMonthsListCount");
+//		try {
+//	         pstmt = conn.prepareStatement(sql);
+//	         pstmt.setString(1, userId);
+//	         rset = pstmt.executeQuery();
+//	         
+//	         if(rset.next()) {
+//	            // 게시글의 첫번째 숫자는 1 ....105로 늘어나게 하기
+//	           // sql에서 count를 select하는 명령문을 실행했을 때 
+//	           // 결과적으로 조회되는 컬럼의 갯수는 1임 (count = n개)
+//	            listCount = rset.getInt(1);
+//	         }
+//	         
+//	      } catch (SQLException e) {
+//	         e.printStackTrace();
+//	      } finally {
+//	         close(rset);
+//	         close(pstmt);
+//	      }
+//	      System.out.println("sixMonths : " + listCount);
+//	      return listCount;
+//	}
+//	
+//	
+//	//6개월 전 참여했던 챌린지 리스트 페이징 처리된 상태에서 출력 
+//	public ArrayList<Challenge> sixMonthsSelectList(Connection conn, PageInfo pi, String userId) {
+//		ArrayList<Challenge> cList = new ArrayList<>();
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String sql = prop.getProperty("sixMonthsSelectList");
+//		
+//		try {
+//		      pstmt = conn.prepareStatement(sql);
+//		      
+//		      int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+//		      int endRow = startRow + pi.getBoardLimit() - 1;
+//		      
+//		      pstmt.setString(1, userId);
+//		      pstmt.setInt(2, startRow);
+//		      pstmt.setInt(3, endRow);
+//		      
+//		      rset = pstmt.executeQuery();
+//		      
+//		      while(rset.next()) {
+//		            cList.add(new Challenge(rset.getInt(2),
+//		                              rset.getString(3),
+//		                             rset.getInt(4),
+//		                              rset.getDate(5),
+//		                              rset.getString(6),
+//		                              rset.getString(7),
+//		                              rset.getString(8),
+//		                              rset.getString(9),
+//		                              rset.getInt(10),
+//		                              rset.getString(11),
+//		                              rset.getInt(12),
+//		                              rset.getString(13),
+//		                              rset.getString(14),
+//		                              rset.getInt(15),
+//		                              rset.getDate(16)));
+//		         }
+//		      System.out.println("sixmonths : " + cList);
+//		   } catch (SQLException e) {
+//		      e.printStackTrace();
+//		   } finally {
+//		        close(rset);
+//		        close(pstmt);
+//		     }
+//		      
+//		      return cList;
+//		   }
+//	
+//	//1년 전 참여했던 챌린지 리스트 갯수 불러오기
+//	public int oneyearListCount(Connection conn, String userId) {
+//		int listCount = 0;
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		String sql = prop.getProperty("oneyearListCount");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, userId);
+//			rset = pstmt.executeQuery();
+//			
+//			if(rset.next()) {
+//				listCount = rset.getInt(1);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(rset);
+//			close(pstmt);
+//		}
+//		return listCount;
+//	}
+//	
+//	//1년전 참여했던 챌린지 리스트 페이징 처리된 상태에서 출력하기
+//	public ArrayList<Challenge> oneyearSelectList(Connection conn, PageInfo pi, String userId) {
+//		ArrayList<Challenge> cList = new ArrayList<>();
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String sql = prop.getProperty("oneyearSelectList");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+//			int endRow = startRow + pi.getBoardLimit() - 1;
+//	      
+//			pstmt.setString(1, userId);
+//			pstmt.setInt(2, startRow);
+//			pstmt.setInt(3, endRow);
+//			
+//			rset = pstmt.executeQuery();
+//			
+//			 while(rset.next()) {
+//		            cList.add(new Challenge(rset.getInt(2),
+//		                              rset.getString(3),
+//		                             rset.getInt(4),
+//		                              rset.getDate(5),
+//		                              rset.getString(6),
+//		                              rset.getString(7),
+//		                              rset.getString(8),
+//		                              rset.getString(9),
+//		                              rset.getInt(10),
+//		                              rset.getString(11),
+//		                              rset.getInt(12),
+//		                              rset.getString(13),
+//		                              rset.getString(14),
+//		                              rset.getInt(15),
+//		                              rset.getDate(16)));
+//		         }
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(rset);
+//			close(pstmt);
+//		}
+//		return cList;
+//	}
 
 	
 	

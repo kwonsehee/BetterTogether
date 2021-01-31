@@ -50,11 +50,23 @@ public class joinedChallListServlet extends HttpServlet {
 				myPageService ms = new myPageService();
 				
 				String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+				
+				int listCount =0;
 				//1_1.게시글 총 갯수 구하기
 				//게시글이 작성 될 때마다 새로운 글이 젤 위에 있기 때문에 게시글 총 갯수를 알아와야함
-				int listCount = ms.joinedgetListCount(userId);
-				System.out.println("listCount : " + listCount);
+				int month = 0;
+				if(request.getParameter("month")!=null) {
+					month = Integer.parseInt(request.getParameter("month"));
+					 System.out.println("선택한 month : " + month); // 1,2,3
+
+					listCount =ms.getMonthCount(userId, month);
+					System.out.println("Months : " + listCount);
 				
+				}
+				else{
+					listCount = ms.joinedgetListCount(userId);
+					System.out.println("참여했던 챌린지 listCount : " + listCount);
+				}
 				//1_2.페이징 처리를 위한 변수 선언 및 연산
 				int pageLimit = 10;		//한 페이지 하단에 보여질 페이지 수
 				int boardLimit = 10;	//한 페이지에 보여질 게시글 최대 수
@@ -100,15 +112,20 @@ public class joinedChallListServlet extends HttpServlet {
 				Challenge chall = new Challenge();
 				chall.setUserId(userId);
 				
-				ArrayList<Challenge> cList = ms.joinedSelectList(pi, userId);
+				ArrayList<Challenge> cList = null;
+				if(request.getParameter("month")!=null) {
+					cList = ms.getMonthList(pi, userId, month);
 				
-				//System.out.println("pi : " + pi);
-				//System.out.println("list : " + list);
-				
+				}
+				else{
+					cList = ms.joinedSelectList(pi, userId);
+					
+				}
+				System.out.println("cList : " + cList);
+			
 				request.setAttribute("pi", pi);
 				request.setAttribute("cList", cList);
-				
-				System.out.println("cList : " + cList);
+				request.setAttribute("month", month);
 				
 				RequestDispatcher view = request.getRequestDispatcher("/views/myPage/joinedChallenge.jsp");
 				view.forward(request, response);

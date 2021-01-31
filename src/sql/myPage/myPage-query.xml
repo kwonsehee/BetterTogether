@@ -172,23 +172,12 @@
 	 	   AND 
 	 	   	   C_HITS = 'Y'
 	 </entry>
-	  <entry key="threeMonthsListCount">
+	  <entry key="getMonthCount">
 	  	SELECT COUNT(*)
-FROM(SELECT 
-                  CHALL_NO
+				FROM(SELECT 
+                  C.CHALL_NO
                   , CHALL_TITLE
-                  , CHALL_PEOPLE
-                  , CHALL_DATE
-                  , FILE_PATH
-                  , CHALL_CONFIRM
-                  , CHALL_FREQUENCY
                   , CHALL_PERIOD
-                  , CHALL_PAYMENT
-                    , CHALL_CONTENT
-                    , CHALL_COUNT
-                    , NICKNAME
-                    , CATE_NAME
-                    , CHALL_CNT
                     , CHALL_START,
                      CASE 
                     WHEN CHALL_START &gt; SYSDATE THEN 0 
@@ -196,226 +185,42 @@ FROM(SELECT
                     ELSE 1 
                     END AS STATUS 
                   FROM 
-                        CHALL CH
-                      JOIN CHALL_CATEGORY USING (CATE_ID)
-                      JOIN USER_INFO U ON (U.USER_ID = CH.USER_ID)
-                      JOIN CHALL_STATUS CS USING(CHALL_NO)
-                 WHERE U.USER_ID = ?)A
-WHERE A.STATUS =2
-AND MONTHS_BETWEEN(SYSDATE,CHALL_START) &lt;=3
+                    CHALL_STATUS CS
+                    JOIN CHALL C ON(CS.CHALL_NO=C.CHALL_NO)
+                 WHERE CS.USER_ID = ?
+                  AND CS.CHALL_STATUS != 0
+                    AND MONTHS_BETWEEN(SYSDATE,CHALL_START) &lt;=?)A
+			WHERE A.STATUS =2
 	 </entry>
-	 <entry key="threeMonthsSelectList">
-	 SELECT RNUM,  CHALL_NO
-                  , CHALL_TITLE
-                  , CHALL_PEOPLE
-                  , CHALL_DATE
-                  , FILE_PATH
-                  , CHALL_CONFIRM
-                  , CHALL_FREQUENCY
-                  , CHALL_PERIOD
-                  , CHALL_PAYMENT
-                    , CHALL_CONTENT
-                    , CHALL_COUNT
-                    , NICKNAME
-                    , CATE_NAME
-                    , CHALL_CNT
-                    , CHALL_START
- FROM(SELECT 
-             ROWNUM RNUM
-             , A.*
-        FROM (SELECT 
-                  CHALL_NO
-                  , CHALL_TITLE
-                  , CHALL_PEOPLE
-                  , CHALL_DATE
-                  , FILE_PATH
-                  , CHALL_CONFIRM
-                  , CHALL_FREQUENCY
-                  , CHALL_PERIOD
-                  , CHALL_PAYMENT
-                    , CHALL_CONTENT
-                    , CHALL_COUNT
-                    , NICKNAME
-                    , CATE_NAME
-                    , CHALL_CNT
-                    , CHALL_START,
-                     CASE 
-                    WHEN CHALL_START &gt; SYSDATE THEN 0 
+	 <entry key="getMonthList">
+	 SELECT 
+				RNUM
+			  , USER_ID
+			  , CHALL_NO
+			  , CHALL_STATUS
+			  , JOIN_CALL_DATE
+			  , CHALL_TITLE
+			  , FILE_PATH
+			  , CHALL_START
+              ,CHALL_PERIOD
+              , CATE_NAME
+          , CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) END_DATE
+		  FROM
+		  	   (SELECT ROWNUM RNUM, CE.*
+                FROM(SELECT CS.USER_ID, CHALL_NO, CS.CHALL_STATUS, JOIN_CALL_DATE, CHALL_TITLE, FILE_PATH, CHALL_PERIOD,CATE_NAME, CHALL_START,   CASE 
+                    WHEN CHALL_START &gt; SYSDATE THEN 0
                     WHEN CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt; SYSDATE THEN 2
-                    ELSE 1 
-                    END AS STATUS 
-                  FROM 
-                        CHALL CH
-                      JOIN CHALL_CATEGORY USING (CATE_ID)
-                      JOIN USER_INFO U ON (U.USER_ID = CH.USER_ID)
-                      JOIN CHALL_STATUS CS USING(CHALL_NO)
-                 WHERE U.USER_ID = ?)A
-            WHERE STATUS = 2)C
-      WHERE RNUM BETWEEN ? AND ?
-       AND MONTHS_BETWEEN(SYSDATE,CHALL_START) &lt; =3    
+                    ELSE 1
+                    END AS STATUS
+                     FROM CHALL_STATUS CS
+                     JOIN CHALL USING(CHALL_NO)
+                     JOIN CHALL_CATEGORY USING(CATE_ID)
+                     WHERE CS.USER_ID = ?
+                      AND CS.CHALL_STATUS != 0
+                     ORDER BY STATUS, JOIN_CALL_DATE DESC)CE
+                     WHERE STATUS = 2
+                     AND MONTHS_BETWEEN(SYSDATE,CHALL_START) &lt;= ? )
+            WHERE RNUM BETWEEN ? AND ?
 	 </entry>	 
-	 <entry key="sixMonthsListCount">
-	 SELECT COUNT(*)
-FROM(SELECT 
-                  CHALL_NO
-                  , CHALL_TITLE
-                  , CHALL_PEOPLE
-                  , CHALL_DATE
-                  , FILE_PATH
-                  , CHALL_CONFIRM
-                  , CHALL_FREQUENCY
-                  , CHALL_PERIOD
-                  , CHALL_PAYMENT
-                    , CHALL_CONTENT
-                    , CHALL_COUNT
-                    , NICKNAME
-                    , CATE_NAME
-                    , CHALL_CNT
-                    , CHALL_START,
-                     CASE 
-                    WHEN CHALL_START &gt; SYSDATE THEN 0 
-                    WHEN CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt; SYSDATE THEN 2
-                    ELSE 1 
-                    END AS STATUS 
-                  FROM 
-                        CHALL CH
-                      JOIN CHALL_CATEGORY USING (CATE_ID)
-                      JOIN USER_INFO U ON (U.USER_ID = CH.USER_ID)
-                      JOIN CHALL_STATUS CS USING(CHALL_NO)
-                 WHERE U.USER_ID = ?)A
-WHERE A.STATUS =2
-AND MONTHS_BETWEEN(SYSDATE,CHALL_START) &lt;=6
-	 </entry>
-	 <entry key="sixMonthsSelectList">
-	 SELECT RNUM,  CHALL_NO
-                  , CHALL_TITLE
-                  , CHALL_PEOPLE
-                  , CHALL_DATE
-                  , FILE_PATH
-                  , CHALL_CONFIRM
-                  , CHALL_FREQUENCY
-                  , CHALL_PERIOD
-                  , CHALL_PAYMENT
-                    , CHALL_CONTENT
-                    , CHALL_COUNT
-                    , NICKNAME
-                    , CATE_NAME
-                    , CHALL_CNT
-                    , CHALL_START
- FROM(SELECT 
-             ROWNUM RNUM
-             , A.*
-        FROM (SELECT 
-                  CHALL_NO
-                  , CHALL_TITLE
-                  , CHALL_PEOPLE
-                  , CHALL_DATE
-                  , FILE_PATH
-                  , CHALL_CONFIRM
-                  , CHALL_FREQUENCY
-                  , CHALL_PERIOD
-                  , CHALL_PAYMENT
-                    , CHALL_CONTENT
-                    , CHALL_COUNT
-                    , NICKNAME
-                    , CATE_NAME
-                    , CHALL_CNT
-                    , CHALL_START,
-                     CASE 
-                    WHEN CHALL_START &gt; SYSDATE THEN 0 
-                    WHEN CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt; SYSDATE THEN 2
-                    ELSE 1 
-                    END AS STATUS 
-                  FROM 
-                        CHALL CH
-                      JOIN CHALL_CATEGORY USING (CATE_ID)
-                      JOIN USER_INFO U ON (U.USER_ID = CH.USER_ID)
-                      JOIN CHALL_STATUS CS USING(CHALL_NO)
-                 WHERE U.USER_ID = ?)A
-            WHERE STATUS = 2)C
-      WHERE RNUM BETWEEN ? AND ?
-       AND MONTHS_BETWEEN(SYSDATE,CHALL_START) &lt; =6
-	 </entry>
-	 <entry key="oneyearListCount">
-	 SELECT COUNT(*)
-FROM(SELECT 
-                  CHALL_NO
-                  , CHALL_TITLE
-                  , CHALL_PEOPLE
-                  , CHALL_DATE
-                  , FILE_PATH
-                  , CHALL_CONFIRM
-                  , CHALL_FREQUENCY
-                  , CHALL_PERIOD
-                  , CHALL_PAYMENT
-                    , CHALL_CONTENT
-                    , CHALL_COUNT
-                    , NICKNAME
-                    , CATE_NAME
-                    , CHALL_CNT
-                    , CHALL_START,
-                     CASE 
-                    WHEN CHALL_START &gt; SYSDATE THEN 0 
-                    WHEN CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt; SYSDATE THEN 2
-                    ELSE 1 
-                    END AS STATUS 
-                  FROM 
-                        CHALL CH
-                      JOIN CHALL_CATEGORY USING (CATE_ID)
-                      JOIN USER_INFO U ON (U.USER_ID = CH.USER_ID)
-                      JOIN CHALL_STATUS CS USING(CHALL_NO)
-                 WHERE U.USER_ID = ?)A
-WHERE A.STATUS =2
-AND MONTHS_BETWEEN(SYSDATE,CHALL_START) &lt;=12
-	 </entry>
-	 <entry key="oneyearSelectList">
-	 SELECT RNUM,  CHALL_NO
-                  , CHALL_TITLE
-                  , CHALL_PEOPLE
-                  , CHALL_DATE
-                  , FILE_PATH
-                  , CHALL_CONFIRM
-                  , CHALL_FREQUENCY
-                  , CHALL_PERIOD
-                  , CHALL_PAYMENT
-                    , CHALL_CONTENT
-                    , CHALL_COUNT
-                    , NICKNAME
-                    , CATE_NAME
-                    , CHALL_CNT
-                    , CHALL_START
- FROM(SELECT 
-             ROWNUM RNUM
-             , A.*
-        FROM (SELECT 
-                  CHALL_NO
-                  , CHALL_TITLE
-                  , CHALL_PEOPLE
-                  , CHALL_DATE
-                  , FILE_PATH
-                  , CHALL_CONFIRM
-                  , CHALL_FREQUENCY
-                  , CHALL_PERIOD
-                  , CHALL_PAYMENT
-                    , CHALL_CONTENT
-                    , CHALL_COUNT
-                    , NICKNAME
-                    , CATE_NAME
-                    , CHALL_CNT
-                    , CHALL_START,
-                     CASE 
-                    WHEN CHALL_START &gt; SYSDATE THEN 0 
-                    WHEN CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt; SYSDATE THEN 2
-                    ELSE 1 
-                    END AS STATUS 
-                  FROM 
-                        CHALL CH
-                      JOIN CHALL_CATEGORY USING (CATE_ID)
-                      JOIN USER_INFO U ON (U.USER_ID = CH.USER_ID)
-                      JOIN CHALL_STATUS CS USING(CHALL_NO)
-                 WHERE U.USER_ID = ?)A
-            WHERE STATUS = 2)C
-      WHERE RNUM BETWEEN ? AND ?
-       AND MONTHS_BETWEEN(SYSDATE,CHALL_START) &lt; =12
-	 </entry>
+	
 </properties>

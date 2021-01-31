@@ -22,7 +22,7 @@
             selected[2] = "selected";
          }
       }   */
-   	
+   	int month = Integer.parseInt((String.valueOf(request.getAttribute("month"))));
       
 %>
 <!DOCTYPE html>
@@ -222,22 +222,22 @@
    <%@ include file="../common/common_ui.jsp"%>  
    
    <section id="content" class="joined_content">
-      <h3 id="title">참여했던 챌린지 그룹</h3>
+      
+      <%if(month>0){ %>
+     	 <h3 id="title"><%=month %>개월 전 참여했던 챌린지 그룹</h3>
+      <%}else{ %>
+         <h3 id="title">참여했던 챌린지 그룹</h3>
+      <%} %>
       <% if(loginUser!=null && cList!=null) { %>
-     <%--  <form action="<%= request.getContextPath() %>/joined/dateSelect" method="post">
-      <input type="hidden" name="threemonths" value="3개월">
-     <input type="button" id="month1" class="threemons" name="3개월">3개월 전
-      </form>
-      
-      <form action="<%= request.getContextPath() %>/joined/dateSelect" method="post">
-      <input type="hidden" name="sixmonths" value="6개월">
-      <input type="button" id="month2" class="sixmons" name="6개월">6개월 전      
-      </form>
-      
-      <form action="<%= request.getContextPath() %>/joined/dateSelect" method="post">
-      <input type="hidden" name="oneyear" value="12개월">
-      <input type="button" id="month3" class="year" name="1년 전">1년 전      
-      </form> --%>
+  
+ 	 <form action="<%= request.getContextPath() %>/joined/list" method="post">
+        	<span id="btnType_area">
+				<button type="submit" name="month" value="3">3개월 전</button>
+				<button type="submit" name="month" value="6">6개월 전</button>
+				<button type="submit" name="month" value="12">12개월 전</button>
+			</span>
+        </form>
+        
       
             <div id="joined">
                  <div id="joinedChall">
@@ -245,7 +245,6 @@
                     <tr>
                     	<th>챌린지 번호</th>
                     	<th>카테고리</th>
-                    	<!-- <th>카테고리 명</th> -->
                        <th>챌린지 명</th>
                        <th>챌린지 기간</th>
                     </tr>
@@ -270,16 +269,23 @@
             <!-- 처음으로(<<) 이전페이지로(<) 페이지 목록 다음 페이지로(>) 맨 끝으로(>>) -->  
               
             <!-- 처음으로(<<) -->
-			
+			<% if(month>0){%>
+			<button onclick="location.href='<%= request.getContextPath() %>/joined/list?month=<%=month%>&currentPage=1'"> &lt;&lt;</button>	
+			<%}else{ %>      
 			<button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=1'"> &lt;&lt;</button>	
- 
+ 			<% } %>
 			
 			<!-- 이전으로(<) -->
 			<% if(pi.getCurrentPage() == 1) {%>
 			<button disabled> &lt; </button>
 			<% } else {%>
-	        <button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=<%= pi.getCurrentPage() - 1%>'"> &lt; </button>
-			<% } %>
+				<% if(month>0){%>
+				    <button onclick="location.href='<%= request.getContextPath() %>/joined/list?month=<%=month%>&currentPage=<%= pi.getCurrentPage() - 1%>'"> &lt; </button>
+		
+				<%}else{ %>
+				    <button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=<%= pi.getCurrentPage() - 1%>'"> &lt; </button>
+				<%} %>
+	    	<% } %>
 			
 			<!-- 10개의 페이지 목록 -->
 			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) {%>
@@ -287,20 +293,31 @@
 			<button style="background:white;" disabled><%= p %></button>	
 			
 			<% } else {%>
-			
-			<button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=<%=p %>'"> <%= p %> </button>
+				<% if(month>0){%>
+				    <button onclick="location.href='<%= request.getContextPath() %>/joined/list?month=<%=month%>&currentPage=<%=p %>'"> <%= p %> </button>
+				<%}else{ %>
+					<button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=<%=p %>'"> <%= p %> </button>	
+				<% } %>
 			<% } %>
-			<% } %>
-            
+            <% } %>
             <!-- 다음으로(>) -->
 			<% if(pi.getCurrentPage() == pi.getMaxPage()){ %>
 			<button disabled> &gt;</button>
 			
 			<% } else {%>
-			<button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt;</button><% } %>
+				<% if(month>0){%>
+				    <button onclick="location.href='<%= request.getContextPath() %>/joined/list?month=<%=month%>&currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt;</button>
+				<%}else{ %>
+					<button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt;</button>
+				<% } %>
+			<% } %>
              <!-- 맨 끝으로 (>>) -->
-			<button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
-               
+ 
+			<% if(month>0){%>
+				<button onclick="location.href='<%= request.getContextPath() %>/joined/list?month=<%=month%>&currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+			<%}else{ %>            
+				<button onclick="location.href='<%= request.getContextPath() %>/joined/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+             <% } %>  
             </div>
                 <button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button>
                 <button id="backBtn" type="button" class="text_font joinform_btn" onclick="javascript:history.back();">뒤로가기</button>
@@ -354,12 +371,6 @@
       });
     </script>
     
-   <%--  <script>
-    	//1.3개월 전 
-    	const month1 = document.getElementById('month1');
-    	month1.addEventListener('click', function(){
-    		location.href='<%= request.getContextPath()%>/joined/3mons';
-    	});
-    </script> --%>
+
 </body>
 </html>

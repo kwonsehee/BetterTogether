@@ -13,7 +13,10 @@ public class Search {
 		this.searchCondition = searchCondition;
 		this.search = search;
 	}
-
+	public Search( String search) {
+		super();
+		this.search = search;
+	}
 	public String getSearchCondition() {
 		return searchCondition;
 	}
