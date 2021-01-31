@@ -155,9 +155,9 @@ function Activity(name, list){
 }
 
 var acts = new Array(); //배열 
-    acts[0] = new Activity('1', ['1', '2']);
-    acts[1] = new Activity('2', ['1', '2', '3', '4', '5']);
-    acts[2] = new Activity('3', ['1', '2', '3', '4', '5', '6', '7']);
+    acts[0] = new Activity('주말', ['1', '2']);
+    acts[1] = new Activity('평일', ['1', '2', '3', '4', '5']);
+    acts[2] = new Activity('상관없음', ['1', '2', '3', '4', '5', '6', '7']);
 
 function updateFreq(str){
     var frm = document.myForm; //입력 폼 name --> myForm 
@@ -223,9 +223,9 @@ function updateFreq(str){
 
 					<tr>
 						<th>인증 방법</th>
-						<td><input type="radio" id="weekend" name="confirm" value="1" onclick="updateFreq(this.value)"><label>주말</label>
-							<input type="radio" id="weekday" name="confirm" value="2" onclick="updateFreq(this.value)"><label>평일</label>
-							<input type="radio" id="both" name="confirm" value="3" onclick="updateFreq(this.value)"><label>상관없음</label>
+						<td><input type="radio" id="weekend" name="confirm" value="주말" onclick="updateFreq(this.value)"><label>주말</label>
+							<input type="radio" id="weekday" name="confirm" value="평일" onclick="updateFreq(this.value)"><label>평일</label>
+							<input type="radio" id="both" name="confirm" value="상관없음" onclick="updateFreq(this.value)"><label>상관없음</label>
 						</td>
 					</tr>
 

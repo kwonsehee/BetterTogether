@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="challenge.model.vo.*, java.util.Date, java.util.ArrayList, java.text.SimpleDateFormat"%>
+	import="challenge.model.vo.*, java.util.*, java.util.ArrayList, java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%
 	Challenge ch = (Challenge)request.getAttribute("challenge");   
 
@@ -14,32 +14,41 @@
 		System.out.println("찜 상태 : " + hits_status);
 	}
 	
-
 	// 챌린지 시작일 값 추출 
 	Date from = ch.getChallStart();
 	SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-	String to = transFormat.format(from);
+	String startDate = transFormat.format(from);
+	
+	String year = startDate.substring(0, 4);
+	String month = startDate.substring(5, 7);
+	String day = startDate.substring(8, 10);
+	
+	
+	// 오늘 날짜 구하기
+	Date date= new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	String today = sdf.format(date);
+	
+	
+	//진행중 : to < today < to + Integer.parseInt(ch.getChallPeriod())*7
+	//종료 : today >= to + Integer.parseInt(ch.getChallPeriod())*7
+	
+	//시작날짜 + 기간
+	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	Calendar cal = Calendar.getInstance();
+	cal.setTime(from); // 챌린지 시작일로 세팅 
+	cal.add(Calendar.DATE, Integer.parseInt(ch.getChallPeriod())*7); // 챌린지 시작일 + 기간 세팅 
+	String period = df.format(cal.getTime()); // 챌린지 시작일 + 기간 
+	System.out.println("period(챌린지 끝나는 날): " + period); 
+	
+	// 진행중 : startDate < today(sysdate) < period(챌린지 끝나는 날)
+	int compare = startDate.compareTo(today); 
+	int compare2 = today.compareTo(period); 
+	//compare < 0 && compare2 < 0
 
-	String year = to.substring(0, 4);
-	String month = to.substring(5, 7);
-	String day = to.substring(8, 10);
-
-	System.out.println("인증방법 : " + ch.getChallConfirm());
-
-	// 인증 방법 한글로 나타내기 
-	String confirmNum = ch.getChallConfirm();
-	String confirm[] = new String[3];
-	switch (confirmNum) {
-	case "1":
-		confirm[0] = "주말";
-		break;
-	case "2":
-		confirm[1] = "평일";
-		break;
-	case "3":
-		confirm[2] = "상관없음";
-		break;
-	}
+	// 종료 : period(챌린지 끝나는 날) <= today(sysdate)
+	int compare3= period.compareTo(today);
+	// compare3 < 0 
 
 	// chall_status (참여중이면 이미 참여했다고 alert 띄우기)
 	int chall_status = 0;
@@ -57,10 +66,6 @@
 	if ((request.getAttribute("hits") != null)) {
 		hits = Integer.parseInt((String.valueOf(request.getAttribute("hits"))));
 	}
-	//int hits = Integer.parseInt((String.valueOf(request.getAttribute("hits"))));
-	
-	// challBoardType (시작전: 1 / 진행중:2 / 종료:3)
-	//int challBoardType = Integer.parseInt((String.valueOf(request.getAttribute("challBoardType"))));
 	
 %>
 <!DOCTYPE html>
@@ -95,6 +100,19 @@
 	margin-left: 10px;
 	margin-top: 10px;
 	font-size: 20px;
+}
+
+#challEnd_btn{
+	font-family: "Do Hyeon";
+	width: 120px;
+	height: 50px;
+	border-radius: 20px;
+	border: solid 1px #aaa3a3;;
+	background-color: #aaa3a3;;
+	margin-left: 10px;
+	margin-top: 10px;
+	font-size: 20px;
+	color:white;
 }
 
 #chall_backBtn {
@@ -230,6 +248,24 @@
 	padding-left: 15px;
 }
 
+#challEnd{
+	font-family: "Do Hyeon";
+	font-size: 35px;
+	color: #ff6064;
+	float:left;
+	padding-top:35px;
+	padding-left: 400px;
+}
+
+#challIng{
+	font-family: "Do Hyeon";
+	font-size: 35px;
+	color: #ff6064;
+	float:left;
+	padding-top:35px;
+	padding-left: 400px;
+}
+
 #count_img {
 	margin-top: 40px;
 	margin-left: 170px;
@@ -256,14 +292,23 @@ button:focus {
 	<%@ include file="../common/common_ui.jsp"%>
 
 	<section id="content" class="content_css">
+	<%if(compare < 0 && compare2 < 0){ %>
+		<section id="countDown_content">
+			<span id="challIng">챌린지 진행중</span>
+		</section>
+		<!-- 카운트 다운  -->
+		<%} else if(compare3 < 0){ %>
+			<section id="countDown_content">
+			<span id="challEnd">챌린지 종료</span>
+		</section>
+		<% } else { %>
 		<section id="countDown_content">
 			<img
 				src="<%=request.getContextPath()%>/resources/images/countdown.png"
 				id="count_img" class="img-size"> <span id="countDown_title">챌린지
 				시작까지</span> <span id="countDown"></span>
 		</section>
-
-		<!-- 카운트 다운  -->
+		
 		<script>
         // 챌린지 시작일 세팅
         var countDownDate = new Date("<%=month%> <%=day%> <%=year%> 00:00:00").getTime();
@@ -297,6 +342,7 @@ button:focus {
         }
       }, 1000);
       </script>
+    <% } %>
 
 		<section id="content-1">
 			<!-- width: 400px; height: 330px; -->
@@ -362,17 +408,17 @@ button:focus {
 					<td><img
 						src="<%=request.getContextPath()%>/resources/images/camera.png"
 						class="img-size"></td>
-					<% for(int i = 0; i < confirm.length; i++)  {%>
-						<% if(confirm[i] != null) { %>
-					<td>인증 방법 : <span><%= confirm[i] %></span></td>
-					<% }%>
-				<% } %>
+					<td>인증 방법 : <span><%= ch.getChallConfirm() %></span></td>
 				</tr>
 			</table>
 
 			<section id="btn-form">
 				<button id="chall_backBtn">목록으로</button>
+				<%if(compare3 < 0){%>
+					<button id="challEnd_btn">챌린지 종료</button>
+				<% } else{ %>
 				<button id="challenge_btn">챌린지 참가</button>
+				<%} %>
 				<div>
 					<button id="hits_btn">
 					<!-- 찜하기 버튼 ('Y'일 경우 -> 찜완료 (채워진 하트)/ 'N'일 경우 다시 찜 삭제 (빈하트))  -->
@@ -399,7 +445,15 @@ button:focus {
 			location.href='<%= request.getContextPath()%>/chall/list';
 		});
 		
-		// 챌린지 참가하기 버튼 이벤트 (로그인 해야 참여가능)
+
+		// 챌린지 참가하기 버튼 이벤트
+		<%if(compare3 < 0){%> // 종료일때 
+			const challEnd_btn = document.getElementById('challEnd_btn');
+			challEnd_btn.addEventListener('click',function(){
+				alert('종료된 챌린지 입니다!!');
+				location.href="<%= request.getContextPath()%>/chall/join?challNo="+<%=ch.getChallNo()%>;
+			});
+		<%} else {%> // 시작전, 진행중일때 
 			const challenge_btn = document.getElementById('challenge_btn');
 			challenge_btn.addEventListener('click',function(){
 				<% if(loginUser != null && (joinPeopleCnt < ch.getChallPeople())){ %>	
@@ -413,8 +467,12 @@ button:focus {
 			<%} if (chall_status == 1) {%>
 				alert('이미 참여한 챌린지 입니다!!!');
 				location.href="<%= request.getContextPath()%>/chall/join?challNo="+<%=ch.getChallNo()%>;
-			<% } %>
+			<% } if(compare < 0 && compare2 < 0) {%>
+				alert('챌린지 진행중입니다!!');
+				location.href="<%= request.getContextPath()%>/chall/join?challNo="+<%=ch.getChallNo()%>;
+			<%}%>
 			});
+		<%}%>
 			
 		
 		//찜하기 버튼 ('Y'일 경우 -> 찜완료 / 'N'일 경우 다시 찜 삭제) 
