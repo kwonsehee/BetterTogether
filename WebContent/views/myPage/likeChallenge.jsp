@@ -153,7 +153,7 @@
                  				<td><%= chall.getCateName() %></td>
                  				<td><%= chall.getChallTitle() %></td>
                  				<td><%= chall.getChallPeriod() %></td>
-                 				<td><button id="likeDeleteBtn">찜하기 취소</button></td>
+                 				<td><button id="likeDeleteBtn" class="likeUpdateBtn">찜하기 취소</button></td>
                  			</tr>
           			<% } %> 
                  		</table>
@@ -210,13 +210,17 @@
 
       $(function(){
     	  //챌린지 찜하기 취소 버튼 클릭 시 찜하기한 챌린지에서 삭제하기
-    	  $("#likeDeleteBtn").click(function(e){
+    	  //id는 고유의 값이기 때문에 버튼을 id로 하면 순서대로 적용은 가능하지만 중간에 내가 다른 찜하기 취소를 클릭하면 인식하지 못하고 
+    	  //챌린지 리스트로 넘어가게 된다
+    	  //class로 버튼 속성을 주면 순서대로 누르지 않아도 적용 가능
+    	  $(".likeUpdateBtn").click(function(e){
     		  //likeList에 이벤트를 걸어놔서 버튼에도 이벤트가 걸림 stopProagation으로 막아줌
          	 e.stopPropagation(); 
     		  //td에 있는 버튼 
          	 var num = $(this).parent().parent().children().eq(0).text();
     		  //찜하기 취소 버튼 클릭 시 넘어가게 하기
          	 location.href="<%= request.getContextPath() %>/like/hits?challNo=" +num;
+         	 alert("찜하기 취소가 되었습니다");
           });
           
     	  
