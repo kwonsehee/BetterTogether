@@ -41,6 +41,10 @@
 	String period = df.format(cal.getTime()); // 챌린지 시작일 + 기간 
 	System.out.println("period(챌린지 끝나는 날): " + period); 
 	
+	// 시작전 : sysdate < chall_start
+	int compare1 = today.compareTo(startDate); 
+	// compare1 < 0
+	
 	// 진행중 : startDate < today(sysdate) < period(챌린지 끝나는 날)
 	int compare = startDate.compareTo(today); 
 	int compare2 = today.compareTo(period); 
@@ -358,7 +362,11 @@ button:focus {
 					<td><img
 						src="<%=request.getContextPath()%>/resources/images/user.png"
 						class="img-size"></td>
-					<td>방장 : <span><%=ch.getUserId()%></span><button id="warning_btn"> 신고하기</button></td>
+					<td>방장 : <span><%=ch.getUserId()%></span>
+					<%if(!(compare1 < 0)){ %>
+					<% } else { %>
+					<button id="warning_btn"> 신고하기</button></td>
+					<% } %>
 				</tr>
 				<tr>
 
