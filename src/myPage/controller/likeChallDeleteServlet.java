@@ -43,19 +43,19 @@ public class likeChallDeleteServlet extends HttpServlet {
 		int updateHitsCount = 0;
 		
 		//chall_status에 테이블에 해당번호와 유저 아이디 컬럼이 있는지 확인
-		ChallengeStatus cs = new myPageService().likeSelectStatus(challNo, userId);
+		//ChallengeStatus cs = new myPageService().likeSelectStatus(challNo, userId);
 		
 		//찜상태 확인하기
-		String hits_status = new myPageService().likeSelectHits(challNo, userId);
+		//String hits_status = new myPageService().likeSelectHits(challNo, userId);
 		
 		//찜한 상태 확인하기
-		 if (cs != null && hits_status.equals("Y")) { 
+		 //if (cs != null && hits_status.equals("Y")) { 
 			 result = new myPageService().likeDeleteHits(challNo, userId);
-		 }
+		// }
 		 
 		
 		if(result > 0) {
-			request.setAttribute("ChallengeStatus", cs);
+//			request.setAttribute("ChallengeStatus", cs);
 			response.sendRedirect(request.getContextPath() + "/like/list");
 		} else {
 			request.setAttribute("msg", "챌린지 찜하기 취소를 실패하였습니다");

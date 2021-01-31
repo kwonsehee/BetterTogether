@@ -152,7 +152,7 @@
                  				<td><%= chall.getChallNo() %></td>
                  				<td><%= chall.getCateName() %></td>
                  				<td><%= chall.getChallTitle() %></td>
-                 				<td><%= chall.getChallPeriod() %></td>
+                 				 <td><%=chall.getChallStart() %>~<%= chall.getEndDate() %></td>
                  				<td><button id="likeDeleteBtn" class="likeUpdateBtn">찜하기 취소</button></td>
                  			</tr>
           			<% } %> 

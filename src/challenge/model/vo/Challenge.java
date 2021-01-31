@@ -34,7 +34,7 @@ public class Challenge {
 	private Date challStart; // 챌린지 시작일
 	private String challStatus; // 챌린지 게시물 삭제 여부 
 	private int hitsCount;	// 찜하기 갯수(슬라이드에서 찜하기 갯수 갖고와야 해서)
-
+	private Date endDate; //챌린지 종료 날짜 
 
 
 	public Challenge() {
@@ -145,7 +145,7 @@ public class Challenge {
 	}
 	
 	
-	// 내가 모집한 탤린지 조회용
+	// 내가 모집한 챌린지 조회용
 	public Challenge(int challNo, String challTitle, int challPeople, Date challDate, String challFile,
 			String challConfirm, String challFrequency, String challPeriod, int challPay, String challContent,
 			int cateId, Date challStart, String challStatus) {
@@ -188,12 +188,23 @@ public class Challenge {
 	}
 
 
-	// 카테고리 선택시 이동하는 화면에 필요
+	//내가 참여했던 챌린지 조회용
+	public Challenge(int challNo, String challTitle, String challFile, String challPeriod, String userId,
+			String cateName, Date challStart, String challStatus, Date endDate) {
+		super();
+		this.challNo = challNo;
+		this.challTitle = challTitle;
+		this.challFile = challFile;
+		this.challPeriod = challPeriod;
+		this.userId = userId;
+		this.cateName = cateName;
+		this.challStart = challStart;
+		this.challStatus = challStatus;
+		this.endDate = endDate;
+	}
 	public String getUserId() {
 		return userId;
 	}
-
-
 
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -343,6 +354,16 @@ public class Challenge {
 
 	public void setHitsCount(int hitsCount) {
 		this.hitsCount = hitsCount;
+	}
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 
