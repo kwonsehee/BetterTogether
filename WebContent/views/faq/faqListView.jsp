@@ -52,7 +52,7 @@
     		background-color: white;
     		border-radius: 20px;
     		font-family: "Do Hyeon";
-
+			padding-right: 5%;
             }
 
         
@@ -67,6 +67,7 @@
             height: 100px;
             position: relative;
             padding-top: 5%;
+            padding-left: 3%;
         }
 
         #search-form {
@@ -144,17 +145,36 @@
 		}
 		
 		/* 버튼 css */
+		
+		.btn2 {
+			width: 50px;
+			height:20px;
+			background: none;
+			text-align: center;
+			border: 2px solid #ff60657e;
+			border-radius: 55px;
+			font-family: "Do Hyeon";
+			font-size: 12px;
+			float: right;
+			
+	
+		}
+
+		.btn2 a {
+			color: #757575;
+			font-size: 12px;
+		}
+		
 		.btn {
             width: 130px;
             height: 30px;
             margin:5px;  
-            background: #ff60657e;
-            border: 0px;
-            border-radius: 55px;  
-            float: left;     
-            color:white;
-            font-family: "Do Hyeon";
-            font-size: 16px;
+           	background: white;
+			text-align: center;
+			border: 2px solid #ff60657e;
+			border-radius: 55px;
+			font-family: "Do Hyeon";
+			font-size: 18px;
         }
         .btnArea {
         	margin: auto;
@@ -226,16 +246,22 @@
 							<% if(f.getQnaType().equals("F")) { %>
 						<tr class="question"> 
 							<td id="none"><%= f.getQnaNo() %></td>
-							<td><%= f.getQnaTitle() %></td>
+							<td>Q . <%= f.getQnaTitle() %>
+							<% if(loginUser.getMembertype() == 0) { %>
+							<button type="button" class="btn2" id="deleteBtn">삭제</button>
+							<button type="button" class="btn2" id="updateBtn" onclick="location.href='<%= request.getContextPath()%>/faq/updateForm?qnaNo=<%= f.getQnaNo() %>'" >수정</button>
+							<% } %>
+							</td>
 						</tr>
 						<tr class="hide"> 
-                			<td><%= f.getQnaContent() %></td> 
+                			<td>A . <%= f.getQnaContent() %></td> 
             			</tr>
 							<%} %>
 						<%} %>	
 					<%} %> 
         		</tbody> 
 			</table>
+			
 			
         <script> 
             $(function(){
@@ -303,22 +329,17 @@
 			
 			
         <script>
+        
 		// 수정 삭제 기능
-		<%if(loginUser != null && loginUser.getMembertype() == 0){%>
 		$(function(){
-			$("#faqBoard td").mouseenter(function(){
-				$(this).parent().css({"background":"lightgray", "cursor":"pointer"});
-			}).mouseout(function(){
-				$(this).parent().css("background", "white");
-			}).click(function(){
-				var qnaNo = $(this).parent().children().eq(0).text();
+			$("#faqBoard td").parent().children().eq(0).text().(function())
 				
-				location.href='<%= request.getContextPath() %>/faq/updateForm?qnaNo=' + qnaNo;
+				location.href='<%= request.getContextPath() %>/faq/delete';
 		
 				});
 			});
-		<% } %>
 		</script>
+		
     </section>
 
 </body>

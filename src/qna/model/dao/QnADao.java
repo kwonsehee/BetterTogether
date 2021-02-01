@@ -485,4 +485,22 @@ public class QnADao {
 		}
 		return list;
 	}
+
+	public int deleteFAQ(Connection conn, int qnaNo) {
+		int result = 0;
+		PreparedStatement pstmt=null;
+		String sql =prop.getProperty("deleteFAQ");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, qnaNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

@@ -17,17 +17,18 @@
         }
         
         #questionBtn {
-            width: 130px;
+            width: 100px;
             height: 30px;
-            margin:10px;  
-            background: #ff60657e;
-            border: 0px;
-            border-radius: 55px;  
-            float: right;     
+            margin:10px;   
+            float: right;
+            background: white;
+			text-align: center;
+			border: 2px solid #ff60657e;
+			border-radius: 55px;
         }
 
         #questionBtn a {
-            color:white;
+        	color:#ff60657e;
             font-family: "Do Hyeon";
             font-size: 16px;
         }
@@ -65,10 +66,14 @@
             padding: 2px;
             padding-left: 10px;
             text-align: center;
+            font-family: "Do Hyeon";
+            font-size: 18px;
+            color : #757575;
         }
 
         #tb_title {
             width:60%;
+            
         }
         #tb_author {
             width:20%;
@@ -114,6 +119,11 @@
             cursor : pointer;
         }
         
+        #qnaBoard #title {
+        	padding-left: 15%;
+        	text-align: left;
+        }
+        
         /* 페이징바 영역 */
 		.pagingArea {
 			text-align:center;
@@ -130,6 +140,8 @@
 		.pagingArea button:hover {
 			cursor:pointer;
 		}
+		
+		
 </style>
 </head>
 <body>
@@ -163,7 +175,7 @@
 							<% if(q.getQnaType().equals("Q")) { %>
 						<tr>
 							<td><%= q.getQnaNo() %></td>
-							<td><%= q.getQnaTitle() %></td>
+							<td id="title"><%= q.getQnaTitle() %></td>
 							<td><%= q.getUserId()%></td>
 							<td><%= q.getQnaDate()%></td>
 						</tr>
