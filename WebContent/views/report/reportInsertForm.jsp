@@ -158,7 +158,7 @@
 	<%@ include file="../common/common_ui.jsp"%>
 
 <section id="content" class="content_css">
-        <form id="report_form" action="<%= request.getContextPath() %>/report/insert" method="post">
+        <form id="report_form" action="<%= request.getContextPath() %>/report/insert" method="post" enctype="multipart/form-data">
           <section id="title">
                 <p><input type="hidden"name="category"value="<%=category %>" readonly><%=category %> 신고</p>
                  <div class="line"></div>
