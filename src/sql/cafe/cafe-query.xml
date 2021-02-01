@@ -188,7 +188,8 @@
 			, CAFE_PAGE  
 			, USER_ID
 			, CAFE_STATUS
-
+			, CAFE_PHOTO2
+			, CAFE_PHOTO3
 
 			)
 			VALUES
@@ -210,6 +211,8 @@
 			, ? 
 			, ?
 			, DEFAULT
+			, ?
+			, ?
 			 
 	)
 	</entry>
@@ -300,6 +303,8 @@
 		,CLOSED_DAYS
 		,CAFE_PAGE 
 		,USER_ID
+		,CAFE_PHOTO2
+		,CAFE_PHOTO3
 	FROM
 		 CAFE 
 	WHERE
@@ -322,6 +327,8 @@
 			, DETAIL_ADDRESS =?
 			, CLOSED_DAYS =?
 			, CAFE_PAGE   =? 
+			, CAFE_PHOTO2 =? 
+			, CAFE_PHOTO3 =? 
 		WHERE 
 		CAFE_CODE = ? 
 	</entry>

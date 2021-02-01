@@ -98,12 +98,13 @@ public class cafeInsertServlet extends HttpServlet {
 			String closed_day = multiRequest.getParameter("closed_day"); 
 			String cafe_page = multiRequest.getParameter("cafe_page"); 
 			String UserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+			String cafe_photo2 = multiRequest.getFilesystemName("cafe_photo2");
+			String cafe_photo3 = multiRequest.getFilesystemName("cafe_photo3");
+			
+			Cafe n = new Cafe(cafe_oh,cafe_name,cafe_area,cafe_phone, cafe_capacity ,cafe_notice,cafe_info,cafe_photo,AFFILIATED_CAFE,cafe_map,detail_address,closed_day,cafe_page,UserId,cafe_photo2,cafe_photo3);
 			
 			
-			Cafe n = new Cafe(cafe_oh,cafe_name,cafe_area,cafe_phone, cafe_capacity ,cafe_notice,cafe_info,cafe_photo,AFFILIATED_CAFE,cafe_map,detail_address,closed_day,cafe_page,UserId);
-			
-			
-			System.out.println("cafe_map:" +cafe_map);
+			System.out.println("cafe_map:" +cafe_photo2);
 			
 			
 			int result = new CafeService().insertCafe(n) ;

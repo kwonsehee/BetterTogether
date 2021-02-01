@@ -160,8 +160,12 @@ textarea {
 				<h1 id="title">스터디카페 수정</h1>
 				<form action="<%=request.getContextPath()%>/cafe/update"
 					method="post" enctype="multipart/form-data">
-					<input type="hidden" name="Cafe_code"
-						value="<%= c.getCafe_code() %>">
+					<input type="hidden" name="Cafe_code" value="<%= c.getCafe_code() %>"> 
+					
+					<input type="hidden" name="Cafe_photo" value="<%= c.getCafe_photo() %>"> 
+					<input type="hidden" name="Cafe_photo2" value="<%= c.getCafe_photo2() %>"> 
+					<input type="hidden" name="Cafe_photo3" value="<%= c.getCafe_photo3() %>"> 
+					
 
 					<h4 class="studycafe_title"
 						style="bottom: 65%; margin-bottom: 80px;">카페이름</h4>
@@ -282,10 +286,21 @@ textarea {
 					<textarea name="cafe_notice" value="<%=c.getCafe_notice()%>"
 						style="resize: none; left: 550px; top: 270px;" maxlength="110"> </textarea>
 
-					<h4 class="studycafe_title2" style="margin-top: 42%;">내부사진</h4>
-					<div class="photo">
-						<input type="file" name="cafe_photo">
-					</div>
+					<h4 class="studycafe_title2" style="margin-top: 42%;">대표이미지</h4>
+				<div class="photo">
+					<input type="file" name="cafe_photo" >
+				</div>
+				
+					<h4 class="studycafe_title2" style="margin-top: 50%;">  </h4>
+				<div class="photo">
+					<input type="file" name="cafe_photo2" style="margin-top: 42%;">
+				</div>
+				
+				
+					<h4 class="studycafe_title2" style="margin-top: 55%;">  </h4>
+				<div class="photo">
+					<input type="file" name="cafe_photo3" style="margin-top: 85%;">
+				</div>
 
 					<!--  업데이트폼에서는 제휴정보는 선택할수 없음. 첨음 등록할때 제휴카페는 결제를 해야하기 때문에 일반 카페에서 제휴 카페로 수정불가. 일반카페에서 제휴카페로 등록하고 싶으면 삭제후 다시 작성 -->
 

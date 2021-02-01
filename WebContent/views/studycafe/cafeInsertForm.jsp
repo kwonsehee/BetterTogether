@@ -128,8 +128,8 @@ textarea {
 	position: absolute;
 	left: 56.07%;
 	right: 36.35%;
-	top: 82.18%;
-	bottom: 13.65%;
+	top: 87.18%;
+	bottom: 8.65%;
 }
 
 map_wrap {
@@ -296,19 +296,34 @@ map_wrap {
 				<textarea name="cafe_notice"
 					style="resize: none; left: 550px; top: 270px;" maxlength="110"> </textarea>
 
-				<h4 class="studycafe_title2" style="margin-top: 42%;">내부사진 </h4>
+				<h4 class="studycafe_title2" style="margin-top: 42%;">대표이미지</h4>
 				<div class="photo">
-					<input type="file" name="cafe_photo">
+					<input type="file" name="cafe_photo" >
 				</div>
 				
-				<h4 class="studycafe_title2" style="margin-top: 49%;">카페제휴정보</h4>
+					<h4 class="studycafe_title2" style="margin-top: 50%;">  </h4>
+				<div class="photo">
+					<input type="file" name="cafe_photo2" style="margin-top: 42%;">
+				</div>
+				
+				
+					<h4 class="studycafe_title2" style="margin-top: 55%;">  </h4>
+				<div class="photo">
+					<input type="file" name="cafe_photo3" style="margin-top: 85%;">
+				</div>
+				
+				
+				
+				
+				
+				<h4 class="studycafe_title2" style="margin-top: 52%;">카페제휴정보</h4>
 
 				<select class="photo3" name="AFFILIATED_CAFE">
 					<option value="N">일반</option>
 					<option value="Y">제휴</option>
 				</select>
 				<MARQUEE DIRECTION="left" class="studycafe_title2"
-					style="font-size: 14px; color: red; margin-top: 490px; border-left-width: 180px; margin-left: 140px; width: 200px;">※ 제휴선택시 결제해야 이용가능합니다 </MARQUEE>
+					style="font-size: 14px; color: red; margin-top: 520px; border-left-width: 180px; margin-left: 140px; width: 200px;">※ 제휴선택시 결제해야 이용가능합니다 </MARQUEE>
 
 
 
