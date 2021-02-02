@@ -56,7 +56,7 @@ public class CommuService {
 		ArrayList<Member> mlist = new CommuDao().selectChallengerLankList(conn);
 		
 		close(conn);
-		System.out.println("service 챌린저 탑텐 : " + mlist);
+		//System.out.println("service 챌린저 탑텐 : " + mlist);
 		
 		
 		return mlist;
