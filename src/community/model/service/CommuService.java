@@ -10,6 +10,7 @@ import challenge.model.dao.ChallDao;
 import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
 import community.model.dao.CommuDao;
+import member.model.vo.Member;
 
 public class CommuService {
 
@@ -47,6 +48,18 @@ public class CommuService {
 		close(conn);
 		
 		return hit;
+	}
+
+	// 챌린저 top 10 
+	public ArrayList<Member> selectChallengerLankList() {
+		Connection conn = getConnection();
+		ArrayList<Member> mlist = new CommuDao().selectChallengerLankList(conn);
+		
+		close(conn);
+		System.out.println("service 챌린저 탑텐 : " + mlist);
+		
+		
+		return mlist;
 	}
 
 }

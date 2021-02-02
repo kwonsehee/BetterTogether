@@ -15,6 +15,8 @@ import java.util.Properties;
 import challenge.model.dao.ChallDao;
 import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
+import member.model.vo.Member;
+
 
 public class CommuDao {
 	
@@ -97,7 +99,8 @@ public class CommuDao {
 		return list;
 		
 	}
-
+	
+	// 찜 갯수 카운트 
 	public int getHitsCount(Connection conn, int cNo) {
 		int hit = 0;
 		PreparedStatement pstmt = null;
@@ -122,6 +125,31 @@ public class CommuDao {
 		}
 		
 		return hit;
+	}
+
+	// 챌린저 top 10
+	public ArrayList<Member> selectChallengerLankList(Connection conn) {
+		ArrayList<Member> mlist = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectChallengetLankList");
+		
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				mlist.add(new Member(rset.getString(1)));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		// System.out.println("dao top10 : " + mlist);
+		
+		return mlist;
 	}
 
 }
