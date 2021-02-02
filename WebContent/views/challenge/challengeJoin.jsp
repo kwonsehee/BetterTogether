@@ -41,6 +41,10 @@
 	String period = df.format(cal.getTime()); // 챌린지 시작일 + 기간 
 	System.out.println("period(챌린지 끝나는 날): " + period); 
 	
+	// 시작전 : sysdate < chall_start
+	int compare1 = today.compareTo(startDate); 
+	// compare1 < 0
+	
 	// 진행중 : startDate < today(sysdate) < period(챌린지 끝나는 날)
 	int compare = startDate.compareTo(today); 
 	int compare2 = today.compareTo(period); 
@@ -358,7 +362,11 @@ button:focus {
 					<td><img
 						src="<%=request.getContextPath()%>/resources/images/user.png"
 						class="img-size"></td>
-					<td>방장 : <span><%=ch.getUserId()%></span><button id="warning_btn"> 신고하기</button></td>
+					<td>방장 : <span><%=ch.getUserId()%></span>
+					<%if(!(compare1 < 0)){ %>
+					<% } else { %>
+					<button id="warning_btn"> 신고하기</button></td>
+					<% } %>
 				</tr>
 				<tr>
 
@@ -385,16 +393,13 @@ button:focus {
 			
 			
 		<!-- 인증모아보기 갈때 challeng_no가져가기 -->
-			<form id="confirmForm" method="post">
-				<input type="hidden" name="cno" value="<%= ch.getChallNo() %>">	
-				<input type="hidden" name="title" value="챌린지">  
 			<p id="join_title2">챌린지 인증 방법 
 			<!-- 인증보기 버튼 (참여중/종료)일때만 보이기 -->
-			<% if((compare < 0 && compare2 < 0) || compare3 < 0){ %>
-			<button id="challConfirm_btn">인증보기</button>
-			<%} %>
+					<% if((compare < 0 && compare2 < 0) || compare3 < 0){ %>
+					<button id="challConfirm_btn">인증보기</button>
+					<%} else{%>
+					<% } %>
 			</p>
-			</form>
 			
 			
 			<table id="join_table2">
@@ -402,7 +407,8 @@ button:focus {
 					<td><img
 						src="<%=request.getContextPath()%>/resources/images/check.png"
 						class="img-size"></td>
-					<td>인증 빈도 : <span>주 <%=ch.getChallFrequency() %>회</span></td>
+					<td>인증 빈도 : <span>주 <%=ch.getChallFrequency() %>회</span>
+					</td>
 				</tr>
 				<tr>
 					<td><img
@@ -501,6 +507,12 @@ button:focus {
 		<input type="hidden" name="category" value="챌린지">  
 	</form>
 	
+	<!-- 챌린지 인증보기 폼 태그 -->
+	<form id="confirmForm" method="post">
+		<input type="hidden" name="cno" value="<%= ch.getChallNo() %>">	
+		<input type="hidden" name="title" value="챌린지">  
+	</form>
+	
 	<script>
 	const warning_btn = document.getElementById('warning_btn');
 	warning_btn.addEventListener('click',function(){
@@ -508,6 +520,9 @@ button:focus {
 		$("#warningForm").submit();
 	});
 	
+	</script>
+	
+	<script>
 	//인증리스트보기
 	const challConfirm_btn = document.getElementById('challConfirm_btn');
 	challConfirm_btn.addEventListener('click',function(){

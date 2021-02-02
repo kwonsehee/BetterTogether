@@ -33,7 +33,7 @@ public class ReportProcessingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int rNo = Integer.parseInt(request.getParameter("rNo"));
-		System.out.println("processing servlet : "+rNo);
+		//System.out.println("processing servlet : "+rNo);
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
 		ReportService rs = new ReportService();

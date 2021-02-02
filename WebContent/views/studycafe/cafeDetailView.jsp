@@ -236,6 +236,96 @@ hr {
 	top: 25.02px;
 	background: #C4C4C4;
 }
+
+
+
+ 
+ 
+dl, dt, dd, ol, ul, li, 
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+ 
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+} 
+ul{
+    list-style:none;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+ 	width: 500px;
+	height: 250px;
+	border-radius: 20px;
+    position: relative;
+ 	background-image:
+	url('<%=request.getContextPath()%>/resources/Cafeimages/이미지준비2.jpg');    
+
+
+    overflow: hidden;
+}
+.slider{
+    display: flex;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.item{
+  	width: 500px;
+	height: 250px;
+	border-radius: 20px; 
+    font-size: 35px;
+    text-align: center;
+}
+ 
+.btn{
+    font-size: 50px;
+}
+.prev{
+    position:absolute;
+    top:30%;
+    left:0;
+    color:white;
+}
+.next{
+    position:absolute;
+    top:30%;
+    right:-3%;
+     color:white;
+}
+.container ul{
+    -webkit-transition: all 0.25s cubic-bezier(1, .01, .32, 1);
+    -o-transition: all 0.25s cubic-bezier(1, .01, .32, 1);
+    transition: all 0.25s cubic-bezier(1, .01, .32, 1);
+}
 </style>
 </head>
 <body>
@@ -245,10 +335,35 @@ hr {
 	<section id="content" class="content_css">
 		<div id="main">
 			<div class="cafe">
-				<!-- 도서이미 불러오기-->
-				<img id='cafeimg'
-					src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo()  %>"
-					align="bottom">
+			
+			
+				<!-- 도서이미 불러오기--> 
+				<div class="container">
+					<ul class="slider">
+						<%if(c.getCafe_photo() != null ) {%>
+						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo()  %>"align="bottom"></li>
+						<%} else { %>
+						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"align="bottom"></li>
+						<%} %>
+						
+						<%if(c.getCafe_photo2() != null  ) {%>
+						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo2()  %>"align="bottom"></li>
+						<%} else    { %>
+						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"align="bottom"></li>
+						<%} %>
+						
+						
+						<%if(c.getCafe_photo3() != null  ) {%>
+						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo3()  %>"align="bottom"></li>
+						<%} else{ %>
+						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"align="bottom"></li>
+						<%} %>
+					</ul>
+				</div>
+				<div class="btn">
+					<a class="prev" style="text-decoration: none;">&#10094;</a> <a
+						class="next" style="text-decoration: none;">&#10095;</a>
+				</div>
 				<td><br>
 				<tr>
 				</tr>
@@ -296,7 +411,7 @@ hr {
 									<h2 style="text-align: center; color: black; font-family:"DoHyeon";">
 										<br>
 										<%= c.getCafe_name() %></h2>
-
+ 										<h4>BetterTogether에서 보고 연락드렸다고 말하세요!</h4>
 									<h2 style="text-align: center;">
 										<br>
 
@@ -318,18 +433,77 @@ hr {
 			</div>
 
 
+		
+				 <script>
+				 
+				 
+				 
+				 
+				 
+				 
+				 var slideWrapper = document.querySelector('.container');
+				 var slides = document.querySelectorAll('.item');
+				 var totalSlides = slides.length; // item의 갯수
+
+
+				 var sliderWidth = slideWrapper.clientWidth; // container의 width
+				 var slideIndex = 0;
+				 var slider = document.querySelector('.slider');
+
+				 slider.style.width = sliderWidth * totalSlides + 'px';
+
+
+				 function showSlides(n) {
+				     slideIndex = n;
+				     if (slideIndex == -1) {
+				         slideIndex = totalSlides - 1;
+				     } else if (slideIndex === totalSlides) {
+				         slideIndex = 0;
+				     }
+				     slider.style.left = -(sliderWidth * slideIndex) + 'px';
+				 }
+
+				 function plusSlides(n){
+				     showSlides(slideIndex += n);
+				 }
+				   
+				 function currentSlide(n) {
+				     showSlides(slideIndex = n);
+				 }
+
+				 var nextBtn = document.querySelector('.next');
+				 var prevBtn = document.querySelector('.prev');
+
+				 nextBtn.addEventListener('click', function () {
+				     plusSlides(1);
+				 });
+				 prevBtn.addEventListener('click', function () {
+				     plusSlides(-1);
+				 });
+				 
+				 
+				 
+				 </script>
 
 
 
 
 
 
-			<div class="btnArea" id="btnArea">
-
-				<button type="button" id="btnArea2">목록</button>
 
 
-				<script>
+
+
+
+
+
+
+				<div class="btnArea" id="btnArea">
+
+					<button type="button" id="btnArea2">목록</button>
+
+
+					<script>
 				
 				const btnArea2 = document.getElementById("btnArea2");
 				btnArea2.addEventListener('click',function(){
@@ -337,21 +511,24 @@ hr {
 				});
 				</script>
 
-				<button type="button" id="btnArea3">신고</button>
+					<% if(loginUser != null) { %>
+					<button type="button" id="btnArea3">신고</button>
 
-				<%
+					<%} %>
+
+					<%
 						if (loginUser != null && loginUser.getUserId().equals(c.getUserId())) {
 					%>
-				<button id="updateBtn">수정</button>
-				<button id="deleteBtn">삭제</button>
+					<button id="updateBtn">수정</button>
+					<button id="deleteBtn">삭제</button>
 
-				<!-- 수정/삭제를 위한 form -->
-				<form action="" id="Cafe_codeForm" method="post">
-					<input type="hidden" name="Cafe_code"
-						value="<%= c.getCafe_code() %>">
-				</form>
+					<!-- 수정/삭제를 위한 form -->
+					<form action="" id="Cafe_codeForm" method="post">
+						<input type="hidden" name="Cafe_code"
+							value="<%= c.getCafe_code() %>">
+					</form>
 
-				<script>
+					<script>
 				 
 				
 				// 수정하기 버튼 이벤트
@@ -368,13 +545,13 @@ hr {
 					$("#Cafe_codeForm").submit();
 					});
 					</script>
-				<%
+					<%
 						}
 					%>
-			</div>
+				</div>
 
 
-			<script>
+				<script>
            
 				document.getElementById("modal_opne_btn").onclick = function() {
 					document.getElementById("modal").style.display = "block";
@@ -385,49 +562,49 @@ hr {
 				}
 				</script>
 
-			<hr>
-			<!-- 카페 정보,약도-->
-			<div class="inf">
-				<br>
-				<table id="info2">
-					<td>
-					<tr>
-						<span style="display: block; width: 480px; height: 50px;">
-							카페 소개: <a style="font-size: 16px;"> &nbsp<%=c.getCafe_info()%></a>
+				<hr>
+				<!-- 카페 정보,약도-->
+				<div class="inf">
+					<br>
+					<table id="info2">
+						<td>
+						<tr>
+							<span style="display: block; width: 480px; height: 50px;">
+								카페 소개: <a style="font-size: 16px;"> &nbsp<%=c.getCafe_info()%></a>
+							</span>
+						</tr>
+						</td>
+
+						<br>
+						<br>
+						<span style="display: block; width: 480px;"> 카페 공지사항: <a
+							style="font-size: 16px;"> &nbsp<%=c.getCafe_notice()%>
+						</a>
 						</span>
-					</tr>
-					</td>
+						<br>
 
-					<br>
-					<br>
-					<span style="display: block; width: 480px;"> 카페 공지사항: <a
-						style="font-size: 16px;"> &nbsp<%=c.getCafe_notice()%>
-					</a>
-					</span>
-					<br>
-
-					<br>
-					<span style="display: block; width: 480px;"> 상세주소 : <a
-						style="font-size: 16px;"> &nbsp<%=c.getCafe_map()%> <%=c.getDetail_address()%>
-					</a>
-					</span>
-					<br>
-					<br>
+						<br>
+						<span style="display: block; width: 480px;"> 상세주소 : <a
+							style="font-size: 16px;"> &nbsp<%=c.getCafe_map()%> <%=c.getDetail_address()%>
+						</a>
+						</span>
+						<br>
+						<br>
 
 
 
 
 
 
-				</table>
-				<!-- 신고 -->
-				<form id="warningForm" method="post">
-					<input type="hidden" name="no" value="<%=c.getCafe_code()%>">
-					<input type="hidden" name="reported_id" value="<%=c.getUserId()%>">
-					<input type="hidden"name="category" value="카페" >
-				</form>
+					</table>
+					<!-- 신고 -->
+					<form id="warningForm" method="post">
+						<input type="hidden" name="no" value="<%=c.getCafe_code()%>">
+						<input type="hidden" name="reported_id" value="<%=c.getUserId()%>">
+						<input type="hidden" name="category" value="카페">
+					</form>
 
-				<script>
+					<script>
 				const btnArea3 = document.getElementById('btnArea3');
 				btnArea3.addEventListener('click',function(){
 					$("#warningForm").attr("action", "<%=request.getContextPath()%>/report/insertForm");
@@ -442,14 +619,14 @@ hr {
 
 
 
-				<div class="map" id="map"></div>
+					<div class="map" id="map"></div>
 
-				<script type="text/javascript"
-					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a95ee7a1128986556c900264fb3694d2&libraries=services,clusterer,drawing"></script>
-				<script>
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					<script type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a95ee7a1128986556c900264fb3694d2&libraries=services,clusterer,drawing"></script>
+					<script>
+					var mapContainer = document.getElementById('map'),  
 					mapOption = {
-						center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+						center : new kakao.maps.LatLng(33.450701, 126.570667),  
 						level :4
 				  
 					};
@@ -466,36 +643,34 @@ hr {
 									'<%= c.getCafe_map()  %>',
 									function(result, status) {
 
-										// 정상적으로 검색이 완료됐으면 
+										 
 										if (status === kakao.maps.services.Status.OK) {
 
 											var coords = new kakao.maps.LatLng(
 													result[0].y, result[0].x);
 
-											// 결과값으로 받은 위치를 마커로 표시합니다
+											 
 											var marker = new kakao.maps.Marker(
 													{
 														map : map,
 														position : coords
 													});
 
-											// 인포윈도우로 장소에 대한 설명을 표시합니다
+											 
 											var infowindow = new kakao.maps.InfoWindow(
 													{
 														content : '<div style="width:150px;text-align:center;padding:6px 0;"><%= c.getCafe_name() %></div>'
 													});
 											infowindow.open(map, marker);
 
-											// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+										 
 											map.setCenter(coords);
 										}
 									});
 				</script>
 
-
-			</div>
-	</section>
-
-
+				</div>
+				</div></section>
+	 
 </body>
 </html>

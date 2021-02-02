@@ -52,18 +52,21 @@
         }
 
         /* 게시물 부분 */
-        #report_div {
+        #question_div {
             width: 100%;
            /*  height: 1200px; */
             margin:auto;
+           
         }
 
-        #report_title {
+        #qna_Title {
             width: 100%;
             height:50px;
             border-bottom: 1px solid #75757552;
             margin:auto;
             text-align: justify;
+           	padding-top:2%;
+           	padding-left:2%;
         }
         #btitle{
             font-size: 20px;
@@ -72,11 +75,13 @@
             color:#757575;
         }
  
-        #report_con {
+        #qna_Con {
             width: 100%;
-           /*  height:1150px; */
+            height: 200px;
             border-bottom: 1px solid #75757552;
             margin:auto;
+            padding-top: 3%;
+            padding-left:2%;
         }
         #report_con p{
             padding-left: 10px;
@@ -104,10 +109,10 @@
 
 		<!-- 게시물 내용 -->
 		<div id="question_div">
-			<div id="question_title">
+			<div id="qna_Title">
 				<span><%=q.getQnaTitle()%></span>
 			</div>
-			<div id="question_con">
+			<div id="qna_Con">
 				<span><%=q.getQnaContent()%></span>
 			</div>
 		</div>
@@ -117,23 +122,23 @@
 	<!-- 답변내용 -->
 	<%if(a != null){%>
 		<div id="answer_div">
-			<div id="answer_title">
-				<span><%=a.getQnaTitle()%></span>
-			</div>
-			<div id="answer_con">
-				<span><%=a.getQnaContent()%></span>
+			<div id="qna_Con">
+				<span><a style="color: gray">Answer</a><br><br> <%=a.getQnaContent()%></span>
 			</div>
 		</div>
 	<%} %>
 	<!-- 버튼 -->
 	</section>
 		<div id="btnArea"></div>
-		<%if(loginUser.getMembertype() != 0) { %>
+		<%if(loginUser.getMembertype() != 0 && loginUser.getUserId().equals(q.getUserId())) { %>
 			<button type="button" id="deleteBtn" class="btn">삭제하기</button>
 			<button type="button" id="updateBtn" class="btn">수정하기</button>
 			<button type="button" id="listBtn" class="btn">목록으로</button>
-		<% } else { %>
+			
+		<% } else if(loginUser.getMembertype() == 0) { %>
+			<%if(a != null) { %>
 			<button type="button" id="ansUpdateBtn" class="btn">수정하기</button>
+			<% } %>
 			<button type="button" id="answerBtn" class="btn">답변하기</button>
 			<button type="button" id="listBtn" class="btn">목록으로</button>
 		<%} %>

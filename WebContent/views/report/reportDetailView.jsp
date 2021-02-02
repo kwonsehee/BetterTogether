@@ -65,12 +65,21 @@
         #report_con {
             width: 100%;
            /*  height:1150px; */
-            border-bottom: 1px solid #75757552;
+           /* border-bottom: 1px solid #75757552; */
             margin:auto;
         }
         #report_con p{
             padding-left: 10px;
             font-size: 20px;
+        }
+        
+        .result{
+        	color : red;
+        	margin-top : 5%;
+        	margin-bottom : 5%;
+        	font-size : 35px;
+        	font-family: "Do Hyeon";
+        	text-align : center;
         }
 
 </style>
@@ -94,6 +103,12 @@
 			</div>
 			<div id="report_con">
 				<p><%= r.getReport_content() %></p>
+				<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= r.getReport_file() %>" id="report_Img" style="width: 400px;height: 300px;">
+			</div>
+			<div id="repor_result">
+				<%if(r.getT_f().equals("T")) { %>
+					<div class="result">신고가 정상 처리 되었습니다.</div>
+				<%} %>
 			</div>
 		</div>
 		
@@ -122,7 +137,7 @@
 	</script>		
 	<% } %>
 	
-	<%if(loginUser.getMembertype() == 0) { %>
+	<%if(loginUser.getMembertype() == 0 && r.getT_f().equals("F")) { %>
 	<!-- 신고철회버튼 누르면 신고삭제되게 해버리기 -->
 	<button type="button" id="cancleBtn" class="btn">신고철회</button>
 	<button type="button" id="report_btn" class="btn">신고처리</button>
@@ -142,7 +157,6 @@
 		});
 		</script>	
 	<%} %>
-	<button type="button" id="listBtn" class="btn">목록으로</button>
 </div>
 
 	

@@ -55,6 +55,8 @@ public class CafeDao {
 			pstmt.setString(12, n.getClosed_day()); 
 			pstmt.setString(13, n.getCafe_page());   
 			pstmt.setString(14, n.getUserId());
+			pstmt.setString(15, n.getCafe_photo2()); 
+			pstmt.setString(16, n.getCafe_photo3()); 
 		
 			
 			
@@ -292,7 +294,9 @@ public class CafeDao {
 						rset.getString("detail_address"),
 						rset.getString("closed_days"),
 						rset.getString("cafe_page"), 
-						rset.getString("USER_ID"));
+						rset.getString("USER_ID"),
+						rset.getString("cafe_photo2"),
+						rset.getString("cafe_photo3"));
 			}
 			
 		} catch (SQLException e) {
@@ -346,8 +350,10 @@ public class CafeDao {
 			pstmt.setString(9, cafe.getCafe_map());
 			pstmt.setString(10, cafe.getDetail_address());
 			pstmt.setString(11, cafe.getClosed_day()); 
-			pstmt.setString(12, cafe.getCafe_page());   
-			pstmt.setInt(13, cafe.getCafe_code());
+			pstmt.setString(12, cafe.getCafe_page());  
+			pstmt.setString(13, cafe.getCafe_photo2()); 
+			pstmt.setString(14, cafe.getCafe_photo3()); 
+			pstmt.setInt(15, cafe.getCafe_code());
 			
 			
 			 

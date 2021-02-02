@@ -3,7 +3,7 @@
  <%
  	ArrayList<Challenge> list = (ArrayList<Challenge>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
+	ArrayList<Member> mlist =  (ArrayList<Member>)request.getAttribute("mlist");
  %>
 <!DOCTYPE html>
 <html>
@@ -11,11 +11,11 @@
 <meta charset="UTF-8">
 <title>Better Together</title>
 <style>
+body{ background: rgba(240, 240, 240, 0.466);}
 /* 연분홍 배경 */
 #con1 {
 	width: 1000px;
 	height: 704px;
-	background: #F9F1F1;
 	border-radius: 20px;
 	margin: auto;
 	margin-top: 15px;
@@ -34,31 +34,21 @@
 	transition: transform 0.5s;
 	overflow: hidden;
 	display: flex;
-	animation: slide 15s infinite;
 }
 
 .outer {
-	width: 100vw;
+	width: 300vw;
 	float: left;
 	height: 500px;
 }
 
-/* 무한 슬라이드 */
-@keyframes slide { 
-0% {margin-left: 0;} /* 정지 */
-25%{margin-left:0;} /* 변이 */
-33%{margin-left:-100vw;} /* 정지 */
-58%{margin-left:-100vw;} /* 변이 */
-66%{margin-left:-200vw;} /* 정지 */
-92%{margin-left:-200vw;} /* 변이 */
-100%{margin-left:0;} /* 0%랑 이어짐 */
-}
+
 
 /* chall_box로 시작하는 모든 클래스 */
 div[class^=chall_box] {
 	width: 480px;
 	height: 150px;
-	border: 1px solid #F9F1F1;
+	border: 1px solid rgba(240, 240, 240, 0.466);
 	margin-bottom: 10px;
 }
 
@@ -123,7 +113,7 @@ div[class^=chall_box]:hover{
 	border: 1px solid black;
 	width: 80px;
 	height: 20px;
-	color: rgba(255, 96, 100, 0.7);
+	color: #937CF7;
 	border-radius: 25px;
 	border: 0px;
 	display: inline-block;
@@ -155,7 +145,7 @@ button:hover {
 #con2 {
 	width: 100%;
 	height: 800px;
-	background: rgba(240, 240, 240, 0.466);
+	/* background: rgba(240, 240, 240, 0.466); */
 	border-radius: 20px;
 	margin-top: 20px;
 }
@@ -184,47 +174,69 @@ button:hover {
 }
 
 #con1_title a:hover {
-	color: #88a1db;
+	color: #937CF7;
 }
 
 .line {
-	border: 3px solid rgba(255, 96, 100, 0.7);
+	border: 0.5px solid #937cf790;
 }
 
 .h1_title {
 	margin-top: 50px;
 	text-align: center;
-	font-family: "Do Hyeon";
+	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 24px;
 	color: #757575;
 }
 
 /* 챌린저 랭킹 TOP 5 */
+#topten_title{
+/* 	float:left; */
+}
+.topten_ul ul, .topten_ul li{
+	list-style:none;
+} 
+
 .rankwrap {
-	width: 500px;
-	height: 80px;
-	margin: auto;
-	display: block;
-	padding: 20px;
+	height: 30px;
+	overflow:hidden;
+}
+.rankwrap ul {
+	height:calc(100% * 10); animation:slide 15s infinite;
+}
+.rankwrap li{
+	height:calc(100% / 10);
+}
+.topten_ul li:nth-child(1) {color:#694DE2; font-weight:bold;}
+.topten_ul li:nth-child(2) {color:#7070FC; font-weight:bold;}
+.topten_ul li:nth-child(3) {color:#937CF7; font-weight:bold;}
+
+
+@keyframes slide{
+	0% {margin-top:0;}
+      5% {margin-top:0;}
+      10% {margin-top:-30px;}
+      15% {margin-top:-30px;}
+      20% {margin-top:-60px;}
+      25% {margin-top:-60px;}
+      30% {margin-top:-90px;}
+      35% {margin-top:-90px;}
+      40% {margin-top:-120px;}
+      45% {margin-top:-120px;}
+      50% {margin-top:-150px;}
+      55% {margin-top:-150px;}
+      60% {margin-top:-180px;}
+      65% {margin-top:-180px;}
+      70% {margin-top:-210px;}
+      75% {margin-top:-210px;}
+      80% {margin-top:-240px;}
+      85% {margin-top:-240px;}
+      90% {margin-top:-270px;}
+      95% {margin-top:-270px;}
+      100% {margin-top:0;}
 }
 
-.ranknum {
-	width: 80px;
-	height: 80px;
-	display: block;
-	float: left;
-	transform: rotate(20deg);
-}
 
-.rank {
-	width: 360px;
-	height: 80px;
-	margin-left: 20%;
-	background: #FFFFFF;
-	border: 3px solid rgba(255, 96, 100, 0.7);
-	box-sizing: border-box;
-	border-radius: 55px;
-}
 
 #slidebtn_div {
 	margin: auto;
@@ -237,6 +249,17 @@ button:hover {
 	border-radius: 50px;
 	border: 0px;
 	background-color: rgba(255, 96, 100, 0.7);
+}
+
+/* 관심 카테고리 */
+.choiceCategory {
+	border:1px solid black;
+	width:100%;
+	float:left;
+}
+
+.choiceCategory img{
+	width:170px;
 }
 </style>
 </head>
@@ -271,8 +294,8 @@ button:hover {
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%=c.getChallFile()%>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%=c.getChallTitle()%></p>
                        		<p name="cDate" class="cDate"><%=c.getChallStart()%> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
@@ -297,8 +320,8 @@ button:hover {
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
 	                       		<p name="cpCount" class="cpCount aaa"> <%= c.getHitsCount() %></p>
@@ -326,8 +349,8 @@ button:hover {
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
@@ -352,8 +375,8 @@ button:hover {
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
@@ -381,8 +404,8 @@ button:hover {
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
@@ -407,8 +430,8 @@ button:hover {
                     		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
                        		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
                        		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa"><%= c.getChallFrequency() %></p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %></p>
+                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
                        		<div class="pCountArea">
 	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
 	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
@@ -431,13 +454,13 @@ button:hover {
             
             
             <!-- 페이징ㄴㄴ 슬라이드 버튼 -->
-            <div id="slidebtn_div">
+            <!-- <div id="slidebtn_div">
                 <button id="slidebtn1" class="slidebtn"> </button>
                 <button id="slidebtn2" class="slidebtn"> </button>
                 <button id="slidebtn3" class="slidebtn"> </button>
             </div>
             
-
+		
              <script>
                 document.querySelector('#slidebtn2').addEventListener('click', function(){
                     document.querySelector('.container').style.transform = 'translate(-100vw)';
@@ -448,41 +471,50 @@ button:hover {
                 document.querySelector('#slidebtn1').addEventListener('click', function(){
                     document.querySelector('.container').style.transform = 'translate(0vw)';
                 })
+            </script> -->
+            
+            <!-- 인기챌린지 무한 슬라이드 -->
+            <script>
+            	setInterval(function(){
+            		$(".container>.outer").delay(3500);
+            		$(".container>.outer").animate({marginLeft: "-100vw"});
+            		$(".container>.outer").delay(3500);
+            		$(".container>.outer").animate({marginLeft: "-200vw"});
+            		$(".container>.outer").delay(3500);
+            		$(".container>.outer").animate({marginLeft: "0vw"});
+            	});
             </script>
         </section>   
     </section>
 
+	<!-- 관심 카테고리 선택 -->
+	<div class="choiceCategory">
+		<img src="<%=request.getContextPath()%>/resources/images/외국어.png">
+		<img src="<%=request.getContextPath()%>/resources/images/공부.png">
+		<img src="<%=request.getContextPath()%>/resources/images/체중관리.png">
+		<img src="<%=request.getContextPath()%>/resources/images/자격증.png">
+		<img src="<%=request.getContextPath()%>/resources/images/돈관리.png">
+		<img src="<%=request.getContextPath()%>/resources/images/업무스킬.png">
+		<img src="<%=request.getContextPath()%>/resources/images/운동.png">
+		<img src="<%=request.getContextPath()%>/resources/images/생활습관.png">
+		<img src="<%=request.getContextPath()%>/resources/images/확인.png">
+		
+	</div>
 
     <!-- 2. 챌린저 랭킹 -->
     <section id="con2">
     <!-- 타이틀 -->
-        <div id="con2_title">
-            <h1 class="h1_title">챌린저 랭킹 TOP 5</h1>
-        </div>
-        <div class="line"></div>
-        <br><br><br>
+       
 
         <!-- 랭킹 -->
+        <p id="topten_title">챌린저 TOP 10<p>
         <div class="rankwrap">
-            <image src='<%=request.getContextPath()%>/views/community/images/1.png' class="ranknum"></image>
-            <div class="rank"></div>
-        </div>
-        <div class="rankwrap">
-            <image src='<%=request.getContextPath()%>/views/community/images/2.png' class="ranknum"></image>
-             <div class="rank"></div>
-        </div>
-        <div class="rankwrap">
-            <image src='<%=request.getContextPath()%>/views/community/images/3.png' class="ranknum"></image>
-            <div class="rank"></div>
-        </div>
-        <div class="rankwrap">
-            <image src='<%=request.getContextPath()%>/views/community/images/4.png' class="ranknum"></image>
-            <div class="rank"></div>
-        </div>
-        <div class="rankwrap">
-            <image src='<%=request.getContextPath()%>/views/community/images/5.png' class="ranknum"></image>
-             <div class="rank"></div>
-        </div> 
+        	<ul class="topten_ul"> 	
+		        <% for(Member m : mlist){ %>
+		            <li><%= mlist.indexOf(m) +1 %>위 <%= m.getUserId() %></li>
+		        <% } %>
+       		 </ul>
+         </div>
     </section>
     
     <footer></footer>

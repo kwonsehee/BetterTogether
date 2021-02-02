@@ -158,7 +158,33 @@
             margin-top:20px;
       }
       
-
+      /*밑에서부터 수정된 UI */
+      
+      .challArea{
+      	  padding:20px;
+	      width:830px;
+	      min-height:400px;
+	      margin:auto;
+      
+      }
+      
+      .chall_list{
+      	width:220px;
+      	display:inline-block;
+      	padding:10px;
+      	margin:10px;
+      	text-align:left;
+      
+      }
+      
+      #call_img{
+      	border-radius:5px;
+      }
+      
+      .chall_info{
+      	margin:3px;
+      }
+      
  
     </style>
 </head>
@@ -166,10 +192,10 @@
   <%@ include file="../common/common_ui.jsp"%>
   
   <section id="content" class="content_css">
-        <section id="title">
+        <!-- <section id="title">
             <span>챌린지 모집 게시판</span>
-            <!-- 어떤 카테고리의 것인지 표시해주기 -->
-        </section>
+            어떤 카테고리의 것인지 표시해주기
+        </section> -->
         
         <!-- 1:시작전 2:진행중 3:종료 -->
         <form action="<%= request.getContextPath() %>/chall/type" method="post" id="type_form">
@@ -182,7 +208,7 @@
         
         
         <section id="content-1">
-            <table id= "listTable" class="challenge_table">
+            <%-- <table id= "listTable" class="challenge_table">
                     <tr>
                         <th>번호</th>
                         <th>카테고리</th>
@@ -210,7 +236,22 @@
                    </tr>
                    <% } %>
                    <% } %>   
-            </table>
+            </table> --%>
+            	<div class="challArea">
+				<% for(Challenge ch : list) {%>
+				<div class="chall_list">
+					<input type="hidden" value="<%=ch.getChallNo() %>">		
+					<div>
+						<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 200px;height: 150px;">
+					</div>
+					<p class="chall_info">공식 챌린지 <%=ch.getChallNo() %></p>
+					<p class="chall_info"><%=ch.getChallTitle() %></p>	
+					<p class="chall_info"><%=ch.getChallStart() %></p>	
+					<button class="chall_info">주 <%=ch.getChallFrequency() %>회</button>
+					<button class="chall_info"><%=ch.getChallPeriod() %>주 동안</button>
+				</div>
+				<%} %>
+            	</div>
         </section>
 
 		<!-- 페이징 바 -->
@@ -322,7 +363,7 @@
      <script>
        // 챌린지 상세보기 기능 (jQuery를 통해 작업)
 
-      $(function(){
+    <%--   $(function(){
          $("#listTable td").mouseenter(function(){
             $(this).parent().css({"background":"white", "cursor":"pointer"});
          }).mouseout(function(){
@@ -332,7 +373,14 @@
               // 쿼리 스트링을 이용하여 get방식으로 글 번호를 전달 
               location.href="<%= request.getContextPath() %>/chall/join?challNo="+num;
          });
-      });
+      }); --%>
+      
+      $(function(){
+			$(".chall_list").click(function(){
+				var challNo = $(this).children().eq(0).val();
+				location.href='<%= request.getContextPath() %>/chall/join?challNo='+challNo;
+			});   			
+ 		});
        
     </script>
     

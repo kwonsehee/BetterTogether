@@ -91,7 +91,8 @@ public class CafeUpdateServlet extends HttpServlet {
 			
 			
 			String Cafe_photo = multiRequest.getParameter("Cafe_photo"); //히든값으로 이미지 값 넘겨와서 새로운 파일이없으면 기존 이미지 사용
-		
+			String Cafe_photo2 = multiRequest.getParameter("Cafe_photo2");
+			String Cafe_photo3 = multiRequest.getParameter("Cafe_photo3");
 			System.out.println("Cafe_photo" + " "+Cafe_photo); // 새로운 수정이미지 파일이 없으면 기존 이미지파일이 불러저 오는지 실험
 			
 			
@@ -121,17 +122,22 @@ public class CafeUpdateServlet extends HttpServlet {
 			cafe.setCafe_page(multiRequest.getParameter("cafe_page"));   
 			cafe.setCafe_code(Cafe_code);
 		 
-	
 			
+			if(multiRequest.getFilesystemName("cafe_photo2") == null) {
+				cafe.setCafe_photo2(Cafe_photo2);
+			} else { 
+				cafe.setCafe_photo2(multiRequest.getFilesystemName("cafe_photo2"));
+			}
+		
+		
+			if(multiRequest.getFilesystemName("cafe_photo3") == null) {
+				cafe.setCafe_photo3(Cafe_photo3);
+			} else { 
+				cafe.setCafe_photo3(multiRequest.getFilesystemName("cafe_photo3"));
+			}
+		
 			
 	 
-			
-			
-			
-			
-			
-			
-			 
 			 
 			 
 			 
