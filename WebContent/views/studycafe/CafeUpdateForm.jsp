@@ -278,13 +278,13 @@ textarea {
 
 
 					<h4 class="studycafe_title2">카페소개글</h4>
-					<textarea name="cafe_info" value="<%=c.getCafe_info()%>"
-						style="resize: none; left: 550px; top: 110px;" maxlength="110"> </textarea>
+					<textarea name="cafe_info"
+						style="resize: none; left: 550px; top: 110px;" maxlength="110"><%=c.getCafe_info()%></textarea>
 
 
 					<h4 class="studycafe_title2" style="margin-top: 25%;">카페공지글</h4>
-					<textarea name="cafe_notice" value="<%=c.getCafe_notice()%>"
-						style="resize: none; left: 550px; top: 270px;" maxlength="110"> </textarea>
+					<textarea name="cafe_notice"
+						style="resize: none; left: 550px; top: 270px;" maxlength="110"><%=c.getCafe_notice()%></textarea>
 
 					<h4 class="studycafe_title2" style="margin-top: 42%;">대표이미지</h4>
 				<div class="photo">

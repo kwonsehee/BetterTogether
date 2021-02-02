@@ -132,6 +132,71 @@ textarea {
 	bottom: 8.65%;
 }
 
+#modal_opne_btn {
+	position: absolute;
+	left: 61.41%;
+	right: 33.18%;
+	top: 86.35%;
+	bottom: 9.91%; 
+	font-family: "Do Hyeon";
+	background: #fff;
+	border: 2px solid #ff60657e;
+	height: 33px;
+	width: 62px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	width: 62px;
+}
+
+#modal {
+	display: none;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+#modal h2 {
+	margin: 0;
+}
+
+#modal button {
+	display: inline-block;
+	width: 70px;
+	margin-left: calc(85% - 100px - 100px);
+	margin-top: 5%;
+	border-radius: 20px;
+}
+
+#modal .modal_content {
+	width: 500px;
+	height: 300px;
+	margin-top: -50px;
+	margin-left: -250px;
+	background: #fff;
+	border: 2px solid #666;
+	background-image:
+		url('<%=request.getContextPath()%>/resources/images/제휴1.jpg');
+	border-radius: 20px;
+	margin-left: 200px;
+	margin-top: 50px;
+}
+
+#modal .modal_layer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: -1;
+}
+
 map_wrap {
 	position: relative;
 	width: 100%;
@@ -179,6 +244,12 @@ map_wrap {
 	border: 2px solid #ff60657e;
 	border-radius: 55px;
 }
+
+
+
+ 
+ 
+ 
 </style>
 </head>
 <body>
@@ -195,7 +266,7 @@ map_wrap {
 		<div class="tableArea">
 			<h1 id="title">스터디카페 등록</h1>
 			<form action="<%=request.getContextPath()%>/cafe/insert"
-				method="post" enctype="multipart/form-data">
+				method="post" enctype="multipart/form-data" onsubmit="return checkInput();">
 
 				<h4 class="studycafe_title" style="bottom: 65%;  margin-bottom: 80px;">카페이름</h4>
 				<span class="input_area"> <input type="text" name="cafe_name"
@@ -260,18 +331,18 @@ map_wrap {
 				</span>
 
 				<h4 class="studycafe_title" style="bottom: 33%; 	margin-bottom: 80px;">휴무일</h4>
-				<span class="input_area"> <input type="text"
+				<span class="input_area"> <input type="text" placeholder="ex)매주화요일"
 					name="closed_day" style="margin-top: 29%;">
 				</span>
 
 				<h4 class="studycafe_title" style="bottom: 25%; 	margin-bottom: 80px;">예약가능인원</h4>
 				<span class="input_area"> <input type="text" required
-					name="cafe_capacity" placeholder="최대8명 ex)6"
+					name="cafe_capacity" placeholder="최대10명 ex)6명"
 					style="margin-top: 34%;">
 				</span>
 
 				<h4 class="studycafe_title" style="bottom: 17%; 	margin-bottom: 80px;">카페홈페이지</h4>
-				<span class="input_area"> <input type="text" name="cafe_page"
+				<span class="input_area"> <input type="text" name="cafe_page"  placeholder="www.naver.com"
 					  required style="margin-top: 39%;">
 				</span>
 
@@ -318,12 +389,12 @@ map_wrap {
 				
 				<h4 class="studycafe_title2" style="margin-top: 52%;">카페제휴정보</h4>
 
-				<select class="photo3" name="AFFILIATED_CAFE">
+				<select class="photo3" name="AFFILIATED_CAFE" id="AFFILIATED_CAFE">
 					<option value="N">일반</option>
 					<option value="Y">제휴</option>
 				</select>
 				<MARQUEE DIRECTION="left" class="studycafe_title2"
-					style="font-size: 14px; color: red; margin-top: 520px; border-left-width: 180px; margin-left: 140px; width: 200px;">※ 제휴선택시 결제해야 이용가능합니다 </MARQUEE>
+					style="font-size: 14px;color: red;margin-top: 520px;border-left-width: 180px;margin-left: 200px;width: 300px;">※ 제휴선택시  결제를 하셔야 이용가능합니다. </MARQUEE>
 
 
 
@@ -331,10 +402,80 @@ map_wrap {
 					<button type="button" id="btnArea2"
 						onclick="javascript:history.back();">취소</button>
 
-
+		
 					<button id="btnArea1">등록</button>
 
+					<script>
+				
+						$(document).ready(function() {
+						 
+							$('#btnArea1').click(function() {
+
+								if( $('select[name=AFFILIATED_CAFE]').val() == 'Y'){
+									if(confirm("제휴등록은 결제가필요합니다. 결제하시겠습니까? ")){ 
+									}else{
+										return false;
+										
+									}
+								}
+							});
+
+						});
+					</script>
+
+
  
+
+					<!-- 제휴정보 팝업 -->
+					<div id="root">
+						<input type="button" value="제휴약관" class="nav_btn"
+							id="modal_opne_btn">
+					</div>
+					<div id="modal">
+
+						<div class="modal_content">
+
+
+
+							<h4 style="text-align: center; color: #ff60657e">BetterTogether제휴
+								약관</h4>
+
+							 
+								<ul class="join_box"> 
+											<li>여러분을 환영합니다. BetterTogether 서비스 및 제품(이하 ‘서비스’)을 이용해
+												주셔서 감사합니다. 본 약관은 다양한 BetterTogether 서비스의 이용과 관련하여
+												BetterTogether에서 제공하고 이용하는 서비스 회원(이하 ‘회원’) 의 결제 정보를 알려주면서,
+												아울러 여러분의 제휴 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다. 결제는 한번으로
+												이루어지며 한번의 결제로 무제한 등록이 가능합니다.결제 비용은 등록시 최초로 3만원이 결제되면 환불은
+												불가능합니다.</li>
+											 
+										</ul>
+								  
+										<ul class="clearfix">
+											<h4>제휴 등록시 최초 1회  결제가 필요합니다.</h4> 
+										</ul> 
+						  
+
+										<button type="button" id="modal_close_btn">닫기</button></div>
+						<div class="modal_layer"></div>
+					</div>
+
+
+
+					<script>
+						document.getElementById("modal_opne_btn").onclick = function() {
+							document.getElementById("modal").style.display = "block";
+						}
+
+						document.getElementById("modal_close_btn").onclick = function() {
+							document.getElementById("modal").style.display = "none";
+						}
+					</script>
+						<!-- 제휴정보 팝업 -->
+
+
+
+
 				</div>
 				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 				<!-- 검색 버튼 클릭 시 팝업 레이어 열리도록 -->
