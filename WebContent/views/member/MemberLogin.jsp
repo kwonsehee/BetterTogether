@@ -8,43 +8,76 @@
 <head>
 <meta charset="UTF-8">
 <title>Login화면</title>
-<%if(session.getAttribute("msg") != null){ %>
+<%
+	if(request.getAttribute("msg")!=null){
+		if(request.getAttribute("msg").equals("success")){
+%>
 <script>
-	alert('<%=session.getAttribute("msg") %>');
+opener.parent.location.reload();
+window.close();
 	
 </script>
-<%
-	session.removeAttribute("msg");
- 	}
-%>
+<%} else{ %>
+<script>
+	alert("로그인에 실패하였습니다.");
+</script>
+<%		}
+	}%>
+	
+<style>
+#loginForm{
+            padding-left: 10%;
+        }
+#loginForm label, #loginForm input{
+            display: block;
+        }
+        #loginForm label{
+            padding-top: 8%;
+        }
+        .btn_login{
+            font-family: "Nanum Gothic";
+            width: 70px;
+            height: 30px;
+            border-radius: 5px;
+            border: solid 1px #9e9e9e5b;
+            font-size:14px;
+            border : 1px solid #937CF7;
+            background-color: #937CF7;
+            color: white;
+        }
+        #loginTitle{
+            text-align: center;
+            font-size:30px;
+            margin-top: 10%;
+        }
+    .input_box{
+    width: 300px;
+    height: 30px;
+}
+
+</style>
 </head>
 <body>
-	<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
-	<%@ include file="../common/common_ui.jsp"%>
-
-	<section id="content" class="content_css">
+	<section id="btSection" class="content_css">
 		
 		<!-- 1_1. 로그인 폼 만들기 -->
 		<form id="login_css" action="<%= request.getContextPath() %>/member/login"
 		method="post"onsubmit="return validate();">
-			<table style="margin-top: 30px;">
-				<tr>
-					<td><label for="userId"><span>아이디</span></label></td>
-					<td><input type="text" name="userId"id="userId" class="input_box"></td>
-				</tr>
-				<tr>
-					<td><label for="userPwd"><span>비밀번호</span></label></td>
-					<td><input type="password" name="userPwd"id="userPwd"class="input_box"></td>
-				</tr>
-				<tr>
-					<th>
-						<button id="JoinBtn" type="button" class="btn_join"style="margin-top: 30px; margin-left: 10px;">회원가입</button>
-					</th>
-					<th>
-						<button id="LoginBtn" type="submit" class="btn_login"style="margin-top: 30px; margin-left: 10px;">로그인</button>
-					</th>
-				</tr>
-			</table>
+			<div id="loginTitle">Log in</div>
+            <hr>
+			<div id="loginForm">
+                   
+                        <label for="userId"><span>USERID</span></label>
+                        
+                        <input type="text" name="userId"id="userId" class="input_box">
+                    
+                        <label for="userPwd"><span>PASSWORD</span></label>
+                        <input type="password" name="userPwd"id="userPwd"class="input_box">
+                    
+                        <button id="JoinBtn" type="reset" class="btn_login" style="margin-top: 30px; margin-left: 10px;">reset</button>
+                        
+                        <button id="LoginBtn" type="submit" class="btn_login" style="margin-top: 30px; margin-left: 30%;">Log in</button>
+                </div>    
 
 		</form>
 		<script>
@@ -64,11 +97,6 @@
 				
 			}
 			
-			// 3. 회원가입 버튼 클릭 이벤트 작성
-	         const JoinBtn = document.getElementById('JoinBtn');
-	            JoinBtn.addEventListener('click',function(){
-	               location.href="<%= request.getContextPath()%>/views/member/MemberJoin.jsp";
-	            });
 			
 		
 			</script>

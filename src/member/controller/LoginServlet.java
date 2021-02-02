@@ -79,20 +79,24 @@ public class LoginServlet extends HttpServlet {
 			//알림디비에서 새로 알려줄 알림이 있는지 확인
 			ArrayList<News> news = new NewsService().getNews(userId);
 			System.out.println("news : "+news);
+			request.setAttribute("news", news);
 			session.setAttribute("news", news);
 			
 			//Home으로 이동(기존 요청 url을 남기지 않기 위해 서버에 재요청 처리)
 			//1. forward ->응답 위임 ->요청 url, request, response 보존
 			//2. sendRedirect ->서버에 재요청 -> 기본 요청 url, request, resopnse 모두 사라지고 
 								//새로운 request, response객체 생성
-		    response.sendRedirect(request.getContextPath());
+//		    response.sendRedirect(request.getContextPath());
+			request.setAttribute("msg", "success");
 			
 		}else {
 			//로그인 실패 -> errorPage.jsp로 실패 메세지 담아서 forwarding
-			request.setAttribute("msg", "로그인에 실패하였습니다.");
-			RequestDispatcher view =request.getRequestDispatcher("/views/common/errorPage.jsp");
-			view.forward(request, response);
+			request.setAttribute("msg", "fail");
+			
 		}
+		RequestDispatcher view =request.getRequestDispatcher("/views/member/MemberLogin.jsp");
+		
+		view.forward(request, response);
 	}
 
 	/**
