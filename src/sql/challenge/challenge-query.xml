@@ -992,5 +992,14 @@
 		 WHERE
 		 	  CHALL_NO = ?
 	</entry>
-	
+	<entry key="totalCount">
+		 SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	CHALL
+		 WHERE
+            	CHALL_STATUS = 'N'
+           AND  TO_CHAR(CHALL_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
+        FROM dual)
+	</entry>
 </properties>

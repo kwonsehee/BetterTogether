@@ -281,4 +281,14 @@
 		WHERE
 			  RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="totalCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	NOTICE
+		 WHERE
+		 	  	ARTICLE_TYPE = 1
+           AND  TO_CHAR(ARTICLE_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
+        FROM dual)
+	</entry>
 </properties>

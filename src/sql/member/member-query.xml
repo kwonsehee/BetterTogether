@@ -155,4 +155,15 @@
                             WHERE CHALL_NO = ?
                             AND CHALL_STATUS !=0)
 	</entry>
+	<entry key="todayJoinCount">
+		
+SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	USER_INFO
+		 WHERE
+		   		MEMBER_TYPE = 1
+           AND  TO_CHAR(JOIN_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
+        FROM dual)
+	</entry>
 </properties>

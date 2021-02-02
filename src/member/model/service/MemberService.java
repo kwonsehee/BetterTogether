@@ -4,6 +4,7 @@ import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
+import community.model.dao.BoardDao;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
 
@@ -216,6 +217,21 @@ public class MemberService {
 			close(conn);
 			
 			return result;
+		}
+
+		public int totalCount() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		public int todayJoinCount() {
+			Connection conn = getConnection();
+
+			int todayJoinCount = new MemberDao().todayJoinCount(conn);
+
+			close(conn);
+
+			return todayJoinCount;
 		}
 
 

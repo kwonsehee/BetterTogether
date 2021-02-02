@@ -636,5 +636,15 @@ public class ChallService {
 		return result;
 	}
 
+	public int totalCount() {
+		Connection conn = getConnection();
+		
+		int totalCount = new ChallDao().totalCount(conn);
+
+		close(conn);
+
+		return totalCount;
+	}
+
 
 }

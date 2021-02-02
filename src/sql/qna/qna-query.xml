@@ -294,4 +294,14 @@
 	 			QNA_NO DESC) A)
 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="totalCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	QNA
+		 WHERE
+		 	  	QNA_TYPE = 'Q'
+		   AND	QNA_STATUS = 'Y'
+           AND  TO_CHAR(QNA_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD') FROM dual)
+	</entry>
 </properties>

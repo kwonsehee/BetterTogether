@@ -171,6 +171,7 @@
             <p class="openmenu" onclick='openNav()'><i class="material-icons fa fa-angle-double-left fa-5" id="menu" aria-hidden="true" style="font-size : 80px">menu</i></p>
             <div id="mysidenav" class="sidenav">
                 <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+                <button id="administratorPageBtn" class="mypageMenu1"style="padding-left: 10px;">관리자페이지</button>
                 <button id="myUpdateBtn" class="mypageMenu1" style="padding-left: 10px;">개인정보수정</button>
                 <button id="joinedChallBtn" class="mypageMenu1"style="padding-left: 10px;">참여했던 챌린지그룹</button>
                 <button id="challingBtn" class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
@@ -179,8 +180,11 @@
                 <button id="myChallBtn" class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
                 <button id="refundBtn" class="mypageMenu1"style="padding-left: 10px;">환급받기</button>
                 <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고내역</button>
-                 <button id="pointcharginBtn" class="mypageMenu1"style="padding-left: 10px;">포인트충전</button>
+                <button id="pointcharginBtn" class="mypageMenu1"style="padding-left: 10px;">포인트충전</button>
                
+         			<form id="admin" method="post">
+					<input type="hidden" name="admin" value="<%= loginUser %>">
+					</form>
             </div>
          </section>
          
@@ -240,8 +244,13 @@
             location.href="<%= request.getContextPath()%>/before/list";
          });
           
-          
-          
+        //10.관리자페이지
+          const administratorPageBtn = document.getElementById('administratorPageBtn');
+          administratorPageBtn.addEventListener('click',function(){
+        	$("#admin").attr("action","<%=request.getContextPath()%>/administratorPage");
+			$("#admin").submit();
+        });
+         
          </script>
 		<% } else { %>
 		<script>

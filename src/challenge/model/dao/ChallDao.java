@@ -1378,6 +1378,31 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 
 	      return result;
 	}
+
+	public int totalCount(Connection conn) {
+		int totalCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("totalCount");
+
+		try {
+			stmt = conn.createStatement();
+
+			rset = stmt.executeQuery(sql);
+
+			if (rset.next()) {
+				totalCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return totalCount;
+	}
 	
 	
 	

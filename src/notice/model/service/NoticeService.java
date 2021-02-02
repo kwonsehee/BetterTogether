@@ -159,6 +159,16 @@ public class NoticeService {
 			
 			return list;
 		}
+
+		public int totalCount() {
+			Connection conn = getConnection();
+			
+			int totalCount = new NoticeDao().totalCount(conn);
+			
+			close(conn);
+			
+			return totalCount;
+		}
 		
 	
 }

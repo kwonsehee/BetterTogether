@@ -203,4 +203,14 @@ public class ReportService {
 				
 			return list;
 		}
+
+		public int totalCount() {
+			Connection conn = getConnection();
+			
+			int totalCount = new ReportDao().totalCount(conn);
+			
+			close(conn);
+			
+			return totalCount;
+		}
 }

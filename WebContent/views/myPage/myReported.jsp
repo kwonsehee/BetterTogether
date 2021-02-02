@@ -21,55 +21,152 @@ System.out.println("jsp list : "+reList);%>
 <meta charset="UTF-8">
 <title>신고내역</title>
 <style>
-	#report_form{
-        width: 950px;
-      height: 1000px;
-      /* border: 1px solid black; */
-      margin-top: -6%;
-      padding-left: 5%;
-       background-color: #f9f1f1;
-       border-radius: 20px;
+	 body {
+            width: 1000px;
+            height : 1100px;
         }
-    
-    #title{
-            margin-top: 70px;
+
+         /* 세부 카테고리 버튼 */
+         #btnwrap {
+            width: 320px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin: auto;
+        }
+
+        .btn {
+            width: 130px;
+            height: 30px;
+            margin:10px;  
+            background: #ff60657e;
+            border: 0px;
+            border-radius: 55px;       
+        }
+
+        .btn a {
+            color:white;
             font-family: "Do Hyeon";
-            font-size: 36px;
-            margin-left: 350px;
+            font-size: 16px;
+        }
+
+        #con1_title h1{
+            /* position: absolute; */
+            width: 1000px;  
+            text-align: center;
+            margin-top: 25px;          
+        }
+
+        #h1_title {
+           margin-top: 50px;
+           text-align: center;
+           font-family: "Do Hyeon";
+           font-size: 24px;
+           color : #757575;
+        }
+
+        #line {
+            border: 3px solid rgba(255, 96, 100, 0.7);
+        }
+
+        /* 게시판 */
+        #board_tb {
+            width: 100%;
+           /*  height: 400px;       */
+            border-collapse: collapse;
+            
+        }
+
+        #board_tb th, #board_tb td {
+            border-bottom: 1px solid #75757552;
+            padding: 2px;
+        }
+        #board_tb td {
+        	height : 30px;
+        }
+
+        #tb_title {
+            width:70%;
+        }
+        #tb_author {
+            width:10%;
+        }
+        #tb_date {
+            width:10%;
+        }
+        #tb_views {
+            width: 5%;
+        }
+        #th_title {
+            background : rgba(240, 240, 240, 0.7);
+            height: 30px;
+            font-family: "Do Hyeon";
+            font-size: 14px;
+            color : #757575;
         }
         
-     #report {
-            background-color: white;
-            width: 850px;
-            height: 800px;
-            text-align: center;
-            font-family: "Do Hyeon";
-            font-size: 24px;
-            border-radius: 20px;
+        #board_div{
+        	padding-top:3%;
+        
         }
-       #goMainBtn{
-            border: 1px solid #fdc8c6;
-            background-color: #fdc8c6;
-            border-radius: 20px;
+        
+        #write {
+            width:55px;
+            color:white;
             font-family: "Do Hyeon";
-            font-size: 18px;
-            margin-left : 400px;
-            margin-top : 100px;
-        }  
+            margin-top : 20px;
+            margin-left : 80%;
+        }
+        #write a {
+            font-size: 14px;
+        }
+
+        #btn {
+            width:100px;
+            font-family: "Do Hyeon";
+            background: none;
+            border : 2px solid  #ff60657e;        
+        }
+        #btn a {
+            font-size: 14px;
+            color: #ff60657e;
+        }
+
+        #board_tb td:hover {
+            cursor : pointer;
+        }
+        
+        /* 페이징바 영역 */
+		.pagingArea {
+			text-align:center;
+		}
+		.pagingArea button {
+			width:25px;
+			margin-top:20px;
+			border : 0px;
+			background:#fff;
+			font-family: "Do Hyeon";
+			color : #757575;
+		}
+		
+		.pagingArea button:hover {
+			cursor:pointer;
+		}
+        
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp" %>
 
-	<section id="report_form">
-	  
-      <h1 id="title">내가 신고 당한 내역</h1>
+	<section id="con1">
+	
+	  	<div id="con2_title">
+      		<h1 id="h1_title">내가 신고 당한 내역</h1>
         </div>
         <div id="line"></div>
         
-        <!-- qnaBoard -->
         <div id="board_div">
-            <table id="qnaBoard">
+            <table id="board_tb">
                 <thead>
                     <tr id="th_title">
                         <th id="tb_num">번호</th>
@@ -87,10 +184,10 @@ System.out.println("jsp list : "+reList);%>
 						<% for(Report r : reList){ %>
 						<% if(r.getReport_Status().equals("N")) { %>
 						<tr>
-							<td><%= r.getReport_no() %></td>
-							<td><%= r.getReport_title() %></td>
-							<td><%= r.getReport_date() %></td>
-							<td><%= r.getT_f() %></td>
+							<td style=text-align:center;><%= r.getReport_no() %></td>
+							<td style=padding-left:3%;><%= r.getReport_title() %></td>
+							<td style=text-align:center;><%= r.getReport_date() %></td>
+							<td style=text-align:center;><%= r.getT_f() %></td>
 						</tr>
 							<%} %>
 						<%} %>	
@@ -134,7 +231,7 @@ System.out.println("jsp list : "+reList);%>
 				
         </div>
         
-    <button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button>
+    <button id="btn" type="button" class="text_font joinform_btn" class="btn"><a>메인으로</a></button>
     </section>
     
     
