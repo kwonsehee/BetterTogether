@@ -18,6 +18,8 @@ public class Cafe {
 	private String cafe_page; //카페 홈페이지 
 	private String UserId;    // 유저 아이디
 	private String CAFE_STATUS;
+	private String cafe_photo2;  //내부사진2  
+	private String cafe_photo3;  //내부사진3
 	
 	
 	public  Cafe() {}
@@ -30,6 +32,62 @@ public class Cafe {
 	}
 
 	  
+	
+	
+	
+	 
+
+	
+
+	public Cafe(int cafe_code, String cafe_oh, String cafe_name, String cafe_area, String cafe_phone,
+			String cafe_capacity, String cafe_notice, String cafe_info, String cafe_photo, String aFFILIATED_CAFE,
+			String cafe_map, String detail_address, String closed_day, String cafe_page, String userId,
+			String cafe_photo2, String cafe_photo3) {
+		super();
+		this.cafe_code = cafe_code;
+		this.cafe_oh = cafe_oh;
+		this.cafe_name = cafe_name;
+		this.cafe_area = cafe_area;
+		this.cafe_phone = cafe_phone;
+		this.cafe_capacity = cafe_capacity;
+		this.cafe_notice = cafe_notice;
+		this.cafe_info = cafe_info;
+		this.cafe_photo = cafe_photo;
+		AFFILIATED_CAFE = aFFILIATED_CAFE;
+		this.cafe_map = cafe_map;
+		this.detail_address = detail_address;
+		this.closed_day = closed_day;
+		this.cafe_page = cafe_page;
+		UserId = userId;
+		this.cafe_photo2 = cafe_photo2;
+		this.cafe_photo3 = cafe_photo3;
+	}
+
+
+	public Cafe(String cafe_oh, String cafe_name, String cafe_area, String cafe_phone, String cafe_capacity,
+			String cafe_notice, String cafe_info, String cafe_photo, String aFFILIATED_CAFE, String cafe_map,
+			String detail_address, String closed_day, String cafe_page, String userId, String cafe_photo2,
+			String cafe_photo3) {
+		super();
+		this.cafe_oh = cafe_oh;
+		this.cafe_name = cafe_name;
+		this.cafe_area = cafe_area;
+		this.cafe_phone = cafe_phone;
+		this.cafe_capacity = cafe_capacity;
+		this.cafe_notice = cafe_notice;
+		this.cafe_info = cafe_info;
+		this.cafe_photo = cafe_photo;
+		AFFILIATED_CAFE = aFFILIATED_CAFE;
+		this.cafe_map = cafe_map;
+		this.detail_address = detail_address;
+		this.closed_day = closed_day;
+		this.cafe_page = cafe_page;
+		UserId = userId;
+		this.cafe_photo2 = cafe_photo2;
+		this.cafe_photo3 = cafe_photo3;
+	}
+
+
 	public Cafe(int cafe_code, String cafe_oh, String cafe_name, String cafe_area, String cafe_phone,
 			String cafe_capacity, String cafe_notice, String cafe_info, String cafe_photo, String aFFILIATED_CAFE,
 			String cafe_map, String detail_address, String closed_day, String cafe_page, String userId,
@@ -99,13 +157,9 @@ public class Cafe {
 	}
 
 
-
-
 	public int getCafe_code() {
 		return cafe_code;
 	}
-
-
 
 
 	public void setCafe_code(int cafe_code) {
@@ -113,13 +167,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_oh() {
 		return cafe_oh;
 	}
-
-
 
 
 	public void setCafe_oh(String cafe_oh) {
@@ -127,13 +177,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_name() {
 		return cafe_name;
 	}
-
-
 
 
 	public void setCafe_name(String cafe_name) {
@@ -141,13 +187,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_area() {
 		return cafe_area;
 	}
-
-
 
 
 	public void setCafe_area(String cafe_area) {
@@ -155,13 +197,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_phone() {
 		return cafe_phone;
 	}
-
-
 
 
 	public void setCafe_phone(String cafe_phone) {
@@ -169,13 +207,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_capacity() {
 		return cafe_capacity;
 	}
-
-
 
 
 	public void setCafe_capacity(String cafe_capacity) {
@@ -183,13 +217,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_notice() {
 		return cafe_notice;
 	}
-
-
 
 
 	public void setCafe_notice(String cafe_notice) {
@@ -197,13 +227,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_info() {
 		return cafe_info;
 	}
-
-
 
 
 	public void setCafe_info(String cafe_info) {
@@ -211,13 +237,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_photo() {
 		return cafe_photo;
 	}
-
-
 
 
 	public void setCafe_photo(String cafe_photo) {
@@ -225,13 +247,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getAFFILIATED_CAFE() {
 		return AFFILIATED_CAFE;
 	}
-
-
 
 
 	public void setAFFILIATED_CAFE(String aFFILIATED_CAFE) {
@@ -239,13 +257,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_map() {
 		return cafe_map;
 	}
-
-
 
 
 	public void setCafe_map(String cafe_map) {
@@ -253,13 +267,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getDetail_address() {
 		return detail_address;
 	}
-
-
 
 
 	public void setDetail_address(String detail_address) {
@@ -267,13 +277,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getClosed_day() {
 		return closed_day;
 	}
-
-
 
 
 	public void setClosed_day(String closed_day) {
@@ -281,13 +287,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCafe_page() {
 		return cafe_page;
 	}
-
-
 
 
 	public void setCafe_page(String cafe_page) {
@@ -295,13 +297,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getUserId() {
 		return UserId;
 	}
-
-
 
 
 	public void setUserId(String userId) {
@@ -309,13 +307,9 @@ public class Cafe {
 	}
 
 
-
-
 	public String getCAFE_STATUS() {
 		return CAFE_STATUS;
 	}
-
-
 
 
 	public void setCAFE_STATUS(String cAFE_STATUS) {
@@ -323,6 +317,24 @@ public class Cafe {
 	}
 
 
+	public String getCafe_photo2() {
+		return cafe_photo2;
+	}
+
+
+	public void setCafe_photo2(String cafe_photo2) {
+		this.cafe_photo2 = cafe_photo2;
+	}
+
+
+	public String getCafe_photo3() {
+		return cafe_photo3;
+	}
+
+
+	public void setCafe_photo3(String cafe_photo3) {
+		this.cafe_photo3 = cafe_photo3;
+	}
 
 
 	@Override
@@ -331,11 +343,13 @@ public class Cafe {
 				+ cafe_area + ", cafe_phone=" + cafe_phone + ", cafe_capacity=" + cafe_capacity + ", cafe_notice="
 				+ cafe_notice + ", cafe_info=" + cafe_info + ", cafe_photo=" + cafe_photo + ", AFFILIATED_CAFE="
 				+ AFFILIATED_CAFE + ", cafe_map=" + cafe_map + ", detail_address=" + detail_address + ", closed_day="
-				+ closed_day + ", cafe_page=" + cafe_page + ", UserId=" + UserId + ", CAFE_STATUS=" + CAFE_STATUS + "]";
+				+ closed_day + ", cafe_page=" + cafe_page + ", UserId=" + UserId + ", CAFE_STATUS=" + CAFE_STATUS
+				+ ", cafe_photo2=" + cafe_photo2 + ", cafe_photo3=" + cafe_photo3 + "]";
 	}
 
 
-	 
+
+ 
 	
 	
 	
