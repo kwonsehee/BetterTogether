@@ -28,7 +28,7 @@ public class QnA {
 	public QnA() {}
 
 	public QnA(int qnaNo, String qnaTitle, String qnaContent, Date qnaDate, Date qnaModify, String faq, int qReference
-			, String userId, String qnaType) {
+			,String qnaType, String userId ) {
 		super();
 		this.qnaNo = qnaNo;
 		this.qnaTitle = qnaTitle;
@@ -37,14 +37,14 @@ public class QnA {
 		this.qnaModify = qnaModify;
 		this.faq = faq;
 		this.qReference = qReference;
-		this.userId = userId;
 		this.qnaType = qnaType;
+		this.userId = userId;
 	}
 	
 	
 
 	public QnA(int qnaNo, String qnaTitle, String qnaContent, Date qnaDate, Date qnaModify, int qReference,
-			String qnaType,String userId, String qnaStatus) {
+			String qnaType, String qnaStatus, String userId) {
 		super();
 		this.qnaNo = qnaNo;
 		this.qnaTitle = qnaTitle;
@@ -53,8 +53,8 @@ public class QnA {
 		this.qnaModify = qnaModify;
 		this.qReference = qReference;
 		this.qnaType = qnaType;
-		this.userId = userId;
 		this.qnaStatus = qnaStatus;
+		this.userId = userId;
 	}
 
 	public QnA(String qnaTitle, String qnaContent, String userId) {
