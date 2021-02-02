@@ -16,6 +16,22 @@
 <head>
 <meta charset="UTF-8">
 <title>공통 ui</title>
+
+<div id="kakao-talk-channel-chat-button"></div>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('dfa18ae3b3f4417156f0f25f0de131eb');
+    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
+    Kakao.Channel.createChatButton({
+      container: '#kakao-talk-channel-chat-button',
+      channelPublicId: '_xotneK' // 카카오톡 채널 홈 URL에 명시된 ID
+    });
+  //]]>
+</script>
+
 <!-- 아이콘  -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
    rel="stylesheet">
@@ -31,6 +47,7 @@
    
 <!-- 스타일  -->
 <link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css?after'>
+
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -56,6 +73,17 @@
     }
 %>
 <style>
+/* 카카오톡 채팅 */
+/* pc 화면 */
+@media (min-width: 768px) {
+    #kakao-talk-channel-chat-button {
+    position: fixed;
+    z-index: 999;
+    right: 30px; /* 화면 오른쪽으로부터의 거리, 숫자만 변경 */
+    bottom: 30px; /* 화면 아래쪽으로부터의 거리, 숫자만 변경 */
+    }
+}
+
 /* 사이드바 스타일 */
 .sidenav {
    height: 100%;
