@@ -20,7 +20,7 @@ public class Cafe {
 	private String CAFE_STATUS;
 	private String cafe_photo2;  //내부사진2  
 	private String cafe_photo3;  //내부사진3
-	
+	private String CAFE_DATE; //등록일 추가
 	
 	public  Cafe() {}
 	
@@ -38,6 +38,33 @@ public class Cafe {
 	 
 
 	
+
+	public Cafe(int cafe_code, String cafe_oh, String cafe_name, String cafe_area, String cafe_phone,
+			String cafe_capacity, String cafe_notice, String cafe_info, String cafe_photo, String aFFILIATED_CAFE,
+			String cafe_map, String detail_address, String closed_day, String cafe_page, String userId,
+			String cAFE_STATUS, String cafe_photo2, String cafe_photo3, String cAFE_DATE) {
+		super();
+		this.cafe_code = cafe_code;
+		this.cafe_oh = cafe_oh;
+		this.cafe_name = cafe_name;
+		this.cafe_area = cafe_area;
+		this.cafe_phone = cafe_phone;
+		this.cafe_capacity = cafe_capacity;
+		this.cafe_notice = cafe_notice;
+		this.cafe_info = cafe_info;
+		this.cafe_photo = cafe_photo;
+		AFFILIATED_CAFE = aFFILIATED_CAFE;
+		this.cafe_map = cafe_map;
+		this.detail_address = detail_address;
+		this.closed_day = closed_day;
+		this.cafe_page = cafe_page;
+		UserId = userId;
+		CAFE_STATUS = cAFE_STATUS;
+		this.cafe_photo2 = cafe_photo2;
+		this.cafe_photo3 = cafe_photo3;
+		CAFE_DATE = cAFE_DATE;
+	}
+
 
 	public Cafe(int cafe_code, String cafe_oh, String cafe_name, String cafe_area, String cafe_phone,
 			String cafe_capacity, String cafe_notice, String cafe_info, String cafe_photo, String aFFILIATED_CAFE,
@@ -337,6 +364,16 @@ public class Cafe {
 	}
 
 
+	public String getCAFE_DATE() {
+		return CAFE_DATE;
+	}
+
+
+	public void setCAFE_DATE(String cAFE_DATE) {
+		CAFE_DATE = cAFE_DATE;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Cafe [cafe_code=" + cafe_code + ", cafe_oh=" + cafe_oh + ", cafe_name=" + cafe_name + ", cafe_area="
@@ -344,12 +381,11 @@ public class Cafe {
 				+ cafe_notice + ", cafe_info=" + cafe_info + ", cafe_photo=" + cafe_photo + ", AFFILIATED_CAFE="
 				+ AFFILIATED_CAFE + ", cafe_map=" + cafe_map + ", detail_address=" + detail_address + ", closed_day="
 				+ closed_day + ", cafe_page=" + cafe_page + ", UserId=" + UserId + ", CAFE_STATUS=" + CAFE_STATUS
-				+ ", cafe_photo2=" + cafe_photo2 + ", cafe_photo3=" + cafe_photo3 + "]";
+				+ ", cafe_photo2=" + cafe_photo2 + ", cafe_photo3=" + cafe_photo3 + ", CAFE_DATE=" + CAFE_DATE + "]";
 	}
 
 
-
- 
+	 
 	
 	
 	

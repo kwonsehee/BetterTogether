@@ -190,6 +190,7 @@
 			, CAFE_STATUS
 			, CAFE_PHOTO2
 			, CAFE_PHOTO3
+			, CAFE_DATE
 
 			)
 			VALUES
@@ -213,6 +214,7 @@
 			, DEFAULT
 			, ?
 			, ?
+			, SYSDATE
 			 
 	)
 	</entry>

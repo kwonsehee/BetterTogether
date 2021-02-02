@@ -146,7 +146,7 @@ hr {
 	background: #fff;
 	border: 2px solid #666;
 	background-image:
-		url('<%=request.getContextPath()%>/resources/images/전화번호.png'); 
+		url('<%=request.getContextPath()%>/resources/images/전화.png'); 
 	border-radius: 20px;
 }
 
@@ -313,13 +313,13 @@ ul{
     position:absolute;
     top:30%;
     left:0;
-    color:white;
+    color:black;
 }
 .next{
     position:absolute;
     top:30%;
     right:-3%;
-     color:white;
+     color:black;
 }
 .container ul{
     -webkit-transition: all 0.25s cubic-bezier(1, .01, .32, 1);
@@ -382,12 +382,14 @@ ul{
 					</tr>
 					<br>
 					<br>
+						<br>
 					<tr>
 						&nbsp 이용가능한 최대 인원:
 						<%=c.getCafe_capacity()%>
 					</tr>
 					<br>
 					<br>
+						<br>
 					<tr>
 						&nbsp 이용시간:
 						<%=c.getCafe_oh()%>
@@ -487,13 +489,7 @@ ul{
 
 
 
-
-
-
-
-
-
-
+ 
 
 
 
