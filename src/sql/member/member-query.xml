@@ -143,4 +143,16 @@
 		WHERE 
 			USER_ID = ?
 	</entry>
+	<entry key="refundMoney">
+		UPDATE USER_INFO
+		SET
+			POINT = POINT + (SELECT CHALL_PAYMENT
+                            FROM CHALL
+                            WHERE CHALL_NO  = ?)
+		  , MODIFY_DATE = SYSDATE
+          WHERE USER_ID IN (SELECT USER_ID
+                            FROM CHALL_STATUS
+                            WHERE CHALL_NO = ?
+                            AND CHALL_STATUS !=0)
+	</entry>
 </properties>

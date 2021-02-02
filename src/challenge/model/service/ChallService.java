@@ -619,5 +619,22 @@ public class ChallService {
 		return listCount;
 	}
 
+	//챌린지 삭제하면 chall_status에 challNo인 값 지우기
+	public int deleteChallStatus(int challNo) {
+		Connection conn = getConnection();
+
+		int result = new ChallDao().deleteChallStatus(conn, challNo);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		
+		return result;
+	}
+
 
 }

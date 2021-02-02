@@ -331,6 +331,7 @@
 		  	 	REPORT
 		  WHERE
 		  		USER_ID = ?
+		  	AND REPORT_STATUS = 'N'
 	</entry>
 	<entry key="selectMyList">
 		 SELECT
@@ -346,11 +347,27 @@
               , REPORT_STATUS
               , USER_ID
 		   FROM
-		 		RELIST
-          WHERE 
-          		RNUM BETWEEN ? AND ?
-            AND REPORT_STATUS = 'N'
-            AND USER_ID = ?
+		 		(SELECT ROWNUM RNUM, A.*
+                 FROM (SELECT
+                            	REPORT_NO
+                             , REPORT_TITLE
+                             , REPORTED_ID
+                             , REPORT_FILE
+                             , REPORT_CONTENT
+                             , REPORT_DATE
+                             , REPORT_MODIFY
+                             , T_F
+                             , REPORT_STATUS
+                             , USER_ID
+                         FROM
+                            	REPORT
+                        WHERE
+                               REPORT_STATUS = 'N'
+                           AND USER_ID = ?
+                     ORDER BY
+                            	REPORT_NO DESC)A)
+              WHERE 
+                    RNUM BETWEEN ? AND ?
 	</entry>
 	<entry key="deleteReport">
 		UPDATE
@@ -382,6 +399,52 @@
 				LEFT JOIN BOARD_REPORT B ON (R.REPORT_NO=B.REPORT_NO)
 		  WHERE 
 		  		R.REPORT_NO = ?
+	
+	</entry>
+	<entry key="getreportedMyListCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	REPORT
+		  WHERE
+		  		REPORTED_ID = ?
+		    AND REPORT_STATUS = 'N'
+	</entry>
+	<entry key="selectreportedMyList">
+		SELECT
+		 	    RNUM
+			  ,	REPORT_NO
+              , REPORT_TITLE
+              , REPORTED_ID
+              , REPORT_FILE
+              , REPORT_CONTENT
+              , REPORT_DATE
+              , REPORT_MODIFY
+              , T_F
+              , REPORT_STATUS
+              , USER_ID
+		   FROM
+		 		(SELECT ROWNUM RNUM, A.*
+                 FROM (SELECT
+                               REPORT_NO
+                             , REPORT_TITLE
+                             , REPORTED_ID
+                             , REPORT_FILE
+                             , REPORT_CONTENT
+                             , REPORT_DATE
+                             , REPORT_MODIFY
+                             , T_F
+                             , REPORT_STATUS
+                             , USER_ID
+                         FROM
+                            	REPORT
+                        WHERE
+                               REPORT_STATUS = 'N'
+                           AND REPORTED_ID = ?
+                     ORDER BY
+                            	REPORT_NO DESC)A)
+              WHERE 
+                    RNUM BETWEEN ? AND ?
 	
 	</entry>
 </properties>

@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" import="member.model.vo.Member"%>
+   pageEncoding="UTF-8" import="member.model.vo.Member, news.model.vo.News, java.util.ArrayList"%>
 <%
    //session 객체에 담긴 loginUser 정보를 변수에 담아두기
    Member loginUser = (Member)session.getAttribute("loginUser");
+	//새로운 소식이 있는지 확인
+	ArrayList<News> news = new ArrayList<News>();
+	if(session.getAttribute("news")!=null){
+	news = (ArrayList<News>)session.getAttribute("news");
+	System.out.println("commonUi의 news 갯수"+news.size());
+	}	
 %>
 <!DOCTYPE html>
 <html>
@@ -139,8 +145,9 @@
                 <a href="#" class="closebtn" onclick='closeNav()'>x</a>
                 <button id="myUpdateBtn" class="mypageMenu1" style="padding-left: 10px;">개인정보수정</button>
                 <button id="joinedChallBtn" class="mypageMenu1"style="padding-left: 10px;">참여했던 챌린지그룹</button>
-                <button id="likeChallBtn" class="mypageMenu1"style="padding-left: 10px;">찜하기한 챌린지그룹</button>
                 <button id="challingBtn" class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
+                <button id="joinbeforeChallBtn" class="mypageMenu1"style="padding-left: 10px;">시작전인 챌린지그룹</button>
+                <button id="likeChallBtn" class="mypageMenu1"style="padding-left: 10px;">찜하기한 챌린지그룹</button>
                 <button id="myChallBtn" class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
                 <button id="refundBtn" class="mypageMenu1"style="padding-left: 10px;">환급받기</button>
                 <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고내역</button>
@@ -184,7 +191,7 @@
          //6.신고내역
           const myReportBtn = document.getElementById('myReportBtn');
           myReportBtn.addEventListener('click',function(){
-            location.href="<%= request.getContextPath()%>/report/mylist";
+            location.href="<%= request.getContextPath()%>/myPage/reported";
          });
           
          //7.환급받기
@@ -198,7 +205,12 @@
           pointcharginBtn.addEventListener('click',function(){
             location.href="<%= request.getContextPath()%>/views/myPage/PointCharging.jsp";
          });
-          
+         
+        //9.참여중인 챌린지 그룹
+          const joinbeforeChallBtn = document.getElementById('joinbeforeChallBtn');
+          joinbeforeChallBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/before/list";
+         });
           
           
           
@@ -272,7 +284,7 @@
             <tr>
                <td>
                   <i class="material-icons icon_css">mood</i>
-                  <span><%=loginUser.getNickName() %>님</span>
+                  <span><%=loginUser.getNickName() %>님<a id="newNews">+<%=news.size() %></a></span>
                </td>
                <td>
                   <i class="material-icons icon_css">insert_chart</i>
@@ -285,6 +297,13 @@
             const logoutBtn = document.getElementById('logoutBtn');
             logoutBtn.addEventListener('click',function(){
                location.href='<%=request.getContextPath()%>/member/logout';
+            });
+          //새로운 소식 보기
+            const newNews = document.getElementById('newNews');
+            newNews.addEventListener('click',function(){
+              	if(<%=news.size() %>>0){
+              		window.open("<%=request.getContextPath()%>/views/common/alertNews.jsp","새로운 알림","width=500, height=400");
+              	}
             });
          </script>
          <%} %>

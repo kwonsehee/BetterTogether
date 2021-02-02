@@ -1,6 +1,7 @@
 package member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import news.model.service.NewsService;
+import news.model.vo.News;
 
 /**
  * Servlet implementation class LoginServlet
@@ -47,6 +50,7 @@ public class LoginServlet extends HttpServlet {
 		Member loginUser = new MemberService().loginMember(m);
 //		System.out.println("loginUser return 값 : "+loginUser);
 		
+		
 		//4. 로그인이 된 경우와 로그인에 실패한 경우 응답 컨트롤
 		if(loginUser !=null) {
 			//로그인 성공->loginUser정보를 보관하고 home으로 이동
@@ -71,6 +75,11 @@ public class LoginServlet extends HttpServlet {
 			//->10분 뒤 세션 객체 만료  -> 10분뒤 자동 로그아웃
 			//안넣으면 브라우져탭닫을때 세션만료
 			session.setAttribute("loginUser", loginUser);
+			
+			//알림디비에서 새로 알려줄 알림이 있는지 확인
+			ArrayList<News> news = new NewsService().getNews(userId);
+			System.out.println("news : "+news);
+			session.setAttribute("news", news);
 			
 			//Home으로 이동(기존 요청 url을 남기지 않기 위해 서버에 재요청 처리)
 			//1. forward ->응답 위임 ->요청 url, request, response 보존

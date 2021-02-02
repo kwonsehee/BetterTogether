@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import news.model.service.NewsService;
 import report.model.service.ReportService;
 
 /**
@@ -37,9 +38,12 @@ public class ReportProcessingServlet extends HttpServlet {
 		
 		ReportService rs = new ReportService();
 		
+		//알림디비에 값 입력 
+		int result4= new NewsService().insertReport(rNo);
+		
 		//신고디비 t_f를 t로
 		int result = rs.processReport(rNo);
-		//user_info 신고횟수 증가 
+		
 		//user_info에 신고횟수 증가시키기 
 		int result2 =new MemberService().processUserReported(rNo);
 		
@@ -47,7 +51,7 @@ public class ReportProcessingServlet extends HttpServlet {
 		int result3 = rs.disabledPost(rNo);
 		
 		
-		System.out.println(result +", "+result2 +", "+result3 +", ");
+		System.out.println(result +", "+result2 +", "+result3 +", "+result4);
 		if(result >0 && result2>0&& result3>0) {
 			request.getSession().setAttribute("msg", "신고처리가 성공적으로 되었습니다.");
 			response.sendRedirect(request.getContextPath()+"/report/list");

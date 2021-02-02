@@ -5,23 +5,7 @@
    
       
       PageInfo pi = (PageInfo)request.getAttribute("pi");
-      
-      
-     /*  Search s = (Search)request.getAttribute("search");
-      String search = "";
-      String searchCondition = "";
-      String[] selected = new String[3];
-      if(s != null){
-         search = s.getSearch();
-         searchCondition = s.getSearchCondition();
-         if(searchCondition.equals("writer")){
-            selected[0] = "selected";
-         }else if(searchCondition.equals("title")){
-            selected[1] = "selected";
-         }else{
-            selected[2] = "selected";
-         }
-      }   */
+
    	int month = Integer.parseInt((String.valueOf(request.getAttribute("month"))));
       
 %>

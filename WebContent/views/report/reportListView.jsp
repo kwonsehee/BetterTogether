@@ -179,7 +179,11 @@
                 </tbody>
             </table>
             
-            
+            <%-- 로그인 유저만 글쓰기, 내가쓴글보기 버튼 보이기 --%>
+			<% if(loginUser != null) { %>
+			  	<button class="btn" id="writenReport"><a href='<%= request.getContextPath()%>/report/mylist'>내가 작성한 신고 보기</a></button>
+			<% } %>
+    	
 
             <!-- 페이징 바 -->
 			<div class="pagingArea">
@@ -213,10 +217,9 @@
 		</div>
 		
 		<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
-				<% if(loginUser != null && loginUser.getMembertype() != 0) { %>
-				<button id="questionBtn" type="button" 
-				onclick="location.href='<%= request.getContextPath() %>/views/report/reportInsertForm.jsp'"><a>신고하기</a></button>
-				<% } %>
+		<% if(loginUser != null && loginUser.getMembertype() != 0) { %>
+			<button id="questionBtn" type="button" onclick="location.href='<%= request.getContextPath() %>/views/report/reportInsertForm.jsp'"><a>신고하기</a></button>
+		<% } %>
         </div>
         
 	</section>

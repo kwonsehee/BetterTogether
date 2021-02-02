@@ -351,9 +351,9 @@ public class ReportDao {
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
 			
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			pstmt.setString(3, userId);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -460,7 +460,77 @@ public class ReportDao {
 	
 			close(pstmt);
 		}
-System.out.println("신고된 게시글 가져오니 ?"+r);
+		System.out.println("신고된 게시글 가져오니 ?"+r);
+		
 		return r;
+	}
+
+	//내가 신고당한 내역
+	public ArrayList<Report> selectreportedMyList(Connection conn, String userId, PageInfo pi) {
+		ArrayList<Report> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectreportedMyList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Report(rset.getInt(2),
+						         rset.getString(3),
+						         rset.getString(4),
+						         rset.getString(5),
+						         rset.getString(6),
+						         rset.getDate(7),
+						         rset.getDate(8),
+						         rset.getString(9),
+						         rset.getString(10),
+						         rset.getString(11)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		 System.out.println("신고당한 list : " + list);
+			
+		return list;
+	}
+
+	//내가 신고당한 갯수 카운트
+	public int getreportedMyListCount(Connection conn, String userId) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getreportedMyListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
 	}
 }

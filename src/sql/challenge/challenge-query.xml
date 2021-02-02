@@ -984,5 +984,13 @@
    		  AND 
    		  	  USER_ID = ?
    </entry>
-
+	<entry key="deleteChallStatus">
+		UPDATE 
+			  CHALL_STATUS
+		   SET
+		   	  CHALL_STATUS = NULL
+		 WHERE
+		 	  CHALL_NO = ?
+	</entry>
+	
 </properties>
