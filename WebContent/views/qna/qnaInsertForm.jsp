@@ -5,7 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/qnaStyle.css'>--%>
+<!-- 카카오톡채널 상담 버튼 -->
+
+
+
 <style>
 body {
 	width: 1000px;
@@ -152,5 +155,6 @@ body {
 		</script>
 		</div>
 	</form>
+	
 </body>
 </html>

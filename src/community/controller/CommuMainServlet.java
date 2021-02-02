@@ -82,7 +82,7 @@ public class CommuMainServlet extends HttpServlet {
 	      
 	     //request.setAttribute("hitsCount", hitsCount);
 	      
-		RequestDispatcher view= request.getRequestDispatcher("/views/community/commuMain.jsp");
+		RequestDispatcher view= request.getRequestDispatcher("/views/common/secondMain.jsp");
 		view.forward(request, response);
 	
 	}
