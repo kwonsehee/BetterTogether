@@ -24,7 +24,7 @@
 
 <!-- 모든 페이지에 include할 menubar.jsp 생성하고 포함하기 -->
 
-<%@ include file="views/common/checkCate.jsp" %>
+<%@ include file="views/common/firstMain.jsp" %>
 
 <!-- 처음 홈화면에 보이는 화면(카테고리선택하는 화면) 나중에 여기 변경해야함-->
 

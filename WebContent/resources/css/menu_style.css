@@ -1,216 +1,211 @@
 @charset "UTF-8";
-header,nav,section,article,aside{
-    /* border: 1px solid red; */
-    box-sizing: border-box;
-   
-    /* ie8 이하 버전은 시맨틱 태그를 인식하지 못하므로
-    시맨틱 태그를 inline 요소로 취급함.
-    이를 방지하기 위해 display:block; 속성을 추가함. */
-    display: block;
-}
+ 
+        body {        
+            height: 1100px;
+        }
+         #btHeader, #btNavi-wrapper, #btSection, #btFooter {
+            box-sizing: border-box;
+            display: block;
+            margin: auto;
+        }
+        p, span,input{
+            font-family: "Nanum Gothic";
+            font-size: 20px;
+        }
 
-body{
-    width: 1000px;
-    height: 800px;
-    margin: auto;
-}
+        /* header 영역 */
+        #btHeader {
+            width:100%;
+            height:5%;
+            position: fixed;
+            /* border:1px solid black; */
+        }
+        #bt_titlewrap{
+            height : 80px;
+            width: 100%;     
+            margin : auto; 
+            align-items: center;     
+        }    
+        
+        .bt_title img {
+            margin:auto;
+            width:150px;
+            cursor: pointer;
+            margin-top: -30px;
+        }
 
-header{
-    width: 100%;
-    height: 23%;
-}
+        /* nav 영역 */
+        #btNavi-wrapper{
+            /* border:1px solid black; */
+            width:100%;
+            height:20%;
+        } 
+         .bt_container {   
+            width : 100%;
+            height: 5px; 
+            position: absolute;
+            left : 50%;
+            transform:translate(-50%,-50%);
+        }
+        .bt_navi {
+            display:flex;
+            list-style: none;
+            width:100%;
+            height: 90px; 
+            background-color: #fff;
+            padding: 45px;
+            margin: 0;
+            /*box-shadow: 0 0 30px rgba(0,0,0,0.1);*/
+            font-family: 'Nanum Gothic', sans-serif;
+            font-weight: bolder;
+            
+        }
 
-nav{
-    width: 100%;
-    height: 5%;
-}
+        .bt_navi li {
+            list-style-type: none;
+            margin: 20px;
+            cursor:pointer;
+            margin-top: -10px;
+        }
 
-#content{
-    width: 100%;
-    height: 100%;
-}
-header >section{
-    float: left;
-}
-#mypage{
-    padding-left: 40px;
-    padding-top : 70px;
-    width: 15%;
-    height: 100%;
-}
-#logo_block{
-    width: 50%;
-    height: 100%;
-    padding-left: 180px;
-}
-#login_block{
-    width: 35%;
-    height: 100%;
-    padding-top: 30px;
-}
-.login_logout{
-    font-family: "Do Hyeon";
-    font-size: 20px;
-    color: #ff6064;
-    border: 0;
-    outline: 0;
-    background: white;
-}
-/* #challenge{
-    padding-top: 28px;
-    padding-right: 20px;
-    width: 23%;
-    height: 100%;
-} */
-p, span,input{
-    font-family: "Do Hyeon";
-    font-size: 20px;
-}
+        #challMargin{
+            margin-left: 70px;
+        }
 
-
-#login_css{
-    margin-left: 30%;
-    margin-top: 13%;
-    margin-right: 30%;
-
-    padding-left: 35px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-
-    border-radius: 20px;
-    border: solid 1px #fdc8c6;
-    background-color: #fdc8c6;
-}
-.input_box{
-    width: 200px;
-    height: 50px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    border: white;
-    background-color: #ffffff;
-}
-.input_box_lag{
-    width: 300px;
-    height: 40px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    border: white;
-}
-.icon_css{
-    width: 40px;
-    height: 40px;
-    padding-left: 10px;
-    padding-top: 10px;
-    margin-top: 10px;
-}
-.nav_css {
-width: 1000px;
-height: 80px;
-padding-left: 0px;
-padding-right: 10px;
-padding-top: 10px;
-padding-bottom: 10px;
-border-radius: 20px;
-border: solid 1px  #ff6064;
-background-color: #ff6064;
-}
-.nav_btn{
-    width: 170px;
-    height: 50px;
-    border-radius: 20px;
-    border: solid 1px  #fdc8c6;
-    background-color: #fdc8c6;
-    margin: 5px;
-}
- /*전체 ul의 블릿 제거 및 공백 제거*/
- #navi{
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-#navi > li {
-    float: left;
-    width: 15%;
-    padding-left: 40px;
-}
-/*각 메뉴 스타일 지정*/
-#navi li button{
-    /*a 태그 영역 클릭 가능하게 만들기*/
-    display: block;
-    /*밑줄 제거*/
-    text-decoration: none;
-    /*폰트 설정*/
-    text-align : center;
-    color : black;
-    font-family: "Do Hyeon";
-    font-size: 20px;
-
-    /*높이 설정*/
-    line-height: 40px;
-}
-  /*서브 메뉴 설정*/
-  #navi li>ul{
-    position: absolute;
-	z-index:1;
-    /*블릿제거 및 공백제거*/
-    list-style-type: none;
-    padding: 0;
-    margin: 0; 
-    /*평소에는 보이지 않게*/
-    z-index:1;
-    opacity: 0;
-    visibility: hidden;
-}
-#navi li:hover ul{
-	cursor : pointer;
-    /*메인 메뉴에 마우스 오버 시 서브메뉴 보이게*/
-    opacity: 1;
-    visibility: visible; 
-    /*트렌지션*/
-    transition: all 0.6s;
-
-}
- /*메뉴 마우스 오버 시 색상변경*/
- #navi li a:hover{
-    color : #88a1db;
-}
-a{
-    color: black;
-    text-decoration: none;
-    font-family: "Do Hyeon";
-    font-size: 20px;
+        .bt_navi li a{
+            font-size: 14px;
+            color : #222;
+            position: relative;         
+        }
     
-}
-.this{
-    color:#f7dede !important;
-}
-.btn_join, .btn_login{
+        .bt_navi li a:before {
+            content: '';
+            background-color: #937CF7;
+            width: 0;
+            height: 3px;
+            position: absolute; 
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            transition : 0.3s;
+        }
 
-width: 120px;
-height: 40px;
-border-radius: 20px;
-border: #f7dede;
-background-color: #f7dede;
-font-family: "Do Hyeon";
-font-size: 20px;
+        .bt_navi li a:hover:before {
+            width: 100%;
+        }
 
-}
-.content_css{
-    width: 100%;
-    height: 100%;
-    margin-top: 5px;
-    border-radius: 20px;
-    border: solid 1px  #f9f1f1;
-    background-color:  #f9f1f1;
-    float: left;
-}
+        .bt_navi li>ul{
+            position: absolute;
+            /*블릿제거 및 공백제거*/
+            list-style-type: none;
+            padding: 0;
+            margin: 0; 
+            /*평소에는 보이지 않게*/
+            z-index:2;
+            opacity: 0;
+            visibility: hidden;
+            /* line-height: 40px; */
+        }   
 
-	/*버튼 관련 스타일*/
-	button:hover{
-		cursor : pointer;
-		
-	}
+        .bt_navi ul li {
+            
+            margin-top: 40px;
+            text-align: center;
+            margin-left: 0px;
+        }
+
+        .bt_navi li:hover ul{
+            cursor : pointer;
+            /*메인 메뉴에 마우스 오버 시 서브메뉴 보이게*/
+            opacity: 1;
+            visibility: visible; 
+            /*트렌지션*/
+            transition: all 0.6s;
+        }
+
+        /* content 영역 */
+        #btSection {
+            /* border:1px solid black; */
+            width:100%;
+            height:90%;
+            background: rgba(219, 219, 219, 0.356);
+            padding-top:10%;
+        }
+
+        .w3-animate-fading{
+            padding-top: 100px;
+        }
+
+        .w3-content{
+            padding-top: 20px;
+        }
+
+         /* footer 영역 */
+         #btFooter {
+            width: 100%;
+            height: 5%;
+            margin-top: 40px;
+            text-align: center;
+            /* border:1px solid black; */
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        #btFooter_pre{
+            font-family: 'Nanum Gothic', sans-serif;
+            background-color: white;
+            font-size:5px;
+        }
+
+        /* 로그인 부분*/
+        #login{ 
+            float: right;
+            margin-left: 340px;
+            margin-top:-8px;
+        }
+
+        /*사이드바 css*/
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: white;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            }
+
+            .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 15px;
+            color: #222;
+            display: block;
+            transition: 0.3s;
+            font-family: 'Nanum Gothic', sans-serif;
+            }
+
+            .sidenav a:hover {
+            color: #937CF7;
+            }
+
+            .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            }
+
+            @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+            }
+            
+            #sidebar_css{
+                margin-top:-13px;
+                margin-left:30px;
+            }
+  
