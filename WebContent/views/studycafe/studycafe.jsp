@@ -40,7 +40,7 @@
 	width: 100%;
 	min-width: 850px;
 	font-family: "Do Hyeon";
-	background-color: #f9f1f1;
+	background-color: #EBEBEB;
 	margin: auto;
 	margin-top: 20px;
 	margin-bottom: 70px;
@@ -55,25 +55,28 @@
 }
 
 #line1 {
-  border: 3px solid rgba(255, 96, 100, 0.7);
+	border: 1px solid  color:#FF6064;
 }
 
 .gallery_list {
-	width: 210px;
+	width: 217px;
 	border: 2px solid white;
 	display: inline-block;
 	padding: 5px;
 	margin: 7px;
 	text-align: center;
+	background: #FFFFFF;
 }
 
 .gallery_list2 {
-	width: 210px;
-	border: 3px solid #fdc8c6;
+	width: 217px; 
+	border: 2px solid #aba9a9;
 	display: inline-block;
 	padding: 5px;
 	margin: 7px;
 	text-align: center;
+	background: #FFFFFF;
+	padding-left: 0px;
 }
 
 .gallery_list:hover {
@@ -96,7 +99,7 @@
 	width: 90px;
 	height: 30px;
 	background: #FEFDFD;
-	border: 2px solid #FF6064;
+	border: 2px solid #aba9a9;
 	box-sizing: border-box;
 }
 
@@ -113,7 +116,7 @@
 	height: 30px;
 	margin-left: 50px;
 	background: #FDFDFD;
-	border: 2px solid #FF6064;
+	border: 2px solid #aba9a9;
 	box-sizing: border-box;
 }
 
@@ -153,7 +156,7 @@
 	border-radius: 55px;
 }
 
-	#insertBtn {
+#insertBtn {
 	width: 50px;
 	height: 35px;
 	color: #ff60657e;
@@ -161,7 +164,25 @@
 	background: #fff;
 	border: 2px solid #ff60657e;
 	border-radius: 55px;
-	}
+}
+
+.scale {
+	width: 217px;
+	overflow: hidden;
+	margin: 0 auto
+}
+/*overflow:hidden을 선언해줘야 확대 시 이미지가 밖으로 넘치지 않아요!*/
+.scale img {
+	transform: scale(1);
+	transition: transform 0.5s linear;
+}
+
+.scale:hover img {
+	transform: scale(1.1); /*  default */
+	-webkit-transform: scale(1.1); /*  크롬 */
+	-moz-transform: scale(1.1); /* FireFox */
+	-o-transform: scale(1.1); /* Opera */
+}
 </style>
 </head>
 <body>
@@ -169,9 +190,10 @@
 	<%@ include file="../common/common_ui.jsp"%>
 
 	<section id="content" class="content_css">
-		<div class="outer">
+		<div class="outer" style=" padding-top: 100px;">
+		
 				
-			<label style="color:#FF6064;  margin-left: 25px;" > 지역검색</label><label  style="color:#FF6064;margin-left: 185px;">카페홍보</label><label style="color:#FF6064; margin-left: 350px;">카페명검색</label>	
+			<label style="  margin-left: 485px;" ><strong> 지역검색</label><label  style=" margin-left: 185px;">카페홍보</label><label style="  margin-left: 350px;">카페명검색</label>	</strong>
 			<div class="galleryArea">
 
 				<!-- 지역및 인원선택 -->
@@ -261,27 +283,29 @@
 				<!--  경계바 -->
 				<hr id="line1">
 
-				
-				
-				 <%if(list2.isEmpty()){ %>
-				 <br>  <br> <br> <br>  <br>
-			 		<h1> 등록된 카페가 없습니다!</h1>
-			 	<% } else{ %>
+
+
+				<%
+					if (list2.isEmpty()) {
+				%>
+				<img
+					src="<%=request.getContextPath()%>/resources/Cafeimages/검색결과.jpg "
+					style="padding-left: 80px;">
+
+				<% } else{ %>
 				<% for(Cafe c : list2) { %>
 				<%if(c.getAFFILIATED_CAFE().equals("Y")){ %>
 				<div class="gallery_list2"> 
 						<input type="hidden" value="<%= c.getCafe_code()  %>">
-					<div>
+						<div class="scale">
 							<img src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo()  %>"
-							width="210px" height="150px">
+							width="205px" height="150px"> 
+						</div>
 
-					</div>
-
-					<h3 class="gallery_title"><%=c.getCafe_name()%></h3>
-					<h5 style="margin-top: 0px; margin-bottom: 0px;">
-
-						<(제휴)<%=c.getCafe_area()%>>
-					</h5>
+					<h5 class="gallery_title"><제휴><strong style="color:#FF6064;"><%=c.getCafe_name()%></strong></h5>
+					<h10 style="margin-top: 0px; margin-bottom: 0px; font-size: 5px; font-family: Do Hyeon;" >
+						<strong> #<%= c.getCafe_area() %>#최대인원<%= c.getCafe_capacity() %>#운영<%= c.getCafe_oh() %></strong>
+					</h10>
 				</div>
 				<% } else { %> 
 				<div class="gallery_list"> 
@@ -289,14 +313,14 @@
 					<div>
 
 						<img src="<%=request.getContextPath()%>/resources/Cafeimages/<%=  c.getCafe_photo()%>"
-							width="210px" height="150px">
+							width="205px" height="150px">
 
 					</div>
+				 
+					<h5 class="gallery_title"><%=c.getCafe_name()%></h5>
+					<h6 style="margin-top: 0px; margin-bottom: 0px; font-size: 5px;">
 
-					<h4 class="gallery_title"><%=c.getCafe_name()%></h4>
-					<h6 style="margin-top: 0px; margin-bottom: 0px;">
-
-						<<%=c.getCafe_area()%>>
+				 	 #<%= c.getCafe_area() %>#최대인원<%= c.getCafe_capacity() %>#운영<%= c.getCafe_oh() %> 
 					</h6>
 				</div>
 				 
@@ -308,9 +332,9 @@
 				
 				
 	 
-				
+				<hr id="line1">
 			</div>
-			<hr id="line1">
+			
 
 			<!-- 페이징 바 -->
 			<div class="pagingArea">
