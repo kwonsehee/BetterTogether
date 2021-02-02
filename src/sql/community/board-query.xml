@@ -306,4 +306,14 @@
 		 WHERE
 		 	   BOARD_SEQ = ?
   	</entry>
+  	<entry key="totalCount">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	BOARD
+		 WHERE
+		   		BOARD_STATUS = 'Y'
+           AND  TO_CHAR(BOARD_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
+        FROM dual)
+  	</entry>
 </properties>

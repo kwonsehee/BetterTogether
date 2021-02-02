@@ -353,4 +353,14 @@
 		 WHERE
 		 	   CAFE_CODE = ?
   	</entry>
+  	<entry key="totalCount">
+  		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	CAFE
+		 WHERE
+		   		CAFE_STATUS = 'N'
+           AND  TO_CHAR(CAFE_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
+        FROM dual) 
+  	</entry>
 </properties>

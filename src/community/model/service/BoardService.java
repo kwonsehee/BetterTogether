@@ -199,4 +199,14 @@ public class BoardService {
 		return result;
 	}
 
+	public int totalCount() {
+		Connection conn = getConnection();
+
+		int totalCount = new BoardDao().totalCount(conn);
+		
+		close(conn);
+		
+		return totalCount;
+	}
+
 }

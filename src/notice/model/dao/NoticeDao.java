@@ -438,4 +438,30 @@ public class NoticeDao {
 			return list;
 		}
 
+		public int totalCount(Connection conn) {
+			int totalCount = 0;
+			Statement stmt = null;
+			ResultSet rset =null;
+			
+			String sql = prop.getProperty("totalCount");
+			
+			try {
+				stmt = conn.createStatement();
+				rset = stmt.executeQuery(sql);
+				
+				if(rset.next()) {
+					totalCount = rset.getInt(1);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(stmt);
+			}
+			
+			
+			return totalCount;
+		}
+
 }

@@ -199,6 +199,17 @@ Connection conn = getConnection();
 		}
 
 
+		public int totalCount() {
+			Connection conn = getConnection();
+			
+			int totalCount = new CafeDao().totalCount(conn);
+			
+			close(conn);
+			
+			return totalCount;
+		}
+
+
 		 
 
 
