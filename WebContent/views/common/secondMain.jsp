@@ -26,15 +26,9 @@
     <!-- 스타일  -->
 	<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css'>
 <style>
-body{ background: rgba(240, 240, 240, 0.466);}
-/* 연분홍 배경 */
-/* #con1 {
-	width: 1000px;
-	height: 704px;
-	border-radius: 20px;
-	margin: auto;
-	margin-top: 15px;
-} */
+#btSection{
+	padding-bottom:40px;
+}
 
 /* 슬라이드 영역 */
 #slide {
@@ -137,7 +131,6 @@ div[class^=chall_box]:hover{
 
 .personIcon {
 	width: 22px;
-	height: 20px;
 	float: left;
 	padding-left: 5px;
 }
@@ -157,23 +150,16 @@ button:hover {
 	cursor: pointer;
 }
 
-/* 챌린저 랭킹 배경*/
-#con2 {
-	width: 100%;
-	height: 800px;
-	/* background: rgba(240, 240, 240, 0.466); */
-	border-radius: 20px;
-	margin-top: 20px;
-}
 
-#con1_title, #con2_title {
-	width: 100%;
+
+#con1_title{
+	/* width: 100%; */
 	height: 80px;
 }
 
 
 /* 타이틀 & 라인 */
-#con1_title h1, #con2_title h1 {
+#con1_title h1 {
 	position: absolute;
 	width: 1000px;
 	text-align: center;
@@ -184,9 +170,10 @@ button:hover {
 	position: absolute;
 	color: #757575;
 	font-size: 16px;
-	margin-top: 35px;
-	margin-left: 925px;
+/* 	 margin-top: 35px; */
+	margin-left: 90%;
 	cursor: pointer;
+	text-decoration: none;
 }
 
 #con1_title a:hover {
@@ -206,16 +193,16 @@ button:hover {
 }
 
 /* 챌린저 랭킹 TOP 5 */
-#topten_title{
-/* 	float:left; */
-}
+
 .topten_ul ul, .topten_ul li{
 	list-style:none;
+	margin-left:80%;
 } 
 
 .rankwrap {
 	height: 30px;
 	overflow:hidden;
+	margin-top:25px;
 }
 .rankwrap ul {
 	height:calc(100% * 10); animation:slide 15s infinite;
@@ -269,13 +256,16 @@ button:hover {
 
 /* 관심 카테고리 */
 .choiceCategory {
-	border:1px solid black;
 	width:100%;
 	float:left;
+	text-align:center;
 }
 
 .choiceCategory img{
-	width:170px;
+	width:150px;
+}
+.choiceCategory img:nth-child(9){
+	width:70px;
 }
 </style>
 </head>
@@ -286,17 +276,25 @@ button:hover {
     <!-- 내용 부분 -->
     
     <section id="btSection"> 
+       <!-- 랭킹 -->
        
         <!-- 타이틀 -->
         <div id="con1_title">
             <h1 class="h1_title">인기 챌린지</h1>
+             <div class="rankwrap">
+        		<ul class="topten_ul"> 	
+		        <% for(Member m : mlist){ %>
+		            <li><%= mlist.indexOf(m) +1 %>위 <%= m.getUserId() %></li>
+		        <% } %>
+       		 </ul>
+         </div>
             <p><a href="<%=request.getContextPath()%>/chall/list">더보기</a></p>            
         </div>
 
         <div class="line"></div>
 
         <!-- 슬라이드 -->
-        <section id="slide">
+        <div id="slide">
             <div style="overflow: hidden;">
                 <div class="container">
                 	<!-- 첫번째 슬라이드 -->
@@ -499,10 +497,8 @@ button:hover {
             		$(".container>.outer").animate({marginLeft: "0vw"});
             	});
             </script>
-        </section>   
-    </section>
-
-	<!-- 관심 카테고리 선택 -->
+        </div> 
+        <!-- 관심 카테고리 선택 -->
 	<div class="choiceCategory">
 		<img src="<%=request.getContextPath()%>/resources/images/외국어.png">
 		<img src="<%=request.getContextPath()%>/resources/images/공부.png">
@@ -513,27 +509,12 @@ button:hover {
 		<img src="<%=request.getContextPath()%>/resources/images/운동.png">
 		<img src="<%=request.getContextPath()%>/resources/images/생활습관.png">
 		<img src="<%=request.getContextPath()%>/resources/images/확인.png">
-		
-	</div>
-
-    <!-- 2. 챌린저 랭킹 -->
-    <section id="con2">
-    <!-- 타이틀 -->
-       
-
-        <!-- 랭킹 -->
-        <p id="topten_title">챌린저 TOP 10<p>
-        <div class="rankwrap">
-        	<ul class="topten_ul"> 	
-		        <% for(Member m : mlist){ %>
-		            <li><%= mlist.indexOf(m) +1 %>위 <%= m.getUserId() %></li>
-		        <% } %>
-       		 </ul>
-         </div>
+	</div>  
     </section>
+
+   
     
-    <%@ include file="../common/footer.jsp" %>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+ <%@ include file="../common/footer.jsp" %>
 	
 	
 </body>

@@ -48,7 +48,7 @@
             	<ul class="bt_navi">
                 <!-- 로고 -->
                 <div class = "bt_title" id="icon">
-                	<a><img id="homeBtn" src="<%=request.getContextPath()%>/resources/images/logo.png"></img></a>
+                	<a><img id="homeBtn" src="<%=request.getContextPath()%>/resources/images/mainLogo.png"></img></a>
                 </div> 
                 	<li id="challMargin"><a id="challBtn">challenge</a></li>
                     <li><a id="confirmBtn">confirm</a></li>

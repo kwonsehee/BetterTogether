@@ -26,34 +26,9 @@
 <meta charset="UTF-8">
 <title>Better Together</title>
 <style>
-	 body {
-            width: 1000px;
-            height : 1100px;
-        }
-
-         /* 세부 카테고리 버튼 */
-         #btnwrap {
-            width: 320px;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            margin: auto;
-        }
-
-        .btn {
-            width: 130px;
-            height: 30px;
-            margin:10px;  
-            background: #ff60657e;
-            border: 0px;
-            border-radius: 55px;       
-        }
-
-        .btn a {
-            color:white;
-            font-family: "Do Hyeon";
-            font-size: 16px;
-        }
+		#btSection{
+			padding-bottom:40px;
+		}
 
         #con1_title h1{
             /* position: absolute; */
@@ -71,7 +46,7 @@
         }
 
         .line {
-            border: 3px solid rgba(255, 96, 100, 0.7);
+           border: 0.5px solid #937cf790;
         }
 
         /* 게시판 */
@@ -79,12 +54,19 @@
             width: 100%;
            /*  height: 400px;       */
             border-collapse: collapse;
-            
         }
-
+        #board_div{
+        	width:80%;
+        	margin:auto;
+        }
+		
+		
         #board_tb th, #board_tb td {
             border-bottom: 1px solid #75757552;
             padding: 2px;
+        }
+        #board_tb th {
+        	background:#fff;
         }
         #board_tb td {
         	height : 30px;
@@ -111,30 +93,34 @@
         }
         
         /* 버튼 */
-        .btnArea {
-        	border:1px solid black;
-        	margin-top:-10px;
-        }
+        
         #write {
-            width:55px;
-            color:white;
-            font-family: "Do Hyeon";
-            margin-top : 20px;
-            margin-left : 80%;
+			font-family: "Nanum Gothic";
+        	border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
+           padding:5px 15px 5px 15px;
+           background-color: #e6e4e4b6;
+           font-weight: bolder;  
+           margin-left:80%;
         }
         #write a {
-            font-size: 14px;
+            font-size: 10px;
+             text-decoration: none;
         }
 
         #mywriteBtn {
             width:100px;
-            font-family: "Do Hyeon";
-            background: none;
-            border : 2px solid  #ff60657e;        
+			font-family: "Nanum Gothic";
+        	border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
+           padding:5px 15px 5px 15px;
+           background-color: #e6e4e4b6;
+           font-weight: bolder;  
+            margin-left:5%; 
         }
         #mywriteBtn a {
-            font-size: 14px;
-            color: #ff60657e;
+             font-size:10px;
+             text-decoration: none;
         }
 
         #board_tb td:hover {
@@ -149,9 +135,9 @@
 			width:25px;
 			margin-top:20px;
 			border : 0px;
-			background:#fff;
-			font-family: "Do Hyeon";
 			color : #757575;
+			font-family: "Nanum Gothic";
+			font-size:12px;
 		}
 		
 		.pagingArea button:hover {
@@ -166,13 +152,15 @@
 		}
 		
 		#searchBtn {
-			width:60px;
-			height:30px;
-            color: #ff60657e;
-            font-family: "Do Hyeon";
-            background : #fff;
-            border:2px solid #ff60657e;
-            border-radius:55px;
+		width:80px;
+			font-family: "Nanum Gothic";
+        	 border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
+           padding:5px 15px 5px 15px;
+           background-color: #e6e4e4b6;
+           font-size:10px;
+           font-weight: bolder;
+            
 		}
 		#searchBtn:hover {
 			cursor:pointer;
@@ -180,13 +168,13 @@
 		
 		#searchBox {
 			width:300px;
-			border:1px solid #ff60657e;
+			border:1px solid rgba(219, 219, 219, 0.356);
 		}
 		
 		#searchCondition {
 			width:70px;
 			height:30px;
-			border:1px solid #ff60657e;
+			border:1px solid rgba(219, 219, 219, 0.356);
 			text-align:center;
 		}
 </style>
@@ -196,12 +184,7 @@
 	<%@ include file="../common/common_ui.jsp"%>
 
 	 <!-- content -->
-    <section id="con1">
-        <!-- 세부 카테고리 버튼 -->
-        <div id="btnwrap">
-            <button class="btn"><a href='<%= request.getContextPath()%>/board/main'>자유게시판</a></button>
-            <button class="btn"><a href='<%= request.getContextPath()%>/review/main'>후기</a></button>
-        </div>
+    <section id="btSection">
 
         <!-- 타이틀 -->
         <div id="con2_title">
@@ -313,9 +296,9 @@
     <script>
 		$(function(){
 			$("#board_tb td").mouseenter(function(){
-				$(this).parent().css("background","#f7dede");
+				$(this).parent().css("background","#937cf755");
 			}).mouseout(function(){
-				$(this).parent().css("background", "#fff");
+				$(this).parent().css("background", "none");
 			}).click(function(){
 				var bId = $(this).parent().children().eq(0).text();
 				console.log(bId);
@@ -330,7 +313,7 @@
 		
 	</script>
 	
-
+<%@ include file="../common/footer.jsp" %>
 
 </body>
 </html>
