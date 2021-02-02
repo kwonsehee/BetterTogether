@@ -389,6 +389,75 @@ public class myPageDao {
 		}
 		return cList;
 	}
+	//시작전인 챌린지 페이징처리가 된 게시글 카운트
+	public int beforejoingetListCount(Connection conn, String userId) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("beforejoingetListCount");
+		try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, userId);
+	         rset = pstmt.executeQuery();
+	         
+	         if(rset.next()) {
+	            // 게시글의 첫번째 숫자는 1 ....105로 늘어나게 하기
+	           // sql에서 count를 select하는 명령문을 실행했을 때 
+	           // 결과적으로 조회되는 컬럼의 갯수는 1임 (count = n개)
+	            listCount = rset.getInt(1);
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      System.out.println("joiningCount : " + listCount);
+	      return listCount;
+	   
+	}
+	//시작전인 챌린지 페이징처리가 된 게시글 목록 조회
+	public ArrayList<Challenge> beforejoingetList(Connection conn, PageInfo pi, String userId) {
+		ArrayList<Challenge> cList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("beforejoingetList");
+		
+		try {
+		      pstmt = conn.prepareStatement(sql);
+		      
+		      int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		      int endRow = startRow + pi.getBoardLimit() - 1;
+		      
+		      pstmt.setString(1, userId);
+		      pstmt.setInt(2, startRow);
+		      pstmt.setInt(3, endRow);
+		      
+		      rset = pstmt.executeQuery();
+		      
+		      while(rset.next()) {
+		            cList.add(new Challenge(rset.getInt("CHALL_NO"),
+		            						rset.getString("CHALL_TITLE"),
+		            						rset.getString("FILE_PATH"),
+		            						rset.getString("CHALL_PERIOD"),
+		            						rset.getString("USER_ID"),
+		            						rset.getString("CATE_NAME"),
+		            						rset.getDate("CHALL_START"),
+		            						rset.getString("CSTATUS"),
+		                              		rset.getDate("END_DATE")));
+		         }
+		      System.out.println("join before : " + cList);
+		   } catch (SQLException e) {
+		      e.printStackTrace();
+		   } finally {
+		        close(rset);
+		        close(pstmt);
+		     }
+		      
+		      return cList;
+	}
 	
 //	//6개월 전 참여했던 리스트 갯수 출력 
 //	public int sixMonthsListCount(Connection conn, String userId) {

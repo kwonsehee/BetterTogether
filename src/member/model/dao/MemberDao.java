@@ -340,4 +340,29 @@ public class MemberDao {
 			
 			return result;
 		}
+
+		//챌린지 삭제시 금액 환불
+		public int refundMoney(Connection conn, int challNo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("refundMoney");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, challNo);
+				pstmt.setInt(2, challNo);
+
+				result = pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			
+			return result;
+		}
 }

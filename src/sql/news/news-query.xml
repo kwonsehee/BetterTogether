@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="insertChall">
+		INSERT INTO NEWS
+            (
+              NEWS_NO
+            , USER_ID
+            , NEWS_CATE
+            , POST_NO
+            , NEWS_STATUS
+            , NEWS_DATE
+            )
+            SELECT SEQ_NEID.NEXTVAL
+                 , USER_ID
+                 , 0
+                 , CHALL_NO
+                 , 'Y'
+                 , SYSDATE
+            FROM CHALL_STATUS 
+            WHERE CHALL_NO = ?
+            AND CHALL_STATUS !=0
+	
+	</entry>
+	<entry key="insertReport">
+		INSERT INTO NEWS
+            (
+              NEWS_NO
+            , USER_ID
+            , NEWS_CATE
+            , POST_NO
+            , NEWS_STATUS
+            , NEWS_DATE
+            )
+    VALUES
+            (
+              SEQ_NEID.NEXTVAL
+            , (SELECT REPORTED_ID FROM REPORT WHERE REPORT_NO = ?)
+            , 1
+            , ?
+            , DEFAULT
+            , DEFAULT
+            )
+	
+	</entry>
+	<entry key="getNews">
+		SELECT 
+			   NEWS_NO
+			 , NEWS_CATE
+			 , POST_NO
+		 FROM
+		 	   NEWS
+		WHERE
+			  USER_ID = ?
+		  AND NEWS_STATUS = 'Y'
+
+	</entry>
+	<entry key="updateNews">
+		UPDATE
+			   NEWS
+		   SET NEWS_STATUS = 'N'
+		 WHERE USER_ID = ?
+		  AND NEWS_STATUS = 'Y'
+
+	</entry>
+	<entry key="insertQnAnswer">
+		INSERT INTO NEWS
+            (
+              NEWS_NO
+            , USER_ID
+            , NEWS_CATE
+            , POST_NO
+            , NEWS_STATUS
+            , NEWS_DATE
+            )
+    VALUES
+            (
+              SEQ_NEID.NEXTVAL
+            , (SELECT USER_ID FROM QNA WHERE QNA_NO = ?)
+            , 2
+            , ?
+            , DEFAULT
+            , DEFAULT
+            )
+	</entry>
+</properties>

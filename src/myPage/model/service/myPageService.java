@@ -145,6 +145,22 @@ public class myPageService {
 		close(conn);
 		return cList;
 	}
+	//시작전인 챌린지 페이징처리가 된 게시글 카운트
+	public int beforejoingetListCount(String userId) {
+		Connection conn = getConnection();
+		int listCount = new myPageDao().beforejoingetListCount(conn, userId);
+		close(conn);
+		return listCount;
+	}
+	//시작전인 챌린지 페이징처리가 된 게시글 목록 조회
+	public ArrayList<Challenge> beforejoingetList(PageInfo pi, String userId) {
+		Connection conn = getConnection();
+		
+		ArrayList<Challenge> cList = new myPageDao().beforejoingetList(conn, pi, userId);
+		System.out.println("시작전인 챌린지 리스트" +cList);
+		close(conn);
+		return cList;
+	}
 	
 	
 	

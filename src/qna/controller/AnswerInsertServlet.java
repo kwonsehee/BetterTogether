@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import member.model.vo.Member;
+import news.model.service.NewsService;
 import qna.model.service.QnAService;
 import qna.model.vo.QnA;
 
@@ -36,12 +37,9 @@ public class AnswerInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		
+
 		QnA a = null;
-		
-		
-		
+
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int referenceNo = Integer.parseInt(request.getParameter("qnaNo"));
@@ -52,6 +50,9 @@ public class AnswerInsertServlet extends HttpServlet {
 		int result = new QnAService().insertAnswer(a);
 		
 		if(result>0) {
+			//질문을 한 유저가 로그인시 확인가능하도록 news디비에 정보 넣기
+			int result2 = new NewsService().insertQnAnswer(referenceNo);
+
 			request.getSession().setAttribute("msg", "답변이 성공적으로 등록되었습니다.");
 			response.sendRedirect(request.getContextPath()+"/qna/detail?qnaNo="+referenceNo);
 		}else {

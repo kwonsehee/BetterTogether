@@ -19,7 +19,7 @@ System.out.println("jsp list : "+reList);%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 신고한 글</title>
+<title>신고내역</title>
 <style>
 	#report_form{
         width: 950px;
@@ -62,8 +62,8 @@ System.out.println("jsp list : "+reList);%>
 	<%@ include file="../common/common_ui.jsp" %>
 
 	<section id="report_form">
-		
-      <h1 id="title">내가 신고한 글</h1>
+	  
+      <h1 id="title">내가 신고 당한 내역</h1>
         </div>
         <div id="line"></div>
         
@@ -103,13 +103,13 @@ System.out.println("jsp list : "+reList);%>
             <!-- 페이징 바 -->
 			<div class="pagingArea">
 			<!-- 맨 처음으로 (<<) -->
-			<button onclick="location.href='<%= request.getContextPath() %>/report/mylist?currentPage=1'"> &lt;&lt; </button>
+			<button onclick="location.href='<%= request.getContextPath() %>/myPage/reported?currentPage=1'"> &lt;&lt; </button>
 			
 			<!-- 이전 페이지로 (<) -->
 			<% if(pi.getCurrentPage() == 1){ %>
 				<button disabled> &lt; </button>
 			<%} else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/report/mylist?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
+				<button onclick="location.href='<%= request.getContextPath() %>/myPage/reported?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
 			<% } %>
 			
 			<!-- 10개의 페이지 목록 -->
@@ -117,18 +117,18 @@ System.out.println("jsp list : "+reList);%>
 				<% if(p == pi.getCurrentPage()){ %>
 				<button style="background:lightgray;" disabled> <%= p %> </button>
 				<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/report/mylist?currentPage=<%= p %>'"> <%= p %> </button>				
+				<button onclick="location.href='<%= request.getContextPath() %>/myPage/reported?currentPage=<%= p %>'"> <%= p %> </button>				
 				<% } %>
 			<%} %>
 			<!-- 다음 페이지로(>) -->
 			<%if(pi.getCurrentPage() == pi.getMaxPage()){ %>
 				<button disabled> &gt; </button>
 				<%} else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/report/mylist?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
+				<button onclick="location.href='<%= request.getContextPath() %>/myPage/reported?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
 			<% } %>
 			
 			<!-- 맨 끝으로(>>) -->
-			<button onclick="location.href='<%= request.getContextPath() %>/report/mylist?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+			<button onclick="location.href='<%= request.getContextPath() %>/myPage/reported?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 			</div>
 			
 				

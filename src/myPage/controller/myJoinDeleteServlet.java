@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import challenge.model.service.ChallService;
+import member.model.service.MemberService;
+import news.model.service.NewsService;
 
 /**
  * Servlet implementation class myJoinDeleteServlet
@@ -37,6 +39,17 @@ public class myJoinDeleteServlet extends HttpServlet {
 		
 		if(result > 0) {
 			// 게시물 삭제 성공한 경우
+			// 참여중인 인원들 모두 환불 시키기
+			int result1 = new MemberService().refundMoney(challNo);
+			
+			//삭제당한 인원들이 로그인시 확인가능하도록 news디비에 정보 넣기
+			int result2 = new NewsService().insertChall(challNo);
+			
+			// chall_status 디비에 chall_status 1을 0으로 변경
+			int result3 = new ChallService().deleteChallStatus(challNo);
+			System.out.println("result1 : "+result+"result2 : "+result2+"result3 : "+result3);
+			
+			
 			request.getSession().setAttribute("msg", "게시물 삭제 되었습니다!");
 			response.sendRedirect(request.getContextPath() + "/challMake/list");
 		} else {

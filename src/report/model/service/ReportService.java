@@ -113,6 +113,17 @@ public class ReportService {
 			
 			return listCount;
 		}
+		
+		public int getreportedMyListCount(String userId) {
+			Connection conn = getConnection();
+			
+			int listCount = new ReportDao().getreportedMyListCount(conn, userId);
+			
+			close(conn);
+			
+			return listCount;
+		}
+		
 
 		public ArrayList<Report> selectMyList(String userId, PageInfo pi) {
 			Connection conn = getConnection();
@@ -120,7 +131,7 @@ public class ReportService {
 			ArrayList<Report> list = new ReportDao().selectMyList(conn, userId, pi);
 
 			close(conn);
-			 System.out.println("list ㅇㅇㅇㅇ: " + list);
+			 System.out.println("신고한 내역 : " + list);
 				
 			return list;
 		}
@@ -179,5 +190,17 @@ public class ReportService {
 			close(conn);
 			
 			return result;
+		}
+
+		//내가 신고 당한 내역
+		public ArrayList<Report> selectreportedMyList(String userId,PageInfo pi) {
+			Connection conn = getConnection();
+
+			ArrayList<Report> list = new ReportDao().selectreportedMyList(conn, userId, pi);
+
+			close(conn);
+			 System.out.println("신고당한 내역: " + list);
+				
+			return list;
 		}
 }

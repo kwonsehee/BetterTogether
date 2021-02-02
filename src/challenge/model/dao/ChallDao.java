@@ -1357,6 +1357,27 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 		}
 		return listCount;
 	}
+
+	//챌린지 삭제하면 chall_status에 challNo인 값 지우기
+	public int deleteChallStatus(Connection conn, int challNo) {
+		PreparedStatement pstmt = null;
+	      int result = 0;
+
+	      String sql = prop.getProperty("deleteChallStatus");
+
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, challNo);
+
+	         result = pstmt.executeUpdate();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	      }
+
+	      return result;
+	}
 	
 	
 	

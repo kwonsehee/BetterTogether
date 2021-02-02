@@ -199,6 +199,25 @@ public class MemberService {
 			return updateMember;
 		}
 
+		//챌린지 삭제시 금액 환불해주기 
+		public int refundMoney(int challNo) {
+			Connection conn=getConnection();
+			
+			//point 변경
+			int result  = new MemberDao().refundMoney(conn,challNo);
+			
+		
+			if(result >0) {
+			
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
+		}
+
 
 
 }

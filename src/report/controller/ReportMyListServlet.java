@@ -55,6 +55,7 @@ public class ReportMyListServlet extends HttpServlet {
 		
 		// 1_1. 게시글 총 갯수 구하기
 		int listCount = rs.getMyListCount(userId);
+	
 		 System.out.println("listcount : " + listCount);
 
 		// 1_2. 페이징 처리를 위한 변수 선언 및 연산
@@ -66,13 +67,16 @@ public class ReportMyListServlet extends HttpServlet {
 		// 리스트 객체 생성하기
 		ArrayList<Report> list = new ReportService().selectMyList(userId, pi);
 		
+		
+		
+		
 		// System.out.println("PI : " + pi);
 		 System.out.println("list : " + list);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/myPage/myReport.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/report/myReport.jsp");
 		view.forward(request, response);
 	}
 
