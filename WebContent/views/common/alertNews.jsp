@@ -2,8 +2,11 @@
     pageEncoding="UTF-8" import="news.model.vo.News, java.util.ArrayList"%>
 <%
 //새로운 소식이 있는지 확인
-	ArrayList<News> news = (ArrayList<News>)session.getAttribute("news");
+ArrayList<News> news = null;
+if(session.getAttribute("news")!=null){
+	news = (ArrayList<News>)session.getAttribute("news");
 	System.out.println("commonUi의 news 갯수"+news.size());
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -25,6 +28,7 @@
 	}%>
 </head>
 <body>
+	<%if(news!=null){ %>
 	<%for(int i=0; i<news.size();i++){ %>
 		<!-- 챌린지0 신고1 질문답변2 -->
 		<%if(news.get(i).getNews_cate()==0){ %>
@@ -40,7 +44,7 @@
 	<%} %>
 	<p>마이페이지를 확인해주세요</p>
 	<button id="newsCheckAfter">확인</button>
-	
+	<%} %>
 	
 	<script>
 	//home버튼

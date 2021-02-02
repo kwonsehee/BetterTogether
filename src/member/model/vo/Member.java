@@ -34,7 +34,11 @@ public class Member {
 	public Member() {
 		
 	}
-	
+	// 메인 챌린저 top 10 리스트에 useungh222rId만 필요
+	public Member(String userId) {
+		super();
+		this.userId = userId;
+	}
 	public Member(String userId, int user_cate) {
 		super();
 		this.userId = userId;

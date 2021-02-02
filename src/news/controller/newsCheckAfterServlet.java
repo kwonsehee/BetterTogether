@@ -43,11 +43,7 @@ public class newsCheckAfterServlet extends HttpServlet {
 		
 		
 		if(result >0) {
-			//알림디비에서 새로 알려줄 알림이 있는지 확인
-			ArrayList<News> news = new NewsService().getNews(userId);
-			System.out.println("news : "+news);
-			session.setAttribute("news", news);
-			
+			session.setAttribute("news", null);
 			//다시 홈으로 가기
 			request.setAttribute("result", "success");
 		}else {

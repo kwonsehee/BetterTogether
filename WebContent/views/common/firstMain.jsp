@@ -38,112 +38,16 @@
             position: fixed;
             /* border:1px solid black; */
         }
-        #bt_titlewrap{
-            height : 80px;
-            width: 100%;     
-            margin : auto; 
-            align-items: center;  
-        }    
         
         .bt_title img {
-            margin:auto;
-            width:350px;
+            
+            width:20%;
             cursor: pointer;
-            margin-top: 38px;
-            margin-left: 480px;
+            margin-top: 3%;
+            margin-left: 40%;
         }
 
-        /* nav 영역 */
-        #btNavi-wrapper{
-            /* border:1px solid black; */
-            width:100%;
-            height:20%;
-        } 
-         .bt_container {   
-            width : 1200px;
-            height: 5px; 
-            position: absolute;
-            left : 50%;
-            
-            transform:translate(-50%,-50%);
-        }
-        .bt_navi {
-            display:flex;
-            list-style: none;
-            width:100%;
-            height: 90px; 
-            background-color: #fff;
-            padding: 45px;
-            margin: 0;
-            border-radius: 10px;
-            /*box-shadow: 0 0 30px rgba(0,0,0,0.1);*/
-            font-family: 'Nanum Gothic', sans-serif;
-            font-weight: bolder;
-            z-index: 1;
-        }
-
-        .bt_navi li {
-            list-style-type: none;
-            margin: 20px;
-            cursor:pointer;
-            margin-top: -10px;
-        }
-
-        #challMargin{
-            margin-left: 160px;
-        }
-
-        .bt_navi li a{
-            font-size: 14px;
-            color : #222;
-            position: relative;         
-        }
-    
-        .bt_navi li a:before {
-            content: '';
-            background-color: #937CF7;
-            width: 0;
-            height: 3px;
-            position: absolute; 
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -10px;
-            transition : 0.3s;
-        }
-
-        .bt_navi li a:hover:before {
-            width: 100%;
-        }
-
-        .bt_navi li>ul{
-            position: absolute;
-            /*블릿제거 및 공백제거*/
-            list-style-type: none;
-            padding: 0;
-            margin: 0; 
-            /*평소에는 보이지 않게*/
-            z-index:2;
-            opacity: 0;
-            visibility: hidden;
-            /* line-height: 40px; */
-        }   
-
-        .bt_navi ul li {
-            
-            margin-top: 40px;
-            text-align: center;
-            margin-left: 0px;
-        }
-
-        .bt_navi li:hover ul{
-            cursor : pointer;
-            /*메인 메뉴에 마우스 오버 시 서브메뉴 보이게*/
-            opacity: 1;
-            visibility: visible; 
-            /*트렌지션*/
-            transition: all 0.6s;
-        }
-
+        
         /* content 영역 */
         #btSection {
             /* border:1px solid black; */
