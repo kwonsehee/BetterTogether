@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import challenge.model.service.ChallService;
 import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
 import community.model.service.CommuService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class CommuMainServlet
@@ -68,9 +68,13 @@ public class CommuMainServlet extends HttpServlet {
 	      
 	     // System.out.println("서블릿 - 인기챌린지 리스트 :" + list);
 	      
+	      ArrayList<Member> mlist = cs.selectChallengerLankList();
+	      
+	     // System.out.println("servlet 챌린저 탑텐 : " + mlist);
 	      
 	      request.setAttribute("pi", pi);
 	      request.setAttribute("list", list);
+	      request.setAttribute("mlist", mlist);
 		
 	      // 찜횟수 가져오기
 	    // int cNo = Integer.parseInt(request.getParameter("cNo"));

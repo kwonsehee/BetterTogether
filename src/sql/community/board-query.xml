@@ -304,6 +304,6 @@
 		   SET
 		   	   BOARD_STATUS = 'N'
 		 WHERE
-		 	   BAORD_SEQ = ?
+		 	   BOARD_SEQ = ?
   	</entry>
 </properties>

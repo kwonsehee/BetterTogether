@@ -29,7 +29,14 @@
 		   AND 
 		   		RNUM BETWEEN 1 AND 18
 	</entry>
-	
+	<entry key="selectChallengetLankList">
+		SELECT 
+				USER_ID
+		   FROM 
+		   		TOPTENLIST
+		  WHERE 
+		  		ROWNUM BETWEEN 1 AND 10
+	</entry>
 
 
 
