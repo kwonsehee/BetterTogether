@@ -33,7 +33,7 @@
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
 
-	<section id="content" class="content_css">
+	<section id="btSection" class="content_css">
 	<!-- 1.회원가입  -->
 	<!-- 1_1. 회원가입 폼 작성  -->
         <form id="joinForm"action="<%=request.getContextPath() %>/member/insert"
