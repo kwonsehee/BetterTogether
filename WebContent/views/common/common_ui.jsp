@@ -9,6 +9,8 @@
 	news = (ArrayList<News>)session.getAttribute("news");
 	System.out.println("commonUi의 news 갯수"+news.size());
 	}	
+	
+	//제발
 %>
 <!DOCTYPE html>
 <html>
