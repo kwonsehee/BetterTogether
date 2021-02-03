@@ -82,7 +82,7 @@
                         <ul>
                             <li><a id="noticeBtn">공지사항</a></li>
                             <li><a id="reportBtn">신고</a></li>
-                            <li><a id="qnaBtn">QNA</a></li>
+                            <li><a id="qnaBtn">Q&A</a></li>
                             <li><a id="faqBtn">FAQ</a></li>
                         </ul>
                     </li>
