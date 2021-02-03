@@ -18,6 +18,7 @@ if(session.getAttribute("news")!=null){
 		if(request.getAttribute("result").equals("success")){
 %>
 <script>
+opener.parent.location.reload();
 	window.close();
 </script>
 <%} else{ %>

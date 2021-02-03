@@ -150,8 +150,8 @@
      				 <%--2_2.로그인이 성공적으로 되었을 경우 --%>
   				    <%} else{ %> 
   				    
-  				    <a><%=loginUser.getNickName() %></a>
-  				    <a>종+<%=news.size() %></a>
+  				    <a><%=loginUser.getNickName() %>님 </a>
+  				    <a><img id="newNews" src="<%=request.getContextPath()%>/resources/images/alram.png"></img>+<%=news.size() %></a>
   				    <button id="logoutBtn" type="button" class="login_logout">로그아웃</button>
                      
   				    <script>
