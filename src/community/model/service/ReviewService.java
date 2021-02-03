@@ -29,7 +29,7 @@ public class ReviewService {
 
 	
 	// 댓글 추가 + 새로 갱신 된 댓글 리스트 조회
-	public ArrayList<Review> insertReview(Review r) {
+	public ArrayList<Review> insertReview(Review r, PageInfo pi) {
 		Connection conn = getConnection();
 		ReviewDao rd = new ReviewDao();
 		int result = rd.insertReview(conn, r);
@@ -38,11 +38,11 @@ public class ReviewService {
 		
 		if(result > 0) {
 			commit(conn);
-			rList = rd.selectReviewList(conn, r.getrId());
+			rList = rd.selectTotalReviewList(conn,pi);
 		} else {
 			rollback(conn);
 		}
-		
+		System.out.println("서비스 rList : " + rList);
 		return rList;
 	}
 

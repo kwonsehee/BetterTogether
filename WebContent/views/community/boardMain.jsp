@@ -27,7 +27,7 @@
 <title>Better Together</title>
 <style>
 		#btSection{
-			padding-bottom:40px;
+			padding-bottom:100px;
 		}
 
         #con1_title h1{
@@ -40,7 +40,6 @@
         .h1_title {
            margin-top: 50px;
            text-align: center;
-           font-family: "Do Hyeon";
            font-size: 24px;
            color : #757575;
         }
@@ -87,7 +86,6 @@
         #th_title {
             background : rgba(240, 240, 240, 0.7);
             height: 30px;
-            font-family: "Do Hyeon";
             font-size: 14px;
             color : #757575;
         }

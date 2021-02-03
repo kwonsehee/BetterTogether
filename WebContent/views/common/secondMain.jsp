@@ -53,15 +53,14 @@
 	<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css'>
 <style>
 #btSection{
-	padding-bottom:40px;
+	padding-bottom:60px;
 }
 
 /* 슬라이드 영역 */
 #slide {
-	width: 100vw;
+	width: 100%;
 	height: 78%;
 	float: left;
-	border:1px solid black;
 }
 
 .container {
@@ -74,10 +73,14 @@
 
 .outer {
 	width: 300vw;
-	float: left;
 	height: 500px;
+	border:1px solid black;
+	float: left;
 }
-
+.inner {
+	float: left;
+	margin: 10px;
+}
 
 
 /* chall_box로 시작하는 모든 클래스 */
@@ -100,10 +103,7 @@ div[class^=chall_box]:hover{
 	float: left;
 }
 
-.inner {
-	float: left;
-	margin: 10px;
-}
+
 
 .cTitle {
 	width: 300px;
@@ -179,24 +179,23 @@ button:hover {
 
 
 #con1_title{
-	/* width: 100%; */
 	height: 80px;
 }
 
 
 /* 타이틀 & 라인 */
 #con1_title h1 {
-	position: absolute;
-	width: 1000px;
+	/* position: absolute;
+	width: 1000px; */
 	text-align: center;
-	margin-top: 25px;
+/* 	margin-top: 25px; */
 }
 
 #con1_title a {
 	position: absolute;
 	color: #757575;
 	font-size: 16px;
-/* 	 margin-top: 35px; */
+	margin-top: 35px;
 	margin-left: 90%;
 	cursor: pointer;
 	text-decoration: none;
@@ -287,6 +286,10 @@ button:hover {
 	text-align:center;
 }
 
+.choiceCategory span{
+	font-size: 14px;
+}
+
 .choiceCategory img{
 	width:150px;
 }
@@ -314,8 +317,6 @@ button:hover {
             width: 100%;
             height: 70%;
             float: left;
-
-
         }
 
         #content-3{
@@ -323,10 +324,8 @@ button:hover {
             width: 100%;
             height: 20%;
             float: left;
-            
-
         }
-         #ok{
+        #ok{
             border: 0;
             outline:0;
         } 
@@ -412,7 +411,7 @@ button:hover {
             background-repeat: no-repeat;
             background-position: center;
             background-image: url("<%=request.getContextPath()%>/resources/images/공부.png");
-           padding-bottom: 150px; 
+            padding-bottom: 150px; 
             }
         #업무스킬 + label span{ 
             display: inline-block; 
@@ -434,7 +433,7 @@ button:hover {
             background-repeat: no-repeat;
             background-position: center;
             background-image:  url("<%=request.getContextPath()%>/resources/images/외국어.png");
-           padding-bottom: 150px; 
+           	padding-bottom: 150px; 
             }
 
         #체중관리:checked + label span{ 
@@ -498,9 +497,10 @@ button:hover {
 
         <!-- 슬라이드 -->
         <div id="slide">
-            <div style="overflow: hidden;">
+ 			<div style="overflow: hidden;">
                 <div class="container">
                 	<!-- 첫번째 슬라이드 -->
+                	
 					 <div class="outer">
                     	 <div class="inner">
                        	<%for (int i = 0; i < 3; i++) {	%>
@@ -667,30 +667,10 @@ button:hover {
                     </div>
                 </div>
             </div>
-            
-            
-            <!-- 페이징ㄴㄴ 슬라이드 버튼 -->
-            <!-- <div id="slidebtn_div">
-                <button id="slidebtn1" class="slidebtn"> </button>
-                <button id="slidebtn2" class="slidebtn"> </button>
-                <button id="slidebtn3" class="slidebtn"> </button>
             </div>
             
-		
-             <script>
-                document.querySelector('#slidebtn2').addEventListener('click', function(){
-                    document.querySelector('.container').style.transform = 'translate(-100vw)';
-                })
-                document.querySelector('#slidebtn3').addEventListener('click', function(){
-                	document.querySelector('.container').style.transform = 'translate(-200vw)';
-                })
-                document.querySelector('#slidebtn1').addEventListener('click', function(){
-                    document.querySelector('.container').style.transform = 'translate(0vw)';
-                })
-            </script> -->
-            
             <!-- 인기챌린지 무한 슬라이드 -->
-            <script>
+           <script>
             	setInterval(function(){
             		$(".container>.outer").delay(3500);
             		$(".container>.outer").animate({marginLeft: "-100vw"});
@@ -699,8 +679,8 @@ button:hover {
             		$(".container>.outer").delay(3500);
             		$(".container>.outer").animate({marginLeft: "0vw"});
             	});
-            </script>
-        </div> 
+            </script> 
+       
         <!-- 관심 카테고리 선택 -->
         <form action="<%=request.getContextPath() %>/member/cateinput" method="POST">
 	<div class="choiceCategory">
@@ -722,7 +702,7 @@ button:hover {
          <input type="checkbox" id="공부" value="60"name="cate"lass="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[5] %>><label for="공부"><span>공부</span></label>
          <input type="checkbox" id="업무스킬" value="70"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[6] %>><label for="업무스킬"><span>업무스킬</span></label>
          <input type="checkbox" id="외국어" value="80"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[7] %>><label for="외국어"><span>외국어</span></label>
-         <button type="submit"id="ok"><img src="<%=request.getContextPath()%>/resources/images/확인.png"style="width: 134px;height: 124px;margin-top: 105px;"></button>
+         <button type="submit"id="ok"><img src="<%=request.getContextPath()%>/resources/images/확인.png"style="width: 70px;margin-top: 130px;"></button>
    		    
 	</div>  
 	</form>
