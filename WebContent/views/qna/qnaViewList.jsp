@@ -11,46 +11,37 @@
 <title>Insert title here</title>
 <%-- <link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/qnaStyle.css'>--%>
 <style>
-	 body {
-            width: 1000px;
-            height : 1100px;
-        }
-        
-        #questionBtn {
-            width: 100px;
-            height: 30px;
-            margin:10px;   
-            float: right;
-            background: white;
-			text-align: center;
-			border: 2px solid #ff60657e;
-			border-radius: 55px;
-        }
 
-        #questionBtn a {
-        	color:#ff60657e;
-            font-family: "Do Hyeon";
-            font-size: 16px;
+        #questionBtn {
+            font-family: "Nanum Gothic";
+			border-radius: 10px;
+    		border: solid 1px #9e9e9e5b;
+    		padding: 5px 15px 5px 15px;
+    		background-color: #e6e4e4b6;
+    		font-size: 10px;
+    		font-weight: bolder;
+    		float: right;
+    		margin-top: 5%;
+    		margin-bottom: 1%;
         }
 
         #con2_title h1{
-            /* position: absolute; */
-            width: 1000px;  
+   
             text-align: center;
-            margin-top: 25px;
- 	        
+            font-family: "Nanum Gothic";
+    		color: #757575;
+    		font-size:24px;
+   
         }
 
-        .h1_title {
-           border-bottom: 3px solid #ff60657e;          
-           margin-top: 50px;
-           font-family: "Do Hyeon";
-           font-size: 24px;
-           color : #757575;
-        }
-
-        .line {
-            border: 3px solid rgba(255, 96, 100, 0.7);
+		#btSection{
+			padding-bottom:40px;
+		}
+		
+        #line {
+           border: 0.5px solid #937cf790;
+           width: 80%;
+           margin: auto;
         }
 
         /* 게시판 */
@@ -66,8 +57,6 @@
             padding: 2px;
             padding-left: 10px;
             text-align: center;
-            font-family: "Do Hyeon";
-            font-size: 18px;
             color : #757575;
         }
 
@@ -86,9 +75,10 @@
             padding-left: 2%;
         }
         #th_title {
-            background : rgba(240, 240, 240, 0.7);
+            background: white;
+           /* background : rgba(240, 240, 240, 0.7);*/
             height: 30px;
-            font-family: "Do Hyeon";
+            font-family: "Nanum Gothic";
             font-size: 14px;
             color : #757575;
         }
@@ -96,7 +86,7 @@
         #write {
             width:55px;
             color:white;
-            font-family: "Do Hyeon";
+            font-family: "Nanum Gothic";
             margin-top : 20px;
             margin-left : 80%;
         }
@@ -106,7 +96,7 @@
 
         #mywrite {
             width:100px;
-            font-family: "Do Hyeon";
+            font-family: "Nanum Gothic";
             background: none;
             border : 2px solid  #ff60657e;        
         }
@@ -120,39 +110,46 @@
         }
         
         #qnaBoard #title {
-        	padding-left: 15%;
-        	text-align: left;
+        	
+    		text-align: center;
         }
         
         /* 페이징바 영역 */
 		.pagingArea {
 			text-align:center;
+			padding-left: 6%;
+    		margin: auto;
 		}
 		.pagingArea button {
 			width:25px;
 			margin-top:20px;
 			border : 0px;
-			background:#fff;
-			font-family: "Do Hyeon";
 			color : #757575;
+			font-family: "Nanum Gothic";
+			font-size:12px;
 		}
 		
 		.pagingArea button:hover {
 			cursor:pointer;
 		}
 		
-		
+		#board_div{	
+			width:80%;
+			margin:auto;
+		}
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
 	
-	 <section id="content" class="content_css">
+	 <section id="btSection" class="qnaSection">
 	 
 	 <!-- title -->
         <div id="con2_title">
             <h1 class="h1_title">Q n A</h1>
         </div>
+        
+        <div id="line"></div>
         
         <!-- qnaBoard -->
         <div id="board_div">
@@ -175,7 +172,7 @@
 							<% if(q.getQnaType().equals("Q")) { %>
 						<tr>
 							<td><%= q.getQnaNo() %></td>
-							<td id="title"><%= q.getQnaTitle() %></td>
+							<td><%= q.getQnaTitle() %></td>
 							<td><%= q.getUserId()%></td>
 							<td><%= q.getQnaDate()%></td>
 						</tr>
@@ -186,6 +183,11 @@
             </table>
             
             
+		<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
+				<% if(loginUser != null) { %>
+				<button id="questionBtn" type="button" 
+				onclick="location.href='<%= request.getContextPath() %>/views/qna/qnaInsertForm.jsp'">질문하기</button>
+				<% } %>
 
             <!-- 페이징 바 -->
 			<div class="pagingArea">
@@ -218,12 +220,7 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 		</div>
 		
-		<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
-				<% if(loginUser != null) { %>
-				<button id="questionBtn" type="button" 
-				onclick="location.href='<%= request.getContextPath() %>/views/qna/qnaInsertForm.jsp'"><a>질문하기</a></button>
-				<% } %>
-        </div>
+      	</div>
         
 	</section>
 	
@@ -231,9 +228,9 @@
 		// 게시판 상세보기 기능
 		$(function(){
 			$("#qnaBoard td").mouseenter(function(){
-				$(this).parent().css({"background":"lightgray", "cursor":"pointer"});
+				$(this).parent().css({"background":"#937cf790", "cursor":"pointer"});
 			}).mouseout(function(){
-				$(this).parent().css("background", "#f9f1f1");
+				$(this).parent().css("background", " none");
 			}).click(function(){
 				var qnaNo = $(this).parent().children().eq(0).text();
 				
@@ -250,5 +247,8 @@
 			});
 		});
 	</script>
+	
+	<%@ include file="../common/footer.jsp" %>
+	
 </body>
 </html>

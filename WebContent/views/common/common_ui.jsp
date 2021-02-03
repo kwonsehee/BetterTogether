@@ -16,6 +16,23 @@
 <head>
  <meta charset="UTF-8">
  <title>Better Together</title>
+ 
+ <!-- 카카오톡 채팅 -->
+ <div id="kakao-talk-channel-chat-button"></div>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('dfa18ae3b3f4417156f0f25f0de131eb');
+    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
+    Kakao.Channel.createChatButton({
+      container: '#kakao-talk-channel-chat-button',
+      channelPublicId: '_xotneK' // 카카오톡 채널 홈 URL에 명시된 ID
+    });
+  //]]>
+</script>
+
  <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
