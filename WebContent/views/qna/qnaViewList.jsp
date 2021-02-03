@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Q&A List</title>
 <%-- <link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/qnaStyle.css'>--%>
 <style>
 
@@ -146,7 +146,7 @@
 	 
 	 <!-- title -->
         <div id="con2_title">
-            <h1 class="h1_title">Q n A</h1>
+            <h1 class="h1_title">Q & A</h1>
         </div>
         
         <div id="line"></div>
@@ -224,7 +224,7 @@
         
 	</section>
 	
-	<script>
+	<script> 
 		// 게시판 상세보기 기능
 		$(function(){
 			$("#qnaBoard td").mouseenter(function(){

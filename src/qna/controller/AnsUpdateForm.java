@@ -30,13 +30,15 @@ public class AnsUpdateForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
-
+ 
 		QnA a = new QnAService().selectAnswer(qnaNo);
-
+		QnA q = new QnAService().selectQuestion(qnaNo);
+		
 		String page = "";
 
 		if (a != null) {
 			request.setAttribute("a", a);
+			request.setAttribute("q", q);
 			page = "/views/qna/ansUpdateForm.jsp";
 		} else {
 			request.setAttribute("msg", "질문 수정페이지 이동에 실패하였습니다.");

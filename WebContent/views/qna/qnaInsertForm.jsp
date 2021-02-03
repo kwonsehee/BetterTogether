@@ -4,115 +4,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- 카카오톡채널 상담 버튼 -->
-
-
+<title>Question Form</title>
 
 <style>
-body {
-	width: 1000px;
-	height: 1100px;
-}
-/* 연분홍 배경 */
-#con1 {
-	width: 1000px;
-	height: 704px;
-	background: #F9F1F1;
-	border-radius: 20px;
-	margin: auto;
-	margin-top: 15px;
-}
-
-#con1_title h1 {
-	position: absolute;
-	width: 1000px;
-	text-align: center;
-	margin-top: 25px;
-}
 
 #title {
-
 	text-align: center;
-	font-family: "Do Hyeon";
+	font-family: "Nanum Gothic";
 	font-size: 24px;
 	color: #757575;
 }
 
-.line {
-	border: 3px solid rgba(255, 96, 100, 0.7);
-	position: absolute;
-	width: 990px;
-}
-
-.qnaTable {
-	border-top: 3px solid rgba(255, 96, 100, 0.7);
-	width: 990px;
+ .qnaTable {
+	border-top: 3px solid #937cf790;
+	width: 100%;
 }
 
 #writebox {
-	position: absolute;
-	width: 1000px;
-	height: 500px;
+	width: 80%;
 }
 
 #write_title {
-	width: 996px;
-	height: 40px;
+	font-family: "Nanum Gothic";
+	width: 100%;   
+	height: 40px; 
 	border: 0px;
 	background: none;
+	padding-left: 2%;
 }
 
 #writeArea {
-	width: 996px;
-	height: 450px;
+	width: 100%;
 	border: 0px;
 	resize: none;
 	background: none;
-	font-family: "Do Hyeon";
 	font-size: 20px;
-	
+	font-family: "Nanum Gothic";
+	padding-left: 2%;
 }
 
-
-.btn {
-	width: 130px;
-	height: 30px;
-	margin: 10px;
-	background: #ff60657e;
-	border: 0px;
-	border-radius: 55px;
+.Btn1 {
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
 	float: right;
+	margin-bottom: 2%;
 }
 
-.btn a {
-	color: white;
-	font-family: "Do Hyeon";
-	font-size: 16px;
+#btnArea {
+	padding-right:10%;
 }
 
-#submit {
-	width: 55px;
-	color: white;
-	font-family: "Do Hyeon";
-	margin-top: 20px;
-	margin-left: 80%;
-}
-
-#submit a {
-	font-size: 14px;
-}
-
-#back {
-	width: 100px;
-	font-family: "Do Hyeon";
-	background: none;
-	border: 2px solid #ff60657e;
-}
-
-#back a {
-	font-size: 14px;
-	color: #ff60657e;
+.btSection #writebox {
+	margin: auto;
 }
 </style>
 </head>
@@ -120,11 +68,11 @@ body {
 	<%@ include file="../common/common_ui.jsp"%>
 	<form action="<%= request.getContextPath() %>/qna/insert" method="POST"
 		id="QnA-form">
-		<section id="con1">
+		<section id="btSection" class="btSection">
 			<table id="writebox">
 				<tr>
 					<td>
-						<h1 id="title">Q & A</h1>
+						<h1 id="title">Question</h1>
 					</td>
 				</tr>
 				<tr>
@@ -135,17 +83,14 @@ body {
 							name="content" placeholder="내용을 입력해주세요."></textarea></td>
 				</tr>
 			</table>
+			<!-- 등록 버튼 , 나가기 버튼 -->
+			<div id="btnArea">
+				<button type="submit" class="Btn1">등록하기</button>
+				<button type="button" class="Btn1" id="backBtn">뒤로가기</button>
+			</div>
 		</section>
 
-		<!-- 등록 버튼 , 나가기 버튼 -->
-		<div>
-		<button type="button" class="btn" id="backBtn">
-			<a>뒤로가기</a>
-		</button>
-		<button type="submit" class="btn">
-			<a>등록하기</a>
-		</button>
-
+		
 		<script>
 		// 뒤로가기
 		const backBtn = document.getElementById('backBtn');
@@ -153,8 +98,8 @@ body {
 			location.href='<%=request.getContextPath()%>/qna/list';
 		});
 		</script>
-		</div>
 	</form>
 	
+		<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

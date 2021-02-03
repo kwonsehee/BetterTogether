@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" import="member.model.vo.Member, news.model.vo.News, java.util.ArrayList"%>
-<%
+<% 
    //session 객체에 담긴 loginUser 정보를 변수에 담아두기
    Member loginUser = (Member)session.getAttribute("loginUser");
 	//새로운 소식이 있는지 확인
@@ -82,7 +82,7 @@
                         <ul>
                             <li><a id="noticeBtn">공지사항</a></li>
                             <li><a id="reportBtn">신고</a></li>
-                            <li><a id="qnaBtn">QNA</a></li>
+                            <li><a id="qnaBtn">Q&A</a></li>
                             <li><a id="faqBtn">FAQ</a></li>
                         </ul>
                     </li>
