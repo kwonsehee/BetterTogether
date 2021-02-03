@@ -49,7 +49,7 @@
         }
         #title span {
             font-size: 30px;
-            font-family: "Do Hyeon";
+            font-family: "Nanum Gothic";
             text-align: center;
             padding-top: 10px;
             margin-left:400px;
@@ -57,7 +57,7 @@
 
 
         .challenge_table {
-            font-family: "Do Hyeon";
+            font-family: "Nanum Gothic";
             font-size: medium;
             margin-left: 40px;
             width: 90%;
@@ -76,7 +76,7 @@
 
 
         #challenge_btn {
-            font-family: "Do Hyeon";
+            font-family: "Nanum Gothic";
             width: 150px;
             height: 50px;
             border-radius: 20px;
@@ -91,15 +91,17 @@
 
         /*페이징 css*/
         #pagingArea {
-    	  margin:auto;
+    	  margin-left:43%;
+    	  padding:20px;
+    	  float:left;
   	   }
       	#pagingArea button {
-            font-family: "Do Hyeon";
-            font-size : 18px;
+            font-family: "Nanum Gothic";
+            font-size : 13px;
             color: black;
             text-decoration: none;
-            border: solid 1px #fdc8c6;
-            background-color: #fdc8c6;
+            border: solid 1px #9e9e9e5b;
+             background-color: #e6e4e4b6;
             
         }
         
@@ -112,29 +114,26 @@
         }
         
         /* 검색하기 영역 */
-      .searchArea {
-         float:left;
-         margin-top:30px;
-         margin-left: -80px;
-      }
       
       #searchCondition{
-         font-family: "Do Hyeon";
-         font-size:20px;
-         height:30px;
+         font-family: "Nanum Gothic";
+         font-size:13px;
+         height:22px;
       }
       
       input:focus, #pagingArea button:focus{
          outline: none;
+         
       }
       
       #search_btn{
-         font-family: "Do Hyeon";
-         border-radius: 20px;
-           border: solid 1px #fdc8c6;
-           background-color: #fdc8c6;
+         font-family: "Nanum Gothic";
+         border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
            padding:5px 15px 5px 15px;
-           font-size:17px;
+           background-color: #e6e4e4b6;
+           font-size:10px;
+           font-weight: bolder;
       }
       
       #listTable th:nth-child(3){
@@ -142,30 +141,28 @@
       }
       
       #btnType_area{
-      	 margin-left:373px;
-      	 margin-top:60px;
+      	 margin-left:42%;
       	
       }
       
       #btnType_area button {
-      	 font-family: "Do Hyeon";
-            width: 80px;
+      	 font-family: "Nanum Gothic";
+            width: 70px;
             height: 30px;
             border-radius: 20px;
-            border: solid 1px #fdc8c6;
-            background-color: white;
-            font-size:17px;
+            border: solid 1px #9e9e9e5b;
+            font-size:14px;
             margin-top:20px;
       }
       
       /*밑에서부터 수정된 UI */
       
       .challArea{
-      	  padding:20px;
-	      width:830px;
+	      width:90%;
 	      min-height:400px;
 	      margin:auto;
-      
+	      padding-left:7%;
+     
       }
       
       .chall_list{
@@ -181,17 +178,67 @@
       	border-radius:5px;
       }
       
+      /* 챌린지 info css */
+      
       .chall_info{
-      	margin:3px;
+      	margin:7px;
+      	 font-family: "Nanum Gothic";
+      	 font-size:15px;
       }
       
- 
+      #chall_No, #chall_start{
+      	font-size:12px;
+      	color: #616161b6;
+      	font-weight: bolder;
+      }
+      
+      #chall_title{
+      	font-size:15px;
+      	color: #252525b6;
+      	font-weight: bold;
+      	
+      }
+      
+      #chall_freq, #chall_period{
+      	font-family: "Nanum Gothic";
+            width: 60px;
+            height: 30px;
+            border-radius: 3px;
+            border: solid 1px #e6e4e4b6;
+            font-size:11px;
+            color : #616161b6;
+            font-weight: bold;
+            background-color: #e6e4e4b6;
+            margin-left:3%;
+      }
+      
+      #check_img{
+      	width:10px;
+      	height:10px;
+      }
+      
+      #content-1{
+      	margin-top:3%;
+      }
+      
+      #search_input{
+      	height:22px;
+      	width:120px;
+      	margin-top:5%;
+      }
+      
+      .searchArea{
+      	padding:30px;
+      	
+      }
+      
+
     </style>
 </head>
 <body>
   <%@ include file="../common/common_ui.jsp"%>
   
-  <section id="content" class="content_css">
+  <section id="btSection" class="content_css">
         <!-- <section id="title">
             <span>챌린지 모집 게시판</span>
             어떤 카테고리의 것인지 표시해주기
@@ -244,19 +291,19 @@
 					<div>
 						<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 200px;height: 150px;">
 					</div>
-					<p class="chall_info">공식 챌린지 <%=ch.getChallNo() %></p>
-					<p class="chall_info"><%=ch.getChallTitle() %></p>	
-					<p class="chall_info"><%=ch.getChallStart() %></p>	
-					<button class="chall_info">주 <%=ch.getChallFrequency() %>회</button>
-					<button class="chall_info"><%=ch.getChallPeriod() %>주 동안</button>
+					<p id="chall_No" class="chall_info"><img
+						src="<%=request.getContextPath()%>/resources/images/challCheck.png"
+						id="check_img"> 공식 챌린지 <%=ch.getChallNo() %></p>
+					<p id="chall_title" class="chall_info"><%=ch.getChallTitle() %></p>	
+					<p id="chall_start" class="chall_info"><%=ch.getChallStart() %> 시작</p>	
+					<button id="chall_freq">주 <%=ch.getChallFrequency() %>회</button>
+					<button id="chall_period"><%=ch.getChallPeriod() %>주 동안</button>
 				</div>
 				<%} %>
             	</div>
-        </section>
-
-		<!-- 페이징 바 -->
-        <section id="page_css">
-            <div id="pagingArea">
+            	
+            	
+            	<div id="pagingArea">
             <!-- 처음으로(<<) 이전페이지로(<) 페이지 목록 다음 페이지로(>) 맨 끝으로(>>) -->  
               
             <!-- 처음으로(<<) -->
@@ -337,17 +384,21 @@
 					  <option value="writer" <%= selected[2] %>>작성자</option>                  
                   </select>
                   <% if(search != null) {%>
-                  <input type="search" name="search" value="<%= search%>">
+                  <input id="search_input" type="search" name="search" value="<%= search%>">
                   <% } else { %>
-                  <input type="search" name="search">
+                  <input id="search_input" type="search" name="search">
                   <% } %>
                   <button type="submit" id="search_btn">검색하기</button>
                </form>
             </div>
+            	
+            	
+        </section>
 
+		<!-- 페이징 바 -->
+        <section id="page_css">
         </section>
         
-      
 
         <form method="POST">
             <section id="content-3">
@@ -384,6 +435,7 @@
        
     </script>
     
+    <%@ include file="../common/footer.jsp" %>
 
 </body>
 </html>
