@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Better Together</title>
 <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -40,8 +40,7 @@
         }
         
         .bt_title img {
-            
-            width:20%;
+            width:25%;
             cursor: pointer;
             margin-top: 3%;
             margin-left: 40%;

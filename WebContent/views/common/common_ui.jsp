@@ -94,7 +94,7 @@
 					   //home버튼
 					   const homeBtn = document.getElementById("homeBtn");
 					   homeBtn.addEventListener('click',function(){
-					      location.href="<%= request.getContextPath()%>";
+					      location.href="<%= request.getContextPath()%>/commu/main";
 					   });
 					   
 					   //공지사항버튼

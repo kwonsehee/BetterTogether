@@ -31,8 +31,6 @@
 		}
 
         #con1_title h1{
-            /* position: absolute; */
-            width: 1000px;  
             text-align: center;
             margin-top: 25px;          
         }

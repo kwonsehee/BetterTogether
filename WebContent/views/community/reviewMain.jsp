@@ -335,8 +335,7 @@
         			dataType : "json",
         			data : {content : content, challNo : challNo, star : star},
         			success : function(data){
-        				console.log("12345");
-        				// window.opener.document.location.reload();
+        				
         				// 갱신 된 rList를 후기 div에 적용
         				reviewTable = $("#reviewTb");
         				reviewTable.html("");	// 기존 테이블 정보 초기화
@@ -355,9 +354,10 @@
         					var contentTd = $("<td>").text(data[key].rContent);
         					
         					tr.append(writerTd, challTitleTd, gradeTd, createDateTd, contentTd);
-        				}
+        					
         					reviewTable.append(tr);
-    					
+        				}
+        					
     					// 댓글 작성 textarea 부분 리셋
     					$("#reviewWriteArea").val("");
         			},
