@@ -39,8 +39,8 @@
 .outer {
 	width: 100%;
 	min-width: 850px;
-	font-family: "Do Hyeon";
-	background-color: #EBEBEB;
+	font-family: "Nanum Gothic";
+	background-color: rgba(219, 219, 219, 0.356);
 	margin: auto;
 	margin-top: 20px;
 	margin-bottom: 70px;
@@ -55,12 +55,12 @@
 }
 
 #line1 {
-	border: 1px solid  color:#FF6064;
+	border: 0.5px solid #937cf790;
 }
 
 .gallery_list {
 	width: 217px;
-	border: 2px solid white;
+	border: 1px solid white;
 	display: inline-block;
 	padding: 5px;
 	margin: 7px;
@@ -69,8 +69,7 @@
 }
 
 .gallery_list2 {
-	width: 217px; 
-	border: 2px solid #aba9a9;
+	width: 217px;
 	display: inline-block;
 	padding: 5px;
 	margin: 7px;
@@ -99,7 +98,7 @@
 	width: 90px;
 	height: 30px;
 	background: #FEFDFD;
-	border: 2px solid #aba9a9;
+	border: 2px solid #9e9b9b;
 	box-sizing: border-box;
 }
 
@@ -107,7 +106,7 @@
 	width: 80px;
 	height: 30px;
 	background: #FDFDFD;
-	border: 2px solid #FF6064;
+	border: 2px solid #937cf790;
 	box-sizing: border-box;
 }
 
@@ -116,7 +115,7 @@
 	height: 30px;
 	margin-left: 50px;
 	background: #FDFDFD;
-	border: 2px solid #aba9a9;
+	border: 2px solid #937cf790;
 	box-sizing: border-box;
 }
 
@@ -133,9 +132,9 @@
 	width: 25px;
 	margin-top: 20px;
 	border: 0px;
-	background: #fdc8c6;
-	font-family: "Do Hyeon";
 	color: #757575;
+	font-family: "Nanum Gothic";
+	font-size: 12px;
 }
 
 #insertBtn {
@@ -147,23 +146,25 @@
 }
 
 .searchArea button {
-	width: 50px;
-	height: 30px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
-	background: #fff;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
+	width: 55px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: white;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 #insertBtn {
-	width: 50px;
-	height: 35px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
-	background: #fff;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
+	width: 80px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: white;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 .scale {
@@ -249,8 +250,7 @@
 							</optgroup>
 						 
 						</select>
-						<button id="bt1" type="submit" name="searchCondition" value="area" <%= selected[0] %>
-							style="width: 60px; height: 25.5px; background: #FEFDFD; ">적용</button> 
+						<button id="bt1" type="submit" name="searchCondition" value="area" <%= selected[0] %> >적용</button> 
 						</form>
 					 
 						<form style=" float:left;width: 420px;" >  <MARQUEE DIRECTION="left" style="text-shadow: 2px 2px 4px gray; color : pink; ">제휴카페로 등록해 카페를 제일먼저 홍보하세요! </MARQUEE></form>
@@ -270,7 +270,7 @@
 						<% }%>
 						<button type="submit" class="img-button" name="searchCondition" <%= selected[1] %>
 							value="title"                                
-							style="width: 50px; height: 30px; background: #FEFDFD;">검색
+							style="width: 55px; height: 30px; background: #FEFDFD;">검색
 						</button>
 						
 						
@@ -298,25 +298,33 @@
 				<div class="gallery_list2"> 
 						<input type="hidden" value="<%= c.getCafe_code()  %>">
 						<div class="scale">
+							<%if(c.getCafe_photo() != null ) {%>
 							<img src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo()  %>"
 							width="205px" height="150px"> 
+							<%} else { %>
+						 
+							 <img src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg" width="205px" height="150px"> 
+							<%} %>
+							
 						</div>
 
-					<h5 class="gallery_title"><제휴><strong style="color:#FF6064;"><%=c.getCafe_name()%></strong></h5>
-					<h10 style="margin-top: 0px; margin-bottom: 0px; font-size: 5px; font-family: Do Hyeon;" >
+					<h5 class="gallery_title"  ><제휴><strong style="color:#937cf790;"><%=c.getCafe_name()%></strong></h5>
+					<h10 style="margin-top: 0px; margin-bottom: 0px; font-size: 5px; font-family: Nanum Gothic;" >
 						<strong> #<%= c.getCafe_area() %>#최대인원<%= c.getCafe_capacity() %>#운영<%= c.getCafe_oh() %></strong>
 					</h10>
 				</div>
 				<% } else { %> 
-				<div class="gallery_list"> 
-					<input type="hidden" value="<%= c.getCafe_code() %>">
-					<div>
-
-						<img src="<%=request.getContextPath()%>/resources/Cafeimages/<%=  c.getCafe_photo()%>"
-							width="205px" height="150px">
-
+				<div class="gallery_list">
+					<input type="hidden" value="<%=c.getCafe_code()%>">
+					<div class="scale">
+							<%if(c.getCafe_photo() != null ) {%>
+						<img src="<%=request.getContextPath()%>/resources/Cafeimages/<%=c.getCafe_photo()%>"
+							width="205px" height="150px" style="padding-right: 10px;">
+						<%} else { %> 
+							 <img src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"width="205px" height="150px"> 
+							<%} %>
 					</div>
-				 
+
 					<h5 class="gallery_title"><%=c.getCafe_name()%></h5>
 					<h6 style="margin-top: 0px; margin-bottom: 0px; font-size: 5px;">
 
@@ -413,11 +421,18 @@
 				
 		</div>
 
-
  
 
-
 	</section>
+	<footer id="btFooter" style="margin-top: 0px;">
+		<pre id="btFooter_pre">KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 김언체 ｜  개인정보관리책임자 : 강명주
 
+        강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F
+        강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F
+        강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F
+       
+        Copyright © Better Together
+    </pre>
+	</footer>
 </body>
 </html>

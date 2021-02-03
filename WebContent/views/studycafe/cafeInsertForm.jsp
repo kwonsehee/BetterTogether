@@ -180,8 +180,7 @@ textarea {
 	margin-left: -250px;
 	background: #fff;
 	border: 2px solid #666;
-	background-image:
-		url('<%=request.getContextPath()%>/resources/images/제휴1.jpg');
+	 
 	border-radius: 20px;
 	margin-left: 200px;
 	margin-top: 50px;
@@ -270,7 +269,7 @@ map_wrap {
 
 				<h4 class="studycafe_title" style="bottom: 65%;  margin-bottom: 80px;">카페이름</h4>
 				<span class="input_area"> <input type="text" name="cafe_name"
-					maxlength="40" required style="margin-top: 9%;">
+					maxlength="9" required style="margin-top: 9%;">
 				</span>
 
 				<h4 class="studycafe_title" style="bottom: 57%; 	margin-bottom: 80px;">운영시간</h4>
@@ -360,25 +359,32 @@ map_wrap {
 
 				<h4 class="studycafe_title2">카페소개글</h4>
 				<textarea name="cafe_info"
-					style="resize: none; left: 550px; top: 110px;" maxlength="110"> </textarea>
+					style="resize: none; left: 550px; top: 110px;" maxlength="210">ex)안녕하세요 저희카페 오신걸환영합니다
+저희카페에서는 다양한음료와 스낵들이 준비되어있습니다. 
+저희카페에서 무료와이파이와 검색을 하실수있는
+ 노트북이 구비되어있습니다. </textarea>
 
 
 				<h4 class="studycafe_title2" style="margin-top: 25%;">카페공지글</h4>
 				<textarea name="cafe_notice"
-					style="resize: none; left: 550px; top: 270px;" maxlength="110"> </textarea>
+					style="resize: none; left: 550px; top: 270px;" maxlength="110">ex)1.취식물 반입금지(엔터를 처서 입력하세요)
+2.반려동물 출입금지
+3.5인이상 예약불가
+4.마스크 꼭 쓰고있기
+					 </textarea>
 
 				<h4 class="studycafe_title2" style="margin-top: 42%;">대표이미지</h4>
 				<div class="photo">
-					<input type="file" name="cafe_photo" >
+					<input type="file" name="cafe_photo">
 				</div>
-				
-					<h4 class="studycafe_title2" style="margin-top: 50%;">  </h4>
+
+				<h4 class="studycafe_title2" style="margin-top: 50%;"></h4>
 				<div class="photo">
 					<input type="file" name="cafe_photo2" style="margin-top: 42%;">
 				</div>
-				
-				
-					<h4 class="studycafe_title2" style="margin-top: 55%;">  </h4>
+
+
+				<h4 class="studycafe_title2" style="margin-top: 55%;">  </h4>
 				<div class="photo">
 					<input type="file" name="cafe_photo3" style="margin-top: 85%;">
 				</div>

@@ -161,10 +161,17 @@ textarea {
 				<form action="<%=request.getContextPath()%>/cafe/update"
 					method="post" enctype="multipart/form-data">
 					<input type="hidden" name="Cafe_code" value="<%= c.getCafe_code() %>"> 
-					
+					<%if(c.getCafe_photo() !=null ){ %>
 					<input type="hidden" name="Cafe_photo" value="<%= c.getCafe_photo() %>"> 
+					
+					<%} %>
+					
+					<%if(c.getCafe_photo2() !=null ){ %>
 					<input type="hidden" name="Cafe_photo2" value="<%= c.getCafe_photo2() %>"> 
+					<%} %>
+					<%if(c.getCafe_photo3() !=null ){ %>
 					<input type="hidden" name="Cafe_photo3" value="<%= c.getCafe_photo3() %>"> 
+					<%} %>
 					
 
 					<h4 class="studycafe_title"
@@ -279,7 +286,7 @@ textarea {
 
 					<h4 class="studycafe_title2">카페소개글</h4>
 					<textarea name="cafe_info"
-						style="resize: none; left: 550px; top: 110px;" maxlength="110"><%=c.getCafe_info()%></textarea>
+						style="resize: none; left: 550px; top: 110px;" maxlength="210"><%=c.getCafe_info()%></textarea>
 
 
 					<h4 class="studycafe_title2" style="margin-top: 25%;">카페공지글</h4>

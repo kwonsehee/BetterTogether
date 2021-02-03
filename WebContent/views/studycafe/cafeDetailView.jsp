@@ -17,23 +17,24 @@
 <title>Insert title here</title>
 <style>
 /* 바깥 영역 */
-#main {
+.galleryArea {
 	position: absolute;
-	padding-top: 20px;
-	width: 1000px;
-	height: 600px;
-	margin-top: 5px;
-	background-color: #f9f1f1;
-	border-radius: 20px;
+	padding: 5px;
+	width: 2080px;
+	height: 1010px;
+	min-height: 400px;
+	margin: auto;
+	background-color: rgba(219, 219, 219, 0.356);
+	z-index: -2;
 }
 
 .content_css button {
 	width: 60px;
 	height: 30px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
+	color: #9e9e9e5b;
+	font-family: "Nanum Gothic";
 	background: #fff;
-	border: 2px solid #ff60657e;
+	border: 2px solid #9e9e9e5b;
 	border-radius: 55px;
 }
 
@@ -48,19 +49,14 @@ hr {
 
 .cafe {
 	position: absolute;
- 
-	left: 4.75%;
-	right: 47.43%;
-	top: 4.4%;
-	bottom: 52.15%;
-	
+	height: 450px;
+	left: 500px;
+	width: 450px;
 }
 
 #cafeimg {
-	width: 500px;
-	height: 250px;
-	border-radius: 20px;
-
+	width: 450px;
+	height: 450px;
 }
 
 .rvt {
@@ -69,8 +65,8 @@ hr {
 	right: 4.1%;
 	top: 4.37%;
 	bottom: 54.2%;
-	font-family: "Do Hyeon";
-	background: rgba(253, 200, 198, 0.25);
+	font-family: "Nanum Gothic";
+	background: #ebe8e8;
 	border-radius: 20px;
 }
 
@@ -80,8 +76,7 @@ hr {
 	right: 4%;
 	top: 52.3%;
 	bottom: 2.13%;
-	font-family: "Do Hyeon";
-	background: rgba(253, 200, 198, 0.25);
+	font-family: "Nanum Gothic";
 	border-radius: 20px;
 }
 
@@ -103,13 +98,13 @@ hr {
 
 .map {
 	position: absolute;
-	left: 55.41%;
-	right: 4.24%;
-	top: 8.05%;
-	bottom: 9.67%;
+	left: 52.76%;
+	right: 15.96%;
+	top: 14.4%;
+	bottom: 20.1%;
 	border-radius: 36px;
 	border-radius: 20px;
-	z-index:0;
+	z-index: 0;
 }
 
 #maps {
@@ -132,7 +127,7 @@ hr {
 
 #modal button {
 	display: inline-block;
-	width: 70px;
+	width: 110px;
 	margin-left: calc(100% - 100px - 100px);
 	margin-top: 30%;
 	border-radius: 20px;
@@ -140,13 +135,10 @@ hr {
 
 #modal .modal_content {
 	width: 300px;
-	height: 200px;
-	margin-top: -50px;
+	height: 454px margin-top: -50px;
 	margin-left: -250px;
 	background: #fff;
 	border: 2px solid #666;
-	background-image:
-		url('<%=request.getContextPath()%>/resources/images/전화.png'); 
 	border-radius: 20px;
 }
 
@@ -162,70 +154,75 @@ hr {
 
 #btnArea2 {
 	position: absolute;
-	left: 46.33%;
+	left: 47%;
 	right: 47.41%;
-	top: 615.5px;
-	width: 60px;
-	height: 30px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
-	background: #fff;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
+	top: 600px;
+	width: 55px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: white;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 #btnArea3 {
 	position: absolute;
-	left: 38.33%;
+	left: 51%;
 	right: 40.41%;
-	top: 615.5px;
-	width: 60px;
-	height: 30px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
-	background: #fff;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
+	top: 600px;
+	width: 55px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: white;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 .button {
-	width: 60px;
-	height: 30px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
-	background: #fff;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
+	width: 55px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+		background-color: white;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 #updateBtn {
 	position: absolute;
 	width: 63px;
 	height: 33px;
-	left: 805px;
-	top: 615.5px;
-	width: 60px;
-	height: 30px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
-	background: #fff;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
+	left: 1280px;
+	top: 600px;
+	width: 55px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: white;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 #deleteBtn {
 	position: absolute;
 	width: 63px;
 	height: 33px;
-	left: 874.5px;
-	top: 615.5px;
-	width: 60px;
-	height: 30px;
-	color: #ff60657e;
-	font-family: "Do Hyeon";
-	background: #fff;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
+	left: 1350px;
+	top: 600px;
+	width: 55px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: white;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 #t1 {
@@ -237,94 +234,98 @@ hr {
 	background: #C4C4C4;
 }
 
-
-
- 
- 
-dl, dt, dd, ol, ul, li, 
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+dl, dt, dd, ol, ul, li, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
- 
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
+
+article, aside, details, figcaption, figure, footer, header, hgroup,
+	menu, nav, section {
+	display: block;
 }
+
 body {
-    line-height: 1;
+	line-height: 1;
 }
+
 ol, ul {
-    list-style: none;
+	list-style: none;
 }
+
 blockquote, q {
-    quotes: none;
+	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
 }
+
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
-} 
-ul{
-    list-style:none;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-.wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+ul {
+	list-style: none;
 }
-.container{
- 	width: 500px;
-	height: 250px;
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	height: 450px;
+	width: 450px;
+	padding-right: 0px;
+	padding-left: 0px;
+	border-radius: 2px;
+	position: relative;
+	background-image:
+		url('<%=request.getContextPath()%>/resources/Cafeimages/이미지준비2.jpg');
+	overflow: hidden;
+}
+
+.slider {
+	display: flex;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.item {
+	width: 450px;
+	height: 450px;
 	border-radius: 20px;
-    position: relative;
- 	background-image:
-	url('<%=request.getContextPath()%>/resources/Cafeimages/이미지준비2.jpg');    
+	font-size: 35px;
+	text-align: center;
+}
 
+.prev {
+	position: absolute;
+	left: 0%;
+	right: 98.39%;
+	top: 20.88%;
+	bottom: 77.17%;
+}
 
-    overflow: hidden;
+.next {
+	position: absolute;
+	top: 30%;
+	right: -3%;
+	color: black;
 }
-.slider{
-    display: flex;
-    position:absolute;
-    top:0;
-    left:0;
-}
-.item{
-  	width: 500px;
-	height: 250px;
-	border-radius: 20px; 
-    font-size: 35px;
-    text-align: center;
-}
- 
-.btn{
-    font-size: 50px;
-}
-.prev{
-    position:absolute;
-    top:30%;
-    left:0;
-    color:black;
-}
-.next{
-    position:absolute;
-    top:30%;
-    right:-3%;
-     color:black;
-}
-.container ul{
-    -webkit-transition: all 0.25s cubic-bezier(1, .01, .32, 1);
-    -o-transition: all 0.25s cubic-bezier(1, .01, .32, 1);
-    transition: all 0.25s cubic-bezier(1, .01, .32, 1);
+
+.container ul {
+	-webkit-transition: all 0.25s cubic-bezier(1, .01, .32, 1);
+	-o-transition: all 0.25s cubic-bezier(1, .01, .32, 1);
+	transition: all 0.25s cubic-bezier(1, .01, .32, 1);
 }
 </style>
 </head>
@@ -333,110 +334,146 @@ ul{
 	<%@ include file="../common/common_ui.jsp"%>
 
 	<section id="content" class="content_css">
-		<div id="main">
-			<div class="cafe">
-			
-			
-				<!-- 도서이미 불러오기--> 
-				<div class="container">
-					<ul class="slider">
-						<%if(c.getCafe_photo() != null ) {%>
-						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo()  %>"align="bottom"></li>
-						<%} else { %>
-						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"align="bottom"></li>
-						<%} %>
-						
-						<%if(c.getCafe_photo2() != null  ) {%>
-						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo2()  %>"align="bottom"></li>
-						<%} else    { %>
-						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"align="bottom"></li>
-						<%} %>
-						
-						
-						<%if(c.getCafe_photo3() != null  ) {%>
-						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo3()  %>"align="bottom"></li>
-						<%} else{ %>
-						<li class="item"><img id='cafeimg'src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"align="bottom"></li>
-						<%} %>
-					</ul>
-				</div>
-				<div class="btn">
-					<a class="prev" style="text-decoration: none;">&#10094;</a> <a
-						class="next" style="text-decoration: none;">&#10095;</a>
-				</div>
-				<td><br>
-				<tr>
-				</tr>
-				</td>
-			</div>
+	<div class="galleryArea">
 
-			<!-- 카페 정보 및 예약-->
-			<div class="rvt" style="border: 1px solid #229ed8;">
-				<span><a style="font-size: 25px;">&nbsp&nbsp&nbsp <%=c.getCafe_name()%>
-				</a> </span><br> <br>
-				<table id="info">
-					<td>
+			<div id="main" style="margin-top: 100px;">
+				<h1 style="margin-left: 700px;">
+					<strong>better together-스터디카페</strong>
+				</h1>
+				<h4 style="margin-left: 750px;">
+					#<%=c.getCafe_area()%>#수업#다목적#공간#스터디룸
+				</h4>
+				<div class="cafe" style="top: 190px; left: 480px;">
+
+
+					<!-- 도서이미 불러오기-->
+					<div class="container">
+						<ul class="slider"
+							style="width: 2985px; left: 0px; padding-left: 0px; height: 450px;">
+							<%if(c.getCafe_photo() != null ) {%>
+							<li class="item"><img id='cafeimg'
+								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo()  %>"
+								align="bottom"></li>
+							<%} else { %>
+							<li class="item"><img id='cafeimg'
+								src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
+								align="bottom"></li>
+							<%} %>
+
+							<%if(c.getCafe_photo2() != null  ) {%>
+							<li class="item"><img id='cafeimg'
+								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo2()  %>"
+								align="bottom"></li>
+							<%} else    { %>
+							<li class="item"><img id='cafeimg'
+								src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
+								align="bottom"></li>
+							<%} %>
+
+
+							<%if(c.getCafe_photo3() != null  ) {%>
+							<li class="item"><img id='cafeimg'
+								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo3()  %>"
+								align="bottom"></li>
+							<%} else{ %>
+							<li class="item"><img id='cafeimg'
+								src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
+								align="bottom"></li>
+							<%} %>
+						</ul>
+					</div>
+					<div class="btn">
+						<a class="prev"
+							style="text-decoration: none; top: 200px;  ">&#10094;</a>
+						<a class="next"
+							style="text-decoration: none;top: 200px;">&#10095;</a>
+					</div>
+					<td><br>
 					<tr>
-						&nbsp 지역:
-						<%=c.getCafe_area()%>
 					</tr>
-					<br>
-					<br>
-						<br>
-					<tr>
-						&nbsp 이용가능한 최대 인원:
-						<%=c.getCafe_capacity()%>
-					</tr>
-					<br>
-					<br>
-						<br>
-					<tr>
-						&nbsp 이용시간:
-						<%=c.getCafe_oh()%>
-					</tr>
-					<br>
-					<br>
 					</td>
-					<ul id="navi">
-						<li>
-							<!--문의하기 팝업-->
-							<div id="root">
-								<button class="nav_btn" id="modal_opne_btn"
-									style="position: absolute; width: 150px; height: 40px; left: 30px; top: 190px;">
-									<a>문의하기</a>
-								</button>
-							</div>
-							<div id="modal">
+				</div>
 
-								<div class="modal_content">
-									
-									<h2 style="text-align: center; color: black; font-family:"DoHyeon";">
-										<br>
-										<%= c.getCafe_name() %></h2>
- 										<h4>BetterTogether에서 보고 연락드렸다고 말하세요!</h4>
-									<h2 style="text-align: center;">
-										<br>
+				<!-- 카페 정보 및 예약-->
+				<div class="rvt"
+					style="border: 1px solid #bab6b6;top: 230px;left: 980px;width: 432px;height: 352px;">
+					<span><a style="font-size: 25px;">&nbsp&nbsp&nbsp <strong><%=c.getCafe_name()%></strong>
+					</a> </span><br> <br>
+					<table id="info">
+						<td>
+						<tr>
+							<strong> &nbsp 지역: <%=c.getCafe_area()%>
+							</strong>
+						</tr>
+						<br>
+						<br>
+						<br>
+						<tr>
+							<strong> &nbsp 예약가능 인원: <%=c.getCafe_capacity()%>
+							</strong>
+						</tr>
+						<br>
+						<br>
+						<br>
+						<tr>
+							<strong> &nbsp 이용시간: <%=c.getCafe_oh()%>
+							</strong>
+						</tr>
+						<br>
+						<br>
+						<br>
+						</td>
+						<tr>
+							<strong> &nbsp 상세주소: <%= c.getCafe_map() %> <%= c.getDetail_address() %>
+							</strong>
+						</tr>
 
-										<%= c.getCafe_phone() %></h2>
-									<button type="button" id="modal_close_btn">닫기</button>
+
+						<ul id="navi">
+							<li>
+								<!--문의하기 팝업-->
+								<div id="root">
+									<button class="nav_btn" id="modal_opne_btn"
+										style="position: absolute; width: 150px; height: 40px; left: 30px; top: 300px; background: #AAD4EB; color: white;">
+										<a>문의하기</a>
+									</button>
 								</div>
-								<div class="modal_layer"></div>
-							</div>
+								<div id="modal">
 
-						</li>
-						<li>
-							<button class="nav_btn" id="bt2"
-								onclick="window.open('https://<%= c.getCafe_page() %>')">
-								<a>예약하기</a>
-							</button>
-						</li>
-					</ul>
-				</table>
-			</div>
+									<div class="modal_content">
+
+										<h2 style="text-align: center; color: black;  ">
+											<br>
+											<%=c.getCafe_name()%></h2>
+										<h5>
+											" better together를 통해 연락드렸어요~" 라고 말씀하시면 더 친절하게 안내 받으실 수 있습니다.
+											:) <br>
+										</h5>
+										<h2 style="text-align: center;">
+											<br> <strong> <%= c.getCafe_phone() %>
+											</strong>
+										</h2>
+										<button type="button" id="modal_close_btn"
+											style="background: #AAD4EB; color: white;">닫기</button>
+									</div>
+									<div class="modal_layer"></div>
+								</div>
+
+							</li>
+							<li>
+								<button class="nav_btn" id="bt2"
+									style="top: 300px; background: #AAD4EB; color: white;"
+									onclick="window.open('https://<%= c.getCafe_page() %>')">
+									<a>예약하기</a>
+								</button>
+							</li>
+						</ul>
+					</table>
+				</div>
 
 
-		
-				 <script>
+
+				<script>
 				 
 				 
 				 
@@ -489,7 +526,7 @@ ul{
 
 
 
- 
+
 
 
 
@@ -555,35 +592,37 @@ ul{
 
 				document.getElementById("modal_close_btn").onclick = function() {
 					document.getElementById("modal").style.display = "none";
-				}
+					}
 				</script>
 
-				<hr>
+				<hr
+					style="top: 630px; width: 1000px; left: 430px; border: 0.5px solid Purple;">
 				<!-- 카페 정보,약도-->
-				<div class="inf">
+				<div class="inf" style="top: 650px; width: 1200px; left: 430px;">
 					<br>
 					<table id="info2">
 						<td>
 						<tr>
-							<span style="display: block; width: 480px; height: 50px;">
-								카페 소개: <a style="font-size: 16px;"> &nbsp<%=c.getCafe_info()%></a>
+							<span style="display: block; width: 480px; height: 100px;">
+								<strong>&nbsp공간소개 </strong> <pre style="font-size: 16px;height: 110px;width: 550px;""><%=c.getCafe_info()%></pre>
 							</span>
 						</tr>
 						</td>
+						<td>
+						<tr>
+							<span style="display: block; width: 480px; height: 100px; margin-top: 50px;">
+								<hr
+									style="left: 0px; top: 150px; width: 600px; border: 0.5px solid Purple;">
+								<strong> &nbsp유의사항 </strong> <pre style="font-size: 16px;height: 150px;width: 550px;"><%=c.getCafe_notice()%></pre>
+							</span>
+						</tr>
+						</td>
+						<h2 style="margin-left: 630px;">
+							<strong>※오시는길</strong>
+						</h2>
+						<br>
+						<br>
 
-						<br>
-						<br>
-						<span style="display: block; width: 480px;"> 카페 공지사항: <a
-							style="font-size: 16px;"> &nbsp<%=c.getCafe_notice()%>
-						</a>
-						</span>
-						<br>
-
-						<br>
-						<span style="display: block; width: 480px;"> 상세주소 : <a
-							style="font-size: 16px;"> &nbsp<%=c.getCafe_map()%> <%=c.getDetail_address()%>
-						</a>
-						</span>
 						<br>
 						<br>
 
@@ -664,9 +703,22 @@ ul{
 										}
 									});
 				</script>
-
 				</div>
-				</div></section>
+			</div>
+		</div>
+	</section>
 	 
+		 
 </body>
+<footer id="btFooter" style="margin-top: 1000px;">
+<br><br><br><br><br><br>
+		<pre id="btFooter_pre">KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 김언체 ｜  개인정보관리책임자 : 강명주
+
+        강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F
+        강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F
+        강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F
+       
+        Copyright © Better Together
+    </pre>
+	</footer>
 </html>
