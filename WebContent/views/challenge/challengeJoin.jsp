@@ -76,9 +76,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Better Together</title>
 
 <style>
+
+#btSection {
+	padding-bottom: 50px;
+}
+
+
 /*챌린지 정보 부분 css*/
 #challInfo_content {
 	font-family: "Nanum Gothic";
@@ -87,30 +93,30 @@
 	padding-top: 10px;
 }
 
-#challInfo_tb{
-	width:160%;
+#challInfo_tb {
+	width: 160%;
 }
 
 #check_img {
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 }
 
 #info1 {
-	font-size: 20px;
+	font-size: 15px;
 	color: #616161b6;
 	font-weight: bolder;
 }
 
 #chall_title {
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bolder;
 	color: #252525b6;
 	padding-top: 1%;
 }
 
-#chall_freq{
-font-family: "Nanum Gothic";
+#chall_freq {
+	font-family: "Nanum Gothic";
 	width: 70px;
 	height: 30px;
 	border-radius: 3px;
@@ -119,8 +125,8 @@ font-family: "Nanum Gothic";
 	color: #616161b6;
 	font-weight: bold;
 	background-color: #e6e4e4b6;
-	margin-top:2%;
-	margin-right:1%;
+	margin-top: 2%;
+	margin-right: 1%;
 }
 
 #chall_period {
@@ -133,130 +139,131 @@ font-family: "Nanum Gothic";
 	color: #616161b6;
 	font-weight: bold;
 	background-color: #e6e4e4b6;
-	margin-top:2%;
-	margin-right:2%;
+	margin-top: 2%;
+	margin-right: 2%;
 }
 
-
-#chall_date{
-font-size: 20px;
+#chall_date {
+	font-size: 17px;
 	color: #937CF7;
 	font-weight: bolder;
 }
 
-#chall_confirm{
-	margin-top:3%;
+#chall_confirm {
+	margin-top: 3%;
 	background-color: #808080b6;
-	font-size:20px;
+	font-size: 18px;
 	border: solid 1px #808080b6;
 	border-radius: 3px;
-	color:white;
+	color: white;
 }
 
-
-#challLine{
-	margin-top:4%;
-	border: solid 1px #937CF7;
-	background-color:#937CF7;
-	
+#challLine {
+	margin-top: 4%;
+	border: 0.5px solid #937cf790;
+	background-color: #937CF7;
 }
 
-#chall_ppl{
-	color:#252525b6;
-	font-size:25px;
-	font-weight:bolder;
-	padding-top:4%;
+#chall_ppl {
+	color: #252525b6;
+	font-size: 20px;
+	font-weight: bolder;
+	padding-top: 4%;
 }
 
-
-.chall_Icon{
-	margin-right:1%;
-	width:35px;
-	height:35px;
+.chall_Icon {
+	margin-right: 1%;
+	width: 35px;
+	height: 35px;
 }
 
-#chall_pay{
-	padding-top:2%;
-	color:#252525b6;
-	font-size:25px;
-	font-weight:bolder;
+#chall_pay {
+	padding-top: 2%;
+	color: #252525b6;
+	font-size: 20px;
+	font-weight: bolder;
 }
 
-#payBack_content{
-	margin-top:5%;
+#payBack_content {
+	margin-top: 5%;
 	background-color: #e6e4e4;
 	font-family: "Nanum Gothic";
 	padding: 10px;
-	width:100%;
-	height:80%;
-	font-size:15px;
-	font-weight:bolder;
+	width: 100%;
+	height: 80%;
+	font-size: 15px;
+	font-weight: bolder;
 }
 
+#challInfo_title {
+	padding-top: 2%;
+	color: #937CF7;
+	font-size: 22px;
+	font-weight: bolder;
+}
 
-
+.challinfo1 {
+	padding-top: 2%;
+	color: #252525b6;
+	font-size: 15px;
+	font-weight: bolder;
+}
 
 /* 버튼 css*/
-
 #challenge_btn {
+	width: 90px;
 	font-family: "Nanum Gothic";
-	width: 120px;
-	height: 50px;
-	border-radius: 20px;
-	border: solid 1px #fdc8c6;
-	background-color: #fdc8c6;
-	margin-left: 10px;
-	margin-top: 10px;
-	font-size: 20px;
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 6px 5px 6px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 #challEnd_btn {
+	width: 80px;
 	font-family: "Nanum Gothic";
-	width: 120px;
-	height: 50px;
-	border-radius: 20px;
-	border: solid 1px #aaa3a3;;
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 6px 5px 6px;
 	background-color: #aaa3a3;;
-	margin-left: 10px;
-	margin-top: 10px;
-	font-size: 20px;
+	font-size: 10px;
 	color: white;
 }
 
 #chall_backBtn {
+	width: 80px;
 	font-family: "Nanum Gothic";
-	width: 120px;
-	height: 50px;
-	border-radius: 20px;
-	border: solid 1px #fdc8c6;
-	background-color: #fdc8c6;
-	margin-left: 30px;
-	margin-top: 10px;
-	font-size: 20px;
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 #challConfirm_btn {
+	width: 60px;
 	font-family: "Nanum Gothic";
-	width: 70px;
-	height: 30px;
-	border-radius: 20px;
-	border: solid 1px #fdc8c6;
-	background-color: #fdc8c6;
-	margin-left: 10px;
-	margin-top: -15px;
-	font-size: 15px;
+	border-radius: 10px;
+	border: solid 1px #b6a8f5;
+	padding: 5px 10px 5px 10px;
+	background-color: #b6a8f5;
+	font-size: 10px;
+	font-weight: bolder;
+	color: white;
 }
 
 #warning_btn {
+	width: 60px;
 	font-family: "Nanum Gothic";
-	width: 70px;
-	height: 30px;
-	border-radius: 20px;
-	border: solid 1px #ff6064;
-	background-color: #ff6064;
-	margin-left: 10px;
-	margin-top: -15px;
-	font-size: 15px;
+	border-radius: 10px;
+	border: solid 1px #b6a8f5;
+	padding: 5px 10px 5px 10px;
+	background-color: #b6a8f5;
+	font-size: 10px;
+	font-weight: bolder;
 	color: white;
 }
 
@@ -265,88 +272,69 @@ font-size: 20px;
 	padding-top: 30px;
 }
 
-
 #chall_intro {
 	font-size: 20px;
 	text-align: center;
 	color: rgb(168, 167, 167);
 }
 
-#content-2 p {
-	font-size: 25px;
-	color: #ff6064;
-	padding-left: 30px;
-}
-
-#join_title1 {
-	bottom: 67%;
-}
-
-#join_title2 {
-	bottom: 43%;
-}
-
-.img-size {
-	width: 40px;
-	height: 40px;
-}
-
-#join_table1 {
-	margin-left: 30px;
-	font-family: "Nanum Gothic";
-	font-size: 20px;
-}
-
-#join_table2 {
-	margin-left: 30px;
-	font-family: "Nanum Gothic";
-	font-size: 20px;
-}
-
-#join_table1 td img {
-	margin-right: 15px;
-}
-
-#join_table2 td img {
-	margin-right: 15px;
-}
 
 .heart_img {
-	width: 40px;
-	height: 40px;
+	width: 25px;
+	height: 25px;
 }
 
 #hits_btn {
-	padding-top: 15px;
-	background-color: #f9f1f1;
 	border: #f9f1f1;
 	outline: none;
 }
 
 #btn-form div {
 	float: right;
-	margin-right: 155px;
-}
-
-#btn-form span {
-	float: right;
-	margin-right: 80px;
-	margin-top: -42px;
 }
 
 #btn-form {
-	padding-top: 40px;
+	float: left;
+	padding-top: 20px;
+	margin-left: 60%;
+	padding-bottom:20px;
+}
+
+#btn-form span{
+	font-family: "Nanum Gothic";
+	font-size:15px;
+	color: #252525b6;
+	float:right;
+	font-weight:bolder;
 }
 
 #line {
 	bottom: 50%;
 }
 
-#countDown_title, #challIng, #challEnd {
+#countDown_title {
 	font-family: "Nanum Gothic";
 	font-size: 20px;
 	color: #937CF7;
 	padding-left: 15px;
+	font-height: bolder;
+}
+
+/* 챌린지 진행중 text */
+#challIng{
+	font-family: "Nanum Gothic";
+	font-size: 20px;
+	color: #937CF7;
+	padding-left: 40%;
+	font-height: bolder;
+}
+
+/* 챌린지 종료 text */
+#challEnd{
+	font-family: "Nanum Gothic";
+	font-size: 20px;
+	color: #808080b6;
+	padding-left: 45%;
 	font-height: bolder;
 }
 
@@ -364,7 +352,7 @@ font-size: 20px;
 #countDown_content {
 	background-color: #e6e4e4;
 	font-family: "Nanum Gothic";
-	width:55.5%;
+	width: 55.5%;
 	margin-left: 25%;
 	padding: 10px;
 }
@@ -380,8 +368,11 @@ button:focus {
 	<section id="btSection" class="content_css">
 	
 	<!-- 챌린지 모집 이미지 -->
+	<%if(compare3 < 0){ %>
+	<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 700px;height: 400px; -webkit-filter: grayscale(100%); filter: gray;">
+	<%} else { %>
 	<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 700px;height: 400px;">
-	
+	<%}  %>
 	
 	<!-- 챌린지 시작일에 맞춤 -->
 	<%if(compare < 0 && compare2 < 0){ %>
@@ -446,13 +437,13 @@ button:focus {
 			</tr>
 			<tr>
 				<td>
-				<button id="chall_freq">주 <%=ch.getChallFrequency() %>회  <%=ch.getChallConfirm() %></button>
-				<button id="chall_period"><%=ch.getChallPeriod() %>주 동안</button>
+				<button id="chall_freq" disabled>주 <%=ch.getChallFrequency() %>회  <%=ch.getChallConfirm() %></button>
+				<button id="chall_period" disabled><%=ch.getChallPeriod() %>주 동안</button>
 				<span id="chall_date"><%=ch.getChallStart() %> ~ <%=period %></span>
 				</td>
 			</tr>
 			<tr>
-				<td><button id="chall_confirm">(<%=ch.getChallConfirm() %>) <%=ch.getChallPeriod() %>주 동안, 하루에 인증샷을 한번 찍어야해요!</button></td>
+				<td><button id="chall_confirm" disabled>(<%=ch.getChallConfirm() %>) <%=ch.getChallPeriod() %>주 동안, 하루에 인증샷을 한번 찍어야해요!</button></td>
 			</tr>
 			<tr>
 				<td><div id="challLine"></div></td>
@@ -460,7 +451,7 @@ button:focus {
 			<tr>
 				<td id="chall_ppl">
 					<img src="<%=request.getContextPath()%>/resources/images/people.png" class="chall_Icon">
-					참가인원 : <span style="color:#937CF7; font-size:25px;"><%= joinPeopleCnt %></span> / <span style="color:#252525b6; font-size:25px;"><%= ch.getChallPeople() %></span>명
+					참가인원 : <span style="color:#937CF7; font-size:20px;"><%= joinPeopleCnt %></span> / <span style="color:#252525b6; font-size:20px;"><%= ch.getChallPeople() %></span>명
 				</td>
 			</tr>
 			<tr>
@@ -477,6 +468,34 @@ button:focus {
 						85% 미만 : 페이백 & 상금 둘다 없음 
 					</div>
 				</td>
+			</tr>
+			<tr>
+				<td><div id="challLine"></div></td>
+			</tr>
+			<tr>
+				<td id="challInfo_title">챌린지 정보</td>
+			</tr>
+			<tr>
+				<td class="challinfo1">방장 : <%=ch.getUserId() %>
+				<!-- 시작전만 신고하기 버튼 보이게 -->
+				<%if(!(compare1 < 0)){ %>
+					<% } else { %>
+					<button id="warning_btn"> 신고하기</button></td>
+					<% } %>
+			</tr>
+			<tr>
+				<td class="challinfo1">인증 빈도 : 주 <%=ch.getChallFrequency() %>회</td>
+			</tr>
+			<tr>
+				<td class="challinfo1">하루 인증 횟수 : 자유 (단, 모두 1회로 간주)
+				<% if((compare < 0 && compare2 < 0) || compare3 < 0){ %>
+					<button id="challConfirm_btn">인증보기</button>
+					<%} else{%>
+					<% } %>
+				</td>
+			</tr>
+			<tr>
+				<td class="challinfo1">금액 : <%=ch.getChallPay() %> 원</td>
 			</tr>
 		</table>
 		
@@ -558,7 +577,7 @@ button:focus {
 		
 		<!-- 버튼 -->
 		
-		<%-- <section id="btn-form">
+		<section id="btn-form">
 				<button id="chall_backBtn">목록으로</button>
 				<%if(compare3 < 0){%>
 					<button id="challEnd_btn">챌린지 종료</button>
@@ -578,9 +597,9 @@ button:focus {
 							class="heart_img">
 						<% } %>
 					</button>
+					<span>찜하기 +<%=hits %></span>
 				</div>
-				<span>찜하기 +<%=hits %></span>
-			</section> --%>
+			</section> 
 
 		<!-- 버튼 이벤트-->
 		<script>

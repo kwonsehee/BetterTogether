@@ -40,200 +40,164 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Better Together</title>
 
-    <style>
-         #title{
-         	margin-top:50px;
-            width: 100%;
-        }
-        #title span {
-            font-size: 30px;
-            font-family: "Nanum Gothic";
-            text-align: center;
-            padding-top: 10px;
-            margin-left:400px;
-        }
+<style>
+#challenge_btn {
+	width: 90px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 10px 5px 10px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
+	float: right;
+	margin-right: 8%;
+	margin-bottom: 30px;
+}
 
+/*페이징 css*/
+#pagingArea {
+	text-align: center;
+}
 
-        .challenge_table {
-            font-family: "Nanum Gothic";
-            font-size: medium;
-            margin-left: 40px;
-            width: 90%;
-            border-top: 2px solid #ff6064;
-            border-collapse: collapse;
-            margin-top:30px;
-        }
+#pagingArea button {
+	width: 25px;
+	margin-top: 20px;
+	border: 0px;
+	color: #757575;
+	font-family: "Nanum Gothic";
+	font-size: 12px;
+}
 
-        .challenge_table th,
-        .challenge_table td {
-            border-bottom: 1px solid #444444;
-            padding: 10px;
-            text-align: center;
-        }
-        
+#pagingArea button:hover {
+	cursor: pointer;
+}
 
+#btnType_area {
+	margin-left: 42%;
+}
 
-        #challenge_btn {
-            font-family: "Nanum Gothic";
-            width: 150px;
-            height: 50px;
-            border-radius: 20px;
-            border: solid 1px #fdc8c6;
-            background-color: #fdc8c6;
-            margin-top: -60px;
-            float: right;
-            font-size: 20px;
-            margin-right: 50px;
-        }
+#btnType_area button {
+	font-family: "Nanum Gothic";
+	width: 70px;
+	height: 30px;
+	border-radius: 20px;
+	border: solid 1px #9e9e9e5b;
+	font-size: 14px;
+	margin-top: 20px;
+	margin-bottom:20px;
+}
 
+/*밑에서부터 수정된 UI */
+.challArea {
+	width: 90%;
+	min-height: 400px;
+	margin: auto;
+	padding-left: 7%;
+}
 
-        /*페이징 css*/
-        #pagingArea {
-    	  margin-left:43%;
-    	  padding:20px;
-    	  float:left;
-  	   }
-      	#pagingArea button {
-            font-family: "Nanum Gothic";
-            font-size : 13px;
-            color: black;
-            text-decoration: none;
-            border: solid 1px #9e9e9e5b;
-             background-color: #e6e4e4b6;
-            
-        }
-        
-         #page_css {
-            width: 100%;
-            height: 20%;
-            float: left;
-            padding-top: 50px;
-            padding-left: 400px;
-        }
-        
-        /* 검색하기 영역 */
-      
-      #searchCondition{
-         font-family: "Nanum Gothic";
-         font-size:13px;
-         height:22px;
-      }
-      
-      input:focus, #pagingArea button:focus{
-         outline: none;
-         
-      }
-      
-      #search_btn{
-         font-family: "Nanum Gothic";
-         border-radius: 10px;
-           border: solid 1px #9e9e9e5b;
-           padding:5px 15px 5px 15px;
-           background-color: #e6e4e4b6;
-           font-size:10px;
-           font-weight: bolder;
-      }
-      
-      #listTable th:nth-child(3){
-         width: 250px;
-      }
-      
-      #btnType_area{
-      	 margin-left:42%;
-      	
-      }
-      
-      #btnType_area button {
-      	 font-family: "Nanum Gothic";
-            width: 70px;
-            height: 30px;
-            border-radius: 20px;
-            border: solid 1px #9e9e9e5b;
-            font-size:14px;
-            margin-top:20px;
-      }
-      
-      /*밑에서부터 수정된 UI */
-      
-      .challArea{
-	      width:90%;
-	      min-height:400px;
-	      margin:auto;
-	      padding-left:7%;
-     
-      }
-      
-      .chall_list{
-      	width:220px;
-      	display:inline-block;
-      	padding:10px;
-      	margin:10px;
-      	text-align:left;
-      
-      }
-      
-      #call_img{
-      	border-radius:5px;
-      }
-      
-      /* 챌린지 info css */
-      
-      .chall_info{
-      	margin:7px;
-      	 font-family: "Nanum Gothic";
-      	 font-size:15px;
-      }
-      
-      #chall_No, #chall_start{
-      	font-size:12px;
-      	color: #616161b6;
-      	font-weight: bolder;
-      }
-      
-      #chall_title{
-      	font-size:15px;
-      	color: #252525b6;
-      	font-weight: bold;
-      	
-      }
-      
-      #chall_freq, #chall_period{
-      	font-family: "Nanum Gothic";
-            width: 60px;
-            height: 30px;
-            border-radius: 3px;
-            border: solid 1px #e6e4e4b6;
-            font-size:11px;
-            color : #616161b6;
-            font-weight: bold;
-            background-color: #e6e4e4b6;
-            margin-left:3%;
-      }
-      
-      #check_img{
-      	width:10px;
-      	height:10px;
-      }
-      
-      #content-1{
-      	margin-top:3%;
-      }
-      
-      #search_input{
-      	height:22px;
-      	width:120px;
-      	margin-top:5%;
-      }
-      
-      .searchArea{
-      	padding:30px;
-      	
-      }
-      
+.chall_list {
+	width: 220px;
+	display: inline-block;
+	padding: 10px;
+	margin: 10px;
+	text-align: left;
+}
 
-    </style>
+#call_img {
+	border-radius: 5px;
+}
+
+/* 챌린지 info css */
+.chall_info {
+	margin: 7px;
+	font-family: "Nanum Gothic";
+	font-size: 15px;
+}
+
+#chall_No, #chall_start {
+	font-size: 12px;
+	color: #616161b6;
+	font-weight: bolder;
+}
+
+#chall_title {
+	font-size: 15px;
+	color: #252525b6;
+	font-weight: bold;
+}
+
+#chall_freq, #chall_period {
+	font-family: "Nanum Gothic";
+	width: 60px;
+	height: 30px;
+	border-radius: 3px;
+	border: solid 1px #e6e4e4b6;
+	font-size: 11px;
+	color: #616161b6;
+	font-weight: bold;
+	background-color: #e6e4e4b6;
+	margin-left: 3%;
+}
+
+#check_img {
+	width: 10px;
+	height: 10px;
+}
+
+#content-1 {
+	margin-top: 3%;
+}
+
+#cate_Name {
+	background-color: #b6a8f5;
+	border: solid 1px #b6a8f5;
+	border-radius: 5px;
+	color: white;
+}
+
+/* 검색영역 css */
+.searchArea {
+	float: left;
+	width: 100%;
+	text-align: center;
+	padding: 20px;
+}
+
+#searchBtn {
+	width: 80px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
+}
+
+#searchBtn:hover {
+	cursor: pointer;
+}
+
+#searchBox {
+	width: 300px;
+	border: 1px solid rgba(219, 219, 219, 0.356);
+}
+
+#searchCondition {
+	width: 70px;
+	height: 30px;
+	border: 1px solid rgba(219, 219, 219, 0.356);
+	text-align: center;
+}
+
+.line {
+	border: 0.5px solid #937cf790;
+}
+</style>
+
 </head>
 <body>
   <%@ include file="../common/common_ui.jsp"%>
@@ -245,7 +209,7 @@
         </section> -->
         
         <!-- 1:시작전 2:진행중 3:종료 -->
-        <form action="<%= request.getContextPath() %>/chall/type" method="post" id="type_form">
+        <form action="<%=request.getContextPath()%>/chall/type" method="post" id="type_form">
         	<span id="btnType_area">
 				<button type="submit" name="challBoardType" value="1">시작전</button>
 				<button type="submit" name="challBoardType" value="2">진행중</button>
@@ -253,7 +217,8 @@
 			</span>
         </form>
         
-        
+       	<div class="line"></div>
+       	 
         <section id="content-1">
             <%-- <table id= "listTable" class="challenge_table">
                     <tr>
@@ -293,11 +258,11 @@
 					</div>
 					<p id="chall_No" class="chall_info"><img
 						src="<%=request.getContextPath()%>/resources/images/challCheck.png"
-						id="check_img"> 공식 챌린지 <%=ch.getChallNo() %></p>
+						id="check_img"> 공식 챌린지 <button id="cate_Name" disabled><%= ch.getCateName()%></button></p>
 					<p id="chall_title" class="chall_info"><%=ch.getChallTitle() %></p>	
 					<p id="chall_start" class="chall_info"><%=ch.getChallStart() %> 시작</p>	
-					<button id="chall_freq">주 <%=ch.getChallFrequency() %>회</button>
-					<button id="chall_period"><%=ch.getChallPeriod() %>주 동안</button>
+					<button id="chall_freq" disabled>주 <%=ch.getChallFrequency() %>회</button>
+					<button id="chall_period" disabled><%=ch.getChallPeriod() %>주 동안</button>
 				</div>
 				<%} %>
             	</div>
@@ -334,7 +299,7 @@
 			<!-- 10개의 페이지 목록 -->
 			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) {%>
 			<% if(p == pi.getCurrentPage()) { %>
-			<button style="background:white;" disabled><%= p %></button>
+			<button style="background:lightgray;" disabled><%= p %></button>
 			<% } else if(s != null){%>
 			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%=p %>&searchCondition=<%= searchCondition %>&search=<%=search %>'"> <%= p %></button>	
 			<%}else if(cate !=0){ %>
@@ -384,21 +349,17 @@
 					  <option value="writer" <%= selected[2] %>>작성자</option>                  
                   </select>
                   <% if(search != null) {%>
-                  <input id="search_input" type="search" name="search" value="<%= search%>">
+                  <input id="searchBox" type="search" name="search" value="<%= search%>">
                   <% } else { %>
-                  <input id="search_input" type="search" name="search">
+                  <input id="searchBox" type="search" name="search">
                   <% } %>
-                  <button type="submit" id="search_btn">검색하기</button>
+                  <button type="submit" id="searchBtn">검색하기</button>
                </form>
             </div>
             	
             	
         </section>
 
-		<!-- 페이징 바 -->
-        <section id="page_css">
-        </section>
-        
 
         <form method="POST">
             <section id="content-3">

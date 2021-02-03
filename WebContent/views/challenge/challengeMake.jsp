@@ -4,19 +4,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Better Together</title>
 <style>
 /* content 부분 */
+
+#btSection {
+	padding-bottom: 100px;
+}
+
+
 #challenge-form {
 	width: 100%;
 	height: 100%;
-	float: left;
+	margin-left:30%;
 }
 
-#content-0 {
+#challMake_tb{
+	font-family: "Nanum Gothic";
+	font-size:17px;
+	font-weight: bolder;
+	color: #252525b6;
+	margin-top:2%;
+}
+
+#challTitle {
 	width: 100%;
 	height: 10%;
 	text-align: center;
+	font-size: 25px;
+	font-weight: bolder;
+	color: #252525b6
+	
 }
 
 #content-0 p {
@@ -31,105 +49,94 @@
 	margin-top: -20px;
 }
 
-.table {
-	font-family: "Do Hyeon";
+.challMake_tb {
 	font-size: 19px;
 	border-collapse: collapse;
 }
 
-tr {
-	border: 1px solid #c2c1c1;
+.tb_content{
+	padding-right:20px;
+	padding:15px;
 }
 
-tr>td {
-	background-color: white;
-}
-
-th {
-	background-color: #ece8e8;
-	padding: 5px;
-	border: 1px solid #c2c1c1;
-}
 
 input[type="file"] {
-	font-family: "Do Hyeon";
+	font-family: "Nanum Gothic";
 }
 
-textarea {
-	position: absolute;
-	margin-top: 368px;
-	padding-right: 522px;
-	height: 80px;
-	border: white;
-	border-radius: 3px;
-	resize: none;
+input[type="radio"]{
+	margin:7px;
 }
 
-#content-2 {
+
+#btn_content{
+	margin-top:3%;
 	width: 100%;
 	height: 10%;
-	float: left;
-	margin-top: -120px;
+	margin-left:17%;
 }
 
 #challenge_btn {
-	font-family: "Do Hyeon";
-	width: 170px;
-	height: 50px;
-	border-radius: 20px;
-	border: solid 1px #fdc8c6;
-	background-color: #fdc8c6;
-	float: right;
-	font-size: 20px;
-	margin-right: 60px;
+	width: 90px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 #back_btn {
-	font-family: "Do Hyeon";
-	width: 170px;
-	height: 50px;
-	border-radius: 20px;
-	border: solid 1px #fdc8c6;
-	background-color: #fdc8c6;
-	float: left;
-	font-size: 20px;
-	margin-left: 580px;
+	width: 90px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
+/* 입력 부분 css */
 input[type="text"], input[type="date"] {
-	height: 33px;
-	width: 762px;
-	border: white;
+	height: 35px;
+	width: 100%;
+	border: solid 1px #9e9e9e5b;
 	border-radius: 3px;
 }
 
-tr:nth-child(2) label {
-	padding-right: 8px;
+select{
+	height:35px;
+	width:100%;
+	border: solid 1px #9e9e9e5b;
 }
 
-tr:nth-child(2) input {
-	margin-left: 3px;
+
+#chall_textArea{
+	height: 200px;
+	border: white;
+	border-radius: 3px;
+	width: 100%;
+	resize:none;
 }
 
-tr:nth-child(4) input {
-	margin-left: 3px;
-}
+/**/
 
 input:focus, textarea:focus {
 	outline: none;
-}
+} 
 
 #file_option label {
 	display: inline-block;
-	background: rgb(156, 154, 154);
+	background: #e0dbf890;
 	border-radius: 10px;
-	color: #fff;
+	color: #252525b6;
 	padding: 0px 15px;
 	line-height: 30px;
 	cursor: pointer;
 	margin: 3px;
 	margin-left: 5px;
-	font-family: "Do Hyeon";
 }
 
 #file_option label:after {
@@ -145,6 +152,11 @@ input:focus, textarea:focus {
 	font-size: 14px;
 	color: #757575b7;
 }
+
+.line {
+	border: 0.5px solid #937cf790;
+}
+
 </style>
 <!-- select option 1:주말 2:평일 3:상관없음 -->
 
@@ -181,113 +193,102 @@ function updateFreq(str){
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
 
-	<section id="content" class="content_css">
-		<section id="content-0">
-			<p>챌린지 개설</p>
-		</section>
+	<section id="btSection" class="content_css">
+		<p id="challTitle">챌린지 개설</p>
+		<div class="line"></div>
 		<form action="<%=request.getContextPath()%>/chall/insert"
 			method="POST" id="challenge-form" name="myForm" enctype="multipart/form-data">
-			<section id="content-1">
-				<table class="table">
-					<tr>
-						<th>챌린지 제목</th>
-						<td><input type="text" maxlength="50" name="title" required>
-						</td>
-					</tr>
-
-					<tr>
-						<th>카테고리 선택</th>
-						<td><input type="radio" id="weight" name="category"
+			<table id="challMake_tb">
+				<tr>
+					<td class="tb_content">챌린지 제목</td>
+					<td><input type="text" class="chall_text" maxlength="50" name="title" required></td>				
+				</tr>
+				<tr>
+					<td class="tb_content">카테고리 선택</td>
+					<td><input type="radio" id="weight" name="category"
 							value="10"> <label>체중관리</label> <input type="radio"
 							id="exercise" name="category" value="20"> <label>운동</label>
 							<input type="radio" id="certificate" name="category" value="30">
 							<label>자격증</label> <input type="radio" id="money" name="category"
-							value="40"> <label>돈관리</label> <input type="radio"
+							value="40"> <label>돈관리</label> <br><input type="radio"
 							id="habit" name="category" value="50"> <label>생활습관</label>
 							<input type="radio" id="study" name="category" value="60">
 							<label>공부</label> <input type="radio" id="skill" name="category"
 							value="70"> <label>업무스킬</label> <input type="radio"
 							id="language" name="category" value="80"> <label>외국어</label>
-						</td>
-					</tr>
+					</td>
+				</tr>
+				<tr>
+					<td class="tb_content">첨부파일</td>
+					<td>
+						<div id="file_option">
+							<label><input type="file" id="file-input" name="picture"></label>
+							<span class="filename">파일을 선택해주세요.</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="tb_content">인증 방법</td>
+					<td>
+						<input type="radio" id="weekend" name="confirm" value="주말" onclick="updateFreq(this.value)"><label>주말</label>
+						<input type="radio" id="weekday" name="confirm" value="평일" onclick="updateFreq(this.value)"><label>평일</label>
+						<input type="radio" id="both" name="confirm" value="상관없음" onclick="updateFreq(this.value)"><label>상관없음</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="tb_content">인증 빈도</td>
+					<td>
+						<select name="frequency" style="color:#252525b6;font-size:15px;">
+						<option>---</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="tb_content">챌린지 기간</td>
+					<td>
+					<select name="period" style="color:#252525b6;font-size:15px;">
+						<option>---</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="tb_content">챌린지 시작일</td>
+					<td><input type="date" name="startDate" style="color:#252525b6;font-size:15px;"required></td>
+				</tr>
 
-					<tr>
-						<th>첨부파일</th>
-						<td>
-							<div id="file_option">
-								<label><input type="file" id="file-input" name="picture"></label> <span
-									class="filename">파일을 선택해주세요.</span>
-							</div>
-						</td>
-					</tr>
+				<tr>
+					<td class="tb_content">참가비</td>
+					<td><input type="text" class="chall_text" name="payment" maxlength="50" required>
+					</td>
+				</tr>
 
-					<tr>
-						<th>인증 방법</th>
-						<td><input type="radio" id="weekend" name="confirm" value="주말" onclick="updateFreq(this.value)"><label>주말</label>
-							<input type="radio" id="weekday" name="confirm" value="평일" onclick="updateFreq(this.value)"><label>평일</label>
-							<input type="radio" id="both" name="confirm" value="상관없음" onclick="updateFreq(this.value)"><label>상관없음</label>
-						</td>
-					</tr>
-
-					<tr>
-						<th>인증 빈도</th>
-						<td><select name="frequency">
-							<option>---</option>
-							</select>
-						</td>
-					</tr>
-
-					<tr>
-						<th>챌린지 기간</th>
-						<td><select name="period">
-							<option>---</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-						</select></td>
-					</tr>
-
-					<tr>
-						<th>챌린지 시작일</th>
-						<td><input type="date" name="startDate" required></td>
-					</tr>
-
-					<tr>
-						<th>참가비</th>
-						<td><input type="text" name="payment" maxlength="50" required>
-						</td>
-					</tr>
-
-					<tr>
-						<th>참가 인원수</th>
-						<td><input type="text" name="people" maxlength="50" required>
-						</td>
-					</tr>
-
-					<tr>
-						<th colspan="2">소개</th>
-					</tr>
-
-					<tr>
-						<p>
-							<textarea cols="50" rows="10" name="content"></textarea>
-						</p>
-					</tr>
-
-				</table>
-			</section>
+				<tr>
+					<td class="tb_content">참가 인원수</td>
+					<td><input type="text" class="chall_text" name="people" maxlength="50" required>
+					</td>
+				</tr>
+				<tr>
+					<td class="tb_content">소개</td>
+					<td>
+					<textarea id="chall_textArea" name="content"></textarea>
+					</td>
+				</tr>
+			</table>
+			
 
 			<!-- 총인증갯수도 숨겨서 보내기 -->
-			<!-- <input type="hidden" name="confirmCnt" value="0"> -->
+			<input type="hidden" name="confirmCnt" value="0">
 
-			<section id="content-2">
-				<!-- 등록 버튼 -->
+			<section id="btn_content">
 				<button type="button" onclick="javascript:history.back();"
 					id="back_btn">뒤로가기</button>
 				<button type="submit" id="challenge_btn">챌린지 등록</button>
-			</section>
-		</form>
+			</section> 
+		</form> 
 	</section>
 	
 
@@ -301,6 +302,8 @@ function updateFreq(str){
 		})
 		
 	</script>
+	
+	<%@ include file="../common/footer.jsp" %>
 	
 
 </body>
