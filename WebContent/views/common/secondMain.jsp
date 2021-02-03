@@ -68,30 +68,45 @@
 }
 
 /* 슬라이드 영역 */
-#slide {
-	width: 100%;
-	float: left;
+.slide ul, .slide li {
+	list-style:none;
 }
 
-.container {
-	width: 300vw;
-	/* 버튼 눌렀을 때 넘어가는 트랜지션 */
-	transition: transform 0.5s;
-	overflow: hidden;
-	display: flex;
-	float: left;
+.slide{
+width:100%;
+	height:500px;
+	overflow:hidden;
+	margin:auto;
 }
 
-.outer {
-	width: 300vw;
-	height: 500px;
-	border: 1px solid black;
+.slide ul{
+	width:calc(100% * 3);
+	display:flex;
+	animation:slide2 13s infinite;
 }
+
+/* slide 무한 반복 */
+.slide li{
+	width:calc(100% / 3);
+	height:500px;
+	padding-left:200px;
+}
+
+@keyframes slide2 {
+0%{margin-left:0;}
+15%{margin-left:0;}
+33%{margin-left:-100%;}
+45%{margin-left:-100%;}
+66%{margin-left:-200%;}
+85%{margin-left:-200%;}
+100%{margin-left:0%;}
+} 
 
 .inner {
-	float: left;
-	margin: 10px;
+	float:left;
 }
+
+
 
 /* chall_box로 시작하는 모든 클래스 */
 div[class^=chall_box] {
@@ -193,7 +208,7 @@ button:hover {
 /* 타이틀 & 라인 */
 #con1_title {
 	height: 70px;
-	border-bottom: 0.5px solid #937cf790;
+	border-bottom: 1px solid #937CF7;
 	width: 100%;
 	color: #757575;
 	margin-top:20px;
@@ -223,13 +238,6 @@ button:hover {
 	color: #937CF7;
 }
 
-/* .h1_title {
-	margin-top: 50px;
-	text-align: center;
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size: 24px;
-	color: #757575;
-} */
 
 /* 챌린저 랭킹 TOP 5 */
 .topten_ul ul, .topten_ul li {
@@ -538,6 +546,8 @@ input[type=checkbox] {
 		url("<%=request.getContextPath()%>/resources/images/check1.png"),
 		url("<%=request.getContextPath()%>/resources/images/외국어.png");
 }
+
+ 
 </style>
 </head>
 <body>
@@ -592,192 +602,181 @@ input[type=checkbox] {
 			<a href="<%= request.getContextPath() %>/chall/list">더보기</a>
 		</div>
 		
+		<div class="slide">
+			<ul>
+			<!-- 첫번째 슬라이드 -->
+				<li>
+					 <div class="inner">
+                  <%for (int i = 0; i < 3; i++) {	%>
+               <%for (Challenge c : list) {%>
+               <%if (list.indexOf(c) == i) {%>
+                   <div class="chall_box<%= i %>">
+                   <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%=c.getChallFile()%>" class="chall_img">
+                      <p name="cTitle" class="cTitle"><%=c.getChallTitle()%></p>
+                      <p name="cDate" class="cDate"><%=c.getChallStart()%> 시작</p>
+                      <p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                      <p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
+                      <div class="pCountArea">
+                          <img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+                          <p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
+                      </div>
+                      </div>
+                      <script>
+                          $(function(){
+                              $(".chall_box<%= i %>").click(function(){
+                                  location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                              });
+                          });
+                      </script>
+                      <% } %>
+                      <% } %>
+                      <% } %>
+               </div>
+               <div class="inner">
+               <% for(int i = 3; i < 6; i++){ %>
+               <% for(Challenge c : list){ %>
+               <% if(list.indexOf(c) == i){ %>
+                   <div class="chall_box<%= i %>">
+                   <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
+                      <p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                      <p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                      <p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                      <p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
+                      <div class="pCountArea">
+                          <img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+                          <p name="cpCount" class="cpCount aaa"> <%= c.getHitsCount() %></p>
+                      </div>
+                      </div>
+                      <script>
+                          $(function(){
+                              $(".chall_box<%= i %>").click(function(){
+                                  location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                              });
+                          });
+                      </script>
+                      <% } %>
+                      <% } %>
+                      <% } %>
+               </div> 
+				</li>
+				
+				
+			<!-- 두번째 슬라이드 -->	
+				<li>
+					 <div class="inner">
+                  <% for(int i = 6; i < 9; i++){ %>
+               <% for(Challenge c : list){ %>
+               <% if(list.indexOf(c) == i){ %>
+                   <div class="chall_box<%= i %>">
+                   <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
+                      <p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                      <p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                      <p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                      <p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
+                      <div class="pCountArea">
+                          <img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+                          <p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
+                      </div>
+                      </div>
+                      <script>
+                          $(function(){
+                              $(".chall_box<%= i %>").click(function(){
+                                  location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                              });
+                          });
+                      </script>
+                      <% } %>
+                      <% } %>
+                      <% } %>
+               </div>
+               <div class="inner">
+               <% for(int i = 9; i < 12; i++){ %>
+               <% for(Challenge c : list){ %>
+               <% if(list.indexOf(c) == i){ %>
+                   <div class="chall_box<%= i %>">
+                   <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
+                      <p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                      <p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                      <p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                      <p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
+                      <div class="pCountArea">
+                          <img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+                          <p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
+                      </div>
+                      </div>
+                      <script>
+                          $(function(){
+                              $(".chall_box<%= i %>").click(function(){
+                                  location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                              });
+                          });
+                      </script>
+                      <% } %>
+                      <% } %>
+                      <% } %>
+               </div> 
+				</li>
+				
+				
+			<!-- 세번째 슬라이드 -->	
+				<li>
+					<div class="inner">
+                  <% for(int i = 12; i < 15; i++){ %>
+               <% for(Challenge c : list){ %>
+               <% if(list.indexOf(c) == i){ %>
+                   <div class="chall_box<%= i %>">
+                   <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
+                      <p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                      <p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                      <p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                      <p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
+                      <div class="pCountArea">
+                          <img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+                          <p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
+                      </div>
+                      </div>
+                      <script>
+                          $(function(){
+                              $(".chall_box<%= i %>").click(function(){
+                                  location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                              });
+                          });
+                      </script>
+                      <% } %>
+                      <% } %>
+                      <% } %>
+               </div>
+               <div class="inner">
+               <% for(int i = 15; i < 18; i++){ %>
+               <% for(Challenge c : list){ %>
+               <% if(list.indexOf(c) == i){ %>
+                   <div class="chall_box<%= i %>">
+                   <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
+                      <p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
+                      <p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
+                      <p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
+                      <p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
+                      <div class="pCountArea">
+                          <img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
+                          <p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
+                      </div>
+                      </div>
+                      <script>
+                          $(function(){
+                              $(".chall_box<%= i %>").click(function(){
+                                  location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
+                              });
+                          });
+                      </script>
+                      <% } %>
+                      <% } %>
+                      <% } %>
+               </div> 
+				</li>
+			</ul>
+		</div>
 		
-		<!-- 슬라이드 -->
-        <div id="slide">
- 			<div style="overflow: hidden;">
-                <div class="container">
-                	<!-- 첫번째 슬라이드 -->
-                	
-					 <div class="outer">
-                    	 <div class="inner">
-                       	<%for (int i = 0; i < 3; i++) {	%>
-                    	<%for (Challenge c : list) {%>
-                    	<%if (list.indexOf(c) == i) {%>
-                    		<div class="chall_box<%= i %>">
-                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%=c.getChallFile()%>" class="chall_img">
-                       		<p name="cTitle" class="cTitle"><%=c.getChallTitle()%></p>
-                       		<p name="cDate" class="cDate"><%=c.getChallStart()%> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
-                       		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
-                       		</div>
-                       		</div>
-                       		<script>
-                       			$(function(){
-                       				$(".chall_box<%= i %>").click(function(){
-                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
-                       				});
-                       			});
-                       		</script>
-                       		<% } %>
-                       		<% } %>
-                       		<% } %>
-                    	</div>
-                    	<div class="inner">
-                    	<% for(int i = 3; i < 6; i++){ %>
-                    	<% for(Challenge c : list){ %>
-                    	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box<%= i %>">
-                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
-                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
-                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
-                       		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"> <%= c.getHitsCount() %></p>
-                       		</div>
-                       		</div>
-                       		<script>
-                       			$(function(){
-                       				$(".chall_box<%= i %>").click(function(){
-                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
-                       				});
-                       			});
-                       		</script>
-                       		<% } %>
-                       		<% } %>
-                       		<% } %>
-                    	</div> 
-                    </div>
-                    <!-- 두번째 슬라이드 -->
-                    <div class="outer">
-                    <div class="inner">
-                       	<% for(int i = 6; i < 9; i++){ %>
-                    	<% for(Challenge c : list){ %>
-                    	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box<%= i %>">
-                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
-                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
-                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
-                       		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
-                       		</div>
-                       		</div>
-                       		<script>
-                       			$(function(){
-                       				$(".chall_box<%= i %>").click(function(){
-                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
-                       				});
-                       			});
-                       		</script>
-                       		<% } %>
-                       		<% } %>
-                       		<% } %>
-                    	</div>
-                    	<div class="inner">
-                    	<% for(int i = 9; i < 12; i++){ %>
-                    	<% for(Challenge c : list){ %>
-                    	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box<%= i %>">
-                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
-                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
-                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
-                       		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
-                       		</div>
-                       		</div>
-                       		<script>
-                       			$(function(){
-                       				$(".chall_box<%= i %>").click(function(){
-                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
-                       				});
-                       			});
-                       		</script>
-                       		<% } %>
-                       		<% } %>
-                       		<% } %>
-                    	</div> 
-                    </div>
-                    <!-- 세번째 슬라이드 -->
-                    <div class="outer">
-                    	 <div class="inner">
-                       	<% for(int i = 12; i < 15; i++){ %>
-                    	<% for(Challenge c : list){ %>
-                    	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box<%= i %>">
-                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
-                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
-                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
-                       		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
-                       		</div>
-                       		</div>
-                       		<script>
-                       			$(function(){
-                       				$(".chall_box<%= i %>").click(function(){
-                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
-                       				});
-                       			});
-                       		</script>
-                       		<% } %>
-                       		<% } %>
-                       		<% } %>
-                    	</div>
-                    	<div class="inner">
-                    	<% for(int i = 15; i < 18; i++){ %>
-                    	<% for(Challenge c : list){ %>
-                    	<% if(list.indexOf(c) == i){ %>
-                    		<div class="chall_box<%= i %>">
-                    		<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= c.getChallFile() %>" class="chall_img">
-                       		<p name="cTitle" class="cTitle"><%= c.getChallTitle() %></p>
-                       		<p name="cDate" class="cDate"><%= c.getChallStart() %> 시작</p>
-                       		<p name="cFrequency" class="cFrequency aaa">주 <%= c.getChallFrequency() %> 회</p>
-                       		<p name="cPeriod" class="cPeriod aaa"><%= c.getChallPeriod() %> 주</p>
-                       		<div class="pCountArea">
-	                       		<img src="<%= request.getContextPath() %>/views/community/images/heart.png" class="personIcon">
-	                       		<p name="cpCount" class="cpCount aaa"><%= c.getHitsCount() %></p>
-                       		</div>
-                       		</div>
-                       		<script>
-                       			$(function(){
-                       				$(".chall_box<%= i %>").click(function(){
-                       					location.href="<%=request.getContextPath()%>/chall/join?challNo=<%= c.getChallNo()%>";
-                       				});
-                       			});
-                       		</script>
-                       		<% } %>
-                       		<% } %>
-                       		<% } %>
-                    	</div> 
-                    </div>
-                </div>
-            </div>
-            </div>
-            
-            <!-- 인기챌린지 무한 슬라이드 -->
-           <script>
-            	setInterval(function(){
-            		$(".container>.outer").delay(3500);
-            		$(".container>.outer").animate({marginLeft: "-100vw"});
-            		$(".container>.outer").delay(3500);
-            		$(".container>.outer").animate({marginLeft: "-200vw"});
-            		$(".container>.outer").delay(3500);
-            		$(".container>.outer").animate({marginLeft: "0vw"});
-            	});
-            </script> 
+		
        
        
 	<script type="text/javascript">
