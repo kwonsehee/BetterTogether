@@ -12,42 +12,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-/* 연분홍 배경 */
-#con1 {
-	width: 1000px;
-	background: #F9F1F1;
-	border-radius: 20px;
-	margin: auto;
-	margin-top: 15px;
-}
-
-/* 세부 카테고리 버튼 */
-#btnwrap {
-	width: 320px;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	margin: auto;
-}
-
-.btn {
-	width: 130px;
-	height: 30px;
-	margin: 10px;
-	background: #ff60657e;
-	border: 0px;
-	border-radius: 55px;
-}
-
-.btn a {
-	color: white;
-	font-family: "Do Hyeon";
-	font-size: 16px;
+#btSection {
+	padding-bottom: 100px;
 }
 
 #con1_title h1 {
-	position: absolute;
-	width: 1000px;
 	text-align: center;
 	margin-top: 25px;
 }
@@ -55,34 +24,36 @@
 .h1_title {
 	margin-top: 50px;
 	text-align: center;
-	font-family: "Do Hyeon";
 	font-size: 24px;
 	color: #757575;
 }
 
 .line {
-	border: 3px solid rgba(255, 96, 100, 0.7);
-	position: absolute;
-	width: 994px;
-	top: 400px;
+	border: 0.5px solid #937cf790;
 }
 
 /* 후기 목록 */
-.reviewWrap {margin-top:100px;}
+.reviewWrap {
+	margin-top: 100px;
+}
 
-.reviewdiv{
-	width: 90%;
+.reviewdiv {
+	width: 80%;
 	height: 100px;
 	background: #fff;
 	margin: auto;
-	margin-top:15px;
+	margin-top: 15px;
 }
 
 #reviewTb {
 	width: 100%;
 	height: 100px;
 }
- #reviewTb tr:nth-child(1) {height:20%; margin-top:5px;}
+
+#reviewTb tr:nth-child(1) {
+	height: 20%;
+	margin-top: 5px;
+}
 
 #nickname, #starArea, #createDate, #challName {
 	display: inline-block;
@@ -91,16 +62,13 @@
 
 #starArea {
 	margin-left: 10px;
-	color: rgba(255, 96, 100, 0.7);
-}
-
-#createDate {
-	 margin-left: 550px; 
+	color: #937cf790;
 }
 
 #contentArea {
+	display: inline-block;
 	margin-left: 10px;
-	margin-top: 3px;
+	margin-top: 10px;
 	margin-right: 10px;
 }
 
@@ -114,7 +82,6 @@
 }
 
 #pagenum a {
-	font-family: "Do Hyeon";
 	font-size: 18px;
 	padding: 5px;
 	color: #757575;
@@ -122,58 +89,63 @@
 
 /* 후기 쓰기 */
 .h2_title {
-	margin-left: 48px;
+	margin-left: 125px;
 	color: #757575;
-	font-family: "Do Hyeon";
 	float: left;
 	margin-right: 10px;
-	margin-top: 35px;
 }
 
 #reviewwrite {
 	margin: auto;
-	width: 900px;
+	width: 80%;
 	height: 70px;
+	margin-bottom:40px;
 }
 
 #reviewWriteArea {
-	width: 900px;
+	width: 100%;
 	height: 70px;
 	resize: none;
 	background: none;
 	border: 1px solid #75757552;
+	margin:auto;
 }
 
 /* 버튼 */
 .btn a {
 	color: white;
-	font-family: "Do Hyeon";
 	font-size: 16px;
 }
 
 #submit {
-	width: 55px;
-	color: white;
-	font-family: "Do Hyeon";
-	margin-top: 40px;
-	margin-left: 72%;
+	font-family: "Nanum Gothic";
+        	border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
+           padding:5px 15px 5px 15px;
+           background-color: #e6e4e4b6;
+           font-weight: bolder;  
+           margin-left:900px;
 }
 
 #submit a {
-	font-size: 14px;
+	 font-size: 10px;
+     text-decoration: none;
 }
 
 #myReview {
-	width: 120px;
-	font-family: "Do Hyeon";
-	background: none;
-	border: 2px solid #ff60657e;
-	margin-left: 44px;
+	width: 110px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-weight: bolder;
+	margin-left: 10%;
 }
 
 #myReview a {
-	font-size: 14px;
-	color: #ff60657e;
+	font-size: 10px;
+	text-decoration: none;
 }
 
 /* 별점 */
@@ -185,14 +157,15 @@
 }
 
 #star a.on {
-	color: #ff6064;
+	color: #937cf790;
 }
 
 #challSelect {
 	width: 200px;
 	height: 30px;
-	border: 1px solid #ff60657e;
+	border: 1px solid rgba(219, 219, 219, 0.356);
 	text-align: center;
+	margin-top: 12px;
 }
 
 #challSelectArea, #starArea {
@@ -208,15 +181,14 @@
 	width: 25px;
 	margin-top: 20px;
 	border: 0px;
-	background:#fff;
-	font-family: "Do Hyeon";
 	color: #757575;
+	font-family: "Nanum Gothic";
+	font-size: 12px;
 }
 
 .pagingArea button:hover {
 	cursor: pointer;
 }
-
 </style>
 
 </head>
@@ -225,16 +197,7 @@
 	<%@ include file="../common/common_ui.jsp"%>
 	<!-- content -->
 	<!-- 후기 -->
-	<section id="con1">
-		<!-- 세부 카테고리 버튼 -->
-		<div id="btnwrap">
-			<button class="btn">
-				<a href='<%= request.getContextPath()%>/board/main'>자유게시판</a>
-			</button>
-			<button class="btn">
-				<a href='<%= request.getContextPath()%>/review/main'>후기</a>
-			</button>
-		</div>
+	<section id="btSection">
 
 		<!-- 타이틀 -->
 		<div id="con1_title">
@@ -372,7 +335,8 @@
         			dataType : "json",
         			data : {content : content, challNo : challNo, star : star},
         			success : function(data){
-        				window.opener.document.location.reload();
+        				console.log("12345");
+        				// window.opener.document.location.reload();
         				// 갱신 된 rList를 후기 div에 적용
         				reviewTable = $("#reviewTb");
         				reviewTable.html("");	// 기존 테이블 정보 초기화
@@ -380,6 +344,7 @@
         				// 새로 받아온 갱신된 댓글 리스트들을 for문을 통해 다시 table에 추가
         				for(var key in data){
         					console.log(key);
+        					console.log(data);
         					console.log(data[key].createDate);
         					
         					var tr = $("<tr>");
@@ -389,17 +354,16 @@
         					var createDateTd = $("<td>").text(data[key].createDate);
         					var contentTd = $("<td>").text(data[key].rContent);
         					
-        					tr.append(writerTd, challTitleTd, gradeTd, creatdDateTd, contentTd);
-        					
-        					reviewTable.append(tr);
-        					
-        					// 댓글 작성 textarea 부분 리셋
-        					$("#reviewWriteArea").val("");
-        					
+        					tr.append(writerTd, challTitleTd, gradeTd, createDateTd, contentTd);
         				}
+        					reviewTable.append(tr);
+    					
+    					// 댓글 작성 textarea 부분 리셋
+    					$("#reviewWriteArea").val("");
         			},
         			error : function(e){
         				console.log(e);
+        				console.log("error@@@@");
         			}
         		});
         		
@@ -411,11 +375,8 @@
         </script>
 
 
-
-
-
 	</section>
-	<footer></footer>
+	<%@ include file="../common/footer.jsp" %>
 	
 </body>
 </html>

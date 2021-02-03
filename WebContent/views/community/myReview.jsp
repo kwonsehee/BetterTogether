@@ -4,52 +4,19 @@
 	ArrayList<Review> rList = (ArrayList<Review>) request.getAttribute("rList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Better Together</title>
 <style>
-body {
-	width: 1000px;
-	height: 1100px;
-}
 
-#con1 {
-	width: 1000px;
-	background: #F9F1F1;
-	border-radius: 20px;
-	margin: auto;
-	margin-top: 15px;
-}
-
-/* 세부 카테고리 버튼 */
-#btnwrap {
-	width: 320px;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	margin: auto;
-}
-
-.btn {
-	width: 130px;
-	height: 30px;
-	margin: 10px;
-	background: #ff60657e;
-	border: 0px;
-	border-radius: 55px;
-}
-
-.btn a {
-	color: white;
-	font-family: "Do Hyeon";
-	font-size: 16px;
+#btSection {
+	padding-bottom: 100px;
 }
 
 #con1_title h1 {
-	position: absolute;
-	width: 1000px;
 	text-align: center;
 	margin-top: 25px;
 }
@@ -57,27 +24,25 @@ body {
 .h1_title {
 	margin-top: 50px;
 	text-align: center;
-	font-family: "Do Hyeon";
 	font-size: 24px;
 	color: #757575;
 }
 
 .line {
-	border: 3px solid rgba(255, 96, 100, 0.7);
-	position: absolute;
-	width: 994px;
-	top: 420px;
+	border: 0.5px solid #937cf790;
 }
 
 /* 후기 목록 */
-.reviewWrap {margin-top:100px;}
+.reviewWrap {
+	margin-top:100px;
+}
 
 .reviewdiv{
-	width: 90%;
+	width: 80%;
 	height: 100px;
 	background: #fff;
 	margin: auto;
-	margin-top:35px;
+	margin-top:50px;
 }
 
 #reviewTb {
@@ -93,16 +58,14 @@ body {
 
 #starArea {
 	margin-left: 10px;
-	color: rgba(255, 96, 100, 0.7);
+	color: #937cf790;
 }
 
-#createDate {
-	 margin-left: 550px; 
-}
 
 #contentArea {
+	display: inline-block;
 	margin-left: 10px;
-	margin-top: 3px;
+	margin-top: 10px;
 	margin-right: 10px;
 }
 
@@ -116,7 +79,6 @@ body {
 }
 
 #pagenum a {
-	font-family: "Do Hyeon";
 	font-size: 18px;
 	padding: 5px;
 	color: #757575;
@@ -130,9 +92,9 @@ body {
 	width: 25px;
 	margin-top: 20px;
 	border: 0px;
-	background:#fff;
-	font-family: "Do Hyeon";
 	color: #757575;
+	font-family: "Nanum Gothic";
+	font-size: 12px;
 }
 
 .pagingArea button:hover {
@@ -140,59 +102,55 @@ body {
 }
 
 .btnwrap {
-	width: 120px;
-	height: 20px;
-	margin-left: 84.5%;
-	margin-top: 5px;
+text-align:right;
+	margin-left: 85%;
+	margin-top: 10px;
+	margin-bottom : 10px;
 }
 
 .btn2 {
-	width: 50px;
-	height:20px;
-	background: none;
-	text-align: center;
-	border: 2px solid #ff60657e;
-	border-radius: 55px;
-	font-family: "Do Hyeon";
-	font-size: 12px;
-	
-}
-
-.btn2 a {
-	color: #757575;
-	font-size: 12px;
+	width: 60px;
+	font-family: "Nanum Gothic";
+        	border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
+           padding:5px 15px 5px 15px;
+           background-color: #e6e4e4b6;
+           font-weight: bolder;  
+          /*  margin-left:70%; */
+           font-size: 10px;
 }
 
 #back {
-	width: 100px;
-	font-family: "Do Hyeon";
-	background: none;
-	border: 2px solid #ff60657e;
-	margin-left: 85%;
-	margin-top: 150px;
+	font-family: "Nanum Gothic";
+        	border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
+           padding:5px 15px 5px 15px;
+           background-color: #e6e4e4b6;
+           font-weight: bolder;  
+           margin-left:85%;
+           font-size: 10px;
+           margin-top:55px;
 }
 
 #back a {
-	font-size: 14px;
+	
 	color: #ff60657e;
 }
 </style>
 </head>
 <body>
+<%if(session.getAttribute("msg") != null){ %>
+<script>
+   alert('<%=session.getAttribute("msg") %>');
+   
+</script>
+<%
+   session.removeAttribute("msg");
+    }
+%>
 	<%@ include file="../common/common_ui.jsp"%>
 	<!-- content -->
-	<!-- 후기 -->
-	<section id="con1">
-		<!-- 세부 카테고리 버튼 -->
-		<div id="btnwrap">
-			<button class="btn">
-				<a href="boardmain.html">자유게시판</a>
-			</button>
-			<button class="btn">
-				<a href="reviewmain.html">후기</a>
-			</button>
-		</div>
-
+	<section id="btSection">
 		<!-- 타이틀 -->
 		<div id="con1_title">
 			<h1 class="h1_title">내가 쓴 후기</h1>
@@ -223,12 +181,13 @@ body {
 					<td id="contentArea"><%= r.getrContent() %></td>
 				</tr>
 			</table>
-			
-				<button class="btn2" id="updateBtn" onclick="window.open('<%= request.getContextPath() %>/review/updateForm?rId=<%=r.getrId()%>', '댓글 수정 창', 'width=1000, height=300')">수정</button>
+				<div class="btnwrap">
+				<button class="btn2" id="updateBtn" onclick="window.open('<%= request.getContextPath() %>/review/updateForm?rId=<%=r.getrId()%>', '댓글 수정 창', 'width=900, height=300')">수정</button>
 		
 				<button class="btn2" onclick="location.href='<%= request.getContextPath() %>/review/delete?rId=<%=r.getrId()%>'">
 				삭제
 				</button>
+				</div>
 		</div>
 		
 		<% } %>
@@ -270,8 +229,9 @@ body {
 		</div>
 		
 		<!-- 뒤로가기 버튼 -->
-		<button class="btn" type="button" onclick="javascript:history.back();" id="back">뒤로가기</button>
+		<button class="btn" type="button" onclick="location.href='<%= request.getContextPath() %>/review/main'" id="back">뒤로가기</button>
 	</section>
 
+<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

@@ -59,10 +59,6 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		
-		
-		
-		
 		return null;
 	}
 
