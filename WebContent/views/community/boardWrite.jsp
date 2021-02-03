@@ -4,50 +4,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- include libraries(jQuery) -->
-<!-- <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 <!-- include summernote css/js-->
-<!--  <link
-	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
-	rel="stylesheet"> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<!-- include summernote-ko-KR -->
+<script src="/resources/summernote/summernote-ko-KR.js"></script>
 
 <title>Insert title here</title>
 <style>
-	 body {
-            width: 1000px;
-            height : 1100px;
-        }
-        /* 연분홍 배경 */
-         #con1 {
-            width: 1000px;
-            height: 1050px;
-            background: #F9F1F1;
-            border-radius: 20px;
-            margin : auto;
-            margin-top:15px;
-        }
+#btSection{
+			padding-bottom:100px;
+		}
 
         #con1_title h1{
-            position: absolute;
-            width: 1000px;  
             text-align: center;
             margin-top: 25px;          
         }
 
-        #title {
+        .h1_title {
            margin-top: 50px;
            text-align: center;
-           font-family: "Do Hyeon";
            font-size: 24px;
            color : #757575;
         }
+        
 
         .line {
-            border: 3px solid rgba(255, 96, 100, 0.7);
-            position: absolute;
-            width:994px;
-            top:363px;        
+           border: 0.5px solid #937cf790;
         }
 
         #writebox {
@@ -162,48 +149,50 @@
         }
 	
 </style>
+<script>
+$(document).ready(function() {
+	  $('#summernote').summernote({
+ 	    	placeholder: 'content',
+	        minHeight: 370,
+	        maxHeight: null,
+	        focus: true, 
+	        lang : 'ko-KR'
+	  });
+	});
+</script>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-	
-	 <section id="con1">
-         <!-- 타이틀 -->
+
+	<section id="btSection">
+		<!-- 타이틀 -->
 		<div id="con1_title">
-			<h1 id="title">글쓰기</h1>
+			<h1 class="h1_title">글쓰기</h1>
 		</div>
 		<div class="line"></div>
 
-		<form method="post">
-			<textarea id="summernote" name="editordata"></textarea>
-		</form>
+		<div style="width: 60%; margin: auto;">
+			<form method="post" action="/write">
+				<input type="text" name="title" style="width: 100%;"
+					placeholder="제목" /> <br>
+				<br>
+				<textarea id="summernote" name="content"></textarea>
+		</div>
 
-		<script>
-		$(document).ready(function() { 
-			$('#summernote').summernote(); 
-		});
 
-			$(document).ready(function() {
-				//여기 아래 부분
-				$('#summernote').summernote({
-					height : 300, // 에디터 높이
-					minHeight : null, // 최소 높이
-					maxHeight : null, // 최대 높이
-					focus : true, // 에디터 로딩후 포커스를 맞출지 여부
-					lang : "ko-KR", // 한글 설정
-					placeholder : '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
-
-				});
-			});
-		</script>
 
 
 		<!-- 버튼 -->
-         <button type="button" class="btn" id="back" onclick="javascript:history.back();">뒤로가기</button>
-         <button class="btn" id="submit"><a>등록</a></button>
-   		</form>
-    </section>
-    
+		<button type="button" class="btn" id="back"
+			onclick="javascript:history.back();">뒤로가기</button>
+		<button class="btn" id="submit">
+			등록
+		</button>
+		
+		</form>
+	</section>
+
+	<%@ include file="../common/footer.jsp" %>
    
     
     

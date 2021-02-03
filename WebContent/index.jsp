@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공통 ui</title>
+<title>Better Together</title>
 </head>
 <body>
 <!-- 

@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Better Together</title>
 <style>
 /* 세부 카테고리 버튼 */
          #btnwrap {

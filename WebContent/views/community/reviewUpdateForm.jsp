@@ -10,7 +10,7 @@
 		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 		crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Better Together</title>
 <%
 	if(request.getAttribute("result") != null){
 		if(request.getAttribute("result").equals("success")) {
@@ -27,9 +27,11 @@
 	}%>
 
 <style>
+
 #contentArea{width:840px; height:90px;
 border:1px solid lightgray;
 margin-left:20px;}
+
 #h2_title {
 	text-align:center;
 	color: #757575;

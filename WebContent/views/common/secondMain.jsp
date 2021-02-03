@@ -35,7 +35,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Better Together</title>
  <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -52,14 +52,24 @@
     <!-- 스타일  -->
 	<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css'>
 <style>
-#btSection{
-	padding-bottom:60px;
+#btSection {
+	padding-bottom: 60px;
+	height: 1500px;
+}
+
+/* 배너 */
+#bannerWrap {
+	margin: auto;
+	margin-top: 0;
+}
+
+.mainBanner {
+	width: 100%;
 }
 
 /* 슬라이드 영역 */
 #slide {
 	width: 100%;
-	height: 78%;
 	float: left;
 }
 
@@ -69,19 +79,19 @@
 	transition: transform 0.5s;
 	overflow: hidden;
 	display: flex;
+	float: left;
 }
 
 .outer {
 	width: 300vw;
 	height: 500px;
-	border:1px solid black;
-	float: left;
+	border: 1px solid black;
 }
+
 .inner {
 	float: left;
 	margin: 10px;
 }
-
 
 /* chall_box로 시작하는 모든 클래스 */
 div[class^=chall_box] {
@@ -91,8 +101,8 @@ div[class^=chall_box] {
 	margin-bottom: 10px;
 }
 
-div[class^=chall_box]:hover{
-	cursor:pointer;
+div[class^=chall_box]:hover {
+	cursor: pointer;
 }
 
 .chall_img {
@@ -102,8 +112,6 @@ div[class^=chall_box]:hover{
 	margin-left: 10px;
 	float: left;
 }
-
-
 
 .cTitle {
 	width: 300px;
@@ -176,95 +184,115 @@ button:hover {
 	cursor: pointer;
 }
 
-
-
-#con1_title{
+#con1_title {
+	width: 100%;
 	height: 80px;
+	float: left;
 }
 
-
 /* 타이틀 & 라인 */
+#con1_title {
+	height: 70px;
+	border-bottom: 0.5px solid #937cf790;
+	width: 100%;
+	color: #757575;
+	margin-top:20px;
+	margin-bottom:10px;
+	padding-bottom:10px;
+}
+
 #con1_title h1 {
-	/* position: absolute;
-	width: 1000px; */
+	width: 200px;
+	line-height: 70px;
 	text-align: center;
-/* 	margin-top: 25px; */
+	float: left;
+	margin-left: 40%;
+	font-size: 24px;
 }
 
 #con1_title a {
-	position: absolute;
-	color: #757575;
-	font-size: 16px;
-	margin-top: 35px;
-	margin-left: 90%;
-	cursor: pointer;
+	line-height: 70px;
 	text-decoration: none;
+	color: #757575;
+	cursor: pointer;
+	float: right;
+	padding-right:20px;
 }
 
 #con1_title a:hover {
 	color: #937CF7;
 }
 
-.line {
-	border: 0.5px solid #937cf790;
-}
-
-.h1_title {
+/* .h1_title {
 	margin-top: 50px;
 	text-align: center;
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 24px;
 	color: #757575;
-}
+} */
 
 /* 챌린저 랭킹 TOP 5 */
-
-.topten_ul ul, .topten_ul li{
-	list-style:none;
-	margin-left:80%;
-} 
+.topten_ul ul, .topten_ul li {
+	list-style: none;
+	margin-left: 80%;
+}
 
 .rankwrap {
+	width: 600px;
 	height: 30px;
-	overflow:hidden;
-	margin-top:25px;
+	overflow: hidden;
+	margin-left: 700px;
+	text-align: right;
+	margin-bottom: 10px;
 }
+
 .rankwrap ul {
-	height:calc(100% * 10); animation:slide 15s infinite;
-}
-.rankwrap li{
-	height:calc(100% / 10);
-}
-.topten_ul li:nth-child(1) {color:#694DE2; font-weight:bold;}
-.topten_ul li:nth-child(2) {color:#7070FC; font-weight:bold;}
-.topten_ul li:nth-child(3) {color:#937CF7; font-weight:bold;}
-
-
-@keyframes slide{
-	0% {margin-top:0;}
-      5% {margin-top:0;}
-      10% {margin-top:-30px;}
-      15% {margin-top:-30px;}
-      20% {margin-top:-60px;}
-      25% {margin-top:-60px;}
-      30% {margin-top:-90px;}
-      35% {margin-top:-90px;}
-      40% {margin-top:-120px;}
-      45% {margin-top:-120px;}
-      50% {margin-top:-150px;}
-      55% {margin-top:-150px;}
-      60% {margin-top:-180px;}
-      65% {margin-top:-180px;}
-      70% {margin-top:-210px;}
-      75% {margin-top:-210px;}
-      80% {margin-top:-240px;}
-      85% {margin-top:-240px;}
-      90% {margin-top:-270px;}
-      95% {margin-top:-270px;}
-      100% {margin-top:0;}
+	height: calc(100% * 10);
+	animation: slide 15s infinite;
 }
 
+.rankwrap li {
+	height: calc(100%/ 10);
+}
 
+.topten_ul li:nth-child(1) {
+	color: #694DE2;
+	font-weight: bold;
+}
+
+.topten_ul li:nth-child(2) {
+	color: #7070FC;
+	font-weight: bold;
+}
+
+.topten_ul li:nth-child(3) {
+	color: #937CF7;
+	font-weight: bold;
+}
+
+@keyframes slide { 
+0% {margin-top: 0;}
+5%{margin-top:0;}
+10%{margin-top:-30px;}
+15%{margin-top:-30px;}
+20%{margin-top:-60px;}
+25%{margin-top:-60px;}
+30%{margin-top:-90px;}
+35%{margin-top:-90px;}
+40%{margin-top:-120px;}
+45%{margin-top:-120px;}
+50%{margin-top:-150px;}
+55%{margin-top:-150px;}
+60%{margin-top:-180px;}
+65%{margin-top:-180px;}
+70%{margin-top:-210px;}
+75%{margin-top:-210px;}
+80%{margin-top:-240px;}
+85%{margin-top:-240px;}
+90%{margin-top:-270px;}
+95%{margin-top:-270px;}
+100%{margin-top:0;}
+}
 
 #slidebtn_div {
 	margin: auto;
@@ -281,221 +309,291 @@ button:hover {
 
 /* 관심 카테고리 */
 .choiceCategory {
-	width:100%;
-	float:left;
-	text-align:center;
+	width: 100%;
+	float: left;
+	text-align: center;
 }
 
-.choiceCategory span{
+.choiceCategory span {
 	font-size: 14px;
 }
 
-.choiceCategory img{
-	width:150px;
-}
-.choiceCategory img:nth-child(9){
-	width:70px;
+.choiceCategory img {
+	width: 150px;
 }
 
- /* 관심있는 카테고리 부분 */
-  #content-1{
-            /* border:solid 1px red;  */
-            width: 100%;
-            height: 10%;
-            float: left;
-        }
+.choiceCategory img:nth-child(9) {
+	width: 70px;
+}
 
-        #content-1 p{
-            /* border:solid 1px red;  */
-            font-size: 30px;
-            text-align: center;
-            margin-top: 18px;
-        }
+/* 관심있는 카테고리 부분 */
+#content-1 {
+	/* border:solid 1px red;  */
+	width: 100%;
+	height: 10%;
+	float: left;
+}
 
-        #content-2{
-            /* border:solid 1px blue;  */
-            width: 100%;
-            height: 70%;
-            float: left;
-        }
+#content-1 p {
+	/* border:solid 1px red;  */
+	font-size: 30px;
+	text-align: center;
+	margin-top: 18px;
+}
 
-        #content-3{
-            /* border:solid 3px lightgreen;  */
-            width: 100%;
-            height: 20%;
-            float: left;
-        }
-        #ok{
-            border: 0;
-            outline:0;
-        } 
-        .category{ 
-            width: 80%;
-            height: 70%;
-            margin-top: 5%;
-            margin-left: 10%;
-            text-align: center;
-            border: 1px solid black; 
-            padding-top: 5%;
-        }
-        .img_size{
-            width: 144px;
-            height: 144px;
-        }
- 
-        input[type=checkbox] { 
-            display:none; 
-        }
+#content-2 {
+	/* border:solid 1px blue;  */
+	width: 100%;
+	height: 70%;
+	float: left;
+}
 
-        #체중관리 + label span{ 
-            display: inline-block; 
-            cursor: pointer;
-            width: 134px;
-            height: 134px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("<%=request.getContextPath()%>/resources/images/체중관리.png");
-             padding-bottom: 150px; 
-            }
-        #운동 + label span{ 
-            display: inline-block; 
-            cursor: pointer;
-           width: 134px;
-            height: 134px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("<%=request.getContextPath()%>/resources/images/운동.png");
-          padding-bottom: 150px; 
-            }
-        #자격증 + label span{ 
-            display: inline-block; 
-            cursor: pointer;
-            width: 134px;
-            height: 134px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("<%=request.getContextPath()%>/resources/images/자격증.png");
-         padding-bottom: 150px; 
-            }
-        #돈관리 + label span{ 
-            display: inline-block; 
-            cursor: pointer;
-            width: 134px;
-            height: 134px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("<%=request.getContextPath()%>/resources/images/돈관리.png");
-          padding-bottom: 150px; 
-            }
-        #생활습관 + label span{ 
-            display: inline-block; 
-            cursor: pointer;
-            width: 134px;
-            height: 134px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("<%=request.getContextPath()%>/resources/images/생활습관.png");
-          padding-bottom: 150px; 
-            }
-        #공부 + label span{ 
-            display: inline-block; 
-            cursor: pointer;
-            width: 134px;
-            height: 134px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("<%=request.getContextPath()%>/resources/images/공부.png");
-            padding-bottom: 150px; 
-            }
-        #업무스킬 + label span{ 
-            display: inline-block; 
-            cursor: pointer;
-            width: 134px;
-            height: 134px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("<%=request.getContextPath()%>/resources/images/업무스킬.png");
-          padding-bottom: 150px; 
-            }
-        #외국어 + label span{ 
-            display: inline-block; 
-            cursor: pointer;
-            width: 134px;
-            height: 134px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image:  url("<%=request.getContextPath()%>/resources/images/외국어.png");
-           	padding-bottom: 150px; 
-            }
+#content-3 {
+	/* border:solid 3px lightgreen;  */
+	width: 100%;
+	height: 20%;
+	float: left;
+}
 
-        #체중관리:checked + label span{ 
-            opacity: 0.8;
-            background-image: url("<%=request.getContextPath()%>/resources/images/check1.png"),url("<%=request.getContextPath()%>/resources/images/체중관리.png");
-        }
-        #운동:checked + label span{
-            opacity: 0.8; 
-            background-image: url("<%=request.getContextPath()%>/resources/images/check1.png"),url("<%=request.getContextPath()%>/resources/images/운동.png"); 
-        }
-        #자격증:checked + label span{ 
-            opacity: 0.8;
-            background-image: url("<%=request.getContextPath()%>/resources/images/check1.png"),url("<%=request.getContextPath()%>/resources/images/자격증.png"); 
-        }
-        #돈관리:checked + label span{ 
-            opacity: 0.8;
-            background-image: url("<%=request.getContextPath()%>/resources/images/check1.png"),url("<%=request.getContextPath()%>/resources/images/돈관리.png"); 
-        }
-        #생활습관:checked + label span{ 
-            opacity: 0.8;
-            background-image: url("<%=request.getContextPath()%>/resources/images/check1.png"),url("<%=request.getContextPath()%>/resources/images/생활습관.png"); 
-        }
-        #공부:checked + label span{ 
-            opacity: 0.8;
-            background-image: url("<%=request.getContextPath()%>/resources/images/check1.png"),url("<%=request.getContextPath()%>/resources/images/공부.png"); 
-        }
-        #업무스킬:checked + label span{
-            opacity: 0.8; 
-            background-image: url("<%=request.getContextPath()%>/resources/images/check1.png"),url("<%=request.getContextPath()%>/resources/images/업무스킬.png"); 
-        }
-        #외국어:checked + label span{ 
-            opacity: 0.8;
-            background-image: url("<%=request.getContextPath()%>/resources/images/check1.png"),url("<%=request.getContextPath()%>/resources/images/외국어.png"); 
-        }
-        
+#ok {
+	border: 0;
+	outline: 0;
+}
+
+.category {
+	width: 80%;
+	height: 70%;
+	margin-top: 5%;
+	margin-left: 10%;
+	text-align: center;
+	border: 1px solid black;
+	padding-top: 5%;
+}
+
+.img_size {
+	width: 144px;
+	height: 144px;
+}
+
+input[type=checkbox] {
+	display: none;
+}
+
+#체중관리+label span {
+	display: inline-block;
+	cursor: pointer;
+	width: 134px;
+	height: 134px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/체중관리.png");
+	padding-bottom: 150px;
+}
+
+#운동+label span {
+	display: inline-block;
+	cursor: pointer;
+	width: 134px;
+	height: 134px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/운동.png");
+	padding-bottom: 150px;
+}
+
+#자격증+label span {
+	display: inline-block;
+	cursor: pointer;
+	width: 134px;
+	height: 134px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/자격증.png");
+	padding-bottom: 150px;
+}
+
+#돈관리+label span {
+	display: inline-block;
+	cursor: pointer;
+	width: 134px;
+	height: 134px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/돈관리.png");
+	padding-bottom: 150px;
+}
+
+#생활습관+label span {
+	display: inline-block;
+	cursor: pointer;
+	width: 134px;
+	height: 134px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/생활습관.png");
+	padding-bottom: 150px;
+}
+
+#공부+label span {
+	display: inline-block;
+	cursor: pointer;
+	width: 134px;
+	height: 134px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/공부.png");
+	padding-bottom: 150px;
+}
+
+#업무스킬+label span {
+	display: inline-block;
+	cursor: pointer;
+	width: 134px;
+	height: 134px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/업무스킬.png");
+	padding-bottom: 150px;
+}
+
+#외국어+label span {
+	display: inline-block;
+	cursor: pointer;
+	width: 134px;
+	height: 134px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/외국어.png");
+	padding-bottom: 150px;
+}
+
+#체중관리:checked+label span {
+	opacity: 0.8;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/check1.png"),
+		url("<%=request.getContextPath()%>/resources/images/체중관리.png");
+}
+
+#운동:checked+label span {
+	opacity: 0.8;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/check1.png"),
+		url("<%=request.getContextPath()%>/resources/images/운동.png");
+}
+
+#자격증:checked+label span {
+	opacity: 0.8;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/check1.png"),
+		url("<%=request.getContextPath()%>/resources/images/자격증.png");
+}
+
+#돈관리:checked+label span {
+	opacity: 0.8;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/check1.png"),
+		url("<%=request.getContextPath()%>/resources/images/돈관리.png");
+}
+
+#생활습관:checked+label span {
+	opacity: 0.8;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/check1.png"),
+		url("<%=request.getContextPath()%>/resources/images/생활습관.png");
+}
+
+#공부:checked+label span {
+	opacity: 0.8;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/check1.png"),
+		url("<%=request.getContextPath()%>/resources/images/공부.png");
+}
+
+#업무스킬:checked+label span {
+	opacity: 0.8;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/check1.png"),
+		url("<%=request.getContextPath()%>/resources/images/업무스킬.png");
+}
+
+#외국어:checked+label span {
+	opacity: 0.8;
+	background-image:
+		url("<%=request.getContextPath()%>/resources/images/check1.png"),
+		url("<%=request.getContextPath()%>/resources/images/외국어.png");
+}
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp" %>
-	 <!-- content -->
-    <!-- 1. 인기 챌린지 -->
-    <!-- 내용 부분 -->
     
     <section id="btSection"> 
-       <!-- 랭킹 -->
-       
-        <!-- 타이틀 -->
-        <div id="con1_title">
-            <h1 class="h1_title">인기 챌린지</h1>
+    <!-- 랭킹 -->
              <div class="rankwrap">
         		<ul class="topten_ul"> 	
 		        <% for(Member m : mlist){ %>
 		            <li><%= mlist.indexOf(m) +1 %>위 <%= m.getUserId() %></li>
 		        <% } %>
-       		 </ul>
-         </div>
-            <p><a href="<%=request.getContextPath()%>/chall/list">더보기</a></p>            
-        </div>
-
-        <div class="line"></div>
-
-        <!-- 슬라이드 -->
+       		 	</ul>
+         	</div>
+         	
+         	
+    <!-- 배너 -->
+    <div id="bannerWrap">
+    	<img class="mainBanner" src="<%=request.getContextPath() %>/resources/images/mainBanner.png">
+    </div>
+    
+    
+     <!-- 관심 카테고리 선택 -->
+     <form action="<%=request.getContextPath() %>/member/cateinput" method="POST">
+		<div class="choiceCategory">
+		<%-- 	<img src="<%=request.getContextPath()%>/resources/images/외국어.png">
+			<img src="<%=request.getContextPath()%>/resources/images/공부.png">
+			<img src="<%=request.getContextPath()%>/resources/images/체중관리.png">
+			<img src="<%=request.getContextPath()%>/resources/images/자격증.png">
+			<img src="<%=request.getContextPath()%>/resources/images/돈관리.png">
+			<img src="<%=request.getContextPath()%>/resources/images/업무스킬.png">
+			<img src="<%=request.getContextPath()%>/resources/images/운동.png">
+			<img src="<%=request.getContextPath()%>/resources/images/생활습관.png">
+			<img src="<%=request.getContextPath()%>/resources/images/확인.png"> --%>
+			 <input type="checkbox" id="체중관리" value="10" name="cate" class="check_box" onclick="oneCheckbox(this)" <%=checkedInterest[0] %>><label for="체중관리"><span>체중관리</span></label>
+	         <input type="checkbox" id="운동" value="20" name="cate"class="check_box"onclick="oneCheckbox(this)" <%=checkedInterest[1] %>><label for="운동"><span>운동</span></label>
+	         <input type="checkbox" id="자격증" value="30"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[2] %>><label for="자격증"><span>자격증</span></label>
+	         <input type="checkbox" id="돈관리" value="40"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[3] %>><label for="돈관리"><span>돈관리</span></label>
+	         
+	         <input type="checkbox" id="생활습관" value="50"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[4] %>><label for="생활습관"><span>생활습관</span></label>
+	         <input type="checkbox" id="공부" value="60"name="cate"lass="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[5] %>><label for="공부"><span>공부</span></label>
+	         <input type="checkbox" id="업무스킬" value="70"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[6] %>><label for="업무스킬"><span>업무스킬</span></label>
+	         <input type="checkbox" id="외국어" value="80"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[7] %>><label for="외국어"><span>외국어</span></label>
+	         <button type="submit"id="ok"><img src="<%=request.getContextPath()%>/resources/images/확인.png"style="width: 70px; background-color:none; padding-top:130px; "></button>
+		</div>  
+	</form>
+	
+	
+    	<!-- 인기 챌린지 -->
+		<div id="con1_title">
+			<h1 class="h1_title">인기 챌린지</h1>
+			<a href="<%= request.getContextPath() %>/chall/list">더보기</a>
+		</div>
+		
+		
+		<!-- 슬라이드 -->
         <div id="slide">
  			<div style="overflow: hidden;">
                 <div class="container">
@@ -681,31 +779,7 @@ button:hover {
             	});
             </script> 
        
-        <!-- 관심 카테고리 선택 -->
-        <form action="<%=request.getContextPath() %>/member/cateinput" method="POST">
-	<div class="choiceCategory">
-	<%-- 	<img src="<%=request.getContextPath()%>/resources/images/외국어.png">
-		<img src="<%=request.getContextPath()%>/resources/images/공부.png">
-		<img src="<%=request.getContextPath()%>/resources/images/체중관리.png">
-		<img src="<%=request.getContextPath()%>/resources/images/자격증.png">
-		<img src="<%=request.getContextPath()%>/resources/images/돈관리.png">
-		<img src="<%=request.getContextPath()%>/resources/images/업무스킬.png">
-		<img src="<%=request.getContextPath()%>/resources/images/운동.png">
-		<img src="<%=request.getContextPath()%>/resources/images/생활습관.png">
-		<img src="<%=request.getContextPath()%>/resources/images/확인.png"> --%>
-		 <input type="checkbox" id="체중관리" value="10" name="cate" class="check_box" onclick="oneCheckbox(this)" <%=checkedInterest[0] %>><label for="체중관리"><span>체중관리</span></label>
-         <input type="checkbox" id="운동" value="20" name="cate"class="check_box"onclick="oneCheckbox(this)" <%=checkedInterest[1] %>><label for="운동"><span>운동</span></label>
-         <input type="checkbox" id="자격증" value="30"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[2] %>><label for="자격증"><span>자격증</span></label>
-         <input type="checkbox" id="돈관리" value="40"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[3] %>><label for="돈관리"><span>돈관리</span></label>
-         
-         <input type="checkbox" id="생활습관" value="50"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[4] %>><label for="생활습관"><span>생활습관</span></label>
-         <input type="checkbox" id="공부" value="60"name="cate"lass="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[5] %>><label for="공부"><span>공부</span></label>
-         <input type="checkbox" id="업무스킬" value="70"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[6] %>><label for="업무스킬"><span>업무스킬</span></label>
-         <input type="checkbox" id="외국어" value="80"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[7] %>><label for="외국어"><span>외국어</span></label>
-         <button type="submit"id="ok"><img src="<%=request.getContextPath()%>/resources/images/확인.png"style="width: 70px;margin-top: 130px;"></button>
-   		    
-	</div>  
-	</form>
+       
 	<script type="text/javascript">
         function oneCheckbox(a){
             var obj = document.getElementsByName("cate");
@@ -718,8 +792,11 @@ button:hover {
     </script>
 	
     </section>
+	 <!-- 환급 방법 배너 -->
+    <div id="bannerWrap">
+    	<img class="mainBanner" src="<%=request.getContextPath() %>/resources/images/howToPayBack.png">
+    </div>
 
-    
     
  <%@ include file="../common/footer.jsp" %>
 	
