@@ -224,7 +224,7 @@
         
 	</section>
 	
-	<script>
+	<script> 
 		// 게시판 상세보기 기능
 		$(function(){
 			$("#qnaBoard td").mouseenter(function(){

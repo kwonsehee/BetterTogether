@@ -36,7 +36,7 @@
 .h1_title {
 	text-align: center;
 	width: 100%;
-}
+} 
 
 .line {
 	border: 3px solid rgba(255, 96, 100, 0.7);

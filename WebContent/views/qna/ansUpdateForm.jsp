@@ -30,7 +30,7 @@
 
 #write_title {
 	font-family: "Nanum Gothic";
-	width: 100%;
+	width: 100%; 
 	height: 40px;
 	border: 0px;
 	background: none;

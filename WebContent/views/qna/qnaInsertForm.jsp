@@ -15,7 +15,7 @@
 	color: #757575;
 }
 
-.qnaTable {
+ .qnaTable {
 	border-top: 3px solid #937cf790;
 	width: 100%;
 }
@@ -26,8 +26,8 @@
 
 #write_title {
 	font-family: "Nanum Gothic";
-	width: 100%;
-	height: 40px;
+	width: 100%;   
+	height: 40px; 
 	border: 0px;
 	background: none;
 	padding-left: 2%;

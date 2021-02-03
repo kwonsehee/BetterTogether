@@ -30,7 +30,7 @@ public class AnsUpdateForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
-
+ 
 		QnA a = new QnAService().selectAnswer(qnaNo);
 		QnA q = new QnAService().selectQuestion(qnaNo);
 		

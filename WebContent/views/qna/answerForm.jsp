@@ -80,7 +80,7 @@
 				<tr>
 					<td>
 						<h1 id="title">Answer</h1>
-					</td>
+					</td> 
 				</tr>
 				<tr>
 					<td class="qnaTable"><textarea cols="50" rows="6" name="title" id="write_title" placeholder="<%= content %>" readonly></textarea></td>

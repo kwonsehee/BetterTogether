@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="qna.model.vo.QnA"%>
 <%
-	QnA q = (QnA)request.getAttribute("q");
+	QnA q = (QnA)request.getAttribute("q"); 
 
 %>
 <!DOCTYPE html>
