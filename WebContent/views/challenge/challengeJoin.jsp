@@ -79,23 +79,127 @@
 <title>Insert title here</title>
 
 <style>
-#content-1 {
-	margin-top: 10px;
-	padding-top: 5px;
-	width: 50%;
-	height: 70%%;
+/*챌린지 정보 부분 css*/
+#challInfo_content {
+	font-family: "Nanum Gothic";
 	float: left;
+	margin-left: 25%;
+	padding-top: 10px;
 }
 
-#content-2 {
-	margin-top: 10px;
-	width: 50%;
-	height: 70%;
-	float: left;
+#challInfo_tb{
+	width:160%;
 }
+
+#check_img {
+	width: 30px;
+	height: 30px;
+}
+
+#info1 {
+	font-size: 20px;
+	color: #616161b6;
+	font-weight: bolder;
+}
+
+#chall_title {
+	font-size: 30px;
+	font-weight: bolder;
+	color: #252525b6;
+	padding-top: 1%;
+}
+
+#chall_freq{
+font-family: "Nanum Gothic";
+	width: 70px;
+	height: 30px;
+	border-radius: 3px;
+	border: solid 1px #e6e4e4b6;
+	font-size: 11px;
+	color: #616161b6;
+	font-weight: bold;
+	background-color: #e6e4e4b6;
+	margin-top:2%;
+	margin-right:1%;
+}
+
+#chall_period {
+	font-family: "Nanum Gothic";
+	width: 60px;
+	height: 30px;
+	border-radius: 3px;
+	border: solid 1px #e6e4e4b6;
+	font-size: 11px;
+	color: #616161b6;
+	font-weight: bold;
+	background-color: #e6e4e4b6;
+	margin-top:2%;
+	margin-right:2%;
+}
+
+
+#chall_date{
+font-size: 20px;
+	color: #937CF7;
+	font-weight: bolder;
+}
+
+#chall_confirm{
+	margin-top:3%;
+	background-color: #808080b6;
+	font-size:20px;
+	border: solid 1px #808080b6;
+	border-radius: 3px;
+	color:white;
+}
+
+
+#challLine{
+	margin-top:4%;
+	border: solid 1px #937CF7;
+	background-color:#937CF7;
+	
+}
+
+#chall_ppl{
+	color:#252525b6;
+	font-size:25px;
+	font-weight:bolder;
+	padding-top:4%;
+}
+
+
+.chall_Icon{
+	margin-right:1%;
+	width:35px;
+	height:35px;
+}
+
+#chall_pay{
+	padding-top:2%;
+	color:#252525b6;
+	font-size:25px;
+	font-weight:bolder;
+}
+
+#payBack_content{
+	margin-top:5%;
+	background-color: #e6e4e4;
+	font-family: "Nanum Gothic";
+	padding: 10px;
+	width:100%;
+	height:80%;
+	font-size:15px;
+	font-weight:bolder;
+}
+
+
+
+
+/* 버튼 css*/
 
 #challenge_btn {
-	font-family: "Do Hyeon";
+	font-family: "Nanum Gothic";
 	width: 120px;
 	height: 50px;
 	border-radius: 20px;
@@ -106,8 +210,8 @@
 	font-size: 20px;
 }
 
-#challEnd_btn{
-	font-family: "Do Hyeon";
+#challEnd_btn {
+	font-family: "Nanum Gothic";
 	width: 120px;
 	height: 50px;
 	border-radius: 20px;
@@ -116,11 +220,11 @@
 	margin-left: 10px;
 	margin-top: 10px;
 	font-size: 20px;
-	color:white;
+	color: white;
 }
 
 #chall_backBtn {
-	font-family: "Do Hyeon";
+	font-family: "Nanum Gothic";
 	width: 120px;
 	height: 50px;
 	border-radius: 20px;
@@ -132,7 +236,7 @@
 }
 
 #challConfirm_btn {
-	font-family: "Do Hyeon";
+	font-family: "Nanum Gothic";
 	width: 70px;
 	height: 30px;
 	border-radius: 20px;
@@ -143,8 +247,8 @@
 	font-size: 15px;
 }
 
-#warning_btn{
-	font-family: "Do Hyeon";
+#warning_btn {
+	font-family: "Nanum Gothic";
 	width: 70px;
 	height: 30px;
 	border-radius: 20px;
@@ -153,21 +257,14 @@
 	margin-left: 10px;
 	margin-top: -15px;
 	font-size: 15px;
-	color:white;
-
+	color: white;
 }
 
 #call_img {
-	width: 400px;
-	height: 330px;
-	padding-left: 50px;
+	margin-left: 25%;
 	padding-top: 30px;
 }
 
-#chall_title {
-	font-size: 25px;
-	text-align: center;
-}
 
 #chall_intro {
 	font-size: 20px;
@@ -196,13 +293,13 @@
 
 #join_table1 {
 	margin-left: 30px;
-	font-family: "Do Hyeon";
+	font-family: "Nanum Gothic";
 	font-size: 20px;
 }
 
 #join_table2 {
 	margin-left: 30px;
-	font-family: "Do Hyeon";
+	font-family: "Nanum Gothic";
 	font-size: 20px;
 }
 
@@ -245,46 +342,31 @@
 	bottom: 50%;
 }
 
-#countDown_title {
-	font-family: "Do Hyeon";
-	font-size: 35px;
-	color: #ff6064;
+#countDown_title, #challIng, #challEnd {
+	font-family: "Nanum Gothic";
+	font-size: 20px;
+	color: #937CF7;
 	padding-left: 15px;
-}
-
-#challEnd{
-	font-family: "Do Hyeon";
-	font-size: 35px;
-	color: #ff6064;
-	float:left;
-	padding-top:35px;
-	padding-left: 400px;
-}
-
-#challIng{
-	font-family: "Do Hyeon";
-	font-size: 35px;
-	color: #ff6064;
-	float:left;
-	padding-top:35px;
-	padding-left: 400px;
+	font-height: bolder;
 }
 
 #count_img {
-	margin-top: 40px;
 	margin-left: 170px;
+	height: 25px;
+	width: 25px;
 }
 
 #countDown {
-	padding-left: 60px;
-	font-size: 30px;
+	margin-left: 1%;
+	font-height: bolder;
 }
 
 #countDown_content {
-	height: 130px;
-	background-color: rgb(236, 232, 232);
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
+	background-color: #e6e4e4;
+	font-family: "Nanum Gothic";
+	width:55.5%;
+	margin-left: 25%;
+	padding: 10px;
 }
 
 button:focus {
@@ -295,7 +377,13 @@ button:focus {
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
 
-	<section id="content" class="content_css">
+	<section id="btSection" class="content_css">
+	
+	<!-- 챌린지 모집 이미지 -->
+	<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 700px;height: 400px;">
+	
+	
+	<!-- 챌린지 시작일에 맞춤 -->
 	<%if(compare < 0 && compare2 < 0){ %>
 		<section id="countDown_content">
 			<span id="challIng">챌린지 진행중</span>
@@ -348,8 +436,55 @@ button:focus {
       </script>
     <% } %>
 
-		<section id="content-1">
-			<!-- width: 400px; height: 330px; -->
+		<section id="challInfo_content">
+		<table id="challInfo_tb">
+			<tr>
+				<td id="info1"><img src="<%=request.getContextPath()%>/resources/images/challCheck.png" id="check_img"> 공식 챌린지</td>
+			</tr>
+			<tr>
+				<td id="chall_title"><%= ch.getChallTitle() %></td>
+			</tr>
+			<tr>
+				<td>
+				<button id="chall_freq">주 <%=ch.getChallFrequency() %>회  <%=ch.getChallConfirm() %></button>
+				<button id="chall_period"><%=ch.getChallPeriod() %>주 동안</button>
+				<span id="chall_date"><%=ch.getChallStart() %> ~ <%=period %></span>
+				</td>
+			</tr>
+			<tr>
+				<td><button id="chall_confirm">(<%=ch.getChallConfirm() %>) <%=ch.getChallPeriod() %>주 동안, 하루에 인증샷을 한번 찍어야해요!</button></td>
+			</tr>
+			<tr>
+				<td><div id="challLine"></div></td>
+			</tr>
+			<tr>
+				<td id="chall_ppl">
+					<img src="<%=request.getContextPath()%>/resources/images/people.png" class="chall_Icon">
+					참가인원 : <span style="color:#937CF7; font-size:25px;"><%= joinPeopleCnt %></span> / <span style="color:#252525b6; font-size:25px;"><%= ch.getChallPeople() %></span>명
+				</td>
+			</tr>
+			<tr>
+				<td id="chall_pay">
+					<img src="<%=request.getContextPath()%>/resources/images/pay.png" class="chall_Icon">
+					참가금액 : <%=ch.getChallPay() %> 원
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="payBack_content">
+						<button id="100per" style="background-color:#937cf790;border: solid 1px #937cf790;">100% 성공</button> : <button class="100per" style="background-color:#937cf790;border: solid 1px #937cf790;">전액 페이백 + 상금(85%미만 사람들의 돈 분할)</button><br><br>
+						85% 이상 성공 : 전액 페이백<br><br>
+						85% 미만 : 페이백 & 상금 둘다 없음 
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		
+		
+		<%-- 	<!-- width: 400px; height: 330px; -->
 			<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 400px;height: 330px;">
 			<p id="chall_title"><%= ch.getChallTitle() %></p>
 			<p id="chall_intro"><%= ch.getChallContent() %></p>
@@ -416,9 +551,14 @@ button:focus {
 						class="img-size"></td>
 					<td>인증 방법 : <span><%= ch.getChallConfirm() %></span></td>
 				</tr>
-			</table>
+			</table> --%>
 
-			<section id="btn-form">
+		</section>
+		
+		
+		<!-- 버튼 -->
+		
+		<%-- <section id="btn-form">
 				<button id="chall_backBtn">목록으로</button>
 				<%if(compare3 < 0){%>
 					<button id="challEnd_btn">챌린지 종료</button>
@@ -440,10 +580,9 @@ button:focus {
 					</button>
 				</div>
 				<span>찜하기 +<%=hits %></span>
-			</section>
-		</section>
+			</section> --%>
 
-		<!-- 목록으로 -->
+		<!-- 버튼 이벤트-->
 		<script>
 		// 목록으로 버튼 이벤트 
 		const chall_backBtn = document.getElementById('chall_backBtn');
@@ -533,7 +672,7 @@ button:focus {
 
 	</section>
 	
-	
+	<%@ include file="../common/footer.jsp" %>
 	
 
 </body>

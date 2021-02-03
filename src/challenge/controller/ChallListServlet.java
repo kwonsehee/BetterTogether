@@ -52,7 +52,7 @@ public class ChallListServlet extends HttpServlet {
 	  
 	  // 1_2. 페이징 처리를 위한 변수 선언 및 연산
 	  int pageLimit= 10;  // 한 페이지 하단에 보여질 페이지 수 
-	  int boardLimit = 9; // 한 페이지에 보여질 게시글 최대 수 
+	  int boardLimit = 12; // 한 페이지에 보여질 게시글 최대 수 
 	  int maxPage; 	// 전체 페이지에서 가장 마지막 페이지
 	  int startPage;  // 한 페이지 하단에 보여질 시작 페이지 
 	  int endPage;    // 한 페이지 하단에 보여질 끝 페이지 
