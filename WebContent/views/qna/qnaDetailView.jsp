@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Q&A View</title>
+<title>Better Together</title>
 <style>
 /* 버튼  */
 .qnaBtn {

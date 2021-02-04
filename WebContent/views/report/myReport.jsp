@@ -19,7 +19,7 @@ System.out.println("jsp list : "+reList);%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고내역</title>
+<title>Better Together</title>
 <style>
 
         #questionBtn {
@@ -82,7 +82,7 @@ System.out.println("jsp list : "+reList);%>
         }
         #tb_num {
             width: 5%;
-            padding-left: 2%;
+            
         }
         #th_title {
             background: white;
@@ -91,6 +91,7 @@ System.out.println("jsp list : "+reList);%>
             font-family: "Nanum Gothic";
             font-size: 14px;
             color : #757575;
+            text-align: center;
         }
 
         #write {
@@ -167,8 +168,8 @@ System.out.println("jsp list : "+reList);%>
                     <tr id="th_title">
                         <th id="tb_num">번호</th>
                         <th id="tb_title">제목</th>
-                        <th id="tb_author">신고 날짜</th>
-                        <th id="tb_date">처리여부</th>
+                        <th id="tb_date">신고 날짜</th>
+                        <th id="tb_author">처리여부</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -225,9 +226,9 @@ System.out.println("jsp list : "+reList);%>
 			</div>
 			
 				
+    <button id="questionBtn" type="button" class="Btn1">메인으로</button>
         </div>
         
-    <button id="questionBtn" type="button" class="Btn1">메인으로</button>
     </section>
     
     

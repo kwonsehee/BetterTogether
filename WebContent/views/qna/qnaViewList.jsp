@@ -218,7 +218,7 @@
 			
 			<!-- 맨 끝으로(>>) -->
 			<button onclick="location.href='<%= request.getContextPath() %>/qna/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
-		</div>
+			</div>
 		
       	</div>
         

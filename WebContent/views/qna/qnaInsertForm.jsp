@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Question Form</title>
+<title>Better Together<</title>
 
 <style>
 

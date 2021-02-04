@@ -16,10 +16,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고작성하기</title>
+<title>Better Together</title>
 <style>
 
-#title {
+#title, .title {
 	text-align: center;
 	font-family: "Nanum Gothic";
 	font-size: 24px;
@@ -28,11 +28,9 @@
 
 .qnaTable {
 	border-top: 3px solid #937cf790;
-	width: 100%;
+	width: 80%;
 }
 
-#writebox th{
-}
 
 #writebox {
 	width: 80%;
@@ -57,6 +55,27 @@
 	padding-left: 2%;
 }
 
+#reportedName{
+	font-family: "Nanum Gothic";
+	width: 100%;   
+	height: 40px; 
+	border: 0px;
+	background: none;
+	padding-left: 2%;
+}
+
+#thArea{
+	width: 10%;
+	text-align: center;
+    font-family: "Nanum Gothic";
+    color: #757575;
+}
+
+.filebox span, label, #ex_file, #reportedName{
+	color: #757575;
+	font-size: 15px;
+}
+
 /*버튼*/
 .Btn1 {
 	font-family: "Nanum Gothic";
@@ -77,6 +96,7 @@
 .btSection #writebox {
 	margin: auto;
 }
+
 </style>
 </head>
 <body>
@@ -88,32 +108,29 @@
 			<table id="writebox">
 				<tr>
 					<td>
-						<h1 id="title">
-							<input type="hidden" name="category" value="<%=category%>"
-								readonly><%=category%>
-							신고
-						</h1>
+						<h1 id="title" ><input type="hidden" class="title" name="category" value="<%=category%>"
+								readonly><%=category%>신고</h1>
 					</td>
 				</tr>
 				<tr>
-					<th>제목</th>
+					<th id="thArea">제목</th>
 					<td class="qnaTable"><input type="text" maxlength="50"
 						name="title" id="write_title" placeholder="제목을 입력해주세요."></td>
 				</tr>
 				<tr>
-					<th><%=category%>번호</th>
-					<td><input type="hidden" name="no" value="<%=no%>" readonly>
+					<th id="thArea"><%=category%>번호</th>
+					<td class="qnaTable"><input type="hidden" name="no" value="<%=no%>" id="reportNum" readonly>
 						<%=no%></td>
 				</tr>
 				<tr>
-					<th>대상 닉네임</th>
-					<td><input type="text" maxlength="50" name="reported_id"
+					<th id="thArea">대상 닉네임</th>
+					<td class="qnaTable"><input type="text" maxlength="50" name="reported_id" id="reportedName"
 						value="<%=reported_id%>" readonly></td>
 				</tr>
 
 				<tr>
-					<th>첨부파일</th>
-					<td>
+					<th id="thArea">첨부파일</th>
+					<td class="qnaTable">
 						<div class="filebox">
 							<label for="ex_file">파일 첨부</label> <input type="file"
 								id="ex_file" name="ex_file"> <span class="filename">파일을
@@ -123,7 +140,7 @@
 				</tr>
 
 				<tr>
-					<th>내용</th>
+					<th id="thArea">내용</th>
 					<td class="qnaTable"><textarea cols="50" id="writeArea"
 							rows="15" name="content" placeholder="내용을 입력해주세요."></textarea></td>
 				</tr>
@@ -147,5 +164,8 @@
 											$(".filename").text(filename);
 										})
 							</script>
+								
+	<%@ include file="../common/footer.jsp" %>
+	
 </body>
 </html>
