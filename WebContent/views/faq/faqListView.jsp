@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>F A Q</title>
+<title>Better Together</title>
 <style>
 #btSection {
 	padding-bottom: 50px;

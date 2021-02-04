@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신 고</title>
+<title>Better Together</title>
 <style>
 /* 버튼  */
 .qnaBtn {
