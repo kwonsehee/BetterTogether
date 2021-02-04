@@ -362,7 +362,7 @@
 	background-color: #e0dbf890;
 }
 
-#challConfirm_btn:focus, #warning_btn:focus{
+#challConfirm_btn:focus, #warning_btn:focus, #challEnd_btn:focus{
 	outline:none;
 }
 
