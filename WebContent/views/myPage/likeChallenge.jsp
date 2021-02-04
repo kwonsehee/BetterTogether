@@ -18,142 +18,141 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>찜하기한 챌린지 그룹</title>
+<title>Better Together</title>
 <style>
-	.like_content{
-        width: 950px;
-		height: 800px;
-		/* border: 1px solid black; */
-		margin-top: -6%;
-		padding-left: 5%;
-		 background-color: #f9f1f1;
-		 border-radius: 20px;
-        }
-    
-    #title{
-            margin-top: 70px;
-            font-family: "Do Hyeon";
-            font-size: 36px;
-            margin-left: 300px;
-        }
+	.line {
+		border: 0.5px solid #937cf790;
+	}
+	
+	#btSection {
+		padding-bottom: 100px;
+	}
         
-    #like1{
-          margin-top: 50px;
-          margin-left: 00px;
-          width: 900px;
-          height: 50px;
-          text-align: center;
-          font-family: "Do Hyeon";
-          font-size: 36px;
-          border-radius: 20px;
-        }  
-        
-       #likeDetailBtn {
-	       border: 1px solid #fdc8c6;
-	       background-color: #fdc8c6;
-	       border-radius: 20px;
-	       font-family: "Do Hyeon";
-	       font-size: 18px;
-	       margin-left: 20px;
-  	 }
-
-    #likeDeleteBtn{
-        border: 1px solid #fdc8c6;
-        background-color: #fdc8c6;
-        border-radius: 20px;
-        font-family: "Do Hyeon";
-        font-size: 18px;
-        margin-left:20px;
-    }
-        
-	 #goMainBtn{
-            border: 1px solid #fdc8c6;
-            background-color: #fdc8c6;
-            border-radius: 20px;
-            font-family: "Do Hyeon";
+	 #content-1 p{
+     /*        border:solid 1px red;  */
             font-size: 24px;
-            margin-left : -40px;
-            margin-top : 50px;
-        }  
-        
-     #backBtn {
-        	border: 1px solid #fdc8c6;
-            background-color: #fdc8c6;
-            border-radius: 20px;
-            font-family: "Do Hyeon";
-            font-size: 24px;
-        }
-        
-       #like1 {
-           font-family: "Do Hyeon";
-            font-size: 36px;
-            margin-left: 0px;
-            margin-top: 50px;
-        }
-        
-        #like {
-        	font-family: "Do Hyeon";
-            font-size: 24px;
-            font-align : "center";
-           	margin-right: 50px;
-            margin-top: 50px;
-            border: 2px solid white;
-          
-        }
-        
-        #likeList {
-        	margin:auto;
-        	
-        	
-        }
-        
-         /*페이징 css*/
-        #pagingArea {
-    	  margin-left:-40px;
-  	   }
-      	#pagingArea button {
-            font-family: "Do Hyeon";
-            font-size : 18px;
-            color: black;
-            text-decoration: none;
-            border: solid 1px #fdc8c6;
-            background-color: #fdc8c6;
-            
-        }
-        
-         #page_css {
-            width: 100%;
-            height: 20%;
-            float: left;
-            padding-top: 50px;
-            padding-left: 400px;
-        }
-        
-       
+            text-align: center;
+   }
+	
+	/*게시판*/
+	#likeList {
+		width: 80%;
+        /*  height: 400px;       */
+         border-collapse: collapse;
+         margin-top:20px;
+         margin:auto;
+	}
+	
+	#like {
+		width : 80%;
+		margin:auto;
+	}
+	
+	#likeList th, #likeList td {
+		border-bottom: 1px solid #75757552;
+        padding: 2px;
+	}
+	
+	#likeList th {
+		background:#fff;
+	}
+	
+	#likeList td {
+		height : 30px;
+	}
+	
+	#th_likeNo {
+		width : 10%;
+	}
+	
+	#th_likeCate {
+		width: 10%;
+	}
+	
+	#th_likeTitle {
+		width : 40%;
+	}
+	
+	#th_likePeriod {
+		width : 60%;	
+	}
+	
+	#th_title{
+		 background : rgba(240, 240, 240, 0.7);
+         height: 30px;
+         font-family: "Nanum Gothic";
+         font-size: 14px;
+         color : #757575;
+	}
+	
+	
+	
+	/*버튼*/
+	.likeUpdateBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+        margin-left:5%;
+	}
+	
+	#backBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+        margin-left:78%;
+	}
+	
+	/*페이징 바*/
+	#pagingArea {
+			text-align:center;
+	}
+	
+	#pagingArea button {
+		width: 25px;
+		margin-top: 20px;
+		border: 0px;
+		color: #757575;
+		font-family: "Nanum Gothic";
+		font-size: 12px;
+	}
+	
+	#pagingArea button:hover {
+		cursor:pointer;
+	}
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp" %>
 
-		<section id="content" class="like_content">
-           	<h1 id="title">찜하기한 챌린지 그룹</h1>
+		<section id="btSection" class="like_content">
+           	<section id="content-1">
+            <p>찜하기한 챌린지 그룹</p>
+            <div class="line"></div>
+        </section>
            		<% if(loginUser != null && cList!=null) { %>
             		<div id="like">
                  		<div id="likdChall">
                  		<table id="likeList">
-                 			<tr>
-                 				<th>챌린지번호</th>
-                 				<th>카테고리</th>
-                 				<th>챌린지 제목</th>
-                 				<th>챌린지 기간</th>
+                 			<tr id="th_title">
+                 				<th id="th_likeNo">챌린지번호</th>
+                 				<th id="th_likeCate">카테고리</th>
+                 				<th id="th_likeTitle">챌린지 제목</th>
+                 				<th id="th_likePeriod">챌린지 기간</th>
                  			</tr>
          			<% for(Challenge chall : cList) { %>
                  			<tr>
                  				<td><%= chall.getChallNo() %></td>
                  				<td><%= chall.getCateName() %></td>
                  				<td><%= chall.getChallTitle() %></td>
-                 				 <td><%=chall.getChallStart() %>~<%= chall.getEndDate() %></td>
-                 				<td><button id="likeDeleteBtn" class="likeUpdateBtn">찜하기 취소</button></td>
+                 				 <td><%=chall.getChallStart() %>~<%= chall.getEndDate() %><button id="likeDeleteBtn" class="likeUpdateBtn">찜하기 취소</button></td>
                  			</tr>
           			<% } %> 
                  		</table>
@@ -202,7 +201,6 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/like/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
                
             </div>
-            <button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button>
             <button id="backBtn" type="button" class="text_font joinform_btn" onclick="javascript:history.back();">뒤로가기</button>
             </section>	
             </section>
@@ -226,9 +224,9 @@
     	  
        // 챌린지 상세보기 기능 (jQuery를 통해 작업)
          $("#likeList td").mouseenter(function(){
-            $(this).parent().css({"background":"white", "cursor":"pointer"});
+            $(this).parent().css("background","#937cf755");
          }).mouseout(function(){
-            $(this).parent().css("backgroundColor", "#f9f1f1");
+            $(this).parent().css("background", "none");
          }).click(function(){
             var num = $(this).parent().children().eq(0).text();
               // 쿼리 스트링을 이용하여 get방식으로 글 번호를 전달 
@@ -251,5 +249,7 @@
 		location.href='<%= request.getContextPath()%>';
 	});
    	</script>
+   	
+   	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

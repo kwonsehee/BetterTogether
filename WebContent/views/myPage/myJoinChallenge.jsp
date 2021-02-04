@@ -12,134 +12,106 @@
   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
   String today = sdf.format(date);
   
+  System.out.println("list : " + list);
+  
   
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 모집한 챌린지 그룹</title>
+<title>Better Together</title>
 <style>
-   #myJoinChallForm{
-        width: 950px;
-      height: 800px;
-      /* border: 1px solid black; */
-      margin-top: -6%;
-      padding-left: 5%;
-       background-color: #f9f1f1;
-       border-radius: 20px;
-        } 
-    
-    #title{
-            margin-top: 70px;
-            font-family: "Do Hyeon";
-            font-size: 36px;
-            margin-left: 300px;
-        }
-
-    .mychallContent {
-        background-color: white;
-        width: 900px;
-        height: 125px;
-        text-align: center;
-        font-family: "Do Hyeon";
-        font-size: 24px;
-        border-radius: 20px;
-        margin:7px;
-    }
-
-    #updateBtn{
-        border: 1px solid #fdc8c6;
-        background-color: #fdc8c6;
-        border-radius: 20px;
-        font-family: "Do Hyeon";
-        font-size: 18px;
-        margin-left: 360px;
-    }
-
-    #deleteBtn{
-        border: 1px solid #fdc8c6;
-        background-color: #fdc8c6;
-        border-radius: 20px;
-        font-family: "Do Hyeon";
-        font-size: 18px;
-    }
-   
-    #goMainBtn{
-            border: 1px solid #fdc8c6;
-            background-color: #fdc8c6;
-            border-radius: 20px;
-            font-family: "Do Hyeon";
-            font-size: 18px;
-            float:right;
-            margin-top:-110px;
-            margin-right:150px;
-        }  
+	#btSection {
+		padding-bottom: 100px;
+	}
+	
+	 .line {
+		border: 0.5px solid #937cf790;
+	}
         
-      .img-size{
-         width: 150px;
-         height: 100px;
-      }
-      
-      #table-wrap{
-         padding:50px;
-         margin:30px;
-      }
-      
-      .img-size:hover{
-      	opacity:0.8;
-      	cursor:pointer;
-      }
-      
-      input[type="checkbox"]{
-         padding-top:-20px;
-      }
-      
-      .challInfo{
-      font-family: "Do Hyeon";
-      width: 80px;
-      height: 30px;
-      border-radius: 20px;
-      border: solid 1px #fdc8c6;
-      background-color: white;
-      font-size: 20px;
+	 #content-1 p{
+     /*        border:solid 1px red;  */
+            font-size: 24px;
+            text-align: center;
+          
    }
-   
-   #tableDIv{
-      width:20px;
-      height:20px;
-      border: solid 1px red;
-   }
-   
-    /*페이징 css*/
-        #pagingArea {
-    	  margin:auto;
-  	   }
-      	#pagingArea button {
-            font-family: "Do Hyeon";
-            font-size : 18px;
-            color: black;
-            text-decoration: none;
-            border: solid 1px #fdc8c6;
-            background-color: #fdc8c6;
-            
-        }
-        
-         #page_css {
-            width: 100%;
-            height: 20%;
-            float: left;
-            padding-top: 50px;
-            padding-left: 400px;
-        }
-      
- 
+	
+	#table-wrap {
+		margin:auto;
+		margin-top : 10px;
+		padding-bottom:10px;
+	}
+
+	
+	#updateBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+	}
+	
+	#deleteBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+	}
+	
+	#backBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+        margin-left:78%;
+	}
+	
+	.challInfo {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+	}
+	
+	/*페이징 바*/
+	#pagingArea {
+			text-align:center;
+		}
+		
+	#pagingArea button {
+		width:25px;
+		margin-top:20px;
+		border : 0px;
+		color : #757575;
+		font-family: "Nanum Gothic";
+		font-size:12px;
+		margin-top:70px;
+	}
+		
+	#pagingArea button:hover {
+		cursor:pointer;
+	}
 </style>
 </head>
 <body>
    <%@ include file="../common/common_ui.jsp" %>
-      <section id="content-1">
-       <h1 id="title">내가 모집한 챌린지그룹</h1>
+      <section id="btSection">
+       <section id="content-1">
+            <p>내가 모집한 챌린지 그룹</p>
+            <div class="line"></div>
+        </section>
       <table id="table-wrap">
       <%if(list.isEmpty()) {%>
       <tr><td colspan="4">내가 모집한 챌린지가 없습니다.</td>
@@ -154,7 +126,7 @@
                </td>
                <td>
                   <span><%=ch.getChallTitle() %></span>
-                  <p><button class="challInfo">주 <%=ch.getChallFrequency() %>회</button> <button class="challInfo"><%=ch.getChallPeriod() %> 주</button></p>
+                  <p><button class="challInfo">주 <%=ch.getChallFrequency() %></button> <button class="challInfo"><%=ch.getChallPeriod() %> 주</button></p>
                </td>
                <td>
                <% 
@@ -174,8 +146,6 @@
           <% } %>
           <% } %>
         </table>
-        </section> 
-        
         <!-- 페이징 바 -->
         <section id="page_css">
             <div id="pagingArea">
@@ -210,20 +180,18 @@
              <!-- 맨 끝으로 (>>) -->
 			<button onclick="location.href='<%= request.getContextPath() %>/challMake/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
             </div>
+            <button id="backBtn" type="button" class="text_font joinform_btn" onclick="javascript:history.back();">뒤로가기</button>
             
          </section>
+        
+        </section> 
         
         
          <!-- <button type="button" id="updateBtn">수정</button> -->
          <!-- <button type="button" id="deleteBtn">삭제</button> -->
-        <button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button>
         
       <script>
 	    //1.메인으로 돌아가기
-	   const goMainBtn = document.getElementById('goMainBtn');
-	   goMainBtn.addEventListener('click',function(){
-	      location.href='<%=request.getContextPath()%>';
-	   });
    		
 	    // 내가 모집한 챌린지 클릭시 상세보기로 가게 
 	   	$(function(){
@@ -235,6 +203,6 @@
 		});
     
       </script>
-            
+       <%@ include file="../common/footer.jsp" %>     
 </body>
 </html>

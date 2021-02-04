@@ -9,110 +9,121 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>참여중인 챌린지 그룹</title>
+<title>Better Together</title>
 <style>
-	.joining_content{
-        width: 950px;
-		height: 800px;
-		/* border: 1px solid black; */
-		margin-top: -6%;
-		padding-left: 5%;
-		 background-color: #f9f1f1;
-		 border-radius: 20px;
-        }
-    
-    #title{
-            margin-top: 70px;
-            font-family: "Do Hyeon";
-            font-size: 36px;
-            margin-left: 300px;
-        }
+	.line {
+		border: 0.5px solid #937cf790;
+	}
 	
-
-    #join1 {
-        background-color: white;
-        margin-top: 50px;
-        width: 900px;
-        height: 80px;
-        text-align: center;
-        font-family: "Do Hyeon";
-        font-size: 28px;
-        border-radius: 20px;
-    }
-    
-    #joining {
-           font-family: "Do Hyeon";
+	#btSection {
+		padding-bottom: 100px;
+	}
+        
+	 #content-1 p{
+     /*        border:solid 1px red;  */
             font-size: 24px;
-            font-align : "center";
-           	margin-right: 50px;
-            margin-top: 50px;
-            border: 2px solid white;
-            /* width : 90%; */
-            
-        }
-    
-     #goMainBtn{
-            border: 1px solid #fdc8c6;
-            background-color: #fdc8c6;
-            border-radius: 20px;
-            font-family: "Do Hyeon";
-            font-size: 24px;
-            margin-left : -30px;
-            margin-top : 50px;
-        }  
-        
-       #backBtn {
-        	border: 1px solid #fdc8c6;
-            background-color: #fdc8c6;
-            border-radius: 20px;
-            font-family: "Do Hyeon";
-            font-size: 24px;
-        }
-        
-        #joiningList{
-        	font-align : "center";
-        	margin : auto;
-        }
-        
-      
-     /*페이징 css*/
-        #pagingArea {
-    	   margin-left:-30px;
-  	   }
-      	#pagingArea button {
-            font-family: "Do Hyeon";
-            font-size : 18px;
-            color: black;
-            text-decoration: none;
-            border: solid 1px #fdc8c6;
-            background-color: #fdc8c6;
-            
-        }
-        
-         #page_css {
-            width: 100%;
-            height: 20%;
-            float: left;
-            padding-top: 50px;
-            padding-left: 400px;
-        }
-        
+            text-align: center;
+   }
+   
+   /*게시판*/
+	#joinList {
+		width: 80%;
+        /*  height: 400px;       */
+         border-collapse: collapse;
+         margin-top:20px;
+         margin:auto;
+	}
+	
+	#join {
+		width:80%;
+		margin:auto;
+	}
+	
+	#joinList th, #joinList td {
+		border-bottom: 1px solid #75757552;
+		padding: 2px;
+	} 
+	
+	#joinList th {
+		background:#fff;
+	}
+	
+	#joinList td {
+		height : 30px;
+	}
+	
+	#th_beforeNo {
+		width: 10%;
+	}
+	
+	#th_beforeCate {
+		width : 30%;
+	}
+	
+	#th_beforeTitle {
+		width:40%;
+	}
+	
+	#th_beforePeriod {
+		width:60%
+	}
+	
+	#th_title{
+		 background : rgba(240, 240, 240, 0.7);
+         height: 30px;
+         font-family: "Nanum Gothic";
+         font-size: 14px;
+         color : #757575;
+	}
+	
+	/*버튼*/
+	
+	#backBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+        margin-left:78%;
+	}
+	
+	/*페이징 바*/
+	#pagingArea {
+			text-align:center;
+	}
+	
+	#pagingArea button {
+		width: 25px;
+		margin-top: 20px;
+		border: 0px;
+		color: #757575;
+		font-family: "Nanum Gothic";
+		font-size: 12px;
+	}
+	
+	#pagingArea button:hover {
+		cursor:pointer;
+	}
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp" %>
-	<section id="content" class="joining_content">
-		<h1 id="title">시작전인 챌린지그룹 조회</h1>
+	<section id="btSection" class="joining_content">
+		<section id="content-1">
+            <p>시작 전 챌린지 그룹</p>
+            <div class="line"></div>
+        </section>
           <% if(loginUser!=null && cList!=null) { %>
-            <div id="joining">
-                 <div id="joiningChall">
-                 <table id="joiningList">
-                    <tr>
-                    	<th>챌린지 번호</th>
-                    	<th>카테고리</th>
-                    	<!-- <th>카테고리 명</th> -->
-                       <th>챌린지 명</th>
-                       <th>챌린지 기간</th>
+            <div id="join">
+                 <div id="joinChall">
+                 <table id="joinList">
+                    <tr id="th_title">
+                    	<th id="th_beforeNo">챌린지 번호</th>
+                    	<th id="th_beforeCate">카테고리</th>
+                       <th id="th_beforeTitle">챌린지 명</th>
+                       <th id="th_beforePeriod">챌린지 기간</th>
                     
                     </tr>
          <% for(Challenge chall : cList) { %>
@@ -172,17 +183,16 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/joining/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
                
             </div>
-                <button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button>
             	 <button id="backBtn" type="button" class="text_font joinform_btn" onclick="javascript:history.back();">뒤로가기</button>
     		</section>
         </section>
     	 <script>
        // 챌린지 상세보기 기능 (jQuery를 통해 작업) 
       $(function(){
-         $("#joiningList td").mouseenter(function(){
-            $(this).parent().css({"background":"white", "cursor":"pointer"});
+         $("#joinList td").mouseenter(function(){
+            $(this).parent().css("background","#937cf755");
          }).mouseout(function(){
-            $(this).parent().css("backgroundColor", "#f9f1f1");
+            $(this).parent().css("background", "none");
          }).click(function(){
             var num = $(this).parent().children().eq(0).text();
             var status = $(this).parent().children().eq(1).text();
@@ -203,5 +213,7 @@
 		location.href='<%=request.getContextPath()%>';
 	});
    	</script>
+   	
+   	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

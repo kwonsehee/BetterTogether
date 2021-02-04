@@ -19,13 +19,23 @@ System.out.println("jsp list : "+reList);%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고내역</title>
+<title>Better Together</title>
 <style>
-	 body {
-            width: 1000px;
-            height : 1100px;
-        }
 
+	.line {
+		border: 0.5px solid #937cf790;
+	}
+	
+	#btSection {
+		padding-bottom: 100px;
+	}
+        
+	 #content-1 p{
+     /*        border:solid 1px red;  */
+            font-size: 24px;
+            text-align: center;
+   }
+   
          /* 세부 카테고리 버튼 */
          #btnwrap {
             width: 320px;
@@ -39,7 +49,7 @@ System.out.println("jsp list : "+reList);%>
             width: 130px;
             height: 30px;
             margin:10px;  
-            background: #ff60657e;
+            background: #9e9e9e5b;
             border: 0px;
             border-radius: 55px;       
         }
@@ -58,20 +68,20 @@ System.out.println("jsp list : "+reList);%>
         }
 
         #h1_title {
-           margin-top: 50px;
+           margin-top: 150px;
            text-align: center;
-           font-family: "Do Hyeon";
+           font-family: "Nanum Gothic";
            font-size: 24px;
-           color : #757575;
+           color : black;
         }
 
         #line {
-            border: 3px solid rgba(255, 96, 100, 0.7);
+            border: 3px solid #937cf790;
         }
 
         /* 게시판 */
         #board_tb {
-            width: 100%;
+            width: 80%;
            /*  height: 400px;       */
             border-collapse: collapse;
             
@@ -81,6 +91,11 @@ System.out.println("jsp list : "+reList);%>
             border-bottom: 1px solid #75757552;
             padding: 2px;
         }
+        
+        #board_tb th {
+        	background:#fff;
+        }
+        
         #board_tb td {
         	height : 30px;
         }
@@ -98,22 +113,23 @@ System.out.println("jsp list : "+reList);%>
             width: 5%;
         }
         #th_title {
-            background : rgba(240, 240, 240, 0.7);
-            height: 30px;
-            font-family: "Do Hyeon";
-            font-size: 14px;
-            color : #757575;
+        	background : rgba(240, 240, 240, 0.7);
+	        height: 30px;
+	        font-family: "Nanum Gothic";
+	        font-size: 14px;
+	        color : #757575;
         }
         
         #board_div{
-        	padding-top:3%;
+        	/* padding-top:3%; */
+        	margin-left:15%;
         
         }
         
         #write {
             width:55px;
             color:white;
-            font-family: "Do Hyeon";
+            font-family: "Nanum Gothic";
             margin-top : 20px;
             margin-left : 80%;
         }
@@ -121,15 +137,19 @@ System.out.println("jsp list : "+reList);%>
             font-size: 14px;
         }
 
-        #btn {
-            width:100px;
-            font-family: "Do Hyeon";
-            background: none;
-            border : 2px solid  #ff60657e;        
-        }
+       #backBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+        margin-left:78%;
+	}
         #btn a {
             font-size: 14px;
-            color: #ff60657e;
+            color:#e6e4e4b6;
         }
 
         #board_tb td:hover {
@@ -137,33 +157,33 @@ System.out.println("jsp list : "+reList);%>
         }
         
         /* 페이징바 영역 */
-		.pagingArea {
+       .pagingArea {
 			text-align:center;
 		}
-		.pagingArea button {
-			width:25px;
-			margin-top:20px;
-			border : 0px;
-			background:#fff;
-			font-family: "Do Hyeon";
-			color : #757575;
-		}
+	.pagingArea button {
+		width: 25px;
+		margin-top: 20px;
+		border: 0px;
+		color: #757575;
+		font-family: "Nanum Gothic";
+		font-size: 12px;
+	}
 		
-		.pagingArea button:hover {
-			cursor:pointer;
-		}
+	.pagingArea button:hover {
+		cursor:pointer;
+	}
         
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp" %>
 
-	<section id="con1">
+	<section id="btSection">
 	
-	  	<div id="con2_title">
-      		<h1 id="h1_title">내가 신고 당한 내역</h1>
-        </div>
-        <div id="line"></div>
+	  	<section id="content-1">
+            <p>내가 신고당한 내역</p>
+            <div class="line"></div>
+        </section>
         
         <div id="board_div">
             <table id="board_tb">
@@ -231,23 +251,18 @@ System.out.println("jsp list : "+reList);%>
 				
         </div>
         
-    <button id="btn" type="button" class="text_font joinform_btn" class="btn"><a>메인으로</a></button>
+    <button id="backBtn" type="button" class="text_font joinform_btn" onclick="javascript:history.back();">뒤로가기</button>
     </section>
     
     
     <script>
-		 //1.메인으로 돌아가기
-		const goMainBtn = document.getElementById('goMainBtn');
-		goMainBtn.addEventListener('click',function(){
-			location.href="<%= request.getContextPath()%>";
-		});
 		
 		// 게시판 상세보기 기능
 		$(function(){
 			$("#qnaBoard td").mouseenter(function(){
-				$(this).parent().css({"background":"lightgray", "cursor":"pointer"});
+				$(this).parent().css("background","#937cf755");
 			}).mouseout(function(){
-				$(this).parent().css("background", "#f9f1f1");
+				$(this).parent().css("background", "none");
 			}).click(function(){
 				var rNo = $(this).parent().children().eq(0).text();
 				
@@ -260,5 +275,6 @@ System.out.println("jsp list : "+reList);%>
 			});
 		});
     </script>
+    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

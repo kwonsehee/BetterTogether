@@ -32,37 +32,93 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 정보 수정</title>
+<title>Better Together</title>
 <style>
-#join {
-	width: 50%;
-	height: 80%;
-	/* border: 1px solid black; */
-	margin-top: 5%;
-	margin-left: 25%;
-	padding-left: 5%;
-}
 
-.text_font {
-	font-family: "Do Hyeon";
-	font-size: 20px;
-}
-
-.joinform_btn {
-	width: 120px;
-	height: 40px;
-	border-radius: 20px;
-	border: #f7dede;
-	background-color: #f7dede;
-	margin-top: 30px;
-}
+	#btSection {
+		padding-bottom: 100px;
+	}
+	
+	 .line {
+		border: 0.5px solid #937cf790;
+	}
+        
+	 #content-1 p{
+     /*        border:solid 1px red;  */
+            font-size: 24px;
+            text-align: center;
+   }
+   
+	#join tr {
+		font-family: "Nanum Gothic";
+        font-size: 20px;
+       	padding-bottom: 20px;
+	}
+	
+	#updateForm {
+		font-family: "Nanum Gothic";
+		margin-top : 10%;
+	}
+	
+	#join {
+		margin:auto;
+	}
+	
+	#pwdUpdateBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+	}
+	
+	#goMainBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+        margin-top:30px;
+	}
+	
+	#updateBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+        margin-left: 60px;
+        margin-top:30px;
+	}
+	
+	#deleteBtn {
+		font-family: "Nanum Gothic";
+        border-radius: 10px;
+        border: solid 1px #9e9e9e5b;
+        padding:5px 15px 5px 15px;
+        background-color: #e6e4e4b6;
+        font-size:10px;
+        font-weight: bolder;
+        margin-top:30px;
+	}
 </style>
 </head>
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
 
-	<section id="content" class="content_css">
+	<section id="btSection" class="content_css">
+	
+	 <section id="content-1">
+            <p>개인정보 수정</p>
+            <div class="line"></div>
+        </section>
 	<!-- 1.회원가입  -->
 	<!-- 1_1. 회원가입 폼 작성  -->
         <form id="updateForm"action="<%=request.getContextPath() %>/member/update"
@@ -177,5 +233,7 @@
 			}
 		});
 	</script>
+	
+	 <%@ include file="../common/footer.jsp" %>    
 </body>
 </html>
