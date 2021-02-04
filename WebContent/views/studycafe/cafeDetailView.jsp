@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>better together</title>
 <style>
 /* 바깥 영역 */
 .content_css{
@@ -38,7 +38,7 @@ z-index: -3;
 }
 
 .galleryArea {
-		position: absolute;	
+	  position: absolute;	
 	padding: 5px;
 	width: 1000px;
 	height: 950px;
@@ -71,6 +71,7 @@ hr {
 	height: 450px;
 	left: 500px;
 	width: 450px;
+	
 }
 
 #cafeimg {
@@ -310,8 +311,7 @@ ul {
 	padding-left: 0px;
 	border-radius: 2px;
 	position: relative;
-	background-image:
-		url('<%=request.getContextPath()%>/resources/Cafeimages/이미지준비2.jpg');
+	 background-color: rgba(219, 219, 219, 0.356);
 	overflow: hidden;
 }
 
@@ -369,21 +369,26 @@ ul {
 
 
 					<!-- 도서이미 불러오기-->
-					<div class="container">
+					<div class="container"
+						style="background-color: rgba(255, 255, 255, 0);">
 						<ul class="slider"
-							style="width: 2985px; left: 0px; padding-left: 0px; height: 450px;">
-							<%if(c.getCafe_photo() != null ) {%>
-							<li class="item"><img id='cafeimg'
-								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo()  %>"
+							style="width: 1350px; left: 0px; padding-left: 0px; height: 450px; margin-left: 10px;"">
+							<%
+								if (c.getCafe_photo() != null) {
+							%>
+							<li class="item"><img id='cafeimg' style="width: 430px;"
+								src="<%=request.getContextPath()%>/resources/Cafeimages/<%=c.getCafe_photo()%>"
 								align="bottom"></li>
-							<%} else { %>
-							<li class="item"><img id='cafeimg'
+							<%
+								} else {
+							%>
+							<li class="item"><img id='cafeimg' style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
 								align="bottom"></li>
 							<%} %>
 
 							<%if(c.getCafe_photo2() != null  ) {%>
-							<li class="item"><img id='cafeimg'
+							<li class="item"><img id='cafeimg' style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo2()  %>"
 								align="bottom"></li>
 							<%} else    { %>
@@ -608,7 +613,10 @@ ul {
 						<td>
 						<tr>
 							<span style="display: block; width: 480px; height: 100px;">
-								<strong>&nbsp&nbsp공간소개 </strong> <pre style="font-size: 16px;height: 110px;width: 550px;margin-left: 10px;"><%=c.getCafe_info()%></pre>
+								<strong>&nbsp&nbsp공간소개 </strong> <pre style="font-size: 16px;  font-family: "Nanum Gothic"; height:
+								 110px;width: 550px;margin-left: 10px;border-top-width:
+								  0px;border-bottom-width: 0px;border-left-width:
+								   0px;border-right-width: 0px; background-color:rgba(255,255,255,0);"><%=c.getCafe_info()%></pre>
 							</span>
 						</tr>
 						</td>
@@ -617,9 +625,13 @@ ul {
 							<span
 								style="display: block; width: 480px; height: 100px; margin-top: 50px;">
 								<hr
-									style="left: 0px;top: 150px;width: 550px;border: 0.5px solid Purple;margin-top: 10px;">
+									style="left: 0px; top: 150px; width: 550px; border: 0.5px solid Purple; margin-top: 10px;">
 								<strong> &nbsp&nbsp유의사항 </strong> <pre
-									style="font-size: 16px;height: 150px;width: 550px;margin-left: 10px;"><%=c.getCafe_notice()%></pre>
+									style="font-size: 16px; height: 150px; width: 550px;  font-family: "Nanum Gothic"; 
+									 margin-left: 10px; border-left-width: 0px; 
+									 border-top-width: 0px; border-bottom-width:
+									  0px; background-color: rgba(255, 255, 255, 0); 
+									  border-right-width: 0px;"background-color:rgba(255,255,255,0);"><%=c.getCafe_notice()%></pre>
 							</span>
 						</tr>
 						</td>
