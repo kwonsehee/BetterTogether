@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>환급페이지</title>
+<title>Better Together</title>
 <%if(session.getAttribute("msg") != null){ %>
 <script>
 	alert('<%=session.getAttribute("msg") %>');
@@ -23,40 +23,40 @@
  	}
 %>
 <style>
-        .line{
-            float: left;
-            width: 100%;
-            height: 7px;
-            background-color: rgba(255, 96, 100, 0.7);
-            margin-top: 15px;
-        }
+	.line {
+		border: 0.5px solid #937cf790;
+	}
+	
+	#btSection {
+		padding-bottom: 100px;
+	}
         .refund_box{
             width: 560px;
             height: 80%;
-            float: left;
+            /* float: left; */
+            margin-left:300px;
         }
         #content-1 p{
      /*        border:solid 1px red;  */
-            font-size: 30px;
+            font-size: 24px;
             text-align: center;
-            margin-top: 30px;
         }
         
         #refund, #refund button, #refund tr{
-            font-family: "Do Hyeon";
+            font-family: "Nanum Gothic";
             font-size: 20px;
         }
         #refund button{
             width: 120px;
             height: 50px;
             border-radius: 20px;
-            border: #f7dede;
-            background-color: #f7dede;
+            border: #e6e4e4b6;
+            background-color: #e6e4e4b6;
             margin-top: 30px;
         }
         #content-2{
             padding-left: 22%;
-            margin-top: 12%;
+            margin-top: 5%;
         }
     </style>
 </head>
@@ -65,7 +65,7 @@
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
 
-<section id="content" class="content_css">
+<section id="btSection" class="content_css">
 
         <section id="content-1">
             <p>환급 받기</p>
@@ -157,5 +157,7 @@
 
        
     </section>
+    
+    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>
