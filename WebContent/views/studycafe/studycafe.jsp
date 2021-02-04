@@ -35,9 +35,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#btHeader{
-    top: 0px;
+
+
+.btSection{
+	padding-bottom: 100px;
+
 }
+
 /* 바깥 영역 */
 .outer {
 	width: 100%;
@@ -194,8 +198,8 @@
 	<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
 
-	<section id="content" class="content_css">
-		<div class="outer" style="padding-top: 100px;margin-bottom: 40px;"">
+		<section id="btSection" class="btSection">
+		
 		
 				
 		
@@ -421,8 +425,7 @@
 			</script>
 			
 		 
-				
-		</div>
+		 
 
  
 
