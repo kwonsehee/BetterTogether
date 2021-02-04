@@ -45,6 +45,7 @@
 	margin-top: 20px;
 	margin-bottom: 70px;
 	border-radius: 20px;
+	padding-bottom: 100px;
 }
 
 .galleryArea {
@@ -191,7 +192,7 @@
 	<%@ include file="../common/common_ui.jsp"%>
 
 	<section id="content" class="content_css">
-		<div class="outer" style=" padding-top: 100px;">
+		<div class="outer" style="padding-top: 100px;margin-bottom: 40px;"">
 		
 				
 		
@@ -253,7 +254,7 @@
 						<button id="bt1" type="submit" name="searchCondition" value="area" <%= selected[0] %> >적용</button> 
 						</form>
 					 
-						<form style=" float:left;width: 420px;" >  <MARQUEE DIRECTION="left" style="text-shadow: 2px 2px 4px gray; color : pink; ">제휴카페로 등록해 카페를 제일먼저 홍보하세요! </MARQUEE></form>
+						<form style=" float:left;width: 420px;" >  <MARQUEE DIRECTION="left"  style="color : #937cf790;">제휴카페로 등록해 카페를 제일먼저 홍보하세요! </MARQUEE></form>
 						 
 					<form action="<%=request.getContextPath()%>/cafe/search"
 						method="get"
@@ -281,7 +282,7 @@
 				
 			 
 				<!--  경계바 -->
-				<hr id="line1">
+				<div id="line1"></div>
 
 
 
@@ -340,7 +341,7 @@
 				
 				
 	 
-				<hr id="line1">
+				<div id="line1"></div>
 			</div>
 			
 
@@ -416,8 +417,7 @@
 				});
 			</script>
 			
-			
-			
+		 
 				
 		</div>
 
@@ -425,7 +425,12 @@
 
 	</section>
 	<footer id="btFooter" style="margin-top: 0px;">
-		<pre id="btFooter_pre">KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 김언체 ｜  개인정보관리책임자 : 강명주
+		<pre id="btFooter_pre" style="
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+">KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 김언체 ｜  개인정보관리책임자 : 강명주
 
         강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F
         강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F
