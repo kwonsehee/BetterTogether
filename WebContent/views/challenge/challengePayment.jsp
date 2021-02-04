@@ -23,72 +23,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <style>
-/* content 부분 */
-#content-1 {
-	margin-top: -60px;
-	width: 100%;
-	height: 85%;
-}
 
-#content-1 p {
-	margin-left: 10px;
-	font-size: 25px;
-	color: rgb(156, 154, 154);
-	float: left;
-}
-
-#content-2 {
-	margin-top: -120px;
-	width: 100%;
-	height: 15%;
-}
-
-
-#sec-1 {
-	width: 30%;
-	height: 20%;
-}
-
-#sec-2 {
-	width: 70%;
-	float: right;
-}
-
-.sec-3 {
-	width: 20%;
-}
-
-.sec-3 img {
-	margin-left: 50px;
-	margin-top: -14px;
-	width: 50px;
-	height: 50px;
-}
-
-.sec-4 {
-	width: 85%;
-	height: 20%;
-	float: right;
-	margin-top: -100px;
-}
-
-#table-1 {
-	font-family: "Do Hyeon";
-	font-size: 20px;
-	margin-left: 20px;
-	margin-top: -120px;
-	margin-bottom: 15px;
-}
-
-#table-1 tr:nth-child(1) {
-	font-size: 30px;
-}
-
-#table-2, #table-3, #table-4 {
-	font-family: "Do Hyeon";
-	font-size: 20px;
-	margin-top: 50px;
-}
 
 #pay_title {
 	width: 100%;
@@ -103,41 +38,6 @@ button:focus {
 	outline: none;
 }
 
-
-#payBackInfo {
-	font-family: "Do Hyeon";
-	width: 320px;
-	height: 30px;
-	border-radius: 20px;
-	border: solid 1px #fdc8c6;
-	background-color: white;
-	font-size: 20px;
-}
-
-#challImg {
-	width: 100px;
-	height: 100px;
-}
-
-#sec-1 img {
-	margin-left: 50px;
-	margin-top: -14px;
-	width: 250px;
-	height: 150px;
-}
-
-.challInfo {
-	font-family: "Do Hyeon";
-	width: 80px;
-	height: 30px;
-	border-radius: 20px;
-	border: solid 1px #fdc8c6;
-	background-color: white;
-	font-size: 20px;
-	margin-right: 10px;
-}
-
-/* 디자인 수정 */
 
 #btSection {
 	padding-bottom: 80px;
@@ -169,6 +69,7 @@ button:focus {
 	margin-left: 7%;
 	border-radius: 5px;
 	width:94.5%;
+	text-align:center;
 }
 
 #chall_title {
@@ -281,6 +182,13 @@ input[type="radio"]{
 	padding-bottom:3%;
 }
 
+ #challenge_btn:focus,#back_btn:focus {
+	outline: none;
+  border : solid 1px #937CF7;
+  background-color: #e0dbf890;
+	
+} 
+
 </style>
 </head>
 </head>
@@ -288,7 +196,6 @@ input[type="radio"]{
    <%@ include file="../common/common_ui.jsp"%>
 	
    <section id="btSection" class="content_css">
-   <form action="<%=request.getContextPath()%>/order/paySuccess" id="challNoForm" method="post">
       <p id="pay_title">결제정보</p>
       <div class="line"></div>
       
@@ -342,7 +249,7 @@ input[type="radio"]{
       </table>
       </section>
       <button id="back_btn" type="button" onclick="javascript:history.back();">뒤로가기</button>
-      <button type= submit id="challenge_btn">결제하기</button>
+      <button id="challenge_btn">결제하기</button>
       <%-- <section id="content-1">
          <br>
          <section id="sec-1">
@@ -422,9 +329,37 @@ input[type="radio"]{
       </section>
          <button id="back_btn" type="button" onclick="javascript:history.back();">뒤로가기</button>
          <button type= submit id="challenge_btn">결제하기</button> --%>
-         
-      </form>
    </section>
+   
+	<script>
+	const challenge_btn = document.getElementById('challenge_btn');
+	challenge_btn.addEventListener('click',function(){
+	 	
+		var radioVal = $('input[name="payment"]:checked').val();
+		console.log(radioVal);
+		var url = '<%=request.getContextPath()%>/order/paySuccess?challNo=<%=ch.getChallNo()%>&payment=2';
+		
+		// 팝업 가운데에 띄우기
+		var popupWidth = 550;
+		var popupHeight = 300;
+
+		var popupX = (window.screen.width / 2) - (popupWidth / 2);
+		// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
+
+		var popupY= (window.screen.height / 2) - (popupHeight / 2);
+		// 만들 팝업창 height 크기의 1/2 만큼 보정값으로 빼주었음
+		
+		if(radioVal == 1){
+			$("#challNoForm").attr("action", "<%=request.getContextPath()%>/order/paySuccess");
+			$("#challNoForm").submit();
+		} else if(radioVal == 2) {
+			//window.open(url , "포인트 결제", "width=350, height=300, scrollbars=no");
+			window.open(url , "포인트 결제",  'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+			$("#challNoForm").submit();
+		} 
+	});
+	
+	</script>
  
 	<%@ include file="../common/footer.jsp" %>
 

@@ -124,7 +124,7 @@
 }
 
 #chall_title {
-	font-size: 15px;
+	font-size: 13px;
 	color: #252525b6;
 	font-weight: bold;
 }
@@ -196,6 +196,12 @@
 .line {
 	border: 0.5px solid #937cf790;
 }
+
+.dateBtn:focus, #challenge_btn:focus, #searchBtn:focus, .pagingBtn:focus {
+	outline: none;
+	border: solid 1px #937CF7;
+	background-color: #e0dbf890;
+}
 </style>
 
 </head>
@@ -211,9 +217,9 @@
         <!-- 1:시작전 2:진행중 3:종료 -->
         <form action="<%=request.getContextPath()%>/chall/type" method="post" id="type_form">
         	<span id="btnType_area">
-				<button type="submit" name="challBoardType" value="1">시작전</button>
-				<button type="submit" name="challBoardType" value="2">진행중</button>
-				<button type="submit" name="challBoardType" value="3">종료</button>
+				<button type="submit" class="dateBtn" name="challBoardType" value="1">시작전</button>
+				<button type="submit" class="dateBtn" name="challBoardType" value="2">진행중</button>
+				<button type="submit" class="dateBtn" name="challBoardType" value="3">종료</button>
 			</span>
         </form>
         
@@ -273,27 +279,27 @@
               
             <!-- 처음으로(<<) -->
 			<% if(s != null) { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=1&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;&lt;</button>		
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=1&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;&lt;</button>		
 			<%}else if(cate !=0){ %>
-			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=1&cate=<%= cate %>'"> &lt;&lt;</button>		
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=1&cate=<%= cate %>'"> &lt;&lt;</button>		
 			<% }else if(challBoardType !=0 ){ %>
-			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=1&challBoardType=<%= challBoardType %>'"> &lt;&lt;</button>		
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=1&challBoardType=<%= challBoardType %>'"> &lt;&lt;</button>		
 			<% } else {%>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=1'"> &lt;&lt;</button>	
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=1'"> &lt;&lt;</button>	
 			<% } %>  
 			
 			<!-- 이전으로(<) -->
 			<% if(pi.getCurrentPage() == 1) {%>
 			<button disabled> &lt; </button>
 			<% } else if(s != null) { %>		
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() - 1%>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;</button>	
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() - 1%>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &lt;</button>	
 			
 			<%}else if(cate !=0){ %>
-			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getCurrentPage() - 1%>&cate=<%= cate %>'"> &lt;</button>		
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getCurrentPage() - 1%>&cate=<%= cate %>'"> &lt;</button>		
 			 <%}else if(challBoardType !=0){ %>
-			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?challBoardType=<%= pi.getCurrentPage() - 1 %>&challBoardType=<%= challBoardType %>'"> &lt;</button>
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/type?challBoardType=<%= pi.getCurrentPage() - 1 %>&challBoardType=<%= challBoardType %>'"> &lt;</button>
 			<% } else {%>
-	        <button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() - 1%>'"> &lt; </button>
+	        <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() - 1%>'"> &lt; </button>
 			<% } %>
 			
 			<!-- 10개의 페이지 목록 -->
@@ -301,13 +307,13 @@
 			<% if(p == pi.getCurrentPage()) { %>
 			<button style="background:lightgray;" disabled><%= p %></button>
 			<% } else if(s != null){%>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%=p %>&searchCondition=<%= searchCondition %>&search=<%=search %>'"> <%= p %></button>	
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%=p %>&searchCondition=<%= searchCondition %>&search=<%=search %>'"> <%= p %></button>	
 			<%}else if(cate !=0){ %>
-			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= p%>&cate=<%= cate %>'">  <%= p %></button>		
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= p%>&cate=<%= cate %>'">  <%= p %></button>		
 			<%} else if(challBoardType !=0) {%>
-			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=<%= p%>&challBoardType=<%= challBoardType %>'">  <%= p %></button>		
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=<%= p%>&challBoardType=<%= challBoardType %>'">  <%= p %></button>		
 			<% } else {%>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%=p %>'"> <%= p %> </button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%=p %>'"> <%= p %> </button>
 			<% } %>
 			<% } %>
             
@@ -316,23 +322,23 @@
 			<button disabled> &gt;</button>
 			<% } else if (s != null){%>
 			
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() + 1 %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;</button>				
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getCurrentPage() + 1 %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;</button>				
 			<%}else if(cate !=0){ %>
-			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getCurrentPage() + 1%>&cate=<%= cate %>'"> &gt;</button>		
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getCurrentPage() + 1%>&cate=<%= cate %>'"> &gt;</button>		
 			<% } else if (challBoardType !=0) {%>
-			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=<%= pi.getCurrentPage() + 1%>&challBoardType=<%= challBoardType %>'"> &gt;</button>		
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=<%= pi.getCurrentPage() + 1%>&challBoardType=<%= challBoardType %>'"> &gt;</button>		
 			<% } else {%>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt;</button><% } %>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt;</button><% } %>
               
              <!-- 맨 끝으로 (>>) -->
 			<% if(s != null) {%>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getMaxPage() %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;&gt; </button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/search?currentPage=<%= pi.getMaxPage() %>&searchCondition=<%= searchCondition %>&search=<%= search %>'"> &gt;&gt; </button>
 			<%}else if(cate !=0){ %>
-			 <button onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getMaxPage()%>&cate=<%= cate %>'">  &gt;&gt;</button>		
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/member/cateinput?currentPage=<%= pi.getMaxPage()%>&cate=<%= cate %>'">  &gt;&gt;</button>		
 			<% } else if(challBoardType !=0){ %>
-			 <button onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=<%= pi.getMaxPage()%>&challBoardType=<%= challBoardType %>'">  &gt;&gt;</button>		
+			 <button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/type?currentPage=<%= pi.getMaxPage()%>&challBoardType=<%= challBoardType %>'">  &gt;&gt;</button>		
 			<% } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath() %>/chall/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 			
 			<% }  %>  
                
