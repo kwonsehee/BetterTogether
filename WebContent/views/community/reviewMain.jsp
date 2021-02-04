@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Better Together</title>
 <style>
 #btSection {
 	padding-bottom: 100px;
@@ -45,31 +45,32 @@
 	margin-top: 15px;
 }
 
-#reviewTb {
+.reviewTb {
 	width: 100%;
 	height: 100px;
 }
 
-#reviewTb tr:nth-child(1) {
+.reviewTb tr:nth-child(1) {
 	height: 20%;
 	margin-top: 5px;
 }
 
-#nickname, #starArea, #createDate, #challName {
+.nickname, .starArea, .createDate, .challName {
 	display: inline-block;
 	margin-left: 10px;
 }
 
-#starArea {
+.starArea {
 	margin-left: 10px;
 	color: #937cf790;
 }
 
-#contentArea {
+.contentArea {
 	display: inline-block;
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-right: 10px;
+	background-color:
 }
 
 /* 페이징 바 */
@@ -211,20 +212,20 @@
 		<% if(rList != null) { %>
 		<% for(Review r : rList) { %>
 		<div class="reviewdiv">
-			<table id="reviewTb">
-				<tr>
-					<td id="nickname"><%= r.getNickName() %></td>
-					<td id="challName"><%= r.getChallTitle() %></td>
-					<td id="starArea"><%if(r.getrGrade() == 5) { %> ★★★★★ 
+			<table class="reviewTb">
+				<tr class="firstTr">
+					<td class="nickname"><%= r.getNickName() %></td>
+					<td class="challName"><%= r.getChallTitle() %></td>
+					<td class="starArea"><%if(r.getrGrade() == 5) { %> ★★★★★ 
 									  <% } else if(r.getrGrade() == 4) { %>★★★★
 									  <% } else if(r.getrGrade() == 3) { %>★★★
 									  <% } else if(r.getrGrade() == 2) { %>★★
 									  <% } else { %>★<% } %>
 					</td>
-					<td id="createDate"><%= r.getCreateDate() %></td>
+					<td class="createDate"><%= r.getCreateDate() %></td>
 				</tr>
-				<tr>
-					<td id="contentArea"><%= r.getrContent() %></td>
+				<tr class="secondTr">
+					<td class="contentArea"><%= r.getrContent() %></td>
 				</tr>
 			</table>
 		</div>
@@ -323,12 +324,13 @@
  		</script>
  		
  		<script>
-    	// [등록] 버튼 클릭 이벤트
+    	// [등록] 버튼 클릭 이벤트 - ajax로 입력 한 값 넘기기
         $(function(){
         	$("#submit").click(function(){
         		<%if(loginUser != null) {%>
         		var content = $("#reviewWriteArea").val();
         		var challNo = $("#challSelect").val();
+        		
         	 $.ajax({
         			url : "<%= request.getContextPath() %>/review/insert",
         			type : "post",
@@ -337,27 +339,40 @@
         			success : function(data){
         				
         				// 갱신 된 rList를 후기 div에 적용
-        				reviewTable = $("#reviewTb");
-        				reviewTable.html("");	// 기존 테이블 정보 초기화
+        				reviewWrap = $(".reviewWrap");
+        				reviewWrap.html("");	// 기존 리뷰 정보 초기화
         				
         				// 새로 받아온 갱신된 댓글 리스트들을 for문을 통해 다시 table에 추가
         				for(var key in data){
-        					console.log(key);
-        					console.log(data);
-        					console.log(data[key].createDate);
         					
-        					var tr = $("<tr>");
-        					var writerTd = $("<td>").text(data[key].nickName);
-        					var challTitleTd = $("<td>").text(data[key].challTitle);
-        					var gradeTd = $("<td>").text(data[key].rGrade);
-        					var createDateTd = $("<td>").text(data[key].createDate);
-        					var contentTd = $("<td>").text(data[key].rContent);
+        					var reviewdiv = $("<div class='reviewdiv'></div>");
+        					var reviewTb = $("<table class='reviewTb'></table>");
+        					var firstTr = $("<tr class='firstTr'></tr>");
+        					var secondTr = $("<tr class='secondTr'></tr>");
+        					var writerTd = $("<td class='nickname'></td>").text(data[key].nickName);
+        					var challTitleTd = $("<td class='challName'></td>").text(data[key].challTitle);
+        					var gradeTd;
+        					if(data[key].rGrade == 5){
+        						gradeTd = $("<td class='starArea'></td>").text("★★★★★");
+        					}else if(data[key].rGrade == 4){
+        						gradeTd = $("<td class='starArea'></td>").text("★★★★");
+        					}else if(data[key].rGrade == 3){
+        						gradeTd = $("<td class='starArea'></td>").text("★★★");
+        					}else if(data[key].rGrade == 2){
+        						gradeTd = $("<td class='starArea'></td>").text("★★");
+        					}else {
+        						gradeTd = $("<td class='starArea'></td>").text("★");
+        					}
+        					var createDateTd = $("<td class='createDate'></td>").text(data[key].createDate);
+        					var contentTd = $("<td class='contentArea'></td>").text(data[key].rContent);
         					
-        					tr.append(writerTd, challTitleTd, gradeTd, createDateTd, contentTd);
-        					
-        					reviewTable.append(tr);
+        					firstTr.append(writerTd, challTitleTd, gradeTd, createDateTd);
+        					secondTr.append(contentTd);
+        					reviewTb.append(firstTr, secondTr);
+        					reviewdiv.append(reviewTb);
+        					reviewWrap.append(reviewdiv);
         				}
-        					
+        				
     					// 댓글 작성 textarea 부분 리셋
     					$("#reviewWriteArea").val("");
         			},
