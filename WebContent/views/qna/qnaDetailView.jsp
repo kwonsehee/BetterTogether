@@ -128,7 +128,6 @@
 					<button type="button" id="deleteBtn" class="qnaBtn">삭제하기</button>
 					<button type="button" id="updateBtn" class="qnaBtn">수정하기</button>
 					<button type="button" id="listBtn" class="qnaBtn">목록으로</button>
-
 				<% } else if (loginUser.getMembertype() == 0) { %>
 					<% if (a == null) { %>
 						<button type="button" id="listBtn" class="qnaBtn">목록으로</button>

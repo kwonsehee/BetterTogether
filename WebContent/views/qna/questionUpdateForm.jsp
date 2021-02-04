@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Question Update</title>
+<title>Better Together</title>
 <style>
 body {
 	width: 1000px;

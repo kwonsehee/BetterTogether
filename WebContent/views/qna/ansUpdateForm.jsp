@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Answer Update</title>
+<title>Better Together</title>
 <style>
 
 .title {
