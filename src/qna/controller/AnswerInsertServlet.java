@@ -47,6 +47,8 @@ public class AnswerInsertServlet extends HttpServlet {
 		
 		a = new QnA(title, content, referenceNo, writer);
 		
+		System.out.println(a);
+		
 		int result = new QnAService().insertAnswer(a);
 		
 		if(result>0) {

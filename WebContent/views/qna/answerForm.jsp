@@ -37,6 +37,7 @@
 	font-size: 20px;
 	font-family: "Nanum Gothic";
 	padding-left: 2%;
+	color: #757575;
 }
 
 #writeArea {
@@ -47,6 +48,7 @@
 	font-size: 20px;
 	font-family: "Nanum Gothic";
 	padding-left: 2%;
+	color: #757575;
 }
 
 .Btn1 {
@@ -83,7 +85,7 @@
 					</td> 
 				</tr>
 				<tr>
-					<td class="qnaTable"><textarea cols="50" rows="6" name="title" id="write_title" placeholder="<%= content %>" readonly></textarea></td>
+					<td class="qnaTable"><textarea cols="50" rows="6" name="title" id="write_title" readonly> <%= content %></textarea></td>
 				</tr>
 				<tr >
 					<td class="qnaTable"><textarea cols="50" id="writeArea" rows="15"
@@ -92,8 +94,8 @@
 			</table>
 			<!-- 등록 버튼 , 나가기 버튼 -->
 			<div id="btnArea">
-				<button type="submit" class="Btn1">등록하기</button>
 				<button type="button" class="Btn1" onclick="javascript:history.back();">뒤로가기</button>
+				<button type="submit" class="Btn1">등록하기</button>
 			</div>
 		</section>
 
