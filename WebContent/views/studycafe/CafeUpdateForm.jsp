@@ -31,6 +31,9 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
+#btHeader{
+    top: 0px;
+}
 /* 바깥 영역 */
 .outer {
 	width: 100%;
