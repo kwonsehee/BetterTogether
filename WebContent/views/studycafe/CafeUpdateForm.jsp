@@ -31,9 +31,12 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
-#btHeader{
-    top: 0px;
+
+.btSection{
+	padding-bottom: 100px;
+
 }
+
 /* 바깥 영역 */
 .outer {
 	width: 100%;
@@ -135,7 +138,7 @@
 	<%@ include file="../common/common_ui.jsp"%>
 
 
-	<div class="outer" style="margin-top: 100px;">
+	 <section id="btSection" class="btSection"> 
 		<div class="container">
 
 			<form action="<%=request.getContextPath()%>/cafe/update"
@@ -355,7 +358,7 @@
 
 			</form>
 		</div>
-	</div>
+	</section>
 
 
 	<footer id="btFooter" style="margin-top: 0px;">

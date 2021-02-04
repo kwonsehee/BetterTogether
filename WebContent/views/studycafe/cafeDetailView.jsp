@@ -39,6 +39,7 @@ z-index: -3;
 	margin-bottom: 70px;
 	border-radius: 20px;
 	z-index: -2;
+	
 }
 
 .galleryArea {
@@ -48,7 +49,8 @@ z-index: -3;
 	height: 950px;
 	min-height: 400px;
 	margin: auto; 
-	z-index: 0;
+	z-index: 0; 
+	
 }
 
 .content_css button {
