@@ -83,13 +83,20 @@
 					   //공지사항버튼
 					   const noticeBtn = document.getElementById("noticeBtn");
 					   noticeBtn.addEventListener('click',function(){
+						   
 					      location.href="<%= request.getContextPath()%>/notice/list";
 					   });
 					   
 					 	//나의 챌린지 인증하기 버튼
 						const confirmBtn = document.getElementById("confirmBtn");
 						confirmBtn.addEventListener('click',function(){
+							<%if(loginUser!=null){%>
 							location.href="<%= request.getContextPath()%>/confirm/joinchalllist";
+							<%}else{%>
+							 alert("로그인 후 이용 가능합니다.");
+							 window.open("<%= request.getContextPath()%>/views/member/MemberLogin.jsp","_blank","height=500,width=500");
+				             
+							<%}%>
 						});
 						
 					   // qna버튼
@@ -166,7 +173,7 @@
           			const newNews = document.getElementById('newNews');
             		newNews.addEventListener('click',function(){
              	 	if(<%=news.size() %>>0){
-              			window.open("<%=request.getContextPath()%>/views/common/alertNews.jsp","새로운 알림","width=500, height=400");
+              			window.open("<%=request.getContextPath()%>/views/common/alertNews.jsp","새로운 알림","width=550, height=500");
               			}
           			});
       			   </script>
@@ -197,7 +204,12 @@
     <!--사이드바 여닫여닫-->
    <script>
         function openNav() {
+        	<%if(loginUser!=null){%>
           document.getElementById("mySidenav").style.width = "250px";
+        	<%}else{%>
+        	alert("로그인 후 이용 가능합니다.");
+			 window.open("<%= request.getContextPath()%>/views/member/MemberLogin.jsp","_blank","height=500,width=500");
+            <%}%>
         }
         
         function closeNav() {
@@ -269,13 +281,15 @@
           
          </script>
 		<% } else { %>
-		<script>
+		<%-- <script>
 		 const sidebar_css = document.getElementById('sidebar_css');
 		 sidebar_css.addEventListener('click',function(){
 			 alert("로그인 후 이용 가능합니다.");
+			 window.open("<%= request.getContextPath()%>/views/member/MemberLogin.jsp","_blank","height=500,width=500");
+             
             location.href="<%= request.getContextPath()%>/views/member/MemberLogin.jsp";
          });
-		</script>
+		</script> --%>
 		<% } %>
    
 

@@ -21,6 +21,9 @@
 <meta charset="UTF-8">
 <title>인증 리스트</title>
    <style>
+   #btSection {
+	padding-bottom: 100px;
+}
      /* content 부분 */
      	#content-1{
             
@@ -30,28 +33,26 @@
         }
 
         #content-1 p{
-            border:solid 1px red; 
+      /*       border:solid 1px red;  */
             font-size: 30px;
             text-align: center;
             margin-top: 18px;
         }
 
         #content-2{
-            border:solid 1px blue; 
+       /*      border:solid 1px blue;  */
             width: 100%;
             height: 90%;
             float: left;
-
-
         }
         
         .confirm{ 
             width: 80%;
-            height: 70%;
+            height: 80%;
             margin-top: 5%;
             margin-left: 10%;
-            text-align: center;
-            border: 1px solid black; 
+           
+          /*   border: 1px solid black;  */
             padding-top: 10%;
             background: white; 
         }
@@ -73,99 +74,111 @@
         .line{
             float: left;
             width: 100%;
-            height: 7px;
-            background-color: rgba(255, 96, 100, 0.7);
+             height: 1px;
+            
+            background-color:#937cf790;
+             border: 0.5px solid #937cf790;
         }
         
         /* 뒤로가기 버튼 */
         .back_btn,  .plus_btn {
-            width: 130px;
-            font-family: "Do Hyeon";
-            font-size: 20px;
-            background: none;
-            border-radius : 20px;
-            border: 2px solid #ff60657e;
-            float: right;
-            margin-top : 2%;
-            margin-right : 10%;
+    /*          float: right; */
+            
+            font-family: "Nanum Gothic";
+         border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
+           padding:5px 15px 5px 15px;
+           background-color: #e6e4e4b6;
+           font-size:10px;
+           font-weight: bolder;
         }
-        .confirm_table td{
-        	width: 250px;
-        	height: 180px;
-        	border: 1px solid red;
-        	
-        }
+       
+        
+          .pagingArea {
+       		margin-top:2%;
+			text-align:center;
+		}
+		.pagingArea button {
+			width:25px;
+			margin-top:20px;
+			border : 0px;
+			color : #757575;
+			font-family: "Nanum Gothic";
+			font-size:12px;
+		}
+		
+		.pagingArea button:hover {
+			cursor:pointer;
+		}
+		.button_area{
+		 float: left;
+		
+		margin-top:3%;
+		margin-left:10%;
+		display:block;
+		
+		}
+		#confirm_photo{
+	      width:90%;
+	      min-height:400px;
+	      margin:auto;
+	     margin-top:5%;
+	     padding-left:5%;
+      
+	   
+      }
+       #confirm_photo_list{
+      	width:200px;
+      	display:inline-block;
+      	padding:10px;
+      	margin:10px;
+      	text-align:left;
+      	
+      }
+  
     </style>
 </head>
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
-<section id="content" class="content_css">
+<section id="btSection" class="content_css">
 
         <section id="content-1">
         <%if(join==0){ %>
-         <p>인증모아보기</p>	
+         <p >인증모아보기</p>	
         <%}else{ %>
-            <p>인증하기</p>
+            <p >인증하기</p>
 		<%} %>
             <div class="line"></div>
         </section> 
 
         <section id="content-2">
         	
-            <div class='confirm'style="padding-top: 7%;">
-            <p style="text-align: center; margin-top:0px;"><%=title %></p>
-                <table class="confirm_table"style="width : 100%; height: 80%; border : solid 1px red;">
+            <div class="confirm" style="padding-top: 50px;padding-bottom: 50px;">
+            <p style="text-align:center;margin-top:0px;" ><%=title %></p>
+              
                  <% if(list.isEmpty()) { %>
-                 <tr style="border : solid 1px red;">
-                 	<th style="color : red; font-size:35px;">챌린지 인증사진이 없습니다.</th>
-                 </tr>
-                 <tr>
-                   <%-- <%if(join>0){ %>
-                        <th ><input type="submit" value="+" class="plus_btn" id="plusBtn"></th>
-                    <%} %> --%>
-                 </tr>
+              
+                 	<p style="text-align:center;color : #937cf790; font-size:35px;padding-top:10%;padding-bottom:10%;">챌린지 인증사진이 없습니다.</p>
+                 
                   <% } else { %>
                   		
-                  <tr style="border : solid 1px red;">
-                    <% for(int i=0;i<loop;i++) { %>
-                        <td style="border : solid 1px red;">
-                        <input type="hidden" name="ceno" value="<%=list.get(i).getCer_id() %>">	
-                        <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= list.get(i).getCer_pic()%>">
-                        </td>
+                	<div id="confirm_photo">
+                    <% for(int j=0;j<list.size();j++) { %>
+                        <div id="confirm_photo_list">
+                        
+                        <input type="hidden" name="ceno" value="<%=list.get(j).getCer_id() %>">	
+                        <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= list.get(j).getCer_pic()%>">
+                        
+                      </div>
                     <% } %>
-                    </tr>
-                    <tr>
-                    <% for(int i=4;i<list.size();i++) { %>
-                        <td style="border : solid 1px red;">
-                        <input type="hidden" value="<%=list.get(i).getCer_id() %>">   
-                        <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= list.get(i).getCer_pic()%>">
-                        </td>
-                    <% } %>
-                    
-                   
-                     
-                    </tr>    
-                    
+                   </div>
+         
                  <% } %>
-                </table>
-                
+             
             </div>
-             <%if(join>0){ %>
-                 <button type="button" id="plusBtn" class="plus_btn">인증하기</button>
-                 <script>
-                        
-                    //+버튼 클릭 이벤트
-                    const plusBtn = document.getElementById('plusBtn');
-                    plusBtn.addEventListener('click',function(){
-                       location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>&confirm=<%=confirm%>';
-                    });
-                        
-						</script>  
-                 
-                    <%} %>
-            <button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();">목록으로</button>
-		
+            
+            <% if(!list.isEmpty()) { %>
               <!-- 페이징 바 -->
 			<div class="pagingArea">
 			<!-- 맨 처음으로 (<<) -->
@@ -212,31 +225,34 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/confirm/list?title=챌린지&cno=<%=cno%>&currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 			<%} %>
 			</div>
-			
+			<%} %>
         </section>
-	  
+    
+    <div class="button_area">
+       <button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();">목록으로</button>
+	  <%if(join>0){ %>
+        <button type="button" id="plusBtn" class="plus_btn"style="margin-left: 940px;">인증하기</button>
+        <script>
+                        
+        //+버튼 클릭 이벤트
+        const plusBtn = document.getElementById('plusBtn');
+        plusBtn.addEventListener('click',function(){
+        location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>&confirm=<%=confirm%>';
+        });
+        </script>  
+                 
+        <%} %>
+      </div>
+		
     </section>
 	<script>
-   <%--  //+버튼 클릭 이벤트
-         const plusBtn = document.getElementById('plusBtn');
-         plusBtn.addEventListener('click',function(){
-            location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>';
-         });
-         
- --%>
-     <%-- 	//목록으로 버튼 이벤트
-     	const backBtn = document.getElementById('backBtn');
-     	backBtn.addEventListener('click',function(){
-     		location.href='<%= request.getContextPath()%>/confirm/joinchalllist';
-     	});
- --%>
   //인증 디테일으로 이동
 	$(function(){
-		$(".confirm_table td").mouseover(function(){
+		$("#confirm_photo #confirm_photo_list").mouseover(function(){
 			console.log("들어옴 ");
-			$(this).css("background","#f7dede");
+			$(this).css("background","#e0dbf890");
 		}).mouseout(function(){
-			$(this).css("background", "#f9f1f1");
+			$(this).css("background", "white");
 		}).click(function(){
 			var ceno = $(this).children().eq(0).val();
 			location.href='<%= request.getContextPath() %>/confirm/detail?ceno=' + ceno;
@@ -244,5 +260,6 @@
 		});
 	});
 	</script>
+	 <%@ include file="../common/footer.jsp"%>
 </body>
 </html>

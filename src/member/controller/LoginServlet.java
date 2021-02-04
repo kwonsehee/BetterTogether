@@ -79,7 +79,7 @@ public class LoginServlet extends HttpServlet {
 			//알림디비에서 새로 알려줄 알림이 있는지 확인
 			ArrayList<News> news = new NewsService().getNews(userId);
 			System.out.println("news : "+news);
-			request.setAttribute("news", news);
+//			request.setAttribute("news", news);
 			session.setAttribute("news", news);
 			
 			//Home으로 이동(기존 요청 url을 남기지 않기 위해 서버에 재요청 처리)

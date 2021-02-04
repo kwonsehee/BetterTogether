@@ -54,7 +54,15 @@ window.close();
     width: 300px;
     height: 30px;
 }
-
+  .line{
+            float: left;
+            width: 100%;
+            height: 1px;
+            
+            background-color:#937cf790;
+             border: 0.5px solid #937cf790;
+             
+        } 
 </style>
 </head>
 <body>
@@ -64,7 +72,7 @@ window.close();
 		<form id="login_css" action="<%= request.getContextPath() %>/member/login"
 		method="post"onsubmit="return validate();">
 			<div id="loginTitle">Log in</div>
-            <hr>
+            <div class="line"></div>
 			<div id="loginForm">
                    
                         <label for="userId"><span>USERID</span></label>

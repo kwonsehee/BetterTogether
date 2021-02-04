@@ -49,7 +49,7 @@ public class NewsService {
 		return news;
 	}
 
-	//알림디비에서 새로 알려줄 값 보여주고 상태값을 n으로 변경
+	//알림디비에서 새로 알려줄 값 보여주고 난뒤 상태값을 n으로 변경
 	public int updateNews(String userId) {
 		Connection conn = getConnection();
 		

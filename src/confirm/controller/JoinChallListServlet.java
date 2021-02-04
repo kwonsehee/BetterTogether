@@ -40,11 +40,11 @@ public class JoinChallListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		//만약 로그인된 회원이 없다면 로그인 하는 화면으로 이동시켜주기
-		if((Member)session.getAttribute("loginUser")==null) {
-			request.getSession().setAttribute("msg", "로그인이 필요합니다.");
-			//login화면으로 redirect
-			response.sendRedirect(request.getContextPath()+"/views/member/MemberLogin.jsp");
-		}else {
+//		if((Member)session.getAttribute("loginUser")==null) {
+//			request.getSession().setAttribute("msg", "로그인이 필요합니다.");
+//			//login화면으로 redirect
+//			response.sendRedirect(request.getContextPath()+"/views/member/MemberLogin.jsp");
+//		}else {
 			Member loginUser = (Member)session.getAttribute("loginUser");
 			String userId=loginUser.getUserId();
 			
@@ -67,7 +67,7 @@ public class JoinChallListServlet extends HttpServlet {
 
 			// 1_2. 페이징 처리를 위한 변수 선언 및 연산
 			int pageLimit = 10;
-			int boardLimit = 3;
+			int boardLimit = 5;
 
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
 			System.out.println("page boardLimit : " + pi);
@@ -81,8 +81,8 @@ public class JoinChallListServlet extends HttpServlet {
 			
 			RequestDispatcher view = request.getRequestDispatcher("/views/confirm/joinchallListView.jsp");
 			view.forward(request, response);
-		}
-		
+			
+//		}
 		
 	}
 

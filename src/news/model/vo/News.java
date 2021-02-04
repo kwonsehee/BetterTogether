@@ -9,14 +9,16 @@ public class News {
 	private int post_no;
 	private String news_status;
 	private Date news_date;
+	private String title;
 	
 	public News() {}
 
-	public News(int news_no, int news_cate, int post_no) {
+	public News(int news_no, int news_cate, int post_no, String title) {
 		super();
 		this.news_no = news_no;
 		this.news_cate = news_cate;
 		this.post_no = post_no;
+		this.title=title;
 	}
 
 	public int getNews_no() {
@@ -67,10 +69,21 @@ public class News {
 		this.news_date = news_date;
 	}
 
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	@Override
 	public String toString() {
 		return "News [news_no=" + news_no + ", user_id=" + user_id + ", news_cate=" + news_cate + ", post_no=" + post_no
-				+ ", news_status=" + news_status + ", news_date=" + news_date + "]";
+				+ ", news_status=" + news_status + ", news_date=" + news_date + ", title=" + title + "]";
 	}
+
+	
 	
 }

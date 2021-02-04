@@ -69,6 +69,8 @@ public class ConfirmDao {
 									 rset.getString("FILE_PATH"),
 									 rset.getDate("CHALL_START"),
 									 rset.getInt("STATUS"),
+									 rset.getString("CHALL_PERIOD"),
+									 rset.getString("CHALL_FREQUENCY"),
 									 rset.getDate("END_DATE")));
 				System.out.println("내 리스트1 : "+list);
 			}
