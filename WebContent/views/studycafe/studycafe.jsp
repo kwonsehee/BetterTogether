@@ -35,6 +35,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+#btHeader{
+    top: 0px;
+}
 /* 바깥 영역 */
 .outer {
 	width: 100%;

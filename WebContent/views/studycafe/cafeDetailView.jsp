@@ -16,6 +16,10 @@
 <meta charset="UTF-8">
 <title>better together</title>
 <style>
+
+#btHeader{
+    top: 0px;
+}
 /* 바깥 영역 */
 .content_css{
 width: 100%;
