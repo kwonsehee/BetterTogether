@@ -3,6 +3,9 @@
 <%
 	ArrayList<Review> rList = (ArrayList<Review>) request.getAttribute("rList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	System.out.println("rList : " + rList);
+	System.out.println("pi: " + pi);
 %>
 
 <!DOCTYPE html>
