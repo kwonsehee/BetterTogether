@@ -21,51 +21,144 @@ System.out.println("jsp list : "+reList);%>
 <meta charset="UTF-8">
 <title>신고내역</title>
 <style>
-	#report_form{
-        width: 950px;
-      height: 1000px;
-      /* border: 1px solid black; */
-      margin-top: -6%;
-      padding-left: 5%;
-       background-color: #f9f1f1;
-       border-radius: 20px;
+
+        #questionBtn {
+            font-family: "Nanum Gothic";
+			border-radius: 10px;
+    		border: solid 1px #9e9e9e5b;
+    		padding: 5px 15px 5px 15px;
+    		background-color: #e6e4e4b6;
+    		font-size: 10px;
+    		font-weight: bolder;
+    		float: right;
+    		margin-top: 5%;
+    		margin-bottom: 1%;
         }
-    
-    #title{
-            margin-top: 70px;
-            font-family: "Do Hyeon";
-            font-size: 36px;
-            margin-left: 350px;
+
+        #con2_title h1{
+   
+            text-align: center;
+            font-family: "Nanum Gothic";
+    		color: #757575;
+    		font-size:24px;
+   
+        }
+
+		#btSection{
+			padding-bottom:40px;
+		}
+		
+        #line {
+           border: 0.5px solid #937cf790;
+           width: 80%;
+           margin: auto;
+        }
+
+        /* 게시판 */
+        #qnaBoard {
+            width: 100%;
+           /*  height: 400px;      */ 
+            border-collapse: collapse;
+            
+        }
+
+        #qnaBoard th, #qnaBoard td {
+            border-bottom: 1px solid #75757552;
+            padding: 2px;
+            padding-left: 10px;
+            text-align: center;
+            color : #757575;
+        }
+
+        #tb_title {
+            width:60%;
+            
+        }
+        #tb_author {
+            width:20%;
+        }
+        #tb_date {
+            width:10%;
+        }
+        #tb_num {
+            width: 5%;
+            padding-left: 2%;
+        }
+        #th_title {
+            background: white;
+           /* background : rgba(240, 240, 240, 0.7);*/
+            height: 30px;
+            font-family: "Nanum Gothic";
+            font-size: 14px;
+            color : #757575;
+        }
+
+        #write {
+            width:55px;
+            color:white;
+            font-family: "Nanum Gothic";
+            margin-top : 20px;
+            margin-left : 80%;
+        }
+        #write a {
+            font-size: 14px;
+        }
+
+        #mywrite {
+            width:100px;
+            font-family: "Nanum Gothic";
+            background: none;
+            border : 2px solid  #ff60657e;        
+        }
+        #mywrite a {
+            font-size: 14px;
+            color: #ff60657e;
+        }
+
+        #qnaBoard td:hover {
+            cursor : pointer;
         }
         
-     #report {
-            background-color: white;
-            width: 850px;
-            height: 800px;
-            text-align: center;
-            font-family: "Do Hyeon";
-            font-size: 24px;
-            border-radius: 20px;
+        #qnaBoard #title {
+        	
+    		text-align: center;
         }
-       #goMainBtn{
-            border: 1px solid #fdc8c6;
-            background-color: #fdc8c6;
-            border-radius: 20px;
-            font-family: "Do Hyeon";
-            font-size: 18px;
-            margin-left : 400px;
-            margin-top : 100px;
-        }  
+        
+        /* 페이징바 영역 */
+		.pagingArea {
+			text-align:center;
+			padding-left: 6%;
+    		margin: auto;
+		}
+		.pagingArea button {
+			width:25px;
+			margin-top:20px;
+			border : 0px;
+			color : #757575;
+			font-family: "Nanum Gothic";
+			font-size:12px;
+		}
+		
+		.pagingArea button:hover {
+			cursor:pointer;
+		}
+		
+		#board_div{	
+			width:80%;
+			margin:auto;
+		}
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp" %>
 
-	<section id="report_form">
+	<section id="btSection" class="btSection">
 	  
-      <h1 id="title">내가 작성한 신고</h1>
-        </div>
-        <div id="line"></div>
+	  <div id="con2_title">
+      		<h1 class="h1_title">내가 작성한 신고</h1>
+       </div>
+       
+       <div id="line"></div>
         
         <!-- qnaBoard -->
         <div id="board_div">
@@ -134,23 +227,23 @@ System.out.println("jsp list : "+reList);%>
 				
         </div>
         
-    <button id="goMainBtn" type="button" class="text_font joinform_btn">메인으로</button>
+    <button id="questionBtn" type="button" class="Btn1">메인으로</button>
     </section>
     
     
     <script>
 		 //1.메인으로 돌아가기
-		const goMainBtn = document.getElementById('goMainBtn');
-		goMainBtn.addEventListener('click',function(){
-			location.href="<%= request.getContextPath()%>";
+		const questionBtn = document.getElementById('questionBtn');
+		questionBtn.addEventListener('click',function(){
+			location.href="<%= request.getContextPath()%>/commu/main";
 		});
 		
 		// 게시판 상세보기 기능
 		$(function(){
 			$("#qnaBoard td").mouseenter(function(){
-				$(this).parent().css({"background":"lightgray", "cursor":"pointer"});
+				$(this).parent().css({"background":"#937cf790", "cursor":"pointer"});
 			}).mouseout(function(){
-				$(this).parent().css("background", "#f9f1f1");
+				$(this).parent().css("background", "none");
 			}).click(function(){
 				var rNo = $(this).parent().children().eq(0).text();
 				
@@ -163,5 +256,6 @@ System.out.println("jsp list : "+reList);%>
 			});
 		});
     </script>
+    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

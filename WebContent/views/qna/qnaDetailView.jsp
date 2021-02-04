@@ -184,7 +184,7 @@
 				location.href='<%=request.getContextPath()%>/qna/list';
 				});
 			</script>
-			
 			<%@ include file="../common/footer.jsp" %>
+			
 </body>
 </html>
