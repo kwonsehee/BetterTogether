@@ -40,6 +40,7 @@
 	width: 100%;
 	/* height: 400px; */
 	border-collapse: collapse;
+	margin-top:30px;
 }
 
 #board_div {
@@ -70,14 +71,17 @@
 
 #tb_title {
 	width: 60%;
+	 text-align:center;
 }
 
 #tb_date {
 	width: 15%;
+	 text-align:center;
 }
 
 #tb_views {
 	width: 5%;
+	 text-align:center;
 }
 
 #tb_updatebtn {
@@ -110,29 +114,23 @@
 	padding: 5px 15px 5px 15px;
 	background-color: #e6e4e4b6;
 	font-weight: bolder;
-	margin-left: 80%;
+	margin-left: 70%;
+	font-size: 10px;
 }
 
-#write a {
-	font-size: 10px;
-	text-decoration: none;
-}
 
 #back {
-	width: 100px;
+	width: 80px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
 	background-color: #e6e4e4b6;
 	font-weight: bolder;
-	margin-left: 5%;
+	margin-left: 10%;
+	font-size: 10px;
 }
 
-#back a {
-	font-size: 10px;
-	text-decoration: none;;
-}
 
 /* 페이징바 영역 */
 .pagingArea {
@@ -268,11 +266,11 @@
 		
 
 		<!-- 버튼 -->
-		<button class="btn" id="back">
-			<a href='<%= request.getContextPath()%>/board/main'>뒤로가기</a>
+		<button class="btn" id="back" onclick='location.href="<%= request.getContextPath()%>/board/main"'>
+			뒤로가기
 		</button>
-		<button class="btn" id="write">
-			<a href='<%= request.getContextPath()%>/views/community/boardWrite.jsp'>글쓰기</a>
+		<button class="btn" id="write" onclick='location.href="<%= request.getContextPath()%>/views/community/boardWrite.jsp"'>
+			글쓰기
 		</button>
 	</section>
 	

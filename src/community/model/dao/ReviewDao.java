@@ -144,7 +144,7 @@ public class ReviewDao {
 		int listCount = 0;
 		Statement stmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("getListCount");
+		String sql = prop.getProperty("getMyListCount");
 		
 		try {
 			stmt = conn.createStatement();

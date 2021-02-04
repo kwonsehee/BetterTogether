@@ -77,7 +77,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Better Together</title>
-
 <style>
 
 #btSection {
@@ -357,9 +356,17 @@
 	padding: 10px;
 }
 
-button:focus {
+#challenge_btn:focus, #chall_backBtn:focus {
 	outline: none;
+	border: solid 1px #937CF7;
+	background-color: #e0dbf890;
 }
+
+#challConfirm_btn:focus, #warning_btn:focus, #challEnd_btn:focus{
+	outline:none;
+}
+
+
 </style>
 </head>
 <body>

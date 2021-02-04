@@ -10,221 +10,162 @@
 	String reported_id= (String)request.getAttribute("reported_id");
 	
 	//각 카테고리의 고유번호 가져오기
-	int no = Integer.parseInt((String.valueOf(request.getAttribute("no"))));
- 
-	
+	int no = Integer.parseInt((String.valueOf(request.getAttribute("no"))));	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고작성하기</title>
-    <style>
+<title>Better Together</title>
+<style>
 
-         /* content 부분 */
+#title, .title {
+	text-align: center;
+	font-family: "Nanum Gothic";
+	font-size: 24px;
+	color: #757575;
+}
 
-         #report-form {
-            width: 100%;
-            height: 100%;
-            float: left;
+.qnaTable {
+	border-top: 3px solid #937cf790;
+	width: 80%;
+}
 
-        }
 
-        #content-1 {
-            width: 100%;
-            height: 70%;
-            padding-top: 8px;
-            padding-left: 60px;  /* border : 1px solid red; */
-        }
+#writebox {
+	width: 80%;
+}
 
-        .report_tb {
-        	height : 80%;
-            font-family: "Do Hyeon";
-            font-size: 19px;
-            border-collapse: collapse;
-            margin-top : 5%;
-            
-        }
+#write_title {
+	font-family: "Nanum Gothic";
+	width: 100%;   
+	height: 40px; 
+	border: 0px;
+	background: none;
+	padding-left: 2%;
+}
 
-        .report_tb tr{
-            border:1px solid #c2c1c1;
-        }
+#writeArea {
+	width: 100%;
+	border: 0px;
+	resize: none;
+	background: none;
+	font-size: 20px;
+	font-family: "Nanum Gothic";
+	padding-left: 2%;
+}
 
-       .report_tb tr > td {
-            background-color: white;
-        }
+#reportedName{
+	font-family: "Nanum Gothic";
+	width: 100%;   
+	height: 40px; 
+	border: 0px;
+	background: none;
+	padding-left: 2%;
+}
 
-        .report_tb th {
-            background-color: #ece8e8;
-            padding:5px;
-            border:1px solid #c2c1c1;
-        }
+#thArea{
+	width: 10%;
+	text-align: center;
+    font-family: "Nanum Gothic";
+    color: #757575;
+}
 
-        input[type="file"] {
-            font-family: "Do Hyeon";
-        }
+.filebox span, label, #ex_file, #reportedName{
+	color: #757575;
+	font-size: 15px;
+}
 
-        #content-2 {
-       /*  border : 1px solid black; */
-            width: 100%;
-            height: 15%;
+/*버튼*/
+.Btn1 {
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
+	float: right;
+	margin-bottom: 2%;
+}
 
-        }
+#btnArea {
+	padding-right:10%;
+}
 
-        .report_btn {
-            font-family: "Do Hyeon";
-            width: 170px;
-            height: 50px;
-            border-radius: 20px;
-            border: solid 1px #fdc8c6;
-            background-color: #fdc8c6;
-            margin: 5px;
-            font-size: 20px;
-            float:right;
-            margin-top:20px;
-        }
+.btSection #writebox {
+	margin: auto;
+}
 
-  /* 파일첨부 버튼 css */
-
-  .filebox label {
-            display: inline-block;
-            padding: .1em .75em;
-            margin-left: 2px;
-            font-size: inherit;
-            line-height: normal;
-            vertical-align: middle;
-            background-color: #fdc8c6;
-            cursor: pointer;
-            border: 1px solid #fdc8c6;
-            border-bottom-color: #e2e2e2;
-            border-radius: .25em;
-            font-size: 17px;
-        }
-
-        .filebox input[type="file"] {
-            /* 파일 필드 숨기기 */
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-
-        input[type="text"]{
-            height: 33px;
-            width: 762px;
-            border: white;
-            border-radius: 3px;
-        }
-
-        textarea{
-        /* border : 1px solid red; */
-            width: 99.5%;
-            border : 0;
-            resize: none; 
-        }
-
-        input:focus, textarea:focus{
-            outline:none;
-        }
-
-        #title{
-            width: 100%;
-            height: 10%;
-        }
-
-        #title p{
-            text-align: center;
-            font-size: 30px;
-        }
-
-        #back_btn{
-            margin-right: 60px;
-        }
-
-   		.line{
-            float: left;
-            width: 100%;
-            height: 7px;
-            background-color: rgba(255, 96, 100, 0.7);
-        }
-    </style>
+</style>
 </head>
 <body>
-<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
+	<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
 
-<section id="content" class="content_css">
-        <form id="report_form" action="<%= request.getContextPath() %>/report/insert" method="post" enctype="multipart/form-data">
-          <section id="title">
-                <p><input type="hidden"name="category"value="<%=category %>" readonly><%=category %> 신고</p>
-                 <div class="line"></div>
-            </section>
-            <section id="content-1">
-                <table class="report_tb">
-                    <tr>
-                        <th>
-                            제목
-                        </th>
-                        <td>
-                            <input type="text" name="title" maxlength="50" >
-                        </td>
-                    </tr>
+    <form id="report_form" action="<%= request.getContextPath() %>/report/insert" method="post" enctype="multipart/form-data">
+		<section id="btSection" class="btSection">
+			<table id="writebox">
+				<tr>
+					<td>
+						<h1 id="title" ><input type="hidden" class="title" name="category" value="<%=category%>"
+								readonly><%=category%>신고</h1>
+					</td>
+				</tr>
+				<tr>
+					<th id="thArea">제목</th>
+					<td class="qnaTable"><input type="text" maxlength="50"
+						name="title" id="write_title" placeholder="제목을 입력해주세요."></td>
+				</tr>
+				<tr>
+					<th id="thArea"><%=category%>번호</th>
+					<td class="qnaTable"><input type="hidden" name="no" value="<%=no%>" id="reportNum" readonly>
+						<%=no%></td>
+				</tr>
+				<tr>
+					<th id="thArea">대상 닉네임</th>
+					<td class="qnaTable"><input type="text" maxlength="50" name="reported_id" id="reportedName"
+						value="<%=reported_id%>" readonly></td>
+				</tr>
 
-                    <tr>
-                        <th><%=category %>번호</th>
-                        <td>
-                           <input type="hidden"name="no"value="<%=no %>" readonly> <%=no %>
-                        </td>
-                    </tr>
+				<tr>
+					<th id="thArea">첨부파일</th>
+					<td class="qnaTable">
+						<div class="filebox">
+							<label for="ex_file">파일 첨부</label> <input type="file"
+								id="ex_file" name="ex_file"> <span class="filename">파일을
+								선택해주세요.</span>
+						</div>
+					</td>
+				</tr>
 
-                    <tr>
-                        <th>대상 닉네임</th>
-                        <td>
-                            <input type="text" maxlength="50" name = "reported_id"value="<%=reported_id %>" readonly>
-                        </td>
-                    </tr>
+				<tr>
+					<th id="thArea">내용</th>
+					<td class="qnaTable"><textarea cols="50" id="writeArea"
+							rows="15" name="content" placeholder="내용을 입력해주세요."></textarea></td>
+				</tr>
+			</table>
 
-                    <tr>
-                        <th>첨부파일</th>
-                        <td>
-                            <div class="filebox">
-                                <label for="ex_file">파일 첨부</label>
-                                <input type="file" id="ex_file" name="ex_file">
-                                <span class="filename">파일을 선택해주세요.</span>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th>내용</th>
-                        <td>
-                            <textarea cols="50" rows="15" name="content"></textarea>
-                        </td>
-                    </tr>
-                </table>
-                
-            </section>
-
-            <section id="content-2">
+			<div id="btnArea">
                 <!-- 등록 버튼 , 나가기 버튼 -->
-                <button class="report_btn" id="back_btn" onclick="javascript:history.back();">취소</button>
-                <button type="submit" class="report_btn">신고하기</button>
-            </section>
+                <button class="Btn1" id="back_btn" onclick="javascript:history.back();">취소</button>
+                <button type="submit" class="Btn1">신고하기</button>
+            </div>
             
-        </form>
-    </section>
+    	</section>
+    </form>
        <script>
-             $(document).on("change", "#ex_file", function(){
-                var filename = $(this).val();
-                console.log(filename);
-                if(filename == "")
-                    filename = "파일을 선택해주세요.";
-                $(".filename").text(filename);
-                })
-        </script>
+								$(document).on("change", "#ex_file",
+										function() {
+											var filename = $(this).val();
+											console.log(filename);
+											if (filename == "")
+												filename = "파일을 선택해주세요.";
+											$(".filename").text(filename);
+										})
+							</script>
+								
+	<%@ include file="../common/footer.jsp" %>
+	
 </body>
 </html>

@@ -7,125 +7,133 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신 고</title>
+<title>Better Together</title>
 <style>
-		/* 버튼들  */
-        #btnArea {
-            width: 320px;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            margin-top: 40px;
-        }
-        .btn {
-            width: 85px;
-            height: 30px; 
-            margin: 5px;
-            background: #ff60657e;
-            border: none;
-            border-radius: 55px;       
-            color:white;
-            font-family: "Do Hyeon";
-            font-size: 16px;
-            float: right;
-        }
+/* 버튼  */
+.qnaBtn {
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
+	float: right;
+	margin-bottom: 2%;
+	margin-top:2%;
+}
 
+#btnArea {
+	padding:10%;
+}
 
-        /* 타이틀,라인 */
-        .h1_title {
-           text-align: center;
-           width: 100%;  
-          
-        }
-        .line {
-            border: 3px solid rgba(255, 96, 100, 0.7);
-        }
+/* 타이틀,라인 */
+.h1_title {
+	text-align: center;
+	width: 100%;
+} 
 
-        /* 게시물 부분 */
-        #report_div {
-            width: 100%;
-           /*  height: 1200px; */
-            margin:auto;
-        }
+.line {
+	border: 3px solid rgba(255, 96, 100, 0.7);
+}
 
-        #report_title {
-            width: 100%;
-            height:50px;
-            border-bottom: 1px solid #75757552;
-            margin:auto;
-            text-align: justify;
-        }
-        #btitle{
-            font-size: 20px;
-            line-height: 50px;
-            padding-left: 10px;
-            color:#757575;
-        }
- 
-        #report_con {
-            width: 100%;
-           /*  height:1150px; */
-           /* border-bottom: 1px solid #75757552; */
-            margin:auto;
-        }
-        #report_con p{
-            padding-left: 10px;
-            font-size: 20px;
-        }
-        
-        .result{
-        	color : red;
-        	margin-top : 5%;
-        	margin-bottom : 5%;
-        	font-size : 35px;
-        	font-family: "Do Hyeon";
-        	text-align : center;
-        }
+.aline {
+	border: 1px solid gray;
+	background: gray;
+}
 
+#title {
+	text-align: center;
+	font-family: "Nanum Gothic";
+	font-size: 24px;
+	color: #757575;
+}
+
+.qnaTable {
+	border-top: 3px solid #937cf790;
+	width: 100%;
+}
+
+#qnaBox {
+	width: 80%;
+}
+
+#write_title {
+	font-family: "Nanum Gothic";
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	background: none;
+	padding-left: 2%;
+}
+
+#writeArea {
+	width: 100%;
+	border: 0px;
+	resize: none;
+	background: none;
+	font-size: 20px;
+	font-family: "Nanum Gothic";
+	padding-left: 2%;
+	color: #757575;
+}
+
+#contentBox{
+	border-bottom: 3px solid #937cf790;
+}
+
+.btSection #qnaBox {
+	margin: auto;
+}
+
+#reported{
+	color : red;
+    margin-top : 10%;
+    font-size : 35px;
+    font-family: "Nanum Gothic";
+    text-align : center;
+    padding-top:5%;
+    padding-bottom:5%;
+}
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
 	<!-- content -->
-	<section id="con1">
+	<section id="btSection" class="btSection">
 
+		<table id="qnaBox">
 		<!-- 타이틀 -->
-		<div id="con_title">
-			<h1 class="h1_title">신 고</h1>
-		</div>
-		
-		<div class="line"></div>
+		<tr>
+			<td>
+				<h1 class="h1_title">신 고</h1>
+			</td>
+		</tr>
 
 		<!-- 게시물 내용 -->
-		<div id="report_div">
-			<div id="report_title">
-				<span id="btitle"><%= r.getReport_title() %></span>
-			</div>
-			<div id="report_con">
-				<p><%= r.getReport_content() %></p>
-				<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= r.getReport_file() %>" id="report_Img" style="width: 400px;height: 300px;">
-			</div>
-			<div id="repor_result">
-				<%if(r.getT_f().equals("T")) { %>
-					<div class="result">신고가 정상 처리 되었습니다.</div>
-				<%} %>
-			</div>
-		</div>
-		
-	
-	
-	</section>
-	<!-- 버튼 -->
-<!-- form 태그를 POST 방식으로 제출 nno를 화면에 드러내지 않고 form을 submit하면서 넘길 수 있음 -->
-	<form id="reportForm" method="post">
-		<input type="hidden" name="rNo" value="<%= r.getReport_no() %>">
-		<input type="hidden" name="list" value="list">
-	</form>
-	
-	<div id="btnArea">	
+			<tr>
+				<td class="qnaTable"><input maxlength="50" id="write_title" placeholder="<%= r.getReport_title() %>" readonly></td>
+			</tr>
+			<tr>
+				<td class="qnaTable" id="contentBox"><textarea cols="50" id="writeArea" rows="10" readonly><%= r.getReport_content() %></textarea></td>
+			</tr>
+			<tr>
+				<td id="report_Img">
+					<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= r.getReport_file() %>"  style="width: 700px;height: 700px;">
+				</td>
+			</tr>
+			<%if(r.getT_f().equals("T")) { %>
+				<tr>
+					<td id="reported">
+						<a>신고가 정상 처리 되었습니다.</a>
+					</td>
+				</tr>
+			<%} %>
+		</table>
+		<div id="btnArea">	
 	<%if(loginUser.getUserId().equals(r.getUser_id())) { %>
-	<button type="button" id="deleteBtn" class="btn">삭제하기</button>
-	<button type="button" id="listBtn" class="btn">목록으로</button>
+	<button type="button" id="deleteBtn" class="qnaBtn">삭제하기</button>
+	<button type="button" id="listBtn" class="qnaBtn">목록으로</button>
 	
 	<script>				
 			//삭제하기 버튼 이벤트
@@ -139,8 +147,19 @@
 	
 	<%if(loginUser.getMembertype() == 0 && r.getT_f().equals("F")) { %>
 	<!-- 신고철회버튼 누르면 신고삭제되게 해버리기 -->
-	<button type="button" id="cancleBtn" class="btn">신고철회</button>
-	<button type="button" id="report_btn" class="btn">신고처리</button>
+	<button type="button" id="cancleBtn" class="qnaBtn">신고철회</button>
+	<button type="button" id="report_btn" class="qnaBtn">신고처리</button>
+	</div>
+	</section>
+	
+	<!-- 버튼 -->
+	<!-- form 태그를 POST 방식으로 제출 nno를 화면에 드러내지 않고 form을 submit하면서 넘길 수 있음 -->
+	<form id="reportForm" method="post">
+		<input type="hidden" name="rNo" value="<%= r.getReport_no() %>">
+		<input type="hidden" name="list" value="list">
+	</form>
+	
+	
 		<script>
 		//신고 철회 버튼 이벤트
 		const cancleBtn = document.getElementById('cancleBtn');
@@ -157,7 +176,6 @@
 		});
 		</script>	
 	<%} %>
-</div>
 
 	
 	<script>		
@@ -167,5 +185,10 @@
 				location.href='<%=request.getContextPath()%>/report/list';
 				});
 	</script>
+	
+
+	
+	
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

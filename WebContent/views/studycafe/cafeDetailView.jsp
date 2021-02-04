@@ -14,8 +14,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>better together</title>
 <style>
+
+#btHeader{
+    top: 0px;
+}
 /* 바깥 영역 */
 .content_css{
 width: 100%;
@@ -35,16 +39,18 @@ z-index: -3;
 	margin-bottom: 70px;
 	border-radius: 20px;
 	z-index: -2;
+	
 }
 
 .galleryArea {
-		position: absolute;	
+	  position: absolute;	
 	padding: 5px;
 	width: 1000px;
 	height: 950px;
 	min-height: 400px;
 	margin: auto; 
-	z-index: 0;
+	z-index: 0; 
+	
 }
 
 .content_css button {
@@ -71,6 +77,7 @@ hr {
 	height: 450px;
 	left: 500px;
 	width: 450px;
+	
 }
 
 #cafeimg {
@@ -310,8 +317,7 @@ ul {
 	padding-left: 0px;
 	border-radius: 2px;
 	position: relative;
-	background-image:
-		url('<%=request.getContextPath()%>/resources/Cafeimages/이미지준비2.jpg');
+	 background-color: rgba(219, 219, 219, 0.356);
 	overflow: hidden;
 }
 
@@ -356,34 +362,39 @@ ul {
 	<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
 
-	<section id="content" class="content_css">
-		<div class="outer"  >
-			<div class="galleryArea"> 
-				<h1 style="margin-left: 300px;margin-top: 15px;">
+	<section id="content" class="content_css" style="height: 1050px;">
+		<div class="outer">
+			<div class="galleryArea" style="top: 150px;">
+				<h1 style="margin-left: 300px; margin-top: 15px;">
 					<strong>better together-스터디카페</strong>
 				</h1>
 				<h4 style="margin-left: 350px;">
 					#<%=c.getCafe_area()%>#수업#다목적#공간#스터디룸
 				</h4>
-				<div class="cafe" style="top: 120px;left: 35px;">
+				<div class="cafe" style="top: 120px; left: 35px;">
 
 
 					<!-- 도서이미 불러오기-->
-					<div class="container">
+					<div class="container"
+						style="background-color: rgba(255, 255, 255, 0);">
 						<ul class="slider"
-							style="width: 2985px; left: 0px; padding-left: 0px; height: 450px;">
-							<%if(c.getCafe_photo() != null ) {%>
-							<li class="item"><img id='cafeimg'
-								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo()  %>"
+							style="width: 1350px; left: 0px; padding-left: 0px; height: 450px; margin-left: 10px;"">
+							<%
+								if (c.getCafe_photo() != null) {
+							%>
+							<li class="item"><img id='cafeimg' style="width: 430px;"
+								src="<%=request.getContextPath()%>/resources/Cafeimages/<%=c.getCafe_photo()%>"
 								align="bottom"></li>
-							<%} else { %>
-							<li class="item"><img id='cafeimg'
+							<%
+								} else {
+							%>
+							<li class="item"><img id='cafeimg' style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
 								align="bottom"></li>
 							<%} %>
 
 							<%if(c.getCafe_photo2() != null  ) {%>
-							<li class="item"><img id='cafeimg'
+							<li class="item"><img id='cafeimg' style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo2()  %>"
 								align="bottom"></li>
 							<%} else    { %>
@@ -405,10 +416,8 @@ ul {
 						</ul>
 					</div>
 					<div class="btn">
-						<a class="prev"
-							style="text-decoration: none; top: 200px;  ">&#10094;</a>
-						<a class="next"
-							style="text-decoration: none;top: 200px;">&#10095;</a>
+						<a class="prev" style="text-decoration: none; top: 200px;">&#10094;</a>
+						<a class="next" style="text-decoration: none; top: 200px;">&#10095;</a>
 					</div>
 					<td><br>
 					<tr>
@@ -418,7 +427,7 @@ ul {
 
 				<!-- 카페 정보 및 예약-->
 				<div class="rvt"
-					style="border: 1px solid #bab6b6;top: 180px;left: 550px;width: 432px;height: 352px;">
+					style="border: 1px solid #bab6b6; top: 180px; left: 550px; width: 432px; height: 352px;">
 					<span><a style="font-size: 25px;">&nbsp&nbsp&nbsp <strong><%=c.getCafe_name()%></strong>
 					</a> </span><br> <br>
 					<table id="info">
@@ -464,16 +473,14 @@ ul {
 								<div id="modal">
 
 									<div class="modal_content">
-										<hr style="left: -245px;width: 310px;top: 230px; border: 0.5px solid #937cf790;">
-										<h2 style="text-align: center; color: black; ">
+										<hr
+											style="left: -245px; width: 310px; top: 230px; border: 0.5px solid #937cf790;">
+										<h2 style="text-align: center; color: black;">
 											<br>
 											<%=c.getCafe_name()%></h2>
 										<br>
 										<h5>
-											&nbsp&nbsp" better together를 통해 연락드렸어요 ~" 라고 말씀하시면 더 친절하게 안내
-											받으실 수 있습니다.:) <br>
-											<br>
-											<br>
+											&nbsp&nbsp" better together를 통해 연락드렸어요 ~" 라고 말씀하시면 다양한 혜택과 서비스를 받으실수있어요. :) <br> <br> <br>
 
 										</h5>
 
@@ -482,7 +489,7 @@ ul {
 											</strong>
 										</h2>
 										<button type="button" id="modal_close_btn"
-											style="background: #937cf790;color: white;margin-top: 20px;width: 316px;margin-left: 0px;">닫기</button>
+											style="background: #937cf790; color: white; margin-top: 20px; width: 316px; margin-left: 0px;">닫기</button>
 									</div>
 									<div class="modal_layer"></div>
 								</div>
@@ -502,9 +509,10 @@ ul {
 				<button type="button" id="btnArea2"
 					style="margin-left: 550px; margin-top: 445px;">목록</button>
 				<% if(loginUser != null) { %>
-					<button type="button" id="btnArea3"style="margin-left: 580px;margin-top: 0px;top: 552px;left: 50px;" >신고</button>
+				<button type="button" id="btnArea3"
+					style="margin-left: 580px; margin-top: 0px; top: 552px; left: 50px;">신고</button>
 
-					<%} %>
+				<%} %>
 
 				<script>
 					var slideWrapper = document.querySelector('.container');
@@ -564,21 +572,21 @@ ul {
 				});
 				</script>
 
-					
 
-					<%
+
+				<%
 						if (loginUser != null && loginUser.getUserId().equals(c.getUserId())) {
 					%>
-					<button id="updateBtn">수정</button>
-					<button id="deleteBtn">삭제</button>
+				<button id="updateBtn">수정</button>
+				<button id="deleteBtn">삭제</button>
 
-					<!-- 수정/삭제를 위한 form -->
-					<form action="" id="Cafe_codeForm" method="post">
-						<input type="hidden" name="Cafe_code"
-							value="<%= c.getCafe_code() %>">
-					</form>
+				<!-- 수정/삭제를 위한 form -->
+				<form action="" id="Cafe_codeForm" method="post">
+					<input type="hidden" name="Cafe_code"
+						value="<%= c.getCafe_code() %>">
+				</form>
 
-					<script>
+				<script>
 				 
 				
 				// 수정하기 버튼 이벤트
@@ -595,20 +603,25 @@ ul {
 					$("#Cafe_codeForm").submit();
 					});
 					</script>
-					<%
+				<%
 						}
 					%>
-					
-					
-						<hr style="top: 580px;width: 1000px;left: 0px;border: 0.5px solid Purple;">
-					<!-- 카페 정보,약도-->
-				<div class="inf" style="top: 590px;width: 1200px;left: 0px;">
+
+
+				<hr
+					style="top: 580px; width: 1000px; left: 0px; border: 0.5px solid Purple;">
+				<!-- 카페 정보,약도-->
+				<div class="inf" style="top: 590px; width: 1200px; left: 0px;">
 					<br>
 					<table id="info2">
 						<td>
 						<tr>
 							<span style="display: block; width: 480px; height: 100px;">
-								<strong>&nbsp&nbsp공간소개 </strong> <pre style="font-size: 16px;height: 110px;width: 550px;margin-left: 10px;"><%=c.getCafe_info()%></pre>
+								<strong>&nbsp&nbsp공간소개 </strong> <pre
+									style="font-size: 16px; font-family:"NanumGothic"; height:
+								 110px;width: 550px;margin-left: 10px;border-top-width:
+								  0px;border-bottom-width: 0px;border-left-width:
+								   0px;border-right-width: 0px; background-color:rgba(255,255,255,0);"><%=c.getCafe_info()%></pre>
 							</span>
 						</tr>
 						</td>
@@ -617,14 +630,19 @@ ul {
 							<span
 								style="display: block; width: 480px; height: 100px; margin-top: 50px;">
 								<hr
-									style="left: 0px;top: 150px;width: 550px;border: 0.5px solid Purple;margin-top: 10px;">
+									style="left: 0px; top: 150px; width: 550px; border: 0.5px solid Purple; margin-top: 10px;">
 								<strong> &nbsp&nbsp유의사항 </strong> <pre
-									style="font-size: 16px;height: 150px;width: 550px;margin-left: 10px;"><%=c.getCafe_notice()%></pre>
+									style="font-size: 16px; height: 150px; width: 550px; font-family:"
+									NanumGothic"; 
+									 margin-left: 10px; border-left-width: 0px; 
+									 border-top-width: 0px; border-bottom-width:
+									  0px; background-color:rgba(255, 255, 255, 0); 
+									  border-right-width: 0px;"background-color:rgba(255,255,255,0);"><%=c.getCafe_notice()%></pre>
 							</span>
 						</tr>
 						</td>
 						<br>
-						 
+
 						<h2>
 							<strong style="margin-left: 570px;">※오시는길</strong>
 						</h2>
@@ -712,11 +730,11 @@ ul {
 									});
 				</script>
 				</div>
-					
-				</div>
+
+			</div>
 
 
-				<script>
+			<script>
            
 				document.getElementById("modal_opne_btn").onclick = function() {
 					document.getElementById("modal").style.display = "block";
@@ -727,13 +745,13 @@ ul {
 					}
 				</script>
 
-			
-				
-			</div>
-		 
+
+
+		</div>
+
 	</section>
-	 
-		 
+
+
 </body>
 <footer id="btFooter" style="margin-top: 50px;">
  

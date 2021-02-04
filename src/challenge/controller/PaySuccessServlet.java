@@ -42,8 +42,9 @@ public class PaySuccessServlet extends HttpServlet {
 		  
 		// 1: 카카오페이인지, 2: 회원보유포인트인지 판단 
 		int payment = Integer.parseInt(request.getParameter("payment"));
+		//String payment = request.getParameter("payment");
 		  
-		  int result = 0;
+		 // int result = 0;
 		// Challenge ch = new ChallService().selectChall(challNo);
 		 
 //		// 1. chall_status 테이블에 해당 번호, 유저아이디 컬럼이 있는지 확인 부터 하기 
@@ -66,7 +67,7 @@ public class PaySuccessServlet extends HttpServlet {
 //			result = new ChallService().insertChallPay(totalPay,challNo,userId,payment);
 //		}
 		
-		System.out.println("result 결제~ : " + result);
+		//System.out.println("result 결제~ : " + result);
 		
 		Challenge ch = new ChallService().selectChall(challNo);
 		
@@ -77,7 +78,7 @@ public class PaySuccessServlet extends HttpServlet {
 			request.setAttribute("payment", payment);
 			//request.setAttribute("challNo", challNo);
 	        request.getRequestDispatcher("/views/challenge/challengeAPIPay.jsp").forward(request, response);
-		} else if(payment == 2) {
+		} else if(payment==2) {
 			// 회원 포인트 결제 화면으로 
 			request.setAttribute("challenge", ch);
 			request.setAttribute("payment", payment);

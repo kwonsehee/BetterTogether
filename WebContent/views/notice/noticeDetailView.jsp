@@ -7,101 +7,117 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 상세페이지</title>
- <style>
-     
-        #board h1 {
-            font-family: "Do Hyeon";
-            font-size: 35px;
-            text-align: center;
-            margin-top: 50px;
-        }
+<title>Better Together</title>
+<style>
+/* 버튼  */
+.qnaBtn {
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
+	float: right;
+	margin-bottom: 2%;
+	margin-top:2%;
+}
 
-        .line {
-            background: rgba(255, 96, 100, 0.7);
-            border: 3px solid rgba(255, 96, 100, 0.7);
-        }
+#btnArea {
+	padding-right:10%;
+}
 
-        /* 게시물 부분 */
-        #board_div {
-            width: 100%;
-            height: 1200px;
-            margin: auto;
-        }
+/* 타이틀,라인 */
+.h1_title {
+	text-align: center;
+	width: 100%;
+} 
 
-        #board_title {
-            width: 100%;
-            height: 50px;
-            border-bottom: 1px solid #75757552;
-            margin: auto;
-            text-align: justify;
-        }
+.line {
+	border: 3px solid rgba(255, 96, 100, 0.7);
+}
 
-        #board_title span {
-            font-size: 20px;
-            line-height: 50px;
-            padding-left: 10px;
-            color: #757575;
-        }
-        #board_con {
-            width: 100%;
-            height: 500px;
-            border-bottom: 1px solid #75757552;
-            margin: auto;
-        }
-        /* 뒤로가기 버튼 */
-        .board_btn {
-            width: 130px;
-            font-family: "Do Hyeon";
-            font-size: 20px;
-            background: none;
-            border-radius : 20px;
-            border: 2px solid #ff60657e;
-            float: right;
-        }
+.aline {
+	border: 1px solid gray;
+	background: gray;
+}
 
-        .board_btn a {
-            font-size: 15px;
-            color: #ff60657e;
-        }
-    </style>
+#title {
+	text-align: center;
+	font-family: "Nanum Gothic";
+	font-size: 24px;
+	color: #757575;
+}
+
+.qnaTable {
+	border-top: 3px solid #937cf790;
+	width: 100%;
+}
+
+#qnaBox {
+	width: 80%;
+}
+
+#write_title {
+	font-family: "Nanum Gothic";
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	background: none;
+	padding-left: 2%;
+}
+
+#writeArea {
+	width: 100%;
+	border: 0px;
+	resize: none;
+	background: none;
+	font-size: 20px;
+	font-family: "Nanum Gothic";
+	padding-left: 2%;
+	color: #757575;
+}
+
+#contentBox{
+	border-bottom: 3px solid #937cf790;
+}
+
+.btSection #qnaBox {
+	margin: auto;
+}
+</style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
 	
 	 <!-- content -->
-     <section id="board" class="content_css">
-        <!-- 타이틀 -->
-           
-            <h1>공지사항</h1>
+     <section id="btSection" class="btSection">
+		<table id="qnaBox">
+			<tr>
+				<td>
+					<h1 id="title">공지사항</h1>
+				</td>
+			</tr>
+			<tr>
+				<td class="qnaTable" ><input maxlength="50" id="write_title" placeholder="<%= n.getaTitle() %>" readonly></td>
+			</tr>
+			<tr>
+				<td class="qnaTable" id="contentBox"><textarea cols="50" id="writeArea" rows="10" readonly><%= n.getaContent() %></textarea></td>
+			</tr>
+		</table>
+		<div id="btnArea">
+			<button type="button" id="listBtn" class="qnaBtn">목록으로</button>
+			<!--관리자 멤버타입은 3임!!!!!!! -->
+			<% if (loginUser != null && loginUser.getMembertype() == 0) { %>
+			<button type="button" id="updateBtn" class="qnaBtn">수정하기</button>
+			<button type="button" id="deleteBtn" class="qnaBtn">삭제하기</button>
 
-            <div class="line"></div>
-
-            <!-- 게시물 내용 -->
-            <div id="board_div">
-                <div id="board_title">
-                    <table style="width: 100%;">
-                        <tr>
-                            <td><span>게시물 제목 : <%=n.getaTitle() %></span></td>
-                            <td><span>작성자 : <%=n.getUser_id() %></span></td>
-                            <td><span>작성날짜 : <%=n.getaDate() %></span></td>
-                        </tr>
-                    </table>
-                </div>
-                    <div id="board_con"><span><%=n.getaContent() %></span></div>
-                    <div class="btnArea">
-					<button type="button" id="listBtn" class="board_btn">목록으로</button>
-					<!--관리자 멤버타입은 3임!!!!!!! -->
-					<%if(loginUser !=null&&loginUser.getMembertype()==3){  %>
-					<button type="button" id="updateBtn" class="board_btn">수정하기</button>
-					<button type="button" id="deleteBtn" class="board_btn">삭제하기</button>
-					
-					<!-- form 태그를 POST 방식으로 제출
-					nno를 화면에 드러내지 않고 form을 submit하면서 넘길 수 있음 -->
-					<form id="nnoForm"method="post">
-						<input type="hidden" name="ano"value="<%=n.getaNo() %>">
-					</form>
-					<script>
+			<!-- form 태그를 POST 방식으로 제출
+			nno를 화면에 드러내지 않고 form을 submit하면서 넘길 수 있음 -->
+			<form id="nnoForm" method="post">
+				<input type="hidden" name="ano" value="<%=n.getaNo()%>">
+			</form>
+			<script>
 					//수정하기 버튼 이벤트
 					const updateBtn = document.getElementById('updateBtn');
 					updateBtn.addEventListener('click',function(){
@@ -118,17 +134,20 @@
 					});
 					
 					</script>
-					<%} %>
-				</div>
-              </div>
-                
-    </section>
+			<% } %>
+		</div>
+
+
+	</section>
 	<script>
-	//목록으로 버튼 이벤트
-	const listBtn = document.getElementById('listBtn');
-	listBtn.addEventListener('click',function(){
-		location.href='<%=request.getContextPath()%>/notice/list';
+		//목록으로 버튼 이벤트
+		const listBtn = document.getElementById('listBtn');
+		listBtn.addEventListener('click', function() {
+			location.href = '
+	<%=request.getContextPath()%>/notice/list';
 	});
 	</script>
+	
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
