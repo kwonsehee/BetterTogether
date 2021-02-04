@@ -31,8 +31,8 @@
 		  , QNA_MODIFY	  
 		  , Q_REFERENCE
 		  , QNA_TYPE
-		  , QNA_STATUS
 		  , USER_ID
+		  , QNA_STATUS
 		)
 		VALUES
 		(
@@ -43,8 +43,8 @@
 		  , SYSDATE
 		  , DEFAULT
 		  , 'Q'
-		  , 'Y'
 		  , ?
+		  , 'Y'
 		)
 	</entry>
 	<entry key="selectQuestion">
@@ -119,8 +119,8 @@
 		  , QNA_MODIFY	  
 		  , Q_REFERENCE
 		  , QNA_TYPE
-		  , QNA_STATUS
 		  , USER_ID
+		  , QNA_STATUS
 		)
 		VALUES
 		(
@@ -131,8 +131,8 @@
 		  , SYSDATE
 		  , ?
 		  , 'A'
-		  , 'N'
 		  , ?
+		  , DEFAULT
 		)
 		
 	</entry>
