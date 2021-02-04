@@ -12,7 +12,8 @@ if(session.getAttribute("news")!=null){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>새로운 알림 보여주는 창</title>
+<title>새로운 알림</title>
+
 <%
 	if(request.getAttribute("result")!=null){
 		if(request.getAttribute("result").equals("success")){
@@ -21,30 +22,65 @@ if(session.getAttribute("news")!=null){
 opener.parent.location.reload();
 	window.close();
 </script>
-<%} else{ %>
-<script>
-	alert("새로운 소식 확인에 실패하였습니다.");
-</script>
-<%		}
-	}%>
+<%} 
+		}%>
+<style>
+#loginTitle{
+            text-align: center;
+            font-size:30px;
+            margin-top: 10%;
+            margin-bottom:3%;
+        }
+	li{
+		margin-top:50px;
+	 	padding-left:10px; 
+	}
+#newsCheckAfter{
+font-family: "Nanum Gothic";
+         border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
+           padding:5px 15px 5px 15px;
+           background-color: #e6e4e4b6;
+           font-size:10px;
+           font-weight: bolder;
+}
+ .line{
+            float: left;
+            width: 100%;
+            height: 1px;
+            
+            background-color:#937cf790;
+             border: 0.5px solid #937cf790;
+             
+        }
+    
+</style>
 </head>
 <body>
+
+<div id="loginTitle">새로운 알림</div>
+<div class="line"></div>
 	<%if(news!=null){ %>
+	<ul>
 	<%for(int i=0; i<news.size();i++){ %>
 		<!-- 챌린지0 신고1 질문답변2 -->
-		<%if(news.get(i).getNews_cate()==0){ %>
-			<a>참여 신청한 챌린지가 삭제 또는 신고되어 챌린지 신청이 철회되었습니다.</a>
+		<%if(news.get(i).getNews_cate()==1){ %>
+		<li>회원님이 작성한 게시글이 신고되었습니다.</li>
 		
-		<%}else if(news.get(i).getNews_cate()==1){ %>
-		<a>회원님이 작성한 게시글이 신고되었습니다.</a>
+		<%}else if(news.get(i).getNews_cate()==0){ %>
+		<br>
+		<li>회원님이 참여한 챌린지 <%=news.get(i).getTitle() %>가 삭제 또는 신고되어 챌린지 신청이 철회되었습니다.</li>
 		
+	
 		<%}else { %>
-		<a>회원님의 질문에 관리자가 답변을 달아주었습니다.</a>
+		<li>회원님의 질문<%=news.get(i).getTitle() %>에 관리자가 답변을 달아주었습니다.</li>
 		
 		<%} %>
+	
 	<%} %>
-	<p>마이페이지를 확인해주세요</p>
-	<button id="newsCheckAfter">확인</button>
+	</ul>
+	<p style="text-align:center;color:#937CF7;margin-top:10%;">마이페이지를 확인해주세요</p>
+	<button id="newsCheckAfter" style="margin-left:45%;">확인</button>
 	<%} %>
 	
 	<script>

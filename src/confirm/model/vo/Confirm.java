@@ -14,7 +14,8 @@ public class Confirm {
 	private Date chall_start;
 	private int status;
 	private Date end_date;
-	
+	private String chall_period;
+	private String chall_frequency;
 	public Confirm() {
 		
 	}
@@ -28,7 +29,7 @@ public class Confirm {
 	}
 
 	public Confirm(String user_id, int chall_no, int chall_status, Date join_call_date, String chall_title,
-			String file_path, Date chall_start, int status, Date end_date) {
+			String file_path, Date chall_start, int status,String chall_period, String chall_frequency, Date end_date) {
 		super();
 		this.user_id = user_id;
 		this.chall_no = chall_no;
@@ -38,6 +39,8 @@ public class Confirm {
 		this.file_path = file_path;
 		this.chall_start = chall_start;
 		this.status=status;
+		this.chall_frequency = chall_frequency;
+		this.chall_period=chall_period;
 		this.end_date = end_date;
 	}
 
@@ -112,6 +115,22 @@ public class Confirm {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getChall_period() {
+		return chall_period;
+	}
+
+	public void setChall_period(String chall_period) {
+		this.chall_period = chall_period;
+	}
+
+	public String getChall_frequency() {
+		return chall_frequency;
+	}
+
+	public void setChall_frequency(String chall_frequency) {
+		this.chall_frequency = chall_frequency;
 	}
 
 	@Override

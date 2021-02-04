@@ -81,7 +81,8 @@ public class NewsDao {
 			while(rset.next()) {
 				news.add(new News(rset.getInt("NEWS_NO"),
 								  rset.getInt("NEWS_CATE"),
-								  rset.getInt("POST_NO")));
+								  rset.getInt("POST_NO"),
+								  rset.getString("NEWS_TITLE")));
 				
 			}
 		} catch (SQLException e) {

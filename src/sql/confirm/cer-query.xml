@@ -10,12 +10,25 @@
 			 , CHALL_NO
 			 , CHALL_CONFIRM
 		 FROM
-		 	  CERLIST
+		 	  (SELECT ROWNUM RNUM, CERLIST.*
+                FROM(SELECT
+                             CER_ID
+                           , CER_PIC
+                           , CHALL_TITLE
+                           , CHALL_NO
+                           , C.USER_ID
+                           , CER_STATUS
+                           , CHALL_CONFIRM
+                      FROM
+                            CER C
+                       JOIN CHALL USING(CHALL_NO)
+                      WHERE CER_STATUS != 'Y'
+                        AND C.USER_ID = ?
+                        AND CHALL_NO = ?
+                   ORDER BY CER_DATE DESC)CERLIST)
 		WHERE
-			  USER_ID = ?
-		  AND CHALL_NO = ?
-		  AND CER_STATUS != 'Y'
-		  AND RNUM BETWEEN ? AND ?
+			  RNUM BETWEEN ? AND ?
+			  
 	</entry>
 	<entry key="insertCer">
 		INSERT INTO
@@ -50,10 +63,23 @@
 			 , CHALL_NO
 			 , CHALL_CONFIRM
 		 FROM
-		 	  CERLIST
+		 	  (SELECT ROWNUM RNUM, CERLIST.*
+                FROM(SELECT
+                             CER_ID
+                           , CER_PIC
+                           , CHALL_TITLE
+                           , CHALL_NO
+                           , C.USER_ID
+                           , CER_STATUS
+                           , CHALL_CONFIRM
+                      FROM
+                            CER C
+                       JOIN CHALL USING(CHALL_NO)
+                      WHERE CER_STATUS != 'Y'
+                        AND CHALL_NO = ?
+                   ORDER BY CER_DATE DESC)CERLIST)
 		WHERE
-			  CHALL_NO = ?
-		  AND RNUM BETWEEN ? AND ?
+			  RNUM BETWEEN ? AND ?
 	</entry>
 	<entry key="selectCer">
 		SELECT 

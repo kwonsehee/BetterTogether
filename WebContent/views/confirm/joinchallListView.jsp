@@ -12,11 +12,15 @@
 <meta charset="UTF-8">
 <title>참여중인 챌린지</title>
 <style>
+#btSection {
+	padding-bottom: 100px;
+}
         .content_css>p{
             /* border:solid 1px red;  */
             font-size: 30px;
             text-align: center;
-            margin-top: 18px;
+            margin-top: 2%;
+             margin-bottom: 3%;
         }
        
         #ok{
@@ -24,24 +28,29 @@
             height: 50px;
             margin-left: 40%;
             margin-top: 1%;
-            font-family: "Do Hyeon";
+            font-family: "Nanum Gothic";
+
             font-size: 20px;
             border-radius: 20px;
             border: 1px solid #fdc8c6;
             background-color: #fdc8c6;
       
         }
-          .line{
+           .line{
             float: left;
             width: 100%;
-            height: 7px;
-            background-color: rgba(255, 96, 100, 0.7);
-        }
+            height: 1px;
+            
+            background-color:#937cf790;
+             border: 0.5px solid #937cf790;
+             
+        } 
         .empty_chall{
-        	color : red;
+        	color : #937cf790;
         	margin-top : 10%;
         	font-size : 35px;
-        	font-family: "Do Hyeon";
+        	font-family:"Nanum Gothic";
+
         	text-align : center;
         }
       .ing_challenge{
@@ -63,27 +72,31 @@
 
         }
         .ing_challenge2{
+        	padding-top:12px;
+        	padding-left : 10px;
             float: left;
             width: 35%;
             height: 100%;
-            /* border: solid 1px black; */
-
+        }
+        .ing_challenge2 p{
+        	font-size : 16px;
+        	font-family:"Nanum Gothic";
+        
         }
         .ing_challenge3{
             float: left;
-            width: 250px;
+            width: 350px;
             height: 100px;
             padding-top: 40px;
             padding-left: 50px;
-            /* border: solid 1px red; */
-
+         
         }
         .btn_camera{ 
             width: 55px;
             height: 55px;
             border-radius: 100%;
-            border: #ff6064;
-            background-color: #ff6064;
+            border: #937cf790;
+            background-color: #937cf790;
         }
         .btn_camera_end{
             width: 55px;
@@ -95,13 +108,50 @@
         #cno{
         	display : none;
         }
-       
+     
+   
+       .pagingArea {
+       		margin-top:5%;
+			text-align:center;
+		}
+		.pagingArea button {
+			width:25px;
+			margin-top:20px;
+			border : 0px;
+			color : #757575;
+			font-family: "Nanum Gothic";
+			font-size:12px;
+		}
+		
+		.pagingArea button:hover {
+			cursor:pointer;
+		}
+		.chall_button{
+		font-family: "Nanum Gothic";
+         border-radius: 10px;
+           border: solid 1px #9e9e9e5b;
+           padding:5px 15px 5px 15px;
+           background-color: #e6e4e4b6;
+           font-size:10px;
+           font-weight: bolder;
+           color : black;
+           }
+           #nowJoin{
+           margin-top:10%;
+           text-align:center;
+            margin-bottom:10%;
+          
+           }
+			#nowJoin p{
+			 font-size :15px;
+			}
     </style>
 </head>
 <body>
 <!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
-	<section id="content" class="content_css">
+	<section id="btSection" class="content_css">
+	
 
         <section class="content_css">
             <p>참여중인 챌린지</p>
@@ -109,17 +159,22 @@
      
             <%if(list.isEmpty()){ %>
             <div class="empty_chall">참여중인 챌린지가 없습니다!!</div>
+            <div id="nowJoin">
+            	<p>지금 바로 챌린지에 참여하기</p>
+            	<a href="<%=request.getContextPath()%>/chall/list">더보기</a>
+            </div>
             <%}else{ %>
             	<% for(Confirm c:list){ %>
           <div class='ing_challenge'>
                 <div class='ing_challenge1'>
-                    <img src=""width="200px"height="140px">
+                    <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%=c.getFile_path()%>"width="200px"height="140px">
                     <!--  file_path()들어가야하는 자리 -->
                 </div>
                 <div class='ing_challenge2'>
                     <p><%=c.getChall_title() %></p>
                     <p><%=c.getChall_start() %> ~ <%=c.getEnd_date() %></p>
-                    <p>달성률 : #%</p><!-- 달성률!!! -->
+                    <p><button  class="chall_button" disabled>주 <%=c.getChall_frequency() %>회</button>
+					<button class="chall_button"disabled><%=c.getChall_period() %>주 동안</button></p>
                 </div>
                 
                 
@@ -154,8 +209,7 @@
               
             </div>
 				<%} %>	
-            <%} %>
-         	
+          
          	
              <!-- 페이징 바 -->
 			<div class="pagingArea">
@@ -187,7 +241,8 @@
 			<!-- 맨 끝으로(>>) -->
 			<button onclick="location.href='<%= request.getContextPath() %>/confirm/joinchalllist?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 			</div>
-			
+			<%} %>
+         	
         </section>
      
 		<script>
@@ -195,9 +250,9 @@
    //인증 리스트로 이동 
 		$(function(){
 			$(".ing_challenge #confirm_submitBtn").mouseover(function(){
-				$(this).parent().parent().css("background","#f7dede");
+				$(this).parent().parent().css("background","#e0dbf890");
 			}).mouseout(function(){
-				$(this).parent().parent().css("background", "#f9f1f1");
+				$(this).parent().parent().css("background", "rgba(219, 219, 219, 0.356)");
 			}).click(function(){
 				var cno = $(this).parent().children().eq(0).text();
 				console.log(cno);
@@ -208,9 +263,9 @@
    //결과보기 화면으로 이동
 		$(function(){
 			$(".ing_challenge #confirm_resultBtn").mouseover(function(){
-				$(this).parent().parent().css("background","#f7dede");
+				$(this).parent().parent().css("background","#e0dbf890");
 			}).mouseout(function(){
-				$(this).parent().parent().css("background", "#f9f1f1");
+				$(this).parent().parent().css("background", "#e6e4e4b6");
 			}).click(function(){
 				var cno = $(this).parent().children().eq(0).text();
 				console.log(cno);
@@ -222,5 +277,7 @@
 	
    
     </section>
+    
+    <%@ include file="../common/footer.jsp"%>
 </body>
 </html>
