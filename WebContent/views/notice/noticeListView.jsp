@@ -319,12 +319,12 @@
 				<input type="search" name="search">
 				<%} %>
 				<button type ="submit" id="searchBtn">검색하기</button>
+			 </form>
 				<!-- 2. 공지사항 글쓰기 기능 : 관리자만 사용하는 기능(로그인 유저가 관리자일 때만 보여줌) -->
 				<%if(loginUser!=null&&loginUser.getMembertype()==0) {%>
 				<button id="noticeInsert" type="button" class="Btn1">작성하기</button>
 				<%} %>
 				</div>
-			 </form>
 				<script>
 					//공지사항 작성하기
 					const noticeInsert = document.getElementById('noticeInsert');
@@ -338,10 +338,10 @@
 		//3. 공지사항 상세보기 기능(jQuery를 통해 작업)
 		
 			  $(function(){
-			         $("#listTable td").mouseenter(function(){
-			            $(this).parent().css({"background":"#f7dede", "cursor":"pointer"});
+			         $("#qnaBoard td").mouseenter(function(){
+			            $(this).parent().css({"background":"#937cf790", "cursor":"pointer"});
 			         }).mouseout(function(){
-			            $(this).parent().css("background", "#f9f1f1");
+			            $(this).parent().css("background", "none");
 			         }).click(function(){
 			        	 
 			          <% if(list.isEmpty()) { %>

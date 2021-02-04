@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 글쓰기</title>
+<title>Better Together</title>
  <style>
     #title {
 	text-align: center;
