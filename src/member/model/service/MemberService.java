@@ -3,6 +3,7 @@ package member.model.service;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import community.model.dao.BoardDao;
 import member.model.dao.MemberDao;
@@ -233,6 +234,30 @@ public class MemberService {
 
 			return todayJoinCount;
 		}
+
+		//아이디 찾기 
+		public ArrayList<Member> getId(Member m) {
+			Connection conn = getConnection();
+
+			ArrayList<Member> getId = new MemberDao().getId(conn, m);
+
+			close(conn);
+			System.out.println("service 아이디찾기 :"+getId);
+			return getId;
+		}
+
+		//비밀번호 찾기
+		public String getPwd(Member m) {
+			Connection conn = getConnection();
+
+			String pwd = new MemberDao().getPwd(conn, m);
+
+			close(conn);
+			System.out.println("service 비밀번호찾기 :"+pwd);
+			return pwd;
+		}
+
+		
 
 
 

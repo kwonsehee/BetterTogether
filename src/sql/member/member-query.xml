@@ -31,6 +31,7 @@
 		  , PHONE
 		  , EMAIL
 		  , USER_CATE
+		  , NAME
 		  , JOIN_DATE
 		  , MODIFY_DATE
 		  , MEMBER_TYPE
@@ -39,6 +40,7 @@
 		VALUES
 		(
 			?
+		  , ?
 		  , ?
 		  , ?
 		  , ?
@@ -166,4 +168,20 @@ SELECT
            AND  TO_CHAR(JOIN_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual)
 	</entry>
+	<entry key="getId">
+		SELECT USER_ID, JOIN_DATE
+		  FROM USER_INFO
+		 WHERE NAME=?
+	   	   AND EMAIL=?
+	
+	</entry>
+	<entry key="getPwd">
+		SELECT USER_PWD
+		  FROM USER_INFO
+		 WHERE NAME=?
+	   	   AND EMAIL=?
+	   	   AND USER_ID = ?
+	
+	</entry>
+	
 </properties>

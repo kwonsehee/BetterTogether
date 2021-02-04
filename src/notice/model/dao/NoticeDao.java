@@ -96,7 +96,7 @@ public class NoticeDao {
 				
 				list.add(new Notice(rset.getInt("ARTICLE_NO"),
 									rset.getString("ARTICLE_TITLE"),
-									rset.getString("ARTICLE_CONTNENT"),
+									rset.getString("ARTICLE_CONTENT"),
 									rset.getDate("ARTICLE_DATE"),
 									rset.getDate("ARTICLE_MODIFY"),
 									rset.getString("NICKNAME"),
@@ -195,7 +195,7 @@ public class NoticeDao {
 				if(rset.next()) {
 					n = new Notice(rset.getInt("ARTICLE_NO"),
 							rset.getString("ARTICLE_TITLE"),
-							rset.getString("ARTICLE_CONTNENT"),
+							rset.getString("ARTICLE_CONTENT"),
 							rset.getDate("ARTICLE_DATE"),
 							rset.getDate("ARTICLE_MODIFY"),
 							rset.getString("USER_ID"),
@@ -278,7 +278,7 @@ public class NoticeDao {
 				while(rset.next()){
 					list.add(new Notice(rset.getInt("ARTICLE_NO"),
 							rset.getString("ARTICLE_TITLE"),
-							rset.getString("ARTICLE_CONTNENT"),
+							rset.getString("ARTICLE_CONTENT"),
 							rset.getDate("ARTICLE_DATE"),
 							rset.getDate("ARTICLE_MODIFY"),
 							rset.getString("USER_ID"),
@@ -319,7 +319,7 @@ public class NoticeDao {
 
 				while (rset.next()) {
 					list.add(new Notice(rset.getInt("ARTICLE_NO"), rset.getString("ARTICLE_TITLE"),
-							rset.getString("ARTICLE_CONTNENT"), rset.getDate("ARTICLE_DATE"),
+							rset.getString("ARTICLE_CONTENT"), rset.getDate("ARTICLE_DATE"),
 							rset.getDate("ARTICLE_MODIFY"), rset.getString("USER_ID"), rset.getInt("ARTICLE_CNT"),
 							rset.getInt("ARTICLE_TYPE")));
 				}
@@ -423,7 +423,7 @@ public class NoticeDao {
 				
 				while (rset.next()) {
 					list.add(new Notice(rset.getInt("ARTICLE_NO"), rset.getString("ARTICLE_TITLE"),
-							rset.getString("ARTICLE_CONTNENT"), rset.getDate("ARTICLE_DATE"),
+							rset.getString("ARTICLE_CONTENT"), rset.getDate("ARTICLE_DATE"),
 							rset.getDate("ARTICLE_MODIFY"), rset.getString("USER_ID"), rset.getInt("ARTICLE_CNT"),
 							rset.getInt("ARTICLE_TYPE")));
 				}

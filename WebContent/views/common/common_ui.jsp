@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     
     <!-- 스타일  -->
-	<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css?a'>
+	<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css?after'>
 <%if(session.getAttribute("msg") != null){ %>
 <script>
    alert('<%=session.getAttribute("msg") %>');
@@ -72,7 +72,7 @@
                 	<li id="challMargin"><a id="challBtn">challenge</a></li>
                     <li><a id="confirmBtn">confirm</a></li>
                     <li><a id="studyBtn">study cafe</a></li>
-                    <li>community</a>
+                    <li><a>community</a>
                     	<ul>
                         	<li><a id="boardBtn">자유게시판</a></li>
                             <li><a id="reviewBtn">후기</a></li>

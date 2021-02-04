@@ -259,7 +259,7 @@ System.out.println("jsp list : "+reList);%>
 		
 		// 게시판 상세보기 기능
 		$(function(){
-			$("#qnaBoard td").mouseenter(function(){
+			$("#board_tb td").mouseenter(function(){
 				$(this).parent().css("background","#937cf755");
 			}).mouseout(function(){
 				$(this).parent().css("background", "none");
