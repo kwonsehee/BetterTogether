@@ -211,6 +211,9 @@
         <button id="administratorPageBtn" class="mypageMenu1"style="padding-left: 10px;">관리자페이지</button>
     </div>
 
+	<form id="admin" method="post">
+		<input type="hidden" name="admin" value="<%= loginUser %>">
+	</form>
     <!--사이드바 여닫여닫-->
    <script>
         function openNav() {

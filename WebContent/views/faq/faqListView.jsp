@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, qna.model.vo.QnA, common.model.vo.Search, common.model.vo.PageInfo"%>
+	pageEncoding="UTF-8"
+	import="java.util.ArrayList, qna.model.vo.QnA, common.model.vo.Search, common.model.vo.PageInfo"%>
 <%
-	ArrayList<QnA> list = (ArrayList<QnA>)request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	Search s = (Search)request.getAttribute("search");
+	ArrayList<QnA> list = (ArrayList<QnA>) request.getAttribute("list");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	Search s = (Search) request.getAttribute("search");
 	String search = "";
-	if(s != null){
+	if (s != null) {
 		search = s.getSearch();
 	}
 %>
@@ -15,255 +16,224 @@
 <meta charset="UTF-8">
 <title>F A Q</title>
 <style>
-		#none {
-			display:none;
-		 }
- 		/* 자주묻는질문 */
-        .recruit {
-            width:100%;
-            border: none;
-            }
+#btSection {
+	padding-bottom: 50px;
+}
 
-        .recruit td {
-            padding-left: 10px;
-            border-radius: 20px;
-            border-top: 2px solid #f7dede;
-    		border-bottom: none;
-    		border-left: none;
-            } 
+#con1_title h1 {
+	text-align: center;
+	margin-top: 25px;
+}
 
-        .hide {
-            display:none;
-            
-            } 
+.h1_title {
+	margin-top: 50px;
+	text-align: center;
+	font-size: 24px;
+	color: #757575;
+}
 
-        .show {
-            display:table-row; 
-            height:100px;
-            font-size:20px;
-            background-color:#f7dede;
-            font-family: "Do Hyeon";
-            }
+.line {
+	border: 0.5px solid #937cf790;
+}
 
-        .question td {
-            cursor: pointer;
-    		height: 80px;
-    		font-size: 20px;
-    		background-color: white;
-    		border-radius: 20px;
-    		font-family: "Do Hyeon";
-			padding-right: 5%;
-            }
+#none {
+	display: none;
+}
+/* 자주묻는질문 */
+.recruit {
+	width: 100%;
+	border: none;
+}
 
-        
-		/* 검색창 */
-        div {
-            width: 100%;
-            box-sizing: border-box;
-        }
+.recruit td {
+	padding-left: 10px;
+	border-top: 2px solid #937cf790;
+	border-bottom: none;
+	border-left: none;
+}
 
-        #search-area {
-            width: 100%;
-            height: 100px;
-            position: relative;
-            padding-top: 5%;
-            padding-left: 3%;
-        }
+.hide {
+	display: none;
+}
 
-        #search-form {
-            height:  40%;
-            padding-top: 5%;
-            padding-right: 2%;
-            /* position이 absolute이고
-          	  위치 값을 모두 0으로 만든 뒤
-            margin:auto를 하면 가로/세로 중앙 정렬 가능 */
-            position: absolute;
-            top: 0;
-            bottom: -50px;
-            left: 50%;
-            right: 0;       
-        }
- 
-        #search-text-area {
-            height: 100%;
-            width: 80%;
-            float: left;
-            
-        }
+.show {
+	display: table-row;
+	height: 100px;
+	font-size: 20px;
+	background-color: #9e9e9e5b;
+	font-family: "Nanum Gothic";
+}
 
-        #search-btn-area {
-            height: 100%;
-            width: 15%;
-            float: left;
-            padding-left: 2%;
-        }
+.question td {
+	cursor: pointer;
+	height: 80px;
+	font-size: 20px;
+	background-color: white;
+	font-family: "Nanum Gothic";
+	padding-right: 5%;
+}
 
-        #search-input, #search-btn {
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-            border-radius: 10px;
-            border: 1px solid #ff6064;
-            
-        }
+/* 검색창 */
+#search-area {
+	width: 80%;
+	height: 100px;
+	position: relative;
+	padding-top: 5%;
+	padding-left: 3.5%;
+	padding-bottom: 5%;
+	margin: auto;
+}
 
-        #search-btn{
-            background: #ff6064;
-            font-family: "Do Hyeon";
-            font-size: 20px;
-        }
-        
-        #content1 {
-            width: 100%;
-            height: 25%;
-        }
-        
-        #content-2 {
-            width: 100%;
-            height: 70%;
-            padding: 40px;
-        }
-        
-        #title {
-            width: 100%;
-            height: 5%;
-        }
+#search-form {
+	height: 40%;
+	padding-top: 6%;
+	padding-right: 2%;
+	position: absolute;
+	top: 0;
+	bottom: -50px;
+	left: 50%;
+	right: 0;
+}
 
-        #title p {
-            text-align: center;
-            font-size: 30px;
-        }
-        
-        .content {
-    		width: 100%;
-    		height: auto;
-    		margin-top: 5px;
-    		border-radius: 20px;
-    		border: solid 1px #f9f1f1;
-    		background-color: #f9f1f1;
-    		float: left;
-		}
-		
-		/* 버튼 css */
-		
-		.btn2 {
-			width: 50px;
-			height:20px;
-			background: none;
-			text-align: center;
-			border: 2px solid #ff60657e;
-			border-radius: 55px;
-			font-family: "Do Hyeon";
-			font-size: 12px;
-			float: right;
-			
-	
-		}
+#searchArea {
+	width: 80%;
+	float: left;
+}
 
-		.btn2 a {
-			color: #757575;
-			font-size: 12px;
-		}
-		
-		.btn {
-            width: 130px;
-            height: 30px;
-            margin:5px;  
-           	background: white;
-			text-align: center;
-			border: 2px solid #ff60657e;
-			border-radius: 55px;
-			font-family: "Do Hyeon";
-			font-size: 18px;
-        }
-        .btnArea {
-        	margin: auto;
-       	 	padding-top: 5%;
-       	 	padding-left:40px;
-        }
-        
-        /* 페이징바 영역 */
-		.pagingArea {
-			text-align:center;
-			padding-bottom: 5PX;
-		}
-		.pagingArea button {
-			width:25px;
-			margin-top:20px;
-			border : 0px;
-			background:#fff;
-			font-family: "Do Hyeon";
-			color : #757575;
-		}
-		
-		.pagingArea button:hover {
-			cursor:pointer;
-		}
+#search-input{
+	width: 98%;
+	height: 98%;
+	border:1px solid rgba(219, 219, 219, 0.356);
+}
+
+/* 버튼 css */
+.btn1 {
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-weight: bolder;
+	font-size: 10px;
+	text-decoration: none;
+}
+
+td .btn1 {
+	float: right;
+}
+
+#content1 {
+	width: 80%;
+	height: 25%;
+	margin:auto;
+}
+
+#content-2 {
+	width: 80%;
+	height: 70%;
+	padding-bottom: 40px;
+    margin: auto;
+}	
+}
+
+.content {
+	width: 100%;
+	height: auto;
+	margin-top: 5px;
+	border-radius: 20px;
+	border: solid 1px #f9f1f1;
+	background-color: #f9f1f1;
+	float: left;
+}
+
+/* 페이징바 영역 */
+.pagingArea {
+	text-align: center;
+}
+
+.pagingArea button {
+	width: 25px;
+	margin-top: 20px;
+	border: 0px;
+	color: #757575;
+	font-family: "Nanum Gothic";
+	font-size: 12px;
+}
+
+.pagingArea button:hover {
+	cursor: pointer;
+}
+
+
 </style>
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
-	
-	<section class="content">
-        <section id="title">
-            <p>자주 묻는 질문</p>
-        </section>
-  
-        <section id="content1">
-        
-        	
-  			<!-- 작성 수정 삭제 버튼 -->
-            <div id="search-area">
-            	<div id="btnArea">
-					<% if(loginUser != null && loginUser.getMembertype() == 0) { %>
-						<button class="btn" type="button" onclick="location.href='<%= request.getContextPath() %>/views/faq/faqInsertForm.jsp'">FAQ 작성</button>
+
+	<section id="btSection" class="btSection">
+		<div id="con2_title">
+			<h1 class="h1_title">자주 묻는 질문</h1>
+		</div>
+
+		<section id="content1">
+		
+		<div class="line"></div>
+
+			<!-- 작성 수정 삭제 버튼 -->
+			<div id="search-area">
+				<div id="btnArea">
+					<% if (loginUser != null && loginUser.getMembertype() == 0) { %>
+					<button class="btn1" type="button"
+						onclick="location.href='<%=request.getContextPath()%>/views/faq/faqInsertForm.jsp'">FAQ작성</button>
 					<% } %>
 				</div>
-				
-        		<!-- 검색창 -->
-                <form action="<%= request.getContextPath() %>/faq/search" method="get" id="search-form">
-                    <div id="search-text-area">
-                        <input type="search" id="search-input" name="search" value="<%= search %>">
-                    </div>
-                    <div id="search-btn-area">
-                        <button type="submit" id="search-btn">검색</button>
-                    </div>
-                </form>
-            </div>
-		
-        </section>
 
-        <!-- 아코디언 -->
-        <section id="content-2">
-             <table cellspacing="0" border="1" class="recruit" id="faqBoard">
-       	 		<tbody> 
-            		  <%if(list.isEmpty()){ %>
+				<!-- 검색창 -->
+				<form action="<%=request.getContextPath()%>/faq/search" method="get"
+					id="search-form">
+					<div id="searchArea">
+						<input type="search" id="search-input" name="search"
+							value="<%=search%>">
+					</div>
+					<div id="search-btn-area">
+						<button type="submit" class="btn1" id="search-btn">검색</button>
+					</div>
+				</form>
+			</div>
+
+
+		<!-- 아코디언 -->
+		<section id="content-2">
+			<table cellspacing="0" border="1" class="recruit" id="faqBoard">
+				<tbody>
+					<% if (list.isEmpty()) { %>
 					<tr>
 						<td colspan="6">존재하는 FAQ가 없습니다.</td>
 					</tr>
-					<%} else { %>
-						<% for(QnA f : list){ %>
-							<% if(f.getQnaType().equals("F")) { %>
-						<tr class="question"> 
-							<td id="none"><%= f.getQnaNo() %></td>
-							<td>Q . <%= f.getQnaTitle() %>
-							<% if(loginUser.getMembertype() == 0) { %>
-							<button type="button" class="btn2" id="deleteBtn">삭제</button>
-							<button type="button" class="btn2" id="updateBtn" onclick="location.href='<%= request.getContextPath()%>/faq/updateForm?qnaNo=<%= f.getQnaNo() %>'" >수정</button>
+					<% } else { %>
+					<% for (QnA f : list) { %>
+					<% if (f.getQnaType().equals("F")) { %>
+					<tr class="question">
+						<td id="none"><%=f.getQnaNo()%></td>
+						<td>Q . <%=f.getQnaTitle()%> <% if (loginUser.getMembertype() == 0) { %>
+							<button type="button" class="btn1" id="deleteBtn">삭제</button>
+							<button type="button" class="btn1" id="updateBtn"
+								onclick="location.href='<%=request.getContextPath()%>/faq/updateForm?qnaNo=<%=f.getQnaNo()%>'">수정</button>
 							<% } %>
-							</td>
-						</tr>
-						<tr class="hide"> 
-                			<td>A . <%= f.getQnaContent() %></td> 
-            			</tr>
-							<%} %>
-						<%} %>	
-					<%} %> 
-        		</tbody> 
+						</td>
+					</tr>
+					<tr class="hide">
+						<td>A . <%=f.getQnaContent()%></td>
+					</tr>
+					<% } %>
+					<% } %>
+					<% } %>
+				</tbody>
 			</table>
-			
-			
-        <script> 
+		</section>
+
+
+			<script> 
             $(function(){
                 var article = (".recruit .show"); 
                 $(".recruit .question  td").click(function() { 
@@ -278,69 +248,95 @@
                 }); 
             });
     	</script>
-        </section>
-        
-      		<!-- 페이징 바 -->
-			<div class="pagingArea">
-			<!-- 맨 처음으로 (<<) -->
-			<% if(s == null) { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/faq/list?currentPage=1'"> &lt;&lt; </button>
-			<% } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/faq/search?currentPage=1&search=<%= search %>'"> &lt;&lt; </button>
-			<% } %>
-			
-			<!-- 이전 페이지로 (<) -->
-			<% if(pi.getCurrentPage() == 1){ %>
-				<button disabled> &lt; </button>
-			<%} else if (s == null){ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/faq/list?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
-			<% } else {%>
-				<button onclick="location.href='<%= request.getContextPath() %>/faq/search?currentPage=<%= pi.getCurrentPage() - 1 %>&search=<%= search %>'"> &lt; </button>
-			<% } %>
-			
-			<!-- 10개의 페이지 목록 -->
-			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
-				<% if(p == pi.getCurrentPage()){ %>
-				<button style="background:lightgray;" disabled> <%= p %> </button>
-				<% } else if (s == null){ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/faq/list?currentPage=<%= p %>'"> <%= p %> </button>				
-				<% } else {%>
-				<button onclick="location.href='<%=request.getContextPath()%>/faq/search?currentPage=<%=p%>&search=<%=search%>'"><%=p %></button>
-				<%} %>
-			<%} %>
-			
-			<!-- 다음 페이지로(>) -->
-			<%if(pi.getCurrentPage() == pi.getMaxPage()){ %>
-				<button disabled> &gt; </button>
-				<%} else if(s == null) { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/faq/list?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
-			<% } else { %>
-			 	<button onclick="location.href='<%= request.getContextPath() %>/faq/search?currentPage=<%= pi.getCurrentPage() + 1 %>&search=<%= search %>'"> &gt; </button>
-			<% } %>
-			
-			<!-- 맨 끝으로(>>) -->
-			<% if (s == null) { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/faq/list?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
-			<% } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/faq/list?currentPage=<%= pi.getMaxPage() %>&search=<%= search %>'"> &gt;&gt; </button>
-			<% } %>
-			</div>
-			
-			
-			
-        <script>
-        
+    	
+		</section>
+		
+		<script>
 		// 수정 삭제 기능
 		$(function(){
 			$("#faqBoard td").parent().children().eq(0).text().(function())
 				
-				location.href='<%= request.getContextPath() %>/faq/delete';
+				location.href='<%=request.getContextPath()%>/faq/delete';
 		
 				});
 			});
 		</script>
 		
-    </section>
+		<!-- 페이징 바 -->
+		<div class="pagingArea">
+			<!-- 맨 처음으로 (<<) -->
+			<%if (s == null) {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/list?currentPage=1'">
+				&lt;&lt;</button>
+			<%} else {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/search?currentPage=1&search=<%=search%>'">
+				&lt;&lt;</button>
+			<%}%>
+
+			<!-- 이전 페이지로 (<) -->
+			<%if (pi.getCurrentPage() == 1) {%>
+			<button disabled>&lt;</button>
+			<%} else if (s == null) {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/list?currentPage=<%=pi.getCurrentPage() - 1%>'">
+				&lt;</button>
+			<%} else {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/search?currentPage=<%=pi.getCurrentPage() - 1%>&search=<%=search%>'">
+				&lt;</button>
+			<%}%>
+
+			<!-- 10개의 페이지 목록 -->
+			<%for (int p = pi.getStartPage(); p <= pi.getEndPage(); p++) {%>
+			<%if (p == pi.getCurrentPage()) {%>
+			<button style="background: lightgray;" disabled>
+				<%=p%>
+			</button>
+			<%} else if (s == null) {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/list?currentPage=<%=p%>'">
+				<%=p%>
+			</button>
+			<%} else {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/search?currentPage=<%=p%>&search=<%=search%>'"><%=p%></button>
+			<%}%>
+			<%}%>
+
+			<!-- 다음 페이지로(>) -->
+			<%if (pi.getCurrentPage() == pi.getMaxPage()) {%>
+			<button disabled>&gt;</button>
+			<%} else if (s == null) {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/list?currentPage=<%=pi.getCurrentPage() + 1%>'">
+				&gt;</button>
+			<%} else {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/search?currentPage=<%=pi.getCurrentPage() + 1%>&search=<%=search%>'">
+				&gt;</button>
+			<%}%>
+
+			<!-- 맨 끝으로(>>) -->
+			<%if (s == null) {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/list?currentPage=<%=pi.getMaxPage()%>'">
+				&gt;&gt;</button>
+			<%} else {%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/faq/list?currentPage=<%=pi.getMaxPage()%>&search=<%=search%>'">
+				&gt;&gt;</button>
+			<%}%>
+		</div>
+
+
+
+		
+
+	</section>
+
+	<%@ include file="../common/footer.jsp"%>
 
 </body>
 </html>
