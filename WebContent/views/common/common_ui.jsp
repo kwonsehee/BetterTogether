@@ -66,7 +66,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     
     <!-- 스타일  -->
-	<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css?a'>
+	<link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/menu_style.css?after'>
 <%if(session.getAttribute("msg") != null){ %>
 <script>
    alert('<%=session.getAttribute("msg") %>');

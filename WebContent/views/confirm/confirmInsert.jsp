@@ -157,9 +157,9 @@ System.out.println("insert와서confirm :  "+confirm);
              <%if(confirm.equals("상관없음")||confirm.equals("평일")&&(day1<=5)||confirm.equals("주말")&&(day1>5)){ %>
              <button type="submit" class="comment">인증하기</button>
              <%} else if(confirm.equals("평일")&&(day1>5)){%>
-              <button type="submit" class="comment" onClick="alert('해당 챌린지의 인증은 평일만 가능합니다.')">인증하기</button>
+              <button type="button" class="comment" onClick="alert('해당 챌린지의 인증은 평일만 가능합니다.')">인증하기</button>
              <%} else if(confirm.equals("주말")&&(day1<=5)){%>
-              <button type="submit" class="comment" onClick="alert('해당 챌린지의 인증은 주말만 가능합니다.')">인증하기</button>
+              <button type="button" class="comment" onClick="alert('해당 챌린지의 인증은 주말만 가능합니다.')">인증하기</button>
          
              <%} %>
             </div>

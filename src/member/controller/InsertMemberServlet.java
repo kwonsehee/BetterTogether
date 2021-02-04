@@ -38,34 +38,35 @@ public class InsertMemberServlet extends HttpServlet {
 		String userId=request.getParameter("userId");
 		String userPwd=request.getParameter("userPwd");
 		String nickName=request.getParameter("nickName");
+		String name=request.getParameter("name");
 		String phone=request.getParameter("phone");
 		String email=request.getParameter("email");
 		
 		int cate = Integer.parseInt(request.getParameter("cate"));
 		
 		
-		Member mem = new Member(userId, userPwd, nickName, phone,email, cate);
+		Member mem = new Member(userId, userPwd, nickName, phone,email, cate, name);
 		System.out.println("잘 넘어오는지 확인 : "+mem);
-		
-		//3. 비지니스 로직을 수행 할 서비스 메소드 호출하고 결과 값 받기
+
+		// 3. 비지니스 로직을 수행 할 서비스 메소드 호출하고 결과 값 받기
 		int result = new MemberService().insertMember(mem);
-		System.out.println("result : "+result);
-		
-		//4. 받은 결과에 따라 성공/실패 페이지 내보내기
-		if(result > 0) {
-			//request.setAttribute("msg","회원가입이 완료되었습니다.");
-			//->sendRedirect 시 request객체는 새로 생성되므로 msg보존할 수 없음
-			request.getSession().setAttribute("msg","회원 가입이 완료되었습니다.");
-			//세션 객체를 가져와 메세지를 담으면 sendRedirect 이후에도 session영역에 msg보존
-			
-			
-			//서버에 재요청하여 home으로 이동
-			response.sendRedirect(request.getContextPath());
-		}else {
+		System.out.println("result : " + result);
+
+		// 4. 받은 결과에 따라 성공/실패 페이지 내보내기
+		if (result > 0) {
+			// request.setAttribute("msg","회원가입이 완료되었습니다.");
+			// ->sendRedirect 시 request객체는 새로 생성되므로 msg보존할 수 없음
+			request.getSession().setAttribute("msg", "회원 가입이 완료되었습니다.");
+			// 세션 객체를 가져와 메세지를 담으면 sendRedirect 이후에도 session영역에 msg보존
+
+			// 서버에 재요청하여 home으로 이동
+			response.sendRedirect(request.getContextPath() + "/commu/main");
+		} else {
 			request.setAttribute("msg", "회원 가입에 실패하였습니다.");
 			RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
 			view.forward(request, response);
 		}
+
 	}
 
 	/**
