@@ -30,16 +30,19 @@
 	href='<%=request.getContextPath()%>/resources/css/menu_style.css'>
 <style>
 
-#main {
-	position: absolute;
-	padding-top: 20px;
-	width: 1400px;
-	height: 700px;
-	margin-top: 5px;
-	background-color: #f9f1f1;
-	border-radius: 20px;
+#btHeader{
+    top: 0px;
 }
 
+
+ 
+
+.galleryArea {
+	padding: 5px;
+	width: 980px;
+	min-height: 400px;
+	margin: auto;
+}
 
 
 
@@ -562,14 +565,15 @@ body {
 </head>
 <body>
  
-
-
- 	 <div id="main" >
- 	 <h1 style="text-align: center">포인트 결제가 진행중입니다 잠시만 기달려주세요</h1>
-	<section id="content" class="content_css"> 
+	<%@ include file="../common/common_ui.jsp"%>
+	
+	<section id="btSection" class="btSection">
+	
+	
+	<div class="galleryArea" >
 	
 	 <br><br>
-	 
+	 <h1 style="text-align: center">포인트 결제가 진행중입니다 잠시만 기달려주세요</h1>
 	 <MARQUEE DIRECTION="right" style="height:500px;   ">
 	  <div class="🐕"    style="height: 430px;">
         <div class="torso">
@@ -640,10 +644,14 @@ body {
         </div>
       </div>
 </MARQUEE>
+
+  
+</div>
+		
+       <%@ include file="../common/footer.jsp" %>
 	</section> 
 
-      	</div>
-	<script>
+        <script>
 	
 	$(function(){
 		 var IMP = window.IMP; // 생략가능
@@ -675,7 +683,7 @@ body {
 	               var msg = '결제에 실패하였습니다.';
 	               msg += '에러내용 : ' + rsp.error_msg;
 	               //실패시 이동할 페이지 
-	               location.href="<%=request.getContextPath()%>/order/payFail";
+	               location.href="<%=request.getContextPath()%>";
 	              
 	           } 
 	           alert(msg);
@@ -686,8 +694,14 @@ body {
  
 
 </script>
+       
+   
+       
+       
+	
+<!-- 이부분에 <%@ include file="../common/footer.jsp" %>   사용하면 화면이 양옆으로 분리되서 섹션 안에 포함  -->
 
- <%@ include file="../common/footer.jsp" %>
 
 
 </body>
+</html>
