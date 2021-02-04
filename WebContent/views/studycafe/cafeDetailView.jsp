@@ -17,15 +17,34 @@
 <title>Insert title here</title>
 <style>
 /* 바깥 영역 */
-.galleryArea {
-	position: absolute;
-	padding: 5px;
-	width: 2080px;
-	height: 1010px;
-	min-height: 400px;
+.content_css{
+width: 100%;
+height: 950px;
+background-color: rgba(219, 219, 219, 0.356);
+z-index: -3;
+}
+
+.outer {
+
+	width: 1000px;
+	min-width: 850px;
+	font-family: "Nanum Gothic";
+	
 	margin: auto;
-	background-color: rgba(219, 219, 219, 0.356);
+	margin-top: 20px;
+	margin-bottom: 70px;
+	border-radius: 20px;
 	z-index: -2;
+}
+
+.galleryArea {
+		position: absolute;	
+	padding: 5px;
+	width: 1000px;
+	height: 950px;
+	min-height: 400px;
+	margin: auto; 
+	z-index: 0;
 }
 
 .content_css button {
@@ -98,10 +117,10 @@ hr {
 
 .map {
 	position: absolute;
-	left: 52.76%;
-	right: 15.96%;
-	top: 14.4%;
-	bottom: 20.1%;
+left: 47.03%;
+right: 20.08%;
+top: 19.71%;
+bottom: 18.03%;
 	border-radius: 36px;
 	border-radius: 20px;
 	z-index: 0;
@@ -134,12 +153,16 @@ hr {
 }
 
 #modal .modal_content {
-	width: 300px;
-	height: 454px margin-top: -50px;
+	width: 319px;
+height: 347px;
+ 	margin-top: -190px;
 	margin-left: -250px;
 	background: #fff;
 	border: 2px solid #666;
-	border-radius: 20px;
+	border-radius: 5px;
+	 
+ 
+	 
 }
 
 #modal .modal_layer {
@@ -152,9 +175,8 @@ hr {
 	z-index: -1;
 }
 
-#btnArea2 {
-	position: absolute;
-	left: 47%;
+#btnArea2 { 
+	left: 52%;
 	right: 47.41%;
 	top: 600px;
 	width: 55px;
@@ -165,11 +187,12 @@ hr {
 	background-color: white;
 	font-size: 10px;
 	font-weight: bolder;
+ 
 }
 
 #btnArea3 {
 	position: absolute;
-	left: 51%;
+	left: 55%;
 	right: 40.41%;
 	top: 600px;
 	width: 55px;
@@ -196,9 +219,9 @@ hr {
 #updateBtn {
 	position: absolute;
 	width: 63px;
-	height: 33px;
-	left: 1280px;
-	top: 600px;
+	height: 33px; 
+	top: 550px;
+    left: 850px;
 	width: 55px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
@@ -213,8 +236,8 @@ hr {
 	position: absolute;
 	width: 63px;
 	height: 33px;
-	left: 1350px;
-	top: 600px;
+	left: 930px;
+	top: 550px;
 	width: 55px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
@@ -334,16 +357,15 @@ ul {
 	<%@ include file="../common/common_ui.jsp"%>
 
 	<section id="content" class="content_css">
-	<div class="galleryArea">
-
-			<div id="main" style="margin-top: 100px;">
-				<h1 style="margin-left: 700px;">
+		<div class="outer"  >
+			<div class="galleryArea"> 
+				<h1 style="margin-left: 300px;margin-top: 15px;">
 					<strong>better together-스터디카페</strong>
 				</h1>
-				<h4 style="margin-left: 750px;">
+				<h4 style="margin-left: 350px;">
 					#<%=c.getCafe_area()%>#수업#다목적#공간#스터디룸
 				</h4>
-				<div class="cafe" style="top: 190px; left: 480px;">
+				<div class="cafe" style="top: 120px;left: 35px;">
 
 
 					<!-- 도서이미 불러오기-->
@@ -396,7 +418,7 @@ ul {
 
 				<!-- 카페 정보 및 예약-->
 				<div class="rvt"
-					style="border: 1px solid #bab6b6;top: 230px;left: 980px;width: 432px;height: 352px;">
+					style="border: 1px solid #bab6b6;top: 180px;left: 550px;width: 432px;height: 352px;">
 					<span><a style="font-size: 25px;">&nbsp&nbsp&nbsp <strong><%=c.getCafe_name()%></strong>
 					</a> </span><br> <br>
 					<table id="info">
@@ -434,27 +456,33 @@ ul {
 								<!--문의하기 팝업-->
 								<div id="root">
 									<button class="nav_btn" id="modal_opne_btn"
-										style="position: absolute; width: 150px; height: 40px; left: 30px; top: 300px; background: #AAD4EB; color: white;">
+										style="position: absolute; width: 150px; height: 40px; left: 30px; top: 300px; background: #937cf790; color: white;">
 										<a>문의하기</a>
 									</button>
 								</div>
+
 								<div id="modal">
 
 									<div class="modal_content">
-
-										<h2 style="text-align: center; color: black;  ">
+										<hr style="left: -245px;width: 310px;top: 230px; border: 0.5px solid #937cf790;">
+										<h2 style="text-align: center; color: black; ">
 											<br>
 											<%=c.getCafe_name()%></h2>
+										<br>
 										<h5>
-											" better together를 통해 연락드렸어요~" 라고 말씀하시면 더 친절하게 안내 받으실 수 있습니다.
-											:) <br>
+											&nbsp&nbsp" better together를 통해 연락드렸어요 ~" 라고 말씀하시면 더 친절하게 안내
+											받으실 수 있습니다.:) <br>
+											<br>
+											<br>
+
 										</h5>
+
 										<h2 style="text-align: center;">
 											<br> <strong> <%= c.getCafe_phone() %>
 											</strong>
 										</h2>
 										<button type="button" id="modal_close_btn"
-											style="background: #AAD4EB; color: white;">닫기</button>
+											style="background: #937cf790;color: white;margin-top: 20px;width: 316px;margin-left: 0px;">닫기</button>
 									</div>
 									<div class="modal_layer"></div>
 								</div>
@@ -462,7 +490,7 @@ ul {
 							</li>
 							<li>
 								<button class="nav_btn" id="bt2"
-									style="top: 300px; background: #AAD4EB; color: white;"
+									style="top: 300px; background: #937cf790; color: white;"
 									onclick="window.open('https://<%= c.getCafe_page() %>')">
 									<a>예약하기</a>
 								</button>
@@ -471,72 +499,64 @@ ul {
 					</table>
 				</div>
 
+				<button type="button" id="btnArea2"
+					style="margin-left: 550px; margin-top: 445px;">목록</button>
+				<% if(loginUser != null) { %>
+					<button type="button" id="btnArea3"style="margin-left: 580px;margin-top: 0px;top: 552px;left: 50px;" >신고</button>
+
+					<%} %>
+
+				<script>
+					var slideWrapper = document.querySelector('.container');
+					var slides = document.querySelectorAll('.item');
+					var totalSlides = slides.length; // item의 갯수
+
+					var sliderWidth = slideWrapper.clientWidth; // container의 width
+					var slideIndex = 0;
+					var slider = document.querySelector('.slider');
+
+					slider.style.width = sliderWidth * totalSlides + 'px';
+
+					function showSlides(n) {
+						slideIndex = n;
+						if (slideIndex == -1) {
+							slideIndex = totalSlides - 1;
+						} else if (slideIndex === totalSlides) {
+							slideIndex = 0;
+						}
+						slider.style.left = -(sliderWidth * slideIndex) + 'px';
+					}
+
+					function plusSlides(n) {
+						showSlides(slideIndex += n);
+					}
+
+					function currentSlide(n) {
+						showSlides(slideIndex = n);
+					}
+
+					var nextBtn = document.querySelector('.next');
+					var prevBtn = document.querySelector('.prev');
+
+					nextBtn.addEventListener('click', function() {
+						plusSlides(1);
+					});
+					prevBtn.addEventListener('click', function() {
+						plusSlides(-1);
+					});
+				</script>
+
+
+
+
+
+
+
+
+
 
 
 				<script>
-				 
-				 
-				 
-				 
-				 
-				 
-				 var slideWrapper = document.querySelector('.container');
-				 var slides = document.querySelectorAll('.item');
-				 var totalSlides = slides.length; // item의 갯수
-
-
-				 var sliderWidth = slideWrapper.clientWidth; // container의 width
-				 var slideIndex = 0;
-				 var slider = document.querySelector('.slider');
-
-				 slider.style.width = sliderWidth * totalSlides + 'px';
-
-
-				 function showSlides(n) {
-				     slideIndex = n;
-				     if (slideIndex == -1) {
-				         slideIndex = totalSlides - 1;
-				     } else if (slideIndex === totalSlides) {
-				         slideIndex = 0;
-				     }
-				     slider.style.left = -(sliderWidth * slideIndex) + 'px';
-				 }
-
-				 function plusSlides(n){
-				     showSlides(slideIndex += n);
-				 }
-				   
-				 function currentSlide(n) {
-				     showSlides(slideIndex = n);
-				 }
-
-				 var nextBtn = document.querySelector('.next');
-				 var prevBtn = document.querySelector('.prev');
-
-				 nextBtn.addEventListener('click', function () {
-				     plusSlides(1);
-				 });
-				 prevBtn.addEventListener('click', function () {
-				     plusSlides(-1);
-				 });
-				 
-				 
-				 
-				 </script>
-
-
-
-
-
-
-
-
-				<div class="btnArea" id="btnArea">
-
-					<button type="button" id="btnArea2">목록</button>
-
-
-					<script>
 				
 				const btnArea2 = document.getElementById("btnArea2");
 				btnArea2.addEventListener('click',function(){
@@ -544,10 +564,7 @@ ul {
 				});
 				</script>
 
-					<% if(loginUser != null) { %>
-					<button type="button" id="btnArea3">신고</button>
-
-					<%} %>
+					
 
 					<%
 						if (loginUser != null && loginUser.getUserId().equals(c.getUserId())) {
@@ -581,44 +598,35 @@ ul {
 					<%
 						}
 					%>
-				</div>
-
-
-				<script>
-           
-				document.getElementById("modal_opne_btn").onclick = function() {
-					document.getElementById("modal").style.display = "block";
-				}
-
-				document.getElementById("modal_close_btn").onclick = function() {
-					document.getElementById("modal").style.display = "none";
-					}
-				</script>
-
-				<hr
-					style="top: 630px; width: 1000px; left: 430px; border: 0.5px solid Purple;">
-				<!-- 카페 정보,약도-->
-				<div class="inf" style="top: 650px; width: 1200px; left: 430px;">
+					
+					
+						<hr style="top: 580px;width: 1000px;left: 0px;border: 0.5px solid Purple;">
+					<!-- 카페 정보,약도-->
+				<div class="inf" style="top: 590px;width: 1200px;left: 0px;">
 					<br>
 					<table id="info2">
 						<td>
 						<tr>
 							<span style="display: block; width: 480px; height: 100px;">
-								<strong>&nbsp공간소개 </strong> <pre style="font-size: 16px;height: 110px;width: 550px;""><%=c.getCafe_info()%></pre>
+								<strong>&nbsp&nbsp공간소개 </strong> <pre style="font-size: 16px;height: 110px;width: 550px;margin-left: 10px;"><%=c.getCafe_info()%></pre>
 							</span>
 						</tr>
 						</td>
 						<td>
 						<tr>
-							<span style="display: block; width: 480px; height: 100px; margin-top: 50px;">
+							<span
+								style="display: block; width: 480px; height: 100px; margin-top: 50px;">
 								<hr
-									style="left: 0px; top: 150px; width: 600px; border: 0.5px solid Purple;">
-								<strong> &nbsp유의사항 </strong> <pre style="font-size: 16px;height: 150px;width: 550px;"><%=c.getCafe_notice()%></pre>
+									style="left: 0px;top: 150px;width: 550px;border: 0.5px solid Purple;margin-top: 10px;">
+								<strong> &nbsp&nbsp유의사항 </strong> <pre
+									style="font-size: 16px;height: 150px;width: 550px;margin-left: 10px;"><%=c.getCafe_notice()%></pre>
 							</span>
 						</tr>
 						</td>
-						<h2 style="margin-left: 630px;">
-							<strong>※오시는길</strong>
+						<br>
+						 
+						<h2>
+							<strong style="margin-left: 570px;">※오시는길</strong>
 						</h2>
 						<br>
 						<br>
@@ -704,14 +712,31 @@ ul {
 									});
 				</script>
 				</div>
+					
+				</div>
+
+
+				<script>
+           
+				document.getElementById("modal_opne_btn").onclick = function() {
+					document.getElementById("modal").style.display = "block";
+				}
+
+				document.getElementById("modal_close_btn").onclick = function() {
+					document.getElementById("modal").style.display = "none";
+					}
+				</script>
+
+			
+				
 			</div>
-		</div>
+		 
 	</section>
 	 
 		 
 </body>
-<footer id="btFooter" style="margin-top: 1000px;">
-<br><br><br><br><br><br>
+<footer id="btFooter" style="margin-top: 50px;">
+ 
 		<pre id="btFooter_pre">KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 김언체 ｜  개인정보관리책임자 : 강명주
 
         강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F

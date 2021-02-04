@@ -194,15 +194,15 @@
 		<div class="outer" style=" padding-top: 100px;">
 		
 				
-			<label style="  margin-left: 485px;" ><strong> 지역검색</label><label  style=" margin-left: 185px;">카페홍보</label><label style="  margin-left: 350px;">카페명검색</label>	</strong>
+		
 			<div class="galleryArea">
-
+					<label style="  margin-left: 10px;" ><strong> 지역검색</label><label  style=" margin-left: 185px;">카페홍보</label><label style="  margin-left: 330px;">카페명검색</label>	</strong>
 				<!-- 지역및 인원선택 -->
 				<div class="searchArea">
 					<form action="<%=request.getContextPath()%>/cafe/search"
 						method="get" style="width:-50px;float:left;  ">
 							
-						<select id="area" name="search"   >
+						<select id="area" name="search" style="border: 2px solid #937cf790;"   >
 						 <%if(searchCondition.equals("area")){ %> 
 						 <option value="<%= searchCondition %>" >선택:<%= search %> </option> 
 						 <% }%>
