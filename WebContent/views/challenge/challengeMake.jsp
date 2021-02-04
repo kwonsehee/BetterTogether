@@ -157,6 +157,11 @@ input:focus, textarea:focus {
 	border: 0.5px solid #937cf790;
 }
 
+#challenge_btn:focus, #back_btn:focus {
+	outline: none;
+	border: solid 1px #937CF7;
+	background-color: #e0dbf890;
+}
 </style>
 <!-- select option 1:주말 2:평일 3:상관없음 -->
 
