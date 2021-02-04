@@ -13,18 +13,7 @@ if(session.getAttribute("news")!=null){
 <head>
 <meta charset="UTF-8">
 <title>새로운 알림</title>
-<style>
- .line{
-            float: left;
-            width: 100%;
-            height: 1px;
-            
-            background-color:#937cf790;
-             border: 0.5px solid #937cf790;
-             
-        } 
 
-</style>
 <%
 	if(request.getAttribute("result")!=null){
 		if(request.getAttribute("result").equals("success")){
@@ -44,7 +33,7 @@ opener.parent.location.reload();
         }
 	li{
 		margin-top:50px;
-		padding-left:20px;
+	 	padding-left:10px; 
 	}
 #newsCheckAfter{
 font-family: "Nanum Gothic";
@@ -55,6 +44,16 @@ font-family: "Nanum Gothic";
            font-size:10px;
            font-weight: bolder;
 }
+ .line{
+            float: left;
+            width: 100%;
+            height: 1px;
+            
+            background-color:#937cf790;
+             border: 0.5px solid #937cf790;
+             
+        }
+    
 </style>
 </head>
 <body>
@@ -69,6 +68,7 @@ font-family: "Nanum Gothic";
 		<li>회원님이 작성한 게시글이 신고되었습니다.</li>
 		
 		<%}else if(news.get(i).getNews_cate()==0){ %>
+		<br>
 		<li>회원님이 참여한 챌린지 <%=news.get(i).getTitle() %>가 삭제 또는 신고되어 챌린지 신청이 철회되었습니다.</li>
 		
 	
@@ -76,8 +76,9 @@ font-family: "Nanum Gothic";
 		<li>회원님의 질문<%=news.get(i).getTitle() %>에 관리자가 답변을 달아주었습니다.</li>
 		
 		<%} %>
-	</ul>
+	
 	<%} %>
+	</ul>
 	<p style="text-align:center;color:#937CF7;margin-top:10%;">마이페이지를 확인해주세요</p>
 	<button id="newsCheckAfter" style="margin-left:45%;">확인</button>
 	<%} %>
