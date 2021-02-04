@@ -24,22 +24,13 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
+
 .btSection{
 	padding-bottom: 100px;
 
 }
 
-/* 바깥 영역 */
-.outer {
-	width: 100%;
-	min-width: 850px;
-	font-family: "Nanum Gothic";
-	background-color: rgba(219, 219, 219, 0.356);
-	margin: auto;
-	margin-top: 20px;
-	margin-bottom: 70px;
-	border-radius: 20px;
-}
+ 
 
 #modal_opne_btn {
 	position: absolute;
@@ -145,7 +136,7 @@
 									<tr>
 										<th>카페이름</th>
 										<td><input type="text" class="form-control" name="cafe_name" required
-											placeholder="최대8글자입니다"  maxlength="8"></td>
+											placeholder="카페명은 최대8글자입니다"  maxlength="8"></td>
 									</tr>
 									<tr>
 										<th>운영시간</th>
@@ -305,7 +296,7 @@
 							$('#btnArea1').click(function() {
 
 								if( $('select[name=AFFILIATED_CAFE]').val() == 'Y'){
-									if(confirm("제휴등록은 결제가필요합니다. 결제하시겠습니까? ")){ 
+									if(confirm("제휴등록은 결제가필요합니다.약관에 동의하시고 결제하시겠습니까? ")){ 
 									}else{
 										return false;
 										
@@ -325,7 +316,7 @@
 					</div>
 					<div id="modal">
 						<div class="modal_content"
-							style="margin-left: 500px; height: 404px;">
+							style="margin-left: 500px;height: 444px;">
 
 
 
@@ -335,11 +326,23 @@
 
 							<ul class="join_box"
 								style="padding-left: 5px; padding-right: 5px;">
-								<a> 여러분을 환영합니다. BetterTogether 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서
-									감사합니다. 본 약관은 다양한 BetterTogether 서비스의 이용과 관련하여 BetterTogether에서
-									제공하고 이용하는 서비스 회원(이하 ‘회원’) 의 결제 정보를 알려주면서, 아울러 여러분의 제휴 서비스 이용에
-									도움이 될 수 있는 유익한 정보를 포함하고 있습니다. 결제는 한번으로 이루어지며 한번의 결제로 무제한 등록이
-									가능합니다.결제 비용은 등록시 최초로 3만원이 결제되면 환불은 불가능합니다. </a>
+								<pre style="height: 271px; white-space: pre-wrap;"> 
+여러분을 환영합니다. BetterTogether서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서감사합니다. 본 약관은 다양한 BetterTogether서비스의 이용과 관련하여 Bett
+erTogether에서제공하고 이용하는 서비스회원(이하 ‘회원’)의 결제 정보를 알려주면서, 아울러 여러분의 제휴 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+결제는 한번으로 이루어지며 한번의 결제로 무제한 등록이가능합니다.결제 비용은 등록시최초로 3만원이 결제되면 환불은 불가능합니다.
+									
+BetterTogether 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서
+감사합니다. 본 약관은 다양한 BetterTogether 서비스의 이용과 관련하여 BetterTogether에서
+제공하고 이용하는 서비스 회원(이하 ‘회원’) 의 결제 정보를 알려주면서, 아울러 여러분의 제휴 서비스 이용에
+도움이 될 수 있는 유익한 정보를 포함하고 있습니다. 결제는 한번으로 이루어지며 한번의 결제로 무제한 등록이
+가능합니다.결제 비용은 등록시 최초로 3만원이 결제되면 환불은 불가능합니다.
+									
+BetterTogether 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서
+감사합니다. 본 약관은 다양한 BetterTogether 서비스의 이용과 관련하여 BetterTogether에서
+제공하고 이용하는 서비스 회원(이하 ‘회원’) 의 결제 정보를 알려주면서, 아울러 여러분의 제휴 서비스 이용에
+도움이 될 수 있는 유익한 정보를 포함하고 있습니다. 결제는 한번으로 이루어지며 한번의 결제로 무제한 등록이
+가능합니다.결제 비용은 등록시 최초로 3만원이 결제되면 환불은 불가능합니다.							 
+									 </pre>
 
 							</ul>
 
@@ -349,7 +352,7 @@
 
 
 							<button type="button" id="modal_close_btn"
-								style="margin-left: 115px; margin-top: 0px;">닫기</button>
+								style="margin-left: 115px; margin-top: 0px;">확인</button>
 						</div>
 						<div class="modal_layer"></div>
 					</div>
