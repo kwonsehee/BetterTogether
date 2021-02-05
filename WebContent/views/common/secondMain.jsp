@@ -242,7 +242,8 @@ button:hover {
 /* 챌린저 랭킹 TOP 5 */
 .topten_ul ul, .topten_ul li {
 	list-style: none;
-	margin-left: 80%;
+	margin-left: 70%;
+	margin-bottom:1%;
 }
 
 .rankwrap {
