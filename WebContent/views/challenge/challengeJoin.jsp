@@ -366,6 +366,11 @@
 	outline:none;
 }
 
+#ppl_btn{
+	color:#616161b6;
+	border:none;
+	outline:none;
+}
 
 </style>
 </head>
@@ -459,6 +464,7 @@
 				<td id="chall_ppl">
 					<img src="<%=request.getContextPath()%>/resources/images/people.png" class="chall_Icon">
 					참가인원 : <span style="color:#937CF7; font-size:20px;"><%= joinPeopleCnt %></span> / <span style="color:#252525b6; font-size:20px;"><%= ch.getChallPeople() %></span>명
+					<button id="ppl_btn"> > </button>
 				</td>
 			</tr>
 			<tr>
@@ -505,79 +511,6 @@
 				<td class="challinfo1">금액 : <%=ch.getChallPay() %> 원</td>
 			</tr>
 		</table>
-		
-		
-		
-		
-		
-		<%-- 	<!-- width: 400px; height: 330px; -->
-			<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 400px;height: 330px;">
-			<p id="chall_title"><%= ch.getChallTitle() %></p>
-			<p id="chall_intro"><%= ch.getChallContent() %></p>
-		</section>
-
-		<section id="content-2">
-			<p id="join_title1">챌린지 정보</p>
-			<table id="join_table1">
-				<tr>
-					<td><img
-						src="<%=request.getContextPath()%>/resources/images/user.png"
-						class="img-size"></td>
-					<td>방장 : <span><%=ch.getUserId()%></span>
-					<%if(!(compare1 < 0)){ %>
-					<% } else { %>
-					<button id="warning_btn"> 신고하기</button></td>
-					<% } %>
-				</tr>
-				<tr>
-
-					<td><img
-						src="<%=request.getContextPath()%>/resources/images/member.png"
-						class="img-size"></td>
-					<td>참가인원 : <span style="color:#ff6064"><%= joinPeopleCnt %> </span><span style="color:#ff6064">/ </span><span style="color:#ff6064"><%= ch.getChallPeople() %> 명</span>
-					</td>
-				</tr>
-				<tr>
-					<td><img
-						src="<%=request.getContextPath()%>/resources/images/payment.png"
-						class="img-size"></td>
-					<td>챌린지 금액 : <span><%= ch.getChallPay() %> 원</span></td>
-				</tr>
-				<tr>
-					<td><img
-						src="<%=request.getContextPath()%>/resources/images/date.png"
-						class="img-size"></td>
-					<td>챌린지 기간 : <span><%= ch.getChallPeriod() %> 주</span></td>
-				</tr>
-			</table>
-			<hr color=#ff6064 width="450px" id="line">
-			
-			
-		<!-- 인증모아보기 갈때 challeng_no가져가기 -->
-			<p id="join_title2">챌린지 인증 방법 
-			<!-- 인증보기 버튼 (참여중/종료)일때만 보이기 -->
-					<% if((compare < 0 && compare2 < 0) || compare3 < 0){ %>
-					<button id="challConfirm_btn">인증보기</button>
-					<%} else{%>
-					<% } %>
-			</p>
-			
-			
-			<table id="join_table2">
-				<tr>
-					<td><img
-						src="<%=request.getContextPath()%>/resources/images/check.png"
-						class="img-size"></td>
-					<td>인증 빈도 : <span>주 <%=ch.getChallFrequency() %>회</span>
-					</td>
-				</tr>
-				<tr>
-					<td><img
-						src="<%=request.getContextPath()%>/resources/images/camera.png"
-						class="img-size"></td>
-					<td>인증 방법 : <span><%= ch.getChallConfirm() %></span></td>
-				</tr>
-			</table> --%>
 
 		</section>
 		
@@ -694,6 +627,28 @@
 		$("#confirmForm").attr("action", "<%= request.getContextPath()%>/confirm/list");
 		$("#confirmForm").submit();
 	});
+	</script>
+	
+	<script>
+	// 참가인원 보기 
+	const ppl_btn = document.getElementById('ppl_btn');
+	ppl_btn.addEventListener('click',function(){
+	 	
+		var url = '<%=request.getContextPath()%>/chall/ppl?challNo=<%=ch.getChallNo()%>';
+		
+		// 팝업 가운데에 띄우기
+		var popupWidth = 250;
+		var popupHeight = 200;
+
+		var popupX = (window.screen.width / 2) - (popupWidth / 2);
+		// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
+
+		var popupY= (window.screen.height / 2) - (popupHeight / 2);
+		// 만들 팝업창 height 크기의 1/2 만큼 보정값으로 빼주었음
+		
+		window.open(url , "참가인원 전체 보기",  'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+	});
+	
 	</script>
 
 	</section>

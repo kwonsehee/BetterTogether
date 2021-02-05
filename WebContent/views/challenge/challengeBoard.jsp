@@ -260,7 +260,11 @@
 				<div class="chall_list">
 					<input type="hidden" value="<%=ch.getChallNo() %>">		
 					<div>
+						<% if(challBoardType == 3){ %>
+						<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 200px;height: 150px; -webkit-filter: grayscale(100%); filter: gray;">
+						<% }  else {%>
 						<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= ch.getChallFile()%>" id="call_img" style="width: 200px;height: 150px;">
+						<% } %>
 					</div>
 					<p id="chall_No" class="chall_info"><img
 						src="<%=request.getContextPath()%>/resources/images/challCheck.png"
