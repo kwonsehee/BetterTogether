@@ -181,6 +181,15 @@
 	border: solid 1px #937CF7;
 	background-color: #e0dbf890;
 }
+
+.empty_chall{
+        	color : #937cf790;
+        	margin-top : 5%;
+        	font-size : 35p;
+        	font-family:"Nanum Gothic";
+
+        	text-align : center;
+        }
 	
 </style>
 </head>
@@ -190,7 +199,7 @@
             <p id="joinTitle">내가 모집한 챌린지 그룹</p>
             <div class="line"></div>
             <% if(list.isEmpty()){ %>
-            <h1 style="text-align:center;">내가 모집한 챌린지가 없습니다.</h1>
+            <h1 class="empty_chall">내가 모집한 챌린지가 없습니다.</h1>
             <% } else { %>
             <div class="challArea">
             <% for(Challenge ch : list) {%>
