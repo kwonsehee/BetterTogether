@@ -126,7 +126,7 @@
 
 						<div class="col-sm-6">
 							<h2>better together 스터디등록</h2>
-							<form action="MemberJoinProc.jsp" method="post">
+							<form>
 								<table class="table table-boardered">
 									<tr>
 										<th>카페이름</th>
@@ -278,6 +278,7 @@
 
 
 								</table>
+								
 							</form>
 						</div>
 

@@ -17,144 +17,131 @@
 <head>
 <meta charset="UTF-8">
 <title>Better Together</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
-
-#title, .title {
-	text-align: center;
-	font-family: "Nanum Gothic";
-	font-size: 24px;
-	color: #757575;
+.btSection {
+	padding-bottom: 100px;
 }
 
-.qnaTable {
-	border-top: 3px solid #937cf790;
-	width: 80%;
-}
-
-
-#writebox {
-	width: 80%;
-}
-
-#write_title {
-	font-family: "Nanum Gothic";
-	width: 100%;   
-	height: 40px; 
-	border: 0px;
-	background: none;
-	padding-left: 2%;
-}
-
-#writeArea {
-	width: 100%;
-	border: 0px;
-	resize: none;
-	background: none;
-	font-size: 20px;
-	font-family: "Nanum Gothic";
-	padding-left: 2%;
-}
-
-#reportedName{
-	font-family: "Nanum Gothic";
-	width: 100%;   
-	height: 40px; 
-	border: 0px;
-	background: none;
-	padding-left: 2%;
-}
-
-#thArea{
-	width: 10%;
-	text-align: center;
-    font-family: "Nanum Gothic";
-    color: #757575;
-}
-
-.filebox span, label, #ex_file, #reportedName{
-	color: #757575;
-	font-size: 15px;
-}
-
-/*버튼*/
 .Btn1 {
 	font-family: "Nanum Gothic";
-	border-radius: 10px;
+	border-radius: 5px;
 	border: solid 1px #9e9e9e5b;
-	padding: 5px 15px 5px 15px;
+	 
 	background-color: #e6e4e4b6;
-	font-size: 10px;
+	 
 	font-weight: bolder;
-	float: right;
-	margin-bottom: 2%;
+ 
 }
-
-#btnArea {
-	padding-right:10%;
-}
-
-.btSection #writebox {
-	margin: auto;
-}
-
 </style>
 </head>
 <body>
 	<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
 
-    <form id="report_form" action="<%= request.getContextPath() %>/report/insert" method="post" enctype="multipart/form-data">
+	<form id="report_form"
+		action="<%=request.getContextPath()%>/report/insert" method="post"
+		enctype="multipart/form-data">
+
 		<section id="btSection" class="btSection">
-			<table id="writebox">
-				<tr>
-					<td>
-						<h1 id="title" ><input type="hidden" class="title" name="category" value="<%=category%>"
-								readonly><%=category%>신고</h1>
-					</td>
-				</tr>
-				<tr>
-					<th id="thArea">제목</th>
-					<td class="qnaTable"><input type="text" maxlength="50"
-						name="title" id="write_title" placeholder="제목을 입력해주세요."></td>
-				</tr>
-				<tr>
-					<th id="thArea"><%=category%>번호</th>
-					<td class="qnaTable"><input type="hidden" name="no" value="<%=no%>" id="reportNum" readonly>
-						<%=no%></td>
-				</tr>
-				<tr>
-					<th id="thArea">대상 닉네임</th>
-					<td class="qnaTable"><input type="text" maxlength="50" name="reported_id" id="reportedName"
-						value="<%=reported_id%>" readonly></td>
-				</tr>
+			<div class="container">
 
-				<tr>
-					<th id="thArea">첨부파일</th>
-					<td class="qnaTable">
-						<div class="filebox">
-							<label for="ex_file">파일 첨부</label> <input type="file"
-								id="ex_file" name="ex_file"> <span class="filename">파일을
-								선택해주세요.</span>
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<div class="col-sm-3"></div>
+
+						<div class="col-sm-6">
+							<h2><%=category%>신고
+							</h2>
+							<table class="table table-boardered">
+							 
+								<input type="hidden" class="title" name="category"
+									value="<%=category%>" readonly> 
+
+								<tr>
+									<th id="thArea">제목</th>
+									<td><input type="text" maxlength="50" class="form-control"
+										name="title" id="write_title" placeholder="제목을 입력해주세요." style=" float: left;"></td>
+								</tr>
+								<tr>
+									<th id="thArea"><%=category%>번호</th>
+									<td><input type="hidden" name="no" class="form-control"
+										value="<%=no%>" id="reportNum" readonly style="float: left;"><input
+										type="text" value="<%=no%>" readonly 
+										style="border-top-width: 0px; padding-left: 0px; padding-bottom: 0px;
+										 border-bottom-width: 0px; border-left-width: 0px; 
+										 padding-right: 0px; border-right-width: 0px; float: left;
+										background-color:rgba(255,255,255,0);">
+									</td>
+								</tr>
+								<tr>
+									<th id="thArea">대상 닉네임</th>
+									<td ><input type="text" maxlength="50" 
+										name="reported_id" id="reportedName" value="<%=reported_id%>"
+										readonly style="border-top-width: 0px; padding-left: 0px; padding-bottom: 0px;
+										 border-bottom-width: 0px; border-left-width: 0px; 
+										 padding-right: 0px; border-right-width: 0px; float: left;
+										background-color:rgba(255,255,255,0);"></td>
+								</tr>
+
+
+								<tr>
+									<th>첨부파일</th>
+									<td><input type="file" name="ex_file"></td>
+								</tr>
+
+
+
+
+
+								<tr>
+									<th id="thArea">내용</th>
+									<td><textarea rows="5" cols="40" name="content"
+											placeholder="내용을 입력해주세요." class="form-control"></textarea></td>
+								</tr>
+
+
+
+
+							</table>
+
+							<div id="btnArea">
+								<!-- 등록 버튼 , 나가기 버튼 -->
+								<button class="Btn1" id="back_btn"
+									onclick="javascript:history.back();">취소</button>
+								<button type="submit" class="Btn1">신고</button>
+							</div>
+
+
+
 						</div>
-					</td>
-				</tr>
 
-				<tr>
-					<th id="thArea">내용</th>
-					<td class="qnaTable"><textarea cols="50" id="writeArea"
-							rows="15" name="content" placeholder="내용을 입력해주세요."></textarea></td>
-				</tr>
-			</table>
+					</div>
 
-			<div id="btnArea">
-                <!-- 등록 버튼 , 나가기 버튼 -->
-                <button class="Btn1" id="back_btn" onclick="javascript:history.back();">취소</button>
-                <button type="submit" class="Btn1">신고하기</button>
-            </div>
-            
-    	</section>
-    </form>
-       <script>
+
+				</div>
+			</div>
+
+		</section>
+	</form>
+
+
+
+	<script>
 								$(document).on("change", "#ex_file",
 										function() {
 											var filename = $(this).val();
@@ -164,8 +151,8 @@
 											$(".filename").text(filename);
 										})
 							</script>
-								
-	<%@ include file="../common/footer.jsp" %>
-	
+
+	<%@ include file="../common/footer.jsp"%>
+
 </body>
 </html>
