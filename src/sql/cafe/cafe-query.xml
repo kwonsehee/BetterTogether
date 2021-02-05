@@ -6,12 +6,14 @@
 			COUNT(*)
 		FROM
 			CAFE 
+		WHERE
+   			 CAFE_STATUS = 'N'	
 	</entry>
 	
 
 	
 	<entry key="selectList2">
- SELECT
+ 			SELECT
 	 		RNUM
 	 		,CAFE_CODE
 	 		,CAFE_OH
@@ -33,8 +35,9 @@
            	 ALIST    
          WHERE
           	RNUM BETWEEN ? AND ?
-            AND CAFE_STATUS='N'
-           ORDER BY AFFILIATED_CAFE DESC , CAFE_CODE DESC
+         AND 
+            CAFE_STATUS='N'
+            ORDER BY AFFILIATED_CAFE DESC , CAFE_CODE DESC
 	</entry>
 	
 	
