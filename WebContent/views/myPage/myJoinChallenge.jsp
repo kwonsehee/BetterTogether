@@ -34,6 +34,7 @@
      /*        border:solid 1px red;  */
             font-size: 24px;
             text-align: center;
+            color : #757575;
           
    }
 	

@@ -23,6 +23,7 @@
      /*        border:solid 1px red;  */
             font-size: 24px;
             text-align: center;
+            color : #757575;
    }
    
    /*게시판*/
@@ -77,6 +78,11 @@
          color : #757575;
 	}
 	
+	#joinChall {
+		margin-top:20px;
+		padding-bottom:20px;
+	}
+	
 	/*버튼*/
 	
 	#backBtn {
@@ -120,24 +126,27 @@
             <div id="join">
                  <div id="joinChall">
                  <table id="joinList">
-                    <tr id="th_title">
+                   <!--  <tr id="th_title">
                     	<th id="th_beforeNo">챌린지 번호</th>
                     	<th id="th_beforeCate">카테고리</th>
                        <th id="th_beforeTitle">챌린지 명</th>
                        <th id="th_beforePeriod">챌린지 기간</th>
                     
-                    </tr>
+                    </tr> -->
          <% for(Challenge chall : cList) { %>
-                    <tr>
-     
-                    	<td><%= chall.getChallNo() %></td>
-                    	<%-- <input type="hidden" value="<%= chall.getChallStatus() %>"> --%>
-                    	<td><%= chall.getCateName() %></td>
-                        <td><%= chall.getChallTitle() %></td>
-                        <td><%=chall.getChallStart() %>~<%= chall.getEndDate() %></td>
-                     
-
-                    </tr>
+            <tr>
+				 <td>
+	          	<input type="hidden" name="challNo" value="<%= chall.getChallNo() %>">
+	          </td>
+	           <td>
+	              <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= chall.getChallFile()%>" style="width: 150px;height: 100px;" class="img-size">
+	           </td>
+	           	 <td>카테고리 : <%= chall.getCateName() %></td>
+	           	 <td>챌린지 제목 : <%= chall.getChallTitle() %></td>
+	           <td>
+	           	챌린지 기간 : <%=chall.getChallStart() %>~<%= chall.getEndDate() %>
+	           </td>
+            </tr>
           <% } %> 
                  </table>
                  </div>

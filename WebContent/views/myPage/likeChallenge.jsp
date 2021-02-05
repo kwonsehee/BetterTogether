@@ -32,6 +32,7 @@
      /*        border:solid 1px red;  */
             font-size: 24px;
             text-align: center;
+            color : #757575;
    }
 	
 	/*게시판*/
@@ -86,6 +87,10 @@
          color : #757575;
 	}
 	
+	#likeChall {
+		margin-top:20px;
+		padding-bottom:20px;
+	}
 	
 	
 	/*버튼*/
@@ -140,20 +145,25 @@
         </section>
            		<% if(loginUser != null && cList!=null) { %>
             		<div id="like">
-                 		<div id="likdChall">
+                 		<div id="likeChall">
                  		<table id="likeList">
-                 			<tr id="th_title">
+                 			<!-- <tr id="th_title">
                  				<th id="th_likeNo">챌린지번호</th>
                  				<th id="th_likeCate">카테고리</th>
                  				<th id="th_likeTitle">챌린지 제목</th>
                  				<th id="th_likePeriod">챌린지 기간</th>
-                 			</tr>
+                 			</tr> -->
          			<% for(Challenge chall : cList) { %>
-                 			<tr>
-                 				<td><%= chall.getChallNo() %></td>
-                 				<td><%= chall.getCateName() %></td>
-                 				<td><%= chall.getChallTitle() %></td>
-                 				 <td><%=chall.getChallStart() %>~<%= chall.getEndDate() %><button id="likeDeleteBtn" class="likeUpdateBtn">찜하기 취소</button></td>
+            		<tr>
+            			<td>
+	          				<input type="hidden" name="challNo" value="<%= chall.getChallNo() %>">
+	          			</td>
+	           			<td>
+	              			<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= chall.getChallFile()%>" style="width: 150px;height: 100px;" class="img-size">
+	           			</td>
+	           	 		<td>카테고리 : <%= chall.getCateName() %></td>
+	           	 		<td>챌린지 제목 : <%= chall.getChallTitle() %></td>
+	           			<td><button id="likeDeleteBtn" class="likeUpdateBtn">찜하기 취소</button></td>
                  			</tr>
           			<% } %> 
                  		</table>
