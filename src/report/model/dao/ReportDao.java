@@ -55,6 +55,7 @@ public class ReportDao {
 				pstmt.setString(3, r.getReport_content());
 				pstmt.setString(4, r.getUser_id());
 				pstmt.setInt(5, no);
+				pstmt.setString(6, r.getReported_id());
 				
 			}else {
 				sql=prop.getProperty("insertConfirmReport2");
@@ -66,6 +67,7 @@ public class ReportDao {
 				pstmt.setString(4, r.getReport_content());
 				pstmt.setString(5, r.getUser_id());
 				pstmt.setInt(6, no);
+				pstmt.setString(7, r.getReported_id());
 			
 			}
 			
@@ -99,6 +101,7 @@ public class ReportDao {
 				pstmt.setString(3, r.getReport_content());
 				pstmt.setString(4, r.getUser_id());
 				pstmt.setInt(5, no);
+				pstmt.setString(6, r.getReported_id());
 				
 			}else {
 				sql=prop.getProperty("insertChallReport2");
@@ -110,6 +113,7 @@ public class ReportDao {
 				pstmt.setString(4, r.getReport_content());
 				pstmt.setString(5, r.getUser_id());
 				pstmt.setInt(6, no);
+				pstmt.setString(7, r.getReported_id());
 			
 			}
 			
@@ -143,6 +147,7 @@ public class ReportDao {
 				pstmt.setString(3, r.getReport_content());
 				pstmt.setString(4, r.getUser_id());
 				pstmt.setInt(5, no);
+				pstmt.setString(6, r.getReported_id());
 				
 			}else {
 				sql=prop.getProperty("insertBoardReport2");
@@ -154,6 +159,7 @@ public class ReportDao {
 				pstmt.setString(4, r.getReport_content());
 				pstmt.setString(5, r.getUser_id());
 				pstmt.setInt(6, no);
+				pstmt.setString(7, r.getReported_id());
 			
 			}
 			
@@ -187,6 +193,7 @@ public class ReportDao {
 				pstmt.setString(3, r.getReport_content());
 				pstmt.setString(4, r.getUser_id());
 				pstmt.setInt(5, no);
+				pstmt.setString(6, r.getReported_id());
 				
 			}else {
 				sql=prop.getProperty("insertCafeReport2");
@@ -198,6 +205,7 @@ public class ReportDao {
 				pstmt.setString(4, r.getReport_content());
 				pstmt.setString(5, r.getUser_id());
 				pstmt.setInt(6, no);
+				pstmt.setString(7, r.getReported_id());
 			
 			}
 			

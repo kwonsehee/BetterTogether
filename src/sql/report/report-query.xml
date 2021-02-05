@@ -33,6 +33,17 @@
         	SEQ_REPID.CURRVAL
           , ?
         )
+        INTO
+            NEWS
+        VALUES
+        (
+            SEQ_NEID.NEXTVAL
+          , ?
+          , 1
+          , SEQ_REPID.NEXTVAL
+          , DEFAULT
+          , SYSDATE
+        )
         SELECT *
         FROM DUAL
 	</entry>
@@ -69,6 +80,17 @@
         	SEQ_REPID.CURRVAL
           , ?
         )
+        INTO
+            NEWS
+        VALUES
+        (
+            SEQ_NEID.NEXTVAL
+          , ?
+          , 1
+          , SEQ_REPID.CURRVAL
+          , DEFAULT
+          , SYSDATE
+        )
         SELECT *
         FROM DUAL
 	</entry>
@@ -102,6 +124,17 @@
         (
         	SEQ_REPID.CURRVAL
           , ?
+        )
+        INTO
+            NEWS
+        VALUES
+        (
+            SEQ_NEID.NEXTVAL
+          , ?
+          , 1
+          , SEQ_REPID.CURRVAL
+          , DEFAULT
+          , SYSDATE
         )
         SELECT *
         FROM DUAL
@@ -139,6 +172,17 @@
         	SEQ_REPID.CURRVAL
           , ?
         )
+        INTO
+            NEWS
+        VALUES
+        (
+            SEQ_NEID.NEXTVAL
+          , ?
+          , 1
+          , SEQ_REPID.CURRVAL
+          , DEFAULT
+          , SYSDATE
+        )
         SELECT *
         FROM DUAL
 	</entry>
@@ -172,6 +216,17 @@
         (
         	?
           , SEQ_REPID.CURRVAL
+        )
+        INTO
+            NEWS
+        VALUES
+        (
+            SEQ_NEID.NEXTVAL
+          , ?
+          , 1
+          , SEQ_REPID.CURRVAL
+          , DEFAULT
+          , SYSDATE
         )
         SELECT *
         FROM DUAL
@@ -209,6 +264,17 @@
         	?
           , SEQ_REPID.CURRVAL
         )
+        INTO
+            NEWS
+        VALUES
+        (
+            SEQ_NEID.NEXTVAL
+          , ?
+          , 1
+          , SEQ_REPID.CURRVAL
+          , DEFAULT
+          , SYSDATE
+        )
         SELECT *
         FROM DUAL
 	</entry>
@@ -242,6 +308,17 @@
         (
         	SEQ_REPID.CURRVAL
           , ?
+        )
+        INTO
+            NEWS
+        VALUES
+        (
+            SEQ_NEID.NEXTVAL
+          , ?
+          , 1
+          , SEQ_REPID.CURRVAL
+          , DEFAULT
+          , SYSDATE
         )
         SELECT *
         FROM DUAL
@@ -278,6 +355,17 @@
         (
         	SEQ_REPID.CURRVAL
           , ?
+        )
+        INTO
+            NEWS
+        VALUES
+        (
+            SEQ_NEID.NEXTVAL
+          , ?
+          , 1
+          , SEQ_REPID.CURRVAL
+          , DEFAULT
+          , SYSDATE
         )
         SELECT *
         FROM DUAL

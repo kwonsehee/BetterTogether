@@ -19,7 +19,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>인증 리스트</title>
+<title>Better Together</title>
    <style>
    #btSection {
 	padding-bottom: 100px;
@@ -34,10 +34,13 @@
 
         #content-1 p{
       /*       border:solid 1px red;  */
-            font-size: 30px;
-            text-align: center;
-            margin-top: 18px;
+           
+          margin-top: 50px;
+           text-align: center;
+           font-size: 24px;
+           color : #757575;
         }
+        
 
         #content-2{
        /*      border:solid 1px blue;  */

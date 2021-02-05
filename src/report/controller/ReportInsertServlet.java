@@ -17,6 +17,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import common.MyFileRenamePolicy;
 import member.model.vo.Member;
+import news.model.service.NewsService;
 import report.model.service.ReportService;
 import report.model.vo.Report;
 
@@ -52,7 +53,7 @@ public class ReportInsertServlet extends HttpServlet {
 			System.out.println("root : " + root);
 			
 			// 파일이 실제로 저장 될 경로
-			String savePath = root + "resources\\uploadFiles\\"; 
+			String savePath = root + "resources/uploadFiles/"; 
 			
 			
 			

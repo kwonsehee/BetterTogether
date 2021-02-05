@@ -1,6 +1,7 @@
 package report.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.model.vo.PageInfo;
+import member.model.service.MemberService;
 import member.model.vo.Member;
 import report.model.service.ReportService;
 import report.model.vo.Report;
@@ -70,13 +72,9 @@ public class ReportMyListServlet extends HttpServlet {
 		ArrayList<Report> list = new ReportService().selectMyList(userId, pi);
 		
 		
-		
-		
-		// System.out.println("PI : " + pi);
-		// System.out.println("list : " + list);
-		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+	
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/report/myReport.jsp");
 		view.forward(request, response);

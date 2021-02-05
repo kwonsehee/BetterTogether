@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -460,6 +461,64 @@ public class MemberDao {
 			}
 			System.out.println("dao 비밀번호찾기 :"+pwd);
 			return pwd;
+		}
+
+		//글쓰기 비활성화 인지 확인하고 비활성화 날짜 가져오기
+		public Date getWriteActive(Connection conn, String userId) {
+			Date reported_date = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("getWriteActive");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, userId);
+				
+				
+				rset = pstmt.executeQuery();
+
+				if(rset.next()) {
+					reported_date = rset.getDate(1);
+
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+
+			return reported_date;
+		}
+
+		//USER_INFO디비 업데이트하기(신고된지 30일 이후에는 write_active를 y로)
+		public int updateWriteActive(Connection conn, String userId) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			
+			
+			String sql = prop.getProperty("updateWriteActive");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, userId);
+				
+				
+				result = pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			return result;
 		}
 
 		
