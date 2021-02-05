@@ -304,19 +304,13 @@
 									<tr>
 										<th>카페소개글</th>
 										<td><textarea rows="5" cols="40" name="cafe_info"
-												class="form-control">ex)안녕하세요 저희카페 오신걸환영합니다
-저희카페에서는 다양한음료와 스낵들이 준비되어있습니다. 
-저희카페에서 무료와이파이와 검색을 하실수있는
-노트북이 구비되어있습니다.</textarea></td>
+												class="form-control"><%= c.getCafe_info() %></textarea></td>
 									</tr>
 
 									<tr>
 										<th>카페공지글</th>
 										<td><textarea rows="5" cols="40" name="cafe_notice"
-												class="form-control">ex)1.취식물 반입금지(엔터를 처서 입력하세요)
-2.반려동물 출입금지
-3.5인이상 예약불가
-4.마스크 꼭 쓰고있기</textarea></td>
+												class="form-control"><%= c.getCafe_notice() %> </textarea></td>
 									</tr>
 
 									 
