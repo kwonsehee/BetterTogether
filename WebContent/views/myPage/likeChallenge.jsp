@@ -46,6 +46,7 @@
 	#like {
 		width : 80%;
 		margin:auto;
+		margin-top:30px;
 	}
 	
 	#likeList th, #likeList td {
@@ -183,7 +184,7 @@
 			<!-- 10개의 페이지 목록 -->
 			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) {%>
 			<% if(p == pi.getCurrentPage()) { %>
-			<button style="background:white;" disabled><%= p %></button>	
+			<button style="background:lightgray;" disabled><%= p %></button>	
 			
 			<% } else {%>
 			

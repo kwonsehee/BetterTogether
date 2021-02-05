@@ -48,12 +48,15 @@
             font-size: 20px;
         }
         #refund button{
-            width: 120px;
-            height: 50px;
-            border-radius: 20px;
-            border: #9e9e9e5b;   
-            background-color: #9e9e9e5b;   
-            margin-top: 30px;
+           font-family: "Nanum Gothic";
+	        border-radius: 10px;
+	        border: solid 1px #9e9e9e5b;
+	        padding:5px 15px 5px 15px;
+	        background-color: #e6e4e4b6;
+	        font-size:10px;
+	        font-weight: bolder;
+	        margin-top:20px;
+	        margin-left:50px;
         }
         #content-2{
             padding-left: 22%;

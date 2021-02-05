@@ -84,7 +84,7 @@ System.out.println("jsp list : "+reList);%>
             width: 80%;
            /*  height: 400px;       */
             border-collapse: collapse;
-            
+            margin-top:30px;
         }
 
         #board_tb th, #board_tb td {

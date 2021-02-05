@@ -52,7 +52,6 @@
 	#join tr {
 		font-family: "Nanum Gothic";
         font-size: 20px;
-       	padding-bottom: 20px;
 	}
 	
 	#updateForm {
