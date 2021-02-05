@@ -35,11 +35,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
-
-.btSection{
+.btSection {
 	padding-bottom: 100px;
-
 }
 
 /* 바깥 영역 */
@@ -153,26 +150,43 @@
 	padding: 10px;
 }
 
+button{
+ font-family: "Nanum Gothic";
+}
+
+
 .searchArea button {
 	width: 55px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
 }
 
-#insertBtn {
-	width: 80px;
+.searchCondition button {
+	width: 55px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
+}
+
+#insertBtn {
+	width: 55px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-weight: bolder;
+	font-size: 10px;
+	color:black;
 }
 
 .scale {
@@ -204,16 +218,16 @@
 
 
 		<div class="galleryArea">
-			<label style="margin-left: 10px;"><strong> 지역검색</label><label
-				style="margin-left: 185px;">카페홍보</label><label
-				style="margin-left: 330px;">카페명검색</label> </strong>
+			<label style="margin-left: 10px; font-family: Nanum Gothic;"><strong> 지역검색</label><label
+				style="margin-left: 185px; font-family: Nanum Gothic;">카페홍보</label><label
+				style="margin-left: 330px; font-family: Nanum Gothic;">카페명검색</label> </strong>
 			<!-- 지역및 인원선택 -->
 			<div class="searchArea">
 				<form action="<%=request.getContextPath()%>/cafe/search"
 					method="get" style="width: -50px; float: left;">
 
 					<select id="area" name="search"
-						style="border: 2px solid #937cf790;">
+						style="border: 2px solid #937cf790;  font-family: Nanum Gothic;">
 						<%if(searchCondition.equals("area")){ %>
 						<option value="<%= searchCondition %>">선택:<%= search %>
 						</option>
@@ -263,11 +277,11 @@
 
 					</select>
 					<button id="bt1" type="submit" name="searchCondition" value="area"
-						<%= selected[0] %>>적용</button>
+						<%= selected[0] %>>검색</button>
 				</form>
 
 				<form style="float: left; width: 420px;">
-					<MARQUEE DIRECTION="left" style="color: #937cf790;">제휴카페로
+					<MARQUEE DIRECTION="left" style="color: #937cf790; font-family: Nanum Gothic;">제휴카페로
 						등록해 카페를 제일먼저 홍보하세요! </MARQUEE>
 				</form>
 
@@ -278,15 +292,15 @@
 
 
 					<%if(searchCondition.equals("title")){ %>
-					<input type="text" id="search" name="search" value="<%= search %>"
+					<input type="text" id="search" name="search" value="<%= search %>" style="font-family: Nanum Gothic;"
 						placeholder="카페명을 검색하세요!">
 					<%} else{ %>
-					<input type="text" id="search" name="search"
+					<input type="text" id="search" name="search"  style="font-family: Nanum Gothic;"
 						placeholder="카페명을 검색하세요!">
 					<% }%>
 					<button type="submit" class="img-button" name="searchCondition"
 						<%= selected[1] %> value="title"
-						style="width: 55px; height: 30px; background: #FEFDFD;">검색
+						 >검색
 					</button>
 
 
@@ -315,7 +329,7 @@
 				for (Cafe c : list2) {
 			%>
 			<%
-				if (c.getAFFILIATED_CAFE().equals("Y")) {
+				if (c.getAFFILIATED_CAFE().equals("Y") ) {
 			%>
 			<div class="gallery_list2"
 				style="margin-bottom: 5px; margin-top: 40px;">
@@ -340,7 +354,7 @@
 
 				</div>
 
-				<h5 class="gallery_title">
+				<h5 class="gallery_title"  style="font-family: Nanum Gothic;">
 					<제휴> <strong style="color: #937cf790;"><%=c.getCafe_name()%></strong>
 				</h5>
 				<h10
@@ -352,11 +366,14 @@
 			<div class="gallery_list"
 				style="margin-bottom: 20px; margin-top: 30px;">
 				<input type="hidden" value="<%=c.getCafe_code()%>">
-				<div class="scale">
-					<%if(c.getCafe_photo() != null ) {%>
+				<div class="scale"
+					style="margin-right: 0px; width: 200px; margin-left: 2px;">
+					<%
+						if (c.getCafe_photo() != null) {
+					%>
 					<img
 						src="<%=request.getContextPath()%>/resources/Cafeimages/<%=c.getCafe_photo()%>"
-						width="205px" height="150px" style="padding-right: 10px;">
+						width="205px" height="150px">
 					<%} else { %>
 					<img
 						src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
@@ -364,10 +381,12 @@
 					<%} %>
 				</div>
 
-				<h5 class="gallery_title" style="font-family:Nanum Gothic;margin-top: 10px;margin-bottom: 15px;"> <%=c.getCafe_name()%></h5>
-				<h6 style="margin-top: 0px; margin-bottom: 0px; font-size: 5px;">
+				<h5 class="gallery_title"
+					style="font-family: Nanum Gothic; margin-top: 10px; margin-bottom: 15px;">
+					<%=c.getCafe_name()%></h5>
+				<h6 style="margin-top: 0px; margin-bottom: 0px; font-size: 5px; font-family: Nanum Gothic;">
 
-					#<%= c.getCafe_area() %>#최대인원<%= c.getCafe_capacity() %>#운영<%= c.getCafe_oh() %>
+					 #<%= c.getCafe_area() %>#최대인원<%= c.getCafe_capacity() %>#운영<%= c.getCafe_oh() %> 
 				</h6>
 			</div>
 
@@ -432,9 +451,8 @@
  				
  				<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
 				<% if(loginUser != null) { %>
-				<button id="insertBtn" type="button"
-					style="width: 55.99306px; height: 25.99306px;"
-					onclick="location.href='<%= request.getContextPath() %>/views/studycafe/cafeInsertForm.jsp'">등록</button>
+				<button id="insertBtn" type="button" 
+					onclick="location.href='<%= request.getContextPath() %>/views/studycafe/cafeInsertForm.jsp'">작성 </button>
 				<%
 					}
 				%>
