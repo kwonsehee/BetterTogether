@@ -178,7 +178,7 @@ button{
 }
 
 #insertBtn {
-	width: 55px;
+	width: 80px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
@@ -399,7 +399,8 @@ button{
 
 
 			<div id="line1" style="margin-top: 30px;"></div>
-		</div>
+			
+		
 
 
 		<!-- 페이징 바 -->
@@ -449,15 +450,20 @@ button{
 				<% } %>
 
  				
- 				<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
-				<% if(loginUser != null) { %>
-				<button id="insertBtn" type="button" 
-					onclick="location.href='<%= request.getContextPath() %>/views/studycafe/cafeInsertForm.jsp'">작성 </button>
-				<%
-					}
-				%>
+ 				
  				
 			</div> 
+			
+			
+				<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
+				<% if(loginUser != null) { %>
+			<button id="insertBtn" type="button"
+				onclick="location.href='<%=request.getContextPath()%>/views/studycafe/cafeInsertForm.jsp'"
+				style="margin-left: 895px;">카페등록</button>
+			<%
+				}
+			%>
+		</div>
 			<script>
 				$(function(){
 					$(".gallery_list2" ).click(function(){
