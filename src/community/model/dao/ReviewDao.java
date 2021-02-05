@@ -144,7 +144,7 @@ public class ReviewDao {
 		int listCount = 0;
 		Statement stmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("getMyListCount");
+		String sql = prop.getProperty("getListCount");
 		
 		try {
 			stmt = conn.createStatement();
@@ -285,6 +285,85 @@ public class ReviewDao {
 		}
 		System.out.println("dao : " + result);
 		return result;
+	}
+
+	// 별점순 리스트 조회용
+	public ArrayList<Review> selectSortByGradeList(Connection conn, PageInfo pi) {
+		ArrayList<Review> rList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSortByGradeList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				rList.add(new Review(rset.getInt(2),
+									 rset.getString(3),
+									 rset.getDate(4),
+									 rset.getDate(5),
+									 rset.getInt(6),
+									 rset.getString(7),
+									 rset.getInt(8),
+									 rset.getString(9),
+									 rset.getString(10),
+									 rset.getString(11)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("별점순 rList : " + rList + "\n");
+		
+		return rList;
+		
+	}
+
+	public ArrayList<Review> selectSortByDateList(Connection conn, PageInfo pi) {
+		ArrayList<Review> rList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSortByDateList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				rList.add(new Review(rset.getInt(2),
+									 rset.getString(3),
+									 rset.getDate(4),
+									 rset.getDate(5),
+									 rset.getInt(6),
+									 rset.getString(7),
+									 rset.getInt(8),
+									 rset.getString(9),
+									 rset.getString(10),
+									 rset.getString(11)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		//System.out.println("dao rList : " + rList);
+		
+		return rList;
+		
 	}
 
 	
