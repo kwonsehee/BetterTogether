@@ -34,6 +34,7 @@
      /*        border:solid 1px red;  */
             font-size: 24px;
             text-align: center;
+            color : #757575;
           
    }
 	
@@ -164,7 +165,7 @@
 			<!-- 7개의 페이지 목록 -->
 			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) {%>
 			<% if(p == pi.getCurrentPage()) { %>
-			<button style="background:white;" disabled><%= p %></button>
+			<button style="background:lightgray;" disabled><%= p %></button>
 			<% } else {%>
 			<button onclick="location.href='<%= request.getContextPath() %>/challMake/list?currentPage=<%=p %>'"> <%= p %> </button>
 			<% } %>
