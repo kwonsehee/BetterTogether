@@ -249,7 +249,7 @@ button:hover {
 	width: 600px;
 	height: 30px;
 	overflow: hidden;
-	margin-left: 700px;
+	margin-left: 600px;
 	text-align: right;
 	margin-bottom: 10px;
 }

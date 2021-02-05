@@ -31,7 +31,7 @@
 %>
 <script>
 alert("챌린지 참여 완료!");
-//opener.parent.location.reload();
+opener.location.href='<%=request.getContextPath()%>/chall/join?challNo=<%=ch.getChallNo()%>';
 window.close();
 </script>
 <%} else{ %>

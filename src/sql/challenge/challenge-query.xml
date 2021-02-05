@@ -1002,4 +1002,17 @@
            AND  TO_CHAR(CHALL_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual)
 	</entry>
+	
+	
+	<!-- 챌린지 참여중인 userId select 해오기 -->
+	<entry key="getpplList">
+		SELECT 
+		       USER_ID
+		  FROM 
+		       CHALL_STATUS
+		  WHERE
+		       CHALL_NO = ? 
+		   AND CHALL_STATUS = 1
+	</entry>
+	
 </properties>
