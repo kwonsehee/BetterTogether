@@ -232,8 +232,8 @@ margin-top: 50px;
 		<section id="countDown_content">
 			<img
 				src="<%=request.getContextPath()%>/resources/images/countdown.png"
-				id="count_img" class="img-size"> <span id="countDown_title">챌린지
-				시작까지</span> <span id="countDown"></span>
+				id="count_img" class="img-size"> <span id="countDown_title">글쓰기 활성화까지</span>
+				 <span id="countDown"></span>
 		</section>
 		
 		<script>
@@ -262,11 +262,11 @@ margin-top: 50px;
         // 카운트 진행중 & 종료 문구 바꾸기
      	
         
-        /* if (distance < 0) {
+        if (distance < 0) {
           clearInterval(x);
           document.getElementById("countDown").innerHTML = "오늘부터 다시 글쓰기가 가능합니다.";
           
-        } */
+        } 
       }, 1000);
       </script>
 		<%} %>
