@@ -40,7 +40,7 @@
 	#table-wrap {
 		margin:auto;
 		margin-top : 10px;
-		padding-bottom:10px;
+		padding-bottom:50px;
 	}
 
 	
@@ -52,6 +52,7 @@
         background-color: #e6e4e4b6;
         font-size:10px;
         font-weight: bolder;
+        margin-top:20px;
 	}
 	
 	#deleteBtn {
@@ -164,7 +165,7 @@
 			<!-- 7개의 페이지 목록 -->
 			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) {%>
 			<% if(p == pi.getCurrentPage()) { %>
-			<button style="background:white;" disabled><%= p %></button>
+			<button style="background:lightgray;" disabled><%= p %></button>
 			<% } else {%>
 			<button onclick="location.href='<%= request.getContextPath() %>/challMake/list?currentPage=<%=p %>'"> <%= p %> </button>
 			<% } %>

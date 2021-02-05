@@ -87,6 +87,7 @@
 	#joined {
 		width:80%;
 		margin:auto;
+		
 	}
 	
 	#joinedList th, #joinedList td {
@@ -128,22 +129,22 @@
 	
 	
 	 /* 페이징바 영역 */
-		#pagingArea {
-			text-align:center;
-		}
-		
-		#pagingArea button {
-			width: 25px;
-			margin-top: 20px;
-			border: 0px;
-			color: #757575;
-			font-family: "Nanum Gothic";
-			font-size: 12px;
-		}
-		
-		#pagingArea button:hover {
-			cursor:pointer;
-		}
+	#pagingArea {
+	text-align: center;
+	}
+
+	#pagingArea button {
+		width: 25px;
+		margin-top: 20px;
+		border: 0px;
+		color: #757575;
+		font-family: "Nanum Gothic";
+		font-size: 12px;
+	}
+	
+	#pagingArea button:hover {
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
@@ -223,7 +224,7 @@
 			<!-- 10개의 페이지 목록 -->
 			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) {%>
 			<% if(p == pi.getCurrentPage()) { %>
-			<button style="background:white;" disabled><%= p %></button>	
+			<button style="background:lightgray;" disabled><%= p %></button>	
 			
 			<% } else {%>
 				<% if(month>0){%>
@@ -272,8 +273,7 @@
               // 쿼리 스트링을 이용하여 get방식으로 글 번호를 전달 
             location.href="<%= request.getContextPath() %>/chall/join?challNo=" +num;
          });
-      });
-       
+      });  
     </script>
     
     
