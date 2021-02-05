@@ -51,9 +51,6 @@
       }
    }
    
-   
-   
-
 %>
 <!DOCTYPE html>
 <html>
@@ -61,154 +58,150 @@
 <meta charset="UTF-8">
 <title>Better Together</title>
 <style>
-   .line {
-      border: 0.5px solid #937cf790;
-   }
-   
-   #btSection {
-      padding-bottom: 100px;
-   }
-   
 /* content 부분 */
+
+#btSection {
+	padding-bottom: 100px;
+}
+
+
 #challenge-form {
-   width: 80%;
-   height: 100%;
-   /* float: left; */
-   margin:auto;
+	width: 100%;
+	height: 100%;
+	margin-left:30%;
 }
 
-#content-0 {
-   width: 80%;
-   height: 10%;
-   text-align: center;
+#challMake_tb{
+	font-family: "Nanum Gothic";
+	font-size:17px;
+	color : #757575;
+	margin-top:2%;
 }
 
-#content-1 p {
-   font-size: 25px;
+#challTitle {
+	margin-top: 50px;
+    text-align: center;
+    font-size: 24px;
+    color : #757575;
+	
 }
 
-#content-1 p{
-     /*        border:solid 1px red;  */
-            font-size: 24px;
-            text-align: center;
-   }
 
-.table {
-   font-family: "Nanum Gothic";
-   font-size: 19px;
-   border-collapse: collapse;
+
+.challMake_tb {
+	font-size: 19px;
+	border-collapse: collapse;
 }
 
-tr {
-   border: 1px solid #c2c1c1;
+.tb_content{
+	padding-right:20px;
+	padding:15px;
 }
 
-tr>td {
-   background-color: white;
-}
-
-th {
-   background-color: #ece8e8;
-   padding: 5px;
-   border: 1px solid #c2c1c1;
-}
 
 input[type="file"] {
-   font-family: "Nanum Gothic";
+	font-family: "Nanum Gothic";
 }
 
-textarea {
-   position: absolute;
-   margin-top: 368px;
-   padding-right: 522px;
-   height: 80px;
-   border: white;
-   border-radius: 3px;
-   resize: none;
+input[type="radio"]{
+	margin:7px;
 }
 
-#content-2 {
-   width: 80%;
-   height: 10%;
-   float: left;
-   margin-top: -120px;
+
+#btn_content{
+	margin-top:3%;
+	width: 100%;
+	height: 10%;
+	margin-left:17%;
 }
 
 #challenge_btn {
-   font-family: "Nanum Gothic";
-        border-radius: 10px;
-        border: solid 1px #9e9e9e5b;
-        padding:5px 15px 5px 15px;
-        background-color: #e6e4e4b6;
-        font-size:10px;
-        font-weight: bolder;
-    margin-left:2%;
-    margin-top:10%;
+	width: 90px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
 #back_btn {
-   font-family: "Nanum Gothic";
-        border-radius: 10px;
-        border: solid 1px #9e9e9e5b;
-        padding:5px 15px 5px 15px;
-        background-color: #e6e4e4b6;
-        font-size:10px;
-        font-weight: bolder;
-    margin-left:55%;
-    margin-top:10%;
+	width: 90px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-size: 10px;
+	font-weight: bolder;
 }
 
+/* 입력 부분 css */
 input[type="text"], input[type="date"] {
-   height: 33px;
-   width: 762px;
-   border: white;
-   border-radius: 3px;
+	height: 35px;
+	width: 100%;
+	border: solid 1px #9e9e9e5b;
+	border-radius: 3px;
 }
 
-tr:nth-child(2) label {
-   padding-right: 8px;
+select{
+	height:35px;
+	width:100%;
+	border: solid 1px #9e9e9e5b;
 }
 
-tr:nth-child(2) input {
-   margin-left: 3px;
+
+#chall_textArea{
+	height: 200px;
+	border: white;
+	border-radius: 3px;
+	width: 100%;
+	resize:none;
 }
 
-tr:nth-child(4) input {
-   margin-left: 3px;
-}
+/**/
 
 input:focus, textarea:focus {
-   outline: none;
-}
+	outline: none;
+} 
 
 #file_option label {
-   display: inline-block;
-   background: rgb(156, 154, 154);
-   border-radius: 10px;
-   color: #fff;
-   padding: 0px 15px;
-   line-height: 30px;
-   cursor: pointer;
-   margin: 3px;
-   margin-left: 5px;
-   font-family: "Do Hyeon";
+	display: inline-block;
+	background: #e0dbf890;
+	border-radius: 10px;
+	color: #252525b6;
+	padding: 0px 15px;
+	line-height: 30px;
+	cursor: pointer;
+	margin: 3px;
+	margin-left: 5px;
 }
 
 #file_option label:after {
-   content: "파일등록";
+	content: "파일등록";
 }
 
 #file_option #file-input {
-   display: none;
+	display: none;
 }
 
 #file_option .filename {
-   display: inline-block;
-   font-size: 14px;
-   color: #757575b7;
+	display: inline-block;
+	font-size: 14px;
+	color: #757575b7;
 }
 
-</style>
+.line {
+	border: 0.5px solid #937cf790;
+}
+
+#challenge_btn:focus, #back_btn:focus {
+	outline: none;
+	border: solid 1px #937CF7;
+	background-color: #e0dbf890;
+}
+
 </style>
 <!-- select option 1:주말 2:평일 3:상관없음 -->
 
@@ -246,24 +239,21 @@ function updateFreq(str){
    <%@ include file="../common/common_ui.jsp"%>
 
    <section id="btSection" class="content_css">
-      <section id="content-1">
-         <p>챌린지 개설</p>
+         <p id="challTitle">챌린지 개설 수정</p>
          <div class="line"></div>
-      </section>
       <form action="<%=request.getContextPath()%>/chall/update"
          method="POST" id="challenge-form" name="myForm" enctype="multipart/form-data">
           <!-- challNo도 넘겨주기 .... 잊지말자 .... -->
               <input type="hidden" name="challNo" value="<%= ch.getChallNo() %>">
-         <section id="content-1">
-            <table class="table">
+            <table id="challMake_tb">
                <tr>
-                  <th>챌린지 제목</th>
-                  <td><input type="text" maxlength="50" name="title" value="<%= ch.getChallTitle()%>">
+                  <td class="tb_content">챌린지 제목</td>
+                  <td><input style="color:#252525b6;font-size:15px; font-weight:bolder;" type="text" maxlength="50" class="chall_text" name="title" value="<%= ch.getChallTitle()%>" >
                   </td>
                </tr>
 
                <tr>
-                  <th>카테고리 선택</th>
+                  <td class="tb_content">카테고리 선택</td>
                   <td><input type="radio" id="weight" name="category" value="10" <%=selectedCategory[0] %>>
                      <label>체중관리</label>
                      <input type="radio" id="exercise" name="category" value="20" <%=selectedCategory[1] %>>
@@ -272,6 +262,7 @@ function updateFreq(str){
                      <label>자격증</label>
                      <input type="radio" id="money" name="category" value="40" <%=selectedCategory[3] %>>
                      <label>돈관리</label>
+                     <br>
                      <input type="radio" id="habit" name="category" value="50" <%=selectedCategory[4] %>>
                      <label>생활습관</label>
                      <input type="radio" id="study" name="category" value="60" <%=selectedCategory[5] %>>
@@ -284,17 +275,17 @@ function updateFreq(str){
                </tr>
 
                <tr>
-                  <th>첨부파일</th>
+                  <td class="tb_content">첨부파일</td>
                   <td>
                      <div id="file_option">
                         <label><input type="file" id="file-input" name="picture"></label> <span
-                           class="filename"><%=ch.getChallFile() %></span>
+                           class="filename" style="color:#252525b6;font-size:15px; font-weight:bolder;"><%=ch.getChallFile() %></span>
                      </div>
                   </td>
                </tr>
 
                <tr>
-                  <th>인증 방법</th>
+                  <td class="tb_content">인증 방법</td>
                   <td>
                      <input type="radio" id="weekend" name="confirm" value="주말" onclick="updateFreq(this.value)" <%=selectedConfirm[0] %>><label>주말</label>
                      <input type="radio" id="weekday" name="confirm" value="평일" onclick="updateFreq(this.value)" <%=selectedConfirm[1] %>><label>평일</label>
@@ -303,16 +294,16 @@ function updateFreq(str){
                </tr>
                
                <tr>
-                  <th>인증 빈도</th>
-                  <td><select name="frequency">
+                  <td class="tb_content">인증 빈도</td>
+                  <td><select name="frequency" style="color:#252525b6;font-size:15px; font-weight:bolder;">
                      <option><%=ch.getChallFrequency() %></option>
                      </select>
                   </td>
                </tr>
 
                <tr>
-                  <th>챌린지 기간</th>
-                  <td><select name="period">
+                  <td class="tb_content">챌린지 기간</td>
+                  <td><select name="period" style="color:#252525b6;font-size:15px; font-weight:bolder;">
                      <option>---</option>
                      <option value="1" <%=selectedPeriod[0] %>>1</option>
                      <option value="2" <%=selectedPeriod[1] %>>2</option>
@@ -322,39 +313,38 @@ function updateFreq(str){
                </tr>
 
                <tr>
-                  <th>챌린지 시작일</th>
-                  <td><input type="date" name="startDate" value="<%=ch.getChallStart()%>"></td>
+                  <td class="tb_content">챌린지 시작일</td>
+                  <td><input type="date" name="startDate" style="color:#252525b6;font-size:15px; font-weight:bolder;" value="<%=ch.getChallStart()%>"></td>
                </tr>
 
                <tr>
-                  <th>참가비</th>
-                  <td><input type="text" name="payment" maxlength="50" value="<%=ch.getChallPay()%>">
+                  <td class="tb_content">참가비</td>
+                  <td><input style="color:#252525b6;font-size:15px; font-weight:bolder;" type="text" class="chall_text" name="payment" maxlength="50" value="<%=ch.getChallPay()%>">
                   </td>
                </tr>
 
                <tr>
-                  <th>참가 인원수</th>
-                  <td><input type="text" name="people" maxlength="50" value="<%=ch.getChallPeople()%>">
+                  <td class="tb_content">참가 인원수</td>
+                  <td><input style="color:#252525b6;font-size:15px; font-weight:bolder;" type="text" class="chall_text" name="people" maxlength="50" value="<%=ch.getChallPeople()%>">
                   </td>
                </tr>
 
                <tr>
-                  <th colspan="2">소개</th>
-               </tr>
-
-               <tr>
-                  <p>
-                     <textarea cols="50" rows="10" name="content"><%=ch.getChallContent() %></textarea>
-                  </p>
-               </tr>
-
+					<td class="tb_content">소개</td>
+					<td>
+					<%if(ch.getChallContent() == null) {%>
+					<textarea id="chall_textArea" style="color:#252525b6;font-size:15px; font-weight:bolder;" name="content"></textarea>
+					<% } else { %>
+					<textarea style="color:#252525b6;font-size:15px; font-weight:bolder;" id="chall_textArea" name="content"><%=ch.getChallContent() %></textarea>
+					<% } %>
+					</td>
+				</tr>
             </table>
-         </section>
 
          <!-- 총인증갯수도 숨겨서 보내기 -->
          <!-- <input type="hidden" name="confirmCnt" value="0"> -->
 
-         <section id="content-2">
+         <section id="btn_content">
             <!-- 등록 버튼 -->
             <button type="button" onclick="javascript:history.back();"
                id="back_btn">뒤로가기</button>
