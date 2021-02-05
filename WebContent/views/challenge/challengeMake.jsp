@@ -22,24 +22,18 @@
 #challMake_tb{
 	font-family: "Nanum Gothic";
 	font-size:17px;
-	font-weight: bolder;
-	color: #252525b6;
+	color : #757575;
 	margin-top:2%;
 }
 
 #challTitle {
-	width: 100%;
-	height: 10%;
-	text-align: center;
-	font-size: 25px;
-	font-weight: bolder;
-	color: #252525b6
+	margin-top: 50px;
+    text-align: center;
+    font-size: 24px;
+    color : #757575;
 	
 }
 
-#content-0 p {
-	font-size: 25px;
-}
 
 #content-1 {
 	width: 100%;
@@ -206,7 +200,7 @@ function updateFreq(str){
 			<table id="challMake_tb">
 				<tr>
 					<td class="tb_content">챌린지 제목</td>
-					<td><input type="text" class="chall_text" maxlength="50" name="title" required></td>				
+					<td><input style="color:#252525b6;font-size:15px; font-weight:bolder;" type="text" class="chall_text" maxlength="50" name="title" required></td>				
 				</tr>
 				<tr>
 					<td class="tb_content">카테고리 선택</td>
@@ -228,7 +222,7 @@ function updateFreq(str){
 					<td>
 						<div id="file_option">
 							<label><input type="file" id="file-input" name="picture"></label>
-							<span class="filename">파일을 선택해주세요.</span>
+							<span class="filename" style="color:#252525b6;font-size:15px; font-weight:bolder;">파일을 선택해주세요.</span>
 						</div>
 					</td>
 				</tr>
@@ -243,7 +237,7 @@ function updateFreq(str){
 				<tr>
 					<td class="tb_content">인증 빈도</td>
 					<td>
-						<select name="frequency" style="color:#252525b6;font-size:15px;">
+						<select name="frequency" style="color:#252525b6;font-size:15px; font-weight:bolder;">
 						<option>---</option>
 						</select>
 					</td>
@@ -251,7 +245,7 @@ function updateFreq(str){
 				<tr>
 					<td class="tb_content">챌린지 기간</td>
 					<td>
-					<select name="period" style="color:#252525b6;font-size:15px;">
+					<select name="period" style="color:#252525b6;font-size:15px; font-weight:bolder;">
 						<option>---</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -262,24 +256,24 @@ function updateFreq(str){
 				</tr>
 				<tr>
 					<td class="tb_content">챌린지 시작일</td>
-					<td><input type="date" name="startDate" style="color:#252525b6;font-size:15px;"required></td>
+					<td><input type="date" name="startDate" style="color:#252525b6;font-size:15px; font-weight:bolder;" required></td>
 				</tr>
 
 				<tr>
 					<td class="tb_content">참가비</td>
-					<td><input type="text" class="chall_text" name="payment" maxlength="50" required>
+					<td><input type="text" class="chall_text" name="payment" maxlength="50" style="color:#252525b6;font-size:15px; font-weight:bolder;" required>
 					</td>
 				</tr>
 
 				<tr>
 					<td class="tb_content">참가 인원수</td>
-					<td><input type="text" class="chall_text" name="people" maxlength="50" required>
+					<td><input type="text" class="chall_text" name="people" maxlength="50" style="color:#252525b6;font-size:15px; font-weight:bolder;" required>
 					</td>
 				</tr>
 				<tr>
 					<td class="tb_content">소개</td>
 					<td>
-					<textarea id="chall_textArea" name="content"></textarea>
+					<textarea id="chall_textArea" name="content" style="color:#252525b6;font-size:15px; font-weight:bolder;"></textarea>
 					</td>
 				</tr>
 			</table>
