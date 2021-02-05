@@ -45,6 +45,13 @@
 	margin: auto;
 	text-align: justify;
 }
+#board_title2 {
+	width: 100%;
+	height: 30px;
+	border-bottom: 1px solid #75757552;
+	text-align: right;
+}
+
 
 #btitle {
 	line-height: 50px;
@@ -128,9 +135,11 @@
         <!-- 게시물 내용 -->
         <div id="board_div">
            <div id="board_title">
-           <span id="btitle"><%=b.getbTitle()%></span>
-           <span id="bcreatedate"><%=b.getCreateDate() %></span>
-           <span id="bwriter">글쓴이 : <%= b.getNickName() %></span>
+	           <span id="btitle"><%=b.getbTitle()%></span>
+           </div>
+           <div id="board_title2">
+           		<span id="bcreatedate"><%=b.getCreateDate() %></span>
+	           <span id="bwriter">글쓴이 : <%= b.getNickName() %></span>
            </div>
            <div id="board_con"><p><%= (b.getbContent()).replace("\n", "<br>") %></p></div>
            

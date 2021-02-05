@@ -46,7 +46,7 @@ public class ReviewService {
 		return rList;
 	}
 
-	// 리뷰 전체 리스트 조회
+	// 리뷰 전체 리스트 조회, 별점순, 최신순 포함
 	public ArrayList<Review> selectReviewList(PageInfo pi) {
 		Connection conn = getConnection();
 		ReviewDao rd = new ReviewDao();
@@ -137,6 +137,38 @@ public class ReviewService {
 		System.out.println("수정됐나 service : " + result);
 		
 		return result;
+		
+	}
+
+
+	public ArrayList<Review> selectSortByGradeList(PageInfo pi) {
+		Connection conn = getConnection();
+		ReviewDao rd = new ReviewDao();
+		ArrayList<Review> rList = null;
+		
+		rList = rd.selectSortByGradeList(conn, pi);
+		
+		close(conn);
+		
+		System.out.println("service rList : " + rList);
+		
+		return rList;
+		
+	}
+
+
+	public ArrayList<Review> selectSortByDateList(PageInfo pi) {
+		Connection conn = getConnection();
+		ReviewDao rd = new ReviewDao();
+		ArrayList<Review> rList = null;
+		
+		rList = rd.selectSortByDateList(conn, pi);
+		
+		close(conn);
+		
+		//System.out.println("service rList : " + rList);
+		
+		return rList;
 		
 	}
 
