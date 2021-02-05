@@ -78,6 +78,7 @@
 	 WHERE	
 	 		REVIEW_STATUS = 'Y'	
 </entry>
+
 <entry key="selectMyReviewList">
 	SELECT 
 			RNUM, 
@@ -134,6 +135,21 @@
 			REVIEW_MODIFY = SYSDATE
 	WHERE
 			REVIEW_SEQ = ?
+</entry>
+<entry key="selectSortByGradeList">
+	 SELECT RNUM,
+	 		REVIEW_SEQ, 
+			REVIEW_CONTENT, 
+			REVIEW_DATE, 
+			REVIEW_MODIFY, 
+			REVIEW_GRADE, 
+			CHALL_TITLE, 
+			CHALL_NO, 
+			REVIEW_STATUS, 
+			USER_ID, 
+			NICKNAME
+            FROM GLIST
+            WHERE RNUM BETWEEN ? AND ?
 </entry>
 
 </properties>
