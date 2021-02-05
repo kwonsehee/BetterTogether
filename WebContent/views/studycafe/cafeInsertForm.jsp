@@ -33,11 +33,7 @@
  
 
 #modal_opne_btn {
-	position: absolute;
-	left: 61.41%;
-	right: 33.18%;
-	top: 86.35%;
-	bottom: 9.91%;
+	 
 	font-family: "Nanum Gothic";
 	background: #fff;
 	border: 2px solid #937cf790;
@@ -49,8 +45,7 @@
 	margin-right: 0px;
 	padding-left: 0px;
 	padding-top: 0px;
-	padding-right: 0px;
-	width: 62px;
+	padding-right: 0px; 
 }
 
 #modal {
@@ -261,10 +256,10 @@
 
 									<tr>
 										<th>제휴정보</th>
-										<td><select  name="AFFILIATED_CAFE" style=" float: left;">
+										<td><select  name="AFFILIATED_CAFE" style="float: left;height: 29px;" >
 												<option value="N">일반</option>
 												<option value="Y">제휴</option>
-										</select></td>
+										</select>	<input type="button"  value="제휴약관"  id="modal_opne_btn" style="float: left;height: 30px;width: 89px;"> </td>
 									</tr>
 
 
@@ -276,9 +271,7 @@
 
 
 											<button id="btnArea1">등록</button>
-												<input type="button" value="제휴약관" class="nav_btn"
-							id="modal_opne_btn"
-							style="top: 915px;left: 200px;width: 104px;">
+											
 										</td>
 									</tr>
 
@@ -326,7 +319,7 @@
 
 							<ul class="join_box"
 								style="padding-left: 5px; padding-right: 5px;">
-								<pre style="height: 271px; white-space: pre-wrap;"> 
+								<pre style="height:271px; white-space:pre-wrap;"> 
 여러분을 환영합니다. BetterTogether서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서감사합니다. 본 약관은 다양한 BetterTogether서비스의 이용과 관련하여 Bett
 erTogether에서제공하고 이용하는 서비스회원(이하 ‘회원’)의 결제 정보를 알려주면서, 아울러 여러분의 제휴 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
 결제는 한번으로 이루어지며 한번의 결제로 무제한 등록이가능합니다.결제 비용은 등록시최초로 3만원이 결제되면 환불은 불가능합니다.
@@ -383,16 +376,7 @@ BetterTogether 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔�
 		</section>
 
 
-	<footer id="btFooter" style="margin-top: 0px;">
-		<pre id="btFooter_pre"
-			style="border-top-width: 0px; margin-bottom: 0px;">KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 김언체 ｜  개인정보관리책임자 : 강명주
-
-        강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F
-        강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F
-        강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F
-       
-        Copyright © Better Together
-    </pre>
-	</footer>
+	 <%@ include file="../common/footer.jsp" %>
+	
 </body>
 </html>
