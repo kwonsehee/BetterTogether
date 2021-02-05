@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 화면</title>
+<title>Better Together</title>
 <style>
    #join{
             width: 39%;
@@ -82,7 +82,7 @@
                 <tr>
                     <td><label for="userid" class="text_font">아이디</label></td>
                     <td><input type="text" maxlength="13" name="userId" required /></td>
-                    <td><button id="idCheck"type="button" class="joinform_btn" id="du_btn">중복확인</button></td>
+                    <td><button id="idCheck" type="button" class="joinform_btn" id="du_btn">중복확인</button></td>
                 </tr>
                 <tr>
                     <td><label for="pass" class="text_font">비밀번호</label></td>
@@ -140,11 +140,11 @@
 	   </script>
  
 	<script>
-		//1.메인으로 돌아가기
+		<%-- //1.메인으로 돌아가기
 		const goMainBtn = document.getElementById('goMainBtn');
 		goMainBtn.addEventListener('click',function(){
 			location.href='<%=request.getContextPath()%>';
-		});
+		}); --%>
 		//2.유효성 검사
 		function joinValidate(){
 			//아이디 - 영소문자로 시작해서 4~12자 입력(숫자포함가능)

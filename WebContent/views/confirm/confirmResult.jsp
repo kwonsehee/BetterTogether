@@ -22,13 +22,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>인증 결과 화면</title>
+<title>Better Together</title>
     <style>
         #join_chall_title{
-            /* border:solid 1px red;  */
-            font-size: 30px;
-            text-align: center;
-            margin-top: 30px;
+              margin-top: 50px;
+           text-align: center;
+           font-size: 24px;
+           color : #757575;
         }
         #join_chall_title2{
           /*   border:solid 1px green;  */

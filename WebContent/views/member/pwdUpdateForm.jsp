@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 수정</title>
+<title>Better Together</title>
 <%
 	if(request.getAttribute("result")!=null){
 		if(request.getAttribute("result").equals("success")){

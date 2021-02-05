@@ -1,6 +1,7 @@
 package myPage.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.model.vo.PageInfo;
+import member.model.service.MemberService;
 import member.model.vo.Member;
 import report.model.service.ReportService;
 import report.model.vo.Report;
@@ -70,9 +72,14 @@ public class myReportedServlet extends HttpServlet {
 				
 				//내가 신고당한 내역가져오기
 				ArrayList<Report> list = rs.selectreportedMyList(userId, pi);
+				//글쓰기 비활성화 인지 확인하고 비활성화 날짜 가져오기
+				Date reported_date = new MemberService().getWriteActive(userId);
 				
-				// System.out.println("PI : " + pi);
-				 System.out.println("list : " + list);
+				
+				 System.out.println("reported_date : " + reported_date);
+				
+				request.setAttribute("reported_date", reported_date);
+				
 				
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
