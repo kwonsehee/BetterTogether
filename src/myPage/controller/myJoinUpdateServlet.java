@@ -114,7 +114,7 @@ public class myJoinUpdateServlet extends HttpServlet {
 	      
 	      String title = multiRequest.getParameter("title");
 	      String category = multiRequest.getParameter("category");
-	     // String picture = multiRequest.getParameter("picture");
+	      String picture = multiRequest.getParameter("picture"); //히든값으로 이미지 값 넘겨와서 새로운 파일이없으면 기존 이미지 사용
 	      String confirm = multiRequest.getParameter("confirm");
 	      String frequency = multiRequest.getParameter("frequency");
 	      String period = multiRequest.getParameter("period");
@@ -141,7 +141,13 @@ public class myJoinUpdateServlet extends HttpServlet {
 	      Challenge ch = new Challenge();
 	      ch.setChallTitle(title);
 	      ch.setCateName(category);
-	      ch.setChallFile(changeFiles.get(0));
+	      //ch.setChallFile(changeFiles.get(0));
+	      if(multiRequest.getFilesystemName("picture") == null) {
+	    	  ch.setChallFile(picture);
+			} else { 
+				ch.setChallFile(multiRequest.getFilesystemName("picture"));
+			}
+	      
 	      ch.setChallConfirm(confirm);
 	      ch.setChallFrequency(frequency);
 	      ch.setChallPeriod(period);

@@ -243,8 +243,15 @@ function updateFreq(str){
          <div class="line"></div>
       <form action="<%=request.getContextPath()%>/chall/update"
          method="POST" id="challenge-form" name="myForm" enctype="multipart/form-data">
-          <!-- challNo도 넘겨주기 .... 잊지말자 .... -->
+          <!-- challNo / 사진 hidden으로 넘겨주기-->
               <input type="hidden" name="challNo" value="<%= ch.getChallNo() %>">
+              <%
+					if (ch.getChallFile() != null) {
+				%>
+				<input type="hidden" name="picture"
+					value="<%=ch.getChallFile()%>">
+
+				<% } %>
             <table id="challMake_tb">
                <tr>
                   <td class="tb_content">챌린지 제목</td>
