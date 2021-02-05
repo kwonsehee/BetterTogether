@@ -403,18 +403,18 @@ ul {
 								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo2()  %>"
 								align="bottom"></li>
 							<%} else    { %>
-							<li class="item"><img id='cafeimg'
+							<li class="item"><img id='cafeimg' style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
 								align="bottom"></li>
 							<%} %>
 
 
 							<%if(c.getCafe_photo3() != null  ) {%>
-							<li class="item"><img id='cafeimg'
+							<li class="item"><img id='cafeimg'  style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo3()  %>"
 								align="bottom"></li>
 							<%} else{ %>
-							<li class="item"><img id='cafeimg'
+							<li class="item"><img id='cafeimg'  style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
 								align="bottom"></li>
 							<%} %>
