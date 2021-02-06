@@ -75,8 +75,9 @@ hr {
 }
 
 #cafeimg {
-	width: 450px;
-	height: 450px;
+	width: 425px;
+	height: 425px;
+	padding-top:20px;
 }
 
 .rvt {
@@ -88,7 +89,6 @@ hr {
 	font-family: "Nanum Gothic";
 	background: white;
 	border-radius: 20px;
-	border: 1px solid #9e9e9e5b;
 	 
 }
 
@@ -147,7 +147,7 @@ bottom: 5.37%;
 }
 
 #modal h2 {
-	margin: 0;
+	margin: 10px;
 }
 
 #modal button {
@@ -182,11 +182,11 @@ bottom: 5.37%;
 	left: 52%;
 	right: 47.41%;
 	top: 600px;
-	width: 55px;
+	width: 60px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
-	padding: 5px 15px 5px 15px;
+	padding: 5px 7px 5px 7px;
 	background-color: #e6e4e4b6;
 	font-weight: bolder;
 	font-size: 10px;
@@ -198,11 +198,11 @@ bottom: 5.37%;
 	left: 55%;
 	right: 40.41%;
 	top: 600px;
-	width: 55px;
+	width: 60px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
-	padding: 5px 15px 5px 15px;
+	padding: 5px 7px 5px 7px;
 	background-color: #e6e4e4b6;
 	font-weight: bolder;
 	font-size: 10px;
@@ -223,11 +223,10 @@ bottom: 5.37%;
 
 #updateBtn {
 	position: absolute;
-	width: 63px;
+	width: 60px;
 	height: 33px;
 	top: 550px;
-	left: 850px;
-	width: 55px;
+	left: 845px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
@@ -240,11 +239,10 @@ bottom: 5.37%;
 
 #deleteBtn {
 	position: absolute;
-	width: 63px;
+	width: 60px;
 	height: 33px;
 	left: 930px;
 	top: 550px;
-	width: 55px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
@@ -361,6 +359,20 @@ ul {
 	-o-transition: all 0.25s cubic-bezier(1, .01, .32, 1);
 	transition: all 0.25s cubic-bezier(1, .01, .32, 1);
 }
+
+#cafe_title{
+     margin-top: 20px;
+     text-align: center;
+     font-size: 24px;
+     color : #757575;
+}
+
+.cafe_info{
+	font-size:15px;
+	margin-left:10px;
+}
+
+
 </style>
 </head>
 <body>
@@ -370,10 +382,8 @@ ul {
 	<section id="content" class="content_css" style="height: 1100px;">
 		<div class="outer">
 			<div class="galleryArea" style="top: 150px;"> 
-				<h1 style="margin-left: 300px; margin-top: 15px; color: #757575;font-family: Nanum Gothic;">
-					<strong>better together-스터디카페</strong>
-				</h1>
-				<h4 style="margin-left: 350px;   font-family: Nanum Gothic;"">
+				<p id="cafe_title">better together-스터디카페</p>
+				<h4 style="margin-left: 365px;   font-family: Nanum Gothic; color:#797878; font-size:17px;">
 				 #<%=c.getCafe_area()%>#수업#다목적#공간#스터디룸 
 				</h4>
 				<div class="cafe" style="top: 120px; left: 35px;">
@@ -433,35 +443,29 @@ ul {
 				<!-- 카페 정보 및 예약-->
 				<div class="rvt"
 					style="top: 140px;left: 550px;width: 422px;height: 402px;">
-					<span><a style="font-size: 25px; font-family: NanumGothic;">&nbsp&nbsp&nbsp <strong><%=c.getCafe_name()%></strong>
-					</a> </span><br> <br>
+					<span><a style="font-size: 25px; font-family: NanumGothic;">&nbsp&nbsp&nbsp <p style="margin-left:40%;"><%=c.getCafe_name()%></p>
+					</a> </span>
 					<table id="info">
 						<td>
 						<tr>
-							<strong style="font-family: NanumGothic;" > &nbsp 지역: <%=c.getCafe_area()%>
-							</strong>
+							<p class="cafe_info" style="font-family: NanumGothic;" > &nbsp 지역: <%=c.getCafe_area()%>
+							</p>
 						</tr>
-						<br>
-						<br>
 						<br>
 						<tr>
-							<strong style="font-family: NanumGothic;"> &nbsp 예약가능 인원: <%=c.getCafe_capacity()%>
-							</strong>
+							<p class="cafe_info" style="font-family: NanumGothic;"> &nbsp 예약가능 인원: <%=c.getCafe_capacity()%>
+							</p>
 						</tr>
-						<br>
-						<br>
 						<br>
 						<tr>
-							<strong style="font-family: NanumGothic;"> &nbsp 이용시간: <%=c.getCafe_oh()%>
-							</strong>
+							<p class="cafe_info" style="font-family: NanumGothic;"> &nbsp 이용시간: <%=c.getCafe_oh()%>
+							</p>
 						</tr>
-						<br>
-						<br>
 						<br>
 						</td>
 						<tr>
-							<strong style="font-family: NanumGothic;"> &nbsp 상세주소: <%= c.getCafe_map() %> <%= c.getDetail_address() %>
-							</strong>
+							<p class="cafe_info" style="font-family: NanumGothic;"> &nbsp 상세주소: <%= c.getCafe_map() %> <%= c.getDetail_address() %>
+							</p>
 						</tr>
 
 
@@ -470,7 +474,7 @@ ul {
 								<!--문의하기 팝업-->
 								<div id="root">
 									<button class="nav_btn" id="modal_opne_btn"
-										style="position: absolute; width: 150px; height: 40px; left: 50px; top: 345px; background: #b6a8f5; color: white;">
+										style="position: absolute; width: 120px; height: 40px; left: 70px; top: 320px; background: #b6a8f5; color: white;">
 										<a style="font-family: NanumGothic;">문의하기</a>
 									</button>
 								</div>
@@ -480,22 +484,21 @@ ul {
 									<div class="modal_content">
 										<hr
 											style="left: -245px; width: 310px; top: 230px; border: 0.5px solid #937cf790;">
-										<h2 style="text-align: center; color: black; style="font-family: NanumGothic;"">
+										<h2 style="text-align: center; font-family: NanumGothic; font-size:20px;">
 											<br style="font-family: NanumGothic;">
 											<%=c.getCafe_name()%></h2>
 										<br>
-										<h5 style="font-family: NanumGothic; ">
+										<h5 style="font-family: NanumGothic; font-size:15px; padding:20px;">
 											&nbsp&nbsp" better together를 통해 연락드렸어요 ~" 라고 말씀하시면 다양한 혜택과
-											서비스를 받으실수있어요. :) <br> <br> <br>
+											서비스를 받으실수있어요. :) <br> <br>
 
 										</h5>
 
 										<h2 style="text-align: center;">
-											<br> <strong> <%= c.getCafe_phone() %>
-											</strong>
+											<br> <p> <%= c.getCafe_phone() %></p>
 										</h2>
 										<button type="button" id="modal_close_btn"
-											style="background: #937cf790; color: white; margin-top: 20px; width: 316px; margin-left: 0px;">닫기</button>
+											style="background: #937cf790; color: white; margin-top: 5px; width: 100px; margin-left: 110px;">닫기</button>
 									</div>
 									<div class="modal_layer"></div>
 								</div>
@@ -503,7 +506,7 @@ ul {
 							</li>
 							<li>
 								<button class="nav_btn" id="bt2"
-									style="top: 345px; background: #b6a8f5; color: white; left: 225px;"
+									style="top: 320px; background: #b6a8f5; color: white; left: 200px; width: 120px; height: 40px;"
 									onclick="window.open('https://<%= c.getCafe_page() %>')">
 									<a style="font-family: NanumGothic; ">예약하기</a>
 								</button>
@@ -516,7 +519,7 @@ ul {
 					style="margin-left: 550px; margin-top: 445px;">목록</button>
 				<% if(loginUser != null) { %>
 				<button type="button" id="btnArea3"
-					style="margin-left: 580px; margin-top: 0px; top: 552px; left: 50px;">신고</button>
+					style="margin-left: 580px; margin-top: 0px; top: 552px; left: 40px;">신고</button>
 
 				<%} %>
 
@@ -584,7 +587,7 @@ ul {
 					if (loginUser != null && loginUser.getUserId().equals(c.getUserId())) {
 				%>
 				<button id="updateBtn">수정</button>
-				<button id="deleteBtn" style="left: 920px;">삭제</button>
+				<button id="deleteBtn" style="left: 910px;">삭제</button>
 
 				<!-- 수정/삭제를 위한 form -->
 				<form action="" id="Cafe_codeForm" method="post">
@@ -623,7 +626,7 @@ ul {
 						<td>
 						<tr>
 							<span style="display: block; width: 480px; height: 100px;">
-								<strong>&nbsp&nbsp공간소개 </strong> <pre
+								<p>&nbsp&nbsp공간소개 </p> <pre
 									style="font-size: 16px; font-family:NanumGothic; height:
 								 110px;width: 550px;margin-left: 10px;border-top-width:
 								  0px;border-bottom-width: 0px;border-left-width:
@@ -636,7 +639,7 @@ ul {
 							<span
 								style="display: block; width: 480px; height: 100px; margin-top: 50px;">
 								<div id="line1" style="left: 0px;top: 150px;width: 550px;border: 0.5px solid #937cf790;margin-top: 10px;margin-bottom: 15px;"></div>
-								<strong> &nbsp&nbsp유의사항 </strong> <pre
+								<p> &nbsp&nbsp유의사항 </p> <pre
 									style="font-size: 16px; height: 150px; width: 550px; font-family:
 									NanumGothic; 
 									 margin-left: 10px; border-left-width: 0px; 
@@ -649,7 +652,7 @@ ul {
 						<br>
 
 						<h3 style="margin-top: -260px;">
-							<strong style="margin-left: 570px;">※오시는길</strong>
+							<p style="margin-left: 570px;">오시는길</p>
 						</h3>
 						<br>
 						<br>

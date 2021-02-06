@@ -84,7 +84,7 @@
 }
 
 .gallery_list:hover {
-	color: #88a1db;
+	color: #937cf790;
 	opacity: 0.8;
 	cursor: pointer;
 }

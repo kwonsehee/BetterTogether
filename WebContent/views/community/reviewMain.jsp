@@ -134,7 +134,7 @@
            padding:5px 15px 5px 15px;
            background-color: #e6e4e4b6;
            font-weight: bolder;  
-           margin-left:860px;
+           margin-left:845px;
 }
 
 #submit a {
@@ -203,7 +203,7 @@
 #counter {
 	color:#757575;
 	font-size:12px;
-	margin-left:960px;	
+	margin-left:950px;	
 }
 
 /* 별점순, 최신순 정렬 버튼 */

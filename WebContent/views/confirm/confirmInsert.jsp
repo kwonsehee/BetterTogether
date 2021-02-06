@@ -78,7 +78,6 @@ System.out.println("insert와서confirm :  "+confirm);
         }
   
         .comment{
-            
             border-radius: 15px;
             margin: 10px;
             border: solid 1px #9e9e9e5b;
@@ -88,6 +87,7 @@ System.out.println("insert와서confirm :  "+confirm);
             font-family: "Nanum Gothic";
             
            font-weight: bolder;
+           font-size:13px;
         }
        /*  .comment_box{
             margin-left: 29%;
@@ -121,7 +121,7 @@ System.out.println("insert와서confirm :  "+confirm);
          outline:0;
          margin-top:5px;
        float:left;
-        width:390px; 
+        width:330px; 
 		height:35px; 
     	resize:none;
     
@@ -144,7 +144,7 @@ System.out.println("insert와서confirm :  "+confirm);
          
             <div class='challenge_box_2'>
             <p style="text-align:center;"><span name="nickName"><%=nickName %>님</span>&nbsp;&nbsp;&nbsp;<%=day %> &nbsp;&nbsp;<%=title %></p>
-            <p style="text-align:center;"><input type="file" name="pic"style="font-size:14px;"required></p>
+            <p style="padding-left:25%;"><input type="file" name="pic"style="font-size:14px;"required></p>
              <div class='challenge_box'>
                 <!-- 사진추가하기 -->
                   	 <img id ="thumbnail" >
@@ -168,8 +168,8 @@ System.out.println("insert와서confirm :  "+confirm);
 
         <section id="content-4">
         <!--댓글 등록 창만들기-->
-        <button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();"style="margin-left: 28%;margin-top: 30px;">목록으로</button>
-		
+<!--         <button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();"style="margin-left: 28%;margin-top: 30px;">목록으로</button>
+ -->		
         <!-- <div class="comment_box"> -->
         
           <!--   <input type="text"class="input_box_lag" name="comment"> -->
