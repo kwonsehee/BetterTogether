@@ -50,7 +50,7 @@ System.out.println("jsp list : "+reList);%>
 		
         #line {
            border: 0.5px solid #937cf790;
-           width: 80%;
+           width: 100%;
            margin: auto;
         }
 
@@ -184,7 +184,11 @@ System.out.println("jsp list : "+reList);%>
 							<td><%= r.getReport_no() %></td>
 							<td><%= r.getReport_title() %></td>
 							<td><%= r.getReport_date() %></td>
-							<td><%= r.getT_f() %></td>
+							<%if(r.getT_f().equals("F")) {%>
+							<td><%= r.getT_f().replace("F", "X") %></td>
+							<% } else { %>
+							<td><%= r.getT_f().replace("T", "O") %></td>
+							<% } %>
 						</tr>
 							<%} %>
 						<%} %>	
