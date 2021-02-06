@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import refund.model.service.HistoryService;
 
 /**
  * Servlet implementation class RefundUserServlet
@@ -35,13 +36,18 @@ public class RefundUserServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String userId = loginUser.getUserId();
+		String challTitle = (String)request.getParameter("challTitle");
 		
 		int money = Integer.parseInt(request.getParameter("money"));
 		System.out.println("user id and money : "+userId + money);
 		
+		
 		int result= new MemberService().payback(userId, money);
+		//거래내역 디비에 넣어주기
+		int result2= new HistoryService().insertHistory(userId, money, challTitle);
+		
 		String page="";
-		if(result >0) {
+		if(result >0&&result2>0) {
 			Member updateMember = new MemberService().selectMember(userId);
 				
 			//로그인 세션 값 변경

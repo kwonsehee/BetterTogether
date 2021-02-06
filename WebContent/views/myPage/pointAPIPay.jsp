@@ -4,7 +4,7 @@
 <%
 	
 	 
-	int money = Integer.parseInt((String.valueOf(request.getAttribute("money"))));
+	int money =0;
 	 
 
 	//System.out.println("cafe_name1 : " + cafe_name);
@@ -22,6 +22,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%if(request.getAttribute("msg") != null){ 
+	if(request.getAttribute("msg").equals("충전성공")){%>
+<script>
+	alert('포인트 충전이 완료되었습니다.');
+	opener.parent.location.reload();
+	window.close();
+</script>
+<%}else if(request.getAttribute("msg").equals("충전실패")){%>
+<script>
+	alert('포인트 충전에 실패하였습니다.');
+	opener.parent.location.reload();
+	window.close();
+</script>
+<%
+}
+	request.removeAttribute("msg");
+}else{
+	 money = Integer.parseInt((String.valueOf(request.getAttribute("money"))));
+}
+%>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
@@ -565,7 +585,6 @@ body {
 </head>
 <body>
  
-	<%@ include file="../common/common_ui.jsp"%>
 	
 	<section id="btSection" class="btSection">
 	
@@ -648,7 +667,7 @@ body {
   
 </div>
 		
-       <%@ include file="../common/footer.jsp" %>
+      
 	</section> 
 
         <script>
@@ -677,14 +696,15 @@ body {
 	                  msg += '\n상점 거래ID : ' + rsp.merchant_uid;
 	                  msg += '\n결제 금액 : ' + rsp.paid_amount;
 	                  msg += '\n카드 승인번호 : ' + rsp.apply_num;
-	                  location.href="<%=request.getContextPath()%>/point/charging?money=<%=money%>&userId=<%= userId %>"; 
-	                  
+	                 location.href="<%=request.getContextPath()%>/point/charging?money=<%=money%>&userId=<%= userId %>";
+	                 
+	              
 	          } else {
 	               var msg = '결제에 실패하였습니다.';
 	               msg += '에러내용 : ' + rsp.error_msg;
 	               //실패시 이동할 페이지 
-	               location.href="<%=request.getContextPath()%>";
-	              
+	               <%--  location.href="<%=request.getContextPath()%>/commu/main";  --%>
+	              window.close();
 	           } 
 	           alert(msg);
 	       });		
@@ -699,8 +719,6 @@ body {
        
        
 	
-<!-- 이부분에 <%@ include file="../common/footer.jsp" %>   사용하면 화면이 양옆으로 분리되서 섹션 안에 포함  -->
-
 
 
 </body>

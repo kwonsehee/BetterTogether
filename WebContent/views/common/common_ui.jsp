@@ -128,7 +128,20 @@
 							location.href="<%= request.getContextPath()%>/confirm/joinchalllist";
 							<%}else{%>
 							 alert("로그인 후 이용 가능합니다.");
-							 window.open("<%= request.getContextPath()%>/views/member/MemberLogin.jsp","_blank","height=500,width=500");
+							 var url = '<%= request.getContextPath()%>/views/member/MemberLogin.jsp';
+	      						
+	      						// 팝업 가운데에 띄우기
+	      						var popupWidth = 500;
+	      						var popupHeight = 500;
+
+	      						var popupX = (window.screen.width / 2) - (popupWidth / 2);
+	      						// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
+
+	      						var popupY= (window.screen.height / 2) - (popupHeight / 2);
+	      						// 만들 팝업창 height 크기의 1/2 만큼 보정값으로 빼주었음
+	      						
+	      						window.open(url , "로그인",  'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+							
 				             
 							<%}%>
 						});
@@ -174,7 +187,8 @@
                     <div id="login">
                     <%--2_1. 로그인이 된 상태와 되지 않은 상태를 구분하기 위해 if문으로 조건식을 추가 --%>
       				<%if(loginUser==null){ %>
-      					 <a href="#" onclick='window.open("<%= request.getContextPath()%>/views/member/MemberLogin.jsp","_blank","height=500,width=500");return false'>로그인</a>
+      					 <%-- <a href="#" onclick='window.open("<%= request.getContextPath()%>/views/member/MemberLogin.jsp","_blank","height=500,width=500, left="+ (window.screen.width / 2) - 250 + ", top="+ (window.screen.height / 2) -250);return false'>로그인</a>
+      					 --%> <button id="loginBTN" type="button" class="login_logout" >로그인</button>
                          <a> | </a>
                         <button id="memberJoinBtn" type="button" class="login_logout">회원가입</button>
                        
@@ -189,6 +203,24 @@
       					memberJoinBtn.addEventListener('click',function(){
          				location.href="<%= request.getContextPath()%>/views/member/MemberJoin.jsp";
        					});
+      					const loginBTN = document.getElementById('loginBTN');
+      					loginBTN.addEventListener('click',function(){
+      					 	
+      						var url = '<%= request.getContextPath()%>/views/member/MemberLogin.jsp';
+      						
+      						// 팝업 가운데에 띄우기
+      						var popupWidth = 500;
+      						var popupHeight = 500;
+
+      						var popupX = (window.screen.width / 2) - (popupWidth / 2);
+      						// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
+
+      						var popupY= (window.screen.height / 2) - (popupHeight / 2);
+      						// 만들 팝업창 height 크기의 1/2 만큼 보정값으로 빼주었음
+      						
+      						window.open(url , "로그인",  'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+      					});
+      					
      				 </script>
      				 <%--2_2.로그인이 성공적으로 되었을 경우 --%>
   				    <%} else{ %> 
@@ -207,7 +239,20 @@
           			const newNews = document.getElementById('newNews');
             		newNews.addEventListener('click',function(){
              	 	if(<%=news.size() %>>0){
-              			window.open("<%=request.getContextPath()%>/views/common/alertNews.jsp","새로운 알림","width=550, height=500");
+             	 		var url = '<%=request.getContextPath()%>/views/common/alertNews.jsp';
+  						
+  						// 팝업 가운데에 띄우기
+  						var popupWidth = 550;
+  						var popupHeight = 500;
+
+  						var popupX = (window.screen.width / 2) - (popupWidth / 2);
+  						// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
+
+  						var popupY= (window.screen.height / 2) - (popupHeight / 2);
+  						// 만들 팝업창 height 크기의 1/2 만큼 보정값으로 빼주었음
+  						
+  						window.open(url , "새로운 알림",  'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+              		
               			}
           			});
       			   </script>
@@ -222,18 +267,20 @@
 
     <!-- 사이드바 메뉴-->
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <button id="myUpdateBtn" class="mypageMenu1" style="padding-left: 10px;padding-top:50px;">개인정보수정</button>
+        <a href="javascript:void(0)" class="closebtn" style="padding-top:80px;"onclick="closeNav()">&times;</a>
+        <button id="myUpdateBtn" class="mypageMenu1" style="padding-left: 10px;padding-top:80px;">개인정보수정</button>
         <button id="joinedChallBtn" class="mypageMenu1"style="padding-left: 10px;">참여했던 챌린지그룹</button>
         <button id="challingBtn" class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
         <button id="joinbeforeChallBtn" class="mypageMenu1"style="padding-left: 10px;">시작전인 챌린지그룹</button>
         <button id="likeChallBtn" class="mypageMenu1"style="padding-left: 10px;">찜하기한 챌린지그룹</button>
         <button id="myChallBtn" class="mypageMenu1"style="padding-left: 10px;">내가 모집한 챌린지그룹</button>
-        <button id="refundBtn" class="mypageMenu1"style="padding-left: 10px;">환급받기</button>
+        <button id="historyBtn" class="mypageMenu1"style="padding-left: 10px;">포인트 내역</button>
         <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고내역</button>
-        <button id="pointcharginBtn" class="mypageMenu1"style="padding-left: 10px;">포인트충전</button>
+       <!--  <button id="refundBtn" class="mypageMenu1"style="padding-left: 10px;">환급받기</button>
+        <button id="pointcharginBtn" class="mypageMenu1"style="padding-left: 10px;">포인트충전</button> -->
+        
         <button id="administratorPageBtn" class="mypageMenu1"style="padding-left: 10px;">관리자페이지</button>
-    
+    	
     </div>
 
 	<form id="admin" method="post">
@@ -246,7 +293,19 @@
           document.getElementById("mySidenav").style.width = "250px";
         	<%}else{%>
         	alert("로그인 후 이용 가능합니다.");
-			 window.open("<%= request.getContextPath()%>/views/member/MemberLogin.jsp","_blank","height=500,width=500");
+        	var url = '<%= request.getContextPath()%>/views/member/MemberLogin.jsp';
+				
+				// 팝업 가운데에 띄우기
+				var popupWidth = 500;
+				var popupHeight = 500;
+
+				var popupX = (window.screen.width / 2) - (popupWidth / 2);
+				// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
+
+				var popupY= (window.screen.height / 2) - (popupHeight / 2);
+				// 만들 팝업창 height 크기의 1/2 만큼 보정값으로 빼주었음
+				
+				window.open(url , "로그인",  'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
             <%}%>
         }
         
@@ -292,7 +351,7 @@
             location.href="<%= request.getContextPath()%>/myPage/reported";
          });
           
-         //7.환급받기
+       <%--   //7.환급받기
           const refundBtn = document.getElementById('refundBtn');
           refundBtn.addEventListener('click',function(){
             location.href="<%= request.getContextPath()%>/views/myPage/refundForm.jsp";
@@ -303,7 +362,7 @@
           pointcharginBtn.addEventListener('click',function(){
             location.href="<%= request.getContextPath()%>/views/myPage/PointCharging.jsp";
          });
-         
+          --%>
         //9.참여중인 챌린지 그룹
           const joinbeforeChallBtn = document.getElementById('joinbeforeChallBtn');
           joinbeforeChallBtn.addEventListener('click',function(){
@@ -318,6 +377,11 @@
            			$("#admin").submit();
            	<%}%>
         });   
+        //11. 포인트 내역 
+          const historyBtn = document.getElementById('historyBtn');
+          historyBtn.addEventListener('click',function(){
+            location.href="<%= request.getContextPath()%>/myPage/history";
+         });
           
          </script>
 		<% } else { %>

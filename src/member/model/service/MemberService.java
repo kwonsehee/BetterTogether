@@ -131,6 +131,7 @@ public class MemberService {
 			
 			//2. 수정이 잘 되었다면 수정 된 정보의 member객체 select 후 리턴
 			if(result >0) {
+				
 				updateMember = new MemberDao().selectMember(conn, m.getUserId());
 				commit(conn);
 			}else {

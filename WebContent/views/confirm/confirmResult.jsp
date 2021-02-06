@@ -254,7 +254,7 @@
      	//payback 버튼 이벤트
      	 const payback = document.getElementById('payback');
      	payback.addEventListener('click',function(){
-     		location.href='<%=request.getContextPath()%>/refund/payback?money='+<%=money%>;
+     		location.href='<%=request.getContextPath()%>/refund/payback?money='+<%=money%>+'&challTitle='+<%=c.getChallTitle()%>;
      	});
 
 	</script>

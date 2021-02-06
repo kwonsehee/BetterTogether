@@ -1,6 +1,7 @@
 package challenge.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import challenge.model.vo.Challenge;
 import challenge.model.vo.ChallengeStatus;
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import refund.model.service.HistoryService;
 
 /**
  * Servlet implementation class PayInsertServlet
@@ -51,9 +53,13 @@ public class PayInsertServlet extends HttpServlet {
 		// payment == 2 일 경우 남은 point로 user_info 업데이트 해주기
 		int point = 0;
 		Challenge ch = null;
+		int result2=0;
 		if(payment == 2) {
 			point = Integer.parseInt(request.getParameter("point"));
 			Member updateMember = new MemberService().updatePoint(point, loginUser);
+			
+			//거래내역 디비에 값 입력
+			result2 = new HistoryService().insertPayment(userId, payment,challNo);
 			
 			//로그인 세션 값 변경
 			request.getSession().setAttribute("loginUser", updateMember);
@@ -86,7 +92,7 @@ public class PayInsertServlet extends HttpServlet {
 		
 		if (payment == 2) {
 
-			if (result > 0) {
+			if (result > 0&&result2>0) {
 				// result가 잘 되었다
 				request.setAttribute("msg", "success");
 				request.setAttribute("payment", payment);

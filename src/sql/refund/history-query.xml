@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="insertHistory">
+		INSERT INTO
+			   HISTORY
+		 VALUES
+		 		(
+		 		  SEQ_HID.NEXTVAL
+		 		, ?
+		 		, SYSDATE
+		 		, ?
+		 		, 1
+		 		, CONCAT(?,' 챌린지 환급금액')
+		 		, (SELECT POINT FROM USER_INFO WHERE USER_ID = ?)
+		 		)
+	
+	</entry>
+	<entry key="insertRefund">
+		INSERT INTO
+			   HISTORY
+		 VALUES
+		 		(
+		 		  SEQ_HID.NEXTVAL
+		 		, ?
+		 		, SYSDATE
+		 		, ?
+		 		, 0
+		 		, '현금으로 환급'
+		 		, (SELECT POINT FROM USER_INFO WHERE USER_ID = ?)
+		 		)
+	
+	</entry>
+	<entry key="insertPayment">
+		INSERT INTO
+			   HISTORY
+		 VALUES
+		 		(
+		 		  SEQ_HID.NEXTVAL
+		 		, ?
+		 		, SYSDATE
+		 		, ?
+		 		, 0
+		 		, (SELECT CONCAT(CHALL_TITLE, ' 챌린지 결제금액') FROM CHALL WHERE CHALL_NO = ?)
+		 		, (SELECT POINT FROM USER_INFO WHERE USER_ID = ?)
+		 		)
+	
+	
+	</entry>
+   	<entry key="getListCount">
+   		SELECT COUNT(*)
+   		FROM HISTORY
+   		WHERE USER_ID = ?
+   	
+   	</entry>
+   	<entry key="selectMyHistory">
+   		SELECT  RNUM, HIS_DATE, HIS_MONEY, PM, HIS_COMMENT, POINT
+		  FROM (SELECT ROWNUM RNUM, HIS_DATE, HIS_MONEY, PM, HIS_COMMENT,POINT
+      			FROM HISTORY
+     		    WHERE USER_ID = ?
+      			ORDER BY HISTORY_NO DESC)
+		  WHERE RNUM  BETWEEN ? AND ?
+   	</entry>
+	<entry key="insertCharge">
+		INSERT INTO
+			   HISTORY
+		 VALUES
+		 		(
+		 		  SEQ_HID.NEXTVAL
+		 		, ?
+		 		, SYSDATE
+		 		, ?
+		 		, 1
+		 		, '포인트 충전'
+		 		, (SELECT POINT FROM USER_INFO WHERE USER_ID = ?)
+		 		)
+	
+	</entry>
+	<entry key="refundChall">
+		INSERT INTO HISTORY
+            (
+              HISTORY_NO
+            , USER_ID
+            , HIS_DATE
+            , HIS_MONEY
+            , PM
+            , HIS_COMMENT
+            , POINT
+            )
+            SELECT SEQ_HID.NEXTVAL
+                 , CS.USER_ID
+                 , SYSDATE
+                 , CHALL_PAYMENT
+                 , 1
+                 , CONCAT(C.CHALL_TITLE, ' 챌린지 삭제로 인한 환불')
+                 , (SELECT POINT FROM USER_INFO WHERE USER_ID = CS.USER_ID)
+            FROM CHALL_STATUS CS
+            JOIN CHALL C USING(CHALL_NO)
+            WHERE CHALL_NO = ?
+           AND CS.CHALL_STATUS = 1
+	
+	
+	</entry>
+</properties>
