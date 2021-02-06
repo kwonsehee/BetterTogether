@@ -373,6 +373,9 @@ ul {
 }
 
 
+
+ 
+
 </style>
 </head>
 <body>
@@ -382,7 +385,7 @@ ul {
 	<section id="content" class="content_css" style="height: 1100px;">
 		<div class="outer">
 			<div class="galleryArea" style="top: 150px;"> 
-				<p id="cafe_title">better together-스터디카페</p>
+				<p id="cafe_title">  <a style="font-weight:bolder;">  better together-스터디카페</a>    </p>
 				<h4 style="margin-left: 365px;   font-family: Nanum Gothic; color:#797878; font-size:17px;">
 				 #<%=c.getCafe_area()%>#수업#다목적#공간#스터디룸 
 				</h4>
