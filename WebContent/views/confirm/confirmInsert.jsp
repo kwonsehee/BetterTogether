@@ -2,20 +2,19 @@
     pageEncoding="UTF-8" import="java.util.Date, java.text.SimpleDateFormat, java.util.Calendar"%>
 <%
 
-Calendar calendar = Calendar.getInstance();
-/* String []days = {"일","월","화","수","목","금","토"};
-System.out.println("오늘은  "+days[calendar.get(Calendar.DAY_OF_WEEK)-1]+"요일");
- */int day1 = calendar.get(Calendar.DAY_OF_WEEK)-1;
-System.out.println(day1);
-SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd");
-Date currentTime = new Date ();
-String day = mSimpleDateFormat.format ( currentTime );
-Member m = (Member)session.getAttribute("loginUser");
-String nickName = m.getNickName();
-String title = (String)request.getParameter("title");
-System.out.println("insert와서 "+title);
-int cno = Integer.parseInt(request.getParameter("cno"));
-System.out.println(cno);
+	Calendar calendar = Calendar.getInstance();
+ 	int day1 = calendar.get(Calendar.DAY_OF_WEEK);
+	System.out.println(day1);
+	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd");
+	Date currentTime = new Date ();
+	String day = mSimpleDateFormat.format ( currentTime );
+	
+	Member m = (Member)session.getAttribute("loginUser");
+	String nickName = m.getNickName();
+	String title = (String)request.getParameter("title");
+	System.out.println("insert와서 "+title);
+	int cno = Integer.parseInt(request.getParameter("cno"));
+	System.out.println(cno);
 
 String confirm = (String)request.getParameter("confirm");
 System.out.println("insert와서confirm :  "+confirm);
@@ -154,14 +153,13 @@ System.out.println("insert와서confirm :  "+confirm);
 			<input type="hidden"name="userId"value="<%=m.getUserId() %>">
               <textarea id="commont_content" name="comment" style="margin-left:25%;" ></textarea>
                 
-            <!-- 요일에 맞지 않으면 버튼 비활성화 -->
-             <%if(confirm.equals("상관없음")||confirm.equals("평일")&&(day1<=5)||confirm.equals("주말")&&(day1>5)){ %>
+            <!-- 요일에 맞게 버튼 활성화  -->
+             <%if(confirm.equals("상관없음")||confirm.equals("평일")&&((day1<=6)&&(day1>1))||confirm.equals("주말")&&(day1==1||day1==7)){ %>
              <button type="submit" class="comment">인증하기</button>
-             <%} else if(confirm.equals("평일")&&(day1>5)){%>
+             <%} else if(confirm.equals("평일")&&(day1==1||day1==7)){%>
               <button type="button" class="comment" onClick="alert('해당 챌린지의 인증은 평일만 가능합니다.')">인증하기</button>
-             <%} else if(confirm.equals("주말")&&(day1<=5)){%>
+             <%} else if(confirm.equals("주말")&&(day1<=6)&&(day1>1)){%>
               <button type="button" class="comment" onClick="alert('해당 챌린지의 인증은 주말만 가능합니다.')">인증하기</button>
-         
              <%} %>
             </div>
 		

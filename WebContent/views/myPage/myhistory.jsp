@@ -39,9 +39,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
        font-family: "Nanum Gothic";
 		font-size:16px;
       }  
-       #history_column p{
-       text-align : center;
-       }
+      
     	/*페이징 바*/
 	#pagingArea {
 			text-align:center;
@@ -76,6 +74,9 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
     text-align : center;
     margin-top:70px;
     }
+    #history_tb td{
+    padding-left:3%;
+    }
     </style>
 </head>
 <body>
@@ -94,7 +95,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
         <section id="content-2">
         <%if(list.size()>0){ %>
             <table id="history_tb"style="border:1px solid black;">
-            	<tr id="history_column">
+            	<tr >
             	<td><p>출입금</p></td>
             	<td><p>거래 내역</p></td>
             	<td><p>금액</p></td>
@@ -102,7 +103,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
             	<td><p>날짜</p></td>
             	</tr>
             <%for(int i =0;i<list.size();i++){ %>
-           	<tr>
+           	<tr class="padding_his">
             	<td><%if(list.get(i).getPm()==0){ %>
             		<p>출금</p>
             		<%}else{ %>
@@ -163,7 +164,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
          <button type="button" id="pointcharginBtn"class="pointBtn">포인트 충전</button>
          </div>
        <script>
-	// 참가인원 보기 
+	//포인트 환급 버튼
 	const refundBtn = document.getElementById('refundBtn');
 	refundBtn.addEventListener('click',function(){
 	 	
@@ -181,7 +182,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
 		
 		window.open(url , "포인트 환급",  'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
 	});
-	// 참가인원 보기 
+	// 포인트 충전 버튼
 	const pointcharginBtn = document.getElementById('pointcharginBtn');
 	pointcharginBtn.addEventListener('click',function(){
 	 	

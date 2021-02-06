@@ -1068,6 +1068,7 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, cno);
+			pstmt.setInt(2, cno);
 
 			rset = pstmt.executeQuery();
 
@@ -1096,6 +1097,7 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, cno);
+			pstmt.setInt(2, cno);
 
 			rset = pstmt.executeQuery();
 
@@ -1124,6 +1126,7 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, cno);
+			pstmt.setInt(2, cno);
 
 			rset = pstmt.executeQuery();
 

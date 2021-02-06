@@ -8,10 +8,17 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import challenge.model.dao.ChallDao;
 import challenge.model.service.ChallService;
 import common.model.vo.PageInfo;
 import community.model.service.BoardService;
 import confirm.model.service.CerService;
+import member.model.dao.MemberDao;
+import member.model.service.MemberService;
+import news.model.dao.NewsDao;
+import news.model.service.NewsService;
+import refund.model.dao.HistoryDao;
+import refund.model.service.HistoryService;
 import report.model.dao.ReportDao;
 import report.model.vo.Report;
 import studycafe.model.service.CafeService;
@@ -175,6 +182,7 @@ public class ReportService {
 			//신고 게시물 가져오기
 			Report r = new ReportDao().disabledGetPost(conn,rNo);
 			System.out.println("신고될 게시물 : "+r);
+			
 			//신고게시물 비활성화시키기
 			if(r.getBoard_seq()!=0) {//자유게시판 신고
 				result = new BoardService().disabledPost(r.getBoard_seq());
@@ -183,8 +191,29 @@ public class ReportService {
 			}else if(r.getCer_id()!=0) {// 인증 신고
 				result = new CerService().disabledPost(r.getCer_id());
 			}else if(r.getChall_no()!=0) {// 챌린지모집 신고
+				
 				result = new ChallService().disabledPost(r.getChall_no());
-				System.out.println("프로세싱 서비스 : 여기오니?"+result);
+				if(result>0) {
+					//챌린지에 참여하고 있는 유저 환급 
+					// 게시물 삭제 성공한 경우
+					// 참여중인 인원들 모두 환불 시키기
+					int result1 = new MemberDao().refundMoney(conn,r.getChall_no());
+					
+					//거래 내역 디비에 환급된거 넣어주기
+					int result2 = new HistoryDao().refundChall(conn,r.getChall_no());
+					//삭제당한 인원들이 로그인시 확인가능하도록 news디비에 정보 넣기
+					int result3 = new NewsDao().insertReport(conn,rNo);
+					
+					// chall_status 디비에 chall_status 1을 0으로 변경
+					int result4 =new ChallDao().deleteChallStatus(conn, r.getChall_no());
+					
+					if(result1>0&&result2>0&&result3>0&&result4>0) {
+						result = result1;
+					}else {
+						result = 0;
+					}
+				}
+				
 			}
 			close(conn);
 			
