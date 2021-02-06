@@ -118,8 +118,8 @@
 			</tr>
 			<tr>
 				<td class="qnaTable" ><input maxlength="50" id="write_title" placeholder="<%= n.getaTitle() %>" readonly>
-					<label id="nelement">작성일 : <%= n.getaDate() %></label>
 					<label id="nelement">작성자 : <%= n.getUser_id() %></label>
+					<label id="nelement">작성일 : <%= n.getaDate() %></label>
 				</td>
 			</tr>
 			<tr>
