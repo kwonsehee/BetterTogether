@@ -35,7 +35,7 @@
     VALUES
             (
               SEQ_NEID.NEXTVAL
-            , (SELECT REPORTED_ID FROM REPORT WHERE REPORT_NO = ?)
+            , (SELECT USER_ID FROM REPORT WHERE REPORT_NO = ?)
             , 3
             , ?
             , DEFAULT
