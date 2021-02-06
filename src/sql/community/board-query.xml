@@ -25,6 +25,7 @@
 			  ,NICKNAME
 		 FROM BLIST
 		WHERE RNUM BETWEEN ? AND ?
+		  AND BOARD_STATUS = 'Y'
 	</entry>
 	<entry key="getSearchWriterListCount">
 		SELECT
@@ -214,21 +215,27 @@
 	</entry>
 
 	<entry key="selectMyBoardList">
-		SELECT
-			   RNUM
-			  ,BOARD_SEQ
-			  ,BOARD_TITLE
-			  ,BOARD_CONTENT
-			  ,BOARD_DATE
-			  ,BOARD_MODIFY
-			  ,BOARD_CNT
-			  ,BOARD_FILEPATH
-			  ,BOARD_STATUS
-			  ,USER_ID
-			  ,NICKNAME
-		 FROM BLIST
-		WHERE RNUM BETWEEN ? AND ?
-		  AND USER_ID = ?
+		SELECT 
+				RNUM, 
+				BOARD_SEQ,
+				BOARD_TITLE,
+				BOARD_CONTENT,
+				BOARD_DATE,
+				BOARD_MODIFY,
+				BOARD_CNT,
+				BOARD_FILEPATH,
+				BOARD_STATUS,
+				USER_ID,
+				NICKNAME
+    	  FROM (SELECT ROWNUM RNUM, A.*
+            	  FROM
+			    (SELECT BOARD_SEQ,BOARD_TITLE,BOARD_CONTENT,BOARD_DATE,BOARD_MODIFY,BOARD_CNT,BOARD_FILEPATH,BOARD_STATUS,USER_ID,NICKNAME
+			    FROM BOARD
+			    WHERE BOARD_STATUS = 'Y'
+			    ORDER BY BOARD_SEQ DESC)A
+			    WHERE USER_ID = ?)
+			    WHERE RNUM BETWEEN ? AND ?
+    
 	</entry>
 
 	<entry key="getMyListCount">

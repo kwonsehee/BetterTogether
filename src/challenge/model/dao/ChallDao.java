@@ -1432,6 +1432,36 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 		return challNew;
 	}
 	
+	// 참여중인 회원 아이디 select
+	public ArrayList<ChallengeStatus> getpplList(Connection conn, int challNo) {
+		ArrayList<ChallengeStatus> pplList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getpplList");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, challNo);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				pplList.add(new ChallengeStatus(rset.getString(1)));
+			}
+			//System.out.println("참여중인 회원아이디 select! " + pplList);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return pplList;
+	}
+	
 	
 	
 	

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import challenge.model.vo.Challenge;
 import common.model.vo.PageInfo;
 import community.model.service.ReviewService;
@@ -47,8 +50,6 @@ public class ReviewMainServlet extends HttpServlet {
 		 request.setAttribute("cList", cList);
 		} 
 		
-		
-		
 		// 페이징 영역
 		// 게시글 총 갯수 구하기
 		int currentPage = 1;
@@ -79,9 +80,9 @@ public class ReviewMainServlet extends HttpServlet {
 		// pi넘겨서 페이징 처리하기
 		ArrayList<Review> rList = rs.selectReviewList(pi);
 		
-		
 		request.setAttribute("pi", pi);
 		request.setAttribute("rList", rList);
+		
 		
 		RequestDispatcher view= request.getRequestDispatcher("/views/community/reviewMain.jsp");
 		view.forward(request, response);

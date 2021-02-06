@@ -24,7 +24,7 @@ System.out.println("insert와서confirm :  "+confirm);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>인증하기작성</title>
+<title>Better Together</title>
     <style>
     #btSection {
 	padding-bottom: 100px;
@@ -36,10 +36,10 @@ System.out.println("insert와서confirm :  "+confirm);
     }
 
     #content-1 p{
-        /*  border:solid 1px black;   */
-        font-size: 30px;
-        text-align: center;
-        padding-top: 35px;
+         margin-top: 50px;
+           text-align: center;
+           font-size: 24px;
+           color : #757575;
     }
     #content-2{
         /*  border:solid 1px blue;   */
@@ -157,9 +157,9 @@ System.out.println("insert와서confirm :  "+confirm);
              <%if(confirm.equals("상관없음")||confirm.equals("평일")&&(day1<=5)||confirm.equals("주말")&&(day1>5)){ %>
              <button type="submit" class="comment">인증하기</button>
              <%} else if(confirm.equals("평일")&&(day1>5)){%>
-              <button type="submit" class="comment" onClick="alert('해당 챌린지의 인증은 평일만 가능합니다.')">인증하기</button>
+              <button type="button" class="comment" onClick="alert('해당 챌린지의 인증은 평일만 가능합니다.')">인증하기</button>
              <%} else if(confirm.equals("주말")&&(day1<=5)){%>
-              <button type="submit" class="comment" onClick="alert('해당 챌린지의 인증은 주말만 가능합니다.')">인증하기</button>
+              <button type="button" class="comment" onClick="alert('해당 챌린지의 인증은 주말만 가능합니다.')">인증하기</button>
          
              <%} %>
             </div>

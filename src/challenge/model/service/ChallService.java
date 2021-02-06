@@ -645,6 +645,17 @@ public class ChallService {
 
 		return totalCount;
 	}
+	
+	// 참여중인 회원 아이디 select
+	public ArrayList<ChallengeStatus> getpplList(int challNo) {
+		Connection conn = getConnection();
+
+		ArrayList<ChallengeStatus> pplList = new ChallDao().getpplList(conn, challNo);
+		
+		close(conn);
+
+		return pplList;
+	}
 
 	public ArrayList<Challenge> challNew() {
 		Connection conn = getConnection();

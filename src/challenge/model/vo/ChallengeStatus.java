@@ -26,6 +26,12 @@ public class ChallengeStatus {
 		this.joinChall = joinChall;
 		this.cHits = cHits;
 	}
+	
+	// 참가중인 인원 받아오기
+	public ChallengeStatus(String userId) {
+		super();
+		this.userId = userId;
+	}
 
 	public String getUserId() {
 		return userId;

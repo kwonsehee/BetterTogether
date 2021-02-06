@@ -111,14 +111,15 @@
 }
 
 #btnArea1 {
-	width: 55px;
+		width: 55px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
+	color:black;
 }
 #btnArea2 {
 	width: 55px;
@@ -126,10 +127,23 @@
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
+	color:black;
 }
+
+th {
+	font-family: "Nanum Gothic";
+}
+
+input{
+	font-family: "Nanum Gothic";
+}
+ .line {
+           border: 0.5px solid #937cf790;
+        }
+
 </style>
 
 
@@ -138,14 +152,17 @@
 	<%@ include file="../common/common_ui.jsp"%>
 
 
-	 <section id="btSection" class="btSection"> 
+	<section id="btSection" class="btSection" style="margin-top: 30px;">
+		<h2
+			style="color: #757575; font-family: Nanum Gothic; text-align: center;">better
+			together 스터디수정</h2>
+		<div class="line"></div>
 		<div class="container">
 
 			<form action="<%=request.getContextPath()%>/cafe/update"
 				method="post" enctype="multipart/form-data">
-				<input type="hidden" name="Cafe_code"
-					value="<%=c.getCafe_code()%>"> <input type="hidden"
-					name="Cafe_code" value="<%=c.getCafe_code()%>">
+				<input type="hidden" name="Cafe_code" value="<%=c.getCafe_code()%>">
+				<input type="hidden" name="Cafe_code" value="<%=c.getCafe_code()%>">
 				<%
 					if (c.getCafe_photo() != null) {
 				%>
@@ -177,8 +194,8 @@
 						<div class="col-sm-3"></div>
 
 						<div class="col-sm-6">
-							<h2>better together 스터디수정</h2>
-							<form action="MemberJoinProc.jsp" method="post">
+
+							<form>
 								<table class="table table-boardered">
 									<tr>
 										<th>카페이름</th>
@@ -271,7 +288,8 @@
 										<th>도로명주소</th>
 										<td><input type="text" class="postcodify_address"
 											readonly name="cafe_map"
-											style="width: 308px; height: 26px; float: left;" value="<%=c.getCafe_map()%>">
+											style="width: 308px; height: 26px; float: left;"
+											value="<%=c.getCafe_map()%>">
 											<button id="postcodify_search_button" type="button"
 												style="float: left;">검색</button></td>
 									</tr>
@@ -304,22 +322,16 @@
 									<tr>
 										<th>카페소개글</th>
 										<td><textarea rows="5" cols="40" name="cafe_info"
-												class="form-control">ex)안녕하세요 저희카페 오신걸환영합니다
-저희카페에서는 다양한음료와 스낵들이 준비되어있습니다. 
-저희카페에서 무료와이파이와 검색을 하실수있는
-노트북이 구비되어있습니다.</textarea></td>
+												class="form-control"><%= c.getCafe_info() %></textarea></td>
 									</tr>
 
 									<tr>
 										<th>카페공지글</th>
 										<td><textarea rows="5" cols="40" name="cafe_notice"
-												class="form-control">ex)1.취식물 반입금지(엔터를 처서 입력하세요)
-2.반려동물 출입금지
-3.5인이상 예약불가
-4.마스크 꼭 쓰고있기</textarea></td>
+												class="form-control"><%= c.getCafe_notice() %> </textarea></td>
 									</tr>
 
-									 
+
 
 
 
@@ -361,16 +373,6 @@
 	</section>
 
 
-	<footer id="btFooter" style="margin-top: 0px;">
-		<pre id="btFooter_pre"
-			style="border-top-width: 0px; margin-bottom: 0px;">KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 김언체 ｜  개인정보관리책임자 : 강명주
-
-        강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F
-        강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F
-        강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F
-       
-        Copyright © Better Together
-    </pre>
-	</footer>
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

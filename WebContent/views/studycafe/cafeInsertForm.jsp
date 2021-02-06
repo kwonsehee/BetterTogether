@@ -24,20 +24,11 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
-
-.btSection{
+.btSection {
 	padding-bottom: 100px;
-
 }
 
- 
-
 #modal_opne_btn {
-	position: absolute;
-	left: 61.41%;
-	right: 33.18%;
-	top: 86.35%;
-	bottom: 9.91%;
 	font-family: "Nanum Gothic";
 	background: #fff;
 	border: 2px solid #937cf790;
@@ -50,7 +41,6 @@
 	padding-left: 0px;
 	padding-top: 0px;
 	padding-right: 0px;
-	width: 62px;
 }
 
 #modal {
@@ -67,10 +57,19 @@
 
 #modal button {
 	display: inline-block;
-	width: 70px;
-	margin-left: calc(85% - 100px - 100px);
+
+	margin-left: calc(75% - 90px - 100px);
 	margin-top: 5%;
-	border-radius: 20px;
+	 
+	width: 55px;
+	font-family: "Nanum Gothic";
+	border-radius: 10px;
+	border: solid 1px #9e9e9e5b;
+	padding: 5px 15px 5px 15px;
+	background-color: #e6e4e4b6;
+	font-weight: bolder;
+	font-size: 10px;
+	color:black;
 }
 
 #modal .modal_content {
@@ -99,20 +98,40 @@
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
+	color:black;
 }
+
 #btnArea2 {
-	width: 55px;
+		width: 55px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
+	color:black;
 }
+
+th {
+	font-family: "Nanum Gothic";
+}
+
+td{
+ font-family: "Nanum Gothic";
+}
+
+input{
+	font-family: "Nanum Gothic";
+}
+
+ .line {
+           border: 0.5px solid #937cf790;
+        }
+
 </style>
 
 
@@ -120,7 +139,11 @@
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
 
-		<section id="btSection" class="btSection"> 
+	<section id="btSection" class="btSection" style="margin-top: 30px;">
+		<h2
+			style="color: #757575; font-family: Nanum Gothic; text-align: center;">better
+			together 스터디등록</h2>
+		<div class="line"></div>
 		<div class="container">
 
 			<form action="<%=request.getContextPath()%>/cafe/insert"
@@ -130,18 +153,20 @@
 						<div class="col-sm-3"></div>
 
 						<div class="col-sm-6">
-							<h2>better together 스터디등록</h2>
-							<form action="MemberJoinProc.jsp" method="post">
+
+
+							<form>
 								<table class="table table-boardered">
 									<tr>
-										<th>카페이름</th>
-										<td><input type="text" class="form-control" name="cafe_name" required
-											placeholder="카페명은 최대8글자입니다"  maxlength="8"></td>
+										<th style="font-family: Nanum Gothic;">카페이름</th>
+										<td><input type="text" class="form-control"
+											name="cafe_name" required placeholder="카페명은 최대8글자입니다"
+											maxlength="8"></td>
 									</tr>
 									<tr>
 										<th>운영시간</th>
-										<td><input type="text" class="form-control" name="cafe_oh" required
-											placeholder="ex)9:30-21:30"></td>
+										<td><input type="text" class="form-control"
+											name="cafe_oh" required placeholder="ex)9:30-21:30"></td>
 									</tr>
 
 									<tr>
@@ -194,7 +219,8 @@
 
 									<tr>
 										<th>전화번호</th>
-										<td><input type="text" name="cafe_phone" required class="form-control" ></td>
+										<td><input type="text" name="cafe_phone" required
+											class="form-control"></td>
 									</tr>
 
 									<tr>
@@ -209,19 +235,24 @@
 									</tr>
 									<tr>
 										<th>카페홈페이지</th>
-										<td><input   class="form-control" type="text" name="cafe_page"  placeholder="도메인주소 ex)www.naver.com"  required></td>
+										<td><input class="form-control" type="text"
+											name="cafe_page" placeholder="도메인주소 ex)www.naver.com"
+											required></td>
 									</tr>
 
 									<tr>
 										<th>도로명주소</th>
 										<td><input type="text" class="postcodify_address"
-											readonly name="cafe_map" style="width: 308px;height: 26px;float: left;">
-											<button id="postcodify_search_button" type="button"  style=" float: left;"  >검색</button></td>
+											readonly name="cafe_map"
+											style="width: 308px; height: 26px; float: left;">
+											<button id="postcodify_search_button" type="button"
+												style="float: left;">검색</button></td>
 									</tr>
- 
+
 									<tr>
 										<th>상세주소</th>
-										<td><input   class="form-control" type="text"  name="detail_address" required></td>
+										<td><input class="form-control" type="text"
+											name="detail_address" required></td>
 									</tr>
 
 
@@ -231,19 +262,20 @@
 										<th>대표이미지</th>
 										<td><input type="file" name="cafe_photo"></td>
 									</tr>
-									
+
 									<tr>
-										
+
 										<th>추가이미지</th>
-										<td><input type="file" name="cafe_photo2"><input type="file" name="cafe_photo3"></td>
+										<td><input type="file" name="cafe_photo2"><input
+											type="file" name="cafe_photo3"></td>
 									</tr>
-									
-									 
+
+
 
 
 									<tr>
 										<th>카페소개글</th>
-										<td><textarea rows="5" cols="40" name="cafe_info"
+										<td><textarea rows="5" cols="40" name="cafe_info" style="font-family: Nanum Gothic;"
 												class="form-control">ex)안녕하세요 저희카페 오신걸환영합니다
 저희카페에서는 다양한음료와 스낵들이 준비되어있습니다. 
 저희카페에서 무료와이파이와 검색을 하실수있는
@@ -252,7 +284,7 @@
 
 									<tr>
 										<th>카페공지글</th>
-										<td><textarea rows="5" cols="40" name="cafe_notice"
+										<td><textarea rows="5" cols="40" name="cafe_notice"style="font-family: Nanum Gothic;"
 												class="form-control">ex)1.취식물 반입금지(엔터를 처서 입력하세요)
 2.반려동물 출입금지
 3.5인이상 예약불가
@@ -261,10 +293,12 @@
 
 									<tr>
 										<th>제휴정보</th>
-										<td><select  name="AFFILIATED_CAFE" style=" float: left;">
+										<td><select name="AFFILIATED_CAFE"
+											style="float: left; height: 29px;">
 												<option value="N">일반</option>
 												<option value="Y">제휴</option>
-										</select></td>
+										</select> <input type="button" value="제휴약관" id="modal_opne_btn"
+											style="float: left; height: 30px; width: 89px;"></td>
 									</tr>
 
 
@@ -276,20 +310,19 @@
 
 
 											<button id="btnArea1">등록</button>
-												<input type="button" value="제휴약관" class="nav_btn"
-							id="modal_opne_btn"
-							style="top: 915px;left: 200px;width: 104px;">
+
 										</td>
 									</tr>
 
 
 
 								</table>
+
 							</form>
 						</div>
 
 					</div>
-				 <script>
+					<script>
 				
 						$(document).ready(function() {
 						 
@@ -311,22 +344,20 @@
 
 
 					<!-- 제휴정보 팝업 -->
-					<div id="root">
-					
-					</div>
+					<div id="root"></div>
 					<div id="modal">
 						<div class="modal_content"
-							style="margin-left: 500px;height: 444px;">
+							style="margin-left: 500px; height: 444px;">
 
 
 
-							<h4 style="text-align: center; color: #937cf790">BetterTogether제휴
+							<h4 style="text-align: center; color: #937cf790; font-family: Nanum Gothic;  ">BetterTogether제휴
 								약관</h4>
 
 
 							<ul class="join_box"
 								style="padding-left: 5px; padding-right: 5px;">
-								<pre style="height: 271px; white-space: pre-wrap;"> 
+								<pre style="height: 271px; white-space: pre-wrap;  font-family: Nanum Gothic;"> 
 여러분을 환영합니다. BetterTogether서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서감사합니다. 본 약관은 다양한 BetterTogether서비스의 이용과 관련하여 Bett
 erTogether에서제공하고 이용하는 서비스회원(이하 ‘회원’)의 결제 정보를 알려주면서, 아울러 여러분의 제휴 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
 결제는 한번으로 이루어지며 한번의 결제로 무제한 등록이가능합니다.결제 비용은 등록시최초로 3만원이 결제되면 환불은 불가능합니다.
@@ -368,7 +399,7 @@ BetterTogether 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔�
 							document.getElementById("modal").style.display = "none";
 						}
 					</script>
-						<!-- 제휴정보 팝업 -->
+					<!-- 제휴정보 팝업 -->
 
 
 
@@ -380,19 +411,10 @@ BetterTogether 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔�
 
 			</form>
 		</div>
-		</section>
+	</section>
 
 
-	<footer id="btFooter" style="margin-top: 0px;">
-		<pre id="btFooter_pre"
-			style="border-top-width: 0px; margin-bottom: 0px;">KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 김언체 ｜  개인정보관리책임자 : 강명주
-
-        강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F
-        강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F
-        강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F
-       
-        Copyright © Better Together
-    </pre>
-	</footer>
+	<%@ include file="../common/footer.jsp" %>
+	
 </body>
 </html>

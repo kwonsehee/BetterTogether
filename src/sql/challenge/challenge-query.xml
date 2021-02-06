@@ -686,14 +686,30 @@
 			   CATE_ID,
 			   CHALL_START,
 			   CHALL_STATUS
-		 FROM 
-			   JLIST 
-		WHERE
-			   USER_ID = ?
-		  AND
-		  	   CHALL_STATUS = 'N' 
-          AND
-              RNUM BETWEEN ? AND ?
+		 FROM
+             (SELECT ROWNUM RNUM, J.*
+                FROM(SELECT 
+                		   CHALL_NO,
+                		   CHALL_TITLE,
+                		   CHALL_PEOPLE,
+                		   CHALL_DATE,
+                		   FILE_PATH,
+                		   CHALL_CONFIRM,
+                		   CHALL_FREQUENCY,
+                		   CHALL_PERIOD,
+                		   CHALL_PAYMENT,
+                		   CHALL_CONTENT,
+                		   USER_ID,
+                		   CATE_ID,
+                		   CHALL_START,
+                		   CHALL_STATUS
+          			  FROM CHALL
+          			  WHERE
+          			  	   CHALL_STATUS = 'N' 
+          			    AND
+          			       USER_ID = ?
+          			  ORDER BY CHALL_NO DESC) J)
+    	 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<!-- 내가 모집한 챌린지 수정 -->
@@ -1002,6 +1018,7 @@
            AND  TO_CHAR(CHALL_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual)
 	</entry>
+
 	<entry key="challNew">
 		SELECT
 			    CHALL_NO
@@ -1027,4 +1044,18 @@
         FROM dual)
        ORDER BY CHALL_DATE DESC 
 	</entry>
+
+	
+	
+	<!-- 챌린지 참여중인 userId select 해오기 -->
+	<entry key="getpplList">
+		SELECT 
+		       USER_ID
+		  FROM 
+		       CHALL_STATUS
+		  WHERE
+		       CHALL_NO = ? 
+		   AND CHALL_STATUS = 1
+	</entry>
+	
 </properties>

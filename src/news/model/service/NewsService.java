@@ -25,7 +25,8 @@ public class NewsService {
 		return result;
 	}
 
-	//신고처리시 신고당하는 유저가 로그인시 신고당한 사실을 알려주기 위해 
+	//신고처리시 신고당하는 유저가 로그인시 신고당한 사실을 알려주기 위해 -이전
+	//신고처리시 신고한 유저에게 신고처리했다고 알려주기 위해
 	public int insertReport(int rNo) {
 		Connection conn = getConnection();
 		int result = new NewsDao().insertReport(conn,rNo);

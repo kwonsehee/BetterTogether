@@ -31,6 +31,7 @@
 		  , PHONE
 		  , EMAIL
 		  , USER_CATE
+		  , NAME
 		  , JOIN_DATE
 		  , MODIFY_DATE
 		  , MEMBER_TYPE
@@ -39,6 +40,7 @@
 		VALUES
 		(
 			?
+		  , ?
 		  , ?
 		  , ?
 		  , ?
@@ -126,9 +128,11 @@
 	</entry>
 	<entry key="processUserReported">
 		UPDATE
-			   USER_INFO
+  			   USER_INFO
 		   SET
-		   	   REPORTED = REPORTED + 1
+  			   REPORTED = REPORTED + 1,
+  			   WRITE_ACTIVE = CASE WHEN REPORTED &lt;=2 THEN 'N' ELSE WRITE_ACTIVE END,
+ 			   REPORTED_DATE = CASE WHEN REPORTED &lt;=2 THEN SYSDATE ELSE REPORTED_DATE END
 		 WHERE
 		 	   USER_ID = (SELECT REPORTED_ID
                 		  FROM REPORT
@@ -166,6 +170,7 @@ SELECT
            AND  TO_CHAR(JOIN_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual)
 	</entry>
+
 	<entry key="totalMem">
 		SELECT
 			  	COUNT(*)
@@ -173,5 +178,32 @@ SELECT
 		  	 	USER_INFO
 		 WHERE
 		   		MEMBER_TYPE = 1
+
+	<entry key="getId">
+		SELECT USER_ID, JOIN_DATE
+		  FROM USER_INFO
+		 WHERE NAME=?
+	   	   AND EMAIL=?
+	
+	</entry>
+	<entry key="getPwd">
+		SELECT USER_PWD
+		  FROM USER_INFO
+		 WHERE NAME=?
+	   	   AND EMAIL=?
+	   	   AND USER_ID = ?
+	</entry>
+	<entry key="updateWriteActive">
+		UPDATE USER_INFO
+            SET
+            WRITE_ACTIVE = CASE WHEN REPORTED_DATE +30 &lt; SYSDATE THEN 'Y' ELSE WRITE_ACTIVE END,
+            REPORTED = CASE WHEN REPORTED_DATE +30 &lt; SYSDATE THEN 0 ELSE REPORTED END
+            WHERE USER_ID=?
+	</entry>
+	<entry key="getWriteActive">
+		SELECT REPORTED_DATE
+		FROM USER_INFO
+		WHERE USER_ID = ?
+		  AND WRITE_ACTIVE = 'N'
 	</entry>
 </properties>

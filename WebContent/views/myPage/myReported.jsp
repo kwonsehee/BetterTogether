@@ -1,9 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, report.model.vo.Report, common.model.vo.PageInfo"%>
+    pageEncoding="UTF-8" import="java.util.*, report.model.vo.Report, common.model.vo.PageInfo, java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%
 ArrayList<Report> reList = (ArrayList<Report>)request.getAttribute("list");
 PageInfo pi = (PageInfo)request.getAttribute("pi");
-System.out.println("jsp list : "+reList);%>
+Date reported = (Date)request.getAttribute("reported_date");
+System.out.println("jsp list : "+reList);
+
+//오늘 날짜 구하기
+Date date= new Date();
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+String today = sdf.format(date);
+
+String year= null;
+String month = null;
+String day = null;
+if(reported !=null){
+//글쓰기 비활성화는 30일간
+SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+String reported_date = transFormat.format(reported);
+
+
+//시작날짜 + 기간
+	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	Calendar cal = Calendar.getInstance();
+	cal.setTime(reported); // 챌린지 시작일로 세팅 
+	cal.add(Calendar.DATE, 30); // 챌린지 시작일 + 기간 세팅 
+	String end_date = df.format(cal.getTime()); // 챌린지 시작일 + 기간 
+	System.out.println("period(챌린지 끝나는 날): " + end_date); 
+	
+	year = end_date.substring(0, 4);
+	month = end_date.substring(5, 7);
+	day = end_date.substring(8, 10);
+
+
+}
+%>
 
 <%if(session.getAttribute("msg") != null){ %>
 <script>
@@ -31,10 +62,10 @@ System.out.println("jsp list : "+reList);%>
 	}
         
 	 #content-1 p{
-     /*        border:solid 1px red;  */
-            font-size: 24px;
-            text-align: center;
-   }
+margin-top: 50px;
+           text-align: center;
+           font-size: 24px;
+           color : #757575;   }
    
          /* 세부 카테고리 버튼 */
          #btnwrap {
@@ -84,12 +115,12 @@ System.out.println("jsp list : "+reList);%>
             width: 80%;
            /*  height: 400px;       */
             border-collapse: collapse;
-            
+            margin-top:30px;
         }
 
         #board_tb th, #board_tb td {
             border-bottom: 1px solid #75757552;
-            padding: 2px;
+           /*  padding: 2px; */
         }
         
         #board_tb th {
@@ -101,10 +132,10 @@ System.out.println("jsp list : "+reList);%>
         }
 
         #tb_title {
-            width:70%;
+            width:50%;
         }
         #tb_author {
-            width:10%;
+            width:30%;
         }
         #tb_date {
             width:10%;
@@ -162,7 +193,7 @@ System.out.println("jsp list : "+reList);%>
 		}
 	.pagingArea button {
 		width: 25px;
-		margin-top: 20px;
+		margin-top: 30px;
 		border: 0px;
 		color: #757575;
 		font-family: "Nanum Gothic";
@@ -172,7 +203,18 @@ System.out.println("jsp list : "+reList);%>
 	.pagingArea button:hover {
 		cursor:pointer;
 	}
-        
+        #countDown_content {
+	
+	font-family: "Nanum Gothic";
+	width: 55.5%;
+	margin-left: 8%;
+	padding: 20px;
+}
+#count_img {
+	margin-left: 170px;
+	height: 25px;
+	width: 25px;
+}
 </style>
 </head>
 <body>
@@ -186,13 +228,55 @@ System.out.println("jsp list : "+reList);%>
         </section>
         
         <div id="board_div">
+        	<%if(reported !=null){ %>
+		<section id="countDown_content">
+			<img
+				src="<%=request.getContextPath()%>/resources/images/countdown.png"
+				id="count_img" class="img-size"> <span id="countDown_title">글쓰기 활성화까지</span>
+				 <span id="countDown"></span>
+		</section>
+		
+		<script>
+        // 챌린지 시작일 세팅
+        var countDownDate = new Date("<%=month%> <%=day%> <%=year%> 00:00:00").getTime();
+      
+        // 1초마다 카운트 
+        var x = setInterval(function() {
+      
+        // 현재 날짜/시간 가져오기 
+        var now = new Date().getTime();
+      
+        // 챌린지 시작일 - 현재 날짜 
+        var distance = countDownDate - now;
+      
+        // 일,시,분,초 계산
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+        // 화면에 출력
+        document.getElementById("countDown").innerHTML = days + "일 " + hours + "시간 "
+        + minutes + "분 " + seconds + "초 ";
+        
+        // 카운트 진행중 & 종료 문구 바꾸기
+     	
+        
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countDown").innerHTML = "오늘부터 다시 글쓰기가 가능합니다.";
+          
+        } 
+      }, 1000);
+      </script>
+		<%} %>
             <table id="board_tb">
                 <thead>
                     <tr id="th_title">
-                        <th id="tb_num">번호</th>
-                        <th id="tb_title">제목</th>
-                        <th id="tb_author">신고 날짜</th>
-                        <th id="tb_date">처리여부</th>
+                        <th style=text-align:center; id="tb_num">번호</th>
+                        <th style=padding-left:3%; id="tb_title">제목</th>
+                        <th style=text-align:center; id="tb_author">신고 날짜</th>
+                        <th style=text-align:center; id="tb_date">처리여부</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -215,7 +299,7 @@ System.out.println("jsp list : "+reList);%>
                 </tbody>
             </table>
             
-            
+                 </div>
 
             <!-- 페이징 바 -->
 			<div class="pagingArea">
@@ -249,17 +333,17 @@ System.out.println("jsp list : "+reList);%>
 			</div>
 			
 				
-        </div>
+   
         
     <button id="backBtn" type="button" class="text_font joinform_btn" onclick="javascript:history.back();">뒤로가기</button>
-    </section>
+
     
-    
+        </section>
     <script>
 		
 		// 게시판 상세보기 기능
 		$(function(){
-			$("#qnaBoard td").mouseenter(function(){
+			$("#board_tb td").mouseenter(function(){
 				$(this).parent().css("background","#937cf755");
 			}).mouseout(function(){
 				$(this).parent().css("background", "none");
@@ -275,6 +359,8 @@ System.out.println("jsp list : "+reList);%>
 			});
 		});
     </script>
+    
+
     <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

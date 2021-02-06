@@ -16,41 +16,36 @@
 <meta charset="UTF-8">
 <title>better together</title>
 <style>
-
-#btHeader{
-    top: 0px;
+#btHeader {
+	top: 0px;
 }
 /* 바깥 영역 */
-.content_css{
-width: 100%;
-height: 950px;
-background-color: rgba(219, 219, 219, 0.356);
-z-index: -3;
+.content_css {
+	width: 100%;
+	height: 950px;
+	background-color: rgba(219, 219, 219, 0.356);
+	z-index: -3;
 }
 
 .outer {
-
 	width: 1000px;
 	min-width: 850px;
 	font-family: "Nanum Gothic";
-	
 	margin: auto;
 	margin-top: 20px;
 	margin-bottom: 70px;
 	border-radius: 20px;
 	z-index: -2;
-	
 }
 
 .galleryArea {
-	  position: absolute;	
+	position: absolute;
 	padding: 5px;
 	width: 1000px;
 	height: 950px;
 	min-height: 400px;
-	margin: auto; 
-	z-index: 0; 
-	
+	margin: auto;
+	z-index: 0;
 }
 
 .content_css button {
@@ -58,9 +53,9 @@ z-index: -3;
 	height: 30px;
 	color: #9e9e9e5b;
 	font-family: "Nanum Gothic";
-	background: #fff;
-	border: 2px solid #9e9e9e5b;
-	border-radius: 55px;
+	background-color: #c7bdf2;
+	border: solid 1px #b6a8f5;
+	border-radius: 5px;
 }
 
 hr {
@@ -77,7 +72,6 @@ hr {
 	height: 450px;
 	left: 500px;
 	width: 450px;
-	
 }
 
 #cafeimg {
@@ -92,8 +86,10 @@ hr {
 	top: 4.37%;
 	bottom: 54.2%;
 	font-family: "Nanum Gothic";
-	background: #ebe8e8;
+	background: white;
 	border-radius: 20px;
+	border: 1px solid #9e9e9e5b;
+	 
 }
 
 .inf {
@@ -123,11 +119,14 @@ hr {
 }
 
 .map {
-	position: absolute;
-left: 47.03%;
-right: 20.08%;
-top: 19.71%;
-bottom: 18.03%;
+	
+position: absolute;
+left: 47.31%;
+right: 19.8%;
+top: 23.91%;
+bottom: 5.37%;
+
+	
 	border-radius: 36px;
 	border-radius: 20px;
 	z-index: 0;
@@ -156,20 +155,17 @@ bottom: 18.03%;
 	width: 110px;
 	margin-left: calc(100% - 100px - 100px);
 	margin-top: 30%;
-	border-radius: 20px;
+	border-radius: 8px;
 }
 
 #modal .modal_content {
 	width: 319px;
-height: 347px;
- 	margin-top: -190px;
+	height: 347px;
+	margin-top: -190px;
 	margin-left: -250px;
 	background: #fff;
 	border: 2px solid #666;
-	border-radius: 5px;
-	 
- 
-	 
+	border-radius: 8px;
 }
 
 #modal .modal_layer {
@@ -182,7 +178,7 @@ height: 347px;
 	z-index: -1;
 }
 
-#btnArea2 { 
+#btnArea2 {
 	left: 52%;
 	right: 47.41%;
 	top: 600px;
@@ -191,10 +187,10 @@ height: 347px;
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
- 
+	font-size: 10px;
+	color: black;
 }
 
 #btnArea3 {
@@ -207,9 +203,10 @@ height: 347px;
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
+	color: black;
 }
 
 .button {
@@ -218,25 +215,27 @@ height: 347px;
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-		background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
+	color: black;
 }
 
 #updateBtn {
 	position: absolute;
 	width: 63px;
-	height: 33px; 
+	height: 33px;
 	top: 550px;
-    left: 850px;
+	left: 850px;
 	width: 55px;
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
+	color: black;
 }
 
 #deleteBtn {
@@ -250,9 +249,10 @@ height: 347px;
 	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
 	padding: 5px 15px 5px 15px;
-	background-color: white;
-	font-size: 10px;
+	background-color: #e6e4e4b6;
 	font-weight: bolder;
+	font-size: 10px;
+	color: black;
 }
 
 #t1 {
@@ -295,6 +295,11 @@ blockquote:before, blockquote:after, q:before, q:after {
 	content: none;
 }
 
+strong{
+font-family: "Nanum Gothic";
+
+}
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -317,7 +322,7 @@ ul {
 	padding-left: 0px;
 	border-radius: 2px;
 	position: relative;
-	 background-color: rgba(219, 219, 219, 0.356);
+	background-color: rgba(219, 219, 219, 0.356);
 	overflow: hidden;
 }
 
@@ -362,14 +367,14 @@ ul {
 	<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
 	<%@ include file="../common/common_ui.jsp"%>
 
-	<section id="content" class="content_css" style="height: 1050px;">
+	<section id="content" class="content_css" style="height: 1100px;">
 		<div class="outer">
-			<div class="galleryArea" style="top: 150px;">
-				<h1 style="margin-left: 300px; margin-top: 15px;">
+			<div class="galleryArea" style="top: 150px;"> 
+				<h1 style="margin-left: 300px; margin-top: 15px; color: #757575;font-family: Nanum Gothic;">
 					<strong>better together-스터디카페</strong>
 				</h1>
-				<h4 style="margin-left: 350px;">
-					#<%=c.getCafe_area()%>#수업#다목적#공간#스터디룸
+				<h4 style="margin-left: 350px;   font-family: Nanum Gothic;"">
+				 #<%=c.getCafe_area()%>#수업#다목적#공간#스터디룸 
 				</h4>
 				<div class="cafe" style="top: 120px; left: 35px;">
 
@@ -398,18 +403,18 @@ ul {
 								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo2()  %>"
 								align="bottom"></li>
 							<%} else    { %>
-							<li class="item"><img id='cafeimg'
+							<li class="item"><img id='cafeimg' style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
 								align="bottom"></li>
 							<%} %>
 
 
 							<%if(c.getCafe_photo3() != null  ) {%>
-							<li class="item"><img id='cafeimg'
+							<li class="item"><img id='cafeimg'  style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/<%= c.getCafe_photo3()  %>"
 								align="bottom"></li>
 							<%} else{ %>
-							<li class="item"><img id='cafeimg'
+							<li class="item"><img id='cafeimg'  style="width: 430px;"
 								src="<%=request.getContextPath()%>/resources/Cafeimages/이미지준비중.jpg"
 								align="bottom"></li>
 							<%} %>
@@ -427,27 +432,27 @@ ul {
 
 				<!-- 카페 정보 및 예약-->
 				<div class="rvt"
-					style="border: 1px solid #bab6b6; top: 180px; left: 550px; width: 432px; height: 352px;">
-					<span><a style="font-size: 25px;">&nbsp&nbsp&nbsp <strong><%=c.getCafe_name()%></strong>
+					style="top: 140px;left: 550px;width: 422px;height: 402px;">
+					<span><a style="font-size: 25px; font-family: NanumGothic;">&nbsp&nbsp&nbsp <strong><%=c.getCafe_name()%></strong>
 					</a> </span><br> <br>
 					<table id="info">
 						<td>
 						<tr>
-							<strong> &nbsp 지역: <%=c.getCafe_area()%>
+							<strong style="font-family: NanumGothic;" > &nbsp 지역: <%=c.getCafe_area()%>
 							</strong>
 						</tr>
 						<br>
 						<br>
 						<br>
 						<tr>
-							<strong> &nbsp 예약가능 인원: <%=c.getCafe_capacity()%>
+							<strong style="font-family: NanumGothic;"> &nbsp 예약가능 인원: <%=c.getCafe_capacity()%>
 							</strong>
 						</tr>
 						<br>
 						<br>
 						<br>
 						<tr>
-							<strong> &nbsp 이용시간: <%=c.getCafe_oh()%>
+							<strong style="font-family: NanumGothic;"> &nbsp 이용시간: <%=c.getCafe_oh()%>
 							</strong>
 						</tr>
 						<br>
@@ -455,7 +460,7 @@ ul {
 						<br>
 						</td>
 						<tr>
-							<strong> &nbsp 상세주소: <%= c.getCafe_map() %> <%= c.getDetail_address() %>
+							<strong style="font-family: NanumGothic;"> &nbsp 상세주소: <%= c.getCafe_map() %> <%= c.getDetail_address() %>
 							</strong>
 						</tr>
 
@@ -465,8 +470,8 @@ ul {
 								<!--문의하기 팝업-->
 								<div id="root">
 									<button class="nav_btn" id="modal_opne_btn"
-										style="position: absolute; width: 150px; height: 40px; left: 30px; top: 300px; background: #937cf790; color: white;">
-										<a>문의하기</a>
+										style="position: absolute; width: 150px; height: 40px; left: 50px; top: 345px; background: #b6a8f5; color: white;">
+										<a style="font-family: NanumGothic;">문의하기</a>
 									</button>
 								</div>
 
@@ -475,12 +480,13 @@ ul {
 									<div class="modal_content">
 										<hr
 											style="left: -245px; width: 310px; top: 230px; border: 0.5px solid #937cf790;">
-										<h2 style="text-align: center; color: black;">
-											<br>
+										<h2 style="text-align: center; color: black; style="font-family: NanumGothic;"">
+											<br style="font-family: NanumGothic;">
 											<%=c.getCafe_name()%></h2>
 										<br>
-										<h5>
-											&nbsp&nbsp" better together를 통해 연락드렸어요 ~" 라고 말씀하시면 다양한 혜택과 서비스를 받으실수있어요. :) <br> <br> <br>
+										<h5 style="font-family: NanumGothic; ">
+											&nbsp&nbsp" better together를 통해 연락드렸어요 ~" 라고 말씀하시면 다양한 혜택과
+											서비스를 받으실수있어요. :) <br> <br> <br>
 
 										</h5>
 
@@ -497,9 +503,9 @@ ul {
 							</li>
 							<li>
 								<button class="nav_btn" id="bt2"
-									style="top: 300px; background: #937cf790; color: white;"
+									style="top: 345px; background: #b6a8f5; color: white; left: 225px;"
 									onclick="window.open('https://<%= c.getCafe_page() %>')">
-									<a>예약하기</a>
+									<a style="font-family: NanumGothic; ">예약하기</a>
 								</button>
 							</li>
 						</ul>
@@ -575,10 +581,10 @@ ul {
 
 
 				<%
-						if (loginUser != null && loginUser.getUserId().equals(c.getUserId())) {
-					%>
+					if (loginUser != null && loginUser.getUserId().equals(c.getUserId())) {
+				%>
 				<button id="updateBtn">수정</button>
-				<button id="deleteBtn">삭제</button>
+				<button id="deleteBtn" style="left: 920px;">삭제</button>
 
 				<!-- 수정/삭제를 위한 form -->
 				<form action="" id="Cafe_codeForm" method="post">
@@ -608,8 +614,8 @@ ul {
 					%>
 
 
-				<hr
-					style="top: 580px; width: 1000px; left: 0px; border: 0.5px solid Purple;">
+				<div id="line1" style="top: 570px;width: 1000px;left: 0px;border: 0.5px solid #937cf790;margin-top: 10px;"></div>
+					 
 				<!-- 카페 정보,약도-->
 				<div class="inf" style="top: 590px; width: 1200px; left: 0px;">
 					<br>
@@ -618,10 +624,10 @@ ul {
 						<tr>
 							<span style="display: block; width: 480px; height: 100px;">
 								<strong>&nbsp&nbsp공간소개 </strong> <pre
-									style="font-size: 16px; font-family:"NanumGothic"; height:
+									style="font-size: 16px; font-family:NanumGothic; height:
 								 110px;width: 550px;margin-left: 10px;border-top-width:
 								  0px;border-bottom-width: 0px;border-left-width:
-								   0px;border-right-width: 0px; background-color:rgba(255,255,255,0);"><%=c.getCafe_info()%></pre>
+								   0px;border-right-width: 0px; background-color:rgba(255,255,255,0); white-space:pre-wrap;"><%=c.getCafe_info()%></pre>
 							</span>
 						</tr>
 						</td>
@@ -629,11 +635,10 @@ ul {
 						<tr>
 							<span
 								style="display: block; width: 480px; height: 100px; margin-top: 50px;">
-								<hr
-									style="left: 0px; top: 150px; width: 550px; border: 0.5px solid Purple; margin-top: 10px;">
+								<div id="line1" style="left: 0px;top: 150px;width: 550px;border: 0.5px solid #937cf790;margin-top: 10px;margin-bottom: 15px;"></div>
 								<strong> &nbsp&nbsp유의사항 </strong> <pre
-									style="font-size: 16px; height: 150px; width: 550px; font-family:"
-									NanumGothic"; 
+									style="font-size: 16px; height: 150px; width: 550px; font-family:
+									NanumGothic; 
 									 margin-left: 10px; border-left-width: 0px; 
 									 border-top-width: 0px; border-bottom-width:
 									  0px; background-color:rgba(255, 255, 255, 0); 
@@ -643,9 +648,9 @@ ul {
 						</td>
 						<br>
 
-						<h2>
+						<h3 style="margin-top: -260px;">
 							<strong style="margin-left: 570px;">※오시는길</strong>
-						</h2>
+						</h3>
 						<br>
 						<br>
 
@@ -751,17 +756,7 @@ ul {
 
 	</section>
 
-
+	 <%@ include file="../common/footer.jsp" %>
 </body>
-<footer id="btFooter" style="margin-top: 50px;">
  
-		<pre id="btFooter_pre">KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 김언체 ｜  개인정보관리책임자 : 강명주
-
-        강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F
-        강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F
-        강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F
-       
-        Copyright © Better Together
-    </pre>
-	</footer>
 </html>

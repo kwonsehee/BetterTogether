@@ -10,18 +10,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>참여중인 챌린지</title>
+<title>Better Together</title>
 <style>
 #btSection {
 	padding-bottom: 100px;
 }
         .content_css>p{
-            /* border:solid 1px red;  */
-            font-size: 30px;
-            text-align: center;
-            margin-top: 2%;
-             margin-bottom: 3%;
+           margin-top: 50px;
+           text-align: center;
+           font-size: 24px;
+           color : #757575;
         }
+        
        
         #ok{
             width: 150px;
@@ -60,7 +60,7 @@
             margin-left: 9%;
             margin-right: 9%;
             margin-top: 6%;
-            border: solid 1px black;
+            /* border: solid 1px black; */
             background-color: rgba(196, 196, 196, 0.15);
 
         }
@@ -68,7 +68,7 @@
             float: left;
             width: 25%;
             height: 100%;
-            border: solid 1px black;
+            /* border: solid 1px black; */
 
         }
         .ing_challenge2{

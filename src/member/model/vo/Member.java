@@ -22,7 +22,7 @@ public class Member {
 	private String nickName;
 	private String phone;
 	private String email;
-
+	private String name;
 	private Date joinDate;
 	private Date modifyDate;
 	private int membertype;
@@ -45,6 +45,11 @@ public class Member {
 		this.user_cate = user_cate;
 	}
 
+	public Member(String userId, Date joinDate) {
+		super();
+		this.userId = userId;
+		this.joinDate = joinDate;
+	}
 	public Member(String userId, String userPwd) {
 		super();
 		this.userId = userId;
@@ -52,7 +57,7 @@ public class Member {
 	}
 	
 	
-	public Member(String userId, String userPwd, String nickName, String phone, String email, int user_cate) {
+	public Member(String userId, String userPwd, String nickName, String phone, String email, int user_cate, String name) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -60,6 +65,7 @@ public class Member {
 		this.phone = phone;
 		this.email = email;
 		this.user_cate=user_cate;
+		this.name=name;
 	}
 	
 	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
@@ -211,14 +217,20 @@ public class Member {
 		this.reported = reported;
 	}
 
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", nickName=" + nickName + ", phone=" + phone
-				+ ", email=" + email +", joinDate=" + joinDate + ", modifyDate=" + modifyDate
+				+ ", email=" + email + ", name=" + name + ", joinDate=" + joinDate + ", modifyDate=" + modifyDate
 				+ ", membertype=" + membertype + ", writer_active=" + writer_active + ", user_cate=" + user_cate
-				+ ", point=" + point + "]";
+				+ ", point=" + point + ", reported=" + reported + "]";
 	}
-	
+
 	
 	
 

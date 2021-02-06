@@ -4,6 +4,8 @@
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
+	System.out.println("pi : " + pi);
+	
 	Search s = (Search)request.getAttribute("search");
 	String search = "";
 	String searchCondition = "";
@@ -51,6 +53,7 @@
             width: 100%;
            /*  height: 400px;       */
             border-collapse: collapse;
+            margin-top:30px;
         }
         #board_div{
         	width:80%;
@@ -71,15 +74,19 @@
 
         #tb_title {
             width:70%;
+            text-align:center;
         }
         #tb_author {
             width:10%;
+             text-align:center;
         }
         #tb_date {
             width:10%;
+             text-align:center;
         }
         #tb_views {
             width: 5%;
+             text-align:center;
         }
         #th_title {
             background : rgba(240, 240, 240, 0.7);
@@ -97,11 +104,8 @@
            padding:5px 15px 5px 15px;
            background-color: #e6e4e4b6;
            font-weight: bolder;  
-           margin-left:80%;
-        }
-        #write a {
+           margin-left:67%;
             font-size: 10px;
-             text-decoration: none;
         }
 
         #mywriteBtn {
@@ -112,11 +116,8 @@
            padding:5px 15px 5px 15px;
            background-color: #e6e4e4b6;
            font-weight: bolder;  
-            margin-left:5%; 
-        }
-        #mywriteBtn a {
+            margin-left:10%; 
              font-size:10px;
-             text-decoration: none;
         }
 
         #board_tb td:hover {
@@ -279,8 +280,8 @@
 		
 		<%-- 로그인 유저만 글쓰기, 내가쓴글보기 버튼 보이기 --%>
 		<% if(loginUser != null) { %>
-			  <button class="btn" id="mywriteBtn"><a href='<%= request.getContextPath()%>/board/myboardView'>내가 쓴 글 보기</a></button>
-			  <button class="btn" id="write"><a href='<%= request.getContextPath()%>/views/community/boardWrite.jsp'>글쓰기</a></button>
+			  <button class="btn" id="mywriteBtn" onclick="location.href='<%= request.getContextPath()%>/board/myboardView'">내가 쓴 글 보기</button>
+			  <button class="btn" id="write" onclick="location.href='<%= request.getContextPath()%>/views/community/boardWrite.jsp'">글쓰기</button>
 		<% } %>
     	
     </section>

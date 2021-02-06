@@ -3,8 +3,11 @@
 	import="community.model.vo.*, java.util.ArrayList, challenge.model.vo.Challenge, common.model.vo.*"%>
 <%
 	ArrayList<Review> rList = (ArrayList<Review>) request.getAttribute("rList");
+	ArrayList<Review> sortByGradeList = (ArrayList<Review>) request.getAttribute("sortByGradeList");
+	ArrayList<Review> sortByDateList = (ArrayList<Review>) request.getAttribute("sortByDateList");
 	ArrayList<Challenge> cList = (ArrayList<Challenge>)request.getAttribute("cList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -33,11 +36,11 @@
 }
 
 /* 후기 목록 */
-.reviewWrap {
-	margin-top: 100px;
+.reviewWrap{
+	margin-top: 10px;
 }
 
-.reviewdiv {
+.reviewdiv{
 	width: 80%;
 	height: 100px;
 	background: #fff;
@@ -50,27 +53,33 @@
 	height: 100px;
 }
 
-.reviewTb tr:nth-child(1) {
+.reviewTb tr:nth-child(1)
+{
 	height: 20%;
 	margin-top: 5px;
 }
 
-.nickname, .starArea, .createDate, .challName {
+.nickname, .starArea, .createDate, .challName{
 	display: inline-block;
 	margin-left: 10px;
 }
 
-.starArea {
+.starArea, .starArea2 {
 	margin-left: 10px;
 	color: #937cf790;
 }
 
-.contentArea {
+.contentArea, .contentArea2 {
 	display: inline-block;
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-right: 10px;
 	background-color:
+}
+
+.contentArea textarea, .contentArea2 textarea {
+	resize: none;
+    border: none;
 }
 
 /* 페이징 바 */
@@ -90,10 +99,10 @@
 
 /* 후기 쓰기 */
 .h2_title {
-	margin-left: 125px;
+	margin-left: 133px;
+	margin-right: 10px;
 	color: #757575;
 	float: left;
-	margin-right: 10px;
 }
 
 #reviewwrite {
@@ -125,7 +134,7 @@
            padding:5px 15px 5px 15px;
            background-color: #e6e4e4b6;
            font-weight: bolder;  
-           margin-left:900px;
+           margin-left:860px;
 }
 
 #submit a {
@@ -190,6 +199,28 @@
 .pagingArea button:hover {
 	cursor: pointer;
 }
+
+#counter {
+	color:#757575;
+	font-size:12px;
+	margin-left:960px;	
+}
+
+/* 별점순, 최신순 정렬 버튼 */
+.sortArea{
+    margin-top: 30px;
+    margin-left: 10%;
+}
+
+.sortArea button{
+	font-family: "Nanum Gothic";
+	font-size: 12px;
+	border:1px solid rgba(219, 219, 219, 0.356);
+	font-size:12px;
+	color:#757575;
+	margin-right:5px;
+}
+
 </style>
 
 </head>
@@ -206,7 +237,23 @@
 		</div>
 
 		<div class="line"></div>
-
+		
+		<div class="sortArea">
+			<button id="sortByGrade" onclick="location.href='<%=request.getContextPath()%>/review/gradeSort'">별점순▼</button>
+			<button id="sortByDate" onclick="location.href='<%=request.getContextPath()%>/review/main'">최신순▼</button>
+		</div>
+		
+		<!-- 별점순, 최신순 클릭시 버튼색 바뀌게 해서 현재 무슨 정렬인지 티나게 -->
+		<script>
+			$(function(){
+				$("#sortByGrade").click(function(){
+					$(this).css({"background":"#937cf790", "color":"#fff"});
+				});
+				$("#sortByDate").click(function(){
+					$(this).css({"background":"#937cf790", "color":"#fff"});
+				});
+			});
+		</script>
 		<!-- 후기 목록 -->
 		<div class="reviewWrap">
 		<% if(rList != null) { %>
@@ -225,7 +272,7 @@
 					<td class="createDate"><%= r.getCreateDate() %></td>
 				</tr>
 				<tr class="secondTr">
-					<td class="contentArea"><%= r.getrContent() %></td>
+					<td class="contentArea"><textarea readonly cols="110"><%= r.getrContent() %></textarea></td>
 				</tr>
 			</table>
 		</div>
@@ -233,7 +280,35 @@
 		<% } %>
 		</div>
 	
-		<!-- 페이징 바 -->
+		<!-- 후기 목록 -->
+		<div class="reviewWrap">
+		<% if(sortByGradeList != null) { %>
+		<% for(Review r : sortByGradeList) { %>
+		<div class="reviewdiv">
+			<table class="reviewTb">
+				<tr class="firstTr">
+					<td class="nickname"><%= r.getNickName() %></td>
+					<td class="challName"><%= r.getChallTitle() %></td>
+					<td class="starArea"><%if(r.getrGrade() == 5) { %> ★★★★★ 
+									  <% } else if(r.getrGrade() == 4) { %>★★★★
+									  <% } else if(r.getrGrade() == 3) { %>★★★
+									  <% } else if(r.getrGrade() == 2) { %>★★
+									  <% } else { %>★<% } %>
+					</td>
+					<td class="createDate"><%= r.getCreateDate() %></td>
+				</tr>
+				<tr class="secondTr">
+					<td class="contentArea"><textarea readonly cols="116"><%= r.getrContent() %></textarea></td>
+				</tr>
+			</table>
+		</div>
+		<% } %>
+		<% } %>
+		</div>
+		
+		
+		<!-- 전체 리스트(최신순) 페이징 바 -->
+		<%if(rList != null) { %>
 		<div class="pagingArea">
 			<!-- 맨 처음으로 (<<) -->
 			<button onclick="location.href='<%= request.getContextPath() %>/review/main?currentPage=1'"> &lt;&lt; </button>
@@ -264,6 +339,42 @@
 			<!-- 맨 끝으로(>>) -->
 			<button onclick="location.href='<%= request.getContextPath() %>/review/main?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
 		</div>
+			<%} %>
+			
+			
+		<!-- 별점순 리스트 페이징 바 -->
+		<%if(sortByGradeList != null) { %>
+		<div class="pagingArea">
+			<!-- 맨 처음으로 (<<) -->
+			<button onclick="location.href='<%= request.getContextPath() %>/review/gradeSort?currentPage=1'"> &lt;&lt; </button>
+			
+			<!-- 이전 페이지로 (<) -->
+			<% if(pi.getCurrentPage() == 1){ %>
+				<button disabled> &lt; </button>
+			<%} else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/review/gradeSort?currentPage=<%= pi.getCurrentPage() - 1 %>'"> &lt; </button>
+			<%} %>	
+			
+			<!-- 10개의 페이지 목록 -->
+			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+				<% if(p == pi.getCurrentPage()){ %>
+					<button style="background:lightgray;" disabled> <%= p %> </button>
+				<%}else{ %>
+					<button onclick="location.href='<%= request.getContextPath() %>/review/gradeSort?currentPage=<%= p %>'"> <%= p %> </button>
+				<% } %>
+			<%} %>
+			
+			<!-- 다음 페이지로(>) -->
+			<%if(pi.getCurrentPage() == pi.getMaxPage()){ %>
+				<button disabled> &gt; </button>
+			<%} else {%>
+				<button onclick="location.href='<%= request.getContextPath() %>/review/gradeSort?currentPage=<%= pi.getCurrentPage() + 1 %>'"> &gt; </button>
+			<% } %>
+			
+			<!-- 맨 끝으로(>>) -->
+			<button onclick="location.href='<%= request.getContextPath() %>/review/gradeSort?currentPage=<%= pi.getMaxPage() %>'"> &gt;&gt; </button>
+		</div>
+			<%} %>
 		
 		
 		<!-- 후기 쓰기 -->
@@ -280,18 +391,34 @@
 		</div>
 		<div id="starArea">
 		<p id="star">
-			<a href="#" value=1>★</a> 
-			<a href="#" value=2>★</a> 
-			<a href="#" value=3>★</a> 
-			<a href="#" value=4>★</a>
-			<a href="#" value=5>★</a>
+			<a href="javascript:void(0)" value=1>★</a> 
+			<a href="javascript:void(0)" value=2>★</a> 
+			<a href="javascript:void(0)" value=3>★</a> 
+			<a href="javascript:void(0)" value=4>★</a>
+			<a href="javascript:void(0)" value=5>★</a>
 		<p>
 		</div>
-			
+
 		<div id="reviewwrite">
-			<textarea id="reviewWriteArea"></textarea>
+			<textarea id="reviewWriteArea" placeholder="최대 300자까지 입력 가능합니다."></textarea>
+			<span id="counter">0 / 300</span>
 		</div>
 
+		<!--  글자수 실시간 카운팅 -->
+		<script>
+		$('#reviewWriteArea').keyup(function (e){
+		    var content = $(this).val();
+		    $('#counter').html("("+content.length+" / 300)");   
+		    
+		    if(content.length > 300){
+		    	alert('최대 300자까지 입력 가능합니다.');
+		    	$(this).val(content.substring(0, 300));
+		    	$('#counter').html("(300 / 300)");
+		    	
+		    }
+		 });
+		    
+		</script>
 	
 		<button class="btn" id="myReview">
 			<a>내가 쓴 후기 보기</a>
@@ -323,6 +450,7 @@
         });
  		</script>
  		
+ 		<!-- 후기 등록 이벤트 ajax -->
  		<script>
     	// [등록] 버튼 클릭 이벤트 - ajax로 입력 한 값 넘기기
         $(function(){
@@ -364,7 +492,7 @@
         						gradeTd = $("<td class='starArea'></td>").text("★");
         					}
         					var createDateTd = $("<td class='createDate'></td>").text(data[key].createDate);
-        					var contentTd = $("<td class='contentArea'></td>").text(data[key].rContent);
+        					var contentTd = $("<td class='contentArea'><textarea readonly cols='116'></textarea></td>").text(data[key].rContent);
         					
         					firstTr.append(writerTd, challTitleTd, gradeTd, createDateTd);
         					secondTr.append(contentTd);
@@ -389,7 +517,7 @@
         });
         </script>
 
-
+		
 	</section>
 	<%@ include file="../common/footer.jsp" %>
 	

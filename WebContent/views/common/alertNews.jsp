@@ -12,7 +12,7 @@ if(session.getAttribute("news")!=null){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>새로운 알림</title>
+<title>Better Together</title>
 
 <%
 	if(request.getAttribute("result")!=null){
@@ -70,9 +70,9 @@ font-family: "Nanum Gothic";
 		<%}else if(news.get(i).getNews_cate()==0){ %>
 		<br>
 		<li>회원님이 참여한 챌린지 <%=news.get(i).getTitle() %>가 삭제 또는 신고되어 챌린지 신청이 철회되었습니다.</li>
-		
-	
-		<%}else { %>
+		<%}else if(news.get(i).getNews_cate()==3){ %>
+		<li>회원님이 신고한 <%=news.get(i).getTitle() %>가 신고처리 되었습니다.</li>
+		<%}else if(news.get(i).getNews_cate()==2){ %>
 		<li>회원님의 질문<%=news.get(i).getTitle() %>에 관리자가 답변을 달아주었습니다.</li>
 		
 		<%} %>

@@ -3,6 +3,8 @@ package member.model.service;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.util.ArrayList;
 
 import community.model.dao.BoardDao;
 import member.model.dao.MemberDao;
@@ -233,6 +235,54 @@ public class MemberService {
 
 			return todayJoinCount;
 		}
+
+		//아이디 찾기 
+		public ArrayList<Member> getId(Member m) {
+			Connection conn = getConnection();
+
+			ArrayList<Member> getId = new MemberDao().getId(conn, m);
+
+			close(conn);
+			System.out.println("service 아이디찾기 :"+getId);
+			return getId;
+		}
+
+		//비밀번호 찾기
+		public String getPwd(Member m) {
+			Connection conn = getConnection();
+
+			String pwd = new MemberDao().getPwd(conn, m);
+
+			close(conn);
+			System.out.println("service 비밀번호찾기 :"+pwd);
+			return pwd;
+		}
+
+		//글쓰기 비활성화 인지 확인하고 비활성화 날짜 가져오기
+		public Date getWriteActive(String userId) {
+			Connection conn = getConnection();
+			Date reported_date =null;
+			//USER_INFO디비 업데이트하기(신고된지 30일 이후에는 write_active를 y로)
+			int result = new MemberDao().updateWriteActive(conn, userId);
+			System.out.println("글쓰기 비활성화 "+result);
+			
+			
+			if(result>0) {
+				
+				commit(conn);
+				
+			}else {
+				
+				rollback(conn);
+			}
+			
+			reported_date= new MemberDao().getWriteActive(conn, userId);
+			close(conn);
+			System.out.println("글쓰기 비활성화 날짜 : "+reported_date);
+			return reported_date;
+		}
+
+		
 
 
 

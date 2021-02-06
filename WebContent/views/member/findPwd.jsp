@@ -8,12 +8,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Better Together</title>
+
+
 <%
 	if(request.getAttribute("msg")!=null){
 		if(request.getAttribute("msg").equals("success")){
+			String pwd=(String)request.getAttribute("pwd");
+			String email=(String)request.getAttribute("email");
+			String name=(String)request.getAttribute("name");
 %>
-<script>
-opener.parent.location.reload();
+
+
+<script type="text/javascript"src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script type="text/javascript">
+(function() {
+emailjs.init("user_ngBiYc4zImyZx2AEZWZWU");
+})();
+</script>
+
+<script type="text/javascript">
+
+(function(){
+
+emailjs.send("better_together","template_dajtxjn",{
+	name: '<%=name%>',
+	pwd:  '<%=pwd%>',
+	email:'<%=email%>'
+	});
+
+})();
+alert("비밀번호를 회원님의 이메일로 발송하였습니다.");
 window.close();
 	
 </script>
@@ -36,7 +60,7 @@ window.close();
         }
         .btn_login{
             font-family: "Nanum Gothic";
-            width: 70px;
+            /* width: 70px; */
             height: 30px;
             border-radius: 5px;
             border: solid 1px #9e9e9e5b;
@@ -75,48 +99,26 @@ window.close();
 	<section id="btSection" class="content_css">
 		
 		<!-- 1_1. 로그인 폼 만들기 -->
-		<form id="login_css" action="<%= request.getContextPath() %>/member/login"
-		method="post"onsubmit="return validate();">
-			<div id="loginTitle">Log in</div>
+		<form id="login_css" action="<%= request.getContextPath() %>/member/findPwd" method="post">
+			<div id="loginTitle">비밀번호 찾기</div>
             <div class="line"></div>
 			<div id="loginForm">
                    
-                        <label for="userId"><span>USERID</span></label>
+                        <label for="userId"><span>이름</span></label>
                         
-                        <input type="text" name="userId"id="userId" class="input_box">
-                    
-                        <label for="userPwd"><span>PASSWORD</span></label>
-                        <input type="password" name="userPwd"id="userPwd"class="input_box">
-                        <div class="find">
-                    	<a  href="<%= request.getContextPath()%>/views/member/findId.jsp">아이디 찾기</a>&nbsp;&nbsp;
-                    	<a  href="<%= request.getContextPath()%>/views/member/findPwd.jsp">비밀번호 찾기</a><br>
-                    	</div>
-                        <button id="JoinBtn" type="reset" class="btn_login" style="margin-top: 30px; margin-left: 8px;">reset</button>
+                        <input type="text" name="name"id="name" class="input_box" required>
+                    <label for="userid" class="text_font">아이디</label>
+                    <input type="text" maxlength="13" name="userId" class="input_box" required />
+                        <label for="userPwd"><span>이메일 입력</span></label>
+                        <input type="email" name="email"id="email"class="input_box" required>
+                       
+                        <button id="JoinBtn" type="reset" class="btn_login" style="margin-top: 30px; margin-left: 8px;"onclick="window.close();">취소</button>
                         
-                        <button id="LoginBtn" type="submit" class="btn_login" style="margin-top: 30px; margin-left: 30%;">Log in</button>
+                        <button id="LoginBtn" type="submit" class="btn_login" style="margin-top: 30px; margin-left: 30%;">비밀번호 찾기</button>
                 </div>    
 
 		</form>
-		<script>
-			//1_2.validate() 함수작성-> 로그인 폼 유효성 검사
-			function validate(){
-				//아이디, 패스워드 중 입력 되지 않은 값이 있을 시 alert후 focus 처리->submit X 
-				if($("#userId").val().trim().length==0){
-					alert('아이디를 입력하세요');
-					$("#userId").focus();
-					return false;
-				}
-				if($("#userPwd").val().trim().length==0){
-					alert('비밀번호를 입력하세요');
-					$("#userPwd").focus();
-					return false;
-				}
-				
-			}
-			
-			
 		
-			</script>
 	</section>
 </body>
 </html>
