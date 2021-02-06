@@ -406,9 +406,10 @@
 			  , REPORT_MODIFY
 			  , T_F
 			  , REPORT_STATUS
-			  , USER_ID
+			  , I.NICKNAME
 		 FROM
-		 		REPORT
+		 		REPORT R
+		 		JOIN USER_INFO I ON(R.USER_ID = I.USER_ID)
 		WHERE	
 				REPORT_NO = ?
 	</entry>

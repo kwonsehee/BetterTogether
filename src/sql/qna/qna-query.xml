@@ -57,9 +57,10 @@
 			  , Q_REFERENCE
 			  , QNA_TYPE
 			  , QNA_STATUS
-			  , USER_ID
+			  , I.NICKNAME
 		 FROM
-		 		QNA
+		 		QNA Q
+		 		JOIN USER_INFO I ON(Q.USER_ID = I.USER_ID) 
 	    WHERE
 	    		QNA_TYPE = 'Q'
 	      AND	QNA_NO = ?

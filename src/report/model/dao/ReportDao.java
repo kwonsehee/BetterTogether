@@ -163,7 +163,7 @@ public class ReportDao {
 			}
 			
 			result = pstmt.executeUpdate();
-			
+
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -307,7 +307,7 @@ public class ReportDao {
 						rset.getDate("REPORT_MODIFY"),
 						rset.getString("T_F"),
 						rset.getString("REPORT_STATUS"),
-						rset.getString("USER_ID"));
+						rset.getString("NICKNAME"));
 		}
 		} catch (SQLException e) {
 			e.printStackTrace();

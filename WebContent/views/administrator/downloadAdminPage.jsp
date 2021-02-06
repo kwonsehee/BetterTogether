@@ -15,6 +15,7 @@
 	int challStart = Integer.parseInt(String.valueOf(request.getAttribute("challStartCnt")));
 	int challBefore = Integer.parseInt(String.valueOf(request.getAttribute("challBeforeCnt")));
 	int challEndCnt = Integer.parseInt(String.valueOf(request.getAttribute("challEndCnt")));
+	int totalCnt = Integer.parseInt(String.valueOf(request.getAttribute("totalCnt"))); 
 %>
 
 <!DOCTYPE html>
@@ -59,6 +60,34 @@
 		<tr>
 			<td>자유게시판</td>
 			<td><%= board %></td>
+		</tr>
+	</table>
+	<br>
+	<table>
+		<caption>회원</caption>
+		<tr>
+			<td>오늘 가입한 회원 수</td>
+			<td><%= todayJoin %></td>
+		</tr>
+		<tr>
+			<td>전체 회원 수</td>
+			<td><%= totalCnt %></td>
+		</tr>
+	</table>
+	<br>
+	<table>
+		<caption>챌린지</caption>
+		<tr>
+			<td>시작전 챌린지</td>
+			<td><%= challBefore %></td>
+		</tr>
+		<tr>
+			<td>시작된 챌린지</td>
+			<td><%= challStart %></td>
+		</tr>
+		<tr>
+			<td>종료된 챌린지</td>
+			<td><%= challEndCnt %></td>
 		</tr>
 	</table>
 </body>
