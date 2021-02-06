@@ -482,6 +482,11 @@ public class BoardDao {
 		return totalCount;
 	}
 
+	public ArrayList<Board> boardNew(Connection conn) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 
 

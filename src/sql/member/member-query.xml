@@ -178,7 +178,7 @@ SELECT
 		  	 	USER_INFO
 		 WHERE
 		   		MEMBER_TYPE = 1
-
+	</entry>
 	<entry key="getId">
 		SELECT USER_ID, JOIN_DATE
 		  FROM USER_INFO
