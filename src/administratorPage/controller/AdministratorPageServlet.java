@@ -118,8 +118,6 @@ public class AdministratorPageServlet extends HttpServlet {
 				request.setAttribute("challBeforeCnt", challBeforeCnt);
 				request.setAttribute("challEndCnt", challEndCnt);
 				
-				System.out.println(boardNew);
-				
 				RequestDispatcher view= request.getRequestDispatcher("/views/administrator/adminPage.jsp");
 				view.forward(request, response);
 

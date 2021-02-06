@@ -210,6 +210,16 @@ Connection conn = getConnection();
 		}
 
 
+		public ArrayList<Cafe> cafeNew() {
+			Connection conn = getConnection();
+			
+			ArrayList<Cafe> listCount = new CafeDao().cafeNew(conn);
+			
+			close(conn);
+			return listCount;
+		}
+
+
 		 
 
 

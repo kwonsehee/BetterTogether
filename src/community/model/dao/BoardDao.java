@@ -483,8 +483,36 @@ public class BoardDao {
 	}
 
 	public ArrayList<Board> boardNew(Connection conn) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("boardNew");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				list.add(new Board(rset.getInt(1), 
+								   rset.getString(2), 
+								   rset.getString(3), 
+								   rset.getDate(4),
+								   rset.getDate(5), 
+								   rset.getInt(6), 
+								   rset.getString(7), 
+								   rset.getString(8), 
+								   rset.getString(9),
+								   rset.getString(10)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
 	}
 
 }
