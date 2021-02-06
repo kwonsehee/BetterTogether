@@ -31,10 +31,14 @@
 .h1_title {
 	text-align: center;
 	width: 100%;
+	color: #757575;
 } 
 
 .line {
 	border: 3px solid rgba(255, 96, 100, 0.7);
+	width: 100%;
+	margin: auto;
+	
 }
 
 .aline {
@@ -87,7 +91,7 @@
 }
 
 #reported{
-	color : red;
+	color : #937cf790;
     margin-top : 10%;
     font-size : 35px;
     font-family: "Nanum Gothic";
@@ -119,7 +123,7 @@
 			</tr>
 			<tr>
 				<td id="report_Img">
-					<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= r.getReport_file() %>"  style="width: 700px;height: 700px;">
+					<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= r.getReport_file() %>"  style="width: 500px;height: 500px;">
 				</td>
 			</tr>
 			<%if(r.getT_f().equals("T")) { %>
@@ -149,6 +153,7 @@
 	<!-- 신고철회버튼 누르면 신고삭제되게 해버리기 -->
 	<button type="button" id="cancleBtn" class="qnaBtn">신고철회</button>
 	<button type="button" id="report_btn" class="qnaBtn">신고처리</button>
+	<%} %>
 	</div>
 	</section>
 	
@@ -175,7 +180,6 @@
 			$("#reportForm").submit();
 		});
 		</script>	
-	<%} %>
 
 	
 	<script>		

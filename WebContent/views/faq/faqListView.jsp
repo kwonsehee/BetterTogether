@@ -33,6 +33,7 @@
 }
 
 .line {
+	width:100%;
 	border: 0.5px solid #937cf790;
 }
 
@@ -175,10 +176,10 @@ td .btn1 {
 			<h1 class="h1_title">자주 묻는 질문</h1>
 		</div>
 
+		<div class="line"></div>
+		
 		<section id="content1">
 		
-		<div class="line"></div>
-
 			<!-- 작성 수정 삭제 버튼 -->
 			<div id="search-area">
 				<div id="btnArea">
@@ -215,10 +216,10 @@ td .btn1 {
 					<% if (f.getQnaType().equals("F")) { %>
 					<tr class="question">
 						<td id="none"><%=f.getQnaNo()%></td>
-						<td>Q . <%=f.getQnaTitle()%> <% if (loginUser.getMembertype() == 0) { %>
-							<button type="button" class="btn1" id="deleteBtn">삭제</button>
+						<td>Q . <%=f.getQnaTitle()%> 
+						<% if (loginUser.getMembertype() == 0) { %>
 							<button type="button" class="btn1" id="updateBtn"
-								onclick="location.href='<%=request.getContextPath()%>/faq/updateForm?qnaNo=<%=f.getQnaNo()%>'">수정</button>
+								onclick="location.href='<%=request.getContextPath()%>/faq/updateForm?qnaNo=<%=f.getQnaNo()%>'">관리</button>
 							<% } %>
 						</td>
 					</tr>

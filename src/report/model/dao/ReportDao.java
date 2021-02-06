@@ -87,7 +87,6 @@ public class ReportDao {
 		PreparedStatement pstmt=null;
 		
 		String sql="";
-		System.out.println("신고 insert 챌린지 : "+r.getReported_id());
 		try {
 			
 			if(r.getReport_file()==null) {
@@ -273,7 +272,6 @@ public class ReportDao {
 			close(rset);
 			close(pstmt);
 		}
-		 System.out.println("list : " + list);
 			
 		return list;
 	}
@@ -375,7 +373,6 @@ public class ReportDao {
 			close(rset);
 			close(pstmt);
 		}
-		 System.out.println("list : " + list);
 			
 		return list;
 	}
@@ -460,7 +457,6 @@ public class ReportDao {
 	
 			close(pstmt);
 		}
-		System.out.println("신고된 게시글 가져오니 ?"+r);
 		
 		return r;
 	}
@@ -502,7 +498,6 @@ public class ReportDao {
 			close(rset);
 			close(pstmt);
 		}
-		 System.out.println("신고당한 list : " + list);
 			
 		return list;
 	}
@@ -556,5 +551,38 @@ public class ReportDao {
 		}
 
 		return totalCount;
+	}
+
+	public ArrayList<Report> ReportNew(Connection conn) {
+		ArrayList<Report> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("ReportNew");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Report(rset.getInt(1),
+						         rset.getString(2),
+						         rset.getString(3),
+						         rset.getString(4),
+						         rset.getString(5),
+						         rset.getDate(6),
+						         rset.getDate(7),
+						         rset.getString(8),
+						         rset.getString(9),
+						         rset.getString(10)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+			
+		return list;
 	}
 }

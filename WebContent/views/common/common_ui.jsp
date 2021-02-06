@@ -216,6 +216,7 @@
         <button id="myReportBtn" class="mypageMenu1"style="padding-left: 10px;">신고내역</button>
         <button id="pointcharginBtn" class="mypageMenu1"style="padding-left: 10px;">포인트충전</button>
         <button id="administratorPageBtn" class="mypageMenu1"style="padding-left: 10px;">관리자페이지</button>
+    
     </div>
 
 	<form id="admin" method="post">
@@ -295,8 +296,10 @@
         //10.관리자페이지
           const administratorPageBtn = document.getElementById('administratorPageBtn');
           administratorPageBtn.addEventListener('click',function(){
-           $("#admin").attr("action","<%=request.getContextPath()%>/administratorPage");
-           $("#admin").submit();
+        	  <%if(loginUser.getMembertype()== 0) { %>
+           			$("#admin").attr("action","<%=request.getContextPath()%>/administratorPage");
+           			$("#admin").submit();
+           	<%}%>
         });   
           
          </script>

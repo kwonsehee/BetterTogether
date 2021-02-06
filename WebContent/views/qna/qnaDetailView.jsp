@@ -90,6 +90,8 @@
 .btSection #qnaBox {
 	margin: auto;
 }
+
+
 </style>
 </head>
 <body>
@@ -154,12 +156,12 @@
 				$("#qnaNoForm").submit();
 			});
 					
-			//삭제하기 버튼 이벤트
 			const deleteBtn = document.getElementById('deleteBtn');
 			deleteBtn.addEventListener('click',function(){
 				$("#qnaNoForm").attr("action","<%=request.getContextPath()%>/qna/delete");
 				$("#qnaNoForm").submit();
 			});
+			//삭제하기 버튼 이벤트
 			</script>
 			<script>
 			//답변 수정 이벤트

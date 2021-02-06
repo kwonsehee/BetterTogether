@@ -646,5 +646,15 @@ public class ChallService {
 		return totalCount;
 	}
 
+	public ArrayList<Challenge> challNew() {
+		Connection conn = getConnection();
+
+		ArrayList<Challenge> list = new ChallDao().challNew(conn);
+
+		close(conn);
+
+		return list;
+	}
+
 
 }

@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>Better Together</title>
 <style>
+
 .btn1 {
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
@@ -53,7 +54,7 @@
 
 #line {
 	border: 0.5px solid #937cf790;
-	width: 80%;
+	width: 100%;
 	margin: auto;
 }
 
@@ -172,7 +173,6 @@
         
         <div id="line"></div>
         
-        <!-- qnaBoard -->
         <div id="board_div">
             <table id="qnaBoard">
                 <thead>
