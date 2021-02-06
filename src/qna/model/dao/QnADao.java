@@ -75,7 +75,7 @@ public class QnADao {
 								rset.getInt("Q_REFERENCE"),
 								rset.getString("QNA_TYPE"),
 								rset.getString("QNA_STATUS"),
-								rset.getString("USER_ID"));
+								rset.getString("NICKNAME"));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -61,7 +61,9 @@ public class AdministratorPageServlet extends HttpServlet {
 				int challStartCnt = new ChallService().getStartCnt();
 				int challBeforeCnt = new ChallService().getBeforeCnt();
 				int challEndCnt = new ChallService().getEndCnt();
-			
+				int totalCnt = new MemberService().totalMem();
+				
+				request.setAttribute("totalCnt", totalCnt);
 				request.setAttribute("challNew", challNew);
 				request.setAttribute("cafeNew", cafeNew);
 				request.setAttribute("reportNew", reportNew);
