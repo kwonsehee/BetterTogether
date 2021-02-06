@@ -218,9 +218,9 @@ button{
 
 
 		<div class="galleryArea">
-			<label style="margin-left: 10px; font-family: Nanum Gothic;"><strong> 지역검색</label><label
-				style="margin-left: 185px; font-family: Nanum Gothic;">카페홍보</label><label
-				style="margin-left: 330px; font-family: Nanum Gothic;">카페명검색</label> </strong>
+			<label style="margin-left: 10px; font-family: Nanum Gothic;   color:  #757575; "><strong> 지역검색</label><label
+				style="margin-left: 185px; font-family: Nanum Gothic;   color:  #757575; ">카페홍보</label><label
+				style="margin-left: 330px; font-family: Nanum Gothic;   color:  #757575; ">카페명검색</label> </strong>
 			<!-- 지역및 인원선택 -->
 			<div class="searchArea">
 				<form action="<%=request.getContextPath()%>/cafe/search"
