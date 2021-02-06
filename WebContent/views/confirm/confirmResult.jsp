@@ -54,7 +54,7 @@
         }
         
         .challenge_box{
-            width: 1200px;
+            width: 1100px;
             height: 250px;
             margin-left: 7%;
             background-color: rgba(196, 196, 196, 0.15);
@@ -62,7 +62,7 @@
             margin-top:35px;
         }
          .challenge_box2{
-            width: 1200px;
+            width: 1100px;
             height: 90px;
             margin-left: 7%;
             background-color: rgba(196, 196, 196, 0.15);
@@ -83,7 +83,7 @@
         
         margin-top: 30px;
         margin-left: 15px;
-        width: 95%;
+        width: 90%;
         height: 95%;
        
         }
@@ -91,7 +91,6 @@
         .result_chall span{
  		font-family: "Nanum Gothic";
         font-size:16px;
-            padding-left: 30px;
             padding-bottom: 20px;
         }
          .result_chall td{
@@ -110,9 +109,10 @@
             background-color:#937cf790;
             
         }
+        
         .d_circle{
-            width: 65px;
-            height: 65px;
+            width: 55px;
+            height: 55px;
             margin: 0 0 0 20px;
             padding: 10.4px;
             border-radius: 100%;
@@ -160,6 +160,12 @@
 	font-size:20px;
      font-weight: bolder;
      color:#937CF7;
+     padding-left:50px;
+}
+
+.confirm_info{
+	padding-right:30px;
+
 }
     </style>
 </head>
@@ -181,30 +187,19 @@
 
         <section id="confirm_content">
             <div class='challenge_box'>
-            	<p style="text-align:center;">챌린지 현황</p>
+            	<p style="padding-left:45%; font-weight:bold; color: #252525b6;">챌린지 현황</p>
                 <table class="result_chall">
                     <tr>
-                        <td rowspan="3"><img src="<%= request.getContextPath()%>/resources/uploadFiles/<%=c.getChallFile()%>"width="200px"height="170px"></td>
-                        
+                        <td rowspan="3"><img src="<%= request.getContextPath()%>/resources/uploadFiles/<%=c.getChallFile()%>"width="250px"height="170px"></td>
                     </tr>
                     <tr>
-                    
-                        <td><span>총인원</span></td>
-                        <td><span><%=totalCnt %>명</span></td>
-                          <td><span>평균 달성률</span></td>
-                        <td><span><%=Math.round(avgTotal*100*100)/100.0 %>%</span></td>
-                      
+                        <td><span class="confirm_info">총인원 : <%=totalCnt %>명</span></td>
+                          <td><span class="confirm_info">평균 달성률 : <%=Math.round(avgTotal*100*100)/100.0 %>%</span></td>
                     </tr>
-                   
                     <tr>
-                        <td><span>100%달성</span></td>
-                        <td><span><%=num1 %>명</span></td>
-                           <td><span>85%이상 달성</span></td>
-                        <td><span><%=num3 %>명</span></td>
-                        
-                        <td><span>85%미만 달성</span></td>
-                        <td><span><%=num2 %>명</span></td>
-                    
+                        <td><span class="confirm_info">100%달성 : <%=num1 %>명</span></td>
+                        <td><span class="confirm_info">85%이상 달성 : <%=num3 %>명</span></td>
+                        <td><span class="confirm_info">85%미만 달성 : <%=num2 %>명</span></td>
                     </tr>
                    
                     
@@ -213,21 +208,17 @@
                 </table>
             </div>
          <div class='challenge_box2'>
-            <p style="text-align:center;">나의 인증 현황</p>
+            <p style="font-weight:bold; color: #252525b6;">나의 인증 현황</p>
                 <table class="result_chall">
                     <tr>
-                        <th><span id="hi">달성률</span></th>
-                        <th><span id="hi"><%=Math.round(cer.getAchieve()*100*100)/100.0 %>%</span></th>
+                        <td><span id="hi">달성률 : <%=Math.round(cer.getAchieve()*100*100)/100.0 %>%</span></td>
+                        <td><span>인증 갯수 : <%=cer.getChall_count() %>개</span></td>
                     
-                        <td><span>인증 갯수</span></td>
-                        <td><span><%=cer.getChall_count() %>개</span></td>
-                    
-                        <td><span>상금 받기</span></td>
                         <!-- 최소 달성률 통과 못할시 버튼 비화성화 만들어 놓기 -->
                         <%if(cer.getAchieve()>=0.85){ %>
-                        <td><button type="button" class="circle" id="payback"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="44px"height="44px"></td>
+                        <td><span>상금 받기</span> <button type="button" class="circle" id="payback"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="30px"height="30px"></td>
                      	<%}else{ %>
-                        <td><button type="button" class="d_circle" onclick="alert('최소 달성률을 통과하지 못하였습니다.')"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="44px"height="44px"></td>
+                        <td><span>상금 받기</span> <button type="button" class="d_circle" onclick="alert('최소 달성률을 통과하지 못하였습니다.')"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="30px"height="30px"></td>
                         
                    		<%} %>
                    

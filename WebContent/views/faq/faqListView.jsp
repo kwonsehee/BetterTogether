@@ -105,7 +105,10 @@
 	width: 98%;
 	height: 98%;
 	border:1px solid rgba(219, 219, 219, 0.356);
+	padding-left:20px;
+	margin-left:25px;
 }
+
 
 /* 버튼 css */
 .btn1 {
@@ -117,6 +120,7 @@
 	font-weight: bolder;
 	font-size: 10px;
 	text-decoration: none;
+	margin-left:-30px;
 }
 
 td .btn1 {
@@ -163,6 +167,10 @@ td .btn1 {
 
 .pagingArea button:hover {
 	cursor: pointer;
+}
+
+#search-btn{
+	margin-left:25px;
 }
 
 

@@ -81,9 +81,10 @@ button:focus {
 	padding-left:3%;
 }
 
+
 #chall_freq {
 	font-family: "Nanum Gothic";
-	width: 70px;
+	width: 92px;
 	height: 30px;
 	border-radius: 3px;
 	border: solid 1px #e6e4e4b6;
