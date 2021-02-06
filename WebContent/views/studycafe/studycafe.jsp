@@ -74,6 +74,7 @@
 }
 
 .gallery_list2 {
+
 	width: 217px;
 	display: inline-block;
 	padding: 5px;

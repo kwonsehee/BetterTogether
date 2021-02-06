@@ -109,6 +109,7 @@
 	margin-left:25px;
 }
 
+
 /* 버튼 css */
 .btn1 {
 	font-family: "Nanum Gothic";

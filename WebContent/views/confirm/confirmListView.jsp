@@ -243,6 +243,7 @@
         location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>&confirm=<%=confirm%>';
         });
         </script>  
+        
                  
         <%} %>
       </div>

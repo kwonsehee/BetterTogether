@@ -206,6 +206,7 @@
 	margin-left:950px;	
 }
 
+
 /* 별점순, 최신순 정렬 버튼 */
 .sortArea{
     margin-top: 30px;

@@ -109,6 +109,7 @@
             background-color:#937cf790;
             
         }
+        
         .d_circle{
             width: 55px;
             height: 55px;
