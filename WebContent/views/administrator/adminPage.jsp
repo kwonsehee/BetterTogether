@@ -70,10 +70,10 @@
 #newContent_div{
 	width:40%;
 	border:1px solid black;
-	margin: 50px;
+	margin: 10%;
 	position: relative;
     left: 500px;
-    top: -350px;
+    top: -550px;
 }
 
 #title{
@@ -100,7 +100,7 @@
 #chart{
 	width:40%;
 	padding: 10px;
-	margin: 10px;
+	margin: 5%;
 	text-align: left;
 	background-color:white;
 }
@@ -122,7 +122,6 @@
     <div id="line"></div>
     
     <section id="chaSection">
-		
    	 		<!-- 차트div --> 
 			<div id="chart">	
 				<div class="container"> 
@@ -137,20 +136,7 @@
 			</div>
 		
 		
-			<!-- 게시물div -->
-			<div id="newContent_div">
-				<div id="newcontent_title">
-				<span id="title">최근 등록 된 질문</span>
-			</div>
-			<%if(QNANew.isEmpty()) {%>
-				<div id="content_title">최근 등록 된 질문이 없습니다.</div>
-			<% } else { %>
-				<%for(QnA q : QNANew) { %>
-				<div id="content_title"><%= q.getQnaTitle() %></div>
-				<% } %>
-			<% } %>
-		</div>
-			<!-- 게시물div -->
+		<!-- 질문div -->
 		<div id="newContent_div">
 			<div id="newcontent_title">
 				<span id="title">최근 등록 된 질문</span>
@@ -163,10 +149,69 @@
 				<% } %>
 			<% } %>
 		</div>
-	
+		
+		<!-- 신고div -->
+		<div id="newContent_div">
+			<div id="newcontent_title">
+				<span id="title">최근 등록 된 신고</span>
+			</div>
+			<%if(reportNew.isEmpty()) {%>
+				<div id="content_title">최근 등록 된 신고가 없습니다.</div>
+			<% } else { %>
+				<%for(Report r : reportNew) { %>
+				<div id="content_title"><%= r.getReport_title() %></div>
+				<% } %>
+			<% } %>
+		</div>
+		
+		<!-- 챌린지div -->
+		<div id="newContent_div">
+			<div id="newcontent_title">
+				<span id="title">최근 등록 된 챌린지</span>
+			</div>
+			<%if(challNew.isEmpty()) {%>
+				<div id="content_title">최근 등록 된 챌린지가 없습니다.</div>
+			<% } else { %>
+				<%for(Challenge c : challNew) { %>
+				<div id="content_title"><%= c.getCateName() %></div>
+				<% } %>
+			<% } %>
+		</div>
+		
+		<!-- 카페div -->
+		<div id="newContent_div">
+			<div id="newcontent_title">
+				<span id="title">최근 등록 된 카페</span>
+			</div>
+			<%if(cafeNew.isEmpty()) {%>
+				<div id="content_title">최근 등록 된 카페가 없습니다.</div>
+			<% } else { %>
+				<%for(Cafe c : cafeNew) { %>
+				<div id="content_title"><%= c.getCafe_name() %></div>
+				<% } %>
+			<% } %>
+		</div>
+		
+		<!-- 게시물div -->
+		<div id="newContent_div">
+			<div id="newcontent_title">
+				<span id="title">최근 등록 된 게시물</span>
+			</div>
+			<%if(boardNew.isEmpty()) {%>
+				<div id="content_title">최근 등록 된 게시물이 없습니다.</div>
+			<% } else { %>
+				<%for(Board b : boardNew) { %>
+				<div id="content_title"><%= b.getbTitle() %></div>
+				<% } %>
+			<% } %>
+		</div>
 	</section>
-	
 
+	<!-- 버튼 -->
+	<div id="btnArea">
+		<button id="download" type="button" class="btn1"
+				onclick="location.href='<%= request.getContextPath() %>/administratorPage'">다운로드</button>
+	</div>
 	
 	<!-- 부트스트랩 --> 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
@@ -207,12 +252,6 @@
 		borderWidth: 1 }] }, 
 		options: { scales: { yAxes: [{ ticks: { beginAtZero: true } }] } } }); 
 	</script>
-	
-	<!-- 버튼 -->
-	<div id="btnArea">
-		<button id="download" type="button" class="btn1"
-				onclick="location.href='<%= request.getContextPath() %>/administratorPage'">다운로드</button>
-	</div>
 	
 	</section>
 	

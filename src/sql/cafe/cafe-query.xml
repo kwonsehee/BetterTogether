@@ -366,4 +366,27 @@
            AND  TO_CHAR(CAFE_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual) 
   	</entry>
+  	<entry key="cafeNew">
+  		SELECT
+  			   CAFE_CODE
+			 , CAFE_OH
+			 , CAFE_NAME
+			 , CAFE_AREA
+			 , CAFE_PHONE
+			 , CAFE_CAPACITY
+			 , CAFE_NOTICE
+			 , CAFE_INFO
+             , CAFE_PHOTO
+             , AFFILIATED_CAFE
+             , CAFE_MAP,DETAIL_ADDRESS
+             , CLOSED_DAYS
+             , CAFE_PAGE
+             , USER_ID
+             , CAFE_DATE
+          FROM
+	   		   CAFE
+	  <![CDATA[WHERE ROWNUM <= 5]]>
+	  AND  TO_CHAR(CAFE_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD') FROM dual)
+      ORDER BY CAFE_DATE DESC
+  	</entry>
 </properties>

@@ -59,6 +59,7 @@ System.out.println("jsp list : "+reList);%>
             width: 100%;
            /*  height: 400px;      */ 
             border-collapse: collapse;
+            margin-top: 30px;
             
         }
 
