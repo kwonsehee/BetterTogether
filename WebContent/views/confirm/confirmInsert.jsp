@@ -57,12 +57,12 @@ System.out.println("insert와서confirm :  "+confirm);
             
             width: 400px;
             height: 450px;
-             border: 1px solid blue; 
+              border: 1px solid black;  
             float: left;
             margin-left:25%;
         }
         .challenge_box_2 {
-            border: 1px solid black;
+           /*  border: 1px solid black; */
             width: 60%;
             height: 90%;
             margin-left: 20%;
