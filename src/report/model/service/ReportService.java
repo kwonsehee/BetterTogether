@@ -89,7 +89,6 @@ public class ReportService {
 			ArrayList<Report> list = new ReportDao().selectList(conn, pi);
 
 			close(conn);
-			 System.out.println("list ㅇㅇㅇㅇ: " + list);
 				
 			return list;
 		}
@@ -212,5 +211,15 @@ public class ReportService {
 			close(conn);
 			
 			return totalCount;
+		}
+
+		public ArrayList<Report> ReportNew() {
+			Connection conn = getConnection();
+
+			ArrayList<Report> list = new ReportDao().ReportNew(conn);
+
+			close(conn);
+				
+			return list;
 		}
 }

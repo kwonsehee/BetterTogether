@@ -170,6 +170,15 @@ SELECT
            AND  TO_CHAR(JOIN_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual)
 	</entry>
+
+	<entry key="totalMem">
+		SELECT
+			  	COUNT(*)
+		  FROM
+		  	 	USER_INFO
+		 WHERE
+		   		MEMBER_TYPE = 1
+
 	<entry key="getId">
 		SELECT USER_ID, JOIN_DATE
 		  FROM USER_INFO

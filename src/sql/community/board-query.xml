@@ -323,4 +323,23 @@
            AND  TO_CHAR(BOARD_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual)
   	</entry>
+  	<entry key="boardNew">
+  		SELECT
+  			   BOARD_SEQ
+			 , BOARD_TITLE
+			 , BOARD_CONTENT
+			 , BOARD_DATE
+			 , BOARD_MODIFY
+			 , BOARD_CNT
+			 , BOARD_FILEPATH
+			 , BOARD_STATUS
+			 , USER_ID
+			 , NICKNAME
+		  FROM
+		 	   BOARD
+	  <![CDATA[WHERE ROWNUM <= 5]]>
+	  AND  TO_CHAR(BOARD_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
+        FROM dual)
+      ORDER BY BOARD_DATE DESC 	
+  	</entry>
 </properties>

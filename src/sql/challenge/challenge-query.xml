@@ -1018,6 +1018,33 @@
            AND  TO_CHAR(CHALL_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual)
 	</entry>
+
+	<entry key="challNew">
+		SELECT
+			    CHALL_NO
+              , CHALL_TITLE
+              , CHALL_PEOPLE
+              , CHALL_DATE
+              , FILE_PATH
+         	  , CHALL_CONFIRM
+         	  , CHALL_FREQUENCY
+         	  , CHALL_PERIOD
+         	  , CHALL_PAYMENT
+         	  , CHALL_CONTENT
+         	  , CHALL_COUNT
+         	  , USER_ID
+         	  , CATE_ID
+         	  , CHALL_CNT
+         	  , CHALL_START
+         	  , CHALL_STATUS
+           FROM
+           		CHALL
+       <![CDATA[WHERE ROWNUM <= 5]]>
+       AND  TO_CHAR(CHALL_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
+        FROM dual)
+       ORDER BY CHALL_DATE DESC 
+	</entry>
+
 	
 	
 	<!-- 챌린지 참여중인 userId select 해오기 -->

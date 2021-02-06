@@ -27,6 +27,9 @@
 <meta charset="UTF-8">
 <title>Better Together</title>
 <style>
+qnaBoard, thead{
+	background: white;
+}
 .Btn1 {
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
@@ -53,7 +56,7 @@
 
 #line {
 	border: 0.5px solid #937cf790;
-	width: 80%;
+	width: 100%;
 	margin: auto;
 }
 

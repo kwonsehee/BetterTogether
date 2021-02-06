@@ -71,8 +71,8 @@
 </head>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
-		<form id="qna-form" action="<%=request.getContextPath()%>/faq/update" method="post">
-	<section id="btSection" class="btSection">
+	<form id="qna-form" action="<%=request.getContextPath()%>/faq/update" method="post">
+		<section id="btSection" class="btSection">
 			<input type="hidden" name="qnaNo" value="<%=f.getQnaNo()%>">
 		
 		<table id="writebox">
@@ -98,7 +98,7 @@
 				onclick="javascript:history.back();">취소</button>
 			<button type="submit" id="updateBtn" class="Btn1">수정하기</button>
 		</div>
-	</section>
+		</section>
 	</form>
 </body>
 </html>

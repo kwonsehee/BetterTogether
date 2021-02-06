@@ -527,4 +527,36 @@ public class QnADao {
 		
 		return totalCount;
 	}
+
+	public ArrayList<QnA> QNANew(Connection conn) {
+		ArrayList<QnA> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("QNANew");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new QnA(rset.getInt(1),
+						         rset.getString(2),
+						         rset.getString(3),
+						         rset.getDate(4),
+						         rset.getDate(5),
+						         rset.getInt(6),
+						         rset.getString(7),
+						         rset.getString(8),
+						         rset.getString(9)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }
