@@ -3,7 +3,7 @@
 <%
 	Board b = (Board)request.getAttribute("board");
 	ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");
-
+	System.out.println("fileList : " + fileList);
 %>
 <!DOCTYPE html>
 <html>
@@ -37,24 +37,51 @@
 	width: 80%;
 	margin: auto;
 }
-
+/* 사진 있을 때 */
 #board_title {
-	width: 100%;
 	height: 50px;
 	border-bottom: 1px solid #75757552;
-	margin: auto;
 	text-align: justify;
+	margin-left:420px;
 }
 #board_title2 {
-	width: 100%;
+	height: 30px;
+	border-bottom: 1px solid #75757552;
+	text-align: right;
+	margin-left:420px;
+}
+#board_con {
+	margin-left:420px;
+}
+#board_con p {
+	padding-left: 10px;
+	font-size: 14px;
+}
+/* 사진 없을 때  */
+#Board_title {
+	width:100%;
+	height: 50px;
+	border-bottom: 1px solid #75757552;
+	text-align: justify;
+}
+#Board_title2 {
+	width:100%;
 	height: 30px;
 	border-bottom: 1px solid #75757552;
 	text-align: right;
 }
+#Board_con {
+	width:100%;
+}
+
+#Board_con p {
+	padding-left: 10px;
+	font-size: 14px;
+}
 
 
 #btitle {
-	line-height: 50px;
+	line-height: 70px;
 	padding-left: 10px;
 	color: #757575;
 	font-size: 14px;
@@ -63,7 +90,6 @@
 #bcreatedate {
 	font-size: 12px;
 	color: #757575;
-	margin-left: 70%;
 }
 
 #bwriter {
@@ -72,19 +98,13 @@
 	margin-left: 15px;
 }
 
-#board_con {
-	width: 100%;
-	/*  height:1150px; */
-	border-bottom: 1px solid #75757552;
-	margin: auto;
+/* 버튼 */
+#btnWrap{
+width:80%;
+margin:auto;
+margin-top:50px;
 }
 
-#board_con p {
-	padding-left: 10px;
-	font-size: 14px;
-}
-
-/* 뒤로가기 버튼 */
 #back {
 	width: 100px;
 	font-family: "Nanum Gothic";
@@ -93,7 +113,6 @@
 	padding: 5px 15px 5px 15px;
 	background-color: #e6e4e4b6;
 	font-weight: bolder;
-	margin-left: 10%;
 	margin-top: 20px;
 	font-size: 10px;
 }
@@ -105,20 +124,25 @@
 	padding: 5px 15px 5px 15px;
 	background-color: #e6e4e4b6;
 	font-weight: bolder;
-	margin-left: 69%;
+	margin-left: 929px;
 	margin-top: 20px;
 	font-size: 10px;
 }
 
+#imgAreaOuter {
+	float:left;
+}
 .imgAreaInner {
 	display: inline-block;
 	text-align: center;
 }
 
 .addImg {
-	width: 200px;
-	height: 180px;
+	width: 400px;
+	height: 300px;
+	margin-top:30px;
 }
+
 </style>
 </head>
 <body>
@@ -132,8 +156,19 @@
         </div>
         <div class="line"></div>
         
-        <!-- 게시물 내용 -->
+        <!-- 사진 있을 때 -->
+        <% if(fileList.size() != 0){ %>
         <div id="board_div">
+        <div id="imgAreaOuter">
+           	<% for(int i = 0; i < fileList.size(); i++) { %>
+           	<div class="imgAreaInner">
+           	<img class="addImg"
+					src="<%= request.getContextPath() %><%= fileList.get(i).getFilePath() %><%= fileList.get(i).getChangeName() %>">
+           	</div>
+           	<% } %>
+           </div>
+           
+           <div id="contentWrap">
            <div id="board_title">
 	           <span id="btitle"><%=b.getbTitle()%></span>
            </div>
@@ -142,16 +177,34 @@
 	           <span id="bwriter">글쓴이 : <%= b.getNickName() %></span>
            </div>
            <div id="board_con"><p><%= (b.getbContent()).replace("\n", "<br>") %></p></div>
-           
-           <div id="imgAreaOuter">
-           	<% for(int i = 0; i < fileList.size(); i++) { %>
-           	<div class="imgAreaInner">
-           	<img class="addImg"
-					src="<%= request.getContextPath() %><%= fileList.get(i).getFilePath() %><%= fileList.get(i).getChangeName() %>">
-           	</div>
-           	<% } %>
            </div>
         </div>
+        
+            <!-- 버튼 -->
+            <div id="btnWrap">
+	        <button type="button" class="btn" id="back" onclick="javascript:history.back();" id="back">뒤로가기</button>
+	        <button class="btn" id="warning_btn">신고</button>
+        	</div>
+       
+        <!-- 사진 없을 때 -->
+        <% } else {%>
+          <div id="board_div">
+           <div id="Board_title">
+	           <span id="btitle"><%=b.getbTitle()%></span>
+           </div>
+           <div id="Board_title2">
+           		<span id="bcreatedate"><%=b.getCreateDate() %></span>
+	           <span id="bwriter">글쓴이 : <%= b.getNickName() %></span>
+           </div>
+           <div id="Board_con"><p><%= (b.getbContent()).replace("\n", "<br>") %></p></div>
+        </div>
+        
+        <!-- 버튼 -->
+        <div id="btnWrap">
+        <button type="button" class="btn" id="back" onclick="javascript:history.back();" id="back">뒤로가기</button>
+		<button class="btn" id="warning_btn">신고</button>
+		</div>
+        <% } %>
 
 		<!-- 신고 버튼 누르면 bId, 신고대상, "자유게시판" 넘기기 -->
 		<form id="warningForm" method="post">
@@ -160,10 +213,7 @@
 		<input type="hidden" name="category" value="자유게시판">  
 		</form>
 		
-        <!-- 버튼 -->
-        <button type="button" class="btn" id="back" onclick="javascript:history.back();" id="back">뒤로가기</button>
-        <button class="btn" id="warning_btn">신고</button>
-        
+		
         <script>
         const warning_btn = document.getElementById('warning_btn');
     	warning_btn.addEventListener('click',function(){
