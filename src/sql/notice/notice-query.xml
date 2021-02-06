@@ -96,11 +96,12 @@
 			 , ARTICLE_CONTENT
 			 , ARTICLE_DATE
 			 , ARTICLE_MODIFY
-			 , USER_ID
+			 , I.NICKNAME
 			 , ARTICLE_CNT
 			 , ARTICLE_TYPE
 		  FROM
-		  	   NOTICE
+		  	   NOTICE N
+               JOIN USER_INFO I ON(N.USER_ID = I.USER_ID) 
           WHERE 
                 ARTICLE_NO = ?
   </entry>
