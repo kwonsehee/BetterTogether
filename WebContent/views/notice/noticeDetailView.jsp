@@ -21,6 +21,7 @@
 	float: right;
 	margin-bottom: 2%;
 	margin-top:2%;
+	margin-left: 1%;
 }
 
 #btnArea {
