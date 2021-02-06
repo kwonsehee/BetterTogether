@@ -72,7 +72,7 @@ font-family: "Nanum Gothic";
 		<div class="line"></div>
 			<div class="container">
 
-				<div class="row">
+			<div class="row" style="margin-top: 30px;">
 					<div class="col-sm-12 text-center">
 						<div class="col-sm-3"></div>
 
