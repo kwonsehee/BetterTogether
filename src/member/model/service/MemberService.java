@@ -282,6 +282,11 @@ public class MemberService {
 			return reported_date;
 		}
 
+		public int totalMem() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
 		
 
 

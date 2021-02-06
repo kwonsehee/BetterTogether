@@ -209,4 +209,14 @@ public class BoardService {
 		return totalCount;
 	}
 
+	public ArrayList<Board> boardNew() {
+		Connection conn = getConnection();
+
+		ArrayList<Board> list = new BoardDao().boardNew(conn);
+
+		close(conn);
+
+		return list;
+	}
+
 }
