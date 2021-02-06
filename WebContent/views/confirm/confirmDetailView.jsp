@@ -58,7 +58,7 @@ String userId=m.getUserId();
          
             margin-left: 28%;
             margin-top: 3%;
-          border: 1px solid blue;
+         /*  border: 1px solid blue; */
             float: left;
         }
         .challenge_box_2 p{

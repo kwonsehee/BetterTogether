@@ -62,7 +62,7 @@
         .confirm img{
             width : 180px;
             height : 150px;
-            border: 1px solid black;
+    /*       border: 1px solid black;   */
         }
 /*         .plus_btn{ 
             width : 180px;
