@@ -93,6 +93,9 @@
             
         }
         
+        #mustread{
+        	float:right;
+        }
 
     </style>
 </head>
@@ -101,7 +104,7 @@
 <!-- 모든 페이지에 include할 menubar.jsp 생성하고 포함하기 -->
 
 	<%@ include file="../common/common_ui.jsp" %>
-	<form id="article-form" action="<%= request.getContextPath() %>/notice/insert" method="post">
+	<form id="article-form" action="<%= request.getContextPath() %>/notice/insert" method="post" enctype="multipart/form-data">
 	
 	<section id="btSection" class="btSection">
         <table id="writebox">
@@ -118,7 +121,12 @@
                 	<div class="filebox">
                 		<label for="ex_file">파일 첨부</label>
                			<input type="file" name="afile" id="ex_file">
-                	</div>
+               			<div id="mustread">
+               			<label>필독
+                		<input type="checkbox" name="mustread" value="2" >
+                		</label>
+                		</div>
+                	</div>                	
                 </td>
             </tr>
 			<tr>

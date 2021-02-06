@@ -19,8 +19,7 @@
 	font-size: 10px;
 	font-weight: bolder;
 	float: right;
-	margin-bottom: 2%;
-	margin-top:2%;
+	margin: 0.5%;
 }
 
 #btnArea {
