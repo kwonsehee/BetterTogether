@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="member.model.vo.Member"%>
 <%
 	Member m = (Member)session.getAttribute("loginUser");
 
@@ -13,10 +13,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Better Together</title>
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+   crossorigin="anonymous"></script>
 <%if(session.getAttribute("msg") != null){ %>
 <script>
 	alert('<%=session.getAttribute("msg") %>');
-	
+	window.close();
 </script>
 <%
 	session.removeAttribute("msg");
@@ -26,21 +29,18 @@
      .line {
 		border: 0.5px solid #937cf790;
 	}
-	
-	#btSection {
-		padding-bottom: 100px;
-	}
+
         
 	 #content-1 p{
-     /*        border:solid 1px red;  */
-            font-size: 24px;
-            text-align: center;
+          font-size: 24px;
+          text-align: center;
+          color : #757575;
+         
    }
         .refund_box{
-            width: 560px;
+            width: 500px;
             height: 80%;
-            float: left;
-            margin-left: 250px;
+            padding-left:80px;
         }
 
         #refund, #refund button, #refund tr{
@@ -54,22 +54,20 @@
 	        padding:5px 15px 5px 15px;
 	        background-color: #e6e4e4b6;
 	        font-size:10px;
-	        font-weight: bolder;
 	        margin-top:20px;
 	        margin-left:50px;
         }
         #content-2{
-            padding-left: 22%;
+          
             margin-top: 5%;
+        }
+         .text_font{
+        font-family: "Nanum Gothic";
+           font-size:16px;
         }
     </style>
 </head>
 <body>
-
-<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
-	<%@ include file="../common/common_ui.jsp"%>
-
-<section id="btSection" class="content_css">
 
         <section id="content-1">
             <p>포인트 충전</p>
@@ -84,19 +82,19 @@
 						
                     <table id="refund"style="width : 100%;">
                     	<tr>
-                            <th><label for="money" class="text_font">보유 금액</label></th>
-                            <td colspan="2"><%=money %></td>
+                            <td><label for="money" class="text_font">보유 금액</label></td>
+                            <td><%=money %></td>
                         </tr>
                         <tr>
-                            <th><label for="money" class="text_font">충전할 금액</label></th>
-                            <td colspan="2"><input type="text" name="money" id="money" class="input_box"/></td>
+                            <td><label for="money" class="text_font">충전할 금액</label></td>
+                            <td><input type="text" name="money" id="money" class="input_box"/></td>
                             
                         </tr>
                         
           
                         <tr>
-                            <th > <button type="reset" class="btn">취소</button></th>
-                            <th colspan="2"> <button type="submit" class="btn2">충전하기</button></th>
+                            <td > <button type="reset" class="btn">취소</button></td>
+                            <td> <button type="submit" class="btn2">충전하기</button></td>
                         
                             
                         </tr>
@@ -119,8 +117,6 @@
         </section>
 
        
-    </section>
     
-    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>
