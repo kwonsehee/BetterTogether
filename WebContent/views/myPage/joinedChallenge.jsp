@@ -275,7 +275,7 @@
 				$(this).parent().css("background", "none");
 			}).click(function(){
 				var challNo = $(this).parent().children().children().eq(0).val();
-				location.href='<%= request.getContextPath() %>/chall/join?challNo='+challNo;
+				location.href='<%= request.getContextPath() %>/confirm/result?cno='+challNo;
 			});   			
  		});
     </script>
