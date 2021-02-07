@@ -32,6 +32,7 @@
 
         
 	 #content-1 p{
+
           font-size: 24px;
           text-align: center;
           color : #757575;
@@ -65,6 +66,7 @@
         font-family: "Nanum Gothic";
            font-size:16px;
         }
+
     </style>
 </head>
 <body>

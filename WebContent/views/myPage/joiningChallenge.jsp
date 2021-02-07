@@ -33,6 +33,8 @@
           border-collapse: collapse;
           margin-top:20px;
           margin:auto;
+           font-size:14px;
+          font-family: "Nanum Gothic";
 	}
 	
 	#joining {
@@ -125,12 +127,6 @@
             <div id="joining">
                  <div id="joiningChall">
                  <table id="joiningList">
-                    <!-- <tr id="th_title">
-                    	<th id="th_joiningNo">챌린지 번호</th>
-                    	<th id="th_joiningCate">카테고리</th>
-                       <th id="th_joiningTitle">챌린지 명</th>
-                       <th id="th_joiningPeriod">챌린지 기간</th>
-                    </tr> -->
          <% for(Challenge chall : cList) { %>
           <tr>
 	          <td>
@@ -197,16 +193,11 @@
     	 <script>
        // 챌린지 상세보기 기능 (jQuery를 통해 작업) 
       $(function(){
-         $("#joiningList td").mouseenter(function(){
-            $(this).parent().css("background","#937cf755");
-         }).mouseout(function(){
-            $(this).parent().css("background", "none");
-         }).click(function(){
-            var num = $(this).parent().children().eq(0).text();
-              // 쿼리 스트링을 이용하여 get방식으로 글 번호를 전달 
-            location.href="<%= request.getContextPath() %>/chall/join?challNo=" +num;
-         });
-      });
+			$("#joiningList td").click(function(){
+				var challNo = $(this).parent().children().children().eq(0).val();
+				location.href='<%= request.getContextPath() %>/chall/join?challNo='+challNo;
+			});   			
+ 		});
        
     </script>
 

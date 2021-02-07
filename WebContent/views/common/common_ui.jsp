@@ -267,8 +267,10 @@
 
     <!-- 사이드바 메뉴-->
     <div id="mySidenav" class="sidenav">
+
         <a href="javascript:void(0)" class="closebtn" style="padding-top:80px;"onclick="closeNav()">&times;</a>
         <button id="myUpdateBtn" class="mypageMenu1" style="padding-left: 10px;padding-top:80px;">개인정보수정</button>
+
         <button id="joinedChallBtn" class="mypageMenu1"style="padding-left: 10px;">참여했던 챌린지그룹</button>
         <button id="challingBtn" class="mypageMenu1"style="padding-left: 10px;">참여중인 챌린지그룹</button>
         <button id="joinbeforeChallBtn" class="mypageMenu1"style="padding-left: 10px;">시작전인 챌린지그룹</button>

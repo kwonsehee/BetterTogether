@@ -83,6 +83,8 @@
           border-collapse: collapse;
           margin:auto;
           margin-top:30px;
+          font-size:14px;
+          font-family: "Nanum Gothic";
 	}
 	
 	#joined {
@@ -177,31 +179,20 @@
             <div id="joined">
                  <div id="joinedChall">
                  <table id="joinedList">
-<!--                     <tr id="th_title">
-                    	<th id="th_joinedNo">챌린지 번호</th>
-                    	<th id="th_joinedCate">카테고리</th>
-                       <th id="th_joinedTitle">챌린지 명</th>
-                       <th id="th_joinedPeriod">챌린지 기간</th>
-                    </tr> -->
          <% for(Challenge chall : cList) { %>
          <tr>
-         		<td>
-                  <input type="hidden" name="challNo" value="<%= chall.getChallNo() %>">
-               </td>
+        <td id="chall_no">
+                  <input type="hidden" value="<%= chall.getChallNo() %>">
+             </td>
                <td>
-                  <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= chall.getChallFile()%>" style="width: 150px;height: 100px;" class="img-size">
+                  <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= chall.getChallFile()%>" 
+                  style="width: 150px;height: 100px;" class="img-size">
                </td>
                	 <td>카테고리 : <%= chall.getCateName() %></td>
                	 <td>챌린지 제목 : <%= chall.getChallTitle() %></td>
                <td>
                	챌린지 기간 : <%=chall.getChallStart() %>~<%= chall.getEndDate() %>
                </td>
-                   <%--  <tr>
-                    	<td><%= chall.getChallNo() %></td>
-                    	<td><%= chall.getCateName() %></td>
-                       <td><%= chall.getChallTitle() %></td>
-                       <td><%=chall.getChallStart() %>~<%= chall.getEndDate() %></td>
-                    </tr> --%>
           <% } %> 
           </tr>
                  </table>
@@ -277,17 +268,12 @@
     
      <script>
        // 챌린지 상세보기 기능 (jQuery를 통해 작업) 
-      $(function(){
-         $("#joinedList td").mouseenter(function(){
-            $(this).parent().css("background","#937cf755");
-         }).mouseout(function(){
-            $(this).parent().css("background", "none");
-         }).click(function(){
-            var num = $(this).parent().children().eq(0).text();
-              // 쿼리 스트링을 이용하여 get방식으로 글 번호를 전달 
-            location.href="<%= request.getContextPath() %>/chall/join?challNo=" +num;
-         });
-      });  
+     $(function(){
+			$("#joinedList td").click(function(){
+				var challNo = $(this).parent().children().children().eq(0).val();
+				location.href='<%= request.getContextPath() %>/chall/join?challNo='+challNo;
+			});   			
+ 		});
     </script>
     
     
@@ -295,7 +281,7 @@
        //1.메인으로 돌아가기
       const goMainBtn = document.getElementById('goMainBtn');
       goMainBtn.addEventListener('click',function(){
-         location.href='<%=request.getContextPath()%>';
+    	   location.href='<%=request.getContextPath()%>';
       });
     </script>
     
