@@ -269,7 +269,11 @@
      <script>
        // 챌린지 상세보기 기능 (jQuery를 통해 작업) 
      $(function(){
-			$("#joinedList td").click(function(){
+			$("#joinedList td").mouseenter(function(){
+				$(this).parent().css({"background" : "#e0dbf890", "cursor":"pointer"});
+			}).mouseout(function(){
+				$(this).parent().css("background", "none");
+			}).click(function(){
 				var challNo = $(this).parent().children().children().eq(0).val();
 				location.href='<%= request.getContextPath() %>/chall/join?challNo='+challNo;
 			});   			
