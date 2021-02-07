@@ -12,7 +12,7 @@
 	Cer cer = (Cer)request.getAttribute("cer");
 
 	//돌려받을 금액
-	int money=(int)(c.getChallPay()*cer.getAchieve());
+	int money=(int)(c.getChallPay());
 	//달성률이 100%이면 추가금액 지급 
 	if(cer.getAchieve()==1){
 		money = c.getChallPay()+(c.getChallPay()*num2)/totalCnt;

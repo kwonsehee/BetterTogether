@@ -101,4 +101,35 @@
 	
 	
 	</entry>
+	<entry key="getOutListCount">
+   		SELECT COUNT(*)
+   		FROM HISTORY
+   		WHERE USER_ID = ?
+   		AND PM = 0
+   	
+   	</entry>
+   	<entry key="getInListCount">
+   		SELECT COUNT(*)
+   		FROM HISTORY
+   		WHERE USER_ID = ?
+   		AND PM = 1
+   	</entry>
+   	<entry key="selectMyOutHistory">
+   		SELECT  RNUM, HIS_DATE, HIS_MONEY, PM, HIS_COMMENT, POINT
+		  FROM (SELECT ROWNUM RNUM, HIS_DATE, HIS_MONEY, PM, HIS_COMMENT,POINT
+      			FROM HISTORY
+     		    WHERE USER_ID = ?
+                AND PM = 0
+      			ORDER BY HISTORY_NO DESC)
+		  WHERE RNUM  BETWEEN ? AND ?	
+   	</entry>
+   	<entry key="selectMyInHistory">
+   		SELECT  RNUM, HIS_DATE, HIS_MONEY, PM, HIS_COMMENT, POINT
+		  FROM (SELECT ROWNUM RNUM, HIS_DATE, HIS_MONEY, PM, HIS_COMMENT,POINT
+      			FROM HISTORY
+     		    WHERE USER_ID = ?
+                AND PM = 1
+      			ORDER BY HISTORY_NO DESC)
+		  WHERE RNUM  BETWEEN ? AND ? 	
+   	</entry>
 </properties>
