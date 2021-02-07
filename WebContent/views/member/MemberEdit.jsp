@@ -60,24 +60,29 @@
 	}
 	
 	 #join{
-            width: 39%;
+            width: 45%;
             height: 80%;
             
             margin-top: 5%;
             margin:auto;
-           padding-right:10px;
+          
         }
         
     #join td{
         padding-top:10px;
         padding-bottom:10px;
         padding-left:30px;
+        font-size:16px;
+        
         
         }
         #cateArea label{
         margin-right:20px;
+        
         /* padding-left:5px; */
         }
+        
+    
 	
 	#pwdUpdateBtn {
 		font-family: "Nanum Gothic";
@@ -87,7 +92,7 @@
         background-color: #e6e4e4b6;
         font-size:10px;
         font-weight: bolder;
-        margin-left:-60%;
+        margin-left:-40%;
 	}
 	
 	#updateBtn {
@@ -112,6 +117,19 @@
         font-weight: bolder;
         margin-top:30px;
         margin-left:200px;
+	}
+	
+	.check_box{
+		font-size:10px;
+	}
+	
+	.checkSize{
+		font-size:16px;
+		padding-left:5px;
+	}
+	
+	.text_font{
+		padding-left:40px;
 	}
 </style>
 </head>
@@ -161,17 +179,14 @@
                 <tr>
                 	<td><label for="cate" class="text_font">관심카테고리</label></td>
                 	<td colspan="2" id="cateArea">
-                	  <input type="checkbox" id="체중관리" value="10" name="cate" class="check_box" onclick="oneCheckbox(this)" <%=checkedInterest[0] %>><label for="체중관리"><span>체중관리</span></label>
-                	  <input type="checkbox" id="운동" value="20" name="cate"class="check_box"onclick="oneCheckbox(this)" <%=checkedInterest[1] %>><label for="운동"><span>운동</span></label>
-                	  <input type="checkbox" id="자격증" value="30"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[2] %>><label for="자격증"><span>자격증</span></label>
-                	  <input type="checkbox" id="돈관리" value="40"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[3] %>><label for="돈관리"><span>돈관리</span></label>
-                	  <br>
-                	  <input type="checkbox" id="생활습관" value="50"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[4] %>><label for="생활습관"><span>생활습관</span></label>
-                	  <input type="checkbox" id="공부" value="60"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[5] %>><label for="공부"><span>공부</span></label>
-                	  <input type="checkbox" id="업무스킬" value="70"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[6] %>><label for="업무스킬"><span>업무스킬</span></label>
-                	  <input type="checkbox" id="외국어" value="80"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[7] %>><label for="외국어"><span>외국어</span></label>
-        
-                	
+                	  <input type="checkbox" id="체중관리" value="10" name="cate" class="check_box" onclick="oneCheckbox(this)" <%=checkedInterest[0] %>><label for="체중관리"><span class="checkSize">체중관리</span></label>
+                	  <input type="checkbox" id="운동" value="20" name="cate"class="check_box"onclick="oneCheckbox(this)" <%=checkedInterest[1] %>><label for="운동"><span class="checkSize">운동</span></label>
+                	  <input type="checkbox" id="자격증" value="30"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[2] %>><label for="자격증"><span class="checkSize">자격증</span></label>
+                	  <input type="checkbox" id="돈관리" value="40"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[3] %>><label for="돈관리"><span class="checkSize">돈관리</span></label><br>
+                	  <input type="checkbox" id="생활습관" value="50"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[4] %>><label for="생활습관"><span class="checkSize">생활습관</span></label>
+                	  <input type="checkbox" id="공부" value="60"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[5] %>><label for="공부"><span class="checkSize">공부</span></label>
+                	  <input type="checkbox" id="업무스킬" value="70"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[6] %>><label for="업무스킬"><span class="checkSize">업무스킬</span></label>
+                	  <input type="checkbox" id="외국어" value="80"name="cate"class="check_box"onclick="oneCheckbox(this)"<%=checkedInterest[7] %>><label for="외국어"><span class="checkSize">외국어</span></label>
                 </td>
                
                 <tr>

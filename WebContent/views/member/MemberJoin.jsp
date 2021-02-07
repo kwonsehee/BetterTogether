@@ -7,12 +7,12 @@
 <title>Better Together</title>
 <style>
    #join{
-            width: 39%;
+            width: 45%;
             height: 80%;
             
             margin-top: 5%;
-            margin:auto;
            padding-right:10px;
+           margin-left: 30%;
         }
         #join td{
         padding-top:10px;
@@ -33,6 +33,7 @@
       padding:5px 15px 5px 15px; 
     background-color: #e6e4e4b6; 
   	margin-left:0;
+  	
    }
        #btSection {
 	padding-bottom: 100px;
@@ -52,9 +53,9 @@
         text-align: center;
         padding-top: 35px;
     }
-    #du_btn{
-    margin-left:20px;
-    }
+  
+    
+   
     </style>
 </head>
 <body>
@@ -81,8 +82,8 @@
                 </tr>
                 <tr>
                     <td><label for="userid" class="text_font">아이디</label></td>
-                    <td><input type="text" maxlength="13" name="userId" required /></td>
-                    <td><button id="idCheck" type="button" class="joinform_btn" id="du_btn">중복확인</button></td>
+                    <td colspan="2"><input type="text" maxlength="13" name="userId" required />
+                    <button id="idCheck" type="button" class="joinform_btn" style="margin-left:10px;">중복확인</button></td>
                 </tr>
                 <tr>
                     <td><label for="pass" class="text_font">비밀번호</label></td>

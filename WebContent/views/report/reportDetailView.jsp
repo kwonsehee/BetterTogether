@@ -103,14 +103,16 @@
 }
 
 #reportelement{
-    width: 18%;
+    width: 30%;
     text-align: end;
-    margin-right: 2%;
+    margin-right: 1%;
     margin-top: 1%;
     font-family: "Nanum Gothic";
     color : #757575;
     font-weight: bold;
+    
 }
+
 </style>
 </head>
 <body>
@@ -130,7 +132,7 @@
 			<tr>
 				<td class="qnaTable"><input maxlength="50" id="write_title" placeholder="<%= r.getReport_title() %>" readonly>
 				<label id="reportelement">작성자 : <%= r.getUser_id() %></label>
-				<label id="reportelement">작성일 : <%= r.getReport_date() %></label>
+				<label id="reportelement" class="reportDate">작성일 : <%= r.getReport_date() %></label>
 				</td>
 			</tr>
 			<tr>

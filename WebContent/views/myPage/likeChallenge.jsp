@@ -153,13 +153,14 @@
             		<tr>
             			<td>
 	          				<input type="hidden" name="challNo" value="<%= chall.getChallNo() %>">
+	          				<input type="hidden" name="challstatus" value="<%= chall.getChallStatus() %>">
 	          			</td>
 	           			<td>
 	              			<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= chall.getChallFile()%>" style="width: 150px;height: 100px;" class="img-size">
 	           			</td>
 	           	 		<td>카테고리 : <%= chall.getCateName() %></td>
 	           	 		<td>챌린지 제목 : <%= chall.getChallTitle() %></td>
-	           			<td><button id="likeDeleteBtn" class="likeUpdateBtn">찜하기 취소</button></td>
+	           			<td><button type="button" id="likeDeleteBtn" class="likeUpdateBtn">찜하기 취소</button></td>
                  			</tr>
           			<% } %> 
                  		</table>
@@ -222,18 +223,30 @@
     		  //likeList에 이벤트를 걸어놔서 버튼에도 이벤트가 걸림 stopProagation으로 막아줌
          	 e.stopPropagation(); 
     		  //td에 있는 버튼 
-         	 var num = $(this).parent().parent().children().eq(0).text();
-    		  //찜하기 취소 버튼 클릭 시 넘어가게 하기
-         	 location.href="<%= request.getContextPath() %>/like/hits?challNo=" +num;
+         	 var num = $(this).parent().parent().children().children().eq(0).val();
+	         console.log("num: " + num);
          	 alert("찜하기 취소가 되었습니다");
+			  location.href="<%= request.getContextPath() %>/like/hits?challNo=" +num;
           });
           
     	  
        // 챌린지 상세보기 기능 (jQuery를 통해 작업)
+ 
     	  $(function(){
-  			$("#likeList td").click(function(){
+  			$("#likeList td").mouseenter(function(){
+				$(this).parent().css({"background" : "#e0dbf890", "cursor":"pointer"});
+			}).mouseout(function(){
+				$(this).parent().css("background", "none");
+			}).click(function(){
   				var challNo = $(this).parent().children().children().eq(0).val();
-  				location.href='<%= request.getContextPath() %>/chall/join?challNo='+challNo;
+  				 var status= $(this).parent().children().children().eq(1).val();
+  	         	 console.log(status);
+  	    		  //찜하기 취소 버튼 클릭 시 넘어가게 하기
+  	    		  if(status == 'Y'){
+  	    			  alert("챌린지가 삭제되어 챌린지 상세보기를 볼 수 없습니다.");
+  	    		  }else{
+  	    			location.href='<%= request.getContextPath() %>/chall/join?challNo='+challNo;
+  	    		  }
   			});   			
    		});
          
@@ -245,13 +258,13 @@
        
     </script>
             
-   	<script>
+<%--    	<script>
 	 //1.메인으로 돌아가기
 	const goMainBtn = document.getElementById('goMainBtn');
 	goMainBtn.addEventListener('click',function(){
 		location.href='<%= request.getContextPath()%>';
 	});
-   	</script>
+   	</script> --%>
    	
    	<%@ include file="../common/footer.jsp" %>
 </body>
