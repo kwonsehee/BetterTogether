@@ -979,10 +979,10 @@
 	<entry key="percent85">
 		SELECT
 			   COUNT(*)
-		  FROM (SELECT CNT/(SELECT CHALL_COUNT FROM CHALL WHERE CHALL_NO = 126) 달성률
+		  FROM (SELECT CNT/(SELECT CHALL_COUNT FROM CHALL WHERE CHALL_NO = ?) 달성률
                 FROM (SELECT C.USER_ID, COUNT(DISTINCT TO_CHAR(CER_DATE, 'YYYY-MM-DD')) CNT
                       FROM CER C
-                      WHERE CHALL_NO = 126
+                      WHERE CHALL_NO = ?
                       AND CER_STATUS = 'N'
                       GROUP BY C.USER_ID))
 		  WHERE 달성률 &lt; 0.85
