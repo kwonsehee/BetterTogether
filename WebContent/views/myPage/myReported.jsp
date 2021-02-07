@@ -62,7 +62,7 @@ String reported_date = transFormat.format(reported);
 	}
         
 	 #content-1 p{
-margin-top: 50px;
+			margin-top: 50px;
            text-align: center;
            font-size: 24px;
            color : #757575;   }
@@ -116,6 +116,8 @@ margin-top: 50px;
            /*  height: 400px;       */
             border-collapse: collapse;
             margin-top:30px;
+            color: #757575;
+            text-align:center;
         }
 
         #board_tb th, #board_tb td {
@@ -291,7 +293,11 @@ margin-top: 50px;
 							<td style=text-align:center;><%= r.getReport_no() %></td>
 							<td style=padding-left:3%;><%= r.getReport_title() %></td>
 							<td style=text-align:center;><%= r.getReport_date() %></td>
-							<td style=text-align:center;><%= r.getT_f() %></td>
+							<%if(r.getT_f().equals("F")) {%>
+							<td><%= r.getT_f().replace("F", "X") %></td>
+							<% } else { %>
+							<td><%= r.getT_f().replace("T", "O") %></td>
+							<% } %>
 						</tr>
 							<%} %>
 						<%} %>	

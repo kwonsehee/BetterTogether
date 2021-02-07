@@ -241,8 +241,7 @@ td .btn1 {
 			</table>
 		</section>
 
-
-			<script> 
+		<script> 
             $(function(){
                 var article = (".recruit .show"); 
                 $(".recruit .question  td").click(function() { 
