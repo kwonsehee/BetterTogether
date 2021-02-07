@@ -322,4 +322,23 @@ WHERE RNUM BETWEEN ? AND ?
 	  AND  TO_CHAR(QNA_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD') FROM dual)
       ORDER BY QNA_DATE DESC 
 	</entry>
+	<entry key="selectMyList">
+		 SELECT
+		 	    RNUM
+			  , QNA_NO
+			  , QNA_TITLE
+			  , QNA_CONTENT
+			  , QNA_DATE
+			  , QNA_MODIFY	  
+			  , Q_REFERENCE
+			  , QNA_TYPE
+              , QNA_STATUS
+			  , I.NICKNAME
+		   FROM
+		 		QLIST Q
+     			JOIN USER_INFO I ON(Q.USER_ID = I.USER_ID) 
+          WHERE 
+   				Q.USER_ID = ?
+          	AND	RNUM BETWEEN ? AND ?
+	</entry>
 </properties>

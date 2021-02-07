@@ -9,6 +9,8 @@ import common.model.vo.PageInfo;
 import common.model.vo.Search;
 import qna.model.dao.QnADao;
 import qna.model.vo.QnA;
+import report.model.dao.ReportDao;
+import report.model.vo.Report;
 
 public class QnAService {
 		
@@ -272,6 +274,17 @@ public class QnAService {
 				
 				close(conn);
 				
+				return list;
+			}
+
+
+			public ArrayList<QnA> selectMyList(String userId, PageInfo pi) {
+				Connection conn = getConnection();
+
+				ArrayList<QnA> list = new QnADao().selectMyList(conn, userId, pi);
+
+				close(conn);
+					
 				return list;
 			}
 }
