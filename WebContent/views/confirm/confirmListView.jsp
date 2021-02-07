@@ -122,11 +122,11 @@
 		
 		}
 		#confirm_photo{
-	      width:90%;
+	      width:95%;
 	      min-height:400px;
 	      margin:auto;
 	     margin-top:5%;
-	     padding-left:5%;
+	     padding-left:2%;
       
 	   
       }
