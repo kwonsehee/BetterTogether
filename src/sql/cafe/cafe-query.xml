@@ -162,9 +162,14 @@
 
 
 	<entry key="deleteCafe">
-		DELETE 
-		FROM CAFE
-    	WHERE CAFE_CODE = ?
+	
+         UPDATE 
+		       CAFE
+		   SET 
+		      CAFE_STATUS = 'Y' 
+		 WHERE 
+		      CAFE_CODE = ? 
+	 
 	 
 	</entry>
 
@@ -340,9 +345,11 @@
 	
 	
 	<entry key="deleteCafe2">
-	DELETE 
-		FROM 
-			CAFE
+	
+         UPDATE 
+		       CAFE
+		   SET 
+		      CAFE_STATUS = 'Y' 
     	WHERE
     		CAFE_NAME = ? 
     	AND 
