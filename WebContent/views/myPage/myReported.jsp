@@ -207,8 +207,8 @@ margin-top: 50px;
 	
 	font-family: "Nanum Gothic";
 	width: 55.5%;
-	margin-left: 8%;
-	padding: 20px;
+	margin-left: 4%;
+	padding: 10px;
 }
 #count_img {
 	margin-left: 170px;
