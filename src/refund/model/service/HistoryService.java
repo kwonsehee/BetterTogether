@@ -128,4 +128,54 @@ public class HistoryService {
 		return result;
 	}
 
+	//출금 내역 카운트
+	public int getOutListCount(String userId) {
+		Connection conn = getConnection();
+		
+		int result = new HistoryDao().getOutListCount(conn, userId);
+		
+		close(conn);
+		
+		System.out.println("거래내역service : "+result);
+		
+		return result;
+	}
+	//입금 내역 카운트
+		public int getInListCount(String userId) {
+			Connection conn = getConnection();
+			
+			int result = new HistoryDao().getInListCount(conn, userId);
+			
+			close(conn);
+			
+			System.out.println("거래내역service : "+result);
+			
+			return result;
+		}
+
+	//출금 내역 리스트
+	public ArrayList<History> selectMyOutHistory(String userId, PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<History> list = new HistoryDao().selectMyOutHistory(conn, userId, pi);
+		
+		System.out.println("거래내역 list 조회: " + list);
+		
+		close(conn);
+		
+		return list;
+	}
+	//입금 내역 리스트
+		public ArrayList<History> selectMyInHistory(String userId, PageInfo pi) {
+			Connection conn = getConnection();
+			
+			ArrayList<History> list = new HistoryDao().selectMyInHistory(conn, userId, pi);
+			
+			System.out.println("거래내역 list 조회: " + list);
+			
+			close(conn);
+			
+			return list;
+		}
+
 }

@@ -87,7 +87,7 @@
                 </tr>
                 <tr>
                     <td><label for="pass" class="text_font">비밀번호</label></td>
-                    <td colspan="2"><input type="password" maxlength="15" name="userPwd" required /></td>
+                    <td colspan="2"><input type="password" maxlength="15" name="userPwd" required placeholder="숫자/영문자 8~20자리"/></td>
              
                 </tr>
                 <tr>
@@ -154,6 +154,32 @@
 				$("#joinForm input[name=userId]").select();
 				return false;
 			}
+			
+			//비밀번호 유효성 검사
+			if(!/^[a-zA-Z0-9]{8,20}$/.test($("#joinForm input[name=userPwd]").val())){
+		        alert("비밀번호는 숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
+		        $("#joinForm input[name=userPwd]").select();
+		        return false;
+		    }
+		    var chk_num = ($("#joinForm input[name=userPwd]").val()).search(/[0-9]/g);
+		    var chk_eng = ($("#joinForm input[name=userPwd]").val()).search(/[a-z]/ig);
+		    if(chk_num<0 || chk_eng<0){
+		        alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
+		        $("#joinForm input[name=userPwd]").select();
+		        return false;
+		    }
+		    if(/(\w)\1\1\1/.test($("#joinForm input[name=userPwd]").val())){
+		        alert("비밀번호에 같은 문자를 4번 이상 사용하실 수 없습니다.");
+		        $("#joinForm input[name=userPwd]").select();
+		        return false;
+		    }
+		    if(($("#joinForm input[name=userPwd]").val()).search($("#joinForm input[name=userId]").val())>-1){
+		        alert("ID가 포함된 비밀번호는 사용하실 수 없습니다.");
+		        $("#joinForm input[name=userPwd]").select();
+		        return false;
+		    }
+		    
+		    
 			//비밀번호 - 비밀번호 확인 일치여부
 			if($("#joinForm input[name=userPwd]").val() != $("#joinForm input[name=userPwd2]").val()){
 				$("#pwdResult").text("비밀번호 불일치").css("color","red");

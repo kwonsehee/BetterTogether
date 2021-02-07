@@ -377,6 +377,8 @@
         	  <%if(loginUser.getMembertype()== 0) { %>
            			$("#admin").attr("action","<%=request.getContextPath()%>/administratorPage");
            			$("#admin").submit();
+           	<%}else{%>
+           		alert("관리자만 접근가능합니다.");
            	<%}%>
         });   
         //11. 포인트 내역 

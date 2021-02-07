@@ -214,4 +214,134 @@ public class HistoryDao {
 		return result;
 	}
 
+	//출금 내역 카운트
+	public int getOutListCount(Connection conn, String userId) {
+		PreparedStatement pstmt=null;
+		ResultSet rset = null;
+		int listCount = 0;
+		
+		String sql = prop.getProperty("getOutListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1,userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		System.out.println("거래내역 dao : "+listCount);
+		return listCount;
+	}
+	//입금 내역 카운트
+		public int getInListCount(Connection conn, String userId) {
+			PreparedStatement pstmt=null;
+			ResultSet rset = null;
+			int listCount = 0;
+			
+			String sql = prop.getProperty("getInListCount");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1,userId);
+				
+				rset = pstmt.executeQuery();
+				
+				if (rset.next()) {
+					listCount = rset.getInt(1);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			
+			System.out.println("거래내역 dao : "+listCount);
+			return listCount;
+		}
+
+		//출금내역 리스트
+		public ArrayList<History> selectMyOutHistory(Connection conn, String userId, PageInfo pi) {
+			ArrayList<History> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectMyOutHistory");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, userId);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+				rset = pstmt.executeQuery();
+			
+				
+				while (rset.next()) {
+					java.util.Date date = rset.getTimestamp(2);
+
+					list.add(new History(date, rset.getInt(3), rset.getInt(4),rset.getString(5), rset.getInt(6)));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+
+			System.out.println("거래내역 list dao : " + list);
+			return list;
+		}
+
+		// 입금내역 리스트
+		public ArrayList<History> selectMyInHistory(Connection conn, String userId, PageInfo pi) {
+			ArrayList<History> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectMyInHistory");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+
+				pstmt.setString(1, userId);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+				rset = pstmt.executeQuery();
+
+				while (rset.next()) {
+					java.util.Date date = rset.getTimestamp(2);
+
+					list.add(new History(date, rset.getInt(3), rset.getInt(4), rset.getString(5), rset.getInt(6)));
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+
+			System.out.println("거래내역 list dao : " + list);
+			return list;
+		}
+
 }
