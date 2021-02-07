@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import community.model.dao.BoardDao;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
+import qna.model.dao.QnADao;
 
 public class MemberService {
 
@@ -284,8 +285,13 @@ public class MemberService {
 		}
 
 		public int totalMem() {
-			// TODO Auto-generated method stub
-			return 0;
+			Connection conn = getConnection();
+			
+			int listCount = new MemberDao().totalMem(conn);
+			
+			close(conn);
+			
+			return listCount;
 		}
 
 		

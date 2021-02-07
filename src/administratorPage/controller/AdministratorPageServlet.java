@@ -79,7 +79,7 @@ public class AdministratorPageServlet extends HttpServlet {
 				request.setAttribute("challStartCnt", challStartCnt);
 				request.setAttribute("challBeforeCnt", challBeforeCnt);
 				request.setAttribute("challEndCnt", challEndCnt);
-				
+				request.setAttribute("totalCnt", totalCnt);
 				
 			RequestDispatcher view= request.getRequestDispatcher("/views/administrator/downloadAdminPage.jsp");
 			view.forward(request, response);

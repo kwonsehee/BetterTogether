@@ -521,5 +521,29 @@ public class MemberDao {
 			return result;
 		}
 
+		public int totalMem(Connection conn) {
+			int totalMem = 0;
+			Statement stmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("totalMem");
+			
+			try {
+				stmt = conn.createStatement();
+				
+				rset = stmt.executeQuery(sql);
+				
+				if(rset.next()) {
+					totalMem = rset.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(stmt);
+			}
+			
+			return totalMem;
+		}
+
 		
 }
