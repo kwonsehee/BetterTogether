@@ -35,33 +35,42 @@
      /*        border:solid 1px red;  */
             font-size: 24px;
             text-align: center;
-   }
-        .refund_box{
-            width: 560px;
-            height: 80%;
-            float: left;
-            margin-left: 250px;
-        }
+             color : #757575;
+   	}
+   	
+     .refund_box{
+         width: 560px;
+         height: 80%;
+       float: left;
+       margin-left : 20%;
+         
+     }
 
-        #refund, #refund button, #refund tr{
-            font-family: "Nanum Gothic";
-            font-size: 20px;
-        }
-        #refund button{
-           font-family: "Nanum Gothic";
-	        border-radius: 10px;
-	        border: solid 1px #9e9e9e5b;
-	        padding:5px 15px 5px 15px;
-	        background-color: #e6e4e4b6;
-	        font-size:10px;
-	        font-weight: bolder;
-	        margin-top:20px;
-	        margin-left:50px;
-        }
-        #content-2{
-            padding-left: 22%;
-            margin-top: 5%;
-        }
+     #refund, #refund button, #refund tr{
+         font-family: "Nanum Gothic";
+         font-size: 20px;
+     }
+        
+      #refund td {
+      	padding-top:10px;
+      padding-bottom:10px;
+      padding-left:30px;
+      }
+      #refund button{
+         font-family: "Nanum Gothic";
+       border-radius: 10px;
+       border: solid 1px #9e9e9e5b;
+       padding:5px 15px 5px 15px;
+       background-color: #e6e4e4b6;
+       font-size:10px;
+       font-weight: bolder;
+       margin-top:20px;
+       margin-left:50px;
+      }
+      #content-2{
+          padding-left: 22%;
+          margin-top: 5%;
+      }
     </style>
 </head>
 <body>

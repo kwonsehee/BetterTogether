@@ -33,19 +33,28 @@
         .refund_box{
             width: 560px;
             height: 80%;
-            /* float: left; */
-            margin-left:300px;
+           /*  margin-left:300px; */
+           margin-left : 20%;
         }
         #content-1 p{
      /*        border:solid 1px red;  */
             font-size: 24px;
             text-align: center;
+             color : #757575;
         }
         
         #refund, #refund button, #refund tr{
             font-family: "Nanum Gothic";
             font-size: 20px;
         }
+        
+        #refund td {
+        	padding-top:10px;
+        padding-bottom:10px;
+        padding-left:30px;
+        }
+        
+        
         #refund button{
             font-family: "Nanum Gothic";
 	        border-radius: 10px;

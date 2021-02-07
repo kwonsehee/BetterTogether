@@ -33,6 +33,8 @@
          border-collapse: collapse;
          margin-top:20px;
          margin:auto;
+          font-size:14px;
+          font-family: "Nanum Gothic";
 	}
 	
 	#join {
@@ -135,17 +137,17 @@
                     </tr> -->
          <% for(Challenge chall : cList) { %>
             <tr>
-				 <td>
-	          	<input type="hidden" name="challNo" value="<%= chall.getChallNo() %>">
-	          </td>
-	           <td>
+            	<td>
+	          		<input type="hidden" name="challNo" value="<%= chall.getChallNo() %>">
+	          	</td>
+	           	<td>
 	              <img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= chall.getChallFile()%>" style="width: 150px;height: 100px;" class="img-size">
-	           </td>
-	           	 <td>카테고리 : <%= chall.getCateName() %></td>
-	           	 <td>챌린지 제목 : <%= chall.getChallTitle() %></td>
-	           <td>
-	           	챌린지 기간 : <%=chall.getChallStart() %>~<%= chall.getEndDate() %>
-	           </td>
+	           	</td>
+	           	<td>카테고리 : <%= chall.getCateName() %></td>
+	           	<td>챌린지 제목 : <%= chall.getChallTitle() %></td>
+	           	<td>
+	           		챌린지 기간 : <%=chall.getChallStart() %>~<%= chall.getEndDate() %>
+	           	</td>
             </tr>
           <% } %> 
                  </table>
@@ -199,20 +201,12 @@
     	 <script>
        // 챌린지 상세보기 기능 (jQuery를 통해 작업) 
       $(function(){
-         $("#joinList td").mouseenter(function(){
-            $(this).parent().css("background","#937cf755");
-         }).mouseout(function(){
-            $(this).parent().css("background", "none");
-         }).click(function(){
-            var num = $(this).parent().children().eq(0).text();
-            var status = $(this).parent().children().eq(1).text();
-           
-            	 // 쿼리 스트링을 이용하여 get방식으로 글 번호를 전달 
-                location.href="<%= request.getContextPath() %>/chall/join?challNo=" +num;
-            
-            
-         });
-      });
+    	  $(function(){
+  			$("#joinList td").click(function(){
+  				var challNo = $(this).parent().children().children().eq(0).val();
+  				location.href='<%= request.getContextPath() %>/chall/join?challNo='+challNo;
+  			});   			
+   		});
        
     </script>
 
