@@ -29,7 +29,7 @@ public class NoticeDeleteFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int ano = Integer.parseInt(request.getParameter("ano"));
-		
+		System.out.println("삭제할 ano"+ano);
 		int result = new NoticeService().deleteNotice(ano);
 		
 		if(result>0) {

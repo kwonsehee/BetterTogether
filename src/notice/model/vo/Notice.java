@@ -75,8 +75,6 @@ public class Notice {
 		this.user_id = user_id;
 		this.aCnt = aCnt;
 	}
-
-
 	public Notice(int aNo, String aTitle, String aContent, Date aDate, Date aModify_date, String user_id, int aCnt,
 			int aType) {
 		super();
@@ -88,6 +86,23 @@ public class Notice {
 		this.user_id = user_id;
 		this.aCnt = aCnt;
 		this.aType = aType;
+		
+	}
+
+
+
+	public Notice(int aNo, String aTitle, String aContent, Date aDate, Date aModify_date, String user_id, int aCnt,
+			int aType, String aFile) {
+		super();
+		this.aNo = aNo;
+		this.aTitle = aTitle;
+		this.aContent = aContent;
+		this.aDate = aDate;
+		this.aModify_date = aModify_date;
+		this.user_id = user_id;
+		this.aCnt = aCnt;
+		this.aType = aType;
+		this.aFile=aFile;
 	}
 
 

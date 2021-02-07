@@ -53,7 +53,7 @@ public class NoticeService {
 		//3. 공지사항 상세 보기 서비스
 		public Notice selectNotice(int ano) {
 			Connection conn = getConnection();
-			
+			Notice n = null;
 			//1. 조회수 증가
 			int result = new NoticeDao().increaseCount(conn,ano);
 			

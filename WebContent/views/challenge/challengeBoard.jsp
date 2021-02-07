@@ -15,6 +15,7 @@
 	   challBoardType = Integer.parseInt((String.valueOf(request.getAttribute("challBoardType"))));
    } 
    
+   
    // 페이징 처리 
    PageInfo pi = (PageInfo)request.getAttribute("pi");
    
@@ -375,7 +376,11 @@
             <section id="content-3">
                 <%-- 로그인 유저만 작성하기 버튼 보이기 --%>
                 <% if(loginUser != null) { %>
-                <button id="challenge_btn" type="button" onclick="location.href='<%= request.getContextPath() %>/views/challenge/challengeMake.jsp'">챌린지 개설</button>
+                	<%if(loginUser.getWriter_active().equals("Y")){ %>
+                	<button id="challenge_btn" type="button" onclick="location.href='<%= request.getContextPath() %>/views/challenge/challengeMake.jsp'">챌린지 개설</button>
+                	<%}else{ %>
+                	<button id="challenge_btn" type="button" onclick="alert('회원의 글쓰기 권한이 제한되었습니다.')">챌린지 개설</button>
+               <% } %>
                 <% } %>
             </section>
         </form>

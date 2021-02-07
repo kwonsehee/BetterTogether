@@ -1057,5 +1057,14 @@
 		       CHALL_NO = ? 
 		   AND CHALL_STATUS = 1
 	</entry>
-	
+	 <entry key="endChallStatus">
+   		UPDATE 
+   			  CHALL_STATUS
+   		   SET
+   		  	  CHALL_STATUS = 2
+   		 WHERE
+   		 	  USER_ID = ? 
+   		   AND 
+   		   	  CHALL_NO = ?
+   </entry>
 </properties>

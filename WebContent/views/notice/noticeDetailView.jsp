@@ -166,8 +166,7 @@
 		//목록으로 버튼 이벤트
 		const listBtn = document.getElementById('listBtn');
 		listBtn.addEventListener('click', function() {
-			location.href = '
-	<%=request.getContextPath()%>/notice/list';
+			location.href = '<%=request.getContextPath()%>/notice/list';
 	});
 	</script>
 	

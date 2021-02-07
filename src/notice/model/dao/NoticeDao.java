@@ -200,7 +200,8 @@ public class NoticeDao {
 							rset.getDate("ARTICLE_MODIFY"),
 							rset.getString("NICKNAME"),
 							rset.getInt("ARTICLE_CNT"),
-							rset.getInt("ARTICLE_TYPE"));
+							rset.getInt("ARTICLE_TYPE"),
+							rset.getString("ARTICLE_FILE"));
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

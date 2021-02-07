@@ -17,6 +17,10 @@
 	if(cer.getAchieve()==1){
 		money = c.getChallPay()+(c.getChallPay()*num2)/totalCnt;
 	}
+	
+	//챌린지 상태가 2인지 아닌지 2면 상금 다시 받을수 없음
+	int challstatus = Integer.parseInt(String.valueOf(request.getAttribute("challstatus")));
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -215,8 +219,10 @@
                         <td><span>인증 갯수 : <%=cer.getChall_count() %>개</span></td>
                     
                         <!-- 최소 달성률 통과 못할시 버튼 비화성화 만들어 놓기 -->
-                        <%if(cer.getAchieve()>=0.85){ %>
-                        <td><span>상금 받기</span> <button type="button" class="circle" id="payback"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="30px"height="30px"></td>
+                        <%if(cer.getAchieve()>=0.85&&challstatus!=2){ %>
+                        <td><span>상금 받기</span> <button type="button" class="circle" id="payback" > <img src="<%=request.getContextPath()%>/resources/images/money.png"width="30px"height="30px"></td>
+                     	<%}else if(cer.getAchieve()>=0.85&&challstatus==2){ %>
+                     	<td><span>상금 받기</span> <button type="button" class="d_circle" onclick="alert('이미 상금이 지급되었습니다.')"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="30px"height="30px"></td>
                      	<%}else{ %>
                         <td><span>상금 받기</span> <button type="button" class="d_circle" onclick="alert('최소 달성률을 통과하지 못하였습니다.')"> <img src="<%=request.getContextPath()%>/resources/images/money.png"width="30px"height="30px"></td>
                         
@@ -245,7 +251,7 @@
      	//payback 버튼 이벤트
      	 const payback = document.getElementById('payback');
      	payback.addEventListener('click',function(){
-     		location.href='<%=request.getContextPath()%>/refund/payback?money='+<%=money%>+'&challTitle='+<%=c.getChallTitle()%>;
+     		location.href='<%=request.getContextPath()%>/refund/payback?money=<%=money%>&challTitle=<%=c.getChallTitle()%>&challNo=<%=c.getChallNo()%>';
      	});
 
 	</script>

@@ -40,6 +40,7 @@ public class HistoryDao {
 			pstmt.setString(1,userId);
 			pstmt.setInt(2, money);
 			pstmt.setString(3,title);
+			pstmt.setString(4,userId);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

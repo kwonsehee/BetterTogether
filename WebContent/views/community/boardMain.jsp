@@ -278,12 +278,23 @@
 			
 		</div>
 		
-		<%-- 로그인 유저만 글쓰기, 내가쓴글보기 버튼 보이기 --%>
+		<%--  로그인 유저만 글쓰기, 내가쓴글보기 버튼 보이기 
 		<% if(loginUser != null) { %>
 			  <button class="btn" id="mywriteBtn" onclick="location.href='<%= request.getContextPath()%>/board/myboardView'">내가 쓴 글 보기</button>
 			  <button class="btn" id="write" onclick="location.href='<%= request.getContextPath()%>/views/community/boardWrite.jsp'">글쓰기</button>
-		<% } %>
-    	
+		<% } %> --%>
+		
+    	<%-- 로그인 유저만 작성하기 버튼 보이기 --%>
+         <% if(loginUser != null) { %>
+         <button class="btn" id="mywriteBtn" onclick="location.href='<%= request.getContextPath()%>/board/myboardView'">내가 쓴 글 보기</button>
+             <%if(loginUser.getWriter_active().equals("Y")){ %>
+               	<button class="btn" id="write" onclick="location.href='<%= request.getContextPath()%>/views/community/boardWrite.jsp'">글쓰기</button>
+               <%}else{ %>
+                <button class="btn" id="write" onclick="alert('회원의 글쓰기 권한이 제한되었습니다.')">글쓰기</button>
+             
+         <% } %>
+         
+         <% } %>
     </section>
     <script>
 		var bId = $(this).parent().children().eq(0).text();
