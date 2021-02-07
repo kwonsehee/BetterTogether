@@ -25,6 +25,7 @@
 		  	   NLIST
 		 WHERE
 		 	   RNUM BETWEEN ? AND ?
+	  ORDER BY ARTICLE_TYPE DESC , ARTICLE_DATE DESC
 	</entry>
 	<entry key="insertNotice">
 		INSERT
@@ -95,11 +96,12 @@
 			 , ARTICLE_CONTENT
 			 , ARTICLE_DATE
 			 , ARTICLE_MODIFY
-			 , USER_ID
+			 , I.NICKNAME
 			 , ARTICLE_CNT
 			 , ARTICLE_TYPE
 		  FROM
-		  	   NOTICE
+		  	   NOTICE N
+               JOIN USER_INFO I ON(N.USER_ID = I.USER_ID) 
           WHERE 
                 ARTICLE_NO = ?
   </entry>
@@ -290,5 +292,55 @@
 		 	  	ARTICLE_TYPE = 1
            AND  TO_CHAR(ARTICLE_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual)
+	</entry>
+	<entry key="insertNotice3">
+		INSERT
+		INTO NOTICE
+		(
+			   ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTENT
+			 , USER_ID
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
+		)
+		VALUES
+		(
+			SEQ_NID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , DEFAULT
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
+	</entry>
+	<entry key="insertNotice4">
+		INSERT
+		INTO NOTICE
+		(
+			   ARTICLE_NO
+			 , ARTICLE_TITLE
+			 , ARTICLE_CONTENT
+			 , USER_ID
+			 , ARTICLE_DATE
+			 , ARTICLE_MODIFY
+			 , ARTICLE_CNT
+			 , ARTICLE_TYPE
+		)
+		VALUES
+		(
+			SEQ_NID.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , DEFAULT
+		  , SYSDATE
+		  , DEFAULT
+		  , ?
+		)
 	</entry>
 </properties>

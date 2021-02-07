@@ -57,9 +57,10 @@
 			  , Q_REFERENCE
 			  , QNA_TYPE
 			  , QNA_STATUS
-			  , USER_ID
+			  , I.NICKNAME
 		 FROM
-		 		QNA
+		 		QNA Q
+		 		JOIN USER_INFO I ON(Q.USER_ID = I.USER_ID) 
 	    WHERE
 	    		QNA_TYPE = 'Q'
 	      AND	QNA_NO = ?
@@ -303,5 +304,22 @@ WHERE RNUM BETWEEN ? AND ?
 		 	  	QNA_TYPE = 'Q'
 		   AND	QNA_STATUS = 'Y'
            AND  TO_CHAR(QNA_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD') FROM dual)
+	</entry>
+	<entry key="QNANew">
+	SELECT
+			QNA_NO
+		  , QNA_TITLE
+		  , QNA_CONTENT
+		  , QNA_DATE
+		  , QNA_MODIFY	  
+		  , Q_REFERENCE
+		  , QNA_TYPE
+		  , QNA_STATUS
+		  , USER_ID
+	   FROM
+	   		QNA
+	  <![CDATA[WHERE ROWNUM <= 5]]>
+	  AND  TO_CHAR(QNA_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD') FROM dual)
+      ORDER BY QNA_DATE DESC 
 	</entry>
 </properties>

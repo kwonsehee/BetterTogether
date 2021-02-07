@@ -263,4 +263,15 @@ public class QnAService {
 				
 				return totalCount;
 			}
+
+
+			public ArrayList<QnA> QNANew() {
+				Connection conn = getConnection();
+				
+				ArrayList<QnA> list = new QnADao().QNANew(conn);
+				
+				close(conn);
+				
+				return list;
+			}
 }

@@ -957,34 +957,34 @@
 	<entry key="avgTotal">
 		SELECT
 			   AVG(달성률)
-		  FROM (SELECT COUNT(DISTINCT CER_DATE), CHALL_COUNT,CER.USER_ID, COUNT(DISTINCT CER_DATE)/CHALL_COUNT AS 달성률
-        		FROM CER
-        		JOIN CHALL USING(CHALL_NO)
-        		WHERE  CHALL_NO = ?
-        		AND CER_STATUS = 'N'
-        		GROUP BY CHALL_COUNT, CER.USER_ID)
+		  FROM (SELECT CNT/(SELECT CHALL_COUNT FROM CHALL WHERE CHALL_NO = ?) 달성률
+                FROM (SELECT C.USER_ID, COUNT(DISTINCT TO_CHAR(CER_DATE, 'YYYY-MM-DD')) CNT
+                      FROM CER C
+                      WHERE CHALL_NO = ?
+                      AND CER_STATUS = 'N'
+                      GROUP BY C.USER_ID))
 	</entry>
 	<entry key="percent100">
 		SELECT
 			   COUNT(*)
-		  FROM (SELECT COUNT(DISTINCT CER_DATE), CHALL_COUNT,CER.USER_ID, COUNT(DISTINCT CER_DATE)/CHALL_COUNT AS 달성률
-        		FROM CER
-        		JOIN CHALL USING(CHALL_NO)
-        		WHERE  CHALL_NO = ?
-        		AND CER_STATUS = 'N'
-        		GROUP BY CHALL_COUNT, CER.USER_ID)
+		  FROM (SELECT CNT/(SELECT CHALL_COUNT FROM CHALL WHERE CHALL_NO = ?) 달성률
+                FROM (SELECT C.USER_ID, COUNT(DISTINCT TO_CHAR(CER_DATE, 'YYYY-MM-DD')) CNT
+                      FROM CER C
+                      WHERE CHALL_NO = ?
+                      AND CER_STATUS = 'N'
+                      GROUP BY C.USER_ID))
 		  WHERE 달성률=1
 	
 	</entry>
 	<entry key="percent85">
 		SELECT
 			   COUNT(*)
-		  FROM (SELECT COUNT(DISTINCT CER_DATE), CHALL_COUNT,CER.USER_ID, COUNT(DISTINCT CER_DATE)/CHALL_COUNT AS 달성률
-        		FROM CER
-        		JOIN CHALL USING(CHALL_NO)
-        		WHERE  CHALL_NO = ?
-        		AND CER_STATUS = 'N'
-        		GROUP BY CHALL_COUNT, CER.USER_ID)
+		  FROM (SELECT CNT/(SELECT CHALL_COUNT FROM CHALL WHERE CHALL_NO = 126) 달성률
+                FROM (SELECT C.USER_ID, COUNT(DISTINCT TO_CHAR(CER_DATE, 'YYYY-MM-DD')) CNT
+                      FROM CER C
+                      WHERE CHALL_NO = 126
+                      AND CER_STATUS = 'N'
+                      GROUP BY C.USER_ID))
 		  WHERE 달성률 &lt; 0.85
 	
 	</entry>
@@ -1018,6 +1018,33 @@
            AND  TO_CHAR(CHALL_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual)
 	</entry>
+
+	<entry key="challNew">
+		SELECT
+			    CHALL_NO
+              , CHALL_TITLE
+              , CHALL_PEOPLE
+              , CHALL_DATE
+              , FILE_PATH
+         	  , CHALL_CONFIRM
+         	  , CHALL_FREQUENCY
+         	  , CHALL_PERIOD
+         	  , CHALL_PAYMENT
+         	  , CHALL_CONTENT
+         	  , CHALL_COUNT
+         	  , USER_ID
+         	  , CATE_ID
+         	  , CHALL_CNT
+         	  , CHALL_START
+         	  , CHALL_STATUS
+           FROM
+           		CHALL
+       <![CDATA[WHERE ROWNUM <= 5]]>
+       AND  TO_CHAR(CHALL_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
+        FROM dual)
+       ORDER BY CHALL_DATE DESC 
+	</entry>
+
 	
 	
 	<!-- 챌린지 참여중인 userId select 해오기 -->

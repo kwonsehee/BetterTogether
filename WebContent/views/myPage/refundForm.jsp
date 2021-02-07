@@ -1,22 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"  import="member.model.vo.Member"%>
 <%
 	Member m = (Member)session.getAttribute("loginUser");
 
 	String userId=m.getUserId();
 	String userPwd=m.getUserPwd();
 	int money = m.getPoint();
-	
+	System.out.println("비밀번호 "+userPwd);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Better Together</title>
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+   crossorigin="anonymous"></script>
 <%if(session.getAttribute("msg") != null){ %>
 <script>
 	alert('<%=session.getAttribute("msg") %>');
-	
+	opener.parent.location.reload();
+	window.close();
 </script>
 <%
 	session.removeAttribute("msg");
@@ -27,20 +31,21 @@
 		border: 0.5px solid #937cf790;
 	}
 	
-	#btSection {
-		padding-bottom: 100px;
-	}
         .refund_box{
-            width: 560px;
+            width: 500px;
             height: 80%;
-           /*  margin-left:300px; */
-           margin-left : 20%;
+
+            padding-left:60px;
+           
+
         }
         #content-1 p{
      /*        border:solid 1px red;  */
             font-size: 24px;
             text-align: center;
-             color : #757575;
+
+            color : #757575;
+
         }
         
         #refund, #refund button, #refund tr{
@@ -62,22 +67,23 @@
 	        padding:5px 15px 5px 15px;
 	        background-color: #e6e4e4b6;
 	        font-size:10px;
-	        font-weight: bolder;
+	        
 	        margin-top:20px;
 	        margin-left:50px;
         }
         #content-2{
-            padding-left: 22%;
+      
             margin-top: 5%;
+        }
+        .text_font{
+        font-family: "Nanum Gothic";
+           font-size:16px;
         }
     </style>
 </head>
 <body>
 
-<!-- 페이지를 이동해도 menubar는 계속 상단에 노출되게끔 -->
-	<%@ include file="../common/common_ui.jsp"%>
 
-<section id="btSection" class="content_css">
 
         <section id="content-1">
             <p>환급 받기</p>
@@ -91,32 +97,33 @@
 						method="post"onsubmit="return checkInput();">
                     <table id="refund"style="width : 100%;">
                     	<tr>
-                            <th><label for="money" class="text_font">보유 금액</label></th>
+                            <td><label for="money" class="text_font">보유 금액</label></td>
                             <td colspan="2"><%=money %></td>
                         </tr>
                         <tr>
-                            <th><label for="money" class="text_font">돌려받을 금액</label></th>
+                            <td><label for="money" class="text_font">돌려받을 금액</label></td>
                             <td colspan="2"><input type="text" name="money" id="money" class="input_box"/></td>
                             
                         </tr>
                         <tr>
-                            <th><label for="bank" class="text_font">은행명</label></th>
+                            <td><label for="bank" class="text_font">은행명</label></td>
                             <td colspan="2"><input type="text" name="bank" id="bank" class="input_box"/></td>
                         </tr>
                         <tr>
-                            <th><label for="account" class="text_font">계좌번호 입력</label></th>
+                            <td><label for="account" class="text_font">계좌번호 입력</label></td>
                             <td  colspan="2"> <input type="text" name="account" id="account"class="input_box_lag" /></td>
                             
                         </tr>
                  		<tr>
-                            <th><label for="pass" class="text_font">비밀번호 확인</label></th>
+                            <td><label for="pass" class="text_font">비밀번호 확인</label></td>
                             <td><input type="password" name="pass" id="pass"class="input_box" /></td>
                             <td><label id="pwdResult"></label></td>
                         </tr>
           
                         <tr>
-                            <th > <button type="reset" class="btn">취소</button></th>
-                            <th colspan="2"> <button type="submit" class="btn">환불받기</button></th>
+                            <td > <button type="reset" class="btn">취소</button></td>
+                            <td> <button type="submit" class="btn">환불받기</button></td>
+                            <td></td>
                             
                         </tr>
                     </table>    
@@ -168,8 +175,7 @@
         </section>
 
        
-    </section>
-    
-    <%@ include file="../common/footer.jsp" %>
+
+
 </body>
 </html>

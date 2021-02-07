@@ -19,22 +19,28 @@
 	font-size: 10px;
 	font-weight: bolder;
 	float: right;
-	margin-bottom: 2%;
-	margin-top:2%;
+	margin: 0.5%;
 }
 
 #btnArea {
-	padding:10%;
+	padding: 5%;
+    margin-right: 5%;
 }
 
 /* 타이틀,라인 */
 .h1_title {
+	font-family: "Nanum Gothic";
 	text-align: center;
 	width: 100%;
+	color: #757575;
+	font-size: 24px;
 } 
 
 .line {
 	border: 3px solid rgba(255, 96, 100, 0.7);
+	width: 100%;
+	margin: auto;
+	
 }
 
 .aline {
@@ -52,6 +58,7 @@
 .qnaTable {
 	border-top: 3px solid #937cf790;
 	width: 100%;
+	display: inline-flex;
 }
 
 #qnaBox {
@@ -87,13 +94,22 @@
 }
 
 #reported{
-	color : red;
+	color : #937cf790;
     margin-top : 10%;
     font-size : 35px;
     font-family: "Nanum Gothic";
     text-align : center;
     padding-top:5%;
-    padding-bottom:5%;
+}
+
+#reportelement{
+    width: 18%;
+    text-align: end;
+    margin-right: 2%;
+    margin-top: 1%;
+    font-family: "Nanum Gothic";
+    color : #757575;
+    font-weight: bold;
 }
 </style>
 </head>
@@ -112,16 +128,19 @@
 
 		<!-- 게시물 내용 -->
 			<tr>
-				<td class="qnaTable"><input maxlength="50" id="write_title" placeholder="<%= r.getReport_title() %>" readonly></td>
-			</tr>
-			<tr>
-				<td class="qnaTable" id="contentBox"><textarea cols="50" id="writeArea" rows="10" readonly><%= r.getReport_content() %></textarea></td>
-			</tr>
-			<tr>
-				<td id="report_Img">
-					<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= r.getReport_file() %>"  style="width: 700px;height: 700px;">
+				<td class="qnaTable"><input maxlength="50" id="write_title" placeholder="<%= r.getReport_title() %>" readonly>
+				<label id="reportelement">작성자 : <%= r.getUser_id() %></label>
+				<label id="reportelement">작성일 : <%= r.getReport_date() %></label>
 				</td>
 			</tr>
+			<tr>
+				<td class="qnaTable" id="contentBox"><textarea  id="writeArea" rows="10" readonly><%= r.getReport_content() %></textarea> 
+					<%if(r.getReport_file() != null) {%>
+					<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= r.getReport_file() %>"  style="width: 600px; height: 350px;">
+					<%} %>
+				</td>
+			</tr>
+
 			<%if(r.getT_f().equals("T")) { %>
 				<tr>
 					<td id="reported">
@@ -131,7 +150,7 @@
 			<%} %>
 		</table>
 		<div id="btnArea">	
-	<%if(loginUser.getUserId().equals(r.getUser_id())) { %>
+	<%if(loginUser.getNickName().equals(r.getUser_id())) { %>
 	<button type="button" id="deleteBtn" class="qnaBtn">삭제하기</button>
 	<button type="button" id="listBtn" class="qnaBtn">목록으로</button>
 	
@@ -149,6 +168,7 @@
 	<!-- 신고철회버튼 누르면 신고삭제되게 해버리기 -->
 	<button type="button" id="cancleBtn" class="qnaBtn">신고철회</button>
 	<button type="button" id="report_btn" class="qnaBtn">신고처리</button>
+	<%} %>
 	</div>
 	</section>
 	
@@ -175,7 +195,6 @@
 			$("#reportForm").submit();
 		});
 		</script>	
-	<%} %>
 
 	
 	<script>		

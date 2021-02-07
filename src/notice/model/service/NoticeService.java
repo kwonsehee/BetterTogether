@@ -169,6 +169,19 @@ public class NoticeService {
 			
 			return totalCount;
 		}
+
+		public int insertNoticeMust(Notice n2) {
+			Connection conn=getConnection();
+			int result = new NoticeDao().insertNoticeMust(conn, n2);
+			
+			if(result>0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			return result;
+		}
 		
 	
 }

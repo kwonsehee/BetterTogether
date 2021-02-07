@@ -26,6 +26,7 @@
 	float: right;
 	margin-bottom: 2%;
 	margin-top:2%;
+	margin-left: 1%;
 }
 
 #btnArea {
@@ -57,6 +58,7 @@
 .qnaTable {
 	border-top: 3px solid #937cf790;
 	width: 100%;
+	display: inline-flex;
 }
 
 #qnaBox {
@@ -90,6 +92,17 @@
 .btSection #qnaBox {
 	margin: auto;
 }
+
+#qelement{
+    width: 18%;
+    text-align: end;
+    margin-right: 2%;
+    margin-top: 1%;
+    font-family: "Nanum Gothic";
+    color : #757575;
+    font-weight: bold;
+}
+
 </style>
 </head>
 <body>
@@ -104,7 +117,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="qnaTable" ><input maxlength="50" id="write_title" placeholder="<%=q.getQnaTitle()%>" readonly></td>
+				<td class="qnaTable" ><input maxlength="50" id="write_title" placeholder="<%=q.getQnaTitle()%>" readonly>
+				<label id="qelement">작성자 : <%= q.getUserId() %></label>
+				<label id="qelement">작성일 : <%= q.getQnaDate() %></label>
+				</td>
 			</tr>
 			<tr>
 				<td class="qnaTable" id="contentBox"><textarea cols="50" id="writeArea" rows="10" readonly><%=q.getQnaContent()%></textarea></td>
@@ -124,17 +140,19 @@
 		</table>
 			<div id="btnArea">
 				<!-- 버튼 -->
-				<% if (loginUser.getMembertype() != 0 && loginUser.getUserId().equals(q.getUserId())) { %>
+				<% if (loginUser.getMembertype() != 0 && loginUser.getNickName().equals(q.getUserId())) { %>
 					<button type="button" id="deleteBtn" class="qnaBtn">삭제하기</button>
 					<button type="button" id="updateBtn" class="qnaBtn">수정하기</button>
 					<button type="button" id="listBtn" class="qnaBtn">목록으로</button>
 				<% } else if (loginUser.getMembertype() == 0) { %>
 					<% if (a == null) { %>
 						<button type="button" id="listBtn" class="qnaBtn">목록으로</button>
+						<button type="button" id="deleteBtn" class="qnaBtn">삭제하기</button>
 						<button type="button" id="answerBtn" class="qnaBtn">답변하기</button>
 					<% } else {%>
-						<button type="button" id="ansUpdateBtn" class="qnaBtn">수정하기</button>
 						<button type="button" id="listBtn" class="qnaBtn">목록으로</button>
+						<button type="button" id="deleteBtn" class="qnaBtn">삭제하기</button>
+						<button type="button" id="ansUpdateBtn" class="qnaBtn">수정하기</button>
 					<% } %>
 				<% } %>
 					<form id="qnaNoForm" method="post">
@@ -144,22 +162,21 @@
 					
 			</div>
 			
-	</section>
-
-	<script>
+			<script>
 			//수정하기 버튼 이벤트
 			const updateBtn = document.getElementById('updateBtn');
 			updateBtn.addEventListener('click',function(){
 				$("#qnaNoForm").attr("action","<%=request.getContextPath()%>/qna/updateForm");
 				$("#qnaNoForm").submit();
 			});
-					
-			//삭제하기 버튼 이벤트
+			</script>
+			<script>		
 			const deleteBtn = document.getElementById('deleteBtn');
 			deleteBtn.addEventListener('click',function(){
 				$("#qnaNoForm").attr("action","<%=request.getContextPath()%>/qna/delete");
 				$("#qnaNoForm").submit();
 			});
+			//삭제하기 버튼 이벤트
 			</script>
 			<script>
 			//답변 수정 이벤트
@@ -184,6 +201,8 @@
 				location.href='<%=request.getContextPath()%>/qna/list';
 				});
 			</script>
+	</section>
+
 			<%@ include file="../common/footer.jsp" %>
 			
 </body>

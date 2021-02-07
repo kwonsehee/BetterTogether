@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import refund.model.service.HistoryService;
 import refund.model.service.RefundService;
 import refund.model.vo.Refund;
 
@@ -53,11 +54,13 @@ public class RefundServlet extends HttpServlet {
 		String page="";
 		//환급 디비에 값 입력
 		int result = new RefundService().insertrefund(refund);
-			
+		
 		if(result >0) {
 			System.out.println(loginUser.getPoint()-money+"원 여기오니?22");
 			Member updateMember = new MemberService().updatePoint(loginUser.getPoint()-money, loginUser);
-				
+			//거래내역 디비에 값 입력
+			int result2= new HistoryService().insertRefund(userId, money);
+			
 			//로그인 세션 값 변경
 			request.getSession().setAttribute("loginUser", updateMember);
 			

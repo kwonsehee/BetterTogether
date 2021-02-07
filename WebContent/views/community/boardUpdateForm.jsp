@@ -44,7 +44,7 @@
 	padding: 5px 15px 5px 15px;
 	background-color: #e6e4e4b6;
 	font-weight: bolder;
-	margin-left: 70%;
+	margin-left: 69%;
 	font-size: 10px;
 	margin-top:20px;
 	font-size: 10px;

@@ -406,9 +406,10 @@
 			  , REPORT_MODIFY
 			  , T_F
 			  , REPORT_STATUS
-			  , USER_ID
+			  , I.NICKNAME
 		 FROM
-		 		REPORT
+		 		REPORT R
+		 		JOIN USER_INFO I ON(R.USER_ID = I.USER_ID)
 		WHERE	
 				REPORT_NO = ?
 	</entry>
@@ -545,5 +546,24 @@
 		   AND	T_F = 'F'
            AND  TO_CHAR(REPORT_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
         FROM dual) 
+	</entry>
+	<entry key="ReportNew">
+		SELECT
+				REPORT_NO
+			  , REPORT_TITLE
+              , REPORTED_ID
+              , REPORT_FILE
+              , REPORT_CONTENT
+              , REPORT_DATE
+              , REPORT_MODIFY
+              , T_F
+              , REPORT_STATUS
+              , USER_ID
+           FROM
+           		REPORT
+      <![CDATA[WHERE ROWNUM <= 5]]>
+      AND  TO_CHAR(REPORT_DATE, 'YY/MM/DD') = (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')
+        FROM dual)
+      ORDER BY REPORT_DATE DESC 
 	</entry>
 </properties>

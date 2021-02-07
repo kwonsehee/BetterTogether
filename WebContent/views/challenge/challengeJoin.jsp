@@ -6,7 +6,7 @@
 
 	// 챌린지 상태 리스트 가져오기
 	ArrayList<ChallengeStatus> list = (ArrayList<ChallengeStatus>)request.getAttribute("list");
-	
+	 
 	// 찜 상태 받아오기 
 	String hits_status = "";
 	if(list != null){

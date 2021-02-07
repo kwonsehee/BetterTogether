@@ -21,6 +21,7 @@
 	float: right;
 	margin-bottom: 2%;
 	margin-top:2%;
+	margin-left: 1%;
 }
 
 #btnArea {
@@ -29,12 +30,17 @@
 
 /* 타이틀,라인 */
 .h1_title {
+	font-family: "Nanum Gothic";
 	text-align: center;
 	width: 100%;
+	color: #757575;
+	font-size: 24px;
 } 
 
 .line {
 	border: 3px solid rgba(255, 96, 100, 0.7);
+	width: 100%;
+	margin: auto;
 }
 
 .aline {
@@ -52,6 +58,7 @@
 .qnaTable {
 	border-top: 3px solid #937cf790;
 	width: 100%;
+	display: inline-flex;
 }
 
 #qnaBox {
@@ -85,6 +92,17 @@
 .btSection #qnaBox {
 	margin: auto;
 }
+
+#nelement{
+ 	width: 18%;
+    text-align: end;
+    margin-right: 2%;
+    margin-top: 1%;
+    font-family: "Nanum Gothic";
+    color : #757575;
+    font-weight: bold;
+}
+
 </style>
 </head>
 <body>
@@ -99,10 +117,15 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="qnaTable" ><input maxlength="50" id="write_title" placeholder="<%= n.getaTitle() %>" readonly></td>
+				<td class="qnaTable" ><input maxlength="50" id="write_title" placeholder="<%= n.getaTitle() %>" readonly>
+					<label id="nelement">작성자 : <%= n.getUser_id() %></label>
+					<label id="nelement">작성일 : <%= n.getaDate() %></label>
+				</td>
 			</tr>
 			<tr>
-				<td class="qnaTable" id="contentBox"><textarea cols="50" id="writeArea" rows="10" readonly><%= n.getaContent() %></textarea></td>
+				<td class="qnaTable" id="contentBox"><textarea id="writeArea" rows="10" readonly><%= n.getaContent() %></textarea>
+					<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= n.getaFile() %>"  style="width: 600px; height: 350px;">
+				</td>
 			</tr>
 		</table>
 		<div id="btnArea">

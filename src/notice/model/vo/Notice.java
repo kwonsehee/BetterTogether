@@ -29,6 +29,15 @@ public class Notice {
 		
 	}
 
+	
+	public Notice(String aTitle, String aContent, String user_id, int aType) {
+		super();
+		this.aTitle = aTitle;
+		this.aContent = aContent;
+		this.user_id = user_id;
+		this.aType = aType;
+	}
+
 
 	public Notice(String aTitle, String aContent, String user_id) {
 		super();
@@ -38,6 +47,15 @@ public class Notice {
 	}
 
 
+	public Notice(String aTitle, String aFile, String aContent, String user_id, int aType) {
+		super();
+		this.aTitle = aTitle;
+		this.aFile = aFile;
+		this.aContent = aContent;
+		this.user_id = user_id;
+		this.aType = aType;
+	}
+	
 	public Notice(String aTitle, String aFile, String aContent, String user_id) {
 		super();
 		this.aTitle = aTitle;

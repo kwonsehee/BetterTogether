@@ -62,7 +62,7 @@
         .confirm img{
             width : 180px;
             height : 150px;
-            border: 1px solid black;
+    /*       border: 1px solid black;   */
         }
 /*         .plus_btn{ 
             width : 180px;
@@ -234,7 +234,7 @@
     <div class="button_area">
        <button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();">목록으로</button>
 	  <%if(join>0){ %>
-        <button type="button" id="plusBtn" class="plus_btn"style="margin-left: 940px;">인증하기</button>
+        <button type="button" id="plusBtn" class="plus_btn"style="margin-left: 865px;">인증하기</button>
         <script>
                         
         //+버튼 클릭 이벤트
@@ -243,6 +243,7 @@
         location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>&confirm=<%=confirm%>';
         });
         </script>  
+        
                  
         <%} %>
       </div>

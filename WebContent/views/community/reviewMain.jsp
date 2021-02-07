@@ -134,7 +134,7 @@
            padding:5px 15px 5px 15px;
            background-color: #e6e4e4b6;
            font-weight: bolder;  
-           margin-left:900px;
+           margin-left:845px;
 }
 
 #submit a {
@@ -203,8 +203,9 @@
 #counter {
 	color:#757575;
 	font-size:12px;
-	margin-left:1020px;	
+	margin-left:950px;	
 }
+
 
 /* 별점순, 최신순 정렬 버튼 */
 .sortArea{
@@ -272,7 +273,7 @@
 					<td class="createDate"><%= r.getCreateDate() %></td>
 				</tr>
 				<tr class="secondTr">
-					<td class="contentArea"><textarea readonly cols="116"><%= r.getrContent() %></textarea></td>
+					<td class="contentArea"><textarea readonly cols="110"><%= r.getrContent() %></textarea></td>
 				</tr>
 			</table>
 		</div>
@@ -401,7 +402,7 @@
 
 		<div id="reviewwrite">
 			<textarea id="reviewWriteArea" placeholder="최대 300자까지 입력 가능합니다."></textarea>
-			<span id="counter">0 / 400</span>
+			<span id="counter">0 / 300</span>
 		</div>
 
 		<!--  글자수 실시간 카운팅 -->

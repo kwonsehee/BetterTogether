@@ -198,7 +198,7 @@ public class NoticeDao {
 							rset.getString("ARTICLE_CONTENT"),
 							rset.getDate("ARTICLE_DATE"),
 							rset.getDate("ARTICLE_MODIFY"),
-							rset.getString("USER_ID"),
+							rset.getString("NICKNAME"),
 							rset.getInt("ARTICLE_CNT"),
 							rset.getInt("ARTICLE_TYPE"));
 				}
@@ -462,6 +462,45 @@ public class NoticeDao {
 			
 			
 			return totalCount;
+		}
+
+		public int insertNoticeMust(Connection conn, Notice n2) {
+			int result = 0;
+			PreparedStatement pstmt=null;
+			
+			String sql="";
+		
+			try {
+				
+				if(n2.getaFile()==null) {
+					sql=prop.getProperty("insertNotice3");
+					pstmt = conn.prepareStatement(sql);
+				
+					pstmt.setString(1, n2.getaTitle());
+					pstmt.setString(2, n2.getaContent());
+					pstmt.setString(3, n2.getUser_id());
+					pstmt.setInt(4, n2.getaType());
+				}else {
+					sql=prop.getProperty("insertNotice4");
+					pstmt = conn.prepareStatement(sql);
+				
+					pstmt.setString(1, n2.getaTitle());
+					pstmt.setString(2, n2.getaContent());
+					pstmt.setString(3, n2.getUser_id());
+					pstmt.setString(4, n2.getaFile());
+					pstmt.setInt(4, n2.getaType());
+				}
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				
+				close(pstmt);
+			}
+
+			return result;
 		}
 
 }

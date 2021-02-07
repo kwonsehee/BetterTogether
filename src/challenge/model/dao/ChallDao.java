@@ -1068,6 +1068,7 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, cno);
+			pstmt.setInt(2, cno);
 
 			rset = pstmt.executeQuery();
 
@@ -1096,6 +1097,7 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, cno);
+			pstmt.setInt(2, cno);
 
 			rset = pstmt.executeQuery();
 
@@ -1124,6 +1126,7 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, cno);
+			pstmt.setInt(2, cno);
 
 			rset = pstmt.executeQuery();
 
@@ -1402,6 +1405,34 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 		}
 
 		return totalCount;
+	}
+
+	public ArrayList<Challenge> challNew(Connection conn) {
+		ArrayList<Challenge> challNew = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("challNew");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				challNew.add(new Challenge(rset.getInt(1), rset.getString(2), rset.getInt(3), rset.getDate(4),
+						rset.getString(5), rset.getString(6), rset.getString(7), rset.getString(8), rset.getInt(9),
+						rset.getString(10), rset.getInt(11), rset.getString(12), rset.getString(13), rset.getInt(14),
+						rset.getDate(15),rset.getString(16)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return challNew;
 	}
 	
 	// 참여중인 회원 아이디 select

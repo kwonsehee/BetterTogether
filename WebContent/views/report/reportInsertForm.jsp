@@ -38,15 +38,24 @@
 }
 
 .Btn1 {
+		width: 55px;
 	font-family: "Nanum Gothic";
-	border-radius: 5px;
+	border-radius: 10px;
 	border: solid 1px #9e9e9e5b;
-	 
+	padding: 5px 15px 5px 15px;
 	background-color: #e6e4e4b6;
-	 
 	font-weight: bolder;
+	font-size: 10px;
+	color:black;
  
 }
+
+th{
+font-family: "Nanum Gothic";
+}
+ .line {
+           border: 0.5px solid #937cf790;
+        }
 </style>
 </head>
 <body>
@@ -58,15 +67,17 @@
 		enctype="multipart/form-data">
 
 		<section id="btSection" class="btSection">
+			<h2 style="color: #757575; font-family: Nanum Gothic; text-align: center;"><%=category%>신고	</h2>
+						
+		<div class="line"></div>
 			<div class="container">
 
-				<div class="row">
+			<div class="row" style="margin-top: 30px;">
 					<div class="col-sm-12 text-center">
 						<div class="col-sm-3"></div>
 
 						<div class="col-sm-6">
-							<h2><%=category%>신고
-							</h2>
+						
 							<table class="table table-boardered">
 							 
 								<input type="hidden" class="title" name="category"

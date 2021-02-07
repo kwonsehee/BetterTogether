@@ -9,7 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Better Together</title>
-<%-- <link rel="stylesheet" href='<%=request.getContextPath()%>/resources/css/qnaStyle.css'>--%>
 <style>
 
         #questionBtn {
@@ -40,7 +39,7 @@
 		
         #line {
            border: 0.5px solid #937cf790;
-           width: 80%;
+           width: 100%;
            margin: auto;
         }
 
@@ -49,6 +48,7 @@
             width: 100%;
            /*  height: 400px;      */ 
             border-collapse: collapse;
+            margin-top: 30px;
             
         }
 
