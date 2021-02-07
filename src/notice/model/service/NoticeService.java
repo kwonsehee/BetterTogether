@@ -52,6 +52,7 @@ public class NoticeService {
 
 		//3. 공지사항 상세 보기 서비스
 		public Notice selectNotice(int ano) {
+			Notice n = null;
 			Connection conn = getConnection();
 			
 			//1. 조회수 증가
