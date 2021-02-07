@@ -4,7 +4,7 @@
 	Challenge c = (Challenge)request.getAttribute("challenge");
 	
 	int totalCnt = Integer.parseInt(String.valueOf(request.getAttribute("totalCnt")));
-	totalCnt = 3;
+	
 	double avgTotal = Double.parseDouble(String.valueOf(request.getAttribute("avgTotal")));
 	int num1 = Integer.parseInt(String.valueOf(request.getAttribute("num1")));//100% 달성 인원
 	int num2 = Integer.parseInt(String.valueOf(request.getAttribute("num2")));//85%미만 달성 인원
