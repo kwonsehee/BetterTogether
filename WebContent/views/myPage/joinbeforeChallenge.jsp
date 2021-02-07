@@ -207,16 +207,16 @@
   				location.href='<%= request.getContextPath() %>/chall/join?challNo='+challNo;
   			});   			
    		});
-       
+      });
     </script>
 
-   	<script>
+ <%--   	<script>
 	 //1.메인으로 돌아가기
 	const goMainBtn = document.getElementById('goMainBtn');
 	goMainBtn.addEventListener('click',function(){
 		location.href='<%=request.getContextPath()%>';
 	});
-   	</script>
+   	</script> --%>
    	
    	<%@ include file="../common/footer.jsp" %>
 </body>
