@@ -191,10 +191,12 @@ td .btn1 {
 			<!-- 작성 수정 삭제 버튼 -->
 			<div id="search-area">
 				<div id="btnArea">
-					<% if (loginUser != null && loginUser.getMembertype() == 0) { %>
+					<%if(loginUser!=null){ %>
+						<%if(loginUser.getMembertype() == 0) {%>
 					<button class="btn1" type="button"
 						onclick="location.href='<%=request.getContextPath()%>/views/faq/faqInsertForm.jsp'">FAQ작성</button>
-					<% } %>
+					<%} %>
+					<%} %>
 				</div>
 
 				<!-- 검색창 -->
@@ -225,10 +227,12 @@ td .btn1 {
 					<tr class="question">
 						<td id="none"><%=f.getQnaNo()%></td>
 						<td>Q . <%=f.getQnaTitle()%> 
-						<% if (loginUser.getMembertype() == 0) { %>
+						<%if(loginUser!=null) { %>
+						 <% if (loginUser.getMembertype() == 0) { %>
 							<button type="button" class="btn1" id="updateBtn"
 								onclick="location.href='<%=request.getContextPath()%>/faq/updateForm?qnaNo=<%=f.getQnaNo()%>'">관리</button>
 							<% } %>
+							<%} %>	
 						</td>
 					</tr>
 					<tr class="hide">
@@ -259,16 +263,7 @@ td .btn1 {
     	
 		</section>
 		
-		<script>
-		// 수정 삭제 기능
-		$(function(){
-			$("#faqBoard td").parent().children().eq(0).text().(function())
-				
-				location.href='<%=request.getContextPath()%>/faq/delete';
 		
-				});
-			});
-		</script>
 		
 		<!-- 페이징 바 -->
 		<div class="pagingArea">
