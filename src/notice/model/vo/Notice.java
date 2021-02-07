@@ -195,6 +195,14 @@ public class Notice {
 		this.aType = aType;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Notice [aNo=" + aNo + ", aTitle=" + aTitle + ", aFile=" + aFile + ", aContent=" + aContent + ", aDate="
+				+ aDate + ", aModify_date=" + aModify_date + ", user_id=" + user_id + ", aCnt=" + aCnt + ", aType="
+				+ aType + "]";
+	}
+
 	
 }
 

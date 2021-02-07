@@ -13,9 +13,10 @@
 
 	//돌려받을 금액
 	int money=(int)(c.getChallPay());
+	
 	//달성률이 100%이면 추가금액 지급 
 	if(cer.getAchieve()==1){
-		money = c.getChallPay()+(c.getChallPay()*num2)/totalCnt;
+		money = c.getChallPay()+(c.getChallPay()*num2)/num1;
 	}
 	
 	//챌린지 상태가 2인지 아닌지 2면 상금 다시 받을수 없음
