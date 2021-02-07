@@ -68,12 +68,11 @@
 }
 
 #newContent_div{
-	width:40%;
-	border:1px solid black;
-	margin: 10%;
-	position: relative;
-    left: 500px;
-    top: -550px;
+	width: 30%;
+    border: 1px solid black;
+    display: inline-table;
+    margin-left: 2.5%;
+	
 }
 
 #title{
@@ -81,28 +80,36 @@
 	color: #757575;
 }
 
+#article1{
+	margin-left:15%;
+	
+}
+
 #newcontent_title{
 	font-family: "Nanum Gothic";
 	border-bottom: 2px solid #937cf790;
 	text-align: center;
+
 }
 
 #content_title {
 	font-size: 15px;
 	color: #757575;
+	width: 300px;
+
 }
 
 #chaSection{
-	width: 80%;
-	margin: auto;
+	width: 100%;
+	margin-left: 13%;
 }
 
 #chart{
-	width:40%;
-	padding: 10px;
-	margin: 5%;
-	text-align: left;
-	background-color:white;
+	width: 30%;
+    float: left;
+    background-color: white;
+    margin: 50px;
+	margin-top: -10px;
 }
 
 .btSection{
@@ -110,6 +117,30 @@
 }
 
 
+
+#divlabel{
+	width:100%;
+	text-align: center;
+	font-family: "Nanum Gothic";
+	color: #757575;
+	font-size: 24px;
+	padding-bottom: 3%;
+}
+
+#background{
+
+	background-color:rgba(196, 196, 196, 0.15);
+	margin:5%;
+	padding-bottom: 20%;
+}
+
+#articleback{
+   margin-left: 5%;
+    margin-right: 5%;
+    padding-right: 13%;
+    padding-bottom: 5%;
+    background-color: rgba(196, 196, 196, 0.15);
+}
 </style>
 <body>
 	<%@ include file="../common/common_ui.jsp"%>
@@ -121,9 +152,13 @@
     
     <div id="line"></div>
     
-    <section id="chaSection">
+    <div id="background">
+    
+    <label id="divlabel" style="padding-top:3%;">통계</label>
+    
+    <div id="chaSection">
    	 		<!-- 차트div --> 
-			<div id="chart">	
+			<div id="chart" >	
 				<div class="container"> 
 					<canvas id="myChart" class="myChart"></canvas>
 				</div> 
@@ -135,7 +170,14 @@
 				</div> 
 			</div>
 		
-		
+	</div>
+	</div>
+	
+	<div id="articleback">
+	<div id="article1">
+	
+	<label id="divlabel" style=" padding-top: 2%;">게시판</label>
+	
 		<!-- 질문div -->
 		<div id="newContent_div">
 			<div id="newcontent_title">
@@ -179,7 +221,7 @@
 		</div>
 		
 		<!-- 카페div -->
-		<div id="newContent_div">
+		<div id="newContent_div" style="margin-left: 17%;">
 			<div id="newcontent_title">
 				<span id="title">최근 등록 된 카페</span>
 			</div>
@@ -193,7 +235,7 @@
 		</div>
 		
 		<!-- 게시물div -->
-		<div id="newContent_div">
+		<div id="newContent_div" style="margin-top: 5%;">
 			<div id="newcontent_title">
 				<span id="title">최근 등록 된 게시물</span>
 			</div>
@@ -205,14 +247,15 @@
 				<% } %>
 			<% } %>
 		</div>
-	</section>
-
+	</div>
+	</div>
 	<!-- 버튼 -->
 	<div id="btnArea">
 		<button id="download" type="button" class="btn1"
 				onclick="location.href='<%= request.getContextPath() %>/administratorPage'">다운로드</button>
 	</div>
 	
+	</section>
 	<!-- 부트스트랩 --> 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
@@ -253,7 +296,6 @@
 		options: { scales: { yAxes: [{ ticks: { beginAtZero: true } }] } } }); 
 	</script>
 	
-	</section>
 	
 	 <%@ include file="../common/footer.jsp" %>
 	
