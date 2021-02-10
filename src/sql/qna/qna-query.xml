@@ -3,23 +3,24 @@
 <properties>
 	
 	<entry key="selectList">
-		 SELECT
-		 	    RNUM
-			  , QNA_NO
-			  , QNA_TITLE
-			  , QNA_CONTENT
-			  , QNA_DATE
-			  , QNA_MODIFY	  
-			  , Q_REFERENCE
-			  , QNA_TYPE
+       SELECT
+              RNUM
+           , QNA_NO
+           , QNA_TITLE
+           , QNA_CONTENT
+           , QNA_DATE
+           , QNA_MODIFY     
+           , Q_REFERENCE
+           , QNA_TYPE
               , QNA_STATUS
-			  , I.NICKNAME
-		   FROM
-		 		QLIST Q
-     			JOIN USER_INFO I ON(Q.USER_ID = I.USER_ID) 
+           , I.NICKNAME
+         FROM
+             QLIST Q
+              JOIN USER_INFO I ON(Q.USER_ID = I.USER_ID) 
           WHERE 
-          		RNUM BETWEEN ? AND ?
-	</entry>
+                RNUM BETWEEN ? AND ?
+       ORDER BY QNA_NO DESC   
+   </entry>
 	<entry key="insertQuestion">
 		INSERT
 		INTO QNA

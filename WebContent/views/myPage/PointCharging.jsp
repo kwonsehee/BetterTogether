@@ -32,7 +32,7 @@
 
         
 	 #content-1 p{
-
+		  margin-top:50px;
           font-size: 24px;
           text-align: center;
           color : #757575;
@@ -41,7 +41,7 @@
         .refund_box{
             width: 500px;
             height: 80%;
-            padding-left:80px;
+            padding-left:25%;
         }
 
         #refund, #refund button, #refund tr{

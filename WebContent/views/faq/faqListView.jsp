@@ -236,7 +236,7 @@ td .btn1 {
 						</td>
 					</tr>
 					<tr class="hide">
-						<td>A . <%=f.getQnaContent()%></td>
+						<td><pre style="white-space:pre-wrap;">A . <%=f.getQnaContent()%></pre></td>
 					</tr>
 					<% } %>
 					<% } %>

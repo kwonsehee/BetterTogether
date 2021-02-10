@@ -1464,6 +1464,28 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 		
 		return pplList;
 	}
+
+	public int endChallStatus(Connection conn, String userId, int challNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("endChallStatus");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, challNo);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 	
 	
 	

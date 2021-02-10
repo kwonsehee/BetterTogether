@@ -69,7 +69,7 @@ public class Member {
 	}
 	
 	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
-			Date modifyDate, int membertype, int user_cate, int point) {
+			Date modifyDate, int membertype, int user_cate, int point, String writer_active) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -81,6 +81,7 @@ public class Member {
 		this.membertype = membertype;
 		this.user_cate=user_cate;
 		this.point = point;
+		this.writer_active=writer_active;
 	}
 	
 	public Member(String userId, String userPwd, String nickName, String phone, String email, Date joinDate,
@@ -136,6 +137,7 @@ public class Member {
 		this.writer_active = writer_active;
 		this.user_cate = user_cate;
 		this.point = point;
+	
 	}
 
 	public String getUserId() {

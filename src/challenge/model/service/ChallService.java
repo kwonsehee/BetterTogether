@@ -667,5 +667,21 @@ public class ChallService {
 		return list;
 	}
 
+	//chall_status에 chall_status의 값을 2로 변경 
+		public int endChallStatus(String userId, int challNo) {
+			Connection conn = getConnection();
+			
+			int result = new ChallDao().endChallStatus(conn, userId, challNo);
+
+			if(result>0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			
+			close(conn);
+
+			return result;
+		}
 
 }

@@ -299,7 +299,7 @@
 					<td class="createDate"><%= r.getCreateDate() %></td>
 				</tr>
 				<tr class="secondTr">
-					<td class="contentArea"><textarea readonly cols="116"><%= r.getrContent() %></textarea></td>
+					<td class="contentArea"><textarea readonly cols="100"><%= r.getrContent() %></textarea></td>
 				</tr>
 			</table>
 		</div>

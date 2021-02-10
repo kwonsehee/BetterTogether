@@ -126,7 +126,7 @@
 	      min-height:400px;
 	      margin:auto;
 	     margin-top:5%;
-	     padding-left:2%;
+	     padding-left:3%;
       
 	   
       }
@@ -232,7 +232,7 @@
         </section>
     
     <div class="button_area">
-       <button type="button" id="backBtn" class="back_btn"onclick="javascript:history.back();">목록으로</button>
+       <button type="button" id="backBtn" class="back_btn">목록으로</button>
 	  <%if(join>0){ %>
         <button type="button" id="plusBtn" class="plus_btn"style="margin-left: 865px;">인증하기</button>
         <script>
@@ -242,6 +242,14 @@
         plusBtn.addEventListener('click',function(){
         location.href='<%=request.getContextPath()%>/views/confirm/confirmInsert.jsp?cno=<%=cno%>&title=<%=title%>&confirm=<%=confirm%>';
         });
+        
+      //나의 챌린지 인증하기 버튼
+		const backBtn = document.getElementById("backBtn");
+		backBtn.addEventListener('click',function(){
+			
+			location.href="<%= request.getContextPath()%>/confirm/joinchalllist";
+			
+		});
         </script>  
         
                  

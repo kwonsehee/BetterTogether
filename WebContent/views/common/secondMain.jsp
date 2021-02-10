@@ -243,7 +243,6 @@ button:hover {
 .topten_ul ul, .topten_ul li {
 	list-style: none;
 	margin-left: 70%;
-	margin-bottom:1%;
 }
 
 .rankwrap {

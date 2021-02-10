@@ -30,7 +30,7 @@
 }
 
 #btnArea {
-	padding-right:10%;
+ margin-right:5%;
 }
 
 /* 타이틀,라인 */
@@ -62,7 +62,7 @@
 }
 
 #qnaBox {
-	width: 80%;
+	width: 90%;
 }
 
 #write_title {

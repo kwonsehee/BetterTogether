@@ -99,6 +99,7 @@
 			 , I.NICKNAME
 			 , ARTICLE_CNT
 			 , ARTICLE_TYPE
+			 , ARTICLE_FILE
 		  FROM
 		  	   NOTICE N
                JOIN USER_INFO I ON(N.USER_ID = I.USER_ID) 
@@ -112,7 +113,7 @@
   		   	   ARTICLE_TYPE = 3
   		 WHERE
   		 	   ARTICLE_NO = ?
-  		   AND ARTICLE_TYPE = 1
+  		   AND ARTICLE_TYPE != 3
   </entry>
   <entry key="updateNotice">
   		UPDATE

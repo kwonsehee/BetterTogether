@@ -262,7 +262,7 @@
 		// 게시판 상세보기 기능
 		$(function(){
 			$("#qnaBoard td").mouseenter(function(){
-				$(this).parent().css({"background":"#937cf790", "cursor":"pointer"});
+				$(this).parent().css({"background":"#937cf755", "cursor":"pointer"});
 			}).mouseout(function(){
 				$(this).parent().css("background", "none");
 			}).click(function(){

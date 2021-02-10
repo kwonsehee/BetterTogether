@@ -25,7 +25,7 @@
 }
 
 #btnArea {
-	padding-right:10%;
+	padding-right:7%;
 }
 
 /* 타이틀,라인 */
@@ -62,7 +62,7 @@
 }
 
 #qnaBox {
-	width: 80%;
+	width: 85%;
 }
 
 #write_title {
@@ -72,6 +72,7 @@
 	border: 0px;
 	background: none;
 	padding-left: 2%;
+	font-size: 17px;
 }
 
 #writeArea {
@@ -83,6 +84,7 @@
 	font-family: "Nanum Gothic";
 	padding-left: 2%;
 	color: #757575;
+	font-size: 15px;
 }
 
 #contentBox{
@@ -94,7 +96,7 @@
 }
 
 #nelement{
- 	width: 18%;
+ 	width: 20%;
     text-align: end;
     margin-right: 2%;
     margin-top: 1%;
@@ -124,7 +126,9 @@
 			</tr>
 			<tr>
 				<td class="qnaTable" id="contentBox"><textarea id="writeArea" rows="10" readonly><%= n.getaContent() %></textarea>
+					<%if(n.getaFile() != null) {%>
 					<img src="<%= request.getContextPath()%>/resources/uploadFiles/<%= n.getaFile() %>"  style="width: 600px; height: 350px;">
+					<%} %>
 				</td>
 			</tr>
 		</table>
@@ -134,6 +138,7 @@
 			<% if (loginUser != null && loginUser.getMembertype() == 0) { %>
 			<button type="button" id="updateBtn" class="qnaBtn">수정하기</button>
 			<button type="button" id="deleteBtn" class="qnaBtn">삭제하기</button>
+			<% } %>
 
 			<!-- form 태그를 POST 방식으로 제출
 			nno를 화면에 드러내지 않고 form을 submit하면서 넘길 수 있음 -->
@@ -147,7 +152,8 @@
 						$("#nnoForm").attr("action","<%=request.getContextPath()%>/notice/updateForm");
 						$("#nnoForm").submit();
 					});
-					
+			</script>	
+			<script>
 					//삭제하기 버튼 이벤트
 					//*******삭제하기 위해서는 article_type 추가 필요함!!!!!!!!
 					const deleteBtn = document.getElementById('deleteBtn');
@@ -156,8 +162,7 @@
 						$("#nnoForm").submit();
 					});
 					
-					</script>
-			<% } %>
+			</script>		
 		</div>
 
 
@@ -166,8 +171,7 @@
 		//목록으로 버튼 이벤트
 		const listBtn = document.getElementById('listBtn');
 		listBtn.addEventListener('click', function() {
-			location.href = '
-	<%=request.getContextPath()%>/notice/list';
+			location.href = '<%=request.getContextPath()%>/notice/list';
 	});
 	</script>
 	

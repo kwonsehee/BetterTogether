@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import challenge.model.service.ChallService;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 import refund.model.service.HistoryService;
@@ -37,7 +38,7 @@ public class RefundUserServlet extends HttpServlet {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String userId = loginUser.getUserId();
 		String challTitle = (String)request.getParameter("challTitle");
-		
+		int challNo = Integer.parseInt(request.getParameter("challNo"));
 		int money = Integer.parseInt(request.getParameter("money"));
 		System.out.println("user id and money : "+userId + money);
 		
@@ -46,22 +47,25 @@ public class RefundUserServlet extends HttpServlet {
 		//거래내역 디비에 넣어주기
 		int result2= new HistoryService().insertHistory(userId, money, challTitle);
 		
+		//chall_status에 chall_status의 값을 2로 변경 
+		int result3= new ChallService().endChallStatus(userId, challNo);
+		
 		String page="";
-		if(result >0&&result2>0) {
+		if(result >0&&result2>0&&result3>0) {
 			Member updateMember = new MemberService().selectMember(userId);
 				
 			//로그인 세션 값 변경
 			request.getSession().setAttribute("loginUser", updateMember);
+			request.getSession().setAttribute("msg", money+"원 상금을 받았습니다. 마이페이지를 확인해주세요.");
+			response.sendRedirect(request.getContextPath()+"/myPage/history");
 			
-			request.getSession().setAttribute("msg", "상금을 받았습니다. 마이페이지를 확인해주세요.");
-			page = "/views/myPage/refundForm.jsp";
+			
 		}else {
 			request.setAttribute("msg", "상금받기에 실패하였습니다.");
 			page = "/views/common/errorPage.jsp";
+			RequestDispatcher view = request.getRequestDispatcher(page);
+			view.forward(request, response);
 		}
-
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 	}
 
 	/**

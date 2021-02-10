@@ -98,7 +98,7 @@
             width:30%;
         }
         #tb_date {
-            width:10%;
+            width:15%;
         }
         #tb_views {
             width: 5%;

@@ -93,7 +93,7 @@
 				</div>
 				
 				<!-- 버튼 -->
-				<button type="button"  onclick="javascript:history.back();" id="back">뒤로가기</button>
+				<button type="button"  onclick="location.href='<%=request.getContextPath() %>/board/myboardView'" id="back">뒤로가기</button>
 				<button id="updateBtn" type="submit">수정 완료</button>
 			
 			</div>

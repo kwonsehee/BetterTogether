@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import challenge.model.service.ChallService;
 import challenge.model.vo.Challenge;
+import challenge.model.vo.ChallengeStatus;
 import confirm.model.service.CerService;
 import confirm.model.vo.Cer;
 import member.model.vo.Member;
@@ -64,6 +65,10 @@ public class ConfirmResultServlet extends HttpServlet {
 		Cer cer = new CerService().getAchieve(cno, loginUser.getUserId());
 		System.out.println("cer : "+cer);
 		
+		//회원이 상금은 받은지 안받은지 확인
+		ChallengeStatus chall_stauts= cs.selectChallStatus(cno, loginUser.getUserId());
+		int challstatus = chall_stauts.getChallStatus();
+		
 		request.setAttribute("challenge", challenge);
 		request.setAttribute("totalCnt", totalCnt);
 		request.setAttribute("avgTotal", avgTotal);
@@ -71,6 +76,7 @@ public class ConfirmResultServlet extends HttpServlet {
 		request.setAttribute("num2", num2);
 		request.setAttribute("num3", num3);
 		request.setAttribute("cer", cer);
+		request.setAttribute("challstatus", challstatus);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/confirm/confirmResult.jsp");
 	    view.forward(request, response);
