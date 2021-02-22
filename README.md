@@ -6,6 +6,9 @@
 
 ## Features 🌟
 
+ [![All Contributors](https://img.shields.io/badge/all__contributors-6-orange)](#contributors-)
+ ![android](https://img.shields.io/badge/eclipse-java-green)
+ ![DataBase](https://img.shields.io/badge/DataBase-Oracle-lightgrey)
 ### Contributors :sparkles:
 <table>
   <tr>
