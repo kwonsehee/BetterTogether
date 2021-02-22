@@ -146,5 +146,5 @@ https://www.erdcloud.com/d/oPKqs7rnBJ7Z4Ynf2 -> for more detail of DB
 <img width="370px" height="220px" alt="20210222_215740_8" src="https://user-images.githubusercontent.com/73922848/108711783-3532e880-7559-11eb-9e1d-50a1e533d6e0.png">
 </kbd>
 <br>
-
+[BetterTogether_최종발표_PPT.pdf](https://github.com/kwonsehee/BetterTogether/files/6022181/BetterTogether_._PPT.pdf) -> for more codes
 
