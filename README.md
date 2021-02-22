@@ -122,7 +122,7 @@ https://www.erdcloud.com/d/oPKqs7rnBJ7Z4Ynf2 -> for more detail of DB
 <br><br>
 • Code Review PPT<br>
 <kbd>
-<img width="370px" height="220px" alt="20210222_215740_1" src="https://user-images.githubusercontent.com/73922848/108711729-23514580-7559-11eb-966f-9e236a892945.png">
+<img width="370px" height="220px" alt="20210222_220831_1" src="https://user-images.githubusercontent.com/73922848/108712738-90b1a600-755a-11eb-92a5-362819e5994a.png">
 </kbd>
 <kbd>
 <img width="370px" height="220px" alt="20210222_215740_2" src="https://user-images.githubusercontent.com/73922848/108711731-24827280-7559-11eb-8793-6cd44b4a2f03.png">
@@ -145,4 +145,6 @@ https://www.erdcloud.com/d/oPKqs7rnBJ7Z4Ynf2 -> for more detail of DB
 <kbd>
 <img width="370px" height="220px" alt="20210222_215740_8" src="https://user-images.githubusercontent.com/73922848/108711783-3532e880-7559-11eb-9e1d-50a1e533d6e0.png">
 </kbd>
+<br>
+
 
