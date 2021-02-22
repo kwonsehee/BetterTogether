@@ -110,10 +110,10 @@
 • Plan PPT<br>
 • UI<br>
 <kbd>
- <img src="https://user-images.githubusercontent.com/73922848/108707753-d3bc4b00-7553-11eb-838e-ff45b263e6c4.png" width="400px" height="400px">
+ <img src="https://user-images.githubusercontent.com/73922848/108707753-d3bc4b00-7553-11eb-838e-ff45b263e6c4.png" width="390px" height="390px">
 </kbd>
 <kbd>
- <img src="https://user-images.githubusercontent.com/73922848/108707755-d5860e80-7553-11eb-902c-aa981595759d.png" width="400px" height="400px">
+ <img src="https://user-images.githubusercontent.com/73922848/108707755-d5860e80-7553-11eb-902c-aa981595759d.png" width="390px" height="390px">
 </kbd>
 <br>
 • DB<br>
