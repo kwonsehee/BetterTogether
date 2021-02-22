@@ -121,3 +121,28 @@
 https://www.erdcloud.com/d/oPKqs7rnBJ7Z4Ynf2 -> for more detail of DB
 <br><br>
 • Code Review PPT<br>
+<kbd>
+<img width="390px" height="390px" alt="20210222_215740_1" src="https://user-images.githubusercontent.com/73922848/108711729-23514580-7559-11eb-966f-9e236a892945.png">
+</kbd>
+<kbd>
+<img width="390px" height="390px" alt="20210222_215740_2" src="https://user-images.githubusercontent.com/73922848/108711731-24827280-7559-11eb-8793-6cd44b4a2f03.png">
+</kbd>
+<kbd>
+<img width="390px" height="390px" alt="20210222_215740_3" src="https://user-images.githubusercontent.com/73922848/108711740-277d6300-7559-11eb-87d1-bbe163b4c726.png">
+</kbd>
+<kbd>
+<img width="390px" height="390px" alt="20210222_215740_4" src="https://user-images.githubusercontent.com/73922848/108711755-29dfbd00-7559-11eb-900d-d39109a9a78b.png">
+</kbd>
+<kbd>
+<img width="390px" height="390px" alt="20210222_215740_5" src="https://user-images.githubusercontent.com/73922848/108711760-2c421700-7559-11eb-8c16-857832e4ecc3.png">
+</kbd>
+<kbd>
+<img width="390px" height="390px" alt="20210222_215740_6" src="https://user-images.githubusercontent.com/73922848/108711771-306e3480-7559-11eb-8a13-ec1ff35baeca.png">
+</kbd>
+<kbd>
+<img width="390px" height="390px" alt="20210222_215740_7" src="https://user-images.githubusercontent.com/73922848/108711777-32d08e80-7559-11eb-80d5-af4ecc1e287b.png">
+</kbd>
+<kbd>
+<img width="390px" height="390px" alt="20210222_215740_8" src="https://user-images.githubusercontent.com/73922848/108711783-3532e880-7559-11eb-9e1d-50a1e533d6e0.png">
+</kbd>
+
