@@ -30,7 +30,7 @@
       <sub>
       <b>
       김완식<br/>
-      :strawberry:
+      :books:
       </b>
       </sub>
       </a>
@@ -41,7 +41,7 @@
       <sub>
       <b>
       서재준<br/>
-      :tangerine:  
+      :clipboard:  
       </b>
       </sub>
       </a>
@@ -52,7 +52,7 @@
       <sub>
       <b>
       권세희<br/>
-      :lemon:  
+      :two_women_holding_hands::triangular_flag_on_post:  
       </b>
       </sub>
       </a>
@@ -63,7 +63,7 @@
       <sub>
       <b>
       윤세홍<br/>
-      :watermelon: 
+      :pushpin::page_facing_up: 
       </b>
       </sub>
       </a>
@@ -74,7 +74,7 @@
       <sub>
       <b>
       최승아<br/>
-      :peach:  
+      :checkered_flag:  
       </b>
       </sub>
       </a>
@@ -85,7 +85,7 @@
       <sub>
       <b>
       김은화<br/>
-      :apple:  
+      :person_with_pouting_face:  
       </b>
       </sub>
       </a>
