@@ -108,7 +108,11 @@
 ***
 #### Building
 • Plan PPT<br>
+<br>
+<br>
 • UI<br>
+<br>
+<br>
 <kbd>
  <img src="https://user-images.githubusercontent.com/73922848/108707753-d3bc4b00-7553-11eb-838e-ff45b263e6c4.png" width="390px" height="390px">
 </kbd>
@@ -117,10 +121,14 @@
 </kbd>
 <br>
 • DB<br>
+<br>
+<br>
 ![BetterTogether_DB](https://user-images.githubusercontent.com/48790779/108701747-b1beca80-754b-11eb-9f13-872b3e385726.png)<br>
 https://www.erdcloud.com/d/oPKqs7rnBJ7Z4Ynf2 -> for more detail of DB
 <br><br>
 • Code Review PPT<br>
+<br>
+<br>
 <kbd>
 <img width="370px" height="220px" alt="20210222_220831_1" src="https://user-images.githubusercontent.com/73922848/108712738-90b1a600-755a-11eb-92a5-362819e5994a.png">
 </kbd>
