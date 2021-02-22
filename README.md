@@ -109,9 +109,7 @@
 #### Building
 • Plan PPT<br>
 <br>
-<br>
 • UI<br>
-<br>
 <br>
 <kbd>
  <img src="https://user-images.githubusercontent.com/73922848/108707753-d3bc4b00-7553-11eb-838e-ff45b263e6c4.png" width="390px" height="390px">
@@ -119,18 +117,16 @@
 <kbd>
  <img src="https://user-images.githubusercontent.com/73922848/108707755-d5860e80-7553-11eb-902c-aa981595759d.png" width="390px" height="390px">
 </kbd>
-<br>
+<br><br>
 • DB<br>
-<br>
 <br>
 ![BetterTogether_DB](https://user-images.githubusercontent.com/48790779/108701747-b1beca80-754b-11eb-9f13-872b3e385726.png)<br>
 https://www.erdcloud.com/d/oPKqs7rnBJ7Z4Ynf2 -> for more detail of DB
 <br><br>
 • Code Review PPT<br>
 <br>
-<br>
 <kbd>
-<img width="370px" height="220px" alt="20210222_220831_1" src="https://user-images.githubusercontent.com/73922848/108712738-90b1a600-755a-11eb-92a5-362819e5994a.png">
+<img width="390px" height="220px" alt="20210222_220831_1" src="https://user-images.githubusercontent.com/73922848/108712738-90b1a600-755a-11eb-92a5-362819e5994a.png">
 </kbd>
 <kbd>
 <img width="370px" height="220px" alt="20210222_215740_2" src="https://user-images.githubusercontent.com/73922848/108711731-24827280-7559-11eb-8793-6cd44b4a2f03.png">
