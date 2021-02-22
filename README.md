@@ -120,7 +120,7 @@
 <br><br>
 • DB<br>
 <br>
-<img src="https://user-images.githubusercontent.com/48790779/108701747-b1beca80-754b-11eb-9f13-872b3e385726.png" width="780px" height="780px"><br>
+<img src="https://user-images.githubusercontent.com/48790779/108701747-b1beca80-754b-11eb-9f13-872b3e385726.png" width="790px" height="580px"><br>
 https://www.erdcloud.com/d/oPKqs7rnBJ7Z4Ynf2 -> for more detail of DB
 <br><br>
 • Code Review PPT<br>
