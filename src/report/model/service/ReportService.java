@@ -202,7 +202,7 @@ public class ReportService {
 					//거래 내역 디비에 환급된거 넣어주기
 					int result2 = new HistoryDao().refundChall(conn,r.getChall_no());
 					//삭제당한 인원들이 로그인시 확인가능하도록 news디비에 정보 넣기
-					int result3 = new NewsDao().insertReport(conn,rNo);
+					int result3 = new NewsDao().insertChall(conn,r.getChall_no());
 					
 					// chall_status 디비에 chall_status 1을 0으로 변경
 					int result4 =new ChallDao().deleteChallStatus(conn, r.getChall_no());

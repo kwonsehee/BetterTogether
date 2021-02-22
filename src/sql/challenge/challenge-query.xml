@@ -891,7 +891,7 @@
           			   JOIN CHALL_CATEGORY USING(CATE_ID)
           			   JOIN USER_INFO USING (USER_ID)
         			  WHERE
-                            CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt;= SYSDATE
+                            CHALL_START + (TO_NUMBER(CHALL_PERIOD)*7) &lt; SYSDATE
            			   AND  CHALL_STATUS = 'N'
         		   ORDER BY CHALL_NO DESC)T)
 		WHERE RNUM BETWEEN ? AND ?
@@ -1057,7 +1057,9 @@
 		       CHALL_NO = ? 
 		   AND CHALL_STATUS = 1
 	</entry>
-	 <entry key="endChallStatus">
+
+	
+	<entry key="endChallStatus">
    		UPDATE 
    			  CHALL_STATUS
    		   SET
@@ -1067,4 +1069,5 @@
    		   AND 
    		   	  CHALL_NO = ?
    </entry>
+
 </properties>

@@ -59,7 +59,7 @@ public class ChallInsertServlet extends HttpServlet {
 			System.out.println("root: "+ root);
 		
 			//파일이 실제로 저장 될 경로
-			String savePath = root+"resources\\uploadFiles\\";
+			String savePath = root+"resources/uploadFiles/";
 			
 			//httpServletRequest-->MultipartRequest 변경
 //			MultipartRequest multiRequest =new MultipartRequest(request, savePath,

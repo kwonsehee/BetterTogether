@@ -18,6 +18,7 @@
 
 String confirm = (String)request.getParameter("confirm");
 System.out.println("insert와서confirm :  "+confirm);
+
 %>
 <!DOCTYPE html>
 <html>

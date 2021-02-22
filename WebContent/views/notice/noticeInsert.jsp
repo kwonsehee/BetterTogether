@@ -51,6 +51,7 @@
 	font-weight: bolder;
 	float: right;
 	margin-bottom: 2%;
+	margin-right:1%;
 }
 
 #btnArea {

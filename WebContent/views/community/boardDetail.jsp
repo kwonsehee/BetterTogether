@@ -14,24 +14,20 @@
 #btSection {
 	padding-bottom: 100px;
 }
-
 /* 타이틀,라인 */
 #con1_title h1 {
 	text-align: center;
 	margin-top: 25px;
 }
-
 .h1_title {
 	margin-top: 50px;
 	text-align: center;
 	font-size: 24px;
 	color: #757575;
 }
-
 .line {
 	border: 0.5px solid #937cf790;
 }
-
 /* 게시물 부분 */
 #board_div {
 	width: 80%;
@@ -73,38 +69,31 @@
 #Board_con {
 	width:100%;
 }
-
 #Board_con p {
 	padding-left: 10px;
 	font-size: 14px;
 }
-
-
 #btitle {
 	line-height: 70px;
 	padding-left: 10px;
 	color: #757575;
 	font-size: 14px;
 }
-
 #bcreatedate {
 	font-size: 12px;
 	color: #757575;
 }
-
 #bwriter {
 	font-size: 12px;
 	color: #757575;
 	margin-left: 15px;
 }
-
 /* 버튼 */
 #btnWrap{
 width:80%;
 margin:auto;
 margin-top:50px;
 }
-
 #back {
 	width: 100px;
 	font-family: "Nanum Gothic";
@@ -116,7 +105,6 @@ margin-top:50px;
 	margin-top: 20px;
 	font-size: 10px;
 }
-
 #warning_btn {
 	font-family: "Nanum Gothic";
 	border-radius: 10px;
@@ -125,10 +113,9 @@ margin-top:50px;
 	background-color: #e6e4e4b6;
 	font-weight: bolder;
 	margin-left: 929px;
-	margin-top: 20px;
+	margin-top: -45px;
 	font-size: 10px;
 }
-
 #imgAreaOuter {
 	float:left;
 }
@@ -136,13 +123,15 @@ margin-top:50px;
 	display: inline-block;
 	text-align: center;
 }
-
 .addImg {
 	width: 400px;
 	height: 300px;
 	margin-top:30px;
 }
 
+#contentWrap {
+	height:400px;
+}
 </style>
 </head>
 <body>
@@ -182,7 +171,7 @@ margin-top:50px;
         
             <!-- 버튼 -->
             <div id="btnWrap">
-	        <button type="button" class="btn" id="back" onclick="javascript:history.back();" id="back">뒤로가기</button>
+	        <button type="button" class="btn" id="back" onclick="location.href='<%=request.getContextPath() %>/board/main'" id="back">뒤로가기</button>
 	        <button class="btn" id="warning_btn">신고</button>
         	</div>
        
@@ -201,7 +190,7 @@ margin-top:50px;
         
         <!-- 버튼 -->
         <div id="btnWrap">
-        <button type="button" class="btn" id="back" onclick="javascript:history.back();" id="back">뒤로가기</button>
+        <button type="button" class="btn" id="back" onclick="location.href='<%=request.getContextPath() %>/board/main'" id="back">뒤로가기</button>
 		<button class="btn" id="warning_btn">신고</button>
 		</div>
         <% } %>

@@ -374,7 +374,6 @@
 
         <form method="POST">
             <section id="content-3">
-                <%-- 로그인 유저만 작성하기 버튼 보이기 --%>
                 <% if(loginUser != null) { %>
                 	<%if(loginUser.getWriter_active().equals("Y")){ %>
                 	<button id="challenge_btn" type="button" onclick="location.href='<%= request.getContextPath() %>/views/challenge/challengeMake.jsp'">챌린지 개설</button>

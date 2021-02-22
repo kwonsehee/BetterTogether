@@ -1465,7 +1465,6 @@ System.out.println("내가 참여하고 있는 챌린지 카운트 : "+listCount
 		return pplList;
 	}
 
-	
 	public int endChallStatus(Connection conn, String userId, int challNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;

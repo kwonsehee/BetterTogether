@@ -217,18 +217,6 @@ input[type="text"], input[type="password"] {
 			</script>
 	</section>
 
-	<!-- 결제버튼  -->
-	<%-- <script>
-	const pointBtn = document.getElementById('pointBtn');
-	<%if (money >= ch.getChallPay()) {%>
-	pointBtn.addEventListener('click',function(){
-		$("#joinForm").attr("action", "<%=request.getContextPath()%>/pay/insert");
-		$("#joinForm").submit();
-	});
-	<%} else {%>
-		$("#pointBtn").attr("disabled", true);
-	<%}%>
-	
-	</script> --%>
+
 </body>
 </html>

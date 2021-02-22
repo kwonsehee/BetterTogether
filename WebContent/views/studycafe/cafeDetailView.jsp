@@ -630,7 +630,7 @@ ul {
 						<tr>
 							<span style="display: block; width: 480px; height: 100px;">
 								<p>&nbsp&nbsp공간소개 </p> <pre
-									style="font-size: 16px; font-family:NanumGothic; height:
+									style="font-size: 16px; white-space: pre-wrap;  font-family:NanumGothic; height:
 								 110px;width: 550px;margin-left: 10px;border-top-width:
 								  0px;border-bottom-width: 0px;border-left-width:
 								   0px;border-right-width: 0px; background-color:rgba(255,255,255,0); white-space:pre-wrap;"><%=c.getCafe_info()%></pre>
@@ -640,10 +640,10 @@ ul {
 						<td>
 						<tr>
 							<span
-								style="display: block; width: 480px; height: 100px; margin-top: 50px;">
+								style="display: block;width: 480px;height: 100px;margin-top: 70px;">
 								<div id="line1" style="left: 0px;top: 150px;width: 550px;border: 0.5px solid #937cf790;margin-top: 10px;margin-bottom: 15px;"></div>
 								<p> &nbsp&nbsp유의사항 </p> <pre
-									style="font-size: 16px; height: 150px; width: 550px; font-family:
+									style="font-size: 16px;white-space: pre-wrap;  height: 150px; width: 550px; font-family:
 									NanumGothic; 
 									 margin-left: 10px; border-left-width: 0px; 
 									 border-top-width: 0px; border-bottom-width:

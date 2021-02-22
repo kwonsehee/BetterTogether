@@ -210,11 +210,7 @@
         }
 	   </script>
 	<script>
-		//1. 메인으로 돌아가기
-		const goMainBtn = document.getElementById("goMainBtn");
-		goMainBtn.addEventListener('click',function(){
-			location.href="<%=request.getContextPath()%>";
-		});
+	
 		//2. 비밀번호 변경 창 띄우기
 		const pwdUpdateBtn = document.getElementById('pwdUpdateBtn');
 		pwdUpdateBtn.addEventListener('click',function(){

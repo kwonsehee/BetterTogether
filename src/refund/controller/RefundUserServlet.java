@@ -56,16 +56,18 @@ public class RefundUserServlet extends HttpServlet {
 				
 			//로그인 세션 값 변경
 			request.getSession().setAttribute("loginUser", updateMember);
-			
 			request.getSession().setAttribute("msg", money+"원 상금을 받았습니다. 마이페이지를 확인해주세요.");
-			page = "/myPage/history";
+			response.sendRedirect(request.getContextPath()+"/myPage/history");
+			
+			
 		}else {
 			request.setAttribute("msg", "상금받기에 실패하였습니다.");
 			page = "/views/common/errorPage.jsp";
+			RequestDispatcher view = request.getRequestDispatcher(page);
+			view.forward(request, response);
 		}
 
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
+		
 	}
 
 	/**

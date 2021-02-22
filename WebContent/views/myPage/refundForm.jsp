@@ -19,7 +19,7 @@
 <%if(session.getAttribute("msg") != null){ %>
 <script>
 	alert('<%=session.getAttribute("msg") %>');
-	opener.parent.location.reload();
+	 opener.parent.location.reload();
 	window.close();
 </script>
 <%
@@ -122,7 +122,7 @@
           
                         <tr>
                             <td > <button type="reset" class="btn">취소</button></td>
-                            <td> <button type="submit" class="btn">환불받기</button></td>
+                            <td> <button type="submit" class="btn">환급받기</button></td>
                             <td></td>
                             
                         </tr>

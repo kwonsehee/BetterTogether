@@ -16,6 +16,10 @@ if(request.getAttribute("inout")!=null){
 <head>
 <meta charset="UTF-8">
 <title>Better Together</title>
+ <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+   crossorigin="anonymous"></script>
 <style>
      .line {
 		border: 0.5px solid #937cf790;
@@ -274,8 +278,8 @@ if(request.getAttribute("inout")!=null){
 		var url = '<%=request.getContextPath()%>/views/myPage/PointCharging.jsp';
 		
 		// 팝업 가운데에 띄우기
-		var popupWidth = 600;
-		var popupHeight = 500;
+		var popupWidth = 800;
+		var popupHeight = 700;
 
 		var popupX = (window.screen.width / 2) - (popupWidth / 2);
 		// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음

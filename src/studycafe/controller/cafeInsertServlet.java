@@ -52,7 +52,7 @@ public class cafeInsertServlet extends HttpServlet {
 		//	System.out.println("root : " + root);
 			
 			// 파일이 실제로 저장 될 경로
-			String savePath = root + "resources\\Cafeimages\\"; 
+			String savePath = root + "resources/Cafeimages/"; 
 			
 			
 			

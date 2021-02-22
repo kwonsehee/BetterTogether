@@ -241,6 +241,9 @@ function updateFreq(str){
 						<option>---</option>
 						</select>
 					</td>
+					<td style="font-weight:bolder;">
+					회
+					</td>
 				</tr>
 				<tr>
 					<td class="tb_content">챌린지 기간</td>
@@ -252,6 +255,9 @@ function updateFreq(str){
 						<option value="3">3</option>
 						<option value="4">4</option>
 					</select>
+					</td>
+					<td style="font-weight:bolder;">
+					주
 					</td>
 				</tr>
 				<tr>

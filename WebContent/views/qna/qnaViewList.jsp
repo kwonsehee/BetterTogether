@@ -137,6 +137,18 @@
 			width:80%;
 			margin:auto;
 		}
+		
+		.btn1{
+			font-family: "Nanum Gothic";
+			border-radius: 10px;
+    		border: solid 1px #9e9e9e5b;
+    		padding: 5px 15px 5px 15px;
+    		background-color: #e6e4e4b6;
+    		font-size: 10px;
+    		font-weight: bolder;
+    		margin-top: 5%;
+    		margin-bottom: 1%;
+		}
 </style>
 </head>
 <body>
@@ -188,7 +200,12 @@
 				<button id="questionBtn" type="button" 
 				onclick="location.href='<%= request.getContextPath() %>/views/qna/qnaInsertForm.jsp'">질문하기</button>
 				<% } %>
-
+			 <div id="btnArea">
+            	<%-- 로그인 유저만 글쓰기, 내가쓴글보기 버튼 보이기 --%>
+				<% if(loginUser != null) { %>
+			  		<button class="btn1" id="writenReport"><a href='<%= request.getContextPath()%>/qna/mylist'>내가 작성한 질문 보기</a></button>
+				<% } %>
+    		</div>
             <!-- 페이징 바 -->
 			<div class="pagingArea">
 			<!-- 맨 처음으로 (<<) -->
@@ -228,7 +245,7 @@
 		// 게시판 상세보기 기능
 		$(function(){
 			$("#qnaBoard td").mouseenter(function(){
-				$(this).parent().css({"background":"#937cf790", "cursor":"pointer"});
+				$(this).parent().css({"background":"#937cf755", "cursor":"pointer"});
 			}).mouseout(function(){
 				$(this).parent().css("background", " none");
 			}).click(function(){

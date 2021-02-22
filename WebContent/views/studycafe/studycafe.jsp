@@ -456,10 +456,10 @@ button{
 			</div> 
 			
 			
-				
-				
 		 <%-- 로그인 유저만 작성하기 버튼 보이기 --%>
-         <% if(loginUser != null) { %>
+
+		<% if(loginUser != null) { %>
+
              <%if(loginUser.getWriter_active().equals("Y")){ %>
                	<button id="insertBtn" type="button"
 				onclick="location.href='<%=request.getContextPath()%>/views/studycafe/cafeInsertForm.jsp'"
@@ -468,7 +468,7 @@ button{
               <button id="insertBtn" type="button"onclick="alert('회원의 글쓰기 권한이 제한되었습니다.')">카페등록</button>	
          <% } %>
          <% } %>
-				
+
 		</div>
 			<script>
 				$(function(){

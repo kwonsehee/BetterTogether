@@ -164,7 +164,7 @@ qnaBoard, thead{
 }
 
 #board_div {
-	width: 80%;
+	width: 85%;
 	margin: auto;
 }
 
@@ -343,7 +343,7 @@ qnaBoard, thead{
 		
 			  $(function(){
 			         $("#qnaBoard td").mouseenter(function(){
-			            $(this).parent().css({"background":"#937cf790", "cursor":"pointer"});
+			            $(this).parent().css({"background":"#937cf755", "cursor":"pointer"});
 			         }).mouseout(function(){
 			            $(this).parent().css("background", "none");
 			         }).click(function(){

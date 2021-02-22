@@ -196,6 +196,7 @@ public class Notice {
 	}
 
 
+
 	@Override
 	public String toString() {
 		return "Notice [aNo=" + aNo + ", aTitle=" + aTitle + ", aFile=" + aFile + ", aContent=" + aContent + ", aDate="
@@ -204,5 +205,5 @@ public class Notice {
 	}
 
 	
+	
 }
-

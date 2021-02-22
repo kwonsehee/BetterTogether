@@ -59,7 +59,7 @@ public class PayInsertServlet extends HttpServlet {
 			Member updateMember = new MemberService().updatePoint(point, loginUser);
 			
 			//거래내역 디비에 값 입력
-			result2 = new HistoryService().insertPayment(userId, payment,challNo);
+			result2 = new HistoryService().insertPayment(userId, point,challNo);
 			
 			//로그인 세션 값 변경
 			request.getSession().setAttribute("loginUser", updateMember);

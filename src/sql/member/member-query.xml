@@ -76,6 +76,7 @@
 		  , MEMBER_TYPE
 		  , USER_CATE
 		  , POINT
+		  , WRITE_ACTIVE
 		  FROM
 		  		USER_INFO
 		  WHERE
