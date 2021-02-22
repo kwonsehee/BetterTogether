@@ -122,7 +122,7 @@ https://www.erdcloud.com/d/oPKqs7rnBJ7Z4Ynf2 -> for more detail of DB
 <br><br>
 • Code Review PPT<br>
 <kbd>
-<img width="290px" height="190px" alt="20210222_215740_1" src="https://user-images.githubusercontent.com/73922848/108711729-23514580-7559-11eb-966f-9e236a892945.png">
+<img width="300px" height="220px" alt="20210222_215740_1" src="https://user-images.githubusercontent.com/73922848/108711729-23514580-7559-11eb-966f-9e236a892945.png">
 </kbd>
 <kbd>
 <img width="390px" height="390px" alt="20210222_215740_2" src="https://user-images.githubusercontent.com/73922848/108711731-24827280-7559-11eb-8793-6cd44b4a2f03.png">
