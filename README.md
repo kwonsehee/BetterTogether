@@ -12,7 +12,7 @@
  ![android](https://img.shields.io/badge/eclipse-java-green)
  ![DataBase](https://img.shields.io/badge/DataBase-Oracle-lightgrey)
 
-### Functions
+### Functions :hammer_and_wrench:
 + 회원정보 : 회원가입, 로그인/로그아웃, 회원정보 수정, 회원탈퇴, 아이디/비밀번호 찾기
 + 챌린지 모집 : 챌린지 개설, 수정/삭제, 챌린지 찜하기/찜 취소하기, 참여인원 확인, 챌린지 결제
 + 챌린지 인증 : 인증방법에 맞는 인증 등록, 삭제, 종료된 챌린지 달성률과 회원의 달성률, 달성률별 상금 차등 지급
@@ -92,3 +92,5 @@
     </td>
  </tr>
  <table>
+
+#### Library & API :book:
