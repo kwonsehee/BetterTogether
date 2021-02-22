@@ -107,7 +107,7 @@
 
 ***
 ### Building
-• Plan PPT<br>
+• Plan PPT<br><br>
 [BetterTogether_기획발표_PPT.pdf](https://github.com/kwonsehee/BetterTogether/files/6022622/BetterTogether_._PPT.pdf)
 <br><br>
 • UI<br>
