@@ -1,4 +1,4 @@
-## Better Together
+# Better Together
 ***
 
 ### 기획의도
