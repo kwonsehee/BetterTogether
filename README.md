@@ -112,7 +112,9 @@
 <kbd>
 <img src="https://user-images.githubusercontent.com/73922848/108707753-d3bc4b00-7553-11eb-838e-ff45b263e6c4.png" width="380px" height="380px">
 </kbd>
+<kbd>
 <img src="https://user-images.githubusercontent.com/73922848/108707755-d5860e80-7553-11eb-902c-aa981595759d.png" width="380px" height="380px"><br>
+</kbd>
 • DB<br>
 ![BetterTogether_DB](https://user-images.githubusercontent.com/48790779/108701747-b1beca80-754b-11eb-9f13-872b3e385726.png)<br>
 https://www.erdcloud.com/d/oPKqs7rnBJ7Z4Ynf2 -> for more detail of DB
