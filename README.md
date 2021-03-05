@@ -21,6 +21,16 @@
 + 신고 및 알림 : 카테고리별 게시글 신고 및 신고처리, 새로운 소식 알림
 + 관리자 페이지 : 사이트 내 정보 엑셀화, 다운로드, 공지사항 및 고객센터 
 
+| Function -​ :one: 로그인/회원가입 | Function -​ :two: 마이페이지|
+|![ezgif com-gif-maker](
+)
+
+|<img src ="img/function3-1.gif" width ="600"> |
+| Function -​ :three:| Function -​ :four: |
+| Function -​ :five:| Function -​ :six: |
+| Function -​ :seven:| Function -​ :eight: |
+| Function -​ :nine:| Function -​ :ten: |
+
 ### Contributors :sparkles:
 <table>
   <tr>
